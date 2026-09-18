@@ -285,9 +285,20 @@ def classify_official_rows(exchange: str, rows: list[dict[str, Any]]) -> tuple[s
             continue
         txt = row_text(r)
 
-        # Reject clear non-equity rows when the source mixes products.
-        reject_tokens = ("B股", "基金", "ETF", "REIT", "债券", "可转债", "期权", "存托凭证")
-        if any(t in txt for t in reject_tokens):
+        # Do not scan column names for product tokens. Official stock-list XLSX rows
+        # legitimately contain empty B-share columns such as “B股代码”; that does not make
+        # the A-share row a B share. We accept a row because it has an explicit six-digit
+        # A-share/security code in the official exchange stock-list source. Product-type
+        # exclusion is only applied when an explicit type/category VALUE identifies a
+        # non-A-share instrument.
+        type_values = []
+        for k, v in r.items():
+            lk = str(k).lower()
+            if any(t in lk for t in ("type", "category", "证券类别", "证券类型", "产品类别", "品种")):
+                if v is not None:
+                    type_values.append(str(v).strip())
+        reject_values = ("B股", "基金", "ETF", "REIT", "债券", "可转债", "期权", "存托凭证")
+        if any(any(tok == tv or tok in tv for tok in reject_values) for tv in type_values):
             continue
 
         # We do NOT infer board/exchange from ticker prefix. The exchange is inherited from
@@ -355,14 +366,23 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
         raise RuntimeError(f"AlphaDojo missing required columns: {missing}")
 
     x = df.copy()
+    stage_counts = {"source_rows": int(len(x))}
+    raw_value_samples = {
+        "market": x["market"].dropna().astype(str).value_counts().head(20).to_dict(),
+        "quote_type": x["quote_type"].dropna().astype(str).value_counts().head(20).to_dict(),
+        "full_exchange_name": x["full_exchange_name"].dropna().astype(str).value_counts().head(30).to_dict(),
+    }
     x["market_norm"] = x["market"].astype(str).str.lower()
     x["quote_norm"] = x["quote_type"].astype(str).str.upper()
     x["first_dt"] = pd.to_datetime(x["first_traded_date"], errors="coerce", utc=True).dt.tz_convert(None)
     x["delist_dt"] = pd.to_datetime(x["delisted_at"], errors="coerce", utc=True).dt.tz_convert(None)
 
     x = x[(x["market_norm"] == "cn") & (x["quote_norm"] == "EQUITY")]
+    stage_counts["after_cn_equity"] = int(len(x))
     x = x[(x["first_dt"].notna()) & (x["first_dt"] <= PIT_DATE)]
+    stage_counts["after_first_traded_date"] = int(len(x))
     x = x[(x["delist_dt"].isna()) | (x["delist_dt"] > PIT_DATE)]
+    stage_counts["after_delisted_at"] = int(len(x))
 
     def exmap(s: Any) -> str | None:
         v = str(s).strip()
@@ -374,7 +394,11 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
         return None
 
     x["exchange_canonical"] = x["full_exchange_name"].map(exmap)
+    stage_counts["exchange_mapped_sse"] = int((x["exchange_canonical"] == "SSE").sum())
+    stage_counts["exchange_mapped_szse"] = int((x["exchange_canonical"] == "SZSE").sum())
+    stage_counts["exchange_unmapped"] = int(x["exchange_canonical"].isna().sum())
     x = x[x["exchange_canonical"].isin(["SSE", "SZSE"])]
+    stage_counts["after_exchange_mapping"] = int(len(x))
 
     def norm_ticker(v: Any) -> str | None:
         s = str(v).strip()
@@ -382,7 +406,9 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
         return m.group(1) if m else None
 
     x["code6"] = x["ticker"].map(norm_ticker)
+    stage_counts["valid_code6"] = int(x["code6"].notna().sum())
     x = x[x["code6"].notna()]
+    stage_counts["after_code6"] = int(len(x))
     x["canonical_id"] = [
         f"{ex}:{code}" for ex, code in zip(x["exchange_canonical"].tolist(), x["code6"].tolist())
     ]
@@ -401,6 +427,8 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
         "pit_rows": int(len(x)),
         "canonical_count": int(len(ids)),
         "frozen_path": str(frozen),
+        "stage_counts": stage_counts,
+        "raw_value_samples": raw_value_samples,
     }
 
 def main() -> int:
