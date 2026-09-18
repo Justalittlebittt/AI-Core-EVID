@@ -54,34 +54,48 @@ def sse_delisted():
     return events,{"rows":len(rows),**meta}
 
 def szse_delisted():
-    url="https://www.szse.cn/api/report/ShowReport"
-    params={"SHOWTYPE":"xlsx","CATALOGID":"1793_ssgs","TABKEY":"tab2"}
-    r=requests.get(url,params=params,headers={
+    # Browser probe proved this official JSON endpoint and metadata:
+    # CATALOGID=1793_ssgs, tab2=终止上市, zqdm/ssrq/zzrq,
+    # with pagecount/recordcount supplied by the exchange.
+    url="https://www.szse.cn/api/report/ShowReport/data"
+    headers={
       "User-Agent":"Mozilla/5.0",
       "Referer":"https://www.szse.cn/market/stock/suspend/index.html"
-    },timeout=60)
-    r.raise_for_status()
-    meta=save("szse_delisted.xlsx",r.content)
-    sheets=pd.read_excel(io.BytesIO(r.content),sheet_name=None,dtype=str)
-    events=[]; sheet_meta={}
-    for sheet,df in sheets.items():
-        sheet_meta[sheet]={"rows":len(df),"columns":[str(c) for c in df.columns]}
-        cols={str(c).replace(" ",""):c for c in df.columns}
-        code_col=next((orig for k,orig in cols.items() if k in ("证券代码","A股代码","代码")),None)
-        date_col=next((orig for k,orig in cols.items() if any(t in k for t in ("终止上市日期","摘牌日期","退市日期"))),None)
-        name_col=next((orig for k,orig in cols.items() if k in ("证券简称","A股简称","公司简称")),None)
-        if not code_col or not date_col:
-            continue
-        for _,row in df.iterrows():
-            c=code6(row.get(code_col)); dd=d(row.get(date_col))
+    }
+    session=requests.Session()
+    first=session.get(url,params={
+      "SHOWTYPE":"JSON","CATALOGID":"1793_ssgs","TABKEY":"tab2","PAGENO":"1"
+    },headers=headers,timeout=60)
+    first.raise_for_status()
+    obj=first.json()
+    block=obj[1] if isinstance(obj,list) and len(obj)>1 and (obj[1].get("metadata") or {}).get("tabkey")=="tab2" else obj[0]
+    md=block.get("metadata") or {}
+    pages=int(md.get("pagecount") or 1)
+    recordcount=int(md.get("recordcount") or 0)
+    events=[]; files=[]; raw_rows=0
+    for page in range(1,pages+1):
+        r=first if page==1 else session.get(url,params={
+          "SHOWTYPE":"JSON","CATALOGID":"1793_ssgs","TABKEY":"tab2","PAGENO":str(page)
+        },headers=headers,timeout=60)
+        r.raise_for_status()
+        sm=save(f"szse_delisted_page_{page:02d}.json",r.content)
+        jo=r.json()
+        b=next((x for x in jo if isinstance(x,dict) and (x.get("metadata") or {}).get("tabkey")=="tab2"), jo[0]) if isinstance(jo,list) else jo
+        rows=b.get("data") or []
+        raw_rows += len(rows)
+        for row in rows:
+            c=code6(row.get("zqdm")); dd=d(row.get("zzrq"))
             if c and dd:
                 events.append({
                   "canonical_id":"SZSE:"+c,
                   "delist_date":dd.isoformat(),
-                  "name":str(row.get(name_col,"")) if name_col else "",
-                  "source_sheet":sheet,
+                  "name":str(row.get("zqjc","")),
+                  "list_date":str(row.get("ssrq","")),
                 })
-    return events,{"sheets":sheet_meta,**meta}
+        files.append({"page":page,"rows":len(rows),**sm})
+    if recordcount and raw_rows != recordcount:
+        raise RuntimeError(f"SZSE delist pagination incomplete: {raw_rows} != {recordcount}")
+    return events,{"recordcount":recordcount,"pagecount":pages,"rows_fetched":raw_rows,"files":files}
 
 def main():
     result={
