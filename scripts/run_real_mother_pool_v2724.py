@@ -413,9 +413,12 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
     stage_counts["after_exchange_mapping"] = int(len(x))
 
     def norm_ticker(v: Any) -> str | None:
+        # Ticker may carry vendor formatting/suffix. Extract the security code only
+        # when there is exactly one six-digit token. Exchange identity is NEVER
+        # derived from ticker; it remains owned by full_exchange_name.
         s = str(v).strip()
-        m = CODE_RE.fullmatch(s)
-        return m.group(1) if m else None
+        matches = CODE_RE.findall(s)
+        return matches[0] if len(matches) == 1 else None
 
     x["code6"] = x["ticker"].map(norm_ticker)
     stage_counts["valid_code6"] = int(x["code6"].notna().sum())
