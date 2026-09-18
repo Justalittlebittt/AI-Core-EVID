@@ -1,0 +1,36 @@
+name: V2.7.26 Official Membership Authority
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/run_v2726_authority_separation.py"
+      - ".github/workflows/v2726-authority-separation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install "pandas>=2,<4" "pyarrow>=15,<22" "requests>=2.32" "openpyxl>=3.1" "huggingface_hub>=0.25,<2" "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Execute V2.7.26 authority separation
+        run: python scripts/run_v2726_authority_separation.py | tee v2726.log
+      - if: always()
+        run: |
+          mkdir -p v2726_artifacts
+          cp v2726.log v2726_artifacts/V2726_RUN_LOG.txt || true
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.26_AUTHORITY_SEPARATION
+          path: v2726_artifacts/
+          if-no-files-found: error
+          retention-days: 30
