@@ -119,10 +119,24 @@ def szse_fetch(page,code):
 
 def save_pdf(resp, cid):
     b=resp.body()
-    if resp.status!=200: raise RuntimeError(f"{cid} PDF HTTP {resp.status}")
-    if not b.startswith(b"%PDF"): raise RuntimeError(f"{cid} payload is not PDF")
+    diag={
+      "status":resp.status,
+      "url":resp.url,
+      "content_type":resp.headers.get("content-type"),
+      "bytes":len(b),
+      "first64_hex":b[:64].hex(),
+      "pdf_header_offset":b[:1024].find(b"%PDF-")
+    }
+    (RAW/(cid.replace(":","_")+"_pdf_response_diag.json")).write_text(
+      json.dumps(diag,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+    )
+    if resp.status!=200: raise RuntimeError(f"{cid} PDF HTTP {resp.status}; diag={diag}")
+    off=diag["pdf_header_offset"]
+    if off < 0: 
+        (RAW/(cid.replace(":","_")+"_nonpdf_payload.bin")).write_bytes(b)
+        raise RuntimeError(f"{cid} payload is not PDF; diag={diag}")
     p=PDF/(cid.replace(":","_")+".pdf"); p.write_bytes(b)
-    return {"path":str(p),"bytes":len(b),"sha256":sha(b),"content_type":resp.headers.get("content-type")}
+    return {"path":str(p),"bytes":len(b),"sha256":sha(b),"content_type":resp.headers.get("content-type"),"pdf_header_offset":off}
 
 def main():
     receipt={
