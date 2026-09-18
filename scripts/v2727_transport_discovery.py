@@ -64,8 +64,11 @@ def main():
                     b=resp.body()
                     if not b: return
                     p=save(ex,len(recs)+1,resp.url,ct,b)
+                    req=resp.request
                     recs.append({
                       "url":resp.url,"status":resp.status,"content_type":ct,
+                      "request_method":req.method,
+                      "request_post_data":req.post_data,
                       "path":p,"bytes":len(b),"sha256":sha(b)
                     })
                 except Exception as e:
@@ -74,7 +77,35 @@ def main():
             page.goto(sample["page"],wait_until="domcontentloaded",timeout=90000)
             page.wait_for_timeout(8000)
 
-            # Trigger visible query button once if present, without changing default sample identity.
+            controls=[]
+            for idx in range(page.locator("select").count()):
+                sel=page.locator("select").nth(idx)
+                try:
+                    controls.append({
+                      "index":idx,
+                      "name":sel.get_attribute("name"),
+                      "id":sel.get_attribute("id"),
+                      "options":sel.locator("option").all_text_contents()
+                    })
+                except Exception as e:
+                    controls.append({"index":idx,"error":repr(e)})
+
+            # Prefer official UI filters for periodic reports when visible.
+            filter_actions=[]
+            for target in ("半年度报告","年度报告","定期报告"):
+                loc=page.get_by_text(target,exact=True)
+                for i in range(min(loc.count(),5)):
+                    try:
+                        el=loc.nth(i)
+                        if el.is_visible():
+                            el.click(timeout=3000)
+                            filter_actions.append({"text":target,"index":i})
+                            page.wait_for_timeout(2500)
+                            break
+                    except Exception:
+                        pass
+
+            # Trigger visible query button once if present.
             for label in ("查询","搜索"):
                 loc=page.get_by_text(label,exact=True)
                 clicked=False
@@ -93,6 +124,8 @@ def main():
             manifest["samples"].append({
               **sample,
               "rendered_page_sha256":sha(html),
+              "controls":controls,
+              "filter_actions":filter_actions,
               "responses":recs,
               "errors":errors
             })
