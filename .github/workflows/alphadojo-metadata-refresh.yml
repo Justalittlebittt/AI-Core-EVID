@@ -1,0 +1,32 @@
+name: V2.7.25 AlphaDojo Metadata Refresh
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/alphadojo_metadata_refresh_v2725.py"
+      - ".github/workflows/alphadojo-metadata-refresh.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pandas>=2,<4" "pyarrow>=15,<22" "huggingface_hub>=0.25,<2"
+      - run: python scripts/alphadojo_metadata_refresh_v2725.py | tee refresh.log
+      - if: always()
+        run: |
+          mkdir -p alphadojo_refresh_artifacts
+          cp refresh.log alphadojo_refresh_artifacts/REFRESH_LOG.txt || true
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.25_ALPHADOJO_METADATA_REFRESH
+          path: alphadojo_refresh_artifacts/
+          if-no-files-found: error
+          retention-days: 30
