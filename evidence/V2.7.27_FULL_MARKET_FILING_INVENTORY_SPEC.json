@@ -1,0 +1,75 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_27_FULL_MARKET_FILING_INVENTORY_SPEC_V1",
+  "project_snapshot": "V2.7.27",
+  "pit_date": "2026-09-17",
+  "upstream_required": {
+    "official_mother_pool_receipt": "V2.7.26",
+    "official_mother_pool_count": 5221,
+    "official_mother_pool_set_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c"
+  },
+  "source_authority": {
+    "allowed": ["SSE_OFFICIAL", "SZSE_OFFICIAL", "CNINFO_OFFICIAL"],
+    "third_party_substitution": false
+  },
+  "issuer_query_contract": {
+    "coverage_target": "100_PERCENT_OF_OFFICIAL_MOTHER_POOL",
+    "query_spec": "FIXED_PER_SOURCE_IMPLEMENTATION",
+    "retain_every_raw_query_page": true,
+    "retain_raw_bytes_sha256": true,
+    "pagination_must_close_against_official_total_count": true,
+    "issuer_identity_must_map_to_canonical_security_id": true,
+    "ambiguous_identity": "BLOCK",
+    "duplicate_conflict": "BLOCK",
+    "missing_page": "BLOCK",
+    "missing_total_count_proof": "BLOCK"
+  },
+  "primary_candidate_scope": {
+    "periodic_primary_types": ["ANNUAL_REPORT", "SEMIANNUAL_REPORT"],
+    "ipo_fallback_only_if_periodic_empty": true,
+    "summary_cannot_substitute_full_filing": true,
+    "future_disclosure_excluded": true,
+    "pit_rule": "public_disclosure_date < signal_or_effective_date",
+    "effective_date_for_this_inventory": "2026-09-17"
+  },
+  "latest_primary_selector": {
+    "priority_1": "latest eligible report period",
+    "priority_2": "same-period revision supersedes original",
+    "ambiguity": "BLOCK",
+    "no_primary_after_valid_query": {
+      "status": "NONE",
+      "taxonomy_code": "NA"
+    }
+  },
+  "pdf_retention": {
+    "official_primary_pdf_required_for_selected_primary": true,
+    "retain_exact_pdf_bytes": true,
+    "retain_pdf_sha256": true,
+    "download_failure": "BLOCK",
+    "hash_missing": "BLOCK"
+  },
+  "full_market_gate": {
+    "pass_requirements": [
+      "mother_pool_count == 5221",
+      "issuer_query_complete_count == 5221",
+      "all query pagination receipts valid",
+      "all selected Primary records satisfy PIT",
+      "all selected Primary PDFs retained with SHA256",
+      "all NONE records have taxonomy_code NA",
+      "no unresolved identity/revision ambiguity"
+    ],
+    "pass_status": "FULL_MARKET_FILING_INVENTORY_PASS",
+    "fail_closed": true
+  },
+  "downstream": {
+    "next_if_pass": "V2.7.28 Evidence Bundle V1.2 Full-Market Execution",
+    "certified_v2_universe": "BLOCKED_UNTIL_EVIDENCE_BUNDLE_PASS",
+    "first60": "BLOCKED_UNTIL_CERTIFIED_V2_UNIVERSE",
+    "s4_s5_s6": "BLOCKED",
+    "live": "BLOCKED"
+  },
+  "version_note": {
+    "old_exact_transport_query_parameters_recovered": false,
+    "semantic_contract_recovered": true,
+    "policy": "transport/API parameters may be reimplemented only if they preserve this frozen semantic contract"
+  }
+}
