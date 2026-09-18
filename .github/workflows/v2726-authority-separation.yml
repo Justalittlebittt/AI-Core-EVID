@@ -31,6 +31,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: AI_CORE_EVID_V2.7.26_AUTHORITY_SEPARATION
-          path: v2726_artifacts/
+          path: |
+            v2726_artifacts/
+            artifacts/raw/
+            artifacts/normalized/OFFICIAL_CURRENT_CANONICAL.csv
+            pit_delta_proof_artifacts/raw/
           if-no-files-found: error
           retention-days: 30
