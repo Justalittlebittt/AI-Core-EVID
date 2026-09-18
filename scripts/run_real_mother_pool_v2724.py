@@ -154,39 +154,53 @@ def decode_json_or_jsonp_bytes(b: bytes) -> Any:
 def expand_complete_official_sources(captures: list[dict[str, Any]]) -> list[dict[str, Any]]:
     extra: list[dict[str, Any]] = []
 
-    # SSE: use the exact page-generated official query, changing only documented
-    # pagination fields already present in that request.
-    sse_first = next((c for c in captures if c.get("exchange") == "SSE"
-                      and "COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L" in c.get("url", "")
-                      and c.get("path")), None)
+    # SSE: the official page-generated request exposes STOCK_TYPE. The frozen
+    # universe requires both Main A (1) and STAR (8). We use the observed
+    # official request template and change only STOCK_TYPE + pagination fields.
+    sse_first = next((x for x in captures if x.get("exchange") == "SSE"
+                      and "COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L" in x.get("url", "")
+                      and x.get("path")), None)
     if sse_first:
-        first_obj = decode_json_or_jsonp_bytes(Path(sse_first["path"]).read_bytes())
-        ph = first_obj.get("pageHelp", {}) if isinstance(first_obj, dict) else {}
-        total = int(ph.get("total") or 0)
-        page_size = int(ph.get("pageSize") or 25)
-        pages = max(1, math.ceil(total / page_size))
         parsed = urlparse(sse_first["url"])
-        q = {k: v[-1] for k, v in parse_qs(parsed.query).items()}
+        base_q = {k: v[-1] for k, v in parse_qs(parsed.query).items()}
         sess = requests.Session()
         sess.headers.update({"User-Agent": "Mozilla/5.0", "Referer": SSE_PAGE})
-        for page_no in range(1, pages + 1):
-            qq = dict(q)
-            qq["pageHelp.pageNo"] = str(page_no)
-            qq["pageHelp.beginPage"] = str(page_no)
-            qq["pageHelp.endPage"] = str(page_no)
-            url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", urlencode(qq), ""))
-            r = sess.get(url, timeout=30)
-            r.raise_for_status()
-            p = RAW / "sse" / f"paged_{page_no:04d}.json"
-            p.write_bytes(r.content)
-            extra.append({
-                "exchange": "SSE", "url": url, "status": r.status_code,
-                "content_type": r.headers.get("content-type", ""),
-                "path": str(p), "bytes": len(r.content),
-                "sha256": sha256_bytes(r.content),
-                "captured_at_utc": datetime.now(timezone.utc).isoformat(),
-                "pagination_expansion": True,
-            })
+        for stock_type, label in (("1", "main_a"), ("8", "star")):
+            q1 = dict(base_q)
+            q1["STOCK_TYPE"] = stock_type
+            q1["pageHelp.pageNo"] = "1"
+            q1["pageHelp.beginPage"] = "1"
+            q1["pageHelp.endPage"] = "1"
+            first_url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", urlencode(q1), ""))
+            first_r = sess.get(first_url, timeout=30)
+            first_r.raise_for_status()
+            first_obj = decode_json_or_jsonp_bytes(first_r.content)
+            ph = first_obj.get("pageHelp", {}) if isinstance(first_obj, dict) else {}
+            total = int(ph.get("total") or 0)
+            page_size = int(ph.get("pageSize") or base_q.get("pageHelp.pageSize") or 25)
+            if total <= 0:
+                raise RuntimeError(f"SSE {label} returned total={total}")
+            pages = max(1, math.ceil(total / page_size))
+            for page_no in range(1, pages + 1):
+                qq = dict(base_q)
+                qq["STOCK_TYPE"] = stock_type
+                qq["pageHelp.pageNo"] = str(page_no)
+                qq["pageHelp.beginPage"] = str(page_no)
+                qq["pageHelp.endPage"] = str(page_no)
+                url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", urlencode(qq), ""))
+                r = first_r if page_no == 1 else sess.get(url, timeout=30)
+                r.raise_for_status()
+                p = RAW / "sse" / f"{label}_{page_no:04d}.json"
+                p.write_bytes(r.content)
+                extra.append({
+                    "exchange": "SSE", "url": url, "status": r.status_code,
+                    "content_type": r.headers.get("content-type", ""),
+                    "path": str(p), "bytes": len(r.content),
+                    "sha256": sha256_bytes(r.content),
+                    "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+                    "pagination_expansion": True, "sse_stock_type": stock_type,
+                    "sse_board_label": label,
+                })
 
     # SZSE: the page response itself declares CATALOGID=1110 as “A股列表”
     # and declares excel=xlsx. Fetch the corresponding official full XLSX export.
@@ -280,29 +294,27 @@ def classify_official_rows(exchange: str, rows: list[dict[str, Any]]) -> tuple[s
     ids: set[str] = set()
     accepted: list[dict[str, Any]] = []
     for r in rows:
-        code = extract_code(r)
-        if not code:
-            continue
-        txt = row_text(r)
-
-        # Do not scan column names for product tokens. Official stock-list XLSX rows
-        # legitimately contain empty B-share columns such as “B股代码”; that does not make
-        # the A-share row a B share. We accept a row because it has an explicit six-digit
-        # A-share/security code in the official exchange stock-list source. Product-type
-        # exclusion is only applied when an explicit type/category VALUE identifies a
-        # non-A-share instrument.
-        type_values = []
-        for k, v in r.items():
-            lk = str(k).lower()
-            if any(t in lk for t in ("type", "category", "证券类别", "证券类型", "产品类别", "品种")):
-                if v is not None:
-                    type_values.append(str(v).strip())
-        reject_values = ("B股", "基金", "ETF", "REIT", "债券", "可转债", "期权", "存托凭证")
-        if any(any(tok == tv or tok in tv for tok in reject_values) for tv in type_values):
-            continue
-
-        # We do NOT infer board/exchange from ticker prefix. The exchange is inherited from
-        # the official page/source identity. Board is non-canonical metadata only.
+        if exchange == "SSE":
+            # Official SSE stock-list schema. Accept only explicit A-share board types
+            # frozen for this universe; never infer board/exchange from ticker prefix.
+            code = norm_ticker = extract_code({"A_STOCK_CODE": r.get("A_STOCK_CODE")})
+            stock_type = str(r.get("STOCK_TYPE", "")).strip()
+            if not code or stock_type not in {"1", "8"}:
+                continue
+            list_dt = pd.to_datetime(r.get("LIST_DATE"), errors="coerce")
+            if pd.notna(list_dt) and pd.Timestamp(list_dt).tz_localize(None) > PIT_DATE:
+                continue
+        else:
+            # Official SZSE CATALOGID=1110 is explicitly the A-share list. The XLSX
+            # also contains B-share columns as metadata; their mere presence must not
+            # cause an A-share row to be rejected.
+            code = extract_code({"A股代码": r.get("A股代码")})
+            board = str(r.get("板块", "")).strip()
+            if not code or board not in {"主板", "创业板"}:
+                continue
+            list_dt = pd.to_datetime(r.get("A股上市日期"), errors="coerce")
+            if pd.notna(list_dt) and pd.Timestamp(list_dt).tz_localize(None) > PIT_DATE:
+                continue
         cid = f"{exchange}:{code}"
         ids.add(cid)
         accepted.append({"canonical_id": cid, "raw": r})
