@@ -59,31 +59,79 @@ def classify_alpha_metadata_coverage(
         }
     return states,detail
 
+def official_gate_authorized(official_ids: set[str], pit_status: str, capture_errors: list[dict[str,Any]]) -> bool:
+    return bool(
+        official_ids
+        and str(pit_status).startswith("PASS_")
+        and not capture_errors
+    )
+
+def first60_coverage_decision(selected_ids: list[str], states: dict[str,str]) -> dict[str,Any]:
+    blocked=[cid for cid in selected_ids if states.get(cid)!="COVERED"]
+    return {
+        "selected_ids": list(selected_ids),
+        "blocked_ids": blocked,
+        "authorized": len(blocked)==0,
+        "silent_substitution_performed": False,
+    }
+
 def run_attack_tests() -> list[dict[str,Any]]:
     results=[]
     def rec(name, ok, note):
         results.append({"test":name,"pass":bool(ok),"note":note})
 
     official={"SSE:600001","SZSE:000001"}
-    alpha={"SSE:600001","SSE:688888"}
+    vendor_present={"SSE:600001","SSE:688888"}
 
-    # A01: official member absent from AlphaDojo remains official.
-    rec("A01", "SZSE:000001" in official, "vendor absence cannot alter official membership")
-    # A02: AlphaDojo-only extra cannot enter official pool.
-    rec("A02", "SSE:688888" not in official, "vendor-only extra excluded")
-    # A03: metadata missing cannot remove official member.
-    rec("A03", official=={"SSE:600001","SZSE:000001"}, "membership set independent of vendor metadata")
-    # A04: exchange must not come from code prefix.
-    rec("A04", alpha_exchange("Shanghai")=="SSE" and alpha_exchange("Shenzhen")=="SZSE",
-        "exchange mapping uses explicit source exchange field")
-    # A05: downstream coverage fails closed per security.
-    rec("A05", "PRESENT_METADATA_INCOMPLETE" != "COVERED", "incomplete metadata is not covered")
-    # A06: First60 silent substitution is explicitly forbidden by receipt contract.
-    rec("A06", True, "sampling contract requires retaining selected ID and blocking it if unsupported")
-    # A07: PIT delta proof is mandatory when capture date != PIT.
-    rec("A07", True, "execution below must produce PIT delta proof status PASS_*")
-    # A08: no whitelist input exists in authoritative membership constructor.
-    rec("A08", True, "official set is produced only by exchange normalization")
+    # A01 official-listed member absent from vendor remains official.
+    rec("A01", "SZSE:000001" in official and "SZSE:000001" not in vendor_present,
+        "vendor absence does not mutate official set")
+
+    # A02 vendor-only extra is excluded from official membership.
+    rec("A02", "SSE:688888" in vendor_present and "SSE:688888" not in official,
+        "vendor extra cannot enter official set")
+
+    # A03 missing vendor listing date cannot remove official member.
+    df=pd.DataFrame([{
+        "ticker":"000001.SZ","market":"cn","quote_type":"EQUITY",
+        "full_exchange_name":"Shenzhen","first_traded_date":pd.NaT
+    }])
+    st,_=classify_alpha_metadata_coverage({"SZSE:000001"},df)
+    rec("A03", st["SZSE:000001"]=="PRESENT_METADATA_INCOMPLETE",
+        "missing first_traded_date changes coverage state only")
+
+    # A04 misleading ticker prefix/suffix cannot decide exchange.
+    df2=pd.DataFrame([{
+        "ticker":"000001.SS","market":"cn","quote_type":"EQUITY",
+        "full_exchange_name":"Shanghai","first_traded_date":"1991-01-01"
+    }])
+    st2,det2=classify_alpha_metadata_coverage({"SSE:000001"},df2)
+    rec("A04", st2["SSE:000001"]=="COVERED" and det2["SSE:000001"]["exchange_values"]==["Shanghai"],
+        "exchange comes from explicit exchange field, not code range")
+
+    # A05 downstream coverage fails closed per selected security.
+    dec=first60_coverage_decision(
+        ["SSE:600001","SZSE:000001"],
+        {"SSE:600001":"COVERED","SZSE:000001":"PRESENT_METADATA_INCOMPLETE"},
+    )
+    rec("A05", dec["authorized"] is False and dec["blocked_ids"]==["SZSE:000001"],
+        "unsupported selected security blocks downstream")
+
+    # A06 no silent substitution of a blocked selected member.
+    rec("A06", dec["selected_ids"]==["SSE:600001","SZSE:000001"] and not dec["silent_substitution_performed"],
+        "blocked member is retained and reported")
+
+    # A07 PIT proof is mandatory when capture differs from PIT.
+    rec("A07",
+        official_gate_authorized(official,"BLOCKED_PIT_SEMANTICS_UNPROVEN",[]) is False
+        and official_gate_authorized(official,"PASS_NO_REMOVALS_IN_DELTA",[]) is True,
+        "official authorization depends on PIT proof")
+
+    # A08 capture errors fail closed; no external whitelist can compensate.
+    rec("A08",
+        official_gate_authorized(official,"PASS_NO_REMOVALS_IN_DELTA",[{"exchange":"SSE"}]) is False,
+        "source capture failure blocks authorization")
+
     return results
 
 def main() -> int:
@@ -91,7 +139,8 @@ def main() -> int:
     receipt={
         "schema":"AI_CORE_EVID_V2_7_26_AUTHORITY_SEPARATION_RECEIPT_V1",
         "project_snapshot":"V2.7.26",
-        "gate_spec_version":"V2.7.21",
+        "gate_spec_version":"V2.7.26",
+        "supersedes_gate_semantics":"V2.7.21 membership-authority conflation only",
         "execution_snapshot":"V2.7.26",
         "pit_date":"2026-09-17",
         "run_started_at_utc":started.isoformat(),
@@ -188,6 +237,12 @@ def main() -> int:
         "certified_v2_universe":"BLOCKED",
         "s4_s5_s6":"BLOCKED",
         "live":"BLOCKED",
+    }
+    receipt["evidence_preservation"]={
+        "official_capture_root":"artifacts/raw",
+        "official_normalized_set":"artifacts/normalized/OFFICIAL_CURRENT_CANONICAL.csv",
+        "pit_delta_raw_root":"pit_delta_proof_artifacts/raw",
+        "note":"workflow artifact uploads all three roots; receipt paths are relative to repository workspace"
     }
     receipt["run_finished_at_utc"]=datetime.now(timezone.utc).isoformat()
     canonical=json.dumps(receipt,ensure_ascii=False,sort_keys=True,separators=(",",":"),default=str).encode()
