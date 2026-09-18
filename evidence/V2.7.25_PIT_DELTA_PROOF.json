@@ -1,0 +1,39 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_25_PIT_DELTA_PROOF_RECORD_V1",
+  "pit_date": "2026-09-17",
+  "capture_date_utc": "2026-09-18",
+  "source_run": {
+    "workflow_run_id": 35318215853,
+    "commit": "cbc3cfe2eb5569c31ae02a4300c3c0bf34ca456f",
+    "artifact_id": 10535944660,
+    "artifact_sha256": "5ecbfe0b868e4709a97d71a703d07465156dbd48304e6d444ec93952e0b5e3dd",
+    "receipt_sha256": "279f45301397b23a14815ad774779853a433e7d604948664c09d90b671cf5a48"
+  },
+  "official_delisting_sources": {
+    "sse": {
+      "rows": 146,
+      "main_a": 143,
+      "star": 3
+    },
+    "szse": {
+      "recordcount": 208,
+      "pagecount": 11,
+      "rows_fetched": 208
+    },
+    "combined_event_count": 354
+  },
+  "delta": {
+    "interval": "(2026-09-17, 2026-09-18]",
+    "removal_event_count": 0,
+    "status": "PASS_NO_REMOVALS_IN_DELTA"
+  },
+  "pit_reconstruction": {
+    "additions_after_pit": "excluded by official LIST_DATE > 2026-09-17",
+    "removals_after_pit": "none",
+    "result": "CURRENT_OFFICIAL_FILTERED_BY_LIST_DATE_IS_VALID_2026-09-17_PIT_SET"
+  },
+  "blocker_resolution": {
+    "OFFICIAL_PIT_DELTA_PROOF": "CLEARED",
+    "remaining_real_mother_pool_blocker": "ALPHADOJO_METADATA_MISMATCH_2"
+  }
+}
