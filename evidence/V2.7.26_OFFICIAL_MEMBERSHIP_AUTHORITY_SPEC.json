@@ -1,0 +1,84 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_26_OFFICIAL_MEMBERSHIP_AUTHORITY_V1",
+  "project_snapshot": "V2.7.26",
+  "pit_date": "2026-09-17",
+  "problem_statement": {
+    "official_pit_count": 5221,
+    "alphadojo_pit_count_under_source_listing_date_filter": 5219,
+    "confirmed_mismatches": ["SSE:601091","SSE:688837"],
+    "root_cause": "ALPHADOJO_FIRST_TRADED_DATE_MISSING",
+    "alphadojo_latest_revision_unchanged": true
+  },
+  "authority_separation": {
+    "membership_authority": {
+      "authority": ["SSE_OFFICIAL","SZSE_OFFICIAL"],
+      "question": "Was this A-share security officially listed and not delisted at PIT?",
+      "canonical_key": "exchange + 6-digit code",
+      "allowed_inputs": [
+        "official listed-company records",
+        "official LIST_DATE",
+        "official delisting records / DELIST_DATE",
+        "official PIT delta proof"
+      ],
+      "forbidden_inputs": [
+        "ticker prefix inference",
+        "AlphaDojo first_traded_date as membership authority",
+        "manual whitelist",
+        "count tolerance"
+      ]
+    },
+    "alphadojo_coverage_gate": {
+      "authority": "ALPHADOJO_FROZEN_SOURCE",
+      "question": "Can this official Mother Pool member be supported by AlphaDojo for downstream stages?",
+      "does_not_define_membership": true,
+      "coverage_states": [
+        "COVERED",
+        "PRESENT_METADATA_INCOMPLETE",
+        "MISSING_FROM_SOURCE"
+      ]
+    }
+  },
+  "gate_semantics": {
+    "official_mother_pool_gate": {
+      "pass_condition": "official PIT reconstruction is internally valid and deterministic",
+      "expected_count": 5221,
+      "status_if_pass": "OFFICIAL_MOTHER_POOL_EXACT_PASS"
+    },
+    "alphadojo_coverage_gate": {
+      "pass_condition": "evaluated separately per downstream requirement",
+      "global_exact_coverage_required_for_official_membership": false,
+      "must_emit_exclusion_or_block_reason": true
+    },
+    "first60_rule": {
+      "sampling_frame": "OFFICIAL_MOTHER_POOL only",
+      "no_replacement_from_nonofficial_members": true,
+      "if_selected_security_lacks_required_AlphaDojo_data": "FIRST60_SECURITY_BLOCKED_SOURCE_COVERAGE",
+      "do_not_silently_substitute": true
+    }
+  },
+  "governance": {
+    "mutate_alphadojo_raw": false,
+    "backfill_alphadojo_first_traded_date": false,
+    "override_official_membership_with_alphadojo": false,
+    "retain_original_mismatch_evidence": true,
+    "reason_for_version_change": "separate authoritative market membership from downstream vendor/source coverage"
+  },
+  "required_attack_tests": [
+    "A01 official-listed member absent from AlphaDojo remains in official Mother Pool",
+    "A02 AlphaDojo-only extra security is not admitted to official Mother Pool",
+    "A03 missing AlphaDojo listing date cannot remove an official member",
+    "A04 code prefix cannot infer exchange",
+    "A05 downstream AlphaDojo requirement fails closed per security",
+    "A06 First60 cannot replace blocked member with another security silently",
+    "A07 official PIT delta proof required when capture date differs from PIT",
+    "A08 manual whitelist cannot alter official membership"
+  ],
+  "state_after_freeze": {
+    "OFFICIAL_MOTHER_POOL": "ELIGIBLE_FOR_EXACT_PASS_AFTER_EXECUTION",
+    "ALPHADOJO_COVERAGE": "2_CONFIRMED_METADATA_INCOMPLETE",
+    "FIRST60": "BLOCKED_PENDING_V2_7_26_EXECUTION",
+    "CERTIFIED_V2_UNIVERSE": "BLOCKED",
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  }
+}
