@@ -391,6 +391,13 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
 
     x = x[(x["market_norm"] == "cn") & (x["quote_norm"] == "EQUITY")]
     stage_counts["after_cn_equity"] = int(len(x))
+    cn_equity_diag = x[["ticker", "symbol", "short_name", "zh_short_name", "full_exchange_name",
+                        "first_traded_date", "delisted_at", "is_delisted", "market", "quote_type"]].copy()
+    def diag_code(v: Any) -> str | None:
+        matches = CODE_RE.findall(str(v).strip())
+        return matches[0] if len(matches) == 1 else None
+    cn_equity_diag["code6_diag"] = cn_equity_diag["ticker"].map(diag_code)
+    cn_equity_diag.to_csv(NORM / "ALPHADOJO_CN_EQUITY_DIAGNOSTIC.csv", index=False)
     x = x[(x["first_dt"].notna()) & (x["first_dt"] <= PIT_DATE)]
     stage_counts["after_first_traded_date"] = int(len(x))
     x = x[(x["delist_dt"].isna()) | (x["delist_dt"] > PIT_DATE)]
@@ -521,6 +528,68 @@ def build_mismatch_ledger(
         })
     return ledger
 
+def build_mismatch_ledger(canonical_ids: list[str], captures: list[dict[str, Any]]) -> None:
+    diag_path = NORM / "ALPHADOJO_CN_EQUITY_DIAGNOSTIC.csv"
+    alpha_diag = pd.read_csv(diag_path, dtype=str).fillna("") if diag_path.exists() else pd.DataFrame()
+    source_rows: dict[str, list[dict[str, Any]]] = {"SSE": [], "SZSE": []}
+    for cap in captures:
+        if cap.get("supplemental") or not cap.get("path") or cap.get("exchange") not in source_rows:
+            continue
+        source_rows[cap["exchange"]].extend(read_candidate_rows(Path(cap["path"])))
+
+    ledger: list[dict[str, Any]] = []
+    for cid in canonical_ids:
+        ex, code = cid.split(":", 1)
+        am = alpha_diag[alpha_diag["code6_diag"].astype(str) == code] if not alpha_diag.empty else pd.DataFrame()
+        om = None
+        for row in source_rows.get(ex, []):
+            rawcode = row.get("A_STOCK_CODE") if ex == "SSE" else row.get("A股代码")
+            matches = CODE_RE.findall(str(rawcode).strip())
+            if len(matches) == 1 and matches[0] == code:
+                om = row
+                break
+        rec: dict[str, Any] = {
+            "canonical_id": cid,
+            "side": "OFFICIAL_ONLY",
+            "alpha_source_row_present": bool(len(am)),
+            "alpha_source_row_count": int(len(am)),
+        }
+        if len(am):
+            ar = am.iloc[0].to_dict()
+            for key in ("ticker","symbol","short_name","zh_short_name","full_exchange_name",
+                        "first_traded_date","delisted_at","is_delisted","market","quote_type"):
+                rec["alpha_" + key] = ar.get(key, "")
+        if om:
+            if ex == "SSE":
+                rec.update({
+                    "official_name": om.get("COMPANY_ABBR") or om.get("SEC_NAME_CN") or "",
+                    "official_list_date": om.get("LIST_DATE") or "",
+                    "official_delist_date": om.get("DELIST_DATE") or "",
+                    "official_stock_type": om.get("STOCK_TYPE") or "",
+                    "official_list_board": om.get("LIST_BOARD") or "",
+                    "official_state_code": om.get("STATE_CODE") or "",
+                    "official_state_code_stock": om.get("STATE_CODE_STOCK") or "",
+                })
+            else:
+                rec.update({
+                    "official_name": om.get("A股简称") or "",
+                    "official_list_date": om.get("A股上市日期") or "",
+                    "official_board": om.get("板块") or "",
+                })
+        if not len(am):
+            rec["audit_class"] = "ALPHADOJO_SOURCE_MISSING"
+        else:
+            first_dt = pd.to_datetime(rec.get("alpha_first_traded_date"), errors="coerce", utc=True)
+            delist_dt = pd.to_datetime(rec.get("alpha_delisted_at"), errors="coerce", utc=True)
+            if pd.notna(first_dt) and first_dt.tz_convert(None) > PIT_DATE:
+                rec["audit_class"] = "ALPHADOJO_FIRST_TRADED_DATE_AFTER_PIT"
+            elif pd.notna(delist_dt) and delist_dt.tz_convert(None) <= PIT_DATE:
+                rec["audit_class"] = "ALPHADOJO_DELISTED_AT_OR_BEFORE_PIT"
+            else:
+                rec["audit_class"] = "ALPHADOJO_PRESENT_BUT_FILTER_CAUSE_UNRESOLVED"
+        ledger.append(rec)
+    pd.DataFrame(ledger).to_csv(NORM / "MISMATCH_LEDGER_V2.7.25.csv", index=False)
+
 def main() -> int:
     run_started = datetime.now(timezone.utc)
     captures = []
@@ -607,6 +676,10 @@ def main() -> int:
             "symmetric_diff_count": len(sym),
             "exact_equal": official_ids == alpha_ids,
         }
+
+        if o_minus_a:
+            build_mismatch_ledger(o_minus_a, captures)
+            receipt["mismatch_ledger"] = "artifacts/normalized/MISMATCH_LEDGER_V2.7.25.csv"
 
         # This run is on/after 2026-09-18, while the frozen PIT date is 2026-09-17.
         # A current-list equality is diagnostic unless official bytes prove historical PIT.
