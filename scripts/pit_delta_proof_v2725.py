@@ -23,35 +23,63 @@ def code6(v):
     return m.group(1).zfill(6) if m else None
 
 def sse_delisted():
-    url="https://query.sse.com.cn/commonQuery.do"
-    params={
-      "sqlId":"COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L",
-      "isPagination":"true","STOCK_CODE":"","CSRC_CODE":"","REG_PROVINCE":"",
-      "STOCK_TYPE":"1,8","COMPANY_STATUS":"3","type":"inParams",
-      "pageHelp.cacheSize":"1","pageHelp.beginPage":"1","pageHelp.pageSize":"10000",
-      "pageHelp.pageNo":"1","pageHelp.endPage":"1",
+    headers={
+      "Accept":"*/*",
+      "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
+      "Cache-Control":"no-cache",
+      "Pragma":"no-cache",
+      "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153.0 Safari/537.36",
+      "Referer":"https://www.sse.com.cn/assortment/stock/list/delisting/",
     }
-    r=requests.get(url,params=params,headers={
-      "User-Agent":"Mozilla/5.0",
-      "Referer":"https://www.sse.com.cn/assortment/stock/list/delisting/"
-    },timeout=60)
-    r.raise_for_status()
-    meta=save("sse_delisted.json",r.content)
-    j=r.json()
-    rows=j.get("result") or (j.get("pageHelp") or {}).get("data") or []
-    events=[]
-    for x in rows:
-        c=code6(x.get("A_STOCK_CODE") or x.get("COMPANY_CODE"))
-        dd=d(x.get("DELIST_DATE"))
-        if c and dd:
-            events.append({
-              "canonical_id":"SSE:"+c,
-              "delist_date":dd.isoformat(),
-              "name":x.get("COMPANY_ABBR"),
-              "stock_type":x.get("STOCK_TYPE"),
-              "raw":x,
-            })
-    return events,{"rows":len(rows),**meta}
+    endpoints=[
+      "https://query.sse.com.cn/commonQuery.do",
+      "https://query.sse.com.cn/sseQuery/commonQuery.do",
+    ]
+    events=[]; source_files=[]; failures=[]
+    # Split Main A and STAR so no ticker/board inference is needed.
+    for stock_type,label in [("1","MAIN_A"),("8","STAR")]:
+        success=False
+        for endpoint in endpoints:
+            params={
+              "sqlId":"COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L",
+              "isPagination":"true","STOCK_CODE":"","CSRC_CODE":"","REG_PROVINCE":"",
+              "STOCK_TYPE":stock_type,"COMPANY_STATUS":"3","type":"inParams",
+              "pageHelp.cacheSize":"1","pageHelp.beginPage":"1","pageHelp.pageSize":"10000",
+              "pageHelp.pageNo":"1","pageHelp.endPage":"1",
+            }
+            for attempt in range(1,4):
+                try:
+                    r=requests.get(endpoint,params=params,headers=headers,timeout=60)
+                    if r.status_code==403:
+                        failures.append({"label":label,"endpoint":endpoint,"attempt":attempt,"status":403})
+                        continue
+                    r.raise_for_status()
+                    sm=save(f"sse_delisted_{label}_{attempt}.json",r.content)
+                    j=r.json()
+                    rows=j.get("result") or (j.get("pageHelp") or {}).get("data") or []
+                    if not isinstance(rows,list):
+                        raise RuntimeError("SSE delist rows not list")
+                    for x in rows:
+                        c=code6(x.get("A_STOCK_CODE") or x.get("COMPANY_CODE"))
+                        dd=d(x.get("DELIST_DATE"))
+                        if c and dd:
+                            events.append({
+                              "canonical_id":"SSE:"+c,
+                              "delist_date":dd.isoformat(),
+                              "name":x.get("COMPANY_ABBR"),
+                              "stock_type":stock_type,
+                            })
+                    source_files.append({"label":label,"endpoint":endpoint,"rows":len(rows),**sm})
+                    success=True
+                    break
+                except Exception as e:
+                    failures.append({"label":label,"endpoint":endpoint,"attempt":attempt,"error":repr(e)})
+            if success: break
+        if not success:
+            raise RuntimeError(f"SSE delisted capture failed for {label}: {failures[-6:]}")
+    # De-duplicate across source pages by canonical id + date.
+    uniq={(e["canonical_id"],e["delist_date"]):e for e in events}
+    return list(uniq.values()),{"rows":len(uniq),"files":source_files,"failures":failures}
 
 def szse_delisted():
     # Browser probe proved this official JSON endpoint and metadata:
