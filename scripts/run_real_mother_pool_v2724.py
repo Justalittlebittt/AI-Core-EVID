@@ -446,6 +446,81 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
         "raw_value_samples": raw_value_samples,
     }
 
+
+def build_mismatch_ledger(
+    official_ids: set[str],
+    alpha_ids: set[str],
+    alpha_parquet_path: Path,
+) -> list[dict[str, Any]]:
+    """Build evidence-only rows for each symmetric-diff security.
+
+    This function never changes membership. It only records raw-source evidence
+    to classify an already-observed mismatch.
+    """
+    diff_ids = sorted(official_ids ^ alpha_ids)
+    if not diff_ids:
+        return []
+
+    alpha_df = pd.read_parquet(alpha_parquet_path)
+    official_rows: dict[str, list[dict[str, Any]]] = {}
+
+    # Re-read retained official raw files and attach rows by canonical identity.
+    for ex in ("SSE", "SZSE"):
+        for p in sorted((RAW / ex.lower()).glob("*")):
+            if not p.is_file() or p.name == "rendered_page.html":
+                continue
+            rows = read_candidate_rows(p)
+            for r in rows:
+                if ex == "SSE":
+                    code = extract_code({"A_STOCK_CODE": r.get("A_STOCK_CODE")})
+                else:
+                    code = extract_code({"A股代码": r.get("A股代码")})
+                if code:
+                    official_rows.setdefault(f"{ex}:{code}", []).append(r)
+
+    ledger: list[dict[str, Any]] = []
+    for cid in diff_ids:
+        ex, code = cid.split(":", 1)
+        alpha_matches = []
+        for _, row in alpha_df.iterrows():
+            vals = []
+            for col in ("ticker", "symbol"):
+                if col in alpha_df.columns and pd.notna(row.get(col)):
+                    vals.extend(CODE_RE.findall(str(row.get(col))))
+            if code in vals:
+                keep_cols = [
+                    "ticker", "symbol", "short_name", "zh_short_name", "market",
+                    "quote_type", "full_exchange_name", "first_traded_date",
+                    "is_delisted", "delisted_at"
+                ]
+                alpha_matches.append({
+                    k: (None if pd.isna(row.get(k)) else str(row.get(k)))
+                    for k in keep_cols if k in alpha_df.columns
+                })
+
+        ors = official_rows.get(cid, [])
+        official_evidence = []
+        for r in ors[:10]:
+            if ex == "SSE":
+                keys = [
+                    "A_STOCK_CODE", "COMPANY_ABBR", "SEC_NAME_FULL", "STOCK_TYPE",
+                    "LIST_BOARD", "LIST_DATE", "DELIST_DATE", "STATE_CODE",
+                    "STATE_CODE_STOCK", "PRODUCT_STATUS", "FULL_NAME"
+                ]
+            else:
+                keys = ["A股代码", "A股简称", "板块", "A股上市日期", "公司全称"]
+            official_evidence.append({k: r.get(k) for k in keys if k in r})
+
+        ledger.append({
+            "canonical_id": cid,
+            "side": "OFFICIAL_ONLY" if cid in official_ids and cid not in alpha_ids else "ALPHADOJO_ONLY",
+            "official_evidence": official_evidence,
+            "alphadojo_raw_matches": alpha_matches,
+            "classification": "M10_UNKNOWN",
+            "verification_status": "UNRESOLVED",
+        })
+    return ledger
+
 def main() -> int:
     run_started = datetime.now(timezone.utc)
     captures = []
@@ -512,6 +587,16 @@ def main() -> int:
         )
         pd.DataFrame({"canonical_id": a_minus_o}).to_csv(
             NORM / "ALPHADOJO_MINUS_OFFICIAL.csv", index=False
+        )
+
+        ledger = build_mismatch_ledger(
+            official_ids,
+            alpha_ids,
+            Path(receipt["alphadojo"]["frozen_path"]),
+        )
+        (OUT / "MISMATCH_LEDGER_V2.7.24.json").write_text(
+            json.dumps(ledger, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
         )
 
         receipt["reconciliation"] = {
