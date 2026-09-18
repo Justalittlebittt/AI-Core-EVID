@@ -271,11 +271,13 @@ def read_candidate_rows(p: Path) -> list[dict[str, Any]]:
     return rows
 
 def extract_code(row: dict[str, Any]) -> str | None:
-    # Prefer semantically named code fields, then fall back to exact six-digit values.
+    # Official SZSE A-share export contains B-share columns on the same company row.
+    # Canonical identity must therefore prefer the explicit A-share code field.
     keys = list(row.keys())
-    preferred = [
-        k for k in keys
-        if any(t in str(k).lower() for t in ("code", "stock", "security", "证券代码", "股票代码", "公司代码", "a股代码"))
+    preferred = [k for k in keys if str(k).replace(" ", "").lower() in ("a股代码", "a_stock_code")]
+    preferred += [
+        k for k in keys if k not in preferred
+        and any(t in str(k).lower() for t in ("code", "stock", "security", "证券代码", "股票代码", "公司代码", "a股代码"))
     ]
     for k in preferred + keys:
         v = row.get(k)
