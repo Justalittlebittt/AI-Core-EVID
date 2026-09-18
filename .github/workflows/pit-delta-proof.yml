@@ -1,0 +1,32 @@
+name: V2.7.25 Deterministic PIT Delta Proof
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/pit_delta_proof_v2725.py"
+      - ".github/workflows/pit-delta-proof.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1"
+      - run: python scripts/pit_delta_proof_v2725.py | tee pit_delta_proof.log
+      - if: always()
+        run: |
+          mkdir -p pit_delta_proof_artifacts
+          cp pit_delta_proof.log pit_delta_proof_artifacts/PIT_DELTA_PROOF_LOG.txt || true
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.25_PIT_DELTA_PROOF
+          path: pit_delta_proof_artifacts/
+          if-no-files-found: error
+          retention-days: 30
