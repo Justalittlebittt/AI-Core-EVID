@@ -1,0 +1,51 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_26_FREEZE_V1",
+  "project_snapshot": "V2.7.26",
+  "pit_date": "2026-09-17",
+  "execution": {
+    "workflow_run_id": 35322030973,
+    "head_sha": "61c5bc0b0c3f6152b9b5a64ae7f800e817c88599",
+    "artifact_id": 10537802122,
+    "artifact_sha256": "6259154730b08fe40fc27b46f5265661fd699afd3ed8126820200ef574686477",
+    "receipt_sha256": "13e513a1ec99f63550a54e28c31fd2ba9ff7bdcbbe9ee79ad83789fe69aaf8e1"
+  },
+  "official_mother_pool": {
+    "status": "OFFICIAL_MOTHER_POOL_EXACT_PASS",
+    "canonical_count": 5221,
+    "canonical_set_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+    "membership_authority": [
+      "SSE_OFFICIAL",
+      "SZSE_OFFICIAL"
+    ],
+    "blocker_cleared": true
+  },
+  "alphadojo_metadata_coverage": {
+    "covered": 5219,
+    "present_metadata_incomplete": 2,
+    "missing_from_source": 0,
+    "exceptions": [
+      "SSE:601091",
+      "SSE:688837"
+    ],
+    "defines_official_membership": false
+  },
+  "attack_tests": {
+    "passed": 8,
+    "total": 8,
+    "all_pass": true
+  },
+  "governance": {
+    "active_gate_spec_version": "V2.7.26",
+    "supersedes": "V2.7.21 membership-authority conflation",
+    "alphadojo_raw_mutated": false,
+    "manual_override": false,
+    "evidence_files_uploaded": 120
+  },
+  "downstream_state": {
+    "full_market_filing_inventory": "NEXT",
+    "first60": "BLOCKED_PENDING_CERTIFIED_V2_UNIVERSE",
+    "certified_v2_universe": "BLOCKED",
+    "s4_s5_s6": "BLOCKED",
+    "live": "BLOCKED"
+  }
+}
