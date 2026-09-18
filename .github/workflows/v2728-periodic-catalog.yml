@@ -1,0 +1,58 @@
+name: V2.7.28 Periodic Catalog Capture
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2728_periodic_catalog_capture.py"
+      - ".github/workflows/v2728-periodic-catalog.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser
+        run: |
+          pip install "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Capture full-market periodic catalog
+        run: python scripts/v2728_periodic_catalog_capture.py | tee v2728_catalog.log
+      - name: Persist compact catalog evidence
+        if: success()
+        run: |
+          cp v2728_catalog_capture/V2.7.28_PERIODIC_CATALOG.csv evidence/
+          cp v2728_catalog_capture/V2.7.28_PERIODIC_COVERAGE_GAPS.csv evidence/
+          cp v2728_catalog_capture/V2.7.28_RAW_QUERY_MANIFEST.csv evidence/
+          cp v2728_catalog_capture/V2.7.28_PERIODIC_CATALOG_RECEIPT.json evidence/
+          cp v2728_catalog_capture/V2.7.28_UNMAPPED_CATALOG_SAMPLE.json evidence/
+          BUNDLE=v2728_catalog_capture/V2.7.28_RAW_QUERY_RESPONSES.tar.gz
+          SIZE=$(stat -c%s "$BUNDLE")
+          if [ "$SIZE" -lt 90000000 ]; then
+            cp "$BUNDLE" evidence/
+          else
+            echo "Raw bundle too large for ordinary GitHub file; hard fail rather than discard bytes."
+            exit 2
+          fi
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.28_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.28 periodic catalog capture"
+            git push
+          fi
+      - name: Upload execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.28_PERIODIC_CATALOG
+          path: |
+            v2728_catalog_capture/
+            v2728_catalog.log
+          if-no-files-found: error
+          retention-days: 30
