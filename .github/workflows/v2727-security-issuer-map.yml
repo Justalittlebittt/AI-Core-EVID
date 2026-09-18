@@ -1,0 +1,53 @@
+name: V2.7.27 Security Issuer PIT Map
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2727_security_issuer_map.py"
+      - ".github/workflows/v2727-security-issuer-map.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  build-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download frozen official-source artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.24_REAL_MOTHER_POOL
+          path: source_artifact
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: Justalittlebittt/AI-Core-EVID
+          run-id: 35317123694
+      - name: Install parser dependencies
+        run: pip install "pandas>=2,<4" "openpyxl>=3.1"
+      - name: Build exact Security to Issuer PIT map
+        run: python scripts/v2727_security_issuer_map.py | tee v2727.log
+      - name: Persist validated evidence to repository
+        run: |
+          cp v2727_generated/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv evidence/
+          cp v2727_generated/V2.7.27_SECURITY_ISSUER_PIT_MAP_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP_RECEIPT.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.27 Security Issuer PIT map"
+            git push
+          fi
+      - name: Upload execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.27_SECURITY_ISSUER_PIT_MAP
+          path: |
+            v2727_generated/
+            v2727.log
+          if-no-files-found: error
+          retention-days: 30
