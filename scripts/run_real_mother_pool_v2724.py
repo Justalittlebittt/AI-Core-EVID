@@ -7,6 +7,9 @@ import os
 import re
 import sys
 import time
+import math
+import requests
+from urllib.parse import urlparse, parse_qs, urlunparse, urlencode
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -143,7 +146,7 @@ def decode_json_or_jsonp_bytes(b: bytes) -> Any:
     try:
         return json.loads(txt)
     except Exception:
-        m = re.match(r"^[A-Za-z_$][\\w$]*\\((.*)\\)\\s*;?\\s*$", txt, re.S)
+        m = re.match(r"^[A-Za-z_$][\w$]*\((.*)\)\s*;?\s*$", txt, re.S)
         if not m:
             raise
         return json.loads(m.group(1))
