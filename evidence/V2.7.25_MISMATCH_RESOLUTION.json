@@ -1,0 +1,50 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_25_MISMATCH_RESOLUTION_V1",
+  "source_run": {
+    "workflow_run_id": 35317123694,
+    "commit": "579520e51bd8d038f80c112a6bf521340404dbc8",
+    "artifact_id": 10534869343,
+    "artifact_sha256": "ef8632ba57ee2337d06712ce7e7d7de55ee383aca27f73cba9a7fbae1ceee65a",
+    "receipt_sha256": "a71275b923f47308dec2ab0fe92ff480960ee9d6faec81e6600942061288afdd"
+  },
+  "pit_date": "2026-09-17",
+  "reconciliation": {
+    "official_count": 5221,
+    "alphadojo_count": 5219,
+    "official_minus_alphadojo_count": 2,
+    "alphadojo_minus_official_count": 0,
+    "symmetric_diff_count": 2,
+    "exact_equal": false
+  },
+  "mismatches": [
+    {
+      "canonical_id": "SSE:601091",
+      "side": "OFFICIAL_ONLY",
+      "official_list_date": "2026-09-17",
+      "alphadojo_raw_row_present": true,
+      "alphadojo_first_traded_date": null,
+      "alphadojo_is_delisted": false,
+      "classification": "M05_LISTING_STATUS",
+      "root_cause": "ALPHADOJO_FIRST_TRADED_DATE_MISSING",
+      "verification_status": "CONFIRMED_SOURCE_METADATA_GAP"
+    },
+    {
+      "canonical_id": "SSE:688837",
+      "side": "OFFICIAL_ONLY",
+      "official_list_date": "2026-09-16",
+      "alphadojo_raw_row_present": true,
+      "alphadojo_first_traded_date": null,
+      "alphadojo_is_delisted": false,
+      "classification": "M05_LISTING_STATUS",
+      "root_cause": "ALPHADOJO_FIRST_TRADED_DATE_MISSING",
+      "verification_status": "CONFIRMED_SOURCE_METADATA_GAP"
+    }
+  ],
+  "governance": {
+    "mutate_alphadojo_raw": false,
+    "infer_missing_listing_date": false,
+    "override_exact_gate": false,
+    "current_gate_status": "MISMATCH_BLOCKED",
+    "next_blocker": "OFFICIAL_PIT_DELTA_PROOF_2026-09-17_TO_2026-09-18"
+  }
+}
