@@ -456,7 +456,7 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
     }
 
 
-def build_mismatch_ledger(
+def build_symmetric_diff_ledger(
     official_ids: set[str],
     alpha_ids: set[str],
     alpha_parquet_path: Path,
@@ -530,7 +530,7 @@ def build_mismatch_ledger(
         })
     return ledger
 
-def build_mismatch_ledger(canonical_ids: list[str], captures: list[dict[str, Any]]) -> None:
+def build_official_only_mismatch_csv(canonical_ids: list[str], captures: list[dict[str, Any]]) -> None:
     diag_path = NORM / "ALPHADOJO_CN_EQUITY_DIAGNOSTIC.csv"
     alpha_diag = pd.read_csv(diag_path, dtype=str).fillna("") if diag_path.exists() else pd.DataFrame()
     source_rows: dict[str, list[dict[str, Any]]] = {"SSE": [], "SZSE": []}
@@ -581,9 +581,12 @@ def build_mismatch_ledger(canonical_ids: list[str], captures: list[dict[str, Any
         if not len(am):
             rec["audit_class"] = "ALPHADOJO_SOURCE_MISSING"
         else:
-            first_dt = pd.to_datetime(rec.get("alpha_first_traded_date"), errors="coerce", utc=True)
+            first_raw = str(rec.get("alpha_first_traded_date") or "").strip()
+            first_dt = pd.to_datetime(first_raw, errors="coerce", utc=True)
             delist_dt = pd.to_datetime(rec.get("alpha_delisted_at"), errors="coerce", utc=True)
-            if pd.notna(first_dt) and first_dt.tz_convert(None) > PIT_DATE:
+            if not first_raw:
+                rec["audit_class"] = "ALPHADOJO_FIRST_TRADED_DATE_MISSING"
+            elif pd.notna(first_dt) and first_dt.tz_convert(None) > PIT_DATE:
                 rec["audit_class"] = "ALPHADOJO_FIRST_TRADED_DATE_AFTER_PIT"
             elif pd.notna(delist_dt) and delist_dt.tz_convert(None) <= PIT_DATE:
                 rec["audit_class"] = "ALPHADOJO_DELISTED_AT_OR_BEFORE_PIT"
@@ -660,7 +663,7 @@ def main() -> int:
             NORM / "ALPHADOJO_MINUS_OFFICIAL.csv", index=False
         )
 
-        ledger = build_mismatch_ledger(
+        ledger = build_symmetric_diff_ledger(
             official_ids,
             alpha_ids,
             Path(receipt["alphadojo"]["frozen_path"]),
@@ -680,7 +683,7 @@ def main() -> int:
         }
 
         if o_minus_a:
-            build_mismatch_ledger(o_minus_a, captures)
+            build_official_only_mismatch_csv(o_minus_a, captures)
             receipt["mismatch_ledger"] = "artifacts/normalized/MISMATCH_LEDGER_V2.7.25.csv"
 
         # This run is on/after 2026-09-18, while the frozen PIT date is 2026-09-17.
