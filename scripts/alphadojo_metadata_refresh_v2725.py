@@ -18,7 +18,7 @@ df["code6"]=df["ticker"].map(code)
 rows=df[df["code6"].isin(TARGETS)].copy()
 fields=["ticker","code6","short_name","full_exchange_name","market","quote_type","first_traded_date","is_delisted","delisted_at"]
 present=[x for x in fields if x in rows.columns]
-records=rows[present].fillna("").to_dict("records")
+records=rows[present].astype(object).where(pd.notna(rows[present]), "").to_dict("records")
 status={}
 for c in sorted(TARGETS):
     rr=[r for r in records if r.get("code6")==c]
