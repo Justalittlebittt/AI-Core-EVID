@@ -1,0 +1,32 @@
+name: V2.7.28 Global Catalog Probe
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2728_global_catalog_probe.py"
+      - ".github/workflows/v2728-global-catalog-probe.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - run: python scripts/v2728_global_catalog_probe.py | tee global_probe.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.28_GLOBAL_CATALOG_PROBE
+          path: |
+            v2728_global_probe_artifacts/
+            global_probe.log
+          if-no-files-found: error
+          retention-days: 30
