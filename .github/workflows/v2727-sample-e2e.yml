@@ -22,7 +22,10 @@ jobs:
           pip install "playwright>=1.55"
           python -m playwright install --with-deps chromium
       - name: Execute two-issuer sample gate
-        run: python scripts/v2727_sample_e2e.py | tee v2727_sample.log
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2727_sample_e2e.py | tee v2727_sample.log
       - if: always()
         run: |
           mkdir -p v2727_sample_artifacts
