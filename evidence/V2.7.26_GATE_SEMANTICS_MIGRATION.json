@@ -1,0 +1,34 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_26_GATE_SEMANTICS_MIGRATION_V1",
+  "project_snapshot": "V2.7.26",
+  "supersedes": {
+    "V2.7.21": [
+      "AlphaDojo-vs-official exact equality as the definition of official Mother Pool membership"
+    ]
+  },
+  "retains_from_V2_7_21": [
+    "canonical security identity = explicit exchange + six-digit code",
+    "no ticker-prefix exchange inference",
+    "bidirectional set-diff for source comparison",
+    "fail-closed source ingestion",
+    "raw-byte hashing and receipts",
+    "no manual override",
+    "no auto-fix of source bytes",
+    "per-security mismatch audit"
+  ],
+  "defect_discovered": {
+    "name": "MEMBERSHIP_AUTHORITY_AND_VENDOR_COVERAGE_CONFLATION",
+    "evidence": [
+      "SSE:601091 and SSE:688837 are officially listed at PIT",
+      "both are present in AlphaDojo raw data",
+      "both have missing AlphaDojo first_traded_date",
+      "using vendor first_traded_date as membership authority incorrectly removes valid official members"
+    ]
+  },
+  "corrected_semantics": {
+    "official_membership_authority": "SSE/SZSE official listing and delisting evidence at PIT",
+    "alphadojo_role": "downstream metadata/data coverage evidence only",
+    "vendor_gap_effect": "may block the affected downstream security, but cannot rewrite official Mother Pool membership"
+  },
+  "migration_rule": "V2.7.21 remains historical evidence; V2.7.26 is the active Mother Pool authority specification."
+}
