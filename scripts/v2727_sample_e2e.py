@@ -61,34 +61,41 @@ def select_latest(rows, exchange):
     return None,candidates,"AMBIGUOUS_SAME_PERIOD_PRIMARY"
 
 def sse_fetch(ctx,page,code):
-    cb="jsonpCallbackV2727"
-    qs=(
-      f"jsonCallBack={cb}&isPagination=true&productId={code}"
-      "&securityType=0101%2C120100%2C020100%2C020200%2C120200"
-      "&reportType=ALL&pageHelp.pageSize=25&pageHelp.pageCount=50&pageHelp.pageNo=1"
-      "&pageHelp.beginPage=1&pageHelp.cacheSize=1&pageHelp.endPage=5"
-    )
-    url="https://query.sse.com.cn/security/stock/queryCompanyBulletin.do?"+qs
-    resp=ctx.request.get(
-      url,
-      headers={
-        "Referer":page.url,
-        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
-      },
-      timeout=90000
-    )
-    if resp.status!=200: raise RuntimeError(f"SSE query HTTP {resp.status}")
-    text=resp.text()
-    b=text.encode()
-    (RAW/f"sse_{code}_query_page1.jsonp").write_bytes(b)
-    m=re.match(r"^[^(]+\((.*)\)\s*;?\s*$",text,re.S)
-    if not m: raise RuntimeError("SSE JSONP parse failed")
-    obj=json.loads(m.group(1)); ph=obj.get("pageHelp") or {}
-    return ph.get("data") or [], {
-      "url":url,"raw_sha256":sha(b),"raw_bytes":len(b),
-      "pageNo":ph.get("pageNo"),"pageSize":ph.get("pageSize"),
-      "pageCount":ph.get("pageCount"),"total":ph.get("total")
-    }
+    all_rows=[]; queries=[]
+    for report_type in ("QUATER2","YEARLY"):
+        cb=f"jsonpCallbackV2727{report_type}"
+        qs=(
+          f"jsonCallBack={cb}&isPagination=true&productId={code}"
+          "&securityType=0101%2C120100%2C020100%2C020200%2C120200"
+          f"&reportType2=DQBG&reportType={report_type}"
+          "&pageHelp.pageSize=100&pageHelp.pageCount=50&pageHelp.pageNo=1"
+          "&pageHelp.beginPage=1&pageHelp.cacheSize=1&pageHelp.endPage=5"
+        )
+        url="https://query.sse.com.cn/security/stock/queryCompanyBulletin.do?"+qs
+        resp=ctx.request.get(
+          url,
+          headers={
+            "Referer":page.url,
+            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
+          },
+          timeout=90000
+        )
+        if resp.status!=200: raise RuntimeError(f"SSE {report_type} query HTTP {resp.status}")
+        text=resp.text(); b=text.encode()
+        (RAW/f"sse_{code}_{report_type}_page1.jsonp").write_bytes(b)
+        m=re.match(r"^[^(]+\((.*)\)\s*;?\s*$",text,re.S)
+        if not m: raise RuntimeError(f"SSE {report_type} JSONP parse failed")
+        obj=json.loads(m.group(1)); ph=obj.get("pageHelp") or {}
+        rows=ph.get("data") or []
+        all_rows.extend(rows)
+        queries.append({
+          "reportType":report_type,"url":url,"raw_sha256":sha(b),"raw_bytes":len(b),
+          "pageNo":ph.get("pageNo"),"pageSize":ph.get("pageSize"),
+          "pageCount":ph.get("pageCount"),"total":ph.get("total"),
+          "rows_returned":len(rows)
+        })
+    return all_rows, {"queries":queries}
+
 
 def szse_fetch(page,code):
     body={"pageSize":50,"pageNum":1,"stock":[code],"channelCode":["listedNotice_disc"]}
@@ -142,7 +149,7 @@ def main():
       srec={"query":qmeta,"candidate_count":len(cands),"candidates":cands,"selector_error":err}
       if chosen:
         if chosen["code"]!="600000": raise RuntimeError("SSE issuer identity mismatch")
-        pdf_url="https://www.sse.com.cn"+chosen["path"]
+        pdf_url="https://static.sse.com.cn"+chosen["path"]
         pr=ctx.request.get(pdf_url,headers={"Referer":page.url},timeout=90000)
         srec["selected"]=chosen
         srec["pdf_url"]=pdf_url
