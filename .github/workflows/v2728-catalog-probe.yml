@@ -1,0 +1,38 @@
+name: V2.7.28 Catalog Endpoint Probe
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2728_catalog_endpoint_probe.py"
+      - ".github/workflows/v2728-catalog-probe.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser
+        run: |
+          pip install "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Probe official disclosure endpoints
+        run: python scripts/v2728_catalog_endpoint_probe.py | tee v2728_probe.log
+      - name: Preserve log
+        if: always()
+        run: |
+          mkdir -p v2728_probe_artifacts
+          cp v2728_probe.log v2728_probe_artifacts/V2728_PROBE_LOG.txt || true
+      - name: Upload probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.28_CATALOG_ENDPOINT_PROBE
+          path: v2728_probe_artifacts/
+          if-no-files-found: error
+          retention-days: 30
