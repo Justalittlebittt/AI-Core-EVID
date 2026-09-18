@@ -138,6 +138,89 @@ def capture_page(page_url: str, exchange: str) -> list[dict[str, Any]]:
         browser.close()
     return recs
 
+def decode_json_or_jsonp_bytes(b: bytes) -> Any:
+    txt = b.decode("utf-8", errors="ignore").strip()
+    try:
+        return json.loads(txt)
+    except Exception:
+        m = re.match(r"^[A-Za-z_$][\\w$]*\\((.*)\\)\\s*;?\\s*$", txt, re.S)
+        if not m:
+            raise
+        return json.loads(m.group(1))
+
+def expand_complete_official_sources(captures: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    extra: list[dict[str, Any]] = []
+
+    # SSE: use the exact page-generated official query, changing only documented
+    # pagination fields already present in that request.
+    sse_first = next((c for c in captures if c.get("exchange") == "SSE"
+                      and "COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L" in c.get("url", "")
+                      and c.get("path")), None)
+    if sse_first:
+        first_obj = decode_json_or_jsonp_bytes(Path(sse_first["path"]).read_bytes())
+        ph = first_obj.get("pageHelp", {}) if isinstance(first_obj, dict) else {}
+        total = int(ph.get("total") or 0)
+        page_size = int(ph.get("pageSize") or 25)
+        pages = max(1, math.ceil(total / page_size))
+        parsed = urlparse(sse_first["url"])
+        q = {k: v[-1] for k, v in parse_qs(parsed.query).items()}
+        sess = requests.Session()
+        sess.headers.update({"User-Agent": "Mozilla/5.0", "Referer": SSE_PAGE})
+        for page_no in range(1, pages + 1):
+            qq = dict(q)
+            qq["pageHelp.pageNo"] = str(page_no)
+            qq["pageHelp.beginPage"] = str(page_no)
+            qq["pageHelp.endPage"] = str(page_no)
+            url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", urlencode(qq), ""))
+            r = sess.get(url, timeout=30)
+            r.raise_for_status()
+            p = RAW / "sse" / f"paged_{page_no:04d}.json"
+            p.write_bytes(r.content)
+            extra.append({
+                "exchange": "SSE", "url": url, "status": r.status_code,
+                "content_type": r.headers.get("content-type", ""),
+                "path": str(p), "bytes": len(r.content),
+                "sha256": sha256_bytes(r.content),
+                "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+                "pagination_expansion": True,
+            })
+
+    # SZSE: the page response itself declares CATALOGID=1110 as “A股列表”
+    # and declares excel=xlsx. Fetch the corresponding official full XLSX export.
+    sz_meta = None
+    for c in captures:
+        if c.get("exchange") != "SZSE" or not c.get("path"):
+            continue
+        try:
+            obj = decode_json_or_jsonp_bytes(Path(c["path"]).read_bytes())
+            if isinstance(obj, list) and obj and isinstance(obj[0], dict):
+                meta = obj[0].get("metadata", {})
+                if str(meta.get("catalogid")) == "1110":
+                    sz_meta = meta
+                    break
+        except Exception:
+            pass
+    if sz_meta:
+        params = {"SHOWTYPE": "xlsx", "CATALOGID": "1110", "TABKEY": "tab1"}
+        r = requests.get(
+            "https://www.szse.cn/api/report/ShowReport",
+            params=params,
+            headers={"User-Agent": "Mozilla/5.0", "Referer": SZSE_PAGE},
+            timeout=60,
+        )
+        r.raise_for_status()
+        p = RAW / "szse" / "A_SHARE_LIST_FULL.xlsx"
+        p.write_bytes(r.content)
+        extra.append({
+            "exchange": "SZSE", "url": r.url, "status": r.status_code,
+            "content_type": r.headers.get("content-type", ""),
+            "path": str(p), "bytes": len(r.content),
+            "sha256": sha256_bytes(r.content),
+            "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+            "full_export": True,
+        })
+    return captures + extra
+
 def collect_records_from_json(obj: Any) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     if isinstance(obj, dict):
@@ -156,7 +239,7 @@ def read_candidate_rows(p: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     try:
         if p.suffix.lower() == ".json":
-            obj = json.loads(p.read_text(encoding="utf-8", errors="ignore"))
+            obj = decode_json_or_jsonp_bytes(p.read_bytes())
             return collect_records_from_json(obj)
         if p.suffix.lower() in {".xlsx", ".xls"}:
             sheets = pd.read_excel(p, sheet_name=None, dtype=str)
@@ -297,7 +380,9 @@ def freeze_alphadojo() -> tuple[set[str], dict[str, Any]]:
 
     x["code6"] = x["ticker"].map(norm_ticker)
     x = x[x["code6"].notna()]
-    x["canonical_id"] = x["exchange_canonical"] + ":" + x["code6"]
+    x["canonical_id"] = [
+        f"{ex}:{code}" for ex, code in zip(x["exchange_canonical"].tolist(), x["code6"].tolist())
+    ]
     ids = set(x["canonical_id"])
 
     outcsv = NORM / "ALPHADOJO_SHSZ_A_PIT_20260917.csv"
@@ -325,6 +410,8 @@ def main() -> int:
             captures.extend(capture_page(url, ex))
         except Exception as e:
             capture_errors.append({"exchange": ex, "error": repr(e)})
+
+    captures = expand_complete_official_sources(captures)
 
     (OUT / "OFFICIAL_CAPTURE_MANIFEST.json").write_text(
         json.dumps({
