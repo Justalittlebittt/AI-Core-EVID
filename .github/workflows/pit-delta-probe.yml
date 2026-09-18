@@ -1,0 +1,38 @@
+name: V2.7.25 PIT Delta Probe
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/pit_delta_probe_v2725.py"
+      - ".github/workflows/pit-delta-probe.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pit-delta-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install probe dependencies
+        run: |
+          pip install "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Capture official delisting sources
+        run: python scripts/pit_delta_probe_v2725.py | tee v2725_probe.log
+      - name: Preserve log
+        if: always()
+        run: |
+          mkdir -p pit_delta_artifacts
+          cp v2725_probe.log pit_delta_artifacts/V2725_PROBE_LOG.txt || true
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.25_PIT_DELTA_PROBE
+          path: pit_delta_artifacts/
+          if-no-files-found: error
+          retention-days: 30
