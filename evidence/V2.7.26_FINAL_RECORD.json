@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_26_FINAL_RECORD_V1",
+  "version": "V2.7.26",
+  "validation_run": {
+    "workflow_run_id": 35319383637,
+    "commit": "87aa587b897bde38f1d2bada97cb4eed8f9fe6bd",
+    "artifact_id": 10536870204,
+    "artifact_sha256": "4b143d806c91b576b01b8944fd776aaf7dcc05aef8b79b9625f4692af9740e30",
+    "receipt_sha256": "cf21fa2b35c5f888e2b7fda7134e0fdd004dbda267c44456c078e1f754cb099f"
+  },
+  "attack_tests": {
+    "passed": 12,
+    "total": 12,
+    "all_pass": true
+  },
+  "state": {
+    "REAL_MOTHER_POOL_MEMBERSHIP": "EXACT_PASS",
+    "ALPHADOJO_COVERAGE": "GAP_PRESENT_2",
+    "SOURCE_CONCORDANCE": "MISMATCH_BLOCKED",
+    "FIRST60_SELECTION_PREREQUISITE_MOTHER_POOL": "CLEARED",
+    "FIRST60_DATA_EXECUTION": "BLOCKED_BY_LATER_PREREQUISITES",
+    "CERTIFIED_V2_UNIVERSE": "BLOCKED",
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  },
+  "correction_note": "First60 is a prospective Episode-start cohort, not a 60-security sample. Mother Pool clearance removes only the Mother Pool prerequisite; Evidence/Universe/Adapter/activation prerequisites still apply."
+}
