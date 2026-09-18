@@ -17,7 +17,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1"
+      - run: |
+          pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1" "playwright>=1.55"
+          python -m playwright install --with-deps chromium
       - run: python scripts/pit_delta_proof_v2725.py | tee pit_delta_proof.log
       - if: always()
         run: |
