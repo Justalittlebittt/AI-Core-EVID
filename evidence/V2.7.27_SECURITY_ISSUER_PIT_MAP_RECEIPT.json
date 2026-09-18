@@ -1,0 +1,36 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_27_SECURITY_ISSUER_PIT_MAP_RECEIPT_V1",
+  "pit_date": "2026-09-17",
+  "source_artifact": {
+    "workflow_run_id": 35317123694,
+    "artifact_id": 10534869343,
+    "artifact_sha256": "ef8632ba57ee2337d06712ce7e7d7de55ee383aca27f73cba9a7fbae1ceee65a"
+  },
+  "mother_pool": {
+    "count": 5221,
+    "sse_count": 2320,
+    "szse_count": 2901,
+    "canonical_sorted_newline_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+    "expected_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+    "exact_match": true
+  },
+  "issuer_mapping": {
+    "row_count": 5221,
+    "unique_security_ids": 5221,
+    "unique_exchange_query_keys": 5221,
+    "missing_query_keys": 0,
+    "missing_legal_names": 0,
+    "duplicate_legal_name_count": 0,
+    "duplicate_legal_names": [],
+    "identity_rule": "Official exchange query key is authoritative; legal name is descriptive and never used for fuzzy identity matching."
+  },
+  "output": {
+    "map_file": "evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv",
+    "map_sha256": "769960860eaeb97f34780eca3b8cdb2618a4e3afd580e97f59fe6435da8b25a8"
+  },
+  "gate": {
+    "status": "EXACT_PASS",
+    "next_stage": "OFFICIAL_LATEST_PRIMARY_CATALOG_INVENTORY"
+  },
+  "receipt_sha256": "97fc2a36bee90790637a262ce01157f60117a715b7652b9b048101444ed68b57"
+}
