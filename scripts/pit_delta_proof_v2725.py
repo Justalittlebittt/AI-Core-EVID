@@ -4,6 +4,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 import pandas as pd
 import requests
+from playwright.sync_api import sync_playwright
 
 PIT=date.fromisoformat("2026-09-17")
 CAPTURE=datetime.now(timezone.utc).date()
@@ -82,48 +83,68 @@ def sse_delisted():
     return list(uniq.values()),{"rows":len(uniq),"files":source_files,"failures":failures}
 
 def szse_delisted():
-    # Browser probe proved this official JSON endpoint and metadata:
-    # CATALOGID=1793_ssgs, tab2=终止上市, zqdm/ssrq/zzrq,
-    # with pagecount/recordcount supplied by the exchange.
-    url="https://www.szse.cn/api/report/ShowReport/data"
-    headers={
-      "User-Agent":"Mozilla/5.0",
-      "Referer":"https://www.szse.cn/market/stock/suspend/index.html"
-    }
-    session=requests.Session()
-    first=session.get(url,params={
-      "SHOWTYPE":"JSON","CATALOGID":"1793_ssgs","TABKEY":"tab2","PAGENO":"1"
-    },headers=headers,timeout=60)
-    first.raise_for_status()
-    obj=first.json()
-    block=obj[1] if isinstance(obj,list) and len(obj)>1 and (obj[1].get("metadata") or {}).get("tabkey")=="tab2" else obj[0]
-    md=block.get("metadata") or {}
-    pages=int(md.get("pagecount") or 1)
-    recordcount=int(md.get("recordcount") or 0)
-    events=[]; files=[]; raw_rows=0
-    for page in range(1,pages+1):
-        r=first if page==1 else session.get(url,params={
-          "SHOWTYPE":"JSON","CATALOGID":"1793_ssgs","TABKEY":"tab2","PAGENO":str(page)
-        },headers=headers,timeout=60)
-        r.raise_for_status()
-        sm=save(f"szse_delisted_page_{page:02d}.json",r.content)
-        jo=r.json()
-        b=next((x for x in jo if isinstance(x,dict) and (x.get("metadata") or {}).get("tabkey")=="tab2"), jo[0]) if isinstance(jo,list) else jo
-        rows=b.get("data") or []
-        raw_rows += len(rows)
-        for row in rows:
-            c=code6(row.get("zqdm")); dd=d(row.get("zzrq"))
-            if c and dd:
-                events.append({
-                  "canonical_id":"SZSE:"+c,
-                  "delist_date":dd.isoformat(),
-                  "name":str(row.get("zqjc","")),
-                  "list_date":str(row.get("ssrq","")),
-                })
-        files.append({"page":page,"rows":len(rows),**sm})
-    if recordcount and raw_rows != recordcount:
-        raise RuntimeError(f"SZSE delist pagination incomplete: {raw_rows} != {recordcount}")
-    return events,{"recordcount":recordcount,"pagecount":pages,"rows_fetched":raw_rows,"files":files}
+    # Direct requests from hosted runners are intermittently reset by SZSE.
+    # Use a real browser page, then fetch the same official JSON endpoint
+    # inside the accepted same-origin browser context.
+    page_url="https://www.szse.cn/market/stock/suspend/index.html"
+    api_path="/api/report/ShowReport/data"
+    events=[]; files=[]
+    with sync_playwright() as pw:
+        browser=pw.chromium.launch(headless=True)
+        page=browser.new_page(
+          user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+          locale="zh-CN",
+        )
+        page.goto(page_url,wait_until="domcontentloaded",timeout=90000)
+        page.wait_for_timeout(5000)
+
+        def get_page(n:int):
+            return page.evaluate("""async ({path,n}) => {
+              const u = path + '?SHOWTYPE=JSON&CATALOGID=1793_ssgs&TABKEY=tab2&PAGENO=' + n + '&random=' + Math.random();
+              const r = await fetch(u, {credentials:'same-origin'});
+              return {status:r.status, url:r.url, text:await r.text()};
+            }""", {"path":api_path,"n":n})
+
+        first=get_page(1)
+        if first["status"] != 200:
+            raise RuntimeError(f"SZSE browser fetch HTTP {first['status']}")
+        raw=first["text"].encode("utf-8")
+        sm=save("szse_delisted_page_01.json",raw)
+        jo=json.loads(first["text"])
+        b=next((x for x in jo if isinstance(x,dict) and (x.get("metadata") or {}).get("tabkey")=="tab2"), jo[0])
+        md=b.get("metadata") or {}
+        pages=int(md.get("pagecount") or 1)
+        recordcount=int(md.get("recordcount") or 0)
+
+        total_rows=0
+        for n in range(1,pages+1):
+            if n==1:
+                obj=jo; meta=sm; fetch_url=first["url"]
+            else:
+                q=get_page(n)
+                if q["status"] != 200:
+                    raise RuntimeError(f"SZSE page {n} HTTP {q['status']}")
+                raw=q["text"].encode("utf-8")
+                meta=save(f"szse_delisted_page_{n:02d}.json",raw)
+                obj=json.loads(q["text"]); fetch_url=q["url"]
+            block=next((x for x in obj if isinstance(x,dict) and (x.get("metadata") or {}).get("tabkey")=="tab2"), obj[0])
+            rows=block.get("data") or []
+            total_rows += len(rows)
+            for row in rows:
+                cc=code6(row.get("zqdm")); dd=d(row.get("zzrq"))
+                if cc and dd:
+                    events.append({
+                      "canonical_id":"SZSE:"+cc,
+                      "delist_date":dd.isoformat(),
+                      "name":str(row.get("zqjc","")),
+                      "list_date":str(row.get("ssrq","")),
+                    })
+            files.append({"page":n,"rows":len(rows),"url":fetch_url,**meta})
+        browser.close()
+    if recordcount and total_rows != recordcount:
+        raise RuntimeError(f"SZSE delist pagination incomplete: {total_rows} != {recordcount}")
+    uniq={(e["canonical_id"],e["delist_date"]):e for e in events}
+    return list(uniq.values()),{"recordcount":recordcount,"pagecount":pages,"rows_fetched":total_rows,"files":files}
 
 def main():
     result={
