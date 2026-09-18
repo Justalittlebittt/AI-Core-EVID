@@ -1,0 +1,37 @@
+name: V2.7.26 Authority Coverage Gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2726_authority_coverage_gate.py"
+      - "evidence/V2.7.26_AUTHORITY_COVERAGE_SEPARATION.json"
+      - "evidence/V2.7.25_MISMATCH_RESOLUTION.json"
+      - "evidence/V2.7.25_PIT_DELTA_PROOF.json"
+      - ".github/workflows/v2726-authority-coverage.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate V2.7.26 authority separation
+        run: python scripts/v2726_authority_coverage_gate.py | tee v2726.log
+      - name: Preserve execution log
+        if: always()
+        run: |
+          mkdir -p v2726_artifacts
+          cp v2726.log v2726_artifacts/V2726_EXECUTION_LOG.txt || true
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.26_AUTHORITY_COVERAGE
+          path: v2726_artifacts/
+          if-no-files-found: error
+          retention-days: 30
