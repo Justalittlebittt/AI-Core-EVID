@@ -60,7 +60,7 @@ def select_latest(rows, exchange):
     # Multiple full reports same period without explicit revision marker are ambiguous.
     return None,candidates,"AMBIGUOUS_SAME_PERIOD_PRIMARY"
 
-def sse_fetch(page,code):
+def sse_fetch(ctx,page,code):
     cb="jsonpCallbackV2727"
     qs=(
       f"jsonCallBack={cb}&isPagination=true&productId={code}"
@@ -69,18 +69,23 @@ def sse_fetch(page,code):
       "&pageHelp.beginPage=1&pageHelp.cacheSize=1&pageHelp.endPage=5"
     )
     url="https://query.sse.com.cn/security/stock/queryCompanyBulletin.do?"+qs
-    out=page.evaluate("""async (url) => {
-      const r=await fetch(url,{credentials:'include'});
-      return {status:r.status,text:await r.text(),url:r.url};
-    }""",url)
-    if out["status"]!=200: raise RuntimeError(f"SSE query HTTP {out['status']}")
-    b=out["text"].encode()
+    resp=ctx.request.get(
+      url,
+      headers={
+        "Referer":page.url,
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
+      },
+      timeout=90000
+    )
+    if resp.status!=200: raise RuntimeError(f"SSE query HTTP {resp.status}")
+    text=resp.text()
+    b=text.encode()
     (RAW/f"sse_{code}_query_page1.jsonp").write_bytes(b)
-    m=re.match(r"^[^(]+\((.*)\)\s*;?\s*$",out["text"],re.S)
+    m=re.match(r"^[^(]+\((.*)\)\s*;?\s*$",text,re.S)
     if not m: raise RuntimeError("SSE JSONP parse failed")
     obj=json.loads(m.group(1)); ph=obj.get("pageHelp") or {}
     return ph.get("data") or [], {
-      "url":out["url"],"raw_sha256":sha(b),"raw_bytes":len(b),
+      "url":url,"raw_sha256":sha(b),"raw_bytes":len(b),
       "pageNo":ph.get("pageNo"),"pageSize":ph.get("pageSize"),
       "pageCount":ph.get("pageCount"),"total":ph.get("total")
     }
@@ -132,7 +137,7 @@ def main():
       page.goto("https://www.sse.com.cn/assortment/stock/list/info/announcement/index.shtml?productId=600000",
                 wait_until="domcontentloaded",timeout=90000)
       page.wait_for_timeout(3000)
-      rows,qmeta=sse_fetch(page,"600000")
+      rows,qmeta=sse_fetch(ctx,page,"600000")
       chosen,cands,err=select_latest(rows,"SSE")
       srec={"query":qmeta,"candidate_count":len(cands),"candidates":cands,"selector_error":err}
       if chosen:
