@@ -1,5 +1,10 @@
 name: V2.7.31 Forward Certified Universe Bootstrap
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2731_forward_certified_universe.py"
+      - ".github/workflows/v2731-forward-certified-universe.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,7 +18,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install capture dependencies
-        run: pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1"
+        run: pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1" "playwright>=1.55"
       - name: Build forward Certified Universe
         shell: bash
         run: |
