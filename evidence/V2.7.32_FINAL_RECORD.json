@@ -1,0 +1,61 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FINAL_RECORD_V1",
+  "version": "V2.7.32",
+  "purpose": "Freeze deterministic First60 semantics, joint A-share calendar, and a strategy-agnostic append-only admission ledger without reconstructing signal logic.",
+  "calendar": {
+    "year": 2026,
+    "joint_trading_day_count": 242,
+    "trading_dates_sorted_newline_sha256": "fd77a04f5268efd4803ca99877a0de4b126a51ad01a45b24c443afc8f8aa3ee7",
+    "next_joint_trading_day_after_epoch_t0": "2026-09-21",
+    "sources": [
+      "SSE_OFFICIAL_2026_CLOSURE_NOTICE",
+      "SZSE_OFFICIAL_2026_CLOSURE_NOTICE"
+    ]
+  },
+  "first60_contract": {
+    "unit": "EPISODE_START",
+    "stage_a": "RANK_1_30",
+    "stage_b": "RANK_31_60",
+    "all60": "EXACT_RANK_1_60",
+    "missing_outcome_replacement": false,
+    "same_symbol_non_overlap": true,
+    "outcome_target": "D_PLUS_10_JOINT_A_SHARE_TRADING_SESSIONS",
+    "no_backfill": true,
+    "zero_candidate_sessions_required": true,
+    "temporal_sufficiency": {
+      "all60_min_distinct_signal_dates": 10,
+      "stage_a_min_distinct_signal_dates": 5,
+      "stage_b_min_distinct_signal_dates": 5,
+      "max_single_date_share": 0.2,
+      "insufficient_state": "INCONCLUSIVE"
+    }
+  },
+  "ledger_validation": {
+    "workflow_run_id": 35499131088,
+    "head_sha": "cf634016405ab619bd424fd968c6f0d2d11f7c89",
+    "artifact_id": 10601880051,
+    "artifact_sha256": "5b5905cef50153ffe44979bfd7d7c1ebabef67f36b9a4bdbe076da25d10d4075",
+    "attack_tests": "13/13_PASS",
+    "receipt_sha256": "d3cbd8235cf34482194c44fe06247c898c4f624885625238ad56186f11fdd225"
+  },
+  "runtime_recovery_audit": {
+    "legacy_runner_present_in_repo": false,
+    "legacy_runner_present_in_repo_history": false,
+    "strategy_logic_reimplemented_from_memory": false,
+    "allowed_rebuild": "STRATEGY_AGNOSTIC_LEDGER_GATE_ONLY"
+  },
+  "activation": {
+    "state": "NOT_ACTIVATED",
+    "first_eligible_signal_date": null,
+    "candidate_next_joint_trading_date": "2026-09-21",
+    "blocker": "PROSPECTIVE_SIGNAL_RUNNER_BYTES_NOT_PRESENT_IN_REPOSITORY",
+    "candidate_episode_start_count": 0
+  },
+  "downstream": {
+    "certified_v2_universe": "PASS_RESEARCH_BOOTSTRAP",
+    "first60": "PREREGISTERED_LEDGER_READY_NOT_ACTIVATED",
+    "s4_s5_s6": "BLOCKED",
+    "live": "BLOCKED"
+  },
+  "next_stage": "V2.7.33 PROSPECTIVE RUNTIME RECOVERY + ACTIVATION GATE"
+}
