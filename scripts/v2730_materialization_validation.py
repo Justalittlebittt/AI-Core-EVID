@@ -2,7 +2,7 @@ from __future__ import annotations
 import csv, hashlib, json, os, re, shutil
 from datetime import datetime, timezone
 from pathlib import Path
-import requests
+from playwright.sync_api import sync_playwright
 
 PIT_DATE="2026-09-17"
 EXPECTED_INVENTORY_SHA="6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4"
@@ -94,7 +94,7 @@ def verify_cached(entry):
     off=validate_pdf_bytes(b)
     return b,off
 
-def materialize(session, row, network_counter):
+def materialize(api, row, network_counter):
     loc=validate_locator(row)
     lk=locator_key(loc)
     idx=load_index()
@@ -104,19 +104,19 @@ def materialize(session, row, network_counter):
           **loc,"locator_key":lk,"state":"CACHE_HIT_VALID","network_fetch":False,
           "object_sha256":sha(b),"bytes":len(b),"pdf_header_offset":off
         }
-    r=session.get(
+    r=api.get(
       loc["url"],
-      timeout=90,
+      timeout=90000,
       headers={
-        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
         "Referer":"https://www.cninfo.com.cn/",
         "Accept":"application/pdf,application/octet-stream;q=0.9,*/*;q=0.8"
       }
     )
     network_counter[0]+=1
-    if r.status_code!=200:
-        fail("FETCH_BLOCKED",f"{loc['canonical_security_id']}: HTTP {r.status_code}")
-    b=r.content
+    status=r.status
+    if status!=200:
+        fail("FETCH_BLOCKED",f"{loc['canonical_security_id']}: HTTP {status}")
+    b=r.body()
     off=validate_pdf_bytes(b)
     obj_sha=sha(b)
     p=OBJECTS/obj_sha
@@ -136,7 +136,7 @@ def materialize(session, row, network_counter):
     save_index(idx)
     return {
       **loc,"locator_key":lk,"state":"FETCHED_VALID","network_fetch":True,
-      "http_status":r.status_code,"content_type":r.headers.get("content-type",""),
+      "http_status":status,"content_type":r.headers.get("content-type",""),
       "object_sha256":obj_sha,"bytes":len(b),"pdf_header_offset":off
     }
 
@@ -210,20 +210,30 @@ def main():
         if cid not in by:
             fail("INVALID_LOCATOR_BLOCKED",f"sample missing {cid}")
 
-    session=requests.Session()
     network=[0]
     first=[]
-    for cid in SAMPLE:
-        first.append(materialize(session,by[cid],network))
-        print(f"FIRST {cid} -> {first[-1]['state']} {first[-1]['bytes']} bytes",flush=True)
-
-    first_network=network[0]
     second=[]
-    before=network[0]
-    for cid in SAMPLE:
-        second.append(materialize(session,by[cid],network))
-        print(f"SECOND {cid} -> {second[-1]['state']}",flush=True)
-    second_network=network[0]-before
+    with sync_playwright() as pw:
+        api=pw.request.new_context(
+          extra_http_headers={
+            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
+          }
+        )
+        # Establish official CNInfo session without launching a browser binary.
+        home=api.get("https://www.cninfo.com.cn/",timeout=30000)
+        if home.status!=200:
+            fail("FETCH_BLOCKED",f"CNInfo session bootstrap HTTP {home.status}")
+        for cid in SAMPLE:
+            first.append(materialize(api,by[cid],network))
+            print(f"FIRST {cid} -> {first[-1]['state']} {first[-1]['bytes']} bytes",flush=True)
+
+        first_network=network[0]
+        before=network[0]
+        for cid in SAMPLE:
+            second.append(materialize(api,by[cid],network))
+            print(f"SECOND {cid} -> {second[-1]['state']}",flush=True)
+        second_network=network[0]-before
+        api.dispose()
 
     attacks=attack_tests(by)
     if not all(x["pass"] for x in attacks):
