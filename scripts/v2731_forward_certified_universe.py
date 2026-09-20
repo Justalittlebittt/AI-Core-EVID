@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
+from playwright.sync_api import sync_playwright
 
 EPOCH_ID="AI_CORE_EVID_FORWARD_EPOCH_001"
 T0_UTC="2026-09-20T07:17:16Z"
@@ -161,19 +162,28 @@ def fetch_sse(asof_date):
     return issuer,captures
 
 def fetch_szse(asof_date):
-    r=requests.get(
-      SZSE_ENDPOINT,
-      params={"SHOWTYPE":"xlsx","CATALOGID":"1110","TABKEY":"tab1"},
-      headers={
-        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
-        "Referer":SZSE_REFERER
-      },
-      timeout=60)
-    if r.status_code!=200:
-        raise RuntimeError(f"SZSE A-share XLSX HTTP {r.status_code}")
+    with sync_playwright() as pw:
+        api=pw.request.new_context(
+          extra_http_headers={
+            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+            "Referer":SZSE_REFERER
+          }
+        )
+        resp=api.get(
+          SZSE_ENDPOINT,
+          params={"SHOWTYPE":"xlsx","CATALOGID":"1110","TABKEY":"tab1"},
+          timeout=90000
+        )
+        status=resp.status
+        body=resp.body()
+        url=resp.url
+        headers=resp.headers
+        api.dispose()
+    if status!=200:
+        raise RuntimeError(f"SZSE A-share XLSX HTTP {status}")
     p=SZSE_RAW/"A_SHARE_LIST_FULL.xlsx"
-    p.write_bytes(r.content)
-    df=pd.read_excel(io.BytesIO(r.content),dtype=str).fillna("")
+    p.write_bytes(body)
+    df=pd.read_excel(io.BytesIO(body),dtype=str).fillna("")
     required={"板块","公司全称","A股代码","A股简称","A股上市日期"}
     if not required.issubset(df.columns):
         raise RuntimeError(f"SZSE XLSX missing columns {sorted(required-set(df.columns))}")
@@ -199,13 +209,14 @@ def fetch_szse(asof_date):
           "official_list_date":pd.Timestamp(ld).date().isoformat(),
           "official_board_code":board,
           "source_path":str(p.relative_to(OUT)),
-          "source_sha256":sha(r.content)
+          "source_sha256":sha(body)
         }
     if len(issuer)<=1000:
         raise RuntimeError(f"SZSE normalized count implausible {len(issuer)}")
     capture={
-      "exchange":"SZSE","url":r.url,"status":r.status_code,
-      "bytes":len(r.content),"sha256":sha(r.content),
+      "exchange":"SZSE","url":url,"status":status,
+      "bytes":len(body),"sha256":sha(body),
+      "content_type":headers.get("content-type",""),
       "captured_at_utc":datetime.now(timezone.utc).isoformat()
     }
     return issuer,[capture]
