@@ -1,0 +1,28 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_29_PRIMARY_LOCATOR_INVENTORY_V1",
+  "pit_date": "2026-09-17",
+  "capture_role": "SHADOW_DIAGNOSTIC_RECONSTRUCTION_ONLY",
+  "first_system_observed_at_utc": "2026-09-20T06:36:51.251465+00:00",
+  "prospective_backfill_allowed": false,
+  "official_mother_pool_count": 5221,
+  "terminal_record_count": 5221,
+  "unique_security_count": 5221,
+  "primary_locator_count": 5221,
+  "none_na_count": 0,
+  "inventory_sha256": "6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4",
+  "targeted_ambiguity_resolution_count": 9,
+  "targeted_ambiguity_ledger_sha256": "132fbfe3d2cfce18af022bd20720a5e5888d35568dac7ca4334bb64ba6be1c62",
+  "pdf_bytes_downloaded": 0,
+  "pdf_materialization_gate": "SEPARATE_ON_DEMAND",
+  "gate": {
+    "status": "PRIMARY_LOCATOR_INVENTORY_EXACT_PASS",
+    "mother_pool_exact_coverage": true,
+    "selector_ambiguity_count": 0,
+    "pdf_required_for_this_gate": false
+  },
+  "downstream": {
+    "historical_2026_09_17_prospective_certification": "BLOCKED_FIRST_OBSERVED_AFTER_PIT",
+    "future_evidence_materialization": "READY_ON_DEMAND"
+  },
+  "receipt_sha256": "ca31e96988be217fb04ee72cc1c02b8b8a1d83be02ee0d82f463678be31fbaf4"
+}
