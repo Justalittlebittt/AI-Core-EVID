@@ -1,5 +1,10 @@
 name: V2.7.29 Primary Locator Inventory
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2729_primary_locator_inventory.py"
+      - ".github/workflows/v2729-primary-locator.yml"
   workflow_dispatch:
 permissions:
   contents: write
