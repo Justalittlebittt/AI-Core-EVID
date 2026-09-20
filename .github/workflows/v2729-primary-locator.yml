@@ -1,0 +1,50 @@
+name: V2.7.29 Primary Locator Inventory
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2729_primary_locator_inventory.py"
+      - ".github/workflows/v2729-primary-locator.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser
+        run: |
+          pip install "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Build exact locator inventory
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2729_primary_locator_inventory.py | tee v2729_locator.log
+      - name: Persist compact locator evidence
+        if: success()
+        run: |
+          cp v2729_locator_inventory/V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv evidence/
+          cp v2729_locator_inventory/V2.7.29_PRIMARY_LOCATOR_INVENTORY_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.29_PRIMARY_LOCATOR_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.29 primary locator inventory"
+            git push
+          fi
+      - name: Upload locator audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.29_PRIMARY_LOCATOR
+          path: |
+            v2729_locator_inventory/
+            v2729_locator.log
+          if-no-files-found: error
+          retention-days: 30
