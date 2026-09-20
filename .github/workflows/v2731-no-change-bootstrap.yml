@@ -1,0 +1,46 @@
+name: V2.7.31 Offline No-Change Bootstrap
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2731_no_change_bootstrap.py"
+      - ".github/workflows/v2731-no-change-bootstrap.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build network-independent Forward Certified Universe
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2731_no_change_bootstrap.py | tee v2731_no_change.log
+      - name: Persist certified universe
+        if: success()
+        run: |
+          cp v2731_no_change_bootstrap/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv evidence/
+          cp v2731_no_change_bootstrap/V2.7.31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.31 Forward Certified Universe"
+            git push
+          fi
+      - name: Upload bootstrap audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.31_NO_CHANGE_BOOTSTRAP
+          path: |
+            v2731_no_change_bootstrap/
+            v2731_no_change.log
+          if-no-files-found: error
+          retention-days: 30
