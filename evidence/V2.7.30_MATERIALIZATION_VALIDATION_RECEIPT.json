@@ -1,0 +1,177 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_30_MATERIALIZATION_VALIDATION_V1",
+  "started_at_utc": "2026-09-20T06:46:39.251482+00:00",
+  "finished_at_utc": "2026-09-20T06:46:48.794608+00:00",
+  "pit_date": "2026-09-17",
+  "inventory_sha256": "6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4",
+  "validation_scope": [
+    "SSE:600000",
+    "SSE:688981",
+    "SZSE:000001",
+    "SZSE:300750"
+  ],
+  "first_pass": [
+    {
+      "canonical_security_id": "SSE:600000",
+      "announcement_id": "1225521898",
+      "adjunct_url": "finalpage/2026-08-28/1225521898.PDF",
+      "disclosure_date": "2026-08-28",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225521898.PDF",
+      "locator_key": "2546932fba338186ade0012a08e31efa4a28f747ed759db4343b8f9b59589125",
+      "state": "FETCHED_VALID",
+      "network_fetch": true,
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "object_sha256": "01f41e69ad9dc1b348204b3aa0acf615b2343d402ac00a0ae3895f56e7010f66",
+      "bytes": 4553498,
+      "pdf_header_offset": 0
+    },
+    {
+      "canonical_security_id": "SSE:688981",
+      "announcement_id": "1225520297",
+      "adjunct_url": "finalpage/2026-08-28/1225520297.PDF",
+      "disclosure_date": "2026-08-28",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225520297.PDF",
+      "locator_key": "0f84d276267f8abc8d72597b2ff6100ad891cfb6b936ace372a1d34aa4b56668",
+      "state": "FETCHED_VALID",
+      "network_fetch": true,
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "object_sha256": "6a44b7cfe77129d47089ae71bee8c71d2733ae694b8910485e6c3e444de5cb13",
+      "bytes": 1077584,
+      "pdf_header_offset": 0
+    },
+    {
+      "canonical_security_id": "SZSE:000001",
+      "announcement_id": "1225475344",
+      "adjunct_url": "finalpage/2026-08-15/1225475344.PDF",
+      "disclosure_date": "2026-08-15",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475344.PDF",
+      "locator_key": "8f98ac64945c1dc2d578f78c9aa386bca55536d30539c10c55eae72670e5440c",
+      "state": "FETCHED_VALID",
+      "network_fetch": true,
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "object_sha256": "04f7b69417f665164ea6b8c636bc6a1ec1f399cedc97faa0662226a54b4f5527",
+      "bytes": 1472390,
+      "pdf_header_offset": 0
+    },
+    {
+      "canonical_security_id": "SZSE:300750",
+      "announcement_id": "1225441586",
+      "adjunct_url": "finalpage/2026-07-25/1225441586.PDF",
+      "disclosure_date": "2026-07-25",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-07-25/1225441586.PDF",
+      "locator_key": "63cf551803436a5f49def12d74af5214c3a42550c081e9dd7f940828269c8245",
+      "state": "FETCHED_VALID",
+      "network_fetch": true,
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "object_sha256": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+      "bytes": 1648690,
+      "pdf_header_offset": 0
+    }
+  ],
+  "second_pass": [
+    {
+      "canonical_security_id": "SSE:600000",
+      "announcement_id": "1225521898",
+      "adjunct_url": "finalpage/2026-08-28/1225521898.PDF",
+      "disclosure_date": "2026-08-28",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225521898.PDF",
+      "locator_key": "2546932fba338186ade0012a08e31efa4a28f747ed759db4343b8f9b59589125",
+      "state": "CACHE_HIT_VALID",
+      "network_fetch": false,
+      "object_sha256": "01f41e69ad9dc1b348204b3aa0acf615b2343d402ac00a0ae3895f56e7010f66",
+      "bytes": 4553498,
+      "pdf_header_offset": 0
+    },
+    {
+      "canonical_security_id": "SSE:688981",
+      "announcement_id": "1225520297",
+      "adjunct_url": "finalpage/2026-08-28/1225520297.PDF",
+      "disclosure_date": "2026-08-28",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225520297.PDF",
+      "locator_key": "0f84d276267f8abc8d72597b2ff6100ad891cfb6b936ace372a1d34aa4b56668",
+      "state": "CACHE_HIT_VALID",
+      "network_fetch": false,
+      "object_sha256": "6a44b7cfe77129d47089ae71bee8c71d2733ae694b8910485e6c3e444de5cb13",
+      "bytes": 1077584,
+      "pdf_header_offset": 0
+    },
+    {
+      "canonical_security_id": "SZSE:000001",
+      "announcement_id": "1225475344",
+      "adjunct_url": "finalpage/2026-08-15/1225475344.PDF",
+      "disclosure_date": "2026-08-15",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475344.PDF",
+      "locator_key": "8f98ac64945c1dc2d578f78c9aa386bca55536d30539c10c55eae72670e5440c",
+      "state": "CACHE_HIT_VALID",
+      "network_fetch": false,
+      "object_sha256": "04f7b69417f665164ea6b8c636bc6a1ec1f399cedc97faa0662226a54b4f5527",
+      "bytes": 1472390,
+      "pdf_header_offset": 0
+    },
+    {
+      "canonical_security_id": "SZSE:300750",
+      "announcement_id": "1225441586",
+      "adjunct_url": "finalpage/2026-07-25/1225441586.PDF",
+      "disclosure_date": "2026-07-25",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-07-25/1225441586.PDF",
+      "locator_key": "63cf551803436a5f49def12d74af5214c3a42550c081e9dd7f940828269c8245",
+      "state": "CACHE_HIT_VALID",
+      "network_fetch": false,
+      "object_sha256": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+      "bytes": 1648690,
+      "pdf_header_offset": 0
+    }
+  ],
+  "network_fetch_count_first_pass": 4,
+  "network_fetch_count_second_pass": 0,
+  "cache_object_count": 4,
+  "attack_tests": [
+    {
+      "name": "announcement_id_path_mismatch",
+      "expected": "INVALID_LOCATOR_BLOCKED",
+      "actual": "INVALID_LOCATOR_BLOCKED",
+      "pass": true,
+      "detail": "INVALID_LOCATOR_BLOCKED:SSE:600000: announcement_id/path mismatch"
+    },
+    {
+      "name": "disclosure_date_not_before_pit",
+      "expected": "INVALID_LOCATOR_BLOCKED",
+      "actual": "INVALID_LOCATOR_BLOCKED",
+      "pass": true,
+      "detail": "INVALID_LOCATOR_BLOCKED:SSE:600000: disclosure_date is not before PIT"
+    },
+    {
+      "name": "absolute_unapproved_origin",
+      "expected": "INVALID_LOCATOR_BLOCKED",
+      "actual": "INVALID_LOCATOR_BLOCKED",
+      "pass": true,
+      "detail": "INVALID_LOCATOR_BLOCKED:SSE:600000: adjunct_url not approved relative PDF path"
+    },
+    {
+      "name": "non_pdf_payload",
+      "expected": "INVALID_PDF_BLOCKED",
+      "actual": "INVALID_PDF_BLOCKED",
+      "pass": true,
+      "detail": "INVALID_PDF_BLOCKED:PDF header not found in first 2048 bytes"
+    },
+    {
+      "name": "cache_object_hash_corruption",
+      "expected": "CACHE_TAMPERED_BLOCKED",
+      "actual": "CACHE_TAMPERED_BLOCKED",
+      "pass": true
+    }
+  ],
+  "historical_prospective_certification": "BLOCKED_FIRST_OBSERVED_AFTER_PIT",
+  "gate": {
+    "all_first_pass_valid": true,
+    "all_second_pass_cache_hit": true,
+    "second_pass_network_fetch_count_zero": true,
+    "all_attack_tests_pass": true,
+    "status": "MATERIALIZATION_CONTRACT_VALIDATION_PASS"
+  },
+  "receipt_sha256": "5e6d70b0dd2e9a585a5b4ded662312cde6b4124a0cae8ac9391eee709e7ad88d"
+}

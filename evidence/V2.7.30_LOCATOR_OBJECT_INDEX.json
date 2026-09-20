@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_30_LOCATOR_OBJECT_INDEX_V1",
+  "objects": [
+    {
+      "canonical_security_id": "SSE:600000",
+      "announcement_id": "1225521898",
+      "adjunct_url": "finalpage/2026-08-28/1225521898.PDF",
+      "locator_key": "2546932fba338186ade0012a08e31efa4a28f747ed759db4343b8f9b59589125",
+      "object_sha256": "01f41e69ad9dc1b348204b3aa0acf615b2343d402ac00a0ae3895f56e7010f66",
+      "bytes": 4553498
+    },
+    {
+      "canonical_security_id": "SSE:688981",
+      "announcement_id": "1225520297",
+      "adjunct_url": "finalpage/2026-08-28/1225520297.PDF",
+      "locator_key": "0f84d276267f8abc8d72597b2ff6100ad891cfb6b936ace372a1d34aa4b56668",
+      "object_sha256": "6a44b7cfe77129d47089ae71bee8c71d2733ae694b8910485e6c3e444de5cb13",
+      "bytes": 1077584
+    },
+    {
+      "canonical_security_id": "SZSE:000001",
+      "announcement_id": "1225475344",
+      "adjunct_url": "finalpage/2026-08-15/1225475344.PDF",
+      "locator_key": "8f98ac64945c1dc2d578f78c9aa386bca55536d30539c10c55eae72670e5440c",
+      "object_sha256": "04f7b69417f665164ea6b8c636bc6a1ec1f399cedc97faa0662226a54b4f5527",
+      "bytes": 1472390
+    },
+    {
+      "canonical_security_id": "SZSE:300750",
+      "announcement_id": "1225441586",
+      "adjunct_url": "finalpage/2026-07-25/1225441586.PDF",
+      "locator_key": "63cf551803436a5f49def12d74af5214c3a42550c081e9dd7f940828269c8245",
+      "object_sha256": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+      "bytes": 1648690
+    }
+  ]
+}
