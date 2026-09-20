@@ -60,7 +60,7 @@ def select_latest(rows, exchange):
     # Multiple full reports same period without explicit revision marker are ambiguous.
     return None,candidates,"AMBIGUOUS_SAME_PERIOD_PRIMARY"
 
-def sse_fetch(ctx,code):
+def sse_fetch(page,code):
     all_rows=[]; queries=[]
     for report_type in ("QUATER2","YEARLY"):
         cb=f"jsonpCallbackV2727{report_type}"
@@ -72,24 +72,45 @@ def sse_fetch(ctx,code):
           "&pageHelp.beginPage=1&pageHelp.cacheSize=1&pageHelp.endPage=5"
         )
         url="https://query.sse.com.cn/security/stock/queryCompanyBulletin.do?"+qs
-        resp=ctx.request.get(
-          url,
-          headers={
-            "Referer":f"https://www.sse.com.cn/assortment/stock/list/info/announcement/index.shtml?productId={code}",
-            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
-          },
-          timeout=90000
-        )
-        if resp.status!=200: raise RuntimeError(f"SSE {report_type} query HTTP {resp.status}")
-        text=resp.text(); b=text.encode()
-        (RAW/f"sse_{code}_{report_type}_page1.jsonp").write_bytes(b)
-        m=re.match(r"^[^(]+\((.*)\)\s*;?\s*$",text,re.S)
-        if not m: raise RuntimeError(f"SSE {report_type} JSONP parse failed")
-        obj=json.loads(m.group(1)); ph=obj.get("pageHelp") or {}
+
+        # Use the endpoint in its native JSONP/browser mode. Direct APIRequestContext
+        # calls are intermittently rejected with 403 even with Referer headers.
+        out=page.evaluate("""async ({url,cb}) => {
+          return await new Promise((resolve,reject) => {
+            let done=false;
+            const timer=setTimeout(() => {
+              if (!done) { done=true; try { delete window[cb]; } catch(e) {} reject(new Error('SSE JSONP timeout')); }
+            }, 30000);
+            window[cb]=(obj) => {
+              if (done) return;
+              done=true; clearTimeout(timer);
+              try { delete window[cb]; } catch(e) {}
+              resolve(obj);
+            };
+            const s=document.createElement('script');
+            s.src=url;
+            s.async=true;
+            s.onerror=() => {
+              if (done) return;
+              done=true; clearTimeout(timer);
+              try { delete window[cb]; } catch(e) {}
+              reject(new Error('SSE JSONP script load failed'));
+            };
+            document.head.appendChild(s);
+          });
+        }""", {"url":url,"cb":cb})
+
+        # Re-canonicalize exact bytes for audit because JSONP browser execution
+        # exposes the parsed object rather than the original response bytes.
+        canon=json.dumps(out,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()
+        (RAW/f"sse_{code}_{report_type}_page1.browser.json").write_bytes(canon)
+        ph=out.get("pageHelp") or {}
         rows=ph.get("data") or []
         all_rows.extend(rows)
         queries.append({
-          "reportType":report_type,"url":url,"raw_sha256":sha(b),"raw_bytes":len(b),
+          "reportType":report_type,"url":url,
+          "capture_mode":"BROWSER_JSONP_NATIVE",
+          "canonical_json_sha256":sha(canon),"canonical_json_bytes":len(canon),
           "pageNo":ph.get("pageNo"),"pageSize":ph.get("pageSize"),
           "pageCount":ph.get("pageCount"),"total":ph.get("total"),
           "rows_returned":len(rows)
@@ -194,9 +215,12 @@ def main():
         locale="zh-CN"
       )
 
-      # SSE sample: direct official API + official PDF hosts.
-      # No dependency on the heavy announcement HTML page.
-      rows,qmeta=sse_fetch(ctx,"600000")
+      # SSE sample: lightweight official browser session + native JSONP query.
+      # wait_until='commit' avoids waiting for the heavy SSE page DOM/resources.
+      page=ctx.new_page()
+      page.goto("https://www.sse.com.cn/",wait_until="commit",timeout=30000)
+      page.wait_for_timeout(1200)
+      rows,qmeta=sse_fetch(page,"600000")
       chosen,cands,err=select_latest(rows,"SSE")
       srec={"query":qmeta,"candidate_count":len(cands),"candidates":cands,"selector_error":err}
       if chosen:
@@ -204,6 +228,7 @@ def main():
         srec["selected"]=chosen
         srec["pdf"]=sse_download_pdf(ctx,chosen,"SSE:600000")
       receipt["samples"]["SSE:600000"]=srec
+      page.close()
 
       # SZSE sample
       page=ctx.new_page()
