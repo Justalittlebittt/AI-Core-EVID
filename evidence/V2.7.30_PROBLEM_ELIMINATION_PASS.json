@@ -1,0 +1,42 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_30_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.7.30",
+  "final_user_goal": "Materialize official Primary evidence bytes only when a downstream Evidence Bundle actually needs them, with reproducible integrity and reuse.",
+  "hard_constraints": [
+    "input security must exist exactly once in frozen Primary Locator Inventory",
+    "locator identity must match announcement_id",
+    "materialized bytes must come from an approved official CNInfo static origin",
+    "payload must be a valid PDF payload",
+    "raw bytes must be retained by the cache backend for the consuming scope",
+    "SHA256 must be recorded and revalidated before reuse",
+    "cache corruption must fail closed",
+    "materialization must not alter Primary selection",
+    "historical post-PIT observation cannot be relabeled prospective",
+    "no manual force-pass"
+  ],
+  "soft_constraints_removed": [
+    "pre-download all 5221 PDFs",
+    "store all PDFs in Git history",
+    "install a browser merely to fetch a static PDF when direct static-origin HTTP works",
+    "redownload an already cached locator",
+    "bind the Evidence contract permanently to one cache storage product"
+  ],
+  "search_order_applied": {
+    "Delete": "No full-market PDF prefetch.",
+    "Avoid": "Static file retrieval does not require exchange announcement-page navigation.",
+    "Absorb": "Frozen locator inventory owns document selection; materializer only resolves locator to bytes.",
+    "Substitute": "Git stores receipts/indexes; raw-byte cache backend is pluggable.",
+    "Precompute_Reuse": "Content-addressed SHA256 object reused after integrity validation.",
+    "Optimize": "Network retry tuning is not part of V2.7.30 unless the minimal direct path proves necessary."
+  },
+  "validation_scope": {
+    "mode": "MINIMAL_CROSS_BOARD_SAMPLE",
+    "securities": [
+      "SSE:600000",
+      "SSE:688981",
+      "SZSE:000001",
+      "SZSE:300750"
+    ],
+    "purpose": "contract validation only; not a stock recommendation or ranking"
+  }
+}
