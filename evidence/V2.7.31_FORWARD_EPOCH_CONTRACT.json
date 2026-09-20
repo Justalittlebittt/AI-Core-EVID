@@ -1,0 +1,43 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_FORWARD_EPOCH_CERTIFIED_UNIVERSE_CONTRACT_V1",
+  "version": "V2.7.31",
+  "epoch": {
+    "marker_rule": "T0 is the committed_at timestamp of evidence/V2.7.31_FORWARD_EPOCH_MARKER.json creation commit.",
+    "eligibility_rule": "Only observations at or after T0 can be classified as FORWARD_OBSERVED.",
+    "baseline_rule": "Frozen pre-T0 artifacts may be BASELINE_ADOPTED_AT_T0 and used only for decisions strictly after T0."
+  },
+  "baseline_artifacts": {
+    "official_2026_09_17_mother_pool_hash": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+    "issuer_map_file": "evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv",
+    "issuer_map_sha256": "769960860eaeb97f34780eca3b8cdb2618a4e3afd580e97f59fe6435da8b25a8",
+    "primary_locator_file": "evidence/V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv",
+    "primary_locator_sha256": "6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4",
+    "materialization_contract": "evidence/V2.7.30_EVIDENCE_MATERIALIZATION_CONTRACT.json"
+  },
+  "bootstrap_algorithm": [
+    "capture current SSE/SZSE official A-share membership after T0",
+    "compare current membership to frozen 2026-09-17 baseline set",
+    "for current IDs present in baseline: adopt frozen issuer+locator records at T0 without rewriting original observation timestamps",
+    "for current IDs absent from baseline: resolve issuer identity from current official exchange evidence and resolve Primary Locator from CNInfo after T0",
+    "for baseline IDs absent from current membership: exclude from forward universe",
+    "require exactly one issuer identity and one terminal Primary Locator for every current member",
+    "freeze Forward Certified Universe snapshot with observed_at/adopted_at provenance"
+  ],
+  "certified_universe_entry_requires": [
+    "current official membership",
+    "exact canonical_security_id",
+    "exact issuer identity",
+    "terminal Primary Locator",
+    "provenance state is BASELINE_ADOPTED_AT_T0 or FORWARD_OBSERVED_AFTER_T0"
+  ],
+  "certified_universe_entry_does_not_require": [
+    "pre-downloaded PDF bytes",
+    "AlphaDojo membership agreement",
+    "full-market re-query of historical CNInfo catalog"
+  ],
+  "downstream": {
+    "filing_content_use": "requires V2.7.30 materialization for the consumed security",
+    "vendor_or_price_coverage": "separate per-security execution prerequisite; cannot rewrite Certified Universe membership",
+    "first60": "may start only after Forward Certified Universe snapshot PASS"
+  }
+}
