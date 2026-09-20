@@ -1,0 +1,86 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_NO_CHANGE_INTERVAL_PROOF_V1",
+  "version": "V2.7.31",
+  "epoch_id": "AI_CORE_EVID_FORWARD_EPOCH_001",
+  "purpose": "Authorize carry-forward of the last after-close official Mother Pool across a proven non-trading interval for research/episode bootstrap only.",
+  "source_snapshot": {
+    "authority": [
+      "SSE_OFFICIAL",
+      "SZSE_OFFICIAL"
+    ],
+    "workflow_run_id": 35322030973,
+    "artifact_id": 10537802122,
+    "artifact_sha256": "6259154730b08fe40fc27b46f5265661fd699afd3ed8126820200ef574686477",
+    "receipt_sha256": "13e513a1ec99f63550a54e28c31fd2ba9ff7bdcbbe9ee79ad83789fe69aaf8e1",
+    "run_started_at_utc": "2026-09-18T07:59:26.312493+00:00",
+    "run_finished_at_utc": "2026-09-18T08:02:28.531418+00:00",
+    "run_finished_at_asia_shanghai": "2026-09-18T16:02:28.531418+08:00",
+    "relation_to_session_close": "AFTER_2026_09_18_15_00_CLOSE",
+    "canonical_count": 5221,
+    "sse_count": 2320,
+    "szse_count": 2901,
+    "canonical_sorted_newline_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c"
+  },
+  "epoch_t0": {
+    "marker_commit_sha": "0226b94172632b1e68bb002b454f5e37b3497606",
+    "t0_utc": "2026-09-20T07:17:16Z",
+    "t0_asia_shanghai": "2026-09-20T15:17:16+08:00"
+  },
+  "interval_proof": {
+    "dates": [
+      {
+        "date": "2026-09-19",
+        "weekday": "Saturday",
+        "trading_session": false
+      },
+      {
+        "date": "2026-09-20",
+        "weekday": "Sunday",
+        "trading_session": false
+      }
+    ],
+    "official_rule_refs": [
+      {
+        "exchange": "SSE",
+        "rule": "Shanghai Stock Exchange Trading Rules (2026 revision), 2.4.1",
+        "statement": "Trading days are Monday through Friday; statutory holidays and exchange-announced closure days are closed.",
+        "url": "https://www.sse.com.cn/lawandrules/sselawsrules2025/stocks/exchange/c/c_20260424_10816482.shtml"
+      },
+      {
+        "exchange": "SZSE",
+        "rule": "Shenzhen Stock Exchange Trading Rules, trading-time rule",
+        "statement": "Trading days are Monday through Friday; statutory holidays and exchange-announced closure days are closed.",
+        "url": "https://www.szse.cn/disclosure/notice/general/t20060515_499577.html"
+      }
+    ],
+    "inference_scope": "No exchange trading session occurs between the after-close snapshot and epoch T0. This proof authorizes last-closed-session universe carry for research/bootstrap; it does not claim that no corporate/exchange announcement can ever occur on a weekend."
+  },
+  "forward_sse_crosscheck": {
+    "workflow_run_id": 35497322948,
+    "artifact_id": 10601122125,
+    "artifact_sha256": "4dbf3934a61cdf2d1486acb505a6ca4bc63e0909e3af531d80274dbab56fde09",
+    "observed_after_t0": true,
+    "sse_count": 2320,
+    "sse_sorted_newline_sha256": "bd8c8fc89844d7a7293117f5d8ae4258d47115702cd67d3a4c9f5dc53b725d28",
+    "exact_match_to_baseline_sse": true,
+    "note": "Run failed only when resolving www.szse.cn DNS; retained SSE official raw pages closed exactly at 2320 members."
+  },
+  "provenance_states": {
+    "SSE": "FORWARD_OBSERVED_AFTER_T0_EXACT_MATCH",
+    "SZSE": "FORWARD_CARRIED_OVER_NONTRADING_INTERVAL"
+  },
+  "validity": {
+    "research_episode_bootstrap_allowed": true,
+    "first60_research_start_allowed": true,
+    "live_execution_allowed": false,
+    "fresh_membership_refresh_required_before": "2026-09-21T09:15:00+08:00",
+    "expiry_semantics": "Carry-forward authorization expires before the next trading session begins or immediately upon a newer authoritative official membership observation, whichever occurs first."
+  },
+  "prohibited": [
+    "label SZSE carried state as freshly observed after T0",
+    "use this proof to authorize pre-T0 decisions",
+    "use this proof to authorize live execution after the next trading session begins",
+    "rewrite original first-observed timestamps of baseline issuer/locator evidence"
+  ],
+  "gate_status": "PASS_NONTRADING_INTERVAL_CARRY_FOR_RESEARCH_BOOTSTRAP"
+}
