@@ -1,10 +1,5 @@
 name: V2.7.28 Catalog Endpoint Probe
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2728_catalog_endpoint_probe.py"
-      - ".github/workflows/v2728-catalog-probe.yml"
   workflow_dispatch:
 permissions:
   contents: read
