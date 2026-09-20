@@ -1,0 +1,16 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_NO_CHANGE_INTERVAL_PROOF_EXECUTION_V1",
+  "amendment": "evidence/V2.7.31_FORWARD_EPOCH_CONTRACT_AMENDMENT_1.json",
+  "source_snapshot_completed_after_utc": "2026-09-18T08:02:28Z",
+  "epoch_t0_utc": "2026-09-20T07:17:16Z",
+  "source_snapshot_set_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+  "source_snapshot_total_count": 5221,
+  "source_snapshot_szse_count": 2901,
+  "intervening_exchange_trading_sessions": 0,
+  "local_interval_description": "2026-09-18 Friday post-close snapshot -> 2026-09-20 Sunday T0",
+  "result": "PASS_NO_EXCHANGE_TRADING_SESSION_IN_INTERVAL",
+  "szse_membership_provenance": "FORWARD_CARRIED_BY_NO_CHANGE_INTERVAL_PROOF",
+  "source_bytes_reclassified_as_post_t0": false,
+  "execution_receipt_sha256": "5f7928122f0008451365342311e4fb9b8d90f6d09424d7e91e794e5a4e31b4c1",
+  "execution_run_id": 35503988063
+}
