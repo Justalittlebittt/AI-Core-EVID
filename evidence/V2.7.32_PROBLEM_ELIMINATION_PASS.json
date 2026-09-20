@@ -1,0 +1,33 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.7.32",
+  "final_user_goal": "Start the genuine prospective First60 experiment without backfill, sample substitution, or reconstruction of strategy logic.",
+  "hard_constraints": [
+    "First60 consists of the earliest 60 eligible Episode starts after the new activation boundary, not 60 securities.",
+    "Episode ranks 1-30 are Stage A; ranks 31-60 are Stage B; ALL60 is exactly A union B and A/B are non-overlapping.",
+    "Missing or unavailable outcomes are never replaced by Episode 61+.",
+    "Same-symbol Episode starts are suppressed until the existing Episode ends.",
+    "Target T is frozen at Episode start as D+10 joint A-share trading sessions; missing T bar is OUTCOME_UNAVAILABLE and T is not shifted.",
+    "Only post-activation signal dates may append; Shadow/Development/pre-activation observations are permanently excluded.",
+    "Signal-date retained source must prove max_bar_date == D; stale D-1 snapshots are blocked.",
+    "Zero-candidate sessions inside the covered prospective interval must still be recorded.",
+    "First60 temporal sufficiency: ALL60 >=10 distinct signal dates; Stage A >=5; Stage B >=5; no one date >20% of ALL60. Failure is INCONCLUSIVE, not strategy FAIL.",
+    "Episode start must be inside the V2.7.31 Forward Certified Universe effective for that signal date.",
+    "Outcome and economic-price semantics remain inherited/frozen; ledger code may not redefine them."
+  ],
+  "soft_constraints_removed": [
+    "produce 60 episodes immediately",
+    "treat First60 as a 60-stock sample",
+    "backfill old Shadow episodes",
+    "recreate TQ/Setup strategy rules from memory",
+    "pre-materialize every issuer PDF before First60 can start"
+  ],
+  "architecture": {
+    "Delete": "No backfill and no synthetic Episode generation.",
+    "Avoid": "Ledger admission is separated from signal production.",
+    "Absorb": "V2.7.31 Certified Universe and V2.7.30 materialization contracts remain upstream authorities.",
+    "Substitute": "Rebuild only a strategy-agnostic append-only ledger gate because legacy runtime code is absent from GitHub.",
+    "Precompute_Reuse": "Freeze the actual 2026 joint A-share calendar once and reuse its hash.",
+    "Optimize": "Only after correctness and append-only invariants pass."
+  }
+}
