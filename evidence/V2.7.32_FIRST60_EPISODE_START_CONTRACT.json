@@ -1,0 +1,72 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FIRST60_EPISODE_START_CONTRACT_V1",
+  "version": "V2.7.32",
+  "purpose": "Freeze the deterministic prospective Episode-start cohort rules for First60 without historical backfill or outcome-based selection.",
+  "upstream": {
+    "certified_universe_final_record": "evidence/V2.7.31_FINAL_RECORD.json",
+    "required_state": "FORWARD_CERTIFIED_V2_UNIVERSE=PASS_RESEARCH_BOOTSTRAP",
+    "certified_universe_count": 5221,
+    "certified_universe_sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d"
+  },
+  "semantics": {
+    "first60_definition": "The first 60 qualifying Episode-start observations after activation, ordered prospectively before outcomes are known.",
+    "not_a_security_sample": true,
+    "distinct_security_requirement": false,
+    "historical_backfill_forbidden": true,
+    "shadow_episode_inclusion_forbidden": true,
+    "outcome_based_inclusion_forbidden": true,
+    "missing_outcome_replacement_forbidden": true
+  },
+  "activation": {
+    "first_eligible_signal_date_rule": "next joint SSE+SZSE A-share trading session after activation",
+    "first_eligible_signal_date": "2026-09-21",
+    "pre_activation_episode_starts": "INELIGIBLE"
+  },
+  "episode_start_requires": [
+    "canonical_security_id exists in the frozen V2.7.31 Certified Universe",
+    "signal timestamp is on or after the first eligible signal date",
+    "signal is generated only from information available at signal time under PIT rules",
+    "required Setup gate is PASS",
+    "required Evidence chain is PASS or validly on-demand materialized under V2.7.30 when content is consumed",
+    "vendor/price coverage required by the Setup is PASS for that security and timestamp",
+    "episode start is committed to the candidate ledger before its outcome is observed"
+  ],
+  "deterministic_order": {
+    "primary": "signal_timestamp_utc ascending",
+    "tie_break_1": "canonical_security_id lexicographic ascending",
+    "tie_break_2": "setup_id lexicographic ascending",
+    "tie_break_3": "episode_id lexicographic ascending",
+    "note": "Ordering is frozen before outcomes and cannot be rearranged later."
+  },
+  "episode_id": {
+    "canonical_formula": "SHA256(activation_id|signal_timestamp_utc|canonical_security_id|setup_id|setup_spec_version)",
+    "immutable": true
+  },
+  "cohort_partition": {
+    "ALL60": "ranks 1-60",
+    "STAGE_A": "ranks 1-30",
+    "STAGE_B": "ranks 31-60"
+  },
+  "temporal_dispersion_after_rank60": {
+    "all60_min_distinct_signal_dates": 10,
+    "stage_a_min_distinct_signal_dates": 5,
+    "stage_b_min_distinct_signal_dates": 5,
+    "max_single_signal_date_share": 0.2,
+    "max_single_signal_date_episode_count": 12,
+    "insufficient_dispersion_status": "INCONCLUSIVE",
+    "insufficient_dispersion_does_not_permit_replacement": true
+  },
+  "states": [
+    "NOT_ACTIVATED",
+    "ACTIVATED_WAITING_FIRST_ELIGIBLE_SESSION",
+    "COLLECTING_EPISODE_STARTS",
+    "ALL60_FILLED_PENDING_DISPERSION_CHECK",
+    "FIRST60_PASS",
+    "FIRST60_INCONCLUSIVE_TIME_CONCENTRATION",
+    "FIRST60_BLOCKED_UPSTREAM"
+  ],
+  "downstream": {
+    "S4_S5_S6": "remain blocked until First60 reaches a terminal evaluable state required by their own contracts",
+    "LIVE": "remains blocked"
+  }
+}
