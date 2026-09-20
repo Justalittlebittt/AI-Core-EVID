@@ -1,0 +1,9 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FIRST60_ACTIVATION_MARKER_V1",
+  "version": "V2.7.32",
+  "activation_id": "FIRST60_ACTIVATION_001",
+  "activation_time_authority": "GitHub committed_at timestamp of this file creation commit",
+  "certified_universe_sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+  "no_grandfathering": true,
+  "historical_backfill_forbidden": true
+}
