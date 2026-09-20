@@ -1,10 +1,5 @@
 name: V2.7.29 Targeted Ambiguity Probe
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2729_targeted_ambiguity_probe.py"
-      - ".github/workflows/v2729-targeted-ambiguity.yml"
   workflow_dispatch:
 permissions:
   contents: read
