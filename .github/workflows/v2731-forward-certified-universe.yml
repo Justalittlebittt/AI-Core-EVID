@@ -1,10 +1,5 @@
 name: V2.7.31 Forward Certified Universe Bootstrap
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2731_forward_certified_universe.py"
-      - ".github/workflows/v2731-forward-certified-universe.yml"
   workflow_dispatch:
 permissions:
   contents: write
