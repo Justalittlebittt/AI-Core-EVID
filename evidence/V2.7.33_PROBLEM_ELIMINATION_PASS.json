@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.7.33",
+  "final_user_goal": "Activate the genuine prospective First60 runtime without changing or reconstructing the frozen strategy logic.",
+  "hard_constraints": [
+    "runtime signal/setup/source-gate bytes must be the original frozen bytes or byte-identical files whose SHA256 matches the V2.7.3 activation manifest",
+    "strategy logic must not be reimplemented from memory",
+    "historical Shadow/pre-activation observations cannot enter First60",
+    "activation cannot occur from manifests/hashes alone when executable bytes are absent",
+    "recovered bytes must pass exact SHA256 verification before repository admission",
+    "V2.7.32 strategy-agnostic ledger gate remains the only newly rebuilt component until original runtime is recovered"
+  ],
+  "soft_constraints_removed": [
+    "keep searching GitHub for files already proven absent from repository history",
+    "assume a prior sandbox URL is still accessible in a later chat runtime",
+    "treat a manifest or final receipt as a substitute for executable source bytes",
+    "recreate TQ/Setup/signal logic from remembered behavior"
+  ],
+  "search_order_applied": {
+    "Delete": "Stop repeated GitHub/runtime transport debugging once absence is proven.",
+    "Avoid": "Do not rebuild strategy logic.",
+    "Absorb": "Use recovered V2.7.3 manifest and receipt as exact byte-level acceptance authorities.",
+    "Substitute": "Either complete model ZIP or runtime starter ZIP can serve as the recovery carrier, provided package/member hashes match.",
+    "Precompute_Reuse": "Reuse all V2.7.32 ledger/calendar/Certified Universe work after runtime recovery.",
+    "Optimize": "No optimization before exact-byte recovery."
+  }
+}
