@@ -3,6 +3,7 @@ import csv, hashlib, html, json, re
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from urllib.parse import parse_qs
 from playwright.sync_api import sync_playwright
 
 PIT="2026-09-17"
@@ -110,6 +111,49 @@ def complete_query(page,base,outdir):
         raise RuntimeError(f"pagination count mismatch {len(rows)} != {total}")
     return rows,{"total":total,"pages_fetched":page-1}
 
+def resolve_cninfo_org_id(page, code, audit_path):
+    matches=[]
+    def on_req(req):
+        try:
+            if "/new/hisAnnouncement/query" not in req.url or req.method!="POST":
+                return
+            body=req.post_data or ""
+            q=parse_qs(body)
+            stock=(q.get("stock") or [""])[0]
+            if stock.startswith(code+","):
+                org=stock.split(",",1)[1].strip()
+                if org:
+                    matches.append({"stock":stock,"org_id":org,"post_data":body})
+        except Exception:
+            pass
+    page.on("request",on_req)
+    try:
+        page.goto(f"https://www.cninfo.com.cn/new/fulltextSearch?keyWord={code}",
+                  wait_until="domcontentloaded",timeout=60000)
+        page.wait_for_timeout(1800)
+        # Reproduce the production UI's exact security resolution interaction.
+        inputs=page.locator("input")
+        for i in range(min(inputs.count(),12)):
+            try:
+                el=inputs.nth(i)
+                if not el.is_visible(): continue
+                ph=el.get_attribute("placeholder") or ""
+                if any(x in ph for x in ("代码","简称","关键")):
+                    el.fill(code)
+                    el.press("Enter")
+                    page.wait_for_timeout(2200)
+                    break
+            except Exception:
+                pass
+    finally:
+        page.remove_listener("request",on_req)
+    uniq=sorted({x["org_id"] for x in matches})
+    audit_path.parent.mkdir(parents=True,exist_ok=True)
+    audit_path.write_text(json.dumps({"code":code,"matches":matches,"unique_org_ids":uniq},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    if len(uniq)!=1:
+        raise RuntimeError(f"{code}: CNInfo UI orgId resolution ambiguous/unresolved: {uniq}")
+    return uniq[0]
+
 def main():
     global page_obj
     started=datetime.now(timezone.utc)
@@ -173,20 +217,11 @@ def main():
         page_obj.goto("https://www.cninfo.com.cn/",wait_until="domcontentloaded",timeout=90000)
         page_obj.wait_for_timeout(1500)
 
-        stocks={}
-        for ex,path in (("SSE","/new/data/sse_stock.json"),("SZSE","/new/data/szse_stock.json")):
-            q=page_obj.evaluate("""async (path)=>{const r=await fetch(path);return {status:r.status,text:await r.text()}}""",path)
-            if q["status"]!=200: raise RuntimeError(f"{ex} stock dictionary HTTP {q['status']}")
-            b=q["text"].encode("utf-8"); (RAW/f"{ex}_stock.json").write_bytes(b)
-            obj=json.loads(q["text"])
-            for x in obj.get("stockList") or []:
-                code=str(x.get("code") or "").strip(); org=str(x.get("orgId") or "").strip()
-                if code and org: stocks[(ex,code)]=org
-
         for g in sorted(gaps,key=lambda x:x["canonical_security_id"]):
             cid=g["canonical_security_id"]; ex=g["exchange"]; code=g["security_code"]; m=map_by[cid]
-            org=stocks.get((ex,code))
-            if not org: raise RuntimeError(f"{cid}: CNInfo orgId unresolved")
+            org=resolve_cninfo_org_id(
+              page_obj,code,RAW/cid.replace(":","_")/"ORG_ID_RESOLUTION.json"
+            )
             column="sse" if ex=="SSE" else "szse"; plate="sh" if ex=="SSE" else "sz"
             periodic=[]
             for kind,catcode in CATS.items():
