@@ -1,10 +1,5 @@
 name: V2.7.31 Offline No-Change Bootstrap
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2731_no_change_bootstrap.py"
-      - ".github/workflows/v2731-no-change-bootstrap.yml"
   workflow_dispatch:
 permissions:
   contents: write
