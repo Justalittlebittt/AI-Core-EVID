@@ -1,0 +1,69 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_29_UNIFIED_OFFICIAL_FILING_ARCHITECTURE_V1",
+  "version": "V2.7.29",
+  "pit_date": "2026-09-17",
+  "approved_change": {
+    "problem_elimination_pass": true,
+    "deleted_problem_classes": [
+      "SSE announcement-page navigation as filing prerequisite",
+      "SZSE announcement-page navigation as filing prerequisite",
+      "exchange-specific PDF transport during full-market inventory",
+      "re-downloading already identified Primary PDFs during repeated inventory runs"
+    ],
+    "retained_hard_constraints": [
+      "official Mother Pool authority remains SSE/SZSE",
+      "canonical security identity remains exchange + six-digit code",
+      "no future information",
+      "summary cannot substitute full filing",
+      "same-period revision supersedes original",
+      "identity ambiguity blocks",
+      "selection ambiguity blocks",
+      "eventual materialized PDF must be official raw bytes with SHA256",
+      "no manual waiver"
+    ]
+  },
+  "architecture": {
+    "membership_authority": "SSE/SZSE official PIT set",
+    "filing_catalog_authority": "CNInfo official disclosure platform",
+    "catalog_mode": "PRECOMPUTE_AND_REUSE",
+    "full_market_inventory_gate": "PRIMARY_LOCATOR_EXACT_COVERAGE",
+    "pdf_materialization_gate": "ON_DEMAND_SEPARATE_GATE",
+    "pdf_cache_key": [
+      "announcement_id",
+      "adjunct_url"
+    ],
+    "pdf_cache_rule": "download once, retain immutable raw bytes + SHA256, reuse after hash verification"
+  },
+  "full_market_inventory_pass_requires": [
+    "mother_pool_count == 5221",
+    "exactly one terminal record per canonical_security_id",
+    "terminal record is either uniquely selected Primary Locator or NONE/NA after valid exhaustive query",
+    "all selected locators satisfy disclosure_date < 2026-09-17",
+    "all identities exact, no fuzzy name matching",
+    "all raw catalog query pages retained with SHA256",
+    "all unresolved periodic gaps receive targeted historical/IPO fallback query",
+    "no unresolved selector ambiguity"
+  ],
+  "full_market_inventory_pass_does_not_require": [
+    "PDF bytes already downloaded for all 5221 securities",
+    "SSE announcement webpage navigation",
+    "SZSE announcement webpage navigation"
+  ],
+  "materialization_gate": {
+    "trigger": "when a selected Primary is actually consumed by an Evidence Bundle or downstream stage",
+    "pass_requires": [
+      "official CNInfo/static official file locator",
+      "HTTP success",
+      "payload contains PDF header",
+      "raw bytes retained",
+      "SHA256 retained",
+      "locator-to-bytes receipt retained"
+    ],
+    "failure_status": "EVIDENCE_MATERIALIZATION_BLOCKED_FOR_SECURITY",
+    "effect": "blocks only the downstream scope requiring that security; does not rewrite Filing Inventory"
+  },
+  "supersedes": [
+    "V2.7.27 requirement that all selected Primary PDFs be downloaded before FULL_MARKET_FILING_INVENTORY_PASS"
+  ],
+  "preserves_history": true
+}
