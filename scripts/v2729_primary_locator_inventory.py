@@ -10,6 +10,7 @@ CUTOFF="2026-09-16"
 MAP=Path("evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv")
 CAT=Path("evidence/V2.7.28_PERIODIC_CATALOG.csv")
 GAPS=Path("evidence/V2.7.28_PERIODIC_COVERAGE_GAPS.csv")
+AMB=Path("evidence/V2.7.29_TARGETED_AMBIGUITY_RESOLUTION.json")
 OUT=Path("v2729_locator_inventory")
 RAW=OUT/"raw_gap_queries"
 OUT.mkdir(exist_ok=True); RAW.mkdir(parents=True,exist_ok=True)
@@ -117,6 +118,8 @@ def main():
     map_by={r["canonical_security_id"]:r for r in map_rows}
     cat=list(csv.DictReader(CAT.open(encoding="utf-8")))
     gaps=list(csv.DictReader(GAPS.open(encoding="utf-8")))
+    amb_doc=json.loads(AMB.read_text(encoding="utf-8"))
+    amb=amb_doc.get("resolutions") or {}
     gap_ids={r["canonical_security_id"] for r in gaps}
     if len(gap_ids)!=14: raise RuntimeError(f"expected 14 gaps, got {len(gap_ids)}")
 
@@ -137,14 +140,25 @@ def main():
     records=[]; unresolved=[]
     # Resolve the already-covered 5207 from frozen catalog, offline.
     for cid in sorted(set(map_by)-gap_ids):
-        selected,err=select_periodic(by_cid.get(cid,[]))
+        cands=by_cid.get(cid,[])
+        resolution_source="STANDARD_SELECTOR"
+        if cid in amb:
+            selected_id=str(amb[cid].get("selected_announcement_id") or "")
+            hits=[x for x in cands if x.get("announcement_id")==selected_id]
+            if len(hits)!=1:
+                unresolved.append({"canonical_security_id":cid,"error":f"TARGETED_LEDGER_SELECTED_ID_NOT_UNIQUE:{selected_id}:{len(hits)}"})
+                continue
+            selected,err=hits[0],None
+            resolution_source="TARGETED_AMBIGUITY_LEDGER"
+        else:
+            selected,err=select_periodic(cands)
         if err or not selected:
             unresolved.append({"canonical_security_id":cid,"error":err or "NO_PRIMARY_IN_FROZEN_CATALOG"})
             continue
         m=map_by[cid]
         records.append({"canonical_security_id":cid,"exchange":m["exchange"],"security_code":m["security_code"],
           "issuer_legal_name":m["issuer_legal_name"],"resolution":"PERIODIC","taxonomy_code":"",
-          **selected})
+          "resolution_source":resolution_source,**selected})
 
     if unresolved:
         raise RuntimeError(f"unexpected non-gap unresolved count={len(unresolved)} sample={unresolved[:10]}")
@@ -210,7 +224,8 @@ def main():
                 resolution="IPO_FALLBACK" if selected else "NONE"
                 taxonomy="" if selected else "NA"
             base_rec={"canonical_security_id":cid,"exchange":ex,"security_code":code,
-                      "issuer_legal_name":m["issuer_legal_name"],"resolution":resolution,"taxonomy_code":taxonomy}
+                      "issuer_legal_name":m["issuer_legal_name"],"resolution":resolution,"taxonomy_code":taxonomy,
+                      "resolution_source":"TARGETED_GAP_QUERY"}
             if selected: base_rec.update(selected)
             else: base_rec.update({"document_type":"","title":"","disclosure_date":"","period_end":"",
                                    "revision":False,"announcement_id":"","adjunct_url":"","org_id":org,
@@ -238,7 +253,7 @@ def main():
             if r["taxonomy_code"]!="NA":
                 raise RuntimeError(f"NONE without NA {r['canonical_security_id']}")
 
-    fields=["canonical_security_id","exchange","security_code","issuer_legal_name","resolution","taxonomy_code",
+    fields=["canonical_security_id","exchange","security_code","issuer_legal_name","resolution","taxonomy_code","resolution_source",
             "document_type","title","disclosure_date","period_end","revision","announcement_id","adjunct_url","org_id","source"]
     inv=OUT/"V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv"
     with inv.open("w",encoding="utf-8",newline="") as f:
@@ -257,6 +272,8 @@ def main():
       "primary_locator_count":locator_count,
       "none_na_count":none_count,
       "inventory_sha256":sha(inv.read_bytes()),
+      "targeted_ambiguity_resolution_count":len(amb),
+      "targeted_ambiguity_ledger_sha256":sha(AMB.read_bytes()),
       "pdf_bytes_downloaded":0,
       "pdf_materialization_gate":"SEPARATE_ON_DEMAND",
       "gate":{
