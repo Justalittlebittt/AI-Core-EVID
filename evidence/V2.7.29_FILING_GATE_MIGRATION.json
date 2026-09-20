@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_29_FILING_GATE_MIGRATION_V1",
+  "from": "V2.7.27_FULL_MARKET_FILING_INVENTORY_SPEC",
+  "to": "V2.7.29_UNIFIED_OFFICIAL_FILING_ARCHITECTURE",
+  "reason": "Problem Elimination Pass proved exchange-specific webpage/PDF transport is a high-cost soft constraint, not a final-user requirement.",
+  "changes": [
+    {
+      "old": "all selected Primary PDFs retained before inventory PASS",
+      "new": "all selected Primary Locators uniquely determined before inventory PASS"
+    },
+    {
+      "old": "SSE/SZSE filing transport may be required",
+      "new": "CNInfo unified official catalog is the default filing-discovery authority"
+    },
+    {
+      "old": "PDF acquisition coupled to discovery",
+      "new": "PDF materialization is a separate on-demand cached gate"
+    }
+  ],
+  "non_changes": [
+    "official membership authority",
+    "PIT semantics",
+    "Primary definition",
+    "revision priority",
+    "fail-closed ambiguity handling",
+    "eventual raw PDF + SHA256 requirement"
+  ],
+  "legacy_runs": "All prior failed SSE/SZSE PDF transport runs remain immutable forensic history and do not authorize PASS."
+}
