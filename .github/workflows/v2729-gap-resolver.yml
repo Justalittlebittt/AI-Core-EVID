@@ -1,10 +1,5 @@
 name: V2.7.29 Targeted Gap Resolver
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2729_targeted_gap_resolver.py"
-      - ".github/workflows/v2729-gap-resolver.yml"
   workflow_dispatch:
 permissions:
   contents: write
