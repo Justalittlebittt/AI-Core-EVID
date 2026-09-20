@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_30_EVIDENCE_MATERIALIZATION_CONTRACT_V1",
+  "version": "V2.7.30",
+  "input": {
+    "authority": "evidence/V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv",
+    "required_inventory_sha256": "6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4",
+    "identity_key": "canonical_security_id",
+    "request_cardinality": "on-demand subset only"
+  },
+  "locator_contract": {
+    "allowed_origin": "https://static.cninfo.com.cn/",
+    "adjunct_url_pattern": "finalpage/YYYY-MM-DD/<announcement_id>.PDF",
+    "announcement_id_must_match_path": true,
+    "disclosure_date_must_precede_pit_date": true
+  },
+  "cache_contract": {
+    "storage_abstraction": "CONTENT_ADDRESSED_CACHE_BACKEND",
+    "locator_key": "SHA256(canonical_security_id + announcement_id + adjunct_url)",
+    "object_key": "SHA256(raw_pdf_bytes)",
+    "git_repository_stores": [
+      "materialization receipt",
+      "locator-to-object index",
+      "contract/freeze records"
+    ],
+    "git_repository_does_not_require": [
+      "raw PDF object bytes"
+    ],
+    "reuse_requires": [
+      "object exists",
+      "object SHA256 revalidates",
+      "PDF header revalidates"
+    ],
+    "corruption_status": "CACHE_TAMPERED_BLOCKED"
+  },
+  "states": [
+    "NOT_REQUESTED",
+    "FETCHED_VALID",
+    "CACHE_HIT_VALID",
+    "FETCH_BLOCKED",
+    "INVALID_LOCATOR_BLOCKED",
+    "INVALID_PDF_BLOCKED",
+    "CACHE_TAMPERED_BLOCKED"
+  ],
+  "pass_requires": [
+    "every requested security reaches FETCHED_VALID or CACHE_HIT_VALID",
+    "receipt binds canonical_security_id to announcement_id, adjunct_url, object_sha256 and byte_count",
+    "second identical request reuses cache without network",
+    "all attack tests block as expected"
+  ],
+  "downstream_semantics": {
+    "per_security_failure": "blocks only the downstream scope consuming that security",
+    "filing_inventory": "remains unchanged",
+    "historical_2026_09_17_prospective_certification": "remains BLOCKED_FIRST_OBSERVED_AFTER_PIT"
+  }
+}
