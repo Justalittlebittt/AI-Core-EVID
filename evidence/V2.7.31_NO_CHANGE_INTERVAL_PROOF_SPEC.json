@@ -1,0 +1,31 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_NO_CHANGE_INTERVAL_PROOF_SPEC_V1",
+  "interval": {
+    "source_snapshot_completed_after_utc": "2026-09-18T08:02:28Z",
+    "source_snapshot_completed_after_asia_shanghai": "2026-09-18T16:02:28+08:00",
+    "forward_epoch_t0_utc": "2026-09-20T07:17:16Z",
+    "forward_epoch_t0_asia_shanghai": "2026-09-20T15:17:16+08:00"
+  },
+  "calendar_facts": {
+    "source_date_local": "2026-09-18",
+    "source_weekday": "Friday",
+    "intervening_local_dates": [
+      {
+        "date": "2026-09-19",
+        "weekday": "Saturday",
+        "exchange_trading_day": false
+      },
+      {
+        "date": "2026-09-20",
+        "weekday": "Sunday",
+        "exchange_trading_day": false,
+        "t0_before_any_future_trading_session": true
+      }
+    ],
+    "sse_rule": "Trading days are Monday through Friday; holidays/announced closures are closed.",
+    "szse_rule": "Market is open Monday through Friday; weekends are closed."
+  },
+  "conclusion": "NO_EXCHANGE_TRADING_SESSION_BETWEEN_FROZEN_POST_CLOSE_SNAPSHOT_AND_T0",
+  "permits": "Carry frozen SZSE membership state to T0 with explicit FORWARD_CARRIED_BY_NO_CHANGE_INTERVAL_PROOF provenance.",
+  "does_not_permit": "Relabel source snapshot bytes as observed after T0."
+}
