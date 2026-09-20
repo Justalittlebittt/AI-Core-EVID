@@ -1,10 +1,5 @@
 name: V2.7.28 CNInfo Request Contract
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2728_cninfo_contract_probe.py"
-      - ".github/workflows/v2728-cninfo-contract.yml"
   workflow_dispatch:
 permissions:
   contents: read
