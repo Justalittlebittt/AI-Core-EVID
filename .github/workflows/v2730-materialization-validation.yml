@@ -1,0 +1,48 @@
+name: V2.7.30 Materialization Contract Validation
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2730_materialization_validation.py"
+      - ".github/workflows/v2730-materialization-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install minimal dependency
+        run: pip install "requests>=2.32"
+      - name: Validate direct materialization and cache reuse
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2730_materialization_validation.py | tee v2730_materialization.log
+      - name: Persist compact evidence only
+        if: success()
+        run: |
+          cp v2730_materialization/V2.7.30_MATERIALIZATION_VALIDATION_RECEIPT.json evidence/
+          cp v2730_materialization/V2.7.30_LOCATOR_OBJECT_INDEX.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.30_MATERIALIZATION_VALIDATION_RECEIPT.json evidence/V2.7.30_LOCATOR_OBJECT_INDEX.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.30 materialization validation"
+            git push
+          fi
+      - name: Upload raw validation cache
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.30_MATERIALIZATION_VALIDATION
+          path: |
+            v2730_materialization/
+            v2730_materialization.log
+          if-no-files-found: error
+          retention-days: 30
