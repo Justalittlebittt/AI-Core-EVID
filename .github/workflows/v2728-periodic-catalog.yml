@@ -1,10 +1,5 @@
 name: V2.7.28 Periodic Catalog Capture
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2728_periodic_catalog_capture.py"
-      - ".github/workflows/v2728-periodic-catalog.yml"
   workflow_dispatch:
 permissions:
   contents: write
