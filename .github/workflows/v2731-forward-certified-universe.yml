@@ -1,0 +1,53 @@
+name: V2.7.31 Forward Certified Universe Bootstrap
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2731_forward_certified_universe.py"
+      - ".github/workflows/v2731-forward-certified-universe.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install capture dependencies
+        run: |
+          pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1" "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Build forward Certified Universe
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2731_forward_certified_universe.py | tee v2731_forward.log
+      - name: Persist forward evidence
+        if: success()
+        run: |
+          cp v2731_forward_bootstrap/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv evidence/
+          cp v2731_forward_bootstrap/V2.7.31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT.json evidence/
+          cp v2731_forward_bootstrap/V2.7.31_FORWARD_CURRENT_ISSUER_MAP.csv evidence/
+          cp v2731_forward_bootstrap/V2.7.31_FORWARD_RAW_MANIFEST.csv evidence/
+          cp v2731_forward_bootstrap/V2.7.31_FORWARD_RAW_EVIDENCE.tar.gz evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.31_FORWARD_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.31 forward Certified Universe"
+            git push
+          fi
+      - name: Upload full bootstrap audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.31_FORWARD_CERTIFIED_UNIVERSE
+          path: |
+            v2731_forward_bootstrap/
+            v2731_forward.log
+          if-no-files-found: error
+          retention-days: 30
