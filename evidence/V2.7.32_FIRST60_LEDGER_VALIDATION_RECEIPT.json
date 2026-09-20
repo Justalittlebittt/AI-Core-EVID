@@ -1,0 +1,105 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FIRST60_LEDGER_VALIDATION_V1",
+  "tests": [
+    {
+      "name": "A01_d10_calendar_freeze",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A02_nontrading_block",
+      "expected": "NON_TRADING_SIGNAL_DATE",
+      "actual": "NON_TRADING_SIGNAL_DATE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "A03_preactivation_block",
+      "expected": "PRE_ACTIVATION_OR_BEFORE_FIRST_ELIGIBLE",
+      "actual": "PRE_ACTIVATION_OR_BEFORE_FIRST_ELIGIBLE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "A04_stale_source_block",
+      "expected": "STALE_OR_FUTURE_SIGNAL_SOURCE",
+      "actual": "STALE_OR_FUTURE_SIGNAL_SOURCE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "A05_unknown_security_block",
+      "expected": "SECURITY_NOT_IN_CERTIFIED_UNIVERSE",
+      "actual": "SECURITY_NOT_IN_CERTIFIED_UNIVERSE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "A06_zero_candidate_session_valid",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A07_first_rank_stage_a",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A08_same_symbol_overlap_block",
+      "expected": "SAME_SYMBOL_OVERLAP_BLOCKED",
+      "actual": "SAME_SYMBOL_OVERLAP_BLOCKED",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "A09_unavailable_outcome_closes_symbol_without_replacement",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A10_concentrated_first60_inconclusive",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A11_stage_boundary",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A12_genesis_not_activated",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "A13_contract_no_replacement",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true,
+      "detail": true
+    }
+  ],
+  "passed": 13,
+  "total": 13,
+  "all_pass": true,
+  "calendar_trading_day_count": 242,
+  "calendar_trading_dates_sha256": "fd77a04f5268efd4803ca99877a0de4b126a51ad01a45b24c443afc8f8aa3ee7",
+  "universe_count": 5221,
+  "genesis_state": "NOT_ACTIVATED",
+  "activation_status": "BLOCKED_PROSPECTIVE_SIGNAL_RUNNER_BYTES_ABSENT",
+  "receipt_sha256": "d3cbd8235cf34482194c44fe06247c898c4f624885625238ad56186f11fdd225"
+}
