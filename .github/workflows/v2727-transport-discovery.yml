@@ -1,10 +1,5 @@
 name: V2.7.27 Filing Transport Discovery
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2727_transport_discovery.py"
-      - ".github/workflows/v2727-transport-discovery.yml"
   workflow_dispatch:
 permissions:
   contents: read
