@@ -1,10 +1,5 @@
 name: V2.7.28 Global Catalog Probe
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2728_global_catalog_probe.py"
-      - ".github/workflows/v2728-global-catalog-probe.yml"
   workflow_dispatch:
 permissions:
   contents: read
