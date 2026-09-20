@@ -1,0 +1,57 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33_RUNTIME_RECOVERY_AUDIT_V1",
+  "version": "V2.7.33",
+  "searched": {
+    "github_current_tree": true,
+    "github_history_by_known_paths": true,
+    "file_library_semantic_search": true,
+    "file_library_recent_upload_navigation": true,
+    "prior_conversation_file_reference_recovery": true,
+    "current_sandbox_exact_filename_search": true
+  },
+  "recovered_authorities": {
+    "activation_manifest": {
+      "title": "ACTIVATION_MANIFEST_V2.7.3.json",
+      "file_library_id": "file_0000000076f4820ba32e8b2bf161dde6",
+      "package_version": "V2.7.3",
+      "manifest_type": "ACTIVATED_PROSPECTIVE_DAILY_OPERATION"
+    },
+    "final_receipt": {
+      "title": "AlphaDojo_Model_Rebuild_V2.7.3_FINAL_RECEIPT.json",
+      "file_library_id": "file_00000000033882118d145436e3d4b5f6",
+      "full_regression": "29/29 PASS",
+      "candidate_ledger_entries": 0
+    }
+  },
+  "known_original_packages": {
+    "model_zip": {
+      "filename": "AlphaDojo_Model_Rebuild_V2.7.3.zip",
+      "sha256": "60c3aee8577693ee85ae8de46810ce7b2ed238a666ce0ae9f5aea2de85ad47ee",
+      "members": 51,
+      "prior_sandbox_path": "sandbox:/mnt/data/AlphaDojo_Model_Rebuild_V2.7.3.zip",
+      "current_bytes_available": false
+    },
+    "runtime_zip": {
+      "filename": "AlphaDojo_V2.7.3_Prospective_Runtime_Starter.zip",
+      "sha256": "4e4e13276c2e68b7b834fccf0a710a31d020ddad3985711a9d1aabfb826ce22f",
+      "members": 5,
+      "prior_sandbox_path": "sandbox:/mnt/data/AlphaDojo_V2.7.3_Prospective_Runtime_Starter.zip",
+      "current_bytes_available": false
+    }
+  },
+  "critical_member_hashes": {
+    "scripts/daily_operator_cli_v273.py": "259bc9c481b7165388767ad73aa5de2e35ba987b62b568ce9013e3157a0b5fd8",
+    "scripts/daily_source_gate_v273.py": "e2a2a52da20fccd32b2f85be794a93d98fb74a88276c57cd9e7b4da7b1e8b7f9",
+    "scripts/append_only_ledgers_v273.py": "8a6e05e0d52d6fa5e3811b10fcc3985aa69a9fb3e16c03513825731d97cfc6b8",
+    "scripts/init_runtime_v273.py": "8f2bfc4c289af2306d10f38f6609a8d09382b5e9091ae060364adc47a075501d",
+    "scripts/setup_engine_v273.py": "97b8befb2d4b04992c87edec708471f433ed9735a5f0dbf3aa73c64e0b345830",
+    "scripts/prospective_daily_runner_v1.py": "6a76dfa51b1446918581f0b4fe7022a73a4f9f0bb491b23467a7edfc62dd5ce2"
+  },
+  "conclusion": "BLOCKED_ORIGINAL_RUNTIME_BYTES_UNAVAILABLE",
+  "not_allowed": [
+    "reconstruct source files from manifest metadata",
+    "write functionally similar replacements and call them recovered",
+    "activate First60 using V2.7.32 ledger only"
+  ],
+  "release_condition": "Provide either original ZIP bytes with exact package SHA256, or all required runtime member bytes with exact manifest SHA256 matches."
+}
