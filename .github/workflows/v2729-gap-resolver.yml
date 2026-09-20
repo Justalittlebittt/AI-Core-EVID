@@ -1,0 +1,50 @@
+name: V2.7.29 Targeted Gap Resolver
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2729_targeted_gap_resolver.py"
+      - ".github/workflows/v2729-gap-resolver.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser
+        run: |
+          pip install "playwright>=1.55"
+          python -m playwright install --with-deps chromium
+      - name: Resolve 14 filing gaps
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2729_targeted_gap_resolver.py | tee v2729_gap.log
+      - name: Persist compact V2.7.29 evidence
+        if: success()
+        run: |
+          cp v2729_gap_resolver/V2.7.29_TARGETED_GAP_RESOLUTION_RECEIPT.json evidence/
+          cp v2729_gap_resolver/V2.7.29_TARGETED_GAP_SELECTION.csv evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.29_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.29 targeted filing gap resolution"
+            git push
+          fi
+      - name: Upload exact evidence bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.7.29_TARGETED_GAP_RESOLUTION
+          path: |
+            v2729_gap_resolver/
+            v2729_gap.log
+          if-no-files-found: error
+          retention-days: 30
