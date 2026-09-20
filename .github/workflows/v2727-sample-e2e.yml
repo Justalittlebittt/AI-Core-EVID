@@ -1,10 +1,5 @@
 name: V2.7.27 Sample E2E Filing Gate
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2727_sample_e2e.py"
-      - ".github/workflows/v2727-sample-e2e.yml"
   workflow_dispatch:
 permissions:
   contents: read
