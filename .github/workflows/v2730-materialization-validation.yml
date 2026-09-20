@@ -1,5 +1,10 @@
 name: V2.7.30 Materialization Contract Validation
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2730_materialization_validation.py"
+      - ".github/workflows/v2730-materialization-validation.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,7 +18,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install minimal dependency
-        run: pip install "requests>=2.32"
+        run: pip install "playwright>=1.55"
       - name: Validate direct materialization and cache reuse
         shell: bash
         run: |
