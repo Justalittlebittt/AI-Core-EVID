@@ -22,7 +22,10 @@ jobs:
           pip install "playwright>=1.55"
           python -m playwright install --with-deps chromium
       - name: Capture full-market periodic catalog
-        run: python scripts/v2728_periodic_catalog_capture.py | tee v2728_catalog.log
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v2728_periodic_catalog_capture.py | tee v2728_catalog.log
       - name: Persist compact catalog evidence
         if: success()
         run: |
