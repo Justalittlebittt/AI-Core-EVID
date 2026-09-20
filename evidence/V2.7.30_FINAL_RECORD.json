@@ -1,0 +1,66 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_30_FINAL_RECORD_V1",
+  "version": "V2.7.30",
+  "predecessor": "V2.7.29",
+  "purpose": "Validate on-demand official Primary PDF materialization, content-addressed reuse, and fail-closed integrity without restoring full-market prefetch.",
+  "problem_elimination": {
+    "removed_soft_constraints": [
+      "ordinary requests direct-static transport after observed HTTP 403",
+      "full-market PDF prefetch",
+      "raw PDF storage in Git history",
+      "browser binary installation for materialization validation",
+      "repeat network retrieval after cache population"
+    ],
+    "chosen_transport": "Playwright APIRequestContext without browser binary",
+    "rationale": "ordinary requests was blocked by CNInfo static CDN; API request context succeeded while preserving low execution cost"
+  },
+  "validation_run": {
+    "workflow_run_id": 35495101650,
+    "head_sha": "70cd1115e5eb8fffea27fe89b40651429c6082db",
+    "artifact_id": 10599499425,
+    "artifact_sha256": "72aaaa0d35220314b6a51a2415f49e89ce516aade6ed24a2f4e6cb526a9d735a",
+    "receipt_sha256": "5e6d70b0dd2e9a585a5b4ded662312cde6b4124a0cae8ac9391eee709e7ad88d"
+  },
+  "validation_scope": [
+    "SSE:600000",
+    "SSE:688981",
+    "SZSE:000001",
+    "SZSE:300750"
+  ],
+  "result": {
+    "first_pass_network_fetch_count": 4,
+    "first_pass_valid_count": 4,
+    "second_pass_network_fetch_count": 0,
+    "second_pass_cache_hit_count": 4,
+    "cache_object_count": 4,
+    "attack_test_count": 5,
+    "attack_tests_passed": 5,
+    "gate_status": "MATERIALIZATION_CONTRACT_VALIDATION_PASS"
+  },
+  "cache_semantics": {
+    "locator_key": "SHA256(canonical_security_id + announcement_id + adjunct_url)",
+    "object_key": "SHA256(raw_pdf_bytes)",
+    "reuse_rule": "cache object must revalidate SHA256 and PDF header before reuse",
+    "raw_pdf_git_policy": "DO_NOT_REQUIRE_RAW_PDF_IN_GIT_HISTORY",
+    "backend_policy": "pluggable content-addressed cache backend"
+  },
+  "temporal_governance": {
+    "historical_2026_09_17_prospective_certification": "BLOCKED_FIRST_OBSERVED_AFTER_PIT",
+    "note": "V2.7.30 validates transport/cache mechanics; it does not convert reconstructed historical evidence into prospective evidence."
+  },
+  "workflow_noise_control": {
+    "materialization_validation_workflow": "MANUAL_ONLY_AFTER_VALIDATION"
+  },
+  "state": {
+    "OFFICIAL_MOTHER_POOL_MEMBERSHIP": "EXACT_PASS_5221",
+    "SECURITY_ISSUER_PIT_MAP": "EXACT_PASS_5221",
+    "PRIMARY_LOCATOR_INVENTORY": "EXACT_PASS_5221",
+    "EVIDENCE_MATERIALIZATION_CONTRACT": "VALIDATED_PASS",
+    "HISTORICAL_PROSPECTIVE_CERTIFICATION": "BLOCKED_FIRST_OBSERVED_AFTER_PIT",
+    "CERTIFIED_V2_UNIVERSE": "BLOCKED",
+    "FIRST60": "BLOCKED_PENDING_CERTIFIED_V2_UNIVERSE",
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  },
+  "next_stage": "V2.7.31 FORWARD EVIDENCE EPOCH + CERTIFIED UNIVERSE BOOTSTRAP"
+}
