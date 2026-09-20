@@ -1,0 +1,169 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_29_TARGETED_AMBIGUITY_RESOLUTION_V1",
+  "source_probe": {
+    "workflow_run_id": 35494358653,
+    "head_sha": "90d38a72bcce44bdda0309f1ccbfbf23d8f28f9d",
+    "artifact_id": 10600212317,
+    "artifact_sha256": "d83cd51b0513a2ba99cdab4641fd3e1fb0ef13ab5827eb7adf8e890336acaa3f",
+    "receipt_sha256": "6a9b2669472a03a609c35927a3a55724415b2832ab013b544e838dd51801a192"
+  },
+  "policy": {
+    "scope": "ONLY_EXPLICIT_SELECTOR_AMBIGUITIES",
+    "generalize_to_all_securities": false,
+    "title_only_guessing": false,
+    "announcement_id_recency_guessing": false,
+    "targeted_materialization_allowed": true,
+    "retain_rejected_candidates": true
+  },
+  "resolutions": {
+    "SSE:600119": {
+      "selected_announcement_id": "1225511663",
+      "rejected": [
+        {
+          "announcement_id": "1225511626",
+          "reason": "PDF_INTERNAL_TITLE_IS_HALF_YEAR_SUMMARY",
+          "pages": 4
+        }
+      ],
+      "selected_evidence": {
+        "reason": "PDF_INTERNAL_TITLE_IS_FULL_HALF_YEAR_REPORT",
+        "pages": 168
+      }
+    },
+    "SSE:600259": {
+      "selected_announcement_id": "1225506251",
+      "rejected": [
+        {
+          "announcement_id": "1225505201",
+          "reason": "PDF_INTERNAL_TITLE_IS_HALF_YEAR_SUMMARY",
+          "pages": 5
+        }
+      ],
+      "selected_evidence": {
+        "reason": "PDF_INTERNAL_TITLE_IS_FULL_HALF_YEAR_REPORT",
+        "pages": 214
+      }
+    },
+    "SSE:600611": {
+      "selected_announcement_id": "1225528671",
+      "rejected": [
+        {
+          "announcement_id": "1225528656",
+          "reason": "PDF_INTERNAL_TITLE_IS_HALF_YEAR_SUMMARY",
+          "pages": 6
+        }
+      ],
+      "selected_evidence": {
+        "reason": "PDF_INTERNAL_TITLE_IS_FULL_HALF_YEAR_REPORT",
+        "pages": 179
+      }
+    },
+    "SSE:600847": {
+      "selected_announcement_id": "1225493208",
+      "rejected": [
+        {
+          "announcement_id": "1225493293",
+          "reason": "PDF_INTERNAL_TITLE_IS_HALF_YEAR_SUMMARY",
+          "pages": 4
+        }
+      ],
+      "selected_evidence": {
+        "reason": "PDF_INTERNAL_TITLE_IS_FULL_HALF_YEAR_REPORT",
+        "pages": 128
+      }
+    },
+    "SSE:600860": {
+      "selected_announcement_id": "1225475826",
+      "rejected": [
+        {
+          "announcement_id": "1225475790",
+          "reason": "PDF_INTERNAL_TITLE_IS_HALF_YEAR_SUMMARY",
+          "pages": 4
+        }
+      ],
+      "selected_evidence": {
+        "reason": "PDF_INTERNAL_TITLE_IS_FULL_HALF_YEAR_REPORT",
+        "pages": 197
+      }
+    },
+    "SSE:603203": {
+      "selected_announcement_id": "1225510108",
+      "rejected": [
+        {
+          "announcement_id": "1225510154",
+          "reason": "PDF_INTERNAL_TITLE_IS_HALF_YEAR_SUMMARY",
+          "pages": 4
+        }
+      ],
+      "selected_evidence": {
+        "reason": "PDF_INTERNAL_TITLE_IS_FULL_HALF_YEAR_REPORT",
+        "pages": 168
+      }
+    },
+    "SSE:601992": {
+      "selected_announcement_id": "1225533617",
+      "rejected": [
+        {
+          "announcement_id": "1225533609",
+          "reason": "DOCUMENT_INTERNAL_ISSUER_IDENTITY_MISMATCH",
+          "document_issuer": "金隅冀东水泥集团股份有限公司",
+          "document_security_code": "000401",
+          "requested_canonical_security_id": "SSE:601992"
+        }
+      ],
+      "selected_evidence": {
+        "reason": "DOCUMENT_INTERNAL_ISSUER_IDENTITY_MATCH",
+        "document_issuer": "北京金隅集团股份有限公司",
+        "document_security_code": "601992",
+        "pages": 232
+      }
+    },
+    "SSE:600821": {
+      "selected_announcement_id": "1225505454",
+      "rejected": [
+        {
+          "announcement_id": "1225505268",
+          "reason": "EXPLICIT_PRESENTATION_VARIANT_DESIGN_VERSION",
+          "catalog_title": "2026年半年度报告（设计版）",
+          "pages": 157
+        }
+      ],
+      "selected_evidence": {
+        "reason": "UNQUALIFIED_STANDARD_FULL_REPORT",
+        "catalog_title": "2026年半年度报告",
+        "pages": 157,
+        "first_page_identity_match": true
+      },
+      "comparison": {
+        "unique_line_set_jaccard": 0.9945,
+        "interpretation": "same substantive report with layout/presentation variation"
+      }
+    },
+    "SZSE:300188": {
+      "selected_announcement_id": "1225489052",
+      "rejected": [
+        {
+          "announcement_id": "1225489056",
+          "reason": "TEXT_EQUIVALENT_DUPLICATE_ALTERNATE_CONTAINER",
+          "pages": 236
+        }
+      ],
+      "selected_evidence": {
+        "reason": "DETERMINISTIC_CANONICAL_REPRESENTATIVE_OF_TEXT_EQUIVALENT_DUPLICATES",
+        "pages": 236
+      },
+      "comparison": {
+        "unique_line_set_jaccard": 0.999218,
+        "normalized_20char_shingle_jaccard": 0.996319,
+        "same_page_count": true,
+        "same_internal_issuer_identity": true,
+        "deterministic_tiebreaker": "lowest announcement_id only after content equivalence established"
+      }
+    }
+  },
+  "result": {
+    "resolved_count": 9,
+    "unresolved_count": 0,
+    "resolution_effect": "selector-only; does not convert post-PIT observation into prospective PIT evidence"
+  }
+}
