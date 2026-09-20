@@ -1,0 +1,51 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_27_SAMPLE_E2E_FREEZE_V1",
+  "project_snapshot": "V2.7.27",
+  "pit_date": "2026-09-17",
+  "execution": {
+    "workflow_run_id": 35492835475,
+    "head_sha": "1c97d1b8ebba434d7369ddd03cd54af3f030d1f3",
+    "artifact_id": 10599239969,
+    "artifact_sha256": "1b20f06b6ddf357a88baedb52d0b63c1e811c25ce32bf36d0ffc6f7bb41d2040",
+    "receipt_sha256": "ea8bffc5c2b42aa774cd587c4191c11bb3b015cb975f66896d37f1fdc7f3f053"
+  },
+  "samples": {
+    "SSE:600000": {
+      "selected_title": "上海浦东发展银行股份有限公司2026年半年度报告",
+      "disclosure_date": "2026-08-28",
+      "report_period_end": "2026-06-30",
+      "official_pdf_url": "https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-28/600000_20260828_ERFA.pdf",
+      "pdf_bytes": 4553498,
+      "pdf_sha256": "01f41e69ad9dc1b348204b3aa0acf615b2343d402ac00a0ae3895f56e7010f66",
+      "pdf_header_offset": 0,
+      "transport": "SSE_NATIVE_JSONP_PLUS_BROWSER_ACW_SC_V2_CHALLENGE"
+    },
+    "SZSE:000001": {
+      "selected_title": "平安银行：2026年半年度报告",
+      "disclosure_date": "2026-08-15",
+      "report_period_end": "2026-06-30",
+      "official_pdf_host": "https://disc.static.szse.cn",
+      "pdf_bytes": 1472390,
+      "pdf_sha256": "04f7b69417f665164ea6b8c636bc6a1ec1f399cedc97faa0662226a54b4f5527",
+      "pdf_header_offset": 0,
+      "transport": "SZSE_SAME_ORIGIN_ANNLIST_PLUS_OFFICIAL_STATIC_PDF"
+    }
+  },
+  "gate": {
+    "status": "SAMPLE_E2E_PASS",
+    "selector": "PASS",
+    "pit": "PASS",
+    "issuer_identity": "PASS",
+    "official_pdf_bytes": "PASS",
+    "pdf_sha256": "PASS",
+    "blocker_cleared": true,
+    "next_stage": "V2.7.28_FULL_MARKET_PERIODIC_CATALOG"
+  },
+  "governance": {
+    "third_party_substitution": false,
+    "pdf_html_accepted": false,
+    "anti_bot_manual_override": false,
+    "selector_rules_changed": false,
+    "pit_rules_changed": false
+  }
+}
