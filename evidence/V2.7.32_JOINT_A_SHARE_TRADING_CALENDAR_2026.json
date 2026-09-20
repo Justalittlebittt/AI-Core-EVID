@@ -1,0 +1,2254 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_JOINT_A_SHARE_TRADING_CALENDAR_2026_V1",
+  "year": 2026,
+  "construction_rule": "Monday-Friday except official SSE/SZSE announced closure dates; SSE and SZSE 2026 holiday schedules agree for the listed closure ranges.",
+  "source_authority": [
+    {
+      "exchange": "SSE",
+      "title": "关于上海证券交易所2026年部分节假日休市安排的通知",
+      "url": "https://www.sse.com.cn/disclosure/announcement/general/c/c_20251222_10802507.shtml"
+    },
+    {
+      "exchange": "SZSE",
+      "title": "关于2026年部分节假日休市安排的通知",
+      "url": "https://investor.szse.cn/disclosure/notice/general/t20251222_618087.html"
+    }
+  ],
+  "official_closure_ranges": [
+    {
+      "name": "NEW_YEAR",
+      "start": "2026-01-01",
+      "end": "2026-01-03"
+    },
+    {
+      "name": "SPRING_FESTIVAL",
+      "start": "2026-02-15",
+      "end": "2026-02-23"
+    },
+    {
+      "name": "QINGMING",
+      "start": "2026-04-04",
+      "end": "2026-04-06"
+    },
+    {
+      "name": "LABOR_DAY",
+      "start": "2026-05-01",
+      "end": "2026-05-05"
+    },
+    {
+      "name": "DRAGON_BOAT",
+      "start": "2026-06-19",
+      "end": "2026-06-21"
+    },
+    {
+      "name": "MID_AUTUMN",
+      "start": "2026-09-25",
+      "end": "2026-09-27"
+    },
+    {
+      "name": "NATIONAL_DAY",
+      "start": "2026-10-01",
+      "end": "2026-10-07"
+    }
+  ],
+  "trading_day_count": 242,
+  "trading_dates_sorted_newline_sha256": "fd77a04f5268efd4803ca99877a0de4b126a51ad01a45b24c443afc8f8aa3ee7",
+  "activation_boundary": {
+    "epoch_t0": "2026-09-20T07:17:16Z",
+    "t0_date": "2026-09-20",
+    "t0_is_trading_day": false,
+    "next_joint_trading_day": "2026-09-21"
+  },
+  "dates": [
+    {
+      "date": "2026-01-01",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NEW_YEAR"
+    },
+    {
+      "date": "2026-01-02",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NEW_YEAR"
+    },
+    {
+      "date": "2026-01-03",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NEW_YEAR"
+    },
+    {
+      "date": "2026-01-04",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-05",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-06",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-07",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-08",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-09",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-10",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-11",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-12",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-13",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-14",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-15",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-16",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-17",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-18",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-19",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-20",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-21",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-22",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-23",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-24",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-25",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-01-26",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-27",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-28",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-29",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-30",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-01-31",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-02-01",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-02-02",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-03",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-04",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-05",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-06",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-07",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-02-08",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-02-09",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-10",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-11",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-12",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-13",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-14",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-02-15",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-16",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-17",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-18",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-19",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-20",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-21",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-22",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-23",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "SPRING_FESTIVAL"
+    },
+    {
+      "date": "2026-02-24",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-25",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-26",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-27",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-02-28",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-01",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-02",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-03",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-04",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-05",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-06",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-07",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-08",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-09",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-10",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-11",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-12",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-13",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-14",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-15",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-16",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-17",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-18",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-19",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-20",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-21",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-22",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-23",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-24",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-25",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-26",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-27",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-28",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-29",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-03-30",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-03-31",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-01",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-02",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-03",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-04",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "QINGMING"
+    },
+    {
+      "date": "2026-04-05",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "QINGMING"
+    },
+    {
+      "date": "2026-04-06",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "QINGMING"
+    },
+    {
+      "date": "2026-04-07",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-08",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-09",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-10",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-11",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-04-12",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-04-13",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-14",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-15",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-16",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-17",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-18",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-04-19",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-04-20",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-21",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-22",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-23",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-24",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-25",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-04-26",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-04-27",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-28",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-29",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-04-30",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-01",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "LABOR_DAY"
+    },
+    {
+      "date": "2026-05-02",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "LABOR_DAY"
+    },
+    {
+      "date": "2026-05-03",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "LABOR_DAY"
+    },
+    {
+      "date": "2026-05-04",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "LABOR_DAY"
+    },
+    {
+      "date": "2026-05-05",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "LABOR_DAY"
+    },
+    {
+      "date": "2026-05-06",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-07",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-08",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-09",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-10",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-11",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-12",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-13",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-14",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-15",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-16",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-17",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-18",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-19",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-20",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-21",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-22",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-23",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-24",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-25",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-26",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-27",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-28",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-29",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-05-30",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-05-31",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-01",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-02",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-03",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-04",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-05",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-06",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-07",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-08",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-09",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-10",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-11",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-12",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-13",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-14",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-15",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-16",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-17",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-18",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-19",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "DRAGON_BOAT"
+    },
+    {
+      "date": "2026-06-20",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "DRAGON_BOAT"
+    },
+    {
+      "date": "2026-06-21",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "DRAGON_BOAT"
+    },
+    {
+      "date": "2026-06-22",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-23",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-24",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-25",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-26",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-27",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-28",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-06-29",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-06-30",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-01",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-02",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-03",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-04",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-05",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-06",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-07",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-08",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-09",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-10",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-11",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-12",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-13",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-14",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-15",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-16",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-17",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-18",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-19",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-20",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-21",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-22",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-23",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-24",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-25",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-26",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-07-27",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-28",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-29",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-30",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-07-31",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-01",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-02",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-03",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-04",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-05",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-06",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-07",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-08",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-09",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-10",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-11",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-12",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-13",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-14",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-15",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-16",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-17",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-18",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-19",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-20",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-21",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-22",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-23",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-24",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-25",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-26",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-27",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-28",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-08-29",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-30",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-08-31",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-11",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-12",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-09-13",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-15",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-17",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-19",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-09-20",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-09-21",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-23",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-25",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "MID_AUTUMN"
+    },
+    {
+      "date": "2026-09-26",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "MID_AUTUMN"
+    },
+    {
+      "date": "2026-09-27",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "MID_AUTUMN"
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-29",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-01",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-02",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-03",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-04",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-05",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-06",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-07",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "NATIONAL_DAY"
+    },
+    {
+      "date": "2026-10-08",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-09",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-10",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-10-11",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-10-12",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-13",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-14",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-15",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-16",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-17",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-10-18",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-10-19",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-20",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-21",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-22",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-23",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-24",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-10-25",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-10-26",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-27",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-28",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-29",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-30",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-10-31",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-01",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-02",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-03",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-04",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-05",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-06",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-07",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-08",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-09",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-10",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-11",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-12",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-13",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-14",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-15",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-16",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-17",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-18",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-19",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-20",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-21",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-22",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-23",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-24",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-25",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-26",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-27",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-11-28",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-29",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-11-30",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-01",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-02",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-03",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-04",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-05",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-06",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-07",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-08",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-09",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-10",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-11",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-12",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-13",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-14",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-15",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-16",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-17",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-18",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-19",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-20",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-21",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-22",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-23",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-24",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-25",
+      "weekday": "Friday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-26",
+      "weekday": "Saturday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-27",
+      "weekday": "Sunday",
+      "is_joint_a_share_trading_day": false,
+      "reason": "WEEKEND"
+    },
+    {
+      "date": "2026-12-28",
+      "weekday": "Monday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-29",
+      "weekday": "Tuesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-30",
+      "weekday": "Wednesday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    },
+    {
+      "date": "2026-12-31",
+      "weekday": "Thursday",
+      "is_joint_a_share_trading_day": true,
+      "reason": "TRADING_DAY"
+    }
+  ]
+}
