@@ -1,0 +1,32 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33_FINAL_RECORD_V1",
+  "version": "V2.7.33",
+  "purpose": "Recover the original prospective runtime and open the activation gate only after exact-byte verification.",
+  "recovery_authority": {
+    "activation_manifest": "RECOVERED",
+    "final_receipt": "RECOVERED",
+    "original_runtime_bytes": "NOT_RECOVERED"
+  },
+  "package_targets": {
+    "model_zip_filename": "AlphaDojo_Model_Rebuild_V2.7.3.zip",
+    "model_zip_sha256": "60c3aee8577693ee85ae8de46810ce7b2ed238a666ce0ae9f5aea2de85ad47ee",
+    "runtime_zip_filename": "AlphaDojo_V2.7.3_Prospective_Runtime_Starter.zip",
+    "runtime_zip_sha256": "4e4e13276c2e68b7b834fccf0a710a31d020ddad3985711a9d1aabfb826ce22f"
+  },
+  "gate": {
+    "status": "BLOCKED_ORIGINAL_RUNTIME_BYTES_UNAVAILABLE",
+    "strategy_reimplemented_from_memory": false,
+    "activation_authorized": false
+  },
+  "state": {
+    "CERTIFIED_V2_UNIVERSE": "PASS_RESEARCH_BOOTSTRAP",
+    "FIRST60_LEDGER": "PREREGISTERED_READY",
+    "PROSPECTIVE_SIGNAL_RUNTIME": "BLOCKED_BYTES_ABSENT",
+    "FIRST60_ACTIVATION": "NOT_ACTIVATED",
+    "CANDIDATE_EPISODE_START_COUNT": 0,
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  },
+  "release_condition": "Exact original runtime bytes must be supplied and SHA256-verified against V2.7.3 manifest/receipt before activation.",
+  "next_stage_after_release": "V2.7.33B EXACT-BYTE RUNTIME RESTORE + COMPATIBILITY AUDIT + NEW ACTIVATION MANIFEST"
+}
