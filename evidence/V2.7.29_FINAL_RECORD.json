@@ -1,0 +1,70 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_29_FINAL_RECORD_V1",
+  "version": "V2.7.29",
+  "pit_date": "2026-09-17",
+  "architecture": "UNIFIED_OFFICIAL_FILING_ARCHITECTURE",
+  "validation_run": {
+    "workflow_run_id": 35494658397,
+    "head_sha": "5f6c26ef4f4a34d907fe893744d41e1869709b72",
+    "artifact_id": 10599958332,
+    "artifact_sha256": "d8b49688ac08a8191f09d910a8e77da38d05b8936d541b6b3de7da3d837c7291",
+    "receipt_sha256": "ca31e96988be217fb04ee72cc1c02b8b8a1d83be02ee0d82f463678be31fbaf4"
+  },
+  "locator_inventory": {
+    "official_mother_pool_count": 5221,
+    "terminal_record_count": 5221,
+    "unique_security_count": 5221,
+    "primary_locator_count": 5221,
+    "none_na_count": 0,
+    "inventory_sha256": "6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4",
+    "targeted_ambiguity_resolution_count": 9,
+    "selector_ambiguity_count": 0,
+    "status": "PRIMARY_LOCATOR_INVENTORY_EXACT_PASS"
+  },
+  "problem_elimination_result": {
+    "deleted": [
+      "SSE announcement-page navigation prerequisite",
+      "SZSE announcement-page navigation prerequisite",
+      "full-market pre-download of Primary PDFs",
+      "CNInfo stock-dictionary dependency for targeted gaps",
+      "automatic push execution for heavy/debug filing workflows"
+    ],
+    "absorbed": [
+      "9 catalog metadata anomalies into a frozen targeted ambiguity ledger",
+      "14 periodic gaps into targeted CNInfo historical/IPO locator queries"
+    ],
+    "precompute_reuse": [
+      "V2.7.28 unified CNInfo catalog",
+      "V2.7.29 Primary Locator Inventory",
+      "on-demand immutable PDF cache when later materialized"
+    ]
+  },
+  "pdf_materialization": {
+    "status": "SEPARATE_ON_DEMAND",
+    "pdf_bytes_downloaded_by_locator_gate": 0,
+    "future_rule": "materialize only when downstream scope actually consumes a selected Primary; retain official raw bytes + SHA256; reuse after hash verification"
+  },
+  "temporal_governance": {
+    "capture_role": "SHADOW_DIAGNOSTIC_RECONSTRUCTION_ONLY",
+    "first_system_observed_at_utc": "2026-09-20T06:36:51.251465+00:00",
+    "prospective_backfill_allowed": false,
+    "historical_2026_09_17_prospective_certification": "BLOCKED_FIRST_OBSERVED_AFTER_PIT"
+  },
+  "workflow_noise_control": {
+    "heavy_debug_workflows": "MANUAL_ONLY",
+    "primary_locator_workflow": "MANUAL_ONLY_AFTER_VALIDATION"
+  },
+  "state": {
+    "OFFICIAL_MOTHER_POOL_MEMBERSHIP": "EXACT_PASS_5221",
+    "SECURITY_ISSUER_PIT_MAP": "EXACT_PASS_5221",
+    "UNIFIED_CNINFO_PERIODIC_CATALOG": "PASS_WITH_14_EXPLICIT_GAPS",
+    "PRIMARY_LOCATOR_INVENTORY": "EXACT_PASS_5221",
+    "PDF_MATERIALIZATION": "READY_ON_DEMAND",
+    "HISTORICAL_PROSPECTIVE_CERTIFICATION": "BLOCKED_FIRST_OBSERVED_AFTER_PIT",
+    "CERTIFIED_V2_UNIVERSE": "BLOCKED",
+    "FIRST60": "BLOCKED_PENDING_CERTIFIED_V2_UNIVERSE",
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  },
+  "next_stage": "V2.7.30 EVIDENCE MATERIALIZATION CONTRACT + FORWARD/VALIDATION EXECUTION"
+}
