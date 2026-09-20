@@ -173,7 +173,7 @@ def self_test():
     }
 
     rec("A01_d10_calendar_freeze",lambda: target_d10("2026-09-21",days,idx)=="2026-10-13")
-    rec("A02_nontrading_block",lambda: validate_day({**base,"signal_date":"2026-09-20","max_bar_date":"2026-09-20"},active,[],[],[],universe,days,idx),"NON_TRADING_SIGNAL_DATE")
+    rec("A02_nontrading_block",lambda: validate_day({**base,"signal_date":"2026-09-25","max_bar_date":"2026-09-25"},active,[],[],[],universe,days,idx),"NON_TRADING_SIGNAL_DATE")
     rec("A03_preactivation_block",lambda: validate_day({**base,"signal_date":"2026-09-18","max_bar_date":"2026-09-18"},active,[],[],[],universe,days,idx),"PRE_ACTIVATION_OR_BEFORE_FIRST_ELIGIBLE")
     rec("A04_stale_source_block",lambda: validate_day({**base,"max_bar_date":"2026-09-18"},active,[],[],[],universe,days,idx),"STALE_OR_FUTURE_SIGNAL_SOURCE")
     rec("A05_unknown_security_block",lambda: validate_day({**base,"episode_starts":[{"canonical_security_id":"SSE:999999","setup_receipt_sha256":fake_hash("c")}]},active,[],[],[],universe,days,idx),"SECURITY_NOT_IN_CERTIFIED_UNIVERSE")
