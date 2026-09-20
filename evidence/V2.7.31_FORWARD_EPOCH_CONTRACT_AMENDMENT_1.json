@@ -1,0 +1,57 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_FORWARD_EPOCH_CONTRACT_AMENDMENT_1",
+  "version": "V2.7.31-A1",
+  "amends": "evidence/V2.7.31_FORWARD_EPOCH_CONTRACT.json",
+  "approved_reason": "Problem Elimination Pass: GitHub Runner cannot resolve/reliably connect to www.szse.cn after T0; repeated transport-stack substitution does not change the network blocker.",
+  "narrow_scope": {
+    "exchange": "SZSE",
+    "bootstrap_only": true,
+    "source_snapshot": {
+      "artifact": "evidence/V2.7.26_FREEZE.json",
+      "official_mother_pool_count": 5221,
+      "official_mother_pool_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+      "workflow_run_id": 35322030973,
+      "artifact_id": 10537802122,
+      "artifact_sha256": "6259154730b08fe40fc27b46f5265661fd699afd3ed8126820200ef574686477",
+      "snapshot_completed_after_utc": "2026-09-18T08:02:28Z"
+    },
+    "epoch_t0_utc": "2026-09-20T07:17:16Z"
+  },
+  "no_change_interval_rule": {
+    "allowed_only_when": [
+      "source snapshot is authoritative and hash-frozen",
+      "source snapshot was captured after the last exchange trading session before T0",
+      "there is no exchange trading session between snapshot completion and T0",
+      "the operational Mother Pool definition changes membership only on an effective exchange listing/delisting trading date",
+      "no contradictory official evidence is known"
+    ],
+    "provenance_state": "FORWARD_CARRIED_BY_NO_CHANGE_INTERVAL_PROOF",
+    "semantics": "The source bytes remain pre-T0 and are never relabeled as FORWARD_OBSERVED. The membership state is carried to T0 only because no membership-effective exchange trading interval exists.",
+    "forbidden": [
+      "using this proof across any intervening exchange trading session",
+      "using this proof to backdate decisions before T0",
+      "calling pre-T0 bytes post-T0 observations",
+      "using transport failure alone as proof of no change"
+    ]
+  },
+  "bootstrap_algorithm_after_amendment": [
+    "observe SSE current membership after T0 using direct official SSE API",
+    "for SZSE, carry the frozen post-2026-09-18-close authoritative membership snapshot to T0 under the no-change interval proof",
+    "compare combined current/carry-forward membership to baseline",
+    "baseline-adopt issuer and Primary Locator for unchanged members",
+    "any SSE post-T0 additions require targeted fresh issuer+locator resolution",
+    "freeze Forward Certified Universe only if every current member has terminal issuer and locator provenance"
+  ],
+  "official_rule_references": [
+    {
+      "authority": "SSE",
+      "url": "https://www.sse.com.cn/lawandrules/sselawsrules2025/stocks/exchange/c/c_20260424_10816482.shtml",
+      "rule": "2.4.1: trading days are Monday through Friday"
+    },
+    {
+      "authority": "SZSE",
+      "url": "https://www.szse.cn/English/services/trading/tradOverview/",
+      "rule": "Trading Hours: Open Monday to Friday; closed on public holidays and other announced dates"
+    }
+  ]
+}
