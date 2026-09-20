@@ -1,0 +1,36 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_OFFICIAL_TRANSPORT_REUSE_V1",
+  "purpose": "Reuse previously observed official list transport contracts so Forward Epoch membership capture does not depend on current webpage UI/XHR behavior.",
+  "provenance": {
+    "source_workflow_run_id": 35317123694,
+    "source_artifact_id": 10534869343,
+    "source_artifact_sha256": "ef8632ba57ee2337d06712ce7e7d7de55ee383aca27f73cba9a7fbae1ceee65a",
+    "source_capture_date_utc": "2026-09-18"
+  },
+  "sse": {
+    "endpoint": "https://query.sse.com.cn/sseQuery/commonQuery.do",
+    "sqlId": "COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L",
+    "stock_types": {
+      "1": "Main A",
+      "8": "STAR"
+    },
+    "company_status": "2,4,5,7,8",
+    "pagination": "pageHelp.pageNo / pageHelp.pageSize",
+    "authority": "SSE_OFFICIAL"
+  },
+  "szse": {
+    "endpoint": "https://www.szse.cn/api/report/ShowReport",
+    "params": {
+      "SHOWTYPE": "xlsx",
+      "CATALOGID": "1110",
+      "TABKEY": "tab1"
+    },
+    "authority": "SZSE_OFFICIAL"
+  },
+  "governance": {
+    "webpage_navigation_required": false,
+    "current_bytes_must_be_fetched_after_epoch_t0": true,
+    "every_current_response_must_be_retained_and_hashed": true,
+    "transport_contract_reuse_does_not_reuse_old_membership_bytes": true
+  }
+}
