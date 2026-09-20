@@ -1,0 +1,9 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_FORWARD_EPOCH_T0_V1",
+  "epoch_id": "AI_CORE_EVID_FORWARD_EPOCH_001",
+  "marker_commit_sha": "0226b94172632b1e68bb002b454f5e37b3497606",
+  "marker_committed_at_utc": "2026-09-20T07:17:16Z",
+  "marker_committed_at_asia_taipei": "2026-09-20T15:17:16+08:00",
+  "forward_observation_eligible_from_utc": "2026-09-20T07:17:16Z",
+  "pre_t0_history_reclassification_forbidden": true
+}
