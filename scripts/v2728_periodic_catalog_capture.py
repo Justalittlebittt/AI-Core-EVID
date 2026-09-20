@@ -1,5 +1,5 @@
 from __future__ import annotations
-import csv, gzip, hashlib, html, io, json, re, tarfile, time
+import csv, gzip, hashlib, html, io, json, math, re, tarfile, time
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -91,14 +91,22 @@ def main():
 
             first_text=post_page(page,payload(1))
             obj=json.loads(first_text)
-            totalpages=int(obj.get("totalpages") or 0)
+            server_totalpages=int(obj.get("totalpages") or 0)
             totalrecords=int(obj.get("totalRecordNum") or obj.get("totalAnnouncement") or 0)
-            if totalpages<=0: raise RuntimeError(f"{exchange}/{kind}: invalid totalpages={totalpages}")
+            server_pagesize=int(obj.get("pageSize") or 30)
+            if totalrecords<=0:
+                raise RuntimeError(f"{exchange}/{kind}: invalid totalrecords={totalrecords}")
+            if server_pagesize<=0:
+                server_pagesize=30
+            derived_min_pages=math.ceil(totalrecords/server_pagesize)
+            target_pages=max(server_totalpages,derived_min_pages)
+            if target_pages<=0:
+                raise RuntimeError(f"{exchange}/{kind}: invalid pagination server={server_totalpages} derived={derived_min_pages}")
 
             fetched_rows=0
             mapped_rows=0
             page_failures=[]
-            for n in range(1,totalpages+1):
+            for n in range(1,target_pages+1):
                 text=first_text if n==1 else None
                 if text is None:
                     last=None
@@ -172,15 +180,24 @@ def main():
                       "is_english":"true" if is_english else "false",
                       "source_stream":f"{exchange}/{kind}",
                     })
-                if n%50==0:
-                    print(f"PROGRESS {exchange}/{kind} {n}/{totalpages}",flush=True)
+                if n%50==0 or n==target_pages:
+                    print(f"PROGRESS {exchange}/{kind} {n}/{target_pages} fetched={fetched_rows}/{totalrecords}",flush=True)
             if page_failures:
                 raise RuntimeError(f"{exchange}/{kind} page capture failed: {page_failures}")
             # The server may include rows outside current Mother Pool, but page completeness must match server total.
             if fetched_rows != totalrecords:
-                raise RuntimeError(f"{exchange}/{kind}: fetched_rows {fetched_rows} != server total {totalrecords}")
+                raise RuntimeError(
+                    f"{exchange}/{kind}: pagination did not close exactly: "
+                    f"fetched_rows={fetched_rows}, server_total={totalrecords}, "
+                    f"server_totalpages={server_totalpages}, derived_min_pages={derived_min_pages}, "
+                    f"target_pages={target_pages}"
+                )
             stream_stats.append({
-              "exchange":exchange,"kind":kind,"totalpages":totalpages,
+              "exchange":exchange,"kind":kind,
+              "server_totalpages":server_totalpages,
+              "derived_min_pages":derived_min_pages,
+              "target_pages":target_pages,
+              "server_page_size":server_pagesize,
               "server_total_records":totalrecords,"fetched_rows":fetched_rows,
               "mapped_mother_pool_rows":mapped_rows
             })
