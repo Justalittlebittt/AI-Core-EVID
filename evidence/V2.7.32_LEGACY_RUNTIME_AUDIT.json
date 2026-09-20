@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_LEGACY_RUNTIME_AUDIT_V1",
+  "searched_repository": "Justalittlebittt/AI-Core-EVID",
+  "searched_current_tree": true,
+  "searched_git_history_by_path": true,
+  "absent_paths": [
+    "scripts/daily_operator_cli_v273.py",
+    "scripts/daily_source_gate_v273.py",
+    "scripts/append_only_ledgers_v273.py",
+    "scripts/init_runtime_v273.py",
+    "specs/PROSPECTIVE_LEDGER_V1.0.json",
+    "data/JOINT_A_SHARE_TRADING_CALENDAR_2026.csv"
+  ],
+  "prior_external_manifest_evidence": {
+    "file_library_ref": "ACTIVATION_MANIFEST_V2.7.3.json",
+    "prior_daily_operator_sha256": "259bc9c481b7165388767ad73aa5de2e35ba987b62b568ce9013e3157a0b5fd8",
+    "prior_daily_source_gate_sha256": "e2a2a52da20fccd32b2f85be794a93d98fb74a88276c57cd9e7b4da7b1e8b7f9",
+    "prior_append_only_ledgers_sha256": "8a6e05e0d52d6fa5e3811b10fcc3985aa69a9fb3e16c03513825731d97cfc6b8",
+    "note": "Hashes prove prior frozen components existed in an external package; they do not provide executable bytes in this repository."
+  },
+  "decision": "DO_NOT_REIMPLEMENT_SIGNAL_LOGIC_FROM_MEMORY",
+  "allowed_rebuild": "strategy-agnostic append-only First60 ledger admission gate only",
+  "activation_blocker": "PROSPECTIVE_SIGNAL_RUNNER_BYTES_NOT_PRESENT_IN_REPOSITORY"
+}
