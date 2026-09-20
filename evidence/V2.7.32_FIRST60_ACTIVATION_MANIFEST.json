@@ -1,0 +1,33 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FIRST60_ACTIVATION_MANIFEST_V1",
+  "version": "V2.7.32",
+  "activation_id": "FIRST60_ACTIVATION_001",
+  "activation_marker_commit_sha": "bf845f7fbb82473f490f33fd1ef45c9d28b96be4",
+  "activation_committed_at_utc": "2026-09-20T10:07:05Z",
+  "activation_committed_at_asia_taipei": "2026-09-20T18:07:05+08:00",
+  "certified_universe": {
+    "final_record": "evidence/V2.7.31_FINAL_RECORD.json",
+    "count": 5221,
+    "sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "state": "PASS_RESEARCH_BOOTSTRAP"
+  },
+  "calendar": {
+    "activation_local_date": "2026-09-20",
+    "activation_day": "Sunday",
+    "activation_date_market_state": "WEEKEND_CLOSED",
+    "first_eligible_joint_a_share_signal_date": "2026-09-21",
+    "next_known_holiday_closure_start": "2026-09-25",
+    "authority_refs": [
+      "SSE 2026 holiday schedule / 2026-09-17 Mid-Autumn and National Day notice",
+      "SZSE 2026 holiday schedule / 2026-09-17 Mid-Autumn and National Day notice"
+    ]
+  },
+  "candidate_ledger": {
+    "file": "evidence/V2.7.32_FIRST60_CANDIDATE_LEDGER.csv",
+    "initial_entries": 0,
+    "append_only": true,
+    "reorder_forbidden": true,
+    "historical_backfill_forbidden": true
+  },
+  "activation_state": "ACTIVATED_WAITING_FIRST_ELIGIBLE_SESSION"
+}
