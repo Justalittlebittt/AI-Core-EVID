@@ -1,6 +1,6 @@
 from __future__ import annotations
 import csv, gzip, hashlib, html, io, json, math, re, tarfile, time
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from playwright.sync_api import sync_playwright
@@ -81,56 +81,22 @@ def main():
           for kind,category in CATS.items():
             stream_dir=RAW/exchange/kind
             stream_dir.mkdir(parents=True,exist_ok=True)
-            def payload(n):
+            stream_fetched_rows=0
+            stream_mapped_rows=0
+            segment_stats=[]
+            stream_ann_ids=set()
+            segment_serial=0
+
+            def payload(n,window_start,window_end):
                 return {
                   "pageNum":str(n),"pageSize":"30","column":column,"tabName":"fulltext",
                   "plate":plate,"stock":"","searchkey":"","secid":"","category":category,
-                  "trade":"","seDate":f"{START_DATE}~{CUTOFF_DATE}",
+                  "trade":"","seDate":f"{window_start}~{window_end}",
                   "sortName":"","sortType":"","isHLtitle":"true"
                 }
 
-            first_text=post_page(page,payload(1))
-            obj=json.loads(first_text)
-            server_totalpages=int(obj.get("totalpages") or 0)
-            totalrecords=int(obj.get("totalRecordNum") or obj.get("totalAnnouncement") or 0)
-            server_pagesize=int(obj.get("pageSize") or 30)
-            if totalrecords<=0:
-                raise RuntimeError(f"{exchange}/{kind}: invalid totalrecords={totalrecords}")
-            if server_pagesize<=0:
-                server_pagesize=30
-            derived_min_pages=math.ceil(totalrecords/server_pagesize)
-            target_pages=max(server_totalpages,derived_min_pages)
-            if target_pages<=0:
-                raise RuntimeError(f"{exchange}/{kind}: invalid pagination server={server_totalpages} derived={derived_min_pages}")
-
-            fetched_rows=0
-            mapped_rows=0
-            page_failures=[]
-            for n in range(1,target_pages+1):
-                text=first_text if n==1 else None
-                if text is None:
-                    last=None
-                    for attempt in range(1,4):
-                        try:
-                            text=post_page(page,payload(n)); break
-                        except Exception as e:
-                            last=e
-                            page.wait_for_timeout(350*attempt)
-                    if text is None:
-                        page_failures.append({"page":n,"error":repr(last)})
-                        break
-                b=text.encode("utf-8")
-                p=stream_dir/f"page_{n:04d}.json"
-                p.write_bytes(b)
-                ph=sha(b)
-                o=json.loads(text)
-                anns=o.get("announcements") or []
-                fetched_rows += len(anns)
-                manifest.append({
-                  "exchange":exchange,"kind":kind,"page":n,"path":str(p),
-                  "sha256":ph,"bytes":len(b),"rows":len(anns),
-                  "reported_totalpages":o.get("totalpages"),"reported_totalRecordNum":o.get("totalRecordNum")
-                })
+            def process_announcements(anns):
+                nonlocal stream_mapped_rows
                 for a in anns:
                     code=str(a.get("secCode") or "").strip()
                     cid=(exchange,code)
@@ -152,7 +118,7 @@ def main():
                     if ann_id and unique in seen_ann_ids:
                         continue
                     if ann_id: seen_ann_ids.add(unique)
-                    mapped_rows += 1
+                    stream_mapped_rows += 1
                     catalog.append({
                       "pit_date":PIT_DATE,
                       "catalog_start_date":START_DATE,
@@ -180,32 +146,134 @@ def main():
                       "is_english":"true" if is_english else "false",
                       "source_stream":f"{exchange}/{kind}",
                     })
-                if n%50==0 or n==target_pages:
-                    print(f"PROGRESS {exchange}/{kind} {n}/{target_pages} fetched={fetched_rows}/{totalrecords}",flush=True)
-            if page_failures:
-                raise RuntimeError(f"{exchange}/{kind} page capture failed: {page_failures}")
-            # The server may include rows outside current Mother Pool, but page completeness must match server total.
-            if fetched_rows != totalrecords:
-                raise RuntimeError(
-                    f"{exchange}/{kind}: pagination did not close exactly: "
-                    f"fetched_rows={fetched_rows}, server_total={totalrecords}, "
-                    f"server_totalpages={server_totalpages}, derived_min_pages={derived_min_pages}, "
-                    f"target_pages={target_pages}"
+
+            def capture_window(window_start:str,window_end:str,depth:int=0):
+                nonlocal segment_serial,stream_fetched_rows
+                first_text=post_page(page,payload(1,window_start,window_end))
+                first_obj=json.loads(first_text)
+                totalrecords=int(first_obj.get("totalRecordNum") or first_obj.get("totalAnnouncement") or 0)
+                server_totalpages=int(first_obj.get("totalpages") or 0)
+                server_pagesize=int(first_obj.get("pageSize") or 30)
+                if server_pagesize<=0: server_pagesize=30
+                if totalrecords<0:
+                    raise RuntimeError(f"{exchange}/{kind}/{window_start}~{window_end}: invalid totalrecords={totalrecords}")
+                if totalrecords==0:
+                    segment_stats.append({
+                      "window_start":window_start,"window_end":window_end,"depth":depth,
+                      "server_total_records":0,"server_totalpages":server_totalpages,
+                      "derived_min_pages":0,"fetched_rows":0,"unique_announcement_ids":0
+                    })
+                    return
+
+                derived_min_pages=math.ceil(totalrecords/server_pagesize)
+                # CNInfo silently ceases to honor pageNum on very large result sets
+                # (observed pages 156/157/158 all returning page 1). Keep every leaf
+                # well below that transport ceiling and prove closure per leaf.
+                SAFE_MAX_PAGES=90
+                if derived_min_pages>SAFE_MAX_PAGES:
+                    a=date.fromisoformat(window_start); b=date.fromisoformat(window_end)
+                    if a>=b:
+                        raise RuntimeError(
+                          f"{exchange}/{kind}/{window_start}: {derived_min_pages} pages exceeds safe cap on one day"
+                        )
+                    mid=a+(b-a)//2
+                    right=mid+timedelta(days=1)
+                    capture_window(a.isoformat(),mid.isoformat(),depth+1)
+                    capture_window(right.isoformat(),b.isoformat(),depth+1)
+                    return
+
+                segment_serial += 1
+                seg_id=segment_serial
+                target_pages=derived_min_pages
+                fetched_rows=0
+                seg_ann_ids=set()
+                first_sha=None
+                for n in range(1,target_pages+1):
+                    text=first_text if n==1 else None
+                    if text is None:
+                        last=None
+                        for attempt in range(1,4):
+                            try:
+                                text=post_page(page,payload(n,window_start,window_end)); break
+                            except Exception as e:
+                                last=e; page.wait_for_timeout(350*attempt)
+                        if text is None:
+                            raise RuntimeError(
+                              f"{exchange}/{kind}/{window_start}~{window_end} page {n} failed: {repr(last)}"
+                            )
+                    b=text.encode("utf-8")
+                    ph=sha(b)
+                    if n==1: first_sha=ph
+                    elif target_pages>1 and ph==first_sha:
+                        raise RuntimeError(
+                          f"{exchange}/{kind}/{window_start}~{window_end}: page {n} repeated page 1 exactly"
+                        )
+                    p=stream_dir/f"seg_{seg_id:03d}_{window_start}_{window_end}_page_{n:04d}.json"
+                    p.write_bytes(b)
+                    o=json.loads(text)
+                    anns=o.get("announcements") or []
+                    fetched_rows += len(anns)
+                    for a in anns:
+                        aid=str(a.get("announcementId") or "").strip()
+                        if aid:
+                            if aid in seg_ann_ids:
+                                raise RuntimeError(
+                                  f"{exchange}/{kind}/{window_start}~{window_end}: duplicate announcementId {aid} within segment"
+                                )
+                            seg_ann_ids.add(aid)
+                    manifest.append({
+                      "exchange":exchange,"kind":kind,"window_start":window_start,"window_end":window_end,
+                      "segment":seg_id,"page":n,"path":str(p),"sha256":ph,"bytes":len(b),"rows":len(anns),
+                      "reported_totalpages":o.get("totalpages"),"reported_totalRecordNum":o.get("totalRecordNum")
+                    })
+                    process_announcements(anns)
+
+                if fetched_rows != totalrecords:
+                    raise RuntimeError(
+                      f"{exchange}/{kind}/{window_start}~{window_end}: leaf pagination did not close exactly: "
+                      f"fetched_rows={fetched_rows}, server_total={totalrecords}, "
+                      f"server_totalpages={server_totalpages}, derived_min_pages={derived_min_pages}"
+                    )
+                if len(seg_ann_ids) != totalrecords:
+                    raise RuntimeError(
+                      f"{exchange}/{kind}/{window_start}~{window_end}: unique announcement IDs "
+                      f"{len(seg_ann_ids)} != server_total {totalrecords}"
+                    )
+                overlap=stream_ann_ids.intersection(seg_ann_ids)
+                if overlap:
+                    raise RuntimeError(
+                      f"{exchange}/{kind}: date segments overlap in announcement IDs; sample={sorted(overlap)[:5]}"
+                    )
+                stream_ann_ids.update(seg_ann_ids)
+                stream_fetched_rows += fetched_rows
+                segment_stats.append({
+                  "window_start":window_start,"window_end":window_end,"depth":depth,
+                  "server_total_records":totalrecords,"server_totalpages":server_totalpages,
+                  "derived_min_pages":derived_min_pages,"target_pages":target_pages,
+                  "fetched_rows":fetched_rows,"unique_announcement_ids":len(seg_ann_ids)
+                })
+                print(
+                  f"SEGMENT_PASS {exchange}/{kind} {window_start}~{window_end} "
+                  f"rows={fetched_rows} pages={target_pages}",
+                  flush=True
                 )
+
+            capture_window(START_DATE,CUTOFF_DATE)
             stream_stats.append({
               "exchange":exchange,"kind":kind,
-              "server_totalpages":server_totalpages,
-              "derived_min_pages":derived_min_pages,
-              "target_pages":target_pages,
-              "server_page_size":server_pagesize,
-              "server_total_records":totalrecords,"fetched_rows":fetched_rows,
-              "mapped_mother_pool_rows":mapped_rows
+              "adaptive_date_partitioning":True,
+              "safe_max_pages_per_leaf":90,
+              "leaf_segment_count":len([x for x in segment_stats if x["server_total_records"]>0]),
+              "stream_fetched_rows":stream_fetched_rows,
+              "stream_unique_announcement_ids":len(stream_ann_ids),
+              "mapped_mother_pool_rows":stream_mapped_rows,
+              "segments":segment_stats
             })
         browser.close()
 
     # Write raw manifest.
     man_path=OUT/"V2.7.28_RAW_QUERY_MANIFEST.csv"
-    mf=["exchange","kind","page","path","sha256","bytes","rows","reported_totalpages","reported_totalRecordNum"]
+    mf=["exchange","kind","window_start","window_end","segment","page","path","sha256","bytes","rows","reported_totalpages","reported_totalRecordNum"]
     with man_path.open("w",encoding="utf-8",newline="") as f:
         w=csv.DictWriter(f,fieldnames=mf,lineterminator="\n");w.writeheader();w.writerows(manifest)
 
