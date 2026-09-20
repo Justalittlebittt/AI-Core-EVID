@@ -60,7 +60,7 @@ def select_latest(rows, exchange):
     # Multiple full reports same period without explicit revision marker are ambiguous.
     return None,candidates,"AMBIGUOUS_SAME_PERIOD_PRIMARY"
 
-def sse_fetch(ctx,page,code):
+def sse_fetch(ctx,code):
     all_rows=[]; queries=[]
     for report_type in ("QUATER2","YEARLY"):
         cb=f"jsonpCallbackV2727{report_type}"
@@ -75,7 +75,7 @@ def sse_fetch(ctx,page,code):
         resp=ctx.request.get(
           url,
           headers={
-            "Referer":page.url,
+            "Referer":f"https://www.sse.com.cn/assortment/stock/list/info/announcement/index.shtml?productId={code}",
             "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
           },
           timeout=90000
@@ -117,6 +117,47 @@ def szse_fetch(page,code):
       "announceCount":obj.get("announceCount"),"pageSize":50,"pageNum":1
     }
 
+def sse_download_pdf(ctx, chosen, cid):
+    path=chosen["path"]
+    referer=f"https://www.sse.com.cn/assortment/stock/list/info/announcement/index.shtml?productId={chosen['code']}"
+    attempts=[]
+    for host in ("https://static.sse.com.cn","https://www.sse.com.cn"):
+        url=host+path
+        try:
+            resp=ctx.request.get(
+              url,
+              headers={
+                "Referer":referer,
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+                "Accept":"application/pdf,application/octet-stream;q=0.9,*/*;q=0.8",
+              },
+              timeout=60000
+            )
+            b=resp.body()
+            diag={
+              "host":host,"url":url,"status":resp.status,
+              "content_type":resp.headers.get("content-type"),
+              "bytes":len(b),"sha256":sha(b),
+              "first64_hex":b[:64].hex(),
+              "pdf_header_offset":b[:1024].find(b"%PDF-")
+            }
+            attempts.append(diag)
+            (RAW/(cid.replace(":","_")+f"_sse_pdf_attempt_{len(attempts)}.json")).write_text(
+              json.dumps(diag,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+            )
+            if resp.status==200 and diag["pdf_header_offset"]>=0:
+                p=PDF/(cid.replace(":","_")+".pdf"); p.write_bytes(b)
+                return {
+                  "path":str(p),"bytes":len(b),"sha256":sha(b),
+                  "content_type":resp.headers.get("content-type"),
+                  "pdf_header_offset":diag["pdf_header_offset"],
+                  "resolved_url":url,"attempts":attempts
+                }
+            (RAW/(cid.replace(":","_")+f"_sse_nonpdf_attempt_{len(attempts)}.bin")).write_bytes(b)
+        except Exception as e:
+            attempts.append({"host":host,"url":url,"error":repr(e)})
+    raise RuntimeError(f"{cid} no official SSE PDF host returned valid PDF; attempts={attempts}")
+
 def save_pdf(resp, cid):
     b=resp.body()
     diag={
@@ -153,23 +194,16 @@ def main():
         locale="zh-CN"
       )
 
-      # SSE sample
-      page=ctx.new_page()
-      page.goto("https://www.sse.com.cn/assortment/stock/list/info/announcement/index.shtml?productId=600000",
-                wait_until="domcontentloaded",timeout=90000)
-      page.wait_for_timeout(3000)
-      rows,qmeta=sse_fetch(ctx,page,"600000")
+      # SSE sample: direct official API + official PDF hosts.
+      # No dependency on the heavy announcement HTML page.
+      rows,qmeta=sse_fetch(ctx,"600000")
       chosen,cands,err=select_latest(rows,"SSE")
       srec={"query":qmeta,"candidate_count":len(cands),"candidates":cands,"selector_error":err}
       if chosen:
         if chosen["code"]!="600000": raise RuntimeError("SSE issuer identity mismatch")
-        pdf_url="https://static.sse.com.cn"+chosen["path"]
-        pr=ctx.request.get(pdf_url,headers={"Referer":page.url},timeout=90000)
         srec["selected"]=chosen
-        srec["pdf_url"]=pdf_url
-        srec["pdf"]=save_pdf(pr,"SSE:600000")
+        srec["pdf"]=sse_download_pdf(ctx,chosen,"SSE:600000")
       receipt["samples"]["SSE:600000"]=srec
-      page.close()
 
       # SZSE sample
       page=ctx.new_page()
