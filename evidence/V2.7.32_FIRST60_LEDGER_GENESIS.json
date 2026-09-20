@@ -1,0 +1,17 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FIRST60_LEDGER_GENESIS_V1",
+  "version": "V2.7.32",
+  "state": "NOT_ACTIVATED",
+  "activation_manifest_present": false,
+  "activation_blocker": "PROSPECTIVE_SIGNAL_RUNNER_BYTES_NOT_PRESENT_IN_REPOSITORY",
+  "first_eligible_signal_date": null,
+  "candidate_episode_start_count": 0,
+  "stage_a_count": 0,
+  "stage_b_count": 0,
+  "all60_count": 0,
+  "daily_session_count": 0,
+  "episode_start_ledger_empty_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "no_backfill": true,
+  "pre_activation_shadow_eligible": false,
+  "note": "This genesis freezes the empty state only. Self-tests may use synthetic fixtures but may never append to the prospective ledger."
+}
