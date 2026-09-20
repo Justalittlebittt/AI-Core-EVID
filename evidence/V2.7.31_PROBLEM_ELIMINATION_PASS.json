@@ -1,0 +1,31 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.7.31",
+  "final_user_goal": "Establish a real forward evidence epoch from which future A-share research/execution can be certified without relabeling reconstructed pre-epoch evidence as prospectively observed.",
+  "hard_constraints": [
+    "epoch T0 must be immutable and externally auditable",
+    "official current Mother Pool must be observed after T0 from SSE/SZSE",
+    "no security absent from current official Mother Pool can enter the forward Certified Universe",
+    "pre-existing frozen artifacts may be admitted only as an epoch baseline for decisions after T0",
+    "baseline adoption never changes their original first-observed timestamps",
+    "new current Mother Pool members absent from the baseline require fresh post-T0 issuer and locator resolution",
+    "removed baseline members must be excluded",
+    "filing content remains on-demand materialized under V2.7.30",
+    "no historical decision before T0 can use forward-epoch certification"
+  ],
+  "soft_constraints_removed": [
+    "rerun the full historical Mother Pool gate chain",
+    "rerun the full CNInfo catalog over all 5221 securities",
+    "redownload 5221 PDFs",
+    "require every baseline document to be re-fetched merely to prove the system possesses its already-frozen locator",
+    "make AlphaDojo coverage define official membership"
+  ],
+  "architecture": {
+    "Delete": "No full catalog/PDF replay at epoch bootstrap.",
+    "Avoid": "Current official membership is captured directly as a forward snapshot; no PIT reconstruction is needed for T0.",
+    "Absorb": "V2.7.27 issuer map + V2.7.29 locator inventory become immutable Epoch Baseline artifacts for unchanged members.",
+    "Substitute": "Only membership delta drives targeted post-T0 issuer/locator discovery.",
+    "Precompute_Reuse": "Existing validated baseline hashes are reused; V2.7.30 materializes bytes only when consumed.",
+    "Optimize": "Transport tuning only if the one-time current-membership observation or delta resolver proves necessary."
+  }
+}
