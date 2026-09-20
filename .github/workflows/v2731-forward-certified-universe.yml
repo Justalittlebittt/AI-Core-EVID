@@ -1,5 +1,10 @@
 name: V2.7.31 Forward Certified Universe Bootstrap
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2731_forward_certified_universe.py"
+      - ".github/workflows/v2731-forward-certified-universe.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,9 +18,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install capture dependencies
-        run: |
-          pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1" "playwright>=1.55"
-          python -m playwright install --with-deps chromium
+        run: pip install "pandas>=2,<4" "requests>=2.32" "openpyxl>=3.1"
       - name: Build forward Certified Universe
         shell: bash
         run: |
@@ -24,11 +27,7 @@ jobs:
       - name: Persist forward evidence
         if: success()
         run: |
-          cp v2731_forward_bootstrap/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv evidence/
-          cp v2731_forward_bootstrap/V2.7.31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT.json evidence/
-          cp v2731_forward_bootstrap/V2.7.31_FORWARD_CURRENT_ISSUER_MAP.csv evidence/
-          cp v2731_forward_bootstrap/V2.7.31_FORWARD_RAW_MANIFEST.csv evidence/
-          cp v2731_forward_bootstrap/V2.7.31_FORWARD_RAW_EVIDENCE.tar.gz evidence/
+          find v2731_forward_bootstrap -maxdepth 1 -type f -name "V2.7.31_FORWARD_*" -exec cp {} evidence/ \;
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
           git add evidence/V2.7.31_FORWARD_*
