@@ -1,0 +1,34 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_FORWARD_EPOCH_CONTRACT_MIGRATION_V1",
+  "version": "V2.7.31",
+  "supersedes_clause": "evidence/V2.7.31_FORWARD_EPOCH_CONTRACT.json requirement that every current official membership snapshot must be freshly observed after T0",
+  "reason": "GitHub Runner cannot reliably resolve/connect to www.szse.cn after T0, while an authoritative full-market snapshot exists after the last closed trading session before T0.",
+  "new_membership_provenance_rule": {
+    "accepted_states": [
+      "FORWARD_OBSERVED_AFTER_T0",
+      "FORWARD_OBSERVED_AFTER_T0_EXACT_MATCH",
+      "FORWARD_CARRIED_OVER_NONTRADING_INTERVAL"
+    ],
+    "carry_state_requires": [
+      "authoritative official snapshot after the preceding trading-session close",
+      "exact set/count/hash evidence",
+      "proof there is no exchange trading session between snapshot and target epoch time",
+      "explicit expiry before the next trading session",
+      "no relabeling as fresh observation"
+    ]
+  },
+  "authorization_scope": {
+    "certified_universe_research_bootstrap": true,
+    "deterministic_first60_episode_start": true,
+    "s4_s5_s6": false,
+    "live_execution": false
+  },
+  "unchanged_constraints": [
+    "official SSE/SZSE membership authority",
+    "exact canonical security identity",
+    "issuer/locator baseline hashes",
+    "on-demand V2.7.30 PDF materialization",
+    "historical 2026-09-17 prospective relabeling forbidden",
+    "fail-closed semantics"
+  ]
+}
