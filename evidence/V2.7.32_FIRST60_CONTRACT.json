@@ -1,0 +1,52 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_32_FIRST60_CONTRACT_V1",
+  "version": "V2.7.32",
+  "status": "PREREGISTERED_NOT_ACTIVATED",
+  "epoch_id": "AI_CORE_EVID_FORWARD_EPOCH_001",
+  "certified_universe_ref": {
+    "file": "evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv",
+    "sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "gate": "PASS_RESEARCH_BOOTSTRAP"
+  },
+  "calendar_ref": {
+    "file": "evidence/V2.7.32_JOINT_A_SHARE_TRADING_CALENDAR_2026.json",
+    "trading_dates_sorted_newline_sha256": "fd77a04f5268efd4803ca99877a0de4b126a51ad01a45b24c443afc8f8aa3ee7",
+    "next_joint_trading_day_after_t0": "2026-09-21"
+  },
+  "cohort": {
+    "unit": "EPISODE_START",
+    "ordering": "ascending signal_date, then deterministic runner emission order frozen before outcomes",
+    "stage_a_ranks": "1-30",
+    "stage_b_ranks": "31-60",
+    "all60": "exact union of ranks 1-60",
+    "replacement_after_missing_outcome": false
+  },
+  "episode": {
+    "non_overlap_per_symbol": true,
+    "same_symbol_suppression": "from Episode start D until frozen T is resolved/unavailable",
+    "outcome_target": "D+10 joint A-share trading sessions",
+    "target_date_frozen_at_start": true,
+    "missing_target_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT"
+  },
+  "prospective": {
+    "no_backfill": true,
+    "historical_shadow_eligible": false,
+    "activation_boundary_excluded": true,
+    "first_eligible_signal_date": "set only by a valid Activation Manifest; candidate date is 2026-09-21",
+    "source_freshness": "max_bar_date == signal_date D",
+    "source_cutoff": "D+1 23:59:59 Asia/Shanghai",
+    "zero_candidate_sessions_must_be_recorded": true
+  },
+  "temporal_sufficiency": {
+    "all60_min_distinct_signal_dates": 10,
+    "stage_a_min_distinct_signal_dates": 5,
+    "stage_b_min_distinct_signal_dates": 5,
+    "max_single_signal_date_share_all60": 0.2,
+    "insufficient_state": "INCONCLUSIVE"
+  },
+  "downstream": {
+    "first60_completion_does_not_auto_open_s4": true,
+    "s4_requires_separate_final_certification_and_trusted_time": true,
+    "live_remains_blocked": true
+  }
+}
