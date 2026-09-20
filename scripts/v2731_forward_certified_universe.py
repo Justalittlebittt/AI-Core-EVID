@@ -2,20 +2,18 @@ from __future__ import annotations
 
 import csv
 import hashlib
-import html
 import io
 import json
 import math
 import re
 import tarfile
-from datetime import date, datetime, timedelta, timezone
+import time
+from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
-from playwright.sync_api import sync_playwright
 
 EPOCH_ID="AI_CORE_EVID_FORWARD_EPOCH_001"
 T0_UTC="2026-09-20T07:17:16Z"
@@ -29,36 +27,27 @@ BASELINE_LOCATOR_SHA="6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19
 BASELINE_LOCATOR_ORIGINAL_OBSERVED="2026-09-20T06:36:51.251465+00:00"
 
 OUT=Path("v2731_forward_bootstrap")
-OFFICIAL_RAW=OUT/"raw"/"official"
-CNINFO_RAW=OUT/"raw"/"cninfo_delta"
+RAW=OUT/"raw"
+SSE_RAW=RAW/"sse"
+SZSE_RAW=RAW/"szse"
 OUT.mkdir(exist_ok=True)
-OFFICIAL_RAW.mkdir(parents=True,exist_ok=True)
-CNINFO_RAW.mkdir(parents=True,exist_ok=True)
+SSE_RAW.mkdir(parents=True,exist_ok=True)
+SZSE_RAW.mkdir(parents=True,exist_ok=True)
 
-SSE_PAGE="https://www.sse.com.cn/assortment/stock/list/share/"
-SZSE_PAGE="https://www.szse.cn/market/product/stock/list/index.html"
-ALLOWED_HOSTS=("sse.com.cn","szse.cn")
+SSE_ENDPOINT="https://query.sse.com.cn/sseQuery/commonQuery.do"
+SSE_REFERER="https://www.sse.com.cn/assortment/stock/list/share/"
+SZSE_ENDPOINT="https://www.szse.cn/api/report/ShowReport"
+SZSE_REFERER="https://www.szse.cn/market/product/stock/list/index.html"
 CODE_RE=re.compile(r"^\d{6}$")
-TOKEN6_RE=re.compile(r"(?<!\d)(\d{6})(?!\d)")
-CATS={"ANNUAL":"category_ndbg_szsh","HALF_YEAR":"category_bndbg_szsh"}
 
 def sha(b:bytes)->str:
     return hashlib.sha256(b).hexdigest()
 
 def ensure_after_t0(ts:datetime,label:str):
     if ts <= T0_DT:
-        raise RuntimeError(f"{label}={ts.isoformat()} is not after epoch T0={T0_UTC}")
+        raise RuntimeError(f"{label}={ts.isoformat()} is not after T0={T0_UTC}")
 
-def safe_name(url:str,i:int,ct:str)->str:
-    ext=".bin"
-    l=(ct or "").lower()
-    if "json" in l: ext=".json"
-    elif "excel" in l or "spreadsheet" in l: ext=".xlsx"
-    elif "csv" in l: ext=".csv"
-    elif "html" in l: ext=".html"
-    return f"{i:04d}_{hashlib.sha1(url.encode()).hexdigest()[:12]}{ext}"
-
-def decode_json_or_jsonp_bytes(b:bytes):
+def decode_json_or_jsonp(b:bytes):
     s=b.decode("utf-8","ignore").strip()
     try:
         return json.loads(s)
@@ -68,198 +57,84 @@ def decode_json_or_jsonp_bytes(b:bytes):
             raise
         return json.loads(m.group(1))
 
-def capture_page(page_url:str,exchange:str):
-    recs=[]
-    exdir=OFFICIAL_RAW/exchange.lower()
-    exdir.mkdir(parents=True,exist_ok=True)
-    with sync_playwright() as pw:
-        browser=pw.chromium.launch(headless=True)
-        context=browser.new_context(
-          user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
-          locale="zh-CN")
-        page=context.new_page()
-        def on_response(resp):
-            try:
-                url=resp.url
-                if not any(h in url for h in ALLOWED_HOSTS):
-                    return
-                ct=resp.headers.get("content-type","")
-                if not any(x in ct.lower() for x in ("json","excel","spreadsheet","csv","octet-stream")):
-                    return
-                body=resp.body()
-                if not body:
-                    return
-                p=exdir/safe_name(url,len(recs)+1,ct)
-                p.write_bytes(body)
-                recs.append({
-                  "exchange":exchange,"url":url,"status":resp.status,"content_type":ct,
-                  "path":str(p),"bytes":len(body),"sha256":sha(body),
-                  "captured_at_utc":datetime.now(timezone.utc).isoformat()
-                })
-            except Exception as e:
-                recs.append({
-                  "exchange":exchange,"capture_error":repr(e),
-                  "captured_at_utc":datetime.now(timezone.utc).isoformat()
-                })
-        page.on("response",on_response)
-        page.goto(page_url,wait_until="domcontentloaded",timeout=90000)
-        page.wait_for_timeout(8000)
-        page.mouse.wheel(0,3000); page.wait_for_timeout(2500)
-        page.mouse.wheel(0,-3000); page.wait_for_timeout(1500)
-        html_bytes=page.content().encode("utf-8")
-        hp=exdir/"rendered_page.html"
-        hp.write_bytes(html_bytes)
-        recs.append({
-          "exchange":exchange,"url":page_url,"status":200,"content_type":"text/html-rendered",
-          "path":str(hp),"bytes":len(html_bytes),"sha256":sha(html_bytes),
-          "captured_at_utc":datetime.now(timezone.utc).isoformat(),"supplemental":True
-        })
-        browser.close()
-    return recs
+def load_csv_exact(path:Path,expected_sha:str):
+    b=path.read_bytes()
+    actual=sha(b)
+    if actual!=expected_sha:
+        raise RuntimeError(f"{path}: SHA mismatch {actual} != {expected_sha}")
+    return list(csv.DictReader(b.decode("utf-8").splitlines()))
 
-def expand_complete_official_sources(captures):
-    extra=[]
-    sse_first=next((x for x in captures
-                    if x.get("exchange")=="SSE"
-                    and "COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L" in x.get("url","")
-                    and x.get("path")),None)
-    if not sse_first:
-        raise RuntimeError("SSE official request template not observed from visible official page")
-    parsed=urlparse(sse_first["url"])
-    base_q={k:v[-1] for k,v in parse_qs(parsed.query).items()}
+def write_csv(path:Path,rows:list[dict],fields:list[str]):
+    with path.open("w",encoding="utf-8",newline="") as f:
+        w=csv.DictWriter(f,fieldnames=fields,lineterminator="\n")
+        w.writeheader()
+        for r in rows:
+            w.writerow({k:r.get(k,"") for k in fields})
+
+def fetch_sse(asof_date):
     sess=requests.Session()
-    sess.headers.update({"User-Agent":"Mozilla/5.0","Referer":SSE_PAGE})
-    for stock_type,label in (("1","main_a"),("8","star")):
-        q1=dict(base_q)
-        q1["STOCK_TYPE"]=stock_type
-        q1["pageHelp.pageNo"]="1"
-        q1["pageHelp.beginPage"]="1"
-        q1["pageHelp.endPage"]="1"
-        first_url=urlunparse((parsed.scheme,parsed.netloc,parsed.path,"",urlencode(q1),""))
-        first_r=sess.get(first_url,timeout=30)
-        first_r.raise_for_status()
-        obj=decode_json_or_jsonp_bytes(first_r.content)
-        ph=obj.get("pageHelp",{}) if isinstance(obj,dict) else {}
-        total=int(ph.get("total") or 0)
-        page_size=int(ph.get("pageSize") or base_q.get("pageHelp.pageSize") or 25)
-        if total<=0:
-            raise RuntimeError(f"SSE {label} total={total}")
-        pages=max(1,math.ceil(total/page_size))
-        for page_no in range(1,pages+1):
-            q=dict(base_q)
-            q["STOCK_TYPE"]=stock_type
-            q["pageHelp.pageNo"]=str(page_no)
-            q["pageHelp.beginPage"]=str(page_no)
-            q["pageHelp.endPage"]=str(page_no)
-            url=urlunparse((parsed.scheme,parsed.netloc,parsed.path,"",urlencode(q),""))
-            r=first_r if page_no==1 else sess.get(url,timeout=30)
-            r.raise_for_status()
-            p=OFFICIAL_RAW/"sse"/f"{label}_{page_no:04d}.json"
-            p.write_bytes(r.content)
-            extra.append({
-              "exchange":"SSE","url":url,"status":r.status_code,
-              "content_type":r.headers.get("content-type",""),
-              "path":str(p),"bytes":len(r.content),"sha256":sha(r.content),
-              "captured_at_utc":datetime.now(timezone.utc).isoformat(),
-              "pagination_expansion":True,"sse_stock_type":stock_type,"sse_board_label":label
-            })
-
-    sz_meta=None
-    for c in captures:
-        if c.get("exchange")!="SZSE" or not c.get("path") or c.get("supplemental"):
-            continue
-        try:
-            obj=decode_json_or_jsonp_bytes(Path(c["path"]).read_bytes())
-            if isinstance(obj,list) and obj and isinstance(obj[0],dict):
-                meta=obj[0].get("metadata",{})
-                if str(meta.get("catalogid"))=="1110":
-                    sz_meta=meta
-                    break
-        except Exception:
-            pass
-    if not sz_meta:
-        raise RuntimeError("SZSE official A-share catalog metadata not observed from visible official page")
-    r=requests.get(
-      "https://www.szse.cn/api/report/ShowReport",
-      params={"SHOWTYPE":"xlsx","CATALOGID":"1110","TABKEY":"tab1"},
-      headers={"User-Agent":"Mozilla/5.0","Referer":SZSE_PAGE},
-      timeout=60)
-    r.raise_for_status()
-    p=OFFICIAL_RAW/"szse"/"A_SHARE_LIST_FULL.xlsx"
-    p.write_bytes(r.content)
-    extra.append({
-      "exchange":"SZSE","url":r.url,"status":r.status_code,
-      "content_type":r.headers.get("content-type",""),
-      "path":str(p),"bytes":len(r.content),"sha256":sha(r.content),
-      "captured_at_utc":datetime.now(timezone.utc).isoformat(),"full_export":True
+    sess.headers.update({
+      "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+      "Referer":SSE_REFERER
     })
-    return captures+extra
-
-def collect_records_from_json(obj):
-    out=[]
-    if isinstance(obj,dict):
-        vals={str(k):v for k,v in obj.items()}
-        if any(TOKEN6_RE.fullmatch(str(v).strip()) for v in vals.values() if v is not None):
-            out.append(vals)
-        for v in obj.values():
-            out.extend(collect_records_from_json(v))
-    elif isinstance(obj,list):
-        for v in obj:
-            out.extend(collect_records_from_json(v))
-    return out
-
-def read_candidate_rows(p:Path):
-    try:
-        if p.suffix.lower()==".json":
-            return collect_records_from_json(decode_json_or_jsonp_bytes(p.read_bytes()))
-        if p.suffix.lower() in {".xlsx",".xls"}:
-            rows=[]
-            sheets=pd.read_excel(io.BytesIO(p.read_bytes()),sheet_name=None,dtype=str)
-            for df in sheets.values():
-                rows.extend(df.fillna("").to_dict("records"))
-            return rows
-        if p.suffix.lower()==".csv":
-            return pd.read_csv(p,dtype=str).fillna("").to_dict("records")
-    except Exception:
-        return []
-    return []
-
-def capture_current_official():
     captures=[]
-    errors=[]
-    for url,ex in ((SSE_PAGE,"SSE"),(SZSE_PAGE,"SZSE")):
-        try:
-            captures.extend(capture_page(url,ex))
-        except Exception as e:
-            errors.append({"exchange":ex,"error":repr(e)})
-    if errors:
-        raise RuntimeError(f"official visible-page capture errors: {errors}")
-    captures=expand_complete_official_sources(captures)
-    (OUT/"V2.7.31_OFFICIAL_CAPTURE_MANIFEST.json").write_text(
-      json.dumps({"captures":captures},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    return captures
-
-def build_current_issuer_map(captures,asof_date:date):
-    candidates={}
-    for cap in captures:
-        ex=cap.get("exchange")
-        if ex=="SSE" and not cap.get("pagination_expansion"):
-            continue
-        if ex=="SZSE" and not cap.get("full_export"):
-            continue
-        if not cap.get("path"):
-            continue
-        for r in read_candidate_rows(Path(cap["path"])):
-            if ex=="SSE":
-                code=str(r.get("A_STOCK_CODE") or "").strip()
-                st=str(r.get("STOCK_TYPE") or "").strip()
+    issuer={}
+    callback="jsonpCallback27310001"
+    for stock_type,label in (("1","main_a"),("8","star")):
+        base={
+          "jsonCallBack":callback,
+          "STOCK_TYPE":stock_type,
+          "REG_PROVINCE":"",
+          "CSRC_CODE":"",
+          "STOCK_CODE":"",
+          "sqlId":"COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L",
+          "COMPANY_STATUS":"2,4,5,7,8",
+          "type":"inParams",
+          "isPagination":"true",
+          "pageHelp.cacheSize":"1",
+          "pageHelp.pageSize":"25",
+          "_":str(int(time.time()*1000))
+        }
+        q={**base,"pageHelp.beginPage":"1","pageHelp.pageNo":"1","pageHelp.endPage":"1"}
+        r=sess.get(SSE_ENDPOINT,params=q,timeout=30)
+        if r.status_code!=200:
+            raise RuntimeError(f"SSE {label} first page HTTP {r.status_code}")
+        first_obj=decode_json_or_jsonp(r.content)
+        ph=first_obj.get("pageHelp",{}) if isinstance(first_obj,dict) else {}
+        total=int(ph.get("total") or 0)
+        page_size=int(ph.get("pageSize") or 25)
+        if total<=0:
+            raise RuntimeError(f"SSE {label} returned total={total}")
+        pages=max(1,math.ceil(total/page_size))
+        for n in range(1,pages+1):
+            qq={**base,"pageHelp.beginPage":str(n),"pageHelp.pageNo":str(n),"pageHelp.endPage":str(n)}
+            rr=r if n==1 else sess.get(SSE_ENDPOINT,params=qq,timeout=30)
+            if rr.status_code!=200:
+                raise RuntimeError(f"SSE {label} page {n} HTTP {rr.status_code}")
+            p=SSE_RAW/f"{label}_{n:04d}.json"
+            p.write_bytes(rr.content)
+            captures.append({
+              "exchange":"SSE","board":label,"page":n,"url":rr.url,
+              "status":rr.status_code,"bytes":len(rr.content),"sha256":sha(rr.content),
+              "captured_at_utc":datetime.now(timezone.utc).isoformat()
+            })
+            obj=decode_json_or_jsonp(rr.content)
+            rows=(obj.get("result") or []) if isinstance(obj,dict) else []
+            if not rows and isinstance(obj,dict):
+                # Some SSE responses nest rows elsewhere; search common list values.
+                for v in obj.values():
+                    if isinstance(v,list) and v and isinstance(v[0],dict) and "A_STOCK_CODE" in v[0]:
+                        rows=v; break
+            for x in rows:
+                code=str(x.get("A_STOCK_CODE") or "").strip()
+                st=str(x.get("STOCK_TYPE") or "").strip()
                 if not CODE_RE.fullmatch(code) or st not in {"1","8"}:
                     continue
-                ld=pd.to_datetime(r.get("LIST_DATE"),errors="coerce")
+                ld=pd.to_datetime(x.get("LIST_DATE"),errors="coerce")
                 if pd.isna(ld) or pd.Timestamp(ld).date()>asof_date:
                     continue
-                qkey=str(r.get("COMPANY_CODE") or "").strip()
-                name=str(r.get("FULL_NAME") or "").strip()
+                qkey=str(x.get("COMPANY_CODE") or "").strip()
+                name=str(x.get("FULL_NAME") or "").strip()
                 if not CODE_RE.fullmatch(qkey) or not name:
                     raise RuntimeError(f"SSE issuer identity missing {code}")
                 rec={
@@ -268,432 +143,242 @@ def build_current_issuer_map(captures,asof_date:date):
                   "official_issuer_query_key":qkey,
                   "official_issuer_query_key_type":"SSE_COMPANY_CODE",
                   "issuer_legal_name":name,
-                  "security_short_name":str(r.get("COMPANY_ABBR") or "").strip(),
+                  "security_short_name":str(x.get("COMPANY_ABBR") or "").strip(),
                   "official_list_date":pd.Timestamp(ld).date().isoformat(),
-                  "official_board_code":str(r.get("LIST_BOARD") or "").strip(),
-                  "source_path":str(Path(cap["path"]).relative_to(OUT)),
-                  "source_sha256":str(cap.get("sha256") or "")
+                  "official_board_code":str(x.get("LIST_BOARD") or "").strip(),
+                  "source_path":str(p.relative_to(OUT)),
+                  "source_sha256":sha(rr.content)
                 }
-            else:
-                code=str(r.get("A股代码") or "").strip()
-                board=str(r.get("板块") or "").strip()
-                if not CODE_RE.fullmatch(code) or board not in {"主板","创业板"}:
-                    continue
-                ld=pd.to_datetime(r.get("A股上市日期"),errors="coerce")
-                if pd.isna(ld) or pd.Timestamp(ld).date()>asof_date:
-                    continue
-                name=str(r.get("公司全称") or "").strip()
-                if not name:
-                    raise RuntimeError(f"SZSE issuer identity missing {code}")
-                rec={
-                  "canonical_security_id":f"SZSE:{code}",
-                  "exchange":"SZSE","security_code":code,
-                  "official_issuer_query_key":code,
-                  "official_issuer_query_key_type":"SZSE_A_STOCK_CODE",
-                  "issuer_legal_name":name,
-                  "security_short_name":str(r.get("A股简称") or "").strip(),
-                  "official_list_date":pd.Timestamp(ld).date().isoformat(),
-                  "official_board_code":board,
-                  "source_path":str(Path(cap["path"]).relative_to(OUT)),
-                  "source_sha256":str(cap.get("sha256") or "")
-                }
-            candidates.setdefault(rec["canonical_security_id"],[]).append(rec)
-    out={}
-    for cid,recs in candidates.items():
-        stable={(r["official_issuer_query_key"],r["issuer_legal_name"],r["official_list_date"],r["official_board_code"]) for r in recs}
-        if len(stable)!=1:
-            raise RuntimeError(f"issuer conflict {cid}: {stable}")
-        out[cid]=sorted(recs,key=lambda r:(r["source_path"],r["source_sha256"]))[0]
-    sse=sum(1 for x in out if x.startswith("SSE:"))
-    sz=sum(1 for x in out if x.startswith("SZSE:"))
-    if sse<=1000 or sz<=1000:
-        raise RuntimeError(f"official issuer/membership normalization implausible SSE={sse} SZSE={sz}")
-    return out
+                if rec["canonical_security_id"] in issuer:
+                    old=issuer[rec["canonical_security_id"]]
+                    stable=("official_issuer_query_key","issuer_legal_name","official_list_date","official_board_code")
+                    if any(old[k]!=rec[k] for k in stable):
+                        raise RuntimeError(f"SSE identity conflict {rec['canonical_security_id']}")
+                else:
+                    issuer[rec["canonical_security_id"]]=rec
+    if len(issuer)<=1000:
+        raise RuntimeError(f"SSE normalized count implausible {len(issuer)}")
+    return issuer,captures
 
-def clean_title(s:str)->str:
-    s=html.unescape(re.sub(r"<[^>]+>","",str(s or "")))
-    return re.sub(r"\s+","",s)
-
-def ann_date(ms):
-    try:
-        return datetime.fromtimestamp(int(ms)/1000,tz=timezone.utc).astimezone(BEIJING).date().isoformat()
-    except Exception:
-        return ""
-
-def period_from_title(title,kind):
-    t=clean_title(title)
-    ys=re.findall(r"(20\d{2})年",t)
-    y=int(ys[0]) if ys else None
-    if not y: return None,""
-    return y,f"{y}-12-31" if kind=="ANNUAL" else f"{y}-06-30"
-
-def is_full_periodic(title):
-    t=clean_title(title)
-    return bool(t) and not any(x in t for x in ("摘要","英文版","英文版本","审计报告","财务报告","审阅报告"))
-
-def is_revision(title):
-    t=clean_title(title)
-    return any(x in t for x in ("修订","更正","修正","更新","补充"))
-
-def is_ipo_prospectus(title):
-    t=clean_title(title)
-    return "招股说明书" in t and not any(x in t for x in ("提示性公告","摘要","声明","问询回复","审核问询","上市公告书"))
-
-def select_periodic(cands):
-    if not cands: return None,None
-    latest=max(x["period_end"] for x in cands)
-    same=[x for x in cands if x["period_end"]==latest]
-    revised=[x for x in same if x["revision"]]
-    pool=revised or same
-    maxd=max(x["disclosure_date"] for x in pool)
-    top={x["announcement_id"]:x for x in pool if x["disclosure_date"]==maxd}
-    if len(top)!=1:
-        return None,f"AMBIGUOUS_PERIODIC_{latest}_{maxd}_{len(top)}"
-    return next(iter(top.values())),None
-
-def select_ipo(cands):
-    if not cands: return None,None
-    final=[x for x in cands if "注册稿" not in x["title"]]
-    pool=final or cands
-    maxd=max(x["disclosure_date"] for x in pool)
-    top={x["announcement_id"]:x for x in pool if x["disclosure_date"]==maxd}
-    if len(top)!=1:
-        return None,f"AMBIGUOUS_IPO_{maxd}_{len(top)}"
-    return next(iter(top.values())),None
-
-def post_query(page,payload):
-    q=page.evaluate("""async (payload) => {
-      const body=new URLSearchParams(payload).toString();
-      const r=await fetch('/new/hisAnnouncement/query',{
-        method:'POST',
-        headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest'},
-        body
-      });
-      return {status:r.status,text:await r.text()};
-    }""",payload)
-    if q["status"]!=200:
-        raise RuntimeError(f"CNInfo HTTP {q['status']}")
-    return q["text"]
-
-def complete_query(page,base,outdir):
-    outdir.mkdir(parents=True,exist_ok=True)
-    first=post_query(page,{**base,"pageNum":"1","pageSize":"30"})
-    obj=json.loads(first)
-    total=int(obj.get("totalRecordNum") or obj.get("totalAnnouncement") or 0)
-    rows=[]; ids=set(); n=1
-    while len(rows)<total:
-        text=first if n==1 else post_query(page,{**base,"pageNum":str(n),"pageSize":"30"})
-        b=text.encode("utf-8")
-        (outdir/f"page_{n:03d}.json").write_bytes(b)
-        o=json.loads(text); anns=o.get("announcements") or []
-        if not anns and len(rows)<total:
-            raise RuntimeError(f"CNInfo pagination stopped early {len(rows)}/{total}")
-        for a in anns:
-            aid=str(a.get("announcementId") or "").strip()
-            if aid and aid in ids:
-                continue
-            if aid: ids.add(aid)
-            rows.append(a)
-        n+=1
-        if n>1000: raise RuntimeError("CNInfo pagination runaway")
-    if len(rows)!=total:
-        raise RuntimeError(f"CNInfo pagination mismatch {len(rows)} != {total}")
-    return rows
-
-def resolve_cninfo_org_id(page,code,audit_path):
-    matches=[]
-    def on_req(req):
-        try:
-            if "/new/hisAnnouncement/query" not in req.url or req.method!="POST":
-                return
-            q=parse_qs(req.post_data or "")
-            stock=(q.get("stock") or [""])[0]
-            if stock.startswith(code+","):
-                org=stock.split(",",1)[1].strip()
-                if org: matches.append({"stock":stock,"org_id":org})
-        except Exception:
-            pass
-    page.on("request",on_req)
-    try:
-        page.goto(f"https://www.cninfo.com.cn/new/fulltextSearch?keyWord={code}",
-                  wait_until="domcontentloaded",timeout=60000)
-        page.wait_for_timeout(1800)
-        inputs=page.locator("input")
-        for i in range(min(inputs.count(),12)):
-            try:
-                el=inputs.nth(i)
-                if not el.is_visible(): continue
-                ph=el.get_attribute("placeholder") or ""
-                if any(x in ph for x in ("代码","简称","关键")):
-                    el.fill(code); el.press("Enter"); page.wait_for_timeout(2200); break
-            except Exception:
-                pass
-    finally:
-        page.remove_listener("request",on_req)
-    uniq=sorted({x["org_id"] for x in matches})
-    audit_path.parent.mkdir(parents=True,exist_ok=True)
-    audit_path.write_text(json.dumps({"code":code,"matches":matches,"unique_org_ids":uniq},
-                                     ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    if len(uniq)!=1:
-        raise RuntimeError(f"{code}: CNInfo orgId unresolved/ambiguous {uniq}")
-    return uniq[0]
-
-def targeted_locator_for_added(added,current_issuer,cutoff_date:date):
-    if not added: return {}
-    out={}
-    with sync_playwright() as pw:
-        browser=pw.chromium.launch(headless=True)
-        page=browser.new_page(
-          user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
-          locale="zh-CN")
-        page.goto("https://www.cninfo.com.cn/",wait_until="domcontentloaded",timeout=90000)
-        page.wait_for_timeout(1500)
-        for cid in sorted(added):
-            m=current_issuer[cid]
-            ex=m["exchange"]; code=m["security_code"]
-            org=resolve_cninfo_org_id(page,code,CNINFO_RAW/cid.replace(":","_")/"ORG_ID.json")
-            column="sse" if ex=="SSE" else "szse"
-            plate="sh" if ex=="SSE" else "sz"
-            cutoff=cutoff_date.isoformat()
-            periodic=[]
-            for kind,cat in CATS.items():
-                base={
-                  "column":column,"tabName":"fulltext","plate":plate,"stock":f"{code},{org}",
-                  "searchkey":"","secid":"","category":cat,"trade":"",
-                  "seDate":f"2020-01-01~{cutoff}","sortName":"","sortType":"","isHLtitle":"true"
-                }
-                rows=complete_query(page,base,CNINFO_RAW/cid.replace(":","_")/kind)
-                for a in rows:
-                    d=ann_date(a.get("announcementTime")); title=clean_title(a.get("announcementTitle"))
-                    _,pe=period_from_title(title,kind)
-                    if d and d<=cutoff and pe and is_full_periodic(title):
-                        periodic.append({
-                          "document_type":"ANNUAL_REPORT" if kind=="ANNUAL" else "SEMIANNUAL_REPORT",
-                          "title":title,"disclosure_date":d,"period_end":pe,"revision":is_revision(title),
-                          "announcement_id":str(a.get("announcementId") or ""),
-                          "adjunct_url":str(a.get("adjunctUrl") or ""),"org_id":org,
-                          "locator_source":"V2.7.31_FORWARD_TARGETED_PERIODIC"
-                        })
-            selected,err=select_periodic(periodic)
-            if err: raise RuntimeError(f"{cid}: {err}")
-            resolution="FORWARD_PERIODIC"
-            if not selected:
-                base={
-                  "column":column,"tabName":"fulltext","plate":plate,"stock":f"{code},{org}",
-                  "searchkey":"招股说明书","secid":"","category":"","trade":"",
-                  "seDate":f"2024-01-01~{cutoff}","sortName":"","sortType":"","isHLtitle":"true"
-                }
-                rows=complete_query(page,base,CNINFO_RAW/cid.replace(":","_")/"IPO")
-                ipo=[]
-                for a in rows:
-                    d=ann_date(a.get("announcementTime")); title=clean_title(a.get("announcementTitle"))
-                    if d and d<=cutoff and is_ipo_prospectus(title):
-                        ipo.append({
-                          "document_type":"IPO_PROSPECTUS","title":title,"disclosure_date":d,
-                          "period_end":"","revision":is_revision(title),
-                          "announcement_id":str(a.get("announcementId") or ""),
-                          "adjunct_url":str(a.get("adjunctUrl") or ""),"org_id":org,
-                          "locator_source":"V2.7.31_FORWARD_TARGETED_IPO"
-                        })
-                selected,err=select_ipo(ipo)
-                if err: raise RuntimeError(f"{cid}: {err}")
-                resolution="FORWARD_IPO_FALLBACK"
-            if not selected:
-                raise RuntimeError(f"{cid}: no terminal Primary Locator")
-            selected["resolution"]=resolution
-            out[cid]=selected
-            print(f"ADDED_LOCATOR {cid} -> {resolution}",flush=True)
-        browser.close()
-    return out
-
-def load_csv_exact(path:Path,expected_sha:str):
-    b=path.read_bytes()
-    actual=sha(b)
-    if actual!=expected_sha:
-        raise RuntimeError(f"{path}: SHA mismatch {actual} != {expected_sha}")
-    return list(csv.DictReader(b.decode("utf-8").splitlines()))
-
-def write_csv(path,rows,fields):
-    with path.open("w",encoding="utf-8",newline="") as f:
-        w=csv.DictWriter(f,fieldnames=fields,lineterminator="\n")
-        w.writeheader()
-        for r in rows:
-            w.writerow({k:r.get(k,"") for k in fields})
+def fetch_szse(asof_date):
+    r=requests.get(
+      SZSE_ENDPOINT,
+      params={"SHOWTYPE":"xlsx","CATALOGID":"1110","TABKEY":"tab1"},
+      headers={
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+        "Referer":SZSE_REFERER
+      },
+      timeout=60)
+    if r.status_code!=200:
+        raise RuntimeError(f"SZSE A-share XLSX HTTP {r.status_code}")
+    p=SZSE_RAW/"A_SHARE_LIST_FULL.xlsx"
+    p.write_bytes(r.content)
+    df=pd.read_excel(io.BytesIO(r.content),dtype=str).fillna("")
+    required={"板块","公司全称","A股代码","A股简称","A股上市日期"}
+    if not required.issubset(df.columns):
+        raise RuntimeError(f"SZSE XLSX missing columns {sorted(required-set(df.columns))}")
+    issuer={}
+    for _,x in df.iterrows():
+        board=str(x["板块"]).strip()
+        code=str(x["A股代码"]).strip()
+        if board not in {"主板","创业板"} or not CODE_RE.fullmatch(code):
+            continue
+        ld=pd.to_datetime(x["A股上市日期"],errors="coerce")
+        if pd.isna(ld) or pd.Timestamp(ld).date()>asof_date:
+            continue
+        name=str(x["公司全称"]).strip()
+        if not name:
+            raise RuntimeError(f"SZSE issuer identity missing {code}")
+        issuer[f"SZSE:{code}"]={
+          "canonical_security_id":f"SZSE:{code}",
+          "exchange":"SZSE","security_code":code,
+          "official_issuer_query_key":code,
+          "official_issuer_query_key_type":"SZSE_A_STOCK_CODE",
+          "issuer_legal_name":name,
+          "security_short_name":str(x["A股简称"]).strip(),
+          "official_list_date":pd.Timestamp(ld).date().isoformat(),
+          "official_board_code":board,
+          "source_path":str(p.relative_to(OUT)),
+          "source_sha256":sha(r.content)
+        }
+    if len(issuer)<=1000:
+        raise RuntimeError(f"SZSE normalized count implausible {len(issuer)}")
+    capture={
+      "exchange":"SZSE","url":r.url,"status":r.status_code,
+      "bytes":len(r.content),"sha256":sha(r.content),
+      "captured_at_utc":datetime.now(timezone.utc).isoformat()
+    }
+    return issuer,[capture]
 
 def build_raw_manifest():
-    rows=[]
     excluded={
       "V2.7.31_FORWARD_RAW_EVIDENCE.tar.gz","V2.7.31_FORWARD_RAW_MANIFEST.csv",
       "V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv","V2.7.31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT.json",
-      "V2.7.31_FORWARD_CURRENT_ISSUER_MAP.csv"
+      "V2.7.31_FORWARD_CURRENT_ISSUER_MAP.csv","V2.7.31_FORWARD_MEMBERSHIP_DELTA.csv"
     }
+    rows=[]
     for p in sorted(OUT.rglob("*")):
-        if not p.is_file() or p.name in excluded: continue
+        if not p.is_file() or p.name in excluded:
+            continue
         b=p.read_bytes()
         rows.append({"path":str(p.relative_to(OUT)),"bytes":len(b),"sha256":sha(b)})
     manifest=OUT/"V2.7.31_FORWARD_RAW_MANIFEST.csv"
     write_csv(manifest,rows,["path","bytes","sha256"])
     bundle=OUT/"V2.7.31_FORWARD_RAW_EVIDENCE.tar.gz"
     with tarfile.open(bundle,"w:gz",compresslevel=9) as tf:
-        for r in rows:
-            tf.add(OUT/r["path"],arcname=r["path"])
+        for row in rows:
+            tf.add(OUT/row["path"],arcname=row["path"])
     return manifest,bundle,rows
 
 def main():
-    run_started=datetime.now(timezone.utc)
-    ensure_after_t0(run_started,"run_started_at_utc")
-    asof_date=run_started.astimezone(BEIJING).date()
-    locator_cutoff=asof_date-timedelta(days=1)
+    started=datetime.now(timezone.utc)
+    ensure_after_t0(started,"run_started_at_utc")
+    asof_date=started.astimezone(BEIJING).date()
 
     baseline_issuer_rows=load_csv_exact(BASELINE_ISSUER,BASELINE_ISSUER_SHA)
     baseline_locator_rows=load_csv_exact(BASELINE_LOCATOR,BASELINE_LOCATOR_SHA)
     baseline_issuer={r["canonical_security_id"]:r for r in baseline_issuer_rows}
     baseline_locator={r["canonical_security_id"]:r for r in baseline_locator_rows}
     if set(baseline_issuer)!=set(baseline_locator):
-        raise RuntimeError("baseline issuer/locator identity sets differ")
-
-    captures=capture_current_official()
-    current_issuer=build_current_issuer_map(captures,asof_date)
-    current_ids=set(current_issuer)
-    observed_membership_at=datetime.now(timezone.utc)
-    ensure_after_t0(observed_membership_at,"official_membership_observed_at_utc")
-
+        raise RuntimeError("baseline issuer/locator sets differ")
     baseline_ids=set(baseline_issuer)
+
+    sse,sse_caps=fetch_sse(asof_date)
+    szse,sz_caps=fetch_szse(asof_date)
+    current_issuer={**sse,**szse}
+    current_ids=set(current_issuer)
+    observed_at=datetime.now(timezone.utc)
+    ensure_after_t0(observed_at,"official_membership_observed_at_utc")
+
     added=sorted(current_ids-baseline_ids)
     removed=sorted(baseline_ids-current_ids)
     unchanged=sorted(current_ids&baseline_ids)
-    print(f"CURRENT count={len(current_ids)} unchanged={len(unchanged)} added={len(added)} removed={len(removed)}",flush=True)
+    print(f"CURRENT count={len(current_ids)} SSE={len(sse)} SZSE={len(szse)} unchanged={len(unchanged)} added={len(added)} removed={len(removed)}",flush=True)
     if added: print("ADDED "+json.dumps(added,ensure_ascii=False),flush=True)
     if removed: print("REMOVED "+json.dumps(removed,ensure_ascii=False),flush=True)
 
-    added_locators=targeted_locator_for_added(added,current_issuer,locator_cutoff)
-    if set(added_locators)!=set(added):
-        raise RuntimeError("added locator resolution incomplete")
-
-    certified_at=datetime.now(timezone.utc)
-    ensure_after_t0(certified_at,"certified_at_utc")
-    universe=[]
-    for cid in sorted(current_ids):
-        issuer=current_issuer[cid]
-        if cid in baseline_locator:
-            loc=baseline_locator[cid]
-            locator_provenance="BASELINE_ADOPTED_AT_T0"
-            locator_original_observed=BASELINE_LOCATOR_ORIGINAL_OBSERVED
-            resolution=loc.get("resolution","")
-            doc_type=loc.get("document_type","")
-            title=loc.get("title","")
-            disclosure=loc.get("disclosure_date","")
-            period_end=loc.get("period_end","")
-            revision=loc.get("revision","")
-            ann_id=loc.get("announcement_id","")
-            adjunct=loc.get("adjunct_url","")
-            org_id=loc.get("org_id","")
-            locator_source=loc.get("source","")
-        else:
-            loc=added_locators[cid]
-            locator_provenance="FORWARD_OBSERVED_AFTER_T0"
-            locator_original_observed=certified_at.isoformat()
-            resolution=loc["resolution"]; doc_type=loc["document_type"]; title=loc["title"]
-            disclosure=loc["disclosure_date"]; period_end=loc["period_end"]; revision=loc["revision"]
-            ann_id=loc["announcement_id"]; adjunct=loc["adjunct_url"]; org_id=loc["org_id"]
-            locator_source=loc["locator_source"]
-        if not ann_id or not adjunct:
-            raise RuntimeError(f"{cid}: terminal locator incomplete")
-        universe.append({
-          "epoch_id":EPOCH_ID,"epoch_t0_utc":T0_UTC,"certified_at_utc":certified_at.isoformat(),
-          "canonical_security_id":cid,"exchange":issuer["exchange"],"security_code":issuer["security_code"],
-          "official_issuer_query_key":issuer["official_issuer_query_key"],
-          "official_issuer_query_key_type":issuer["official_issuer_query_key_type"],
-          "issuer_legal_name":issuer["issuer_legal_name"],"security_short_name":issuer["security_short_name"],
-          "official_list_date":issuer["official_list_date"],"official_board_code":issuer["official_board_code"],
-          "membership_provenance":"FORWARD_OBSERVED_AFTER_T0",
-          "membership_observed_at_utc":observed_membership_at.isoformat(),
-          "locator_provenance":locator_provenance,
-          "locator_original_first_observed_at_utc":locator_original_observed,
-          "resolution":resolution,"document_type":doc_type,"title":title,"disclosure_date":disclosure,
-          "period_end":period_end,"revision":revision,"announcement_id":ann_id,"adjunct_url":adjunct,
-          "org_id":org_id,"locator_source":locator_source,
-          "pdf_materialization_status":"ON_DEMAND_NOT_REQUIRED_FOR_UNIVERSE_ENTRY",
-          "universe_entry_status":"CERTIFIED"
-        })
-
-    universe_path=OUT/"V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv"
-    write_csv(universe_path,universe,list(universe[0].keys()))
-
-    issuer_rows=[current_issuer[cid] for cid in sorted(current_issuer)]
     issuer_path=OUT/"V2.7.31_FORWARD_CURRENT_ISSUER_MAP.csv"
     issuer_fields=[
       "canonical_security_id","exchange","security_code","official_issuer_query_key",
       "official_issuer_query_key_type","issuer_legal_name","security_short_name",
       "official_list_date","official_board_code","source_path","source_sha256"
     ]
+    issuer_rows=[current_issuer[cid] for cid in sorted(current_issuer)]
     write_csv(issuer_path,issuer_rows,issuer_fields)
 
-    set_hash=sha(("\n".join(sorted(current_ids))+"\n").encode())
-    sse_count=sum(1 for x in current_ids if x.startswith("SSE:"))
-    szse_count=sum(1 for x in current_ids if x.startswith("SZSE:"))
+    delta_rows=[]
+    for cid in added:
+        delta_rows.append({"canonical_security_id":cid,"delta":"ADDED",**current_issuer[cid]})
+    for cid in removed:
+        delta_rows.append({"canonical_security_id":cid,"delta":"REMOVED",**baseline_issuer[cid]})
+    delta_path=OUT/"V2.7.31_FORWARD_MEMBERSHIP_DELTA.csv"
+    delta_fields=["canonical_security_id","delta"]+issuer_fields[1:]
+    write_csv(delta_path,delta_rows,delta_fields)
+
+    capture_manifest=OUT/"V2.7.31_OFFICIAL_DIRECT_CAPTURE_MANIFEST.json"
+    capture_manifest.write_text(
+      json.dumps({"sse":sse_caps,"szse":sz_caps},ensure_ascii=False,indent=2)+"\n",
+      encoding="utf-8")
+
+    certified_at=None
+    universe_path=OUT/"V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv"
+    if not added:
+        certified_at=datetime.now(timezone.utc)
+        universe=[]
+        for cid in sorted(current_ids):
+            issuer=current_issuer[cid]
+            loc=baseline_locator[cid]
+            if not loc.get("announcement_id") or not loc.get("adjunct_url"):
+                raise RuntimeError(f"{cid}: baseline locator incomplete")
+            universe.append({
+              "epoch_id":EPOCH_ID,"epoch_t0_utc":T0_UTC,"certified_at_utc":certified_at.isoformat(),
+              "canonical_security_id":cid,"exchange":issuer["exchange"],"security_code":issuer["security_code"],
+              "official_issuer_query_key":issuer["official_issuer_query_key"],
+              "official_issuer_query_key_type":issuer["official_issuer_query_key_type"],
+              "issuer_legal_name":issuer["issuer_legal_name"],"security_short_name":issuer["security_short_name"],
+              "official_list_date":issuer["official_list_date"],"official_board_code":issuer["official_board_code"],
+              "membership_provenance":"FORWARD_OBSERVED_AFTER_T0",
+              "membership_observed_at_utc":observed_at.isoformat(),
+              "locator_provenance":"BASELINE_ADOPTED_AT_T0",
+              "locator_original_first_observed_at_utc":BASELINE_LOCATOR_ORIGINAL_OBSERVED,
+              "resolution":loc.get("resolution",""),"document_type":loc.get("document_type",""),
+              "title":loc.get("title",""),"disclosure_date":loc.get("disclosure_date",""),
+              "period_end":loc.get("period_end",""),"revision":loc.get("revision",""),
+              "announcement_id":loc.get("announcement_id",""),"adjunct_url":loc.get("adjunct_url",""),
+              "org_id":loc.get("org_id",""),"locator_source":loc.get("source",""),
+              "pdf_materialization_status":"ON_DEMAND_NOT_REQUIRED_FOR_UNIVERSE_ENTRY",
+              "universe_entry_status":"CERTIFIED"
+            })
+        write_csv(universe_path,universe,list(universe[0].keys()))
 
     manifest,bundle,raw_rows=build_raw_manifest()
+    set_hash=sha(("\n".join(sorted(current_ids))+"\n").encode())
+    gate_status="FORWARD_CERTIFIED_UNIVERSE_BOOTSTRAP_PASS" if not added else "FORWARD_MEMBERSHIP_DELTA_PASS_NEEDS_TARGETED_ADDITION_RESOLUTION"
+    downstream_cert="PASS" if not added else "BLOCKED_ADDED_MEMBERS_NEED_LOCATOR"
+    first60="READY_FOR_DETERMINISTIC_EPISODE_START_NOT_STARTED" if not added else "BLOCKED_PENDING_ADDED_MEMBER_LOCATORS"
 
     receipt={
-      "schema":"AI_CORE_EVID_V2_7_31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT_V1",
+      "schema":"AI_CORE_EVID_V2_7_31_FORWARD_MEMBERSHIP_BOOTSTRAP_RECEIPT_V1",
       "epoch_id":EPOCH_ID,"epoch_t0_utc":T0_UTC,
-      "run_started_at_utc":run_started.isoformat(),
-      "official_membership_observed_at_utc":observed_membership_at.isoformat(),
-      "certified_at_utc":certified_at.isoformat(),
+      "run_started_at_utc":started.isoformat(),
+      "official_membership_observed_at_utc":observed_at.isoformat(),
       "asof_date_asia_shanghai":asof_date.isoformat(),
-      "same_day_filing_disclosures_excluded":True,
-      "targeted_locator_cutoff_date":locator_cutoff.isoformat(),
+      "transport":{
+        "sse":"DIRECT_REUSED_OFFICIAL_API_CONTRACT",
+        "szse":"DIRECT_OFFICIAL_XLSX_EXPORT",
+        "webpage_navigation":False,
+        "chromium_required":False
+      },
       "baseline":{
-        "issuer_map_sha256":BASELINE_ISSUER_SHA,
+        "count":len(baseline_ids),"issuer_map_sha256":BASELINE_ISSUER_SHA,
         "primary_locator_inventory_sha256":BASELINE_LOCATOR_SHA,
-        "baseline_count":len(baseline_ids),
         "adoption_semantics":"BASELINE_ADOPTED_AT_T0_FOR_POST_T0_DECISIONS_ONLY"
       },
       "current_official_membership":{
-        "count":len(current_ids),"sse_count":sse_count,"szse_count":szse_count,
-        "canonical_sorted_newline_sha256":set_hash,"normalization_status":"PASS"
+        "count":len(current_ids),"sse_count":len(sse),"szse_count":len(szse),
+        "canonical_sorted_newline_sha256":set_hash
       },
       "delta":{
         "unchanged_count":len(unchanged),"added_count":len(added),"removed_count":len(removed),
         "added_ids":added,"removed_ids":removed
       },
-      "issuer_identity":{
+      "current_issuer_identity":{
         "row_count":len(current_issuer),"exact_current_membership_coverage":True,
-        "provenance":"FORWARD_OBSERVED_AFTER_T0"
-      },
-      "primary_locator":{
-        "terminal_locator_count":len(universe),
-        "baseline_adopted_count":len(unchanged),
-        "forward_targeted_resolution_count":len(added),
-        "missing_count":0
+        "observed_after_t0":True
       },
       "outputs":{
-        "certified_universe_sha256":sha(universe_path.read_bytes()),
         "current_issuer_map_sha256":sha(issuer_path.read_bytes()),
+        "membership_delta_sha256":sha(delta_path.read_bytes()),
         "raw_manifest_sha256":sha(manifest.read_bytes()),
         "raw_bundle_sha256":sha(bundle.read_bytes()),
-        "raw_bundle_bytes":bundle.stat().st_size,
-        "raw_file_count":len(raw_rows)
+        "raw_bundle_bytes":bundle.stat().st_size,"raw_file_count":len(raw_rows)
       },
       "temporal_governance":{
         "pre_t0_decisions_authorized":False,
-        "post_certified_at_decisions_may_use_universe":True,
         "historical_2026_09_17_prospective_relabeling":"FORBIDDEN"
       },
       "downstream":{
-        "certified_v2_universe":"PASS",
-        "first60":"READY_FOR_DETERMINISTIC_EPISODE_START_NOT_STARTED",
+        "certified_v2_universe":downstream_cert,
+        "first60":first60,
         "filing_content_materialization":"ON_DEMAND_V2.7.30",
-        "vendor_price_coverage":"SEPARATE_PER_SECURITY_EXECUTION_GATE",
         "s4_s5_s6":"BLOCKED_PENDING_FIRST60_AND_LATER_GATES","live":"BLOCKED"
       },
       "gate":{
-        "status":"FORWARD_CERTIFIED_UNIVERSE_BOOTSTRAP_PASS",
-        "current_membership_exact":True,"issuer_identity_exact":True,
-        "terminal_locator_exact":True,"all_forward_timestamps_after_t0":True
+        "status":gate_status,
+        "current_membership_exact":True,
+        "issuer_identity_exact":True,
+        "targeted_added_member_resolution_required":bool(added)
       }
     }
+    if certified_at is not None:
+        receipt["certified_at_utc"]=certified_at.isoformat()
+        receipt["primary_locator"]={
+          "terminal_locator_count":len(current_ids),
+          "baseline_adopted_count":len(current_ids),
+          "forward_targeted_resolution_count":0,"missing_count":0
+        }
+        receipt["outputs"]["certified_universe_sha256"]=sha(universe_path.read_bytes())
+
     canonical=json.dumps(receipt,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()
     receipt["receipt_sha256"]=sha(canonical)
     (OUT/"V2.7.31_FORWARD_CERTIFIED_UNIVERSE_RECEIPT.json").write_text(
