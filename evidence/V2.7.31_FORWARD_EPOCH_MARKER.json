@@ -1,0 +1,8 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_FORWARD_EPOCH_MARKER_V1",
+  "version": "V2.7.31",
+  "epoch_id": "AI_CORE_EVID_FORWARD_EPOCH_001",
+  "t0_authority": "GitHub committed_at timestamp of this file creation commit",
+  "rule": "No observation earlier than T0 may be labeled FORWARD_OBSERVED. Pre-existing frozen artifacts may only be BASELINE_ADOPTED_AT_T0 for decisions after T0.",
+  "historical_relabeling_forbidden": true
+}
