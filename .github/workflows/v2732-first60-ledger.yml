@@ -1,11 +1,5 @@
 name: V2.7.32 First60 Ledger Validation
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2732_first60_ledger.py"
-      - ".github/workflows/v2732-first60-ledger.yml"
-      - "evidence/V2.7.32_FIRST60_LEDGER_GENESIS.json"
   workflow_dispatch:
 permissions:
   contents: write
