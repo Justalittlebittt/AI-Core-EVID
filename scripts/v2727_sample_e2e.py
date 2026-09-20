@@ -144,39 +144,63 @@ def sse_download_pdf(ctx, chosen, cid):
     attempts=[]
     for host in ("https://static.sse.com.cn","https://www.sse.com.cn"):
         url=host+path
-        try:
-            resp=ctx.request.get(
-              url,
-              headers={
-                "Referer":referer,
-                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
-                "Accept":"application/pdf,application/octet-stream;q=0.9,*/*;q=0.8",
-              },
-              timeout=60000
-            )
-            b=resp.body()
-            diag={
-              "host":host,"url":url,"status":resp.status,
-              "content_type":resp.headers.get("content-type"),
-              "bytes":len(b),"sha256":sha(b),
-              "first64_hex":b[:64].hex(),
-              "pdf_header_offset":b[:1024].find(b"%PDF-")
-            }
-            attempts.append(diag)
-            (RAW/(cid.replace(":","_")+f"_sse_pdf_attempt_{len(attempts)}.json")).write_text(
-              json.dumps(diag,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
-            )
-            if resp.status==200 and diag["pdf_header_offset"]>=0:
-                p=PDF/(cid.replace(":","_")+".pdf"); p.write_bytes(b)
-                return {
-                  "path":str(p),"bytes":len(b),"sha256":sha(b),
+        for phase in ("initial","post_browser_challenge"):
+            try:
+                resp=ctx.request.get(
+                  url,
+                  headers={
+                    "Referer":referer,
+                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+                    "Accept":"application/pdf,application/octet-stream;q=0.9,*/*;q=0.8",
+                  },
+                  timeout=60000
+                )
+                b=resp.body()
+                diag={
+                  "host":host,"url":url,"phase":phase,"status":resp.status,
                   "content_type":resp.headers.get("content-type"),
-                  "pdf_header_offset":diag["pdf_header_offset"],
-                  "resolved_url":url,"attempts":attempts
+                  "bytes":len(b),"sha256":sha(b),
+                  "first64_hex":b[:64].hex(),
+                  "pdf_header_offset":b[:1024].find(b"%PDF-"),
+                  "acw_challenge_detected":(b"acw_sc__v2" in b[:20000])
                 }
-            (RAW/(cid.replace(":","_")+f"_sse_nonpdf_attempt_{len(attempts)}.bin")).write_bytes(b)
-        except Exception as e:
-            attempts.append({"host":host,"url":url,"error":repr(e)})
+                attempts.append(diag)
+                (RAW/(cid.replace(":","_")+f"_sse_pdf_attempt_{len(attempts)}.json")).write_text(
+                  json.dumps(diag,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+                )
+                if resp.status==200 and diag["pdf_header_offset"]>=0:
+                    p=PDF/(cid.replace(":","_")+".pdf"); p.write_bytes(b)
+                    return {
+                      "path":str(p),"bytes":len(b),"sha256":sha(b),
+                      "content_type":resp.headers.get("content-type"),
+                      "pdf_header_offset":diag["pdf_header_offset"],
+                      "resolved_url":url,"attempts":attempts
+                    }
+
+                (RAW/(cid.replace(":","_")+f"_sse_nonpdf_attempt_{len(attempts)}.bin")).write_bytes(b)
+
+                # Let SSE's own browser challenge JavaScript set acw_sc__v2 and reload.
+                if phase=="initial" and diag["acw_challenge_detected"]:
+                    p=ctx.new_page()
+                    try:
+                        p.goto(url,wait_until="commit",timeout=30000)
+                        p.wait_for_timeout(3500)
+                    except Exception as e:
+                        attempts.append({"host":host,"url":url,"phase":"browser_challenge","navigation_error":repr(e)})
+                    finally:
+                        p.close()
+                    cookies=ctx.cookies([url])
+                    (RAW/(cid.replace(":","_")+f"_sse_cookie_state_{host.split('//')[1].replace('.','_')}.json")).write_text(
+                      json.dumps([
+                        {"name":x.get("name"),"domain":x.get("domain"),"path":x.get("path"),"expires":x.get("expires")}
+                        for x in cookies
+                      ],ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+                    )
+                    continue
+                break
+            except Exception as e:
+                attempts.append({"host":host,"url":url,"phase":phase,"error":repr(e)})
+                break
     raise RuntimeError(f"{cid} no official SSE PDF host returned valid PDF; attempts={attempts}")
 
 def save_pdf(resp, cid):
