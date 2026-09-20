@@ -1,0 +1,1506 @@
+[
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "900929",
+    "secName": "锦旅Ｂ股",
+    "announcementId": "1225033807",
+    "announcementTitle": "锦旅B股2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "900929",
+    "secName": "锦旅Ｂ股",
+    "announcementId": "1225033788",
+    "announcementTitle": "锦旅B股2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "900948",
+    "secName": "伊泰Ｂ股",
+    "announcementId": "1225172314",
+    "announcementTitle": "内蒙古伊泰煤炭股份有限公司2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "900948",
+    "secName": "伊泰Ｂ股",
+    "announcementId": "1225172299",
+    "announcementTitle": "内蒙古伊泰煤炭股份有限公司2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "900939",
+    "secName": "汇丽B",
+    "announcementId": "1225116311",
+    "announcementTitle": "上海汇丽建材股份有限公司2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "900939",
+    "secName": "汇丽B",
+    "announcementId": "1225116297",
+    "announcementTitle": "上海汇丽建材股份有限公司2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600608",
+    "secName": "*ST沪科",
+    "announcementId": "1225269057",
+    "announcementTitle": "*ST沪科2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600608",
+    "secName": "*ST沪科",
+    "announcementId": "1225269039",
+    "announcementTitle": "*ST沪科2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600636",
+    "secName": "*ST国化",
+    "announcementId": "1225268994",
+    "announcementTitle": "国新文化控股股份有限公司2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600636",
+    "secName": "*ST国化",
+    "announcementId": "1225268939",
+    "announcementTitle": "国新文化控股股份有限公司2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600599",
+    "secName": "*ST熊猫",
+    "announcementId": "1225268281",
+    "announcementTitle": "*ST熊猫2025年年度报告全文"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600599",
+    "secName": "*ST熊猫",
+    "announcementId": "1225268259",
+    "announcementTitle": "*ST熊猫2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "605081",
+    "secName": "*ST太和",
+    "announcementId": "1225267992",
+    "announcementTitle": "上海太和水科技发展股份有限公司2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "605081",
+    "secName": "*ST太和",
+    "announcementId": "1225267974",
+    "announcementTitle": "上海太和水科技发展股份有限公司2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600696",
+    "secName": "*ST岩石",
+    "announcementId": "1225264351",
+    "announcementTitle": "2025年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600696",
+    "secName": "*ST岩石",
+    "announcementId": "1225264273",
+    "announcementTitle": "2025年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600421",
+    "secName": "*ST华嵘",
+    "announcementId": "1225255905",
+    "announcementTitle": "华嵘控股2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600421",
+    "secName": "*ST华嵘",
+    "announcementId": "1225255672",
+    "announcementTitle": "华嵘控股2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "688287",
+    "secName": "*ST观典",
+    "announcementId": "1225248315",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "688287",
+    "secName": "*ST观典",
+    "announcementId": "1225248296",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600193",
+    "secName": "*ST创兴",
+    "announcementId": "1225221220",
+    "announcementTitle": "上海创兴资源开发股份有限公司2025年年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "ANNUAL",
+    "secCode": "600193",
+    "secName": "*ST创兴",
+    "announcementId": "1225221214",
+    "announcementTitle": "上海创兴资源开发股份有限公司2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "HALF_YEAR",
+    "secCode": "900939",
+    "secName": "汇丽B",
+    "announcementId": "1225474011",
+    "announcementTitle": "上海汇丽建材股份有限公司2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "HALF_YEAR",
+    "secCode": "900939",
+    "secName": "汇丽B",
+    "announcementId": "1225474008",
+    "announcementTitle": "上海汇丽建材股份有限公司2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "HALF_YEAR",
+    "secCode": "900929",
+    "secName": "锦旅Ｂ股",
+    "announcementId": "1225502464",
+    "announcementTitle": "锦旅B股2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "HALF_YEAR",
+    "secCode": "900929",
+    "secName": "锦旅Ｂ股",
+    "announcementId": "1225502370",
+    "announcementTitle": "锦旅B股2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "HALF_YEAR",
+    "secCode": "900948",
+    "secName": "伊泰Ｂ股",
+    "announcementId": "1225530067",
+    "announcementTitle": "内蒙古伊泰煤炭股份有限公司2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SSE",
+    "kind": "HALF_YEAR",
+    "secCode": "900948",
+    "secName": "伊泰Ｂ股",
+    "announcementId": "1225530040",
+    "announcementTitle": "内蒙古伊泰煤炭股份有限公司2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200055",
+    "secName": "方大Ｂ",
+    "announcementId": "1225081657",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200055",
+    "secName": "方大Ｂ",
+    "announcementId": "1225081656",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200761",
+    "secName": "本钢板Ｂ",
+    "announcementId": "1225079233",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200761",
+    "secName": "本钢板Ｂ",
+    "announcementId": "1225079232",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200521",
+    "secName": "虹美菱B",
+    "announcementId": "1225077814",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200521",
+    "secName": "虹美菱B",
+    "announcementId": "1225077813",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "201872",
+    "secName": "招港B",
+    "announcementId": "1225077426",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "201872",
+    "secName": "招港B",
+    "announcementId": "1225077425",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200725",
+    "secName": "京东方Ｂ",
+    "announcementId": "1225068517",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200725",
+    "secName": "京东方Ｂ",
+    "announcementId": "1225068516",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200488",
+    "secName": "ST晨鸣B",
+    "announcementId": "1225058513",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200488",
+    "secName": "ST晨鸣B",
+    "announcementId": "1225058512",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200539",
+    "secName": "粤电力Ｂ",
+    "announcementId": "1225058381",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200539",
+    "secName": "粤电力Ｂ",
+    "announcementId": "1225058380",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200045",
+    "secName": "深纺织Ｂ",
+    "announcementId": "1225039824",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200045",
+    "secName": "深纺织Ｂ",
+    "announcementId": "1225039823",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200011",
+    "secName": "深物业B",
+    "announcementId": "1225045293",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200011",
+    "secName": "深物业B",
+    "announcementId": "1225045292",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200553",
+    "secName": "安道麦B",
+    "announcementId": "1225045251",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200553",
+    "secName": "安道麦B",
+    "announcementId": "1225045250",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200550",
+    "secName": "江  铃Ｂ",
+    "announcementId": "1225043185",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200550",
+    "secName": "江  铃Ｂ",
+    "announcementId": "1225043184",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200505",
+    "secName": "京粮B",
+    "announcementId": "1225039596",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200505",
+    "secName": "京粮B",
+    "announcementId": "1225039595",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200058",
+    "secName": "深赛格B",
+    "announcementId": "1225037493",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200029",
+    "secName": "深深房Ｂ",
+    "announcementId": "1225018481",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200029",
+    "secName": "深深房Ｂ",
+    "announcementId": "1225018480",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200026",
+    "secName": "飞亚达Ｂ",
+    "announcementId": "1225009605",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200026",
+    "secName": "飞亚达Ｂ",
+    "announcementId": "1225009604",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200429",
+    "secName": "粤高速Ｂ",
+    "announcementId": "1225008778",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200429",
+    "secName": "粤高速Ｂ",
+    "announcementId": "1225008777",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225004509",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225001571",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225001570",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225001563",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200530",
+    "secName": "冰山B",
+    "announcementId": "1225165568",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200530",
+    "secName": "冰山B",
+    "announcementId": "1225165567",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225161812",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225161811",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225161805",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225161804",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225157489",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225157488",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225157477",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225157476",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200025",
+    "secName": "特  力Ｂ",
+    "announcementId": "1225138359",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200025",
+    "secName": "特  力Ｂ",
+    "announcementId": "1225138358",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200017",
+    "secName": "深中华B",
+    "announcementId": "1225132612",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200017",
+    "secName": "深中华B",
+    "announcementId": "1225132611",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200869",
+    "secName": "张  裕Ｂ",
+    "announcementId": "1225120200",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200869",
+    "secName": "张  裕Ｂ",
+    "announcementId": "1225116357",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200541",
+    "secName": "粤照明Ｂ",
+    "announcementId": "1225113362",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200541",
+    "secName": "粤照明Ｂ",
+    "announcementId": "1225113361",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200726",
+    "secName": "鲁  泰Ｂ",
+    "announcementId": "1225112676",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200726",
+    "secName": "鲁  泰Ｂ",
+    "announcementId": "1225112675",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200581",
+    "secName": "苏威孚Ｂ",
+    "announcementId": "1225111407",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200581",
+    "secName": "苏威孚Ｂ",
+    "announcementId": "1225111406",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200037",
+    "secName": "深南电B",
+    "announcementId": "1225101234",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200037",
+    "secName": "深南电B",
+    "announcementId": "1225101233",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200570",
+    "secName": "苏常柴Ｂ",
+    "announcementId": "1225097223",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200570",
+    "secName": "苏常柴Ｂ",
+    "announcementId": "1225097222",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200625",
+    "secName": "长  安Ｂ",
+    "announcementId": "1225093379",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200625",
+    "secName": "长  安Ｂ",
+    "announcementId": "1225093378",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "002808",
+    "secName": "*ST恒久",
+    "announcementId": "1225275126",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "002808",
+    "secName": "*ST恒久",
+    "announcementId": "1225275793",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "002898",
+    "secName": "*ST赛隆",
+    "announcementId": "1225274273",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "002898",
+    "secName": "*ST赛隆",
+    "announcementId": "1225274272",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "300029",
+    "secName": "*ST天龙",
+    "announcementId": "1225269131",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "300029",
+    "secName": "*ST天龙",
+    "announcementId": "1225269130",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "000638",
+    "secName": "*ST万方",
+    "announcementId": "1225249238",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "000638",
+    "secName": "*ST万方",
+    "announcementId": "1225249237",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200596",
+    "secName": "古井贡Ｂ",
+    "announcementId": "1225237603",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200596",
+    "secName": "古井贡Ｂ",
+    "announcementId": "1225237602",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200016",
+    "secName": "深康佳Ｂ",
+    "announcementId": "1225231996",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200016",
+    "secName": "深康佳Ｂ",
+    "announcementId": "1225231995",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200019",
+    "secName": "深粮B",
+    "announcementId": "1225213328",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200019",
+    "secName": "深粮B",
+    "announcementId": "1225213327",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "000004",
+    "secName": "*ST国华",
+    "announcementId": "1225208850",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "000004",
+    "secName": "*ST国华",
+    "announcementId": "1225208849",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200012",
+    "secName": "南  玻Ｂ",
+    "announcementId": "1225204204",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200012",
+    "secName": "南  玻Ｂ",
+    "announcementId": "1225204203",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225199854",
+    "announcementTitle": "2025年年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225199853",
+    "announcementTitle": "2025年年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225199844",
+    "announcementTitle": "2025年年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "ANNUAL",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225199843",
+    "announcementTitle": "2025年年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200530",
+    "secName": "冰山B",
+    "announcementId": "1225470285",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200530",
+    "secName": "冰山B",
+    "announcementId": "1225470284",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225461772",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225461771",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225461769",
+    "announcementTitle": "2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200512",
+    "secName": "闽灿坤Ｂ",
+    "announcementId": "1225461768",
+    "announcementTitle": "2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200025",
+    "secName": "特  力Ｂ",
+    "announcementId": "1225492152",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200025",
+    "secName": "特  力Ｂ",
+    "announcementId": "1225492151",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200026",
+    "secName": "飞亚达Ｂ",
+    "announcementId": "1225485705",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200026",
+    "secName": "飞亚达Ｂ",
+    "announcementId": "1225485704",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200869",
+    "secName": "张  裕Ｂ",
+    "announcementId": "1225484939",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200869",
+    "secName": "张  裕Ｂ",
+    "announcementId": "1225484938",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200570",
+    "secName": "苏常柴Ｂ",
+    "announcementId": "1225484428",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200570",
+    "secName": "苏常柴Ｂ",
+    "announcementId": "1225484427",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200521",
+    "secName": "虹美菱B",
+    "announcementId": "1225483655",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200521",
+    "secName": "虹美菱B",
+    "announcementId": "1225483654",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200553",
+    "secName": "安道麦B",
+    "announcementId": "1225479145",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200553",
+    "secName": "安道麦B",
+    "announcementId": "1225479144",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200058",
+    "secName": "深赛格B",
+    "announcementId": "1225509579",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200505",
+    "secName": "京粮B",
+    "announcementId": "1225508184",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200505",
+    "secName": "京粮B",
+    "announcementId": "1225508183",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200029",
+    "secName": "深深房Ｂ",
+    "announcementId": "1225506270",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200029",
+    "secName": "深深房Ｂ",
+    "announcementId": "1225506269",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225504223",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225504222",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225504220",
+    "announcementTitle": "2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200992",
+    "secName": "中  鲁Ｂ",
+    "announcementId": "1225504219",
+    "announcementTitle": "2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200045",
+    "secName": "深纺织Ｂ",
+    "announcementId": "1225503934",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200045",
+    "secName": "深纺织Ｂ",
+    "announcementId": "1225503933",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225503541",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225503540",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225503536",
+    "announcementTitle": "2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200468",
+    "secName": "宁通信B",
+    "announcementId": "1225503535",
+    "announcementTitle": "2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200539",
+    "secName": "粤电力Ｂ",
+    "announcementId": "1225503465",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200539",
+    "secName": "粤电力Ｂ",
+    "announcementId": "1225503464",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200581",
+    "secName": "苏威孚Ｂ",
+    "announcementId": "1225501180",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200581",
+    "secName": "苏威孚Ｂ",
+    "announcementId": "1225501179",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200541",
+    "secName": "粤照明Ｂ",
+    "announcementId": "1225499600",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200541",
+    "secName": "粤照明Ｂ",
+    "announcementId": "1225499599",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200019",
+    "secName": "深粮B",
+    "announcementId": "1225499538",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200019",
+    "secName": "深粮B",
+    "announcementId": "1225499537",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200017",
+    "secName": "深中华B",
+    "announcementId": "1225496648",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200017",
+    "secName": "深中华B",
+    "announcementId": "1225496647",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200055",
+    "secName": "方大Ｂ",
+    "announcementId": "1225496287",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200055",
+    "secName": "方大Ｂ",
+    "announcementId": "1225496286",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200429",
+    "secName": "粤高速Ｂ",
+    "announcementId": "1225495712",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200429",
+    "secName": "粤高速Ｂ",
+    "announcementId": "1225495711",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200037",
+    "secName": "深南电B",
+    "announcementId": "1225495644",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200037",
+    "secName": "深南电B",
+    "announcementId": "1225495643",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225495370",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225495369",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225495367",
+    "announcementTitle": "2026年半年度报告"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200706",
+    "secName": "瓦轴B",
+    "announcementId": "1225495366",
+    "announcementTitle": "2026年半年度报告摘要"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200550",
+    "secName": "江  铃Ｂ",
+    "announcementId": "1225490933",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200550",
+    "secName": "江  铃Ｂ",
+    "announcementId": "1225490932",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200488",
+    "secName": "ST晨鸣B",
+    "announcementId": "1225531816",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200488",
+    "secName": "ST晨鸣B",
+    "announcementId": "1225531815",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "201872",
+    "secName": "招港B",
+    "announcementId": "1225530789",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "201872",
+    "secName": "招港B",
+    "announcementId": "1225530788",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200761",
+    "secName": "本钢板Ｂ",
+    "announcementId": "1225528470",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200761",
+    "secName": "本钢板Ｂ",
+    "announcementId": "1225528469",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200625",
+    "secName": "长  安Ｂ",
+    "announcementId": "1225528447",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200625",
+    "secName": "长  安Ｂ",
+    "announcementId": "1225528446",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200726",
+    "secName": "鲁  泰Ｂ",
+    "announcementId": "1225527077",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200726",
+    "secName": "鲁  泰Ｂ",
+    "announcementId": "1225527076",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200725",
+    "secName": "京东方Ｂ",
+    "announcementId": "1225526262",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200725",
+    "secName": "京东方Ｂ",
+    "announcementId": "1225526261",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200011",
+    "secName": "深物业B",
+    "announcementId": "1225524521",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200011",
+    "secName": "深物业B",
+    "announcementId": "1225524520",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200596",
+    "secName": "古井贡Ｂ",
+    "announcementId": "1225524332",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200596",
+    "secName": "古井贡Ｂ",
+    "announcementId": "1225524331",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200016",
+    "secName": "*ST康佳B",
+    "announcementId": "1225522083",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200016",
+    "secName": "*ST康佳B",
+    "announcementId": "1225522082",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200012",
+    "secName": "南  玻Ｂ",
+    "announcementId": "1225517791",
+    "announcementTitle": "2026年半年度报告（英文版）"
+  },
+  {
+    "exchange_stream": "SZSE",
+    "kind": "HALF_YEAR",
+    "secCode": "200012",
+    "secName": "南  玻Ｂ",
+    "announcementId": "1225517790",
+    "announcementTitle": "2026年半年度报告摘要（英文版）"
+  }
+]

@@ -1,0 +1,348 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_28_PERIODIC_CATALOG_CAPTURE_V1",
+  "pit_date": "2026-09-17",
+  "capture_role": "SHADOW_DIAGNOSTIC_RECONSTRUCTION_ONLY",
+  "first_system_observed_at_utc": "2026-09-20T06:02:45.142843+00:00",
+  "prospective_backfill_allowed": false,
+  "catalog_window": {
+    "start": "2026-01-01",
+    "cutoff_inclusive": "2026-09-16"
+  },
+  "source": "CNInfo official disclosure platform",
+  "endpoint": "https://www.cninfo.com.cn/new/hisAnnouncement/query",
+  "categories": {
+    "ANNUAL": "category_ndbg_szsh",
+    "HALF_YEAR": "category_bndbg_szsh"
+  },
+  "mother_pool_count": 5221,
+  "stream_stats": [
+    {
+      "exchange": "SSE",
+      "kind": "ANNUAL",
+      "adaptive_date_partitioning": true,
+      "safe_max_pages_per_leaf": 90,
+      "leaf_segment_count": 5,
+      "stream_fetched_rows": 4724,
+      "stream_unique_announcement_ids": 4724,
+      "mapped_mother_pool_rows": 4702,
+      "segments": [
+        {
+          "window_start": "2026-01-01",
+          "window_end": "2026-03-06",
+          "depth": 2,
+          "server_total_records": 22,
+          "server_totalpages": 0,
+          "derived_min_pages": 1,
+          "target_pages": 1,
+          "fetched_rows": 22,
+          "unique_announcement_ids": 22
+        },
+        {
+          "window_start": "2026-03-07",
+          "window_end": "2026-04-08",
+          "depth": 3,
+          "server_total_records": 1265,
+          "server_totalpages": 42,
+          "derived_min_pages": 43,
+          "target_pages": 43,
+          "fetched_rows": 1265,
+          "unique_announcement_ids": 1265
+        },
+        {
+          "window_start": "2026-04-09",
+          "window_end": "2026-04-24",
+          "depth": 4,
+          "server_total_records": 1825,
+          "server_totalpages": 60,
+          "derived_min_pages": 61,
+          "target_pages": 61,
+          "fetched_rows": 1825,
+          "unique_announcement_ids": 1825
+        },
+        {
+          "window_start": "2026-04-25",
+          "window_end": "2026-05-10",
+          "depth": 4,
+          "server_total_records": 1569,
+          "server_totalpages": 52,
+          "derived_min_pages": 53,
+          "target_pages": 53,
+          "fetched_rows": 1569,
+          "unique_announcement_ids": 1569
+        },
+        {
+          "window_start": "2026-05-11",
+          "window_end": "2026-09-16",
+          "depth": 1,
+          "server_total_records": 43,
+          "server_totalpages": 1,
+          "derived_min_pages": 2,
+          "target_pages": 2,
+          "fetched_rows": 43,
+          "unique_announcement_ids": 43
+        }
+      ]
+    },
+    {
+      "exchange": "SSE",
+      "kind": "HALF_YEAR",
+      "adaptive_date_partitioning": true,
+      "safe_max_pages_per_leaf": 90,
+      "leaf_segment_count": 7,
+      "stream_fetched_rows": 4678,
+      "stream_unique_announcement_ids": 4678,
+      "mapped_mother_pool_rows": 4672,
+      "segments": [
+        {
+          "window_start": "2026-01-01",
+          "window_end": "2026-05-10",
+          "depth": 1,
+          "server_total_records": 24,
+          "server_totalpages": 0,
+          "derived_min_pages": 1,
+          "target_pages": 1,
+          "fetched_rows": 24,
+          "unique_announcement_ids": 24
+        },
+        {
+          "window_start": "2026-05-11",
+          "window_end": "2026-07-14",
+          "depth": 2,
+          "server_total_records": 7,
+          "server_totalpages": 0,
+          "derived_min_pages": 1,
+          "target_pages": 1,
+          "fetched_rows": 7,
+          "unique_announcement_ids": 7
+        },
+        {
+          "window_start": "2026-07-15",
+          "window_end": "2026-08-15",
+          "depth": 3,
+          "server_total_records": 381,
+          "server_totalpages": 12,
+          "derived_min_pages": 13,
+          "target_pages": 13,
+          "fetched_rows": 381,
+          "unique_announcement_ids": 381
+        },
+        {
+          "window_start": "2026-08-16",
+          "window_end": "2026-08-23",
+          "depth": 5,
+          "server_total_records": 922,
+          "server_totalpages": 30,
+          "derived_min_pages": 31,
+          "target_pages": 31,
+          "fetched_rows": 922,
+          "unique_announcement_ids": 922
+        },
+        {
+          "window_start": "2026-08-24",
+          "window_end": "2026-08-27",
+          "depth": 6,
+          "server_total_records": 1803,
+          "server_totalpages": 60,
+          "derived_min_pages": 61,
+          "target_pages": 61,
+          "fetched_rows": 1803,
+          "unique_announcement_ids": 1803
+        },
+        {
+          "window_start": "2026-08-28",
+          "window_end": "2026-08-31",
+          "depth": 6,
+          "server_total_records": 1536,
+          "server_totalpages": 51,
+          "derived_min_pages": 52,
+          "target_pages": 52,
+          "fetched_rows": 1536,
+          "unique_announcement_ids": 1536
+        },
+        {
+          "window_start": "2026-09-01",
+          "window_end": "2026-09-16",
+          "depth": 4,
+          "server_total_records": 5,
+          "server_totalpages": 0,
+          "derived_min_pages": 1,
+          "target_pages": 1,
+          "fetched_rows": 5,
+          "unique_announcement_ids": 5
+        }
+      ]
+    },
+    {
+      "exchange": "SZSE",
+      "kind": "ANNUAL",
+      "adaptive_date_partitioning": true,
+      "safe_max_pages_per_leaf": 90,
+      "leaf_segment_count": 5,
+      "stream_fetched_rows": 6002,
+      "stream_unique_announcement_ids": 6002,
+      "mapped_mother_pool_rows": 5917,
+      "segments": [
+        {
+          "window_start": "2026-01-01",
+          "window_end": "2026-03-06",
+          "depth": 2,
+          "server_total_records": 39,
+          "server_totalpages": 1,
+          "derived_min_pages": 2,
+          "target_pages": 2,
+          "fetched_rows": 39,
+          "unique_announcement_ids": 39
+        },
+        {
+          "window_start": "2026-03-07",
+          "window_end": "2026-04-08",
+          "depth": 3,
+          "server_total_records": 1263,
+          "server_totalpages": 42,
+          "derived_min_pages": 43,
+          "target_pages": 43,
+          "fetched_rows": 1263,
+          "unique_announcement_ids": 1263
+        },
+        {
+          "window_start": "2026-04-09",
+          "window_end": "2026-04-24",
+          "depth": 4,
+          "server_total_records": 2085,
+          "server_totalpages": 69,
+          "derived_min_pages": 70,
+          "target_pages": 70,
+          "fetched_rows": 2085,
+          "unique_announcement_ids": 2085
+        },
+        {
+          "window_start": "2026-04-25",
+          "window_end": "2026-05-10",
+          "depth": 4,
+          "server_total_records": 2540,
+          "server_totalpages": 84,
+          "derived_min_pages": 85,
+          "target_pages": 85,
+          "fetched_rows": 2540,
+          "unique_announcement_ids": 2540
+        },
+        {
+          "window_start": "2026-05-11",
+          "window_end": "2026-09-16",
+          "depth": 1,
+          "server_total_records": 75,
+          "server_totalpages": 2,
+          "derived_min_pages": 3,
+          "target_pages": 3,
+          "fetched_rows": 75,
+          "unique_announcement_ids": 75
+        }
+      ]
+    },
+    {
+      "exchange": "SZSE",
+      "kind": "HALF_YEAR",
+      "adaptive_date_partitioning": true,
+      "safe_max_pages_per_leaf": 90,
+      "leaf_segment_count": 7,
+      "stream_fetched_rows": 5943,
+      "stream_unique_announcement_ids": 5943,
+      "mapped_mother_pool_rows": 5868,
+      "segments": [
+        {
+          "window_start": "2026-01-01",
+          "window_end": "2026-05-10",
+          "depth": 1,
+          "server_total_records": 34,
+          "server_totalpages": 1,
+          "derived_min_pages": 2,
+          "target_pages": 2,
+          "fetched_rows": 34,
+          "unique_announcement_ids": 34
+        },
+        {
+          "window_start": "2026-05-11",
+          "window_end": "2026-07-14",
+          "depth": 2,
+          "server_total_records": 4,
+          "server_totalpages": 0,
+          "derived_min_pages": 1,
+          "target_pages": 1,
+          "fetched_rows": 4,
+          "unique_announcement_ids": 4
+        },
+        {
+          "window_start": "2026-07-15",
+          "window_end": "2026-08-15",
+          "depth": 3,
+          "server_total_records": 482,
+          "server_totalpages": 16,
+          "derived_min_pages": 17,
+          "target_pages": 17,
+          "fetched_rows": 482,
+          "unique_announcement_ids": 482
+        },
+        {
+          "window_start": "2026-08-16",
+          "window_end": "2026-08-23",
+          "depth": 5,
+          "server_total_records": 1176,
+          "server_totalpages": 39,
+          "derived_min_pages": 40,
+          "target_pages": 40,
+          "fetched_rows": 1176,
+          "unique_announcement_ids": 1176
+        },
+        {
+          "window_start": "2026-08-24",
+          "window_end": "2026-08-27",
+          "depth": 6,
+          "server_total_records": 2491,
+          "server_totalpages": 83,
+          "derived_min_pages": 84,
+          "target_pages": 84,
+          "fetched_rows": 2491,
+          "unique_announcement_ids": 2491
+        },
+        {
+          "window_start": "2026-08-28",
+          "window_end": "2026-08-31",
+          "depth": 6,
+          "server_total_records": 1738,
+          "server_totalpages": 57,
+          "derived_min_pages": 58,
+          "target_pages": 58,
+          "fetched_rows": 1738,
+          "unique_announcement_ids": 1738
+        },
+        {
+          "window_start": "2026-09-01",
+          "window_end": "2026-09-16",
+          "depth": 4,
+          "server_total_records": 18,
+          "server_totalpages": 0,
+          "derived_min_pages": 1,
+          "target_pages": 1,
+          "fetched_rows": 18,
+          "unique_announcement_ids": 18
+        }
+      ]
+    }
+  ],
+  "raw_query_pages": 726,
+  "raw_query_manifest_sha256": "627c1ace5bfd2da273636c2a916966976539f6887451f3bb5d71b0c5a4945f16",
+  "raw_query_bundle_sha256": "5d4b1f7f90db9bf90f0806e43ad04c4f76341039b9e8c2ec53d1e98af93139ce",
+  "raw_query_bundle_bytes": 696616,
+  "catalog_rows": 21159,
+  "catalog_sha256": "96bd9c94372d7faf769eb53ce52bf771cd5595a0b9adef35d56149f48e91534a",
+  "full_periodic_candidate_security_count": 5207,
+  "periodic_gap_security_count": 14,
+  "summary_only_security_count": 0,
+  "unmapped_catalog_rows": 188,
+  "gate": {
+    "raw_pagination_complete": true,
+    "status": "PERIODIC_CATALOG_PASS_WITH_EXPLICIT_GAPS",
+    "next_stage": "TARGETED_PERIODIC_HISTORY_OR_IPO_FALLBACK_FOR_GAPS"
+  },
+  "receipt_sha256": "f21906443210ab165cca651f9584f3277085de9cc7eec4520c751a21a9b58bc0"
+}
