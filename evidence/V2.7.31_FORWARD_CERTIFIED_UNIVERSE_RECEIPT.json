@@ -1,0 +1,45 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_31_FORWARD_CERTIFIED_UNIVERSE_OFFLINE_BOOTSTRAP_V1",
+  "epoch_id": "AI_CORE_EVID_FORWARD_EPOCH_001",
+  "epoch_t0_utc": "2026-09-20T07:17:16Z",
+  "mode": "OFFLINE_NO_CHANGE_INTERVAL_BOOTSTRAP",
+  "external_network_calls": 0,
+  "source_artifacts": {
+    "issuer_map_sha256": "769960860eaeb97f34780eca3b8cdb2618a4e3afd580e97f59fe6435da8b25a8",
+    "primary_locator_inventory_sha256": "6f497c81f99344596ba19e7ef62c54a23d373c07f80877d79af6f70f19f4a4f4",
+    "official_after_close_set_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+    "no_change_interval_proof": "evidence/V2.7.31_NO_CHANGE_INTERVAL_PROOF.json",
+    "contract_migration": "evidence/V2.7.31_FORWARD_EPOCH_CONTRACT_MIGRATION.json"
+  },
+  "universe": {
+    "count": 5221,
+    "sse_count": 2320,
+    "szse_count": 2901,
+    "canonical_sorted_newline_sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c",
+    "csv_sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "sse_membership_provenance": "FORWARD_OBSERVED_AFTER_T0_EXACT_MATCH",
+    "szse_membership_provenance": "FORWARD_CARRIED_OVER_NONTRADING_INTERVAL"
+  },
+  "temporal_scope": {
+    "research_episode_bootstrap_allowed": true,
+    "first60_research_start_allowed": true,
+    "live_execution_allowed": false,
+    "membership_refresh_required_before": "2026-09-21T09:15:00+08:00",
+    "pre_t0_decisions_authorized": false,
+    "historical_2026_09_17_prospective_relabeling": "FORBIDDEN"
+  },
+  "downstream": {
+    "certified_v2_universe": "PASS_RESEARCH_BOOTSTRAP",
+    "first60": "READY_FOR_DETERMINISTIC_EPISODE_START",
+    "s4_s5_s6": "BLOCKED_PENDING_FIRST60_AND_LATER_GATES",
+    "live": "BLOCKED_REFRESH_REQUIRED"
+  },
+  "gate": {
+    "status": "FORWARD_CERTIFIED_UNIVERSE_PASS_WITH_NONTRADING_CARRY",
+    "identity_exact": true,
+    "issuer_exact": true,
+    "terminal_locator_exact": true,
+    "network_independent": true
+  },
+  "receipt_sha256": "4802f0a0868f689516305e4e6c0f7a4fd34b3b6b5da0705c251f1660ae4ac35f"
+}
