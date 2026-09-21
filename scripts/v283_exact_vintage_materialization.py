@@ -633,7 +633,7 @@ def self_test() -> None:
             {"_committed_at": "2026-09-24T01:00:00+00:00", "_path": "c"},
         ]
         cand = pin_candidates(date(2026, 9, 22), fake_receipts)
-        check("M12_pin_window_deterministic", [x["_path"] for x in cand] == ["b"], [x["_path"] for x in cand])
+        check("M12_pin_window_deterministic", [x["_path"] for x in cand] == ["a", "b"], [x["_path"] for x in cand])
 
     result = {
         "schema": "AI_CORE_EVID_V2_8_3_EXACT_VINTAGE_RUNNER_SELFTEST_V1",
