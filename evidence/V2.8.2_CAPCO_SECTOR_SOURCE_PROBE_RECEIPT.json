@@ -1,0 +1,22 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_CAPCO_SECTOR_SOURCE_PROBE_RECEIPT_V1",
+  "started_at_utc": "2026-09-21T08:40:48.103683+00:00",
+  "finished_at_utc": "2026-09-21T08:41:42.801881+00:00",
+  "source_count": 4,
+  "downloaded_pdf_count": 4,
+  "all_source_guards_pass": true,
+  "completeness_guard": {
+    "pdf_bytes_min": 10000,
+    "pages_min": 1,
+    "extractable_text_chars_min": 10000,
+    "unique_six_digit_codes_min": 4000,
+    "role": "implementation/source-completeness guard only; not a strategy promotion threshold"
+  },
+  "inventory_sha256": "4657bf0da0ac56cbbb815fedf8b01739539916e238554daa3c030c4c855cc03c",
+  "text_samples_sha256": "4fc33acb5ba97ba5e8bd25e5d2a96226ef6c3a49d91a3d4b2f723044a93ec967",
+  "raw_pdf_tar_sha256": "cf7c8ce0614fc3ea5a85effa4df8daeaf7cd143d8650ec3e9850cd5480539c5c",
+  "raw_pdf_tar_bytes": 8216317,
+  "failures": [],
+  "next_step": "BUILD_DETERMINISTIC_CAPCO_TABLE_PARSER",
+  "receipt_sha256": "0b252b00764c0b252d8f377d83acebde9e32541f9ac1e60c7b1f1aecc8575a10"
+}
