@@ -58,8 +58,8 @@ def main():
     con.execute("""
       CREATE TEMP VIEW o AS
       SELECT k.symbol, cast(k.bar_time as timestamp) bar_time,
-             cast(k.open as double) open, cast(k.high as double) high,
-             cast(k.low as double) low, cast(k.close as double) close,
+             cast(k.open as double) open_px, cast(k.high as double) high_px,
+             cast(k.low as double) low_px, cast(k.close as double) close_px,
              cast(k.amount as double) amount
       FROM read_parquet(?) k
       INNER JOIN cn_symbols s USING(symbol)
@@ -88,8 +88,8 @@ def main():
       CREATE TEMP TABLE joined AS
       SELECT coalesce(o.symbol,n.symbol) symbol,
              coalesce(o.bar_time,n.bar_time) bar_time,
-             o.open oo,o.high oh,o.low ol,o.close oc,o.amount oa,
-             n.open no,n.high nh,n.low nl,n.close nc,n.amount na,
+             o.open_px oo,o.high_px oh,o.low_px ol,o.close_px oc,o.amount oa,
+             n.open_px no,n.high_px nh,n.low_px nl,n.close_px nc,n.amount na,
              o.bar_time IS NOT NULL old_present,
              n.bar_time IS NOT NULL new_present
       FROM o FULL OUTER JOIN n USING(symbol,bar_time)
