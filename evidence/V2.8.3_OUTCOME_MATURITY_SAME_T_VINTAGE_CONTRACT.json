@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_OUTCOME_MATURITY_SAME_T_VINTAGE_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_OUTCOME_RESULTS",
+  "purpose": "Resolve D+5 and D+10 forward economic returns for frozen V2.8.3 signal snapshots without mixing D-vintage and T-vintage price scales.",
+  "input_authorities": {
+    "signal_feature_contract": "evidence/V2.8.3_SIGNAL_FEATURE_SNAPSHOT_CONTRACT.json",
+    "signal_feature_activation": "evidence/V2.8.3_SIGNAL_FEATURE_SNAPSHOT_ACTIVATION.json",
+    "source_ledger_contract": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_CONTRACT.json",
+    "economic_price_rule": "V2.6 D and T endpoints from the same T-vintage retained snapshot"
+  },
+  "maturity": {
+    "target_dates": "Use the D+5 and D+10 joint A-share trading dates frozen in the signal feature receipt.",
+    "before_target_source_available": "OUTCOME_PENDING",
+    "target_shift": "FORBIDDEN",
+    "missing_D_or_T_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT"
+  },
+  "T_vintage_selection": {
+    "candidate_pin_window": "strictly after T close and no later than T+1 23:59:59 Asia/Shanghai",
+    "selection": "earliest prospectively frozen source pin in that window whose exact materialized stock and benchmark scoped max_bar_date both equal T",
+    "replacement_after_resolution": false,
+    "later_backfill_pin": "FORBIDDEN"
+  },
+  "economic_return": {
+    "D_endpoint": "source close for signal date D read from the exact selected T-vintage stock parquet",
+    "T_endpoint": "source close for target date T read from the same exact selected T-vintage stock parquet",
+    "formula": "close_T_same_T_vintage / close_D_same_T_vintage - 1",
+    "D_vintage_source_close": "DIAGNOSTIC_ONLY_NOT_ALLOWED_IN_FORWARD_RETURN",
+    "finite_positive_endpoints_required": true
+  },
+  "population": {
+    "security_set": "exact D PIT universe frozen with the D signal feature receipt",
+    "mapping": "D PIT universe security_code -> canonical_security_id",
+    "security_missing_at_T": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "no_survivor_redefinition": true
+  },
+  "outputs": {
+    "directory": "evidence/v283_outcomes",
+    "per_horizon_csv": "one immutable CSV per signal_date x horizon",
+    "per_horizon_receipt": "one immutable JSON receipt per signal_date x horizon",
+    "append_only_ledger": "evidence/V2.8.3_PROSPECTIVE_OUTCOME_LEDGER.csv",
+    "signal_source_admission_ledger_rewrite": false
+  },
+  "outcome_ledger_unique_key": ["signal_date", "horizon"],
+  "governance": {
+    "D_feature_recompute_forbidden": true,
+    "interim_H1_H2_statistics_forbidden": true,
+    "resolution_does_not_equal_hypothesis_evaluation": true,
+    "setup_or_episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "problem_elimination": {
+    "delete": "No repeated D feature calculation at outcome time.",
+    "avoid": "Never combine a D-vintage D endpoint with a T-vintage T endpoint.",
+    "absorb": "Reuse exact source pins, joint calendar and frozen D PIT universe.",
+    "substitute": "Represent unavailable target bars explicitly instead of shifting targets.",
+    "precompute_reuse": "Within one resolver run, Hugging Face cache may reuse one T-vintage across multiple matured signal/horizon resolutions.",
+    "optimize": "No statistical computation is performed in this layer."
+  }
+}
