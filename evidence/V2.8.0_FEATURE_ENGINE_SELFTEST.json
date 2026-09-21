@@ -1,0 +1,33 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_FEATURE_ENGINE_SELFTEST_V1",
+  "tests": [
+    {
+      "name": "A01_future_rows_do_not_change_D_features",
+      "pass": true
+    },
+    {
+      "name": "A02_uniform_price_scale_invariance",
+      "pass": true
+    },
+    {
+      "name": "A03_amount_isolation",
+      "pass": true
+    },
+    {
+      "name": "A04_forward_column_rejected",
+      "pass": true
+    },
+    {
+      "name": "A05_cross_sectional_rank_date_local",
+      "pass": true
+    },
+    {
+      "name": "A06_no_outcome_columns_emitted",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "passed": 6,
+  "total": 6,
+  "all_pass": true
+}
