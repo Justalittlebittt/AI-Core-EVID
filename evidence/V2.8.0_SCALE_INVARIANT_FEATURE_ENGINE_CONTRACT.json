@@ -1,0 +1,92 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_SCALE_INVARIANT_FEATURE_ENGINE_CONTRACT_V1",
+  "version": "V2.8.0",
+  "purpose": "Define a threshold-free technical feature engine that uses only signal-date-or-earlier bars and prefers price-scale-invariant transforms.",
+  "input_required": [
+    "canonical_security_id",
+    "bar_date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "amount"
+  ],
+  "feature_families": {
+    "momentum": [
+      "ret_5",
+      "ret_10",
+      "ret_20",
+      "ret_60"
+    ],
+    "trend_structure": [
+      "close_vs_ma20",
+      "close_vs_ma50",
+      "close_vs_ma150",
+      "close_vs_ma200",
+      "ma50_vs_ma150",
+      "ma150_vs_ma200",
+      "ma200_slope20"
+    ],
+    "location": [
+      "dist_high20",
+      "dist_high60",
+      "dist_high252"
+    ],
+    "volatility": [
+      "rv10",
+      "rv20",
+      "rv60",
+      "rv10_over_rv60",
+      "tr_pct",
+      "tr_pct_mean10",
+      "tr_pct_mean60",
+      "tr10_over_tr60"
+    ],
+    "extension": [
+      "gap1",
+      "bar_range_pct"
+    ],
+    "liquidity": [
+      "amount_med20",
+      "amount_vs_med20"
+    ]
+  },
+  "invariance": {
+    "uniform_ohlc_rescaling_should_not_change": [
+      "ret_5",
+      "ret_10",
+      "ret_20",
+      "ret_60",
+      "close_vs_ma20",
+      "close_vs_ma50",
+      "close_vs_ma150",
+      "close_vs_ma200",
+      "ma50_vs_ma150",
+      "ma150_vs_ma200",
+      "ma200_slope20",
+      "dist_high20",
+      "dist_high60",
+      "dist_high252",
+      "rv10",
+      "rv20",
+      "rv60",
+      "rv10_over_rv60",
+      "tr_pct",
+      "tr_pct_mean10",
+      "tr_pct_mean60",
+      "tr10_over_tr60",
+      "gap1",
+      "bar_range_pct"
+    ],
+    "caveat": "Scale invariance removes uniform retrospective normalization drift but does not prove immunity to corrected historical OHLC values or non-uniform vendor revisions."
+  },
+  "leakage_controls": [
+    "all rolling operations are backward-looking and include at most the current D row",
+    "no negative shift is permitted in the feature engine",
+    "outcome/forward-return columns are not accepted as feature inputs",
+    "cross-sectional rank, when used, is computed within the same bar_date only",
+    "future rows may be appended or altered without changing any feature at an earlier D"
+  ],
+  "threshold_policy": "NO_HARD_GATE_THRESHOLDS_IN_FEATURE_ENGINE",
+  "promotion_policy": "Feature calculations may support retrospective research only; they do not emit Setup/Episode."
+}
