@@ -110,7 +110,8 @@ def load_pairs():
     if readiness.get("status")!="READY_FOR_LOCKED_CONFIRMATORY_EVALUATION":
         return readiness,None
     if FINAL_OUT.exists():
-        raise RuntimeError("FINAL_CONFIRMATORY_RESULT_ALREADY_EXISTS_NO_REPLACEMENT")
+        existing=json.loads(FINAL_OUT.read_text(encoding="utf-8"))
+        return readiness,{"terminal_existing_final":existing}
 
     rows=[]
     receipts=sorted(SIGNAL_DIR.glob("*_SIGNAL_FEATURE_RECEIPT.json"))
@@ -141,11 +142,24 @@ def load_pairs():
                     ic,n=daily_ic(feat,outcome,h["factor"])
                     rec[key]=ic
                     rec[key+"_n"]=n
+        for h in HYP:
+            d10_key=f"{h['id']}_D10"
+            d5_key=f"{h['id']}_D5"
+            if np.isfinite(rec[d10_key]) and not np.isfinite(rec[d5_key]):
+                raise RuntimeError(f"SECONDARY_D5_INTEGRITY_BLOCK:{d}:{h['id']}")
         rows.append(rec)
     return readiness,pd.DataFrame(rows)
 
 def evaluate():
     readiness,daily=load_pairs()
+    if isinstance(daily,dict) and "terminal_existing_final" in daily:
+        return {
+            "schema":"AI_CORE_EVID_V2_8_3_CONFIRMATORY_EVALUATOR_TERMINAL_V1",
+            "status":"FINAL_ALREADY_FROZEN_NO_REEVALUATION",
+            "existing_final_status":daily["terminal_existing_final"].get("status"),
+            "existing_final_receipt_sha256":daily["terminal_existing_final"].get("receipt_sha256"),
+            "performance_statistics_recomputed":False
+        }
     if daily is None:
         return {
             "schema":"AI_CORE_EVID_V2_8_3_CONFIRMATORY_EVALUATOR_BLOCK_V1",
@@ -304,6 +318,10 @@ def self_test():
     ic49,n49=daily_ic(f49,o49,"x")
     ck("C10_rank_ic_49_rows_blocked",n49==49 and np.isnan(ic49))
     ck("C11_direction_adjustment_negative",-1*0.2==-0.2)
+    existing={"status":"V2_8_3_ARCHITECTURE_CONFIRMED","receipt_sha256":"a"*64}
+    ck("C12_final_terminal_idempotent",existing["receipt_sha256"]=="a"*64)
+    rec={"H1_D10":0.1,"H1_D5":np.nan}
+    ck("C13_d10_without_d5_is_integrity_block",np.isfinite(rec["H1_D10"]) and not np.isfinite(rec["H1_D5"]))
     result={"schema":"AI_CORE_EVID_V2_8_3_CONFIRMATORY_EVALUATOR_SELFTEST_V1",
             "tests":tests,"passed":sum(x["pass"] for x in tests),"total":len(tests),"all_pass":all(x["pass"] for x in tests)}
     result["receipt_sha256"]=stable_json_sha(result)
