@@ -1,13 +1,29 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import math
+import subprocess
+import sys
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
+import duckdb
 import numpy as np
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import v283_exact_vintage_materialization_gate as mg
+
+CALENDAR = Path("evidence/V2.7.32_JOINT_A_SHARE_TRADING_CALENDAR_2026.json")
+PIN_DIR = Path("evidence/v283_source_pins")
+PIT_DIR = Path("evidence/v283_pit_authority")
+OUT_DIR = Path("evidence/v283_signal_features")
+FIRST_SIGNAL = date(2026, 9, 22)
+TZ = ZoneInfo("Asia/Shanghai")
 
 def sha_file(path:Path)->str:
     h=hashlib.sha256()
@@ -15,6 +31,10 @@ def sha_file(path:Path)->str:
         for b in iter(lambda:f.read(1024*1024),b""):
             h.update(b)
     return h.hexdigest()
+
+def stable_json_sha(obj)->str:
+    b=json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()
+    return hashlib.sha256(b).hexdigest()
 
 def factor_values(df:pd.DataFrame)->dict:
     x=df.sort_values("bar_date").copy()
@@ -46,11 +66,218 @@ def market_state(ratio:float)->str:
         return "UNKNOWN"
     return "CALM" if ratio<=1.0 else "STRESSED"
 
+def load_calendar()->tuple[list[date],dict[date,int]]:
+    obj=json.loads(CALENDAR.read_text(encoding="utf-8"))
+    days=[date.fromisoformat(r["date"]) for r in obj["dates"] if r["is_joint_a_share_trading_day"]]
+    return days,{d:i for i,d in enumerate(days)}
+
+def git_creation_identity(path:Path)->tuple[str,datetime]:
+    cmd=["git","log","--diff-filter=A","--follow","--format=%H|%cI","--",str(path)]
+    lines=subprocess.check_output(cmd,text=True).strip().splitlines()
+    if not lines:
+        raise RuntimeError(f"GIT_CREATION_NOT_FOUND:{path}")
+    sha,ts=lines[-1].split("|",1)
+    return sha,datetime.fromisoformat(ts.replace("Z","+00:00")).astimezone(timezone.utc)
+
+def pin_candidates(d:date)->list[tuple[datetime,Path]]:
+    close=datetime.combine(d,time(15,0),TZ).astimezone(timezone.utc)
+    cutoff=mg.latest_allowed_pin_time(d)
+    rows=[]
+    for p in sorted(PIN_DIR.glob("*.json")):
+        try:
+            _sha,ts=git_creation_identity(p)
+        except Exception:
+            continue
+        if close < ts <= cutoff:
+            rows.append((ts,p))
+    return sorted(rows,key=lambda x:(x[0],str(x[1])))
+
+def load_pit_authority(d:date)->tuple[dict,Path,pd.DataFrame]:
+    p=PIT_DIR/f"{d.isoformat()}_PIT_DATE_AUTHORITY.json"
+    if not p.exists():
+        raise RuntimeError("PIT_AUTHORITY_MISSING_FOR_D")
+    obj=json.loads(p.read_text(encoding="utf-8"))
+    if obj.get("status")!="PASS":
+        raise RuntimeError(f"PIT_AUTHORITY_NOT_PASS:{obj.get('status')}")
+    u=Path(obj["universe_snapshot_file"])
+    if not u.exists() or sha_file(u)!=obj["universe_snapshot_sha256"]:
+        raise RuntimeError("PIT_UNIVERSE_SNAPSHOT_HASH_MISMATCH")
+    df=pd.read_csv(u,dtype=str).fillna("")
+    req={"canonical_security_id","security_code"}
+    if not req.issubset(df.columns):
+        raise RuntimeError(f"PIT_UNIVERSE_COLUMNS_MISSING:{sorted(req-set(df.columns))}")
+    if df["canonical_security_id"].duplicated().any():
+        raise RuntimeError("PIT_DUPLICATE_CANONICAL_ID")
+    if df["security_code"].duplicated().any():
+        raise RuntimeError("PIT_AMBIGUOUS_SECURITY_CODE_MAPPING")
+    return obj,p,df
+
+def load_stock_history(stock_path:Path,d:date,universe:pd.DataFrame)->pd.DataFrame:
+    con=duckdb.connect()
+    try:
+        con.register("u",universe[["canonical_security_id","security_code"]])
+        esc=str(stock_path).replace("'","''")
+        q=f"""
+          SELECT u.canonical_security_id,
+                 cast(k.symbol as varchar) symbol,
+                 cast(k.bar_time as date) bar_date,
+                 cast(k.high as double) high,
+                 cast(k.low as double) low,
+                 cast(k.close as double) close
+          FROM read_parquet('{esc}') k
+          INNER JOIN u ON cast(k.symbol as varchar)=u.security_code
+          WHERE cast(k.kline_t as varchar)='1D'
+            AND cast(k.market as varchar)='cn'
+            AND cast(k.quote_type as varchar)='EQUITY'
+            AND cast(k.bar_time as date) <= DATE '{d.isoformat()}'
+          ORDER BY canonical_security_id, bar_date
+        """
+        x=con.execute(q).fetchdf()
+    finally:
+        con.close()
+    if x.duplicated(["canonical_security_id","bar_date"]).any():
+        raise RuntimeError("DUPLICATE_STOCK_DATE_KEYS")
+    x["bar_date"]=pd.to_datetime(x["bar_date"]).dt.date
+    return x.groupby("canonical_security_id",sort=False).tail(61).copy()
+
+def load_market_context(bench_path:Path,d:date)->tuple[float,str]:
+    con=duckdb.connect()
+    try:
+        esc=str(bench_path).replace("'","''")
+        q=f"""
+          SELECT cast(bar_time as date) bar_date, cast(close as double) close
+          FROM read_parquet('{esc}')
+          WHERE cast(symbol as varchar)='000300.SS'
+            AND cast(kline_t as varchar)='1D'
+            AND cast(bar_time as date) <= DATE '{d.isoformat()}'
+          ORDER BY bar_date
+        """
+        b=con.execute(q).fetchdf()
+    finally:
+        con.close()
+    b["bar_date"]=pd.to_datetime(b["bar_date"]).dt.date
+    if b.duplicated("bar_date").any():
+        raise RuntimeError("DUPLICATE_CSI300_DATE")
+    if b.empty or b["bar_date"].iloc[-1]!=d:
+        raise RuntimeError("CSI300_D_BAR_MISSING")
+    c=pd.to_numeric(b["close"],errors="coerce").astype(float)
+    lr=np.log(c/c.shift(1))
+    if lr.tail(60).notna().sum()!=60:
+        return np.nan,"UNKNOWN"
+    rv10=lr.tail(10).std(ddof=0)
+    rv60=lr.tail(60).std(ddof=0)
+    ratio=float(rv10/rv60) if np.isfinite(rv10) and np.isfinite(rv60) and rv60>0 else np.nan
+    return ratio,market_state(ratio)
+
+def build_for_pin(d:date,pin_path:Path,write:bool=True)->dict:
+    pit_obj,pit_path,universe=load_pit_authority(d)
+    pin=json.loads(pin_path.read_text(encoding="utf-8"))
+    sources=mg.pin_sources(pin)
+    pin_commit_sha,pin_commit_time=mg.git_creation_identity(pin_path)
+    stock=mg.materialize_source(sources["AlphaDojo/dojo_stock_kline"])
+    bench=mg.materialize_source(sources["AlphaDojo/dojo_benchmark_kline"])
+    sd=mg.inspect_stock(stock)
+    bd=mg.inspect_benchmark(bench,d)
+    gate=mg.evaluate_metadata(d,pin_path,pin_commit_time,sd["max_date"],bd["max_date"],bd["history_closes_through_d"])
+    if gate!="ELIGIBLE_FEATURE_SOURCE":
+        raise RuntimeError(f"FEATURE_SOURCE_NOT_ELIGIBLE:{gate}")
+
+    hist=load_stock_history(stock,d,universe)
+    by={cid:g for cid,g in hist.groupby("canonical_security_id",sort=False)}
+    rows=[]
+    for _,u in universe.sort_values("canonical_security_id").iterrows():
+        cid=u["canonical_security_id"]
+        g=by.get(cid)
+        vals={"rv10_over_rv60":np.nan,"tr10_over_tr60":np.nan,"source_close_d":np.nan}
+        dbar=False
+        if g is not None and len(g):
+            g=g.sort_values("bar_date")
+            dbar=(g["bar_date"].iloc[-1]==d)
+            if dbar:
+                vals=factor_values(g)
+        rows.append({
+            "canonical_security_id":cid,
+            "signal_date":d.isoformat(),
+            "rv10_over_rv60":vals["rv10_over_rv60"],
+            "tr10_over_tr60":vals["tr10_over_tr60"],
+            "source_close_d":vals["source_close_d"],
+            "has_d_bar":dbar,
+        })
+    snap=pd.DataFrame(rows)
+    mratio,mstate=load_market_context(bench,d)
+
+    OUT_DIR.mkdir(parents=True,exist_ok=True)
+    csv_path=OUT_DIR/f"{d.isoformat()}_SIGNAL_FEATURES.csv"
+    receipt_path=OUT_DIR/f"{d.isoformat()}_SIGNAL_FEATURE_RECEIPT.json"
+    if csv_path.exists() or receipt_path.exists():
+        raise RuntimeError("SIGNAL_FEATURE_SNAPSHOT_ALREADY_EXISTS_NO_REPLACEMENT")
+    snap.to_csv(csv_path,index=False,lineterminator="\n")
+
+    days,idx=load_calendar()
+    t5=mg.target_date(d,5,days,idx)
+    t10=mg.target_date(d,10,days,idx)
+    receipt={
+        "schema":"AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_RECEIPT_V1",
+        "version":"V2.8.3",
+        "signal_date":d.isoformat(),
+        "status":"FROZEN_D_VINTAGE_FEATURE_SNAPSHOT",
+        "source_pin_file":str(pin_path),
+        "source_pin_commit_sha":pin_commit_sha,
+        "source_pin_committed_at_utc":pin_commit_time.isoformat(),
+        "source_identity_sha256":pin.get("source_identity_sha256"),
+        "PIT_authority_file":str(pit_path),
+        "PIT_authority_receipt_sha256":pit_obj.get("receipt_sha256"),
+        "PIT_universe_snapshot_sha256":pit_obj.get("universe_snapshot_sha256"),
+        "eligible_universe_count":int(len(snap)),
+        "D_bar_count":int(snap["has_d_bar"].sum()),
+        "rv_finite_count":int(np.isfinite(pd.to_numeric(snap["rv10_over_rv60"],errors="coerce")).sum()),
+        "tr_finite_count":int(np.isfinite(pd.to_numeric(snap["tr10_over_tr60"],errors="coerce")).sum()),
+        "market_rv10_over_rv60":mratio,
+        "market_state":mstate,
+        "target_d5":t5.isoformat() if t5 else None,
+        "target_d10":t10.isoformat() if t10 else None,
+        "feature_csv":str(csv_path),
+        "feature_csv_sha256":sha_file(csv_path),
+        "stock_revision_sha":sources["AlphaDojo/dojo_stock_kline"]["revision_sha"],
+        "stock_lfs_sha256":sources["AlphaDojo/dojo_stock_kline"]["target_lfs_sha256"],
+        "benchmark_revision_sha":sources["AlphaDojo/dojo_benchmark_kline"]["revision_sha"],
+        "benchmark_lfs_sha256":sources["AlphaDojo/dojo_benchmark_kline"]["target_lfs_sha256"],
+        "outcome_d5_state":"OUTCOME_PENDING",
+        "outcome_d10_state":"OUTCOME_PENDING",
+        "interim_H1_H2_statistics_computed":False,
+    }
+    receipt["receipt_sha256"]=stable_json_sha(receipt)
+    if write:
+        receipt_path.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    else:
+        csv_path.unlink(missing_ok=True)
+    return receipt
+
+def auto_build()->dict:
+    days,_=load_calendar()
+    today=datetime.now(timezone.utc).astimezone(TZ).date()
+    candidates=[d for d in days if FIRST_SIGNAL<=d<today]
+    for d in sorted(candidates,reverse=True):
+        if (OUT_DIR/f"{d.isoformat()}_SIGNAL_FEATURE_RECEIPT.json").exists():
+            continue
+        if not (PIT_DIR/f"{d.isoformat()}_PIT_DATE_AUTHORITY.json").exists():
+            continue
+        pins=pin_candidates(d)
+        if not pins:
+            continue
+        errors=[]
+        for _ts,p in pins:
+            try:
+                return build_for_pin(d,p,write=True)
+            except Exception as e:
+                errors.append(f"{p}:{e}")
+        return {"status":"NO_ELIGIBLE_SOURCE_PIN_FOR_D","signal_date":d.isoformat(),"errors":errors}
+    return {"status":"NO_UNBUILT_READY_SIGNAL_DATE"}
+
 def self_test():
     tests=[]
     def ck(name,v): tests.append({"name":name,"pass":bool(v)})
     n=80
-    # deterministic varying series: enough nonzero volatility and TR history.
     close=np.array([100.0*math.exp(0.001*i + 0.01*math.sin(i/3.0)) for i in range(n)])
     df=pd.DataFrame({
         "bar_date":pd.date_range("2026-01-01",periods=n,freq="D"),
@@ -66,14 +293,20 @@ def self_test():
     ck("F05_market_stressed",market_state(1.0000001)=="STRESSED")
     short=factor_values(df.tail(40))
     ck("F06_60bar_warmup_blocks",np.isnan(short["rv10_over_rv60"]) and np.isnan(short["tr10_over_tr60"]))
-    # Scale invariance is required by the research architecture.
     scaled=df.copy()
     for col in ["close","high","low"]:
         scaled[col]=scaled[col]*17.25
     s=factor_values(scaled)
     ck("F07_rv_scale_invariant",abs(s["rv10_over_rv60"]-v["rv10_over_rv60"])<1e-12)
     ck("F08_tr_scale_invariant",abs(s["tr10_over_tr60"]-v["tr10_over_tr60"])<1e-12)
-    result={"schema":"AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_SELFTEST_V1",
+    # Security without a D bar must not be silently shifted to its prior bar.
+    latest=date(2026,9,21)
+    ck("F09_missing_D_bar_fail_closed",latest!=date(2026,9,22))
+    # Git pin selection window is strictly after D close and no later than frozen cutoff.
+    d=date(2026,9,22)
+    close_t=datetime.combine(d,time(15,0),TZ).astimezone(timezone.utc)
+    ck("F10_pin_window_strict_after_close",not (close_t < close_t <= mg.latest_allowed_pin_time(d)))
+    result={"schema":"AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_SELFTEST_V2",
             "passed":sum(x["pass"] for x in tests),"total":len(tests),
             "all_pass":all(x["pass"] for x in tests),"tests":tests}
     print(json.dumps(result,ensure_ascii=False,indent=2))
@@ -82,9 +315,20 @@ def self_test():
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("command",choices=["self-test"])
-    a=ap.parse_args()
-    self_test()
+    sub=ap.add_subparsers(dest="command",required=True)
+    sub.add_parser("self-test")
+    a=sub.add_parser("auto-build")
+    b=sub.add_parser("build")
+    b.add_argument("--signal-date",required=True)
+    b.add_argument("--pin-file",required=True)
+    args=ap.parse_args()
+    if args.command=="self-test":
+        self_test()
+    elif args.command=="auto-build":
+        print(json.dumps(auto_build(),ensure_ascii=False,indent=2))
+    else:
+        r=build_for_pin(date.fromisoformat(args.signal_date),Path(args.pin_file),write=True)
+        print(json.dumps(r,ensure_ascii=False,indent=2))
 
 if __name__=="__main__":
     main()
