@@ -1,10 +1,5 @@
 name: V2.8.1 Vendor Vintage Drift Audit
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v281_vendor_vintage_drift.py"
-      - ".github/workflows/v281-vintage-drift.yml"
   workflow_dispatch:
 permissions:
   contents: write
