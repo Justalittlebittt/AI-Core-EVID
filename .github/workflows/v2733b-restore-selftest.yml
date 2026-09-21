@@ -1,11 +1,5 @@
 name: V2.7.33B Restore Validator Selftest
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v2733b_exact_runtime_restore.py"
-      - "validation/v2733b_restore_validator_selftest.py"
-      - ".github/workflows/v2733b-restore-selftest.yml"
   workflow_dispatch:
 permissions:
   contents: write
