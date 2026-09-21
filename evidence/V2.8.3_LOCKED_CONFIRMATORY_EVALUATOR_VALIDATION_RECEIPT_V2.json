@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_LOCKED_CONFIRMATORY_EVALUATOR_VALIDATION_RECEIPT_V2",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35589350103,
+  "job_id": 106299968065,
+  "head_sha": "d85765f1894c89baa5da2eadf2f4a04ea0190dd7",
+  "implementation_head": "ac7772e3516911d2c075c18c155d18d593e2e7da",
+  "selftest": {
+    "passed": 13,
+    "total": 13,
+    "all_pass": true
+  },
+  "supersedes_for_implementation_validation": "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_VALIDATION_RECEIPT.json",
+  "additional_validated_mechanics": [
+    "existing final result is terminal and does not trigger recomputation",
+    "scheduled evaluator becomes a no-op after final receipt exists",
+    "D+10 computable while same-D D+5 is non-computable activates an integrity blocker rather than allowing secondary-horizon subset selection"
+  ],
+  "hypothesis_or_threshold_changed": false,
+  "market_state_changed": false,
+  "sample_boundary_changed": false,
+  "bootstrap_or_multiplicity_changed": false,
+  "real_prospective_factor_return_pairs_loaded": false,
+  "real_confirmatory_statistics_computed": false,
+  "gate": "LOCKED_CONFIRMATORY_EVALUATOR_HARDENED_VALIDATED"
+}
