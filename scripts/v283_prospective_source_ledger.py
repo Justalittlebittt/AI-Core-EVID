@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -143,8 +144,16 @@ def self_test() -> None:
         "sources": [a, b],
     }
     check("S05_stable_hash_deterministic", stable_sha256(r) == stable_sha256(r))
-    source_text = Path(__file__).read_text(encoding="utf-8")
-    check("S06_no_full_download_path", "hf_hub_download(" not in source_text)
+    tree = ast.parse(Path(__file__).read_text(encoding="utf-8"))
+    forbidden_calls = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        fn = node.func
+        name = fn.id if isinstance(fn, ast.Name) else (fn.attr if isinstance(fn, ast.Attribute) else "")
+        if name == "hf_hub_download":
+            forbidden_calls.append(name)
+    check("S06_no_full_download_path", not forbidden_calls)
     result = {
         "schema": "AI_CORE_EVID_V2_8_3_SOURCE_LEDGER_RUNNER_SELFTEST_V1",
         "tests": tests,
