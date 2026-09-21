@@ -1,0 +1,22 @@
+name: V2.8.3 Outcome Resolver Validation
+on:
+  push:
+    paths:
+      - "scripts/v283_outcome_resolver.py"
+      - ".github/workflows/v283-outcome-resolver-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "numpy>=2.0" "pandas>=2.2" "duckdb>=1.1" "huggingface_hub>=0.35"
+      - run: python scripts/v283_outcome_resolver.py self-test
