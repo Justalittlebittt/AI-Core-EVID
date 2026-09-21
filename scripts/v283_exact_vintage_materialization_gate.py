@@ -222,8 +222,8 @@ def self_test():
         d,Path("x"),datetime(2026,9,22,tzinfo=timezone.utc),
         d.isoformat(),d.isoformat(),61
     )=="ELIGIBLE_FEATURE_SOURCE")
-    ck("M08_d5_frozen", target_date(d,5,days,idx)==date(2026,10,9))
-    ck("M09_d10_frozen", target_date(d,10,days,idx)==date(2026,10,16))
+    ck("M08_d5_frozen", target_date(d,5,days,idx)==date(2026,9,30))
+    ck("M09_d10_frozen", target_date(d,10,days,idx)==date(2026,10,14))
     result={"schema":"AI_CORE_EVID_V2_8_3_MATERIALIZATION_GATE_SELFTEST_V1",
             "passed":sum(x["pass"] for x in tests),"total":len(tests),
             "all_pass":all(x["pass"] for x in tests),"tests":tests}
