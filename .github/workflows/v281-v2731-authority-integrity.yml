@@ -1,10 +1,5 @@
 name: V2.8.1 V2.7.31 Authority Integrity
 on:
-  push:
-    branches: [main]
-    paths:
-      - "validation/v281_v2731_authority_integrity.py"
-      - ".github/workflows/v281-v2731-authority-integrity.yml"
   workflow_dispatch:
 permissions:
   contents: write
