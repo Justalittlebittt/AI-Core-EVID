@@ -1,0 +1,33 @@
+name: V2.8.0 Feature Engine Selftest
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v280_scale_invariant_features.py"
+      - "validation/v280_feature_engine_selftest.py"
+      - ".github/workflows/v280-feature-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pandas>=2,<4" "numpy>=2,<3"
+      - name: Run offline feature-engine selftest
+        run: python validation/v280_feature_engine_selftest.py
+      - name: Freeze receipt
+        if: success()
+        run: |
+          cp v280_feature_selftest.json evidence/V2.8.0_FEATURE_ENGINE_SELFTEST.json
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.0_FEATURE_ENGINE_SELFTEST.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.0 feature engine selftest"
+            git push
+          fi
