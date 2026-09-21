@@ -1,0 +1,25 @@
+name: V2.8.3 Exact Vintage Materialization Validation
+on:
+  push:
+    paths:
+      - "scripts/v283_exact_vintage_materialization.py"
+      - ".github/workflows/v283-exact-vintage-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "huggingface_hub>=0.35" "duckdb>=1.1,<2" "pandas>=2,<4" "numpy>=2,<3" "pyarrow>=18,<23"
+      - name: Validate exact-vintage materialization runner
+        run: python scripts/v283_exact_vintage_materialization.py self-test
