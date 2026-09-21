@@ -91,8 +91,8 @@ def main():
       CREATE TEMP TABLE joined AS
       SELECT coalesce(o.symbol,n.symbol) symbol,
              coalesce(o.bar_time,n.bar_time) bar_time,
-             o.open_px oo,o.high_px oh,o.low_px ol,o.close_px oc,o.amount oa,
-             n.open_px no,n.high_px nh,n.low_px nl,n.close_px nc,n.amount na,
+             o.open_px old_open,o.high_px old_high,o.low_px old_low,o.close_px old_close,o.amount old_amount,
+             n.open_px new_open,n.high_px new_high,n.low_px new_low,n.close_px new_close,n.amount new_amount,
              o.bar_time IS NOT NULL old_present,
              n.bar_time IS NOT NULL new_present
       FROM o FULL OUTER JOIN n USING(symbol,bar_time)
@@ -100,25 +100,25 @@ def main():
     con.execute("""
       CREATE TEMP TABLE scales AS
       SELECT symbol,
-             median(nc/oc) FILTER (WHERE old_present AND new_present AND oc>0 AND nc>0) scale
+             median(new_close/old_close) FILTER (WHERE old_present AND new_present AND old_close>0 AND new_close>0) scale
       FROM joined GROUP BY symbol
     """)
     con.execute("""
       CREATE TEMP TABLE row_audit AS
       SELECT j.*,s.scale,
         CASE WHEN old_present AND new_present
-                  AND oo>0 AND oh>0 AND ol>0 AND oc>0
-                  AND no>0 AND nh>0 AND nl>0 AND nc>0
+                  AND old_open>0 AND old_high>0 AND old_low>0 AND old_close>0
+                  AND new_open>0 AND new_high>0 AND new_low>0 AND new_close>0
                   AND s.scale>0
              THEN greatest(
-               abs(no/(oo*s.scale)-1),
-               abs(nh/(oh*s.scale)-1),
-               abs(nl/(ol*s.scale)-1),
-               abs(nc/(oc*s.scale)-1)
+               abs(new_open/(old_open*s.scale)-1),
+               abs(new_high/(old_high*s.scale)-1),
+               abs(new_low/(old_low*s.scale)-1),
+               abs(new_close/(old_close*s.scale)-1)
              )
              ELSE NULL END price_resid,
-        CASE WHEN old_present AND new_present AND oa IS NOT NULL AND na IS NOT NULL
-             THEN abs(na-oa)/greatest(abs(oa),1.0)
+        CASE WHEN old_present AND new_present AND old_amount IS NOT NULL AND new_amount IS NOT NULL
+             THEN abs(new_amount-old_amount)/greatest(abs(old_amount),1.0)
              ELSE NULL END amount_rel_diff
       FROM joined j LEFT JOIN scales s USING(symbol)
     """)
