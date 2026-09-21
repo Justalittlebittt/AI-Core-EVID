@@ -1,9 +1,5 @@
 name: V2.8.3 Blind Information Gate Validation
 on:
-  push:
-    paths:
-      - "scripts/v283_information_gate.py"
-      - ".github/workflows/v283-information-gate-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
