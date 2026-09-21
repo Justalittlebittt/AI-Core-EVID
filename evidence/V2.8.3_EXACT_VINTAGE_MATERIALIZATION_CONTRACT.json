@@ -1,0 +1,119 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_EXACT_VINTAGE_MATERIALIZATION_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_ANY_PROSPECTIVE_SIGNAL_MATERIALIZATION",
+  "purpose": "Convert frozen metadata-only source pins into exact, auditable D-vintage factor snapshots and horizon-specific T-vintage economic outcomes without changing any V2.8.3 hypothesis or statistical gate.",
+  "authorities": {
+    "hypothesis_contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+    "execution_contract": "evidence/V2.8.3_EXECUTION_CONTRACT.json",
+    "source_ledger_contract": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_CONTRACT.json",
+    "source_ledger_activation": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_ACTIVATION.json",
+    "stable_vendor_symbol_audit": {
+      "file": "evidence/V2.8.1_VENDOR_VINTAGE_SYMBOL_AUDIT.csv",
+      "git_blob_sha": "4270eeb58e664b8d1d02a05c547b0d19310ad79a"
+    },
+    "historical_pit_intervals": {
+      "file": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
+      "git_blob_sha": "16fcb1ea58b0f5e9354992bd8d7375efb3628096",
+      "sha256": "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1",
+      "role": "historical reconstruction authority only; it is not by itself sufficient proof of the exact prospective D universe after activation"
+    },
+    "joint_calendar_2026": "evidence/V2.7.32_JOINT_A_SHARE_TRADING_CALENDAR_2026.json"
+  },
+  "prospective_signal_boundary": {
+    "first_signal_date_allowed": "2026-09-22",
+    "rule": "No signal date before 2026-09-22 may produce an ELIGIBLE_FEATURE_SOURCE receipt."
+  },
+  "cheap_preflight_before_large_download": [
+    "signal date satisfies the frozen prospective boundary",
+    "signal date and D+5/D+10 target dates exist in a frozen official joint A-share calendar",
+    "an exact-D PIT authority receipt and exact active-universe snapshot are present and PASS",
+    "at least one frozen source-pin receipt exists in the deterministic post-session source window"
+  ],
+  "pit_date_authority_required_schema": {
+    "schema": "AI_CORE_EVID_V2_8_3_PIT_DATE_AUTHORITY_V1",
+    "required_fields": [
+      "signal_date",
+      "status",
+      "universe_snapshot_file",
+      "universe_snapshot_sha256"
+    ],
+    "required_status": "PASS",
+    "universe_snapshot_required_columns": [
+      "canonical_security_id",
+      "exchange",
+      "security_code"
+    ],
+    "reason": "The 2026-09-20 bootstrap universe cannot silently be assumed unchanged on later prospective dates. Missing prospective PIT authority blocks before any ~300MB stock parquet download."
+  },
+  "source_pin_selection": {
+    "authoritative_pin_time": "GitHub committed_at timestamp of the source-pin file creation commit",
+    "session_close": "15:00:00 Asia/Shanghai on the target trading date",
+    "latest_cutoff": "23:59:59 Asia/Shanghai on the following calendar day",
+    "candidate_order": "ascending authoritative pin time",
+    "selection_rule": "Examine candidate pins in chronological order and select the first exact materialization whose stock stable-symbol max_bar_date and CSI300 max_bar_date both equal the target session date.",
+    "no_outcome_selection": true,
+    "no_later_pin_cherry_pick_after_valid_exact_match": true,
+    "no_exact_match": "SOURCE_INELIGIBLE"
+  },
+  "exact_materialization": {
+    "download": "hf_hub_download exact frozen revision for stock and benchmark data.parquet only when cheap preflight passes",
+    "verify": [
+      "downloaded stock parquet SHA256 equals frozen stock target_lfs_sha256",
+      "downloaded benchmark parquet SHA256 equals frozen benchmark target_lfs_sha256",
+      "repo_last_modified is not later than the source-pin authoritative observation time",
+      "materialized daily max_bar_date equals the target session date"
+    ],
+    "routine_source_capture_full_download": false
+  },
+  "D_vintage_signal_role": {
+    "source": "Exact D-vintage source pin",
+    "factor_inputs": "Only bars through D",
+    "market_state": "CSI300 rv10/rv60 through D; CALM <=1, STRESSED >1",
+    "stock_factors": [
+      "rv10_over_rv60",
+      "tr10_over_tr60"
+    ],
+    "factor_implementation": "scripts/v280_scale_invariant_features.py",
+    "stable_vendor_policy": "Only symbols marked comparable=True and price_stable=True by the frozen V2.8.1 vendor audit may enter V2.8.3. Unseen/new vendor symbols are excluded unless a separately versioned future audit extends authority.",
+    "minimum_finite_rows_per_factor": 50,
+    "output": "Outcome-free signal factor panel and signal eligibility receipt"
+  },
+  "T_vintage_outcome_role": {
+    "D_plus_5": "Use the exact D+5 target-session vintage; read both D close and D+5 close from that same D+5 vintage.",
+    "D_plus_10": "Use the exact D+10 target-session vintage; read both D close and D+10 close from that same D+10 vintage.",
+    "missing_target_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "forbidden": "Never divide a T-vintage target close by a D-vintage D close."
+  },
+  "signal_states": [
+    "ELIGIBLE_FEATURE_SOURCE",
+    "BOUNDARY_BLOCKED",
+    "CALENDAR_BLOCKED",
+    "PIT_AUTHORITY_MISSING",
+    "PIT_AUTHORITY_BLOCKED",
+    "SOURCE_PIN_MISSING",
+    "SOURCE_INELIGIBLE",
+    "FEATURE_DATA_BLOCKED"
+  ],
+  "outcome_states": [
+    "OUTCOME_READY",
+    "CALENDAR_BLOCKED",
+    "SOURCE_PIN_MISSING",
+    "SOURCE_INELIGIBLE"
+  ],
+  "governance": {
+    "materialization_can_compute_H1_H2_interim_statistics": false,
+    "materialization_can_change_information_gate": false,
+    "materialization_can_change_factor_direction": false,
+    "materialization_can_emit_setup_or_episode": false,
+    "materialization_can_authorize_live": false
+  },
+  "problem_elimination": {
+    "delete": "Do not download full parquets during routine metadata capture.",
+    "avoid": "Fail cheap governance/calendar/PIT prerequisites before downloading the large stock parquet.",
+    "absorb": "Reuse frozen V2.8.1 stable-symbol audit, V2.8.0 feature engine, V2.8.3 source pins and existing official calendar.",
+    "substitute": "Freeze small factor/outcome panels instead of retaining every full vendor parquet inside GitHub.",
+    "precompute_reuse": "Exact immutable revisions can be rematerialized later; D feature panels prevent repeated D-vintage reconstruction once frozen.",
+    "optimize": "Only after correctness gates are validated."
+  }
+}
