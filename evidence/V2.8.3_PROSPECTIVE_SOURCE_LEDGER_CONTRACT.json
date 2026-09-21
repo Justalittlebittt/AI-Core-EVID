@@ -1,0 +1,64 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PROSPECTIVE_SOURCE_LEDGER_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_SOURCE_LEDGER_ACTIVATION",
+  "purpose": "Create a low-cost append-only record of immutable AlphaDojo stock and benchmark source vintages observed prospectively, without repeatedly downloading the full parquet datasets or evaluating outcomes.",
+  "strategy_authority": "evidence/V2.8.3_PROSPECTIVE_AUTHORITY_SUPERSESSION.json",
+  "repositories": [
+    {
+      "repo_id": "AlphaDojo/dojo_stock_kline",
+      "repo_type": "dataset",
+      "target_file": "data.parquet",
+      "role": "stock factor history and D/T economic endpoints"
+    },
+    {
+      "repo_id": "AlphaDojo/dojo_benchmark_kline",
+      "repo_type": "dataset",
+      "target_file": "data.parquet",
+      "role": "CSI300 market-state authority"
+    }
+  ],
+  "capture_identity": {
+    "required_fields": [
+      "repo_id",
+      "revision_sha",
+      "repo_last_modified",
+      "target_file",
+      "target_size",
+      "target_lfs_sha256"
+    ],
+    "observation_time": "Runner wall-clock time is descriptive only. The GitHub committed_at timestamp of the capture-file creation commit is the authoritative repository observation time.",
+    "immutability": "A capture receipt is never overwritten. A new receipt is created only when at least one tracked repository revision/LFS identity differs from the latest frozen receipt."
+  },
+  "storage": {
+    "directory": "evidence/v283_source_pins",
+    "receipt_format": "one JSON file per new source-identity tuple",
+    "full_parquet_download_on_capture": false,
+    "reason": "Delete repeated ~300MB downloads from the routine capture path. Immutable commit/LFS identity is enough to materialize the exact vintage later if and only if it is needed."
+  },
+  "prospective_use": {
+    "source_pin_capture_does_not_equal_valid_signal_date": true,
+    "later_materialization_gate": [
+      "Materialize the exact frozen revision before confirmatory use.",
+      "Verify downloaded bytes against the frozen LFS SHA256.",
+      "Verify stock/benchmark bar coverage and source max_bar_date for the candidate signal date.",
+      "Reject source vintages that violate the frozen V2.8.3 signal-date/source-cutoff rules."
+    ],
+    "outcome_rule": "D and T economic endpoints for an evaluated signal date must come from the same retained T-vintage snapshot.",
+    "no_backfill_claim": "A later source pin cannot be relabeled as if it had been observed before its authoritative GitHub commit timestamp."
+  },
+  "capture_policy": {
+    "no_high_frequency_polling": true,
+    "no_duplicate_identity_commits": true,
+    "capture_only_source_identity_change": true,
+    "scheduled_activation": "NOT_AUTHORIZED_BY_THIS_CONTRACT",
+    "manual_capture": "ALLOWED_AFTER_RUNNER_SELFTEST_PASS",
+    "future_schedule": "Requires a separate activation record defining cadence and cutoff semantics."
+  },
+  "forbidden": [
+    "Do not modify V2.8.1/V2.8.2 results from source-ledger observations.",
+    "Do not compute interim H1/H2 PASS/FAIL during source capture.",
+    "Do not change V2.8.3 hypothesis thresholds or boundaries from captured source content.",
+    "Do not treat source metadata capture as proof that max_bar_date equals a signal date until exact vintage materialization verifies it."
+  ]
+}
