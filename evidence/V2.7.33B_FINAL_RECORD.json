@@ -1,0 +1,41 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33B_FINAL_RECORD_V1",
+  "version": "V2.7.33B",
+  "purpose": "Prepare and validate a fail-closed exact-byte recovery gate for the original V2.7.3 prospective runtime.",
+  "validation": {
+    "workflow_run_id": 35565643814,
+    "selftest_passed": 8,
+    "selftest_total": 8,
+    "selftest_status": "PASS"
+  },
+  "restore_gate": {
+    "accepted_runtime_zip": "AlphaDojo_V2.7.3_Prospective_Runtime_Starter.zip",
+    "accepted_runtime_zip_sha256": "4e4e13276c2e68b7b834fccf0a710a31d020ddad3985711a9d1aabfb826ce22f",
+    "accepted_model_zip": "AlphaDojo_Model_Rebuild_V2.7.3.zip",
+    "accepted_model_zip_sha256": "60c3aee8577693ee85ae8de46810ce7b2ed238a666ce0ae9f5aea2de85ad47ee",
+    "exact_byte_validator": "scripts/v2733b_exact_runtime_restore.py",
+    "staging_only": true,
+    "execution_before_compatibility_audit": false,
+    "source_mutation_forbidden": true
+  },
+  "search_exhaustion": {
+    "current_conversation_uploads": "NO_MATCH",
+    "current_sandbox": "NO_ORIGINAL_ZIP",
+    "file_library_exact_filename_search": "MANIFEST_ONLY",
+    "file_library_2026_09_15_navigation": "NO_ZIP_CARD",
+    "individual_runtime_filename_search": "MANIFEST_ONLY",
+    "prior_conversation_recovery": "HASHES_AND_LINKS_ONLY_NO_BYTES"
+  },
+  "state": {
+    "CERTIFIED_V2_UNIVERSE": "PASS_RESEARCH_BOOTSTRAP",
+    "FIRST60_LEDGER": "PREREGISTERED_READY",
+    "ORIGINAL_PROSPECTIVE_RUNTIME": "BLOCKED_BYTES_ABSENT",
+    "EXACT_BYTE_RESTORE_GATE": "READY_VALIDATED",
+    "FIRST60_ACTIVATION": "NOT_ACTIVATED",
+    "CANDIDATE_EPISODE_START_COUNT": 0,
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  },
+  "release_condition": "Original V2.7.3 ZIP bytes or exact original member bytes become accessible and pass Gate A exact-byte verification plus Gate B static compatibility audit.",
+  "next_stage_after_release": "V2.7.33C RUNTIME PROMOTION + NEW PROSPECTIVE ACTIVATION MANIFEST"
+}
