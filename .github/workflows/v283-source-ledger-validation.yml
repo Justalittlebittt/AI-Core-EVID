@@ -1,0 +1,21 @@
+name: V2.8.3 Source Ledger Runner Validation
+on:
+  push:
+    paths:
+      - "scripts/v283_prospective_source_ledger.py"
+      - ".github/workflows/v283-source-ledger-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "huggingface_hub>=0.35"
+      - name: Validate source-ledger runner
+        run: python scripts/v283_prospective_source_ledger.py self-test
