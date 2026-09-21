@@ -1,9 +1,5 @@
 name: V2.8.3 Locked Confirmatory Evaluator Validation
 on:
-  push:
-    paths:
-      - "scripts/v283_confirmatory_evaluator.py"
-      - ".github/workflows/v283-confirmatory-evaluator-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
