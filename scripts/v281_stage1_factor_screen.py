@@ -245,10 +245,10 @@ def load_price_panel(
     query = f"""
       SELECT cast(k.symbol as varchar) symbol,
              cast(k.bar_time as date) bar_date,
-             cast(k.open as double) open,
-             cast(k.high as double) high,
-             cast(k.low as double) low,
-             cast(k.close as double) close,
+             cast(k.open as double) open_px,
+             cast(k.high as double) high_px,
+             cast(k.low as double) low_px,
+             cast(k.close as double) close_px,
              cast(k.amount as double) amount
       FROM read_parquet({sql_lit(kline)}) k
       INNER JOIN stable_symbols s
@@ -259,6 +259,12 @@ def load_price_panel(
     """
     px = con.execute(query).fetchdf()
     con.close()
+    px = px.rename(columns={
+        "open_px": "open",
+        "high_px": "high",
+        "low_px": "low",
+        "close_px": "close",
+    })
 
     if px.empty:
         raise RuntimeError("stock kline filtered panel is empty")
@@ -349,7 +355,7 @@ def load_benchmark_returns(
 ) -> dict[date, float]:
     con = duckdb.connect()
     q = f"""
-      SELECT cast(bar_time as date) bar_date, cast(close as double) close
+      SELECT cast(bar_time as date) bar_date, cast(close as double) close_px
       FROM read_parquet({sql_lit(bench_path)})
       WHERE cast(symbol as varchar)='000300.SS'
         AND cast(kline_t as varchar)='1D'
@@ -362,7 +368,7 @@ def load_benchmark_returns(
     b["bar_date"] = pd.to_datetime(b["bar_date"]).dt.date
     if b.duplicated("bar_date").any():
         raise RuntimeError("duplicate CSI300 bar date")
-    close = dict(zip(b["bar_date"], b["close"].astype(float)))
+    close = dict(zip(b["bar_date"], b["close_px"].astype(float)))
     t10 = target_map(calendar, 10)
     out = {}
     for d, t in t10.items():
