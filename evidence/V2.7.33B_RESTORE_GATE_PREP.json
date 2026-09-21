@@ -1,0 +1,15 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33B_RESTORE_GATE_PREP_V1",
+  "version": "V2.7.33B",
+  "status": "READY_WAITING_FOR_ORIGINAL_CARRIER_BYTES",
+  "completed": [
+    "accepted carrier package hashes frozen",
+    "exact-byte validator implemented",
+    "ZIP CRC/member-count/path-safety checks implemented",
+    "critical member SHA checks implemented",
+    "staging separated from active runtime",
+    "activation explicitly remains false after restore Gate A"
+  ],
+  "unresolved": "Neither original V2.7.3 ZIP nor exact member bytes is currently accessible.",
+  "next_automatic_step_when_carrier_appears": "Run scripts/v2733b_exact_runtime_restore.py, then static compatibility audit. Do not execute recovered strategy code before promotion."
+}
