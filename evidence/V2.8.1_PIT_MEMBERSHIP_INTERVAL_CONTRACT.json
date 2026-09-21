@@ -1,0 +1,35 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_PIT_MEMBERSHIP_INTERVAL_CONTRACT_V1",
+  "version": "V2.8.1",
+  "purpose": "Reconstruct historical SH/SZ eligible A-share membership without survivor bias by combining the frozen current official A-share universe with frozen official delisting records.",
+  "authorities": {
+    "current_active": "evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv",
+    "current_active_sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "delist_artifact_run_id": 35318215853,
+    "delist_artifact_id": 10535944660,
+    "delist_artifact_digest": "sha256:5ecbfe0b868e4709a97d71a703d07465156dbd48304e6d444ec93952e0b5e3dd"
+  },
+  "interval_semantics": {
+    "eligible_on_D": "official_list_date <= D AND (official_delist_date is null OR D < official_delist_date)",
+    "delist_date_exclusive": true,
+    "list_date_inclusive": true
+  },
+  "scope": {
+    "sse": "Official STOCK_TYPE 1 Main A + 8 STAR only.",
+    "szse_current": "Already frozen official A-share universe.",
+    "szse_delisted": "Official terminal-list table rows excluding records whose official security name explicitly identifies B/Ｂ share.",
+    "prohibited": "Do not infer exchange or board from ticker prefixes."
+  },
+  "storage": "One interval row per canonical security identity; do not materialize redundant date×security grids.",
+  "validation": [
+    "current authority file hash must match V2.7.31 Final Record",
+    "SSE delisted Main A count=143 and STAR count=3",
+    "SZSE official terminal-list recordcount=208 across 11 pages",
+    "SZSE B-share exclusions must be explicitly name-labelled B/Ｂ and separately audited",
+    "2026-09-17 reconstructed set must equal frozen official set count=5221 and canonical-set SHA256=b9733a28f99a8c91902fb5ba7fb2fbc225a888bcc2cfa6c",
+    "current and delisted A-share identities must not form conflicting overlapping intervals",
+    "pre-listing dates are ineligible",
+    "delist effective date and later are ineligible"
+  ],
+  "intended_use": "Historical technical research membership only. E-layer AI-Core eligibility remains a separate PIT evidence problem."
+}
