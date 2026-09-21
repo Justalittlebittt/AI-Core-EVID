@@ -25,6 +25,11 @@ jobs:
         id: ready
         shell: bash
         run: |
+          if [ -f evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Final result already frozen; terminal no-op."
+            exit 0
+          fi
           if [ ! -f evidence/V2.8.3_INFORMATION_GATE_STATUS.json ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
             exit 0
