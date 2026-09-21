@@ -1,0 +1,32 @@
+name: V2.7.33B Restore Validator Selftest
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v2733b_exact_runtime_restore.py"
+      - "validation/v2733b_restore_validator_selftest.py"
+      - ".github/workflows/v2733b-restore-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run offline restore validator selftest
+        run: python validation/v2733b_restore_validator_selftest.py
+      - name: Freeze selftest receipt
+        if: success()
+        run: |
+          cp v2733b_selftest.json evidence/V2.7.33B_RESTORE_VALIDATOR_SELFTEST.json
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.7.33B_RESTORE_VALIDATOR_SELFTEST.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.7.33B restore validator selftest"
+            git push
+          fi
