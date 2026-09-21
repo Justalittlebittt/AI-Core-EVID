@@ -1,0 +1,30 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PIT_SOURCE_PROBE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35588007077,
+  "job_id": 106295754984,
+  "head_sha": "e42c73368d87551921ef7824240ed704cea737f6",
+  "source_probe_receipt": "evidence/V2.8.3_PIT_SOURCE_PROBE_RECEIPT.json",
+  "source_probe_receipt_sha256": "d18e8cb926f54cfc989a85796be2e2acab28e701b69346ac7aa57590b8852583",
+  "counts": {
+    "SSE": 2320,
+    "SZSE": 2901,
+    "TOTAL": 5221
+  },
+  "network_parser_status": {
+    "SSE": "PASS",
+    "SZSE": "PASS"
+  },
+  "implementation_history": {
+    "prior_probe_failures": [
+      "initial SZSE connection reset on bare request",
+      "controlled hardened probe blocked by Python time-module shadowing"
+    ],
+    "final_fix": "rename time module import to avoid datetime.time shadowing",
+    "PIT_contract_changed": false,
+    "population_rule_changed": false,
+    "capture_window_changed": false
+  },
+  "gate": "PIT_DATE_AUTHORITY_NETWORK_SOURCES_VALIDATED"
+}
