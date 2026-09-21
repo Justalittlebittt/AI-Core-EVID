@@ -50,33 +50,80 @@ def main():
     con=duckdb.connect()
     con.execute("PRAGMA threads=4")
     con.execute("PRAGMA memory_limit='5GB'")
+    # Mapping preflight: current stock_info "symbol" is not assumed trustworthy.
+    # Compare both documented candidates against actual kline keys, then freeze the
+    # selected key before any price-drift statistics are computed.
     con.execute(f"""
-      CREATE TEMP TABLE cn_symbols AS
-      SELECT DISTINCT symbol
+      CREATE TEMP TABLE cn_info AS
+      SELECT DISTINCT
+             cast(ticker as varchar) ticker_key,
+             cast(symbol as varchar) symbol_key
       FROM read_parquet({sql_lit(info)})
       WHERE lower(cast(market as varchar))='cn'
         AND upper(cast(quote_type as varchar))='EQUITY'
-        AND symbol IS NOT NULL
     """)
     con.execute(f"""
-      CREATE TEMP VIEW o AS
-      SELECT k.symbol, cast(k.bar_time as timestamp) bar_time,
+      CREATE TEMP VIEW o_all AS
+      SELECT cast(k.symbol as varchar) symbol,
+             cast(k.bar_time as timestamp) bar_time,
              cast(k.open as double) open_px, cast(k.high as double) high_px,
              cast(k.low as double) low_px, cast(k.close as double) close_px,
              cast(k.amount as double) amount
       FROM read_parquet({sql_lit(old)}) k
-      INNER JOIN cn_symbols s USING(symbol)
       WHERE cast(k.kline_t as varchar)='1D'
     """)
     con.execute(f"""
-      CREATE TEMP VIEW n_all AS
-      SELECT k.symbol, cast(k.bar_time as timestamp) bar_time,
+      CREATE TEMP VIEW n_raw AS
+      SELECT cast(k.symbol as varchar) symbol,
+             cast(k.bar_time as timestamp) bar_time,
              cast(k.open as double) open_px, cast(k.high as double) high_px,
              cast(k.low as double) low_px, cast(k.close as double) close_px,
              cast(k.amount as double) amount
       FROM read_parquet({sql_lit(new)}) k
-      INNER JOIN cn_symbols s USING(symbol)
       WHERE cast(k.kline_t as varchar)='1D'
+    """)
+    cn_info_rows, ticker_distinct, symbol_distinct = con.execute("""
+      SELECT count(*), count(distinct ticker_key), count(distinct symbol_key) FROM cn_info
+    """).fetchone()
+    ticker_old_matches = con.execute("""
+      SELECT count(distinct o.symbol)
+      FROM o_all o INNER JOIN cn_info i ON o.symbol=i.ticker_key
+    """).fetchone()[0]
+    symbol_old_matches = con.execute("""
+      SELECT count(distinct o.symbol)
+      FROM o_all o INNER JOIN cn_info i ON o.symbol=i.symbol_key
+    """).fetchone()[0]
+    ticker_new_matches = con.execute("""
+      SELECT count(distinct n.symbol)
+      FROM n_raw n INNER JOIN cn_info i ON n.symbol=i.ticker_key
+    """).fetchone()[0]
+    symbol_new_matches = con.execute("""
+      SELECT count(distinct n.symbol)
+      FROM n_raw n INNER JOIN cn_info i ON n.symbol=i.symbol_key
+    """).fetchone()[0]
+
+    mapping_candidates = {
+      "ticker": {"old_matches": int(ticker_old_matches), "new_matches": int(ticker_new_matches), "distinct_keys": int(ticker_distinct)},
+      "symbol": {"old_matches": int(symbol_old_matches), "new_matches": int(symbol_new_matches), "distinct_keys": int(symbol_distinct)},
+    }
+    viable = [
+      k for k,v in mapping_candidates.items()
+      if v["old_matches"] >= 1000 and v["new_matches"] >= 1000
+    ]
+    if len(viable) != 1:
+        raise RuntimeError(f"CN symbol mapping unresolved: {mapping_candidates}")
+    mapping_key = viable[0]
+    key_col = "ticker_key" if mapping_key=="ticker" else "symbol_key"
+    con.execute(f"CREATE TEMP TABLE cn_symbols AS SELECT DISTINCT {key_col} symbol FROM cn_info WHERE {key_col} IS NOT NULL")
+    con.execute("""
+      CREATE TEMP VIEW o AS
+      SELECT o.*
+      FROM o_all o INNER JOIN cn_symbols s USING(symbol)
+    """)
+    con.execute("""
+      CREATE TEMP VIEW n_all AS
+      SELECT n.*
+      FROM n_raw n INNER JOIN cn_symbols s USING(symbol)
     """)
     old_min,old_max,old_rows,old_symbols=con.execute(
       "SELECT min(bar_time),max(bar_time),count(*),count(distinct symbol) FROM o"
@@ -171,6 +218,14 @@ def main():
       "old_source":{**old_meta,"download_sha256":old_sha},
       "current_source":{**new_meta,"download_sha256":sha_file(new)},
       "stock_info":{**info_meta,"download_sha256":sha_file(info)},
+      "symbol_mapping_preflight":{
+        "cn_info_rows":int(cn_info_rows),
+        "ticker_distinct_keys":int(ticker_distinct),
+        "symbol_distinct_keys":int(symbol_distinct),
+        "candidates":mapping_candidates,
+        "selected_key":mapping_key,
+        "selection_rule":"exactly one candidate key must match >=1000 distinct old-vintage and >=1000 distinct current-vintage kline symbols"
+      },
       "overlap":{
         "old_min_bar_time":str(old_min),"old_max_bar_time":str(old_max),
         "old_cn_1d_rows":int(old_rows),"old_cn_symbols":int(old_symbols),
