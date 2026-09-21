@@ -1,0 +1,25 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_LOCKED_CONFIRMATORY_EVALUATOR_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35589161851,
+  "job_id": 106299373698,
+  "head_sha": "44e3a2cce6ff2b7880821379785896129ac85dd7",
+  "selftest": {
+    "passed": 11,
+    "total": 11,
+    "all_pass": true
+  },
+  "validated_mechanics": [
+    "deterministic circular moving-block bootstrap",
+    "10000-replication production constant and 20-date production block length are frozen in source",
+    "centered one-sided primary null construction",
+    "independent CALM/STRESSED contrast bootstrap",
+    "Holm-Bonferroni sequential family gate",
+    "50-row daily cross-sectional Rank-IC eligibility",
+    "negative direction adjustment for both risk-compression hypotheses"
+  ],
+  "real_prospective_factor_return_pairs_loaded": false,
+  "real_confirmatory_statistics_computed": false,
+  "gate": "LOCKED_CONFIRMATORY_EVALUATOR_VALIDATED"
+}
