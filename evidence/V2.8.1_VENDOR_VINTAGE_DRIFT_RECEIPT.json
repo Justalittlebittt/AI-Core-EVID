@@ -1,0 +1,103 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_VENDOR_VINTAGE_DRIFT_AUDIT_V1",
+  "old_source": {
+    "revision": "cc79371024009e10d55ee9196f443d4528411cd4",
+    "last_modified": "2026-09-09 09:22:42+00:00",
+    "size": 302728318,
+    "lfs": {
+      "size": 302728318,
+      "sha256": "a2499a69e55de0e3778097fec142f6e30fb67ca42dfb7a626cd2546c83380428",
+      "pointer_size": 134
+    },
+    "download_sha256": "a2499a69e55de0e3778097fec142f6e30fb67ca42dfb7a626cd2546c83380428"
+  },
+  "current_source": {
+    "revision": "c009ad58278161e7b6eb347b68f34f51166114f3",
+    "last_modified": "2026-09-20 22:39:39+00:00",
+    "size": 308304898,
+    "lfs": {
+      "size": 308304898,
+      "sha256": "acb8ae5e31f58fe3972455b86614d668837f18afd59126c505faaae06920954b",
+      "pointer_size": 134
+    },
+    "download_sha256": "acb8ae5e31f58fe3972455b86614d668837f18afd59126c505faaae06920954b"
+  },
+  "stock_info": {
+    "revision": "6654503cdfcfa87e3524145f6922c87d30b22ab0",
+    "last_modified": "2026-09-20 22:38:09+00:00",
+    "size": 2592719,
+    "lfs": {
+      "size": 2592719,
+      "sha256": "c548dfb42763e548fb33e275e6c1148294d52376b205fb31ce53a714cfcaf49f",
+      "pointer_size": 132
+    },
+    "download_sha256": "c548dfb42763e548fb33e275e6c1148294d52376b205fb31ce53a714cfcaf49f"
+  },
+  "symbol_mapping_preflight": {
+    "cn_info_rows": 5267,
+    "ticker_distinct_keys": 5267,
+    "symbol_distinct_keys": 1,
+    "candidates": {
+      "ticker": {
+        "old_matches": 5234,
+        "new_matches": 5239,
+        "distinct_keys": 5267
+      },
+      "symbol": {
+        "old_matches": 0,
+        "new_matches": 0,
+        "distinct_keys": 1
+      }
+    },
+    "selected_key": "ticker",
+    "selection_rule": "exactly one candidate key must match >=1000 distinct old-vintage and >=1000 distinct current-vintage kline symbols"
+  },
+  "overlap": {
+    "old_min_bar_time": "2025-01-02 00:00:00",
+    "old_max_bar_time": "2026-09-09 00:00:00",
+    "old_cn_1d_rows": 2111791,
+    "old_cn_symbols": 5234,
+    "comparable_symbols": 5214,
+    "price_stable_symbols": 5214,
+    "price_unstable_symbols": 0,
+    "current_only_symbols_in_overlap_table": 0,
+    "stable_symbol_share": 1.0,
+    "comparable_matched_rows": 2111286,
+    "stable_matched_rows": 2111286,
+    "stable_row_share": 1.0
+  },
+  "tolerances": {
+    "max_price_resid": 0.001,
+    "p9999_price_resid": 0.0001,
+    "min_old_rows": 60
+  },
+  "tests": [
+    {
+      "name": "V01_no_duplicate_old_keys",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "V02_no_duplicate_new_overlap_keys",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "V03_stable_symbol_share_ge_98pct",
+      "pass": true,
+      "actual": 1.0
+    },
+    {
+      "name": "V04_stable_row_share_ge_99_5pct",
+      "pass": true,
+      "actual": 1.0
+    }
+  ],
+  "gate": {
+    "status": "VINTAGE_SCALE_INVARIANCE_PASS",
+    "stage1_max_signal_date": "2026-09-09",
+    "unstable_symbols_must_be_excluded": true,
+    "current_only_symbols_must_be_excluded": true
+  },
+  "receipt_sha256": "2e01b0f875a31812ba08351379846b94abb28ed02f5ba4eec553ae251aa27894"
+}
