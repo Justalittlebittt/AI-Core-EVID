@@ -1,0 +1,79 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.8.2",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_0_NEW_BASELINE",
+  "source_stage": "V2.8.1_STAGE1_SCREEN_COMPLETE",
+  "final_user_goal": "Build a reproducible A-share AI-Core selection process that ultimately works top-down from market context to sector context to stock selection, using free/public data and evidence that can survive prospective validation.",
+  "stage1_evidence": {
+    "promoted_factor_count": 0,
+    "ret_20": {
+      "preregistered_direction": "POSITIVE",
+      "mean_direction_adjusted_ic_d10": -0.06453347375366753,
+      "ic_d10_ci": [-0.10764509182348006, -0.023441616037240112],
+      "classification": "OPPOSITE_DIRECTION_DISCOVERY_ONLY"
+    },
+    "ret_60": {
+      "preregistered_direction": "POSITIVE",
+      "mean_direction_adjusted_ic_d10": -0.07501587977129613,
+      "ic_d10_ci": [-0.13134007347838017, -0.02461580734084247],
+      "classification": "OPPOSITE_DIRECTION_DISCOVERY_ONLY"
+    },
+    "rv10_over_rv60": {
+      "preregistered_direction": "NEGATIVE",
+      "mean_direction_adjusted_ic_d10": 0.04959609395831322,
+      "ic_d10_ci": [0.023249341258119793, 0.07639819681436112],
+      "holm_bonferroni_pass": true,
+      "only_failed_promotion_gate": "d10_spread_ci_excludes_zero",
+      "classification": "MECHANISM_CONDITIONER_CANDIDATE_NOT_PROMOTED"
+    },
+    "tr10_over_tr60": {
+      "preregistered_direction": "NEGATIVE",
+      "mean_direction_adjusted_ic_d10": 0.051742936251252654,
+      "ic_d10_ci": [0.022311831735882665, 0.08131804067109927],
+      "holm_bonferroni_pass": true,
+      "only_failed_promotion_gate": "d10_spread_ci_excludes_zero",
+      "classification": "MECHANISM_CONDITIONER_CANDIDATE_NOT_PROMOTED"
+    }
+  },
+  "hard_constraints": [
+    "V2.8.1 promotion results remain immutable: zero factors were promoted.",
+    "No V2.8.1 threshold, sample window, PASS condition, direction, multiplicity family or failed-gate result may be changed post hoc.",
+    "A direction observed after V2.8.1 results may seed a later hypothesis but cannot be relabeled as a V2.8.1 confirmatory PASS.",
+    "AI-Core eligibility remains a separate evidence authority and cannot be inferred from price behavior, sector labels or hindsight winners.",
+    "The intended decision architecture is top-down: broad market context -> sector/context layer -> stock layer.",
+    "Historical sector/context labels used as authority must be PIT/effective-dated or otherwise temporally defensible; current static labels cannot silently stand in for historical membership.",
+    "Free/public data only.",
+    "No setup, episode or live-trading authorization follows from retrospective diagnostic work."
+  ],
+  "soft_constraints_removed": [
+    "A standalone full-market cross-sectional factor must promote before any useful strategy architecture can be designed.",
+    "Stage-2 combination research must run even when Stage-1 promoted zero factors.",
+    "A near-pass factor may be rescued by relaxing the D+10 spread confidence gate.",
+    "A factor whose observed sign is opposite the preregistered direction may simply be flipped and rerun on the same outcomes as confirmatory evidence.",
+    "Vendor Vintage Drift Audit needs repeated reruns after its immutable PASS evidence is frozen.",
+    "The next iteration should add more transforms before establishing whether the missing structure is market/sector conditioning."
+  ],
+  "counterfactual": {
+    "delete_stage2_combination": "No valid promotion information is lost because V2.8.1 promoted zero factors; forcing a combination would bypass the preregistered gate.",
+    "delete_direction_flip_rerun": "Preserves anti-optional-stopping integrity; ret_20 and ret_60 remain useful as discovery evidence without being converted into retrospective wins.",
+    "avoid_threshold_relaxation": "Preserves the economic-strength requirement that prevented statistically detectable but weak extreme-spread effects from being called standalone alpha.",
+    "absorb_volatility_ratios": "rv10_over_rv60 and tr10_over_tr60 may inform risk/regime conditioning diagnostics without receiving Stage-1 promotion status.",
+    "substitute_problem_formulation": "Replace unconditional broad-universe one-factor promotion as the immediate objective with a top-down conditional architecture review.",
+    "precompute_reuse": "Reuse the frozen V2.8.1 source pins, vintage audit, PIT universe, calendar, economic-price rules and canonical panel builder rather than reacquiring or reauditing the same data.",
+    "optimize_last": "Do not optimize runtime or statistical thresholds until the conditional architecture and temporal-authority requirements are frozen."
+  },
+  "decision": {
+    "v2_8_1_vendor_vintage": "CLOSED_PASS",
+    "v2_8_1_stage1": "CLOSED_COMPLETE_ZERO_PROMOTED",
+    "stage2_unconditional_factor_combination": "DELETED",
+    "ret_20_ret_60_same_sample_sign_flip": "FORBIDDEN_AS_CONFIRMATORY",
+    "rv_tr_ratios": "RETAIN_AS_EXPLORATORY_CONDITIONER_CANDIDATES_ONLY",
+    "next_stage": "V2.8.2_TOP_DOWN_CONDITIONAL_ARCHITECTURE_REVIEW"
+  },
+  "governance": {
+    "retrospective_status": "DEVELOPMENT_DIAGNOSTIC_ONLY",
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
