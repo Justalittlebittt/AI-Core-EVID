@@ -1,0 +1,93 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_LOCKED_CONFIRMATORY_EVALUATOR_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_CONFIRMATORY_RESULTS",
+  "purpose": "Bind the final V2.8.3 confirmatory evaluator implementation to the preregistered hypothesis, execution and blind-readiness contracts before enough unseen outcomes exist.",
+  "authorities": {
+    "hypothesis_contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+    "execution_contract": "evidence/V2.8.3_EXECUTION_CONTRACT.json",
+    "blind_information_gate": "evidence/V2.8.3_BLIND_INFORMATION_GATE_CONTRACT.json",
+    "signal_feature_contract": "evidence/V2.8.3_SIGNAL_FEATURE_SNAPSHOT_CONTRACT.json",
+    "outcome_contract": "evidence/V2.8.3_OUTCOME_MATURITY_SAME_T_VINTAGE_CONTRACT.json"
+  },
+  "entry_gate": {
+    "required_status_file": "evidence/V2.8.3_INFORMATION_GATE_STATUS.json",
+    "required_status": "READY_FOR_LOCKED_CONFIRMATORY_EVALUATION",
+    "if_not_ready": "EXIT_WITHOUT_LOADING_FACTOR_RETURN_PAIRS",
+    "final_result_replacement": false
+  },
+  "hypothesis_family": [
+    {
+      "id": "H1_RV_COMPRESSION_CALM",
+      "factor": "rv10_over_rv60",
+      "direction_sign": -1,
+      "ic_seed": 2831001,
+      "contrast_seed": 2831101
+    },
+    {
+      "id": "H2_TR_COMPRESSION_CALM",
+      "factor": "tr10_over_tr60",
+      "direction_sign": -1,
+      "ic_seed": 2831002,
+      "contrast_seed": 2831102
+    }
+  ],
+  "daily_statistic": {
+    "minimum_rows": 50,
+    "rank_method": "average ties",
+    "raw_ic": "Pearson correlation of within-date average ranks of factor and forward economic return",
+    "direction_adjusted_ic": "-1 * raw_ic",
+    "primary": "D+10 on CALM dates",
+    "secondary": "D+5 on CALM dates",
+    "conditioner_contrast": "mean adjusted D+10 IC on CALM dates minus mean adjusted D+10 IC on STRESSED dates"
+  },
+  "bootstrap": {
+    "type": "circular moving block by signal date",
+    "block_length": 20,
+    "replications": 10000,
+    "ci": [0.025, 0.975],
+    "primary_null_p": "center CALM adjusted D+10 IC by observed mean; p=(1+count(null bootstrap mean >= observed mean))/(B+1)",
+    "contrast": "independent circular moving-block bootstrap of CALM and STRESSED date series; replicate difference calm_mean-stressed_mean",
+    "contrast_seeds": "CALM=contrast_seed; STRESSED=contrast_seed+10000"
+  },
+  "multiplicity": {
+    "method": "Holm-Bonferroni",
+    "familywise_alpha": 0.05,
+    "family": ["H1_RV_COMPRESSION_CALM","H2_TR_COMPRESSION_CALM"],
+    "input": "one-sided centered CALM D+10 p-values"
+  },
+  "quarter_stability": {
+    "valid_quarter_min_calm_dates": 15,
+    "positive_adjusted_D10_mean_required_share": 0.6666666667,
+    "leave_one_valid_quarter_out_mean_adjusted_D10": ">0 for every valid-quarter omission"
+  },
+  "hypothesis_PASS_requires_all": [
+    "blind readiness requirements already satisfied",
+    "mean adjusted CALM D+10 IC > 0",
+    "95% block-bootstrap CI lower bound for CALM adjusted D+10 IC > 0",
+    "Holm-Bonferroni hypothesis gate passes",
+    "CALM minus STRESSED mean adjusted D+10 IC contrast > 0",
+    "95% block-bootstrap contrast CI lower bound > 0",
+    "mean adjusted CALM D+5 IC > 0",
+    "positive adjusted CALM D+10 quarterly mean in at least two-thirds of valid quarters",
+    "all leave-one-valid-quarter-out adjusted CALM D+10 means > 0",
+    "no integrity blocker"
+  ],
+  "family_decision": {
+    "both_pass": "V2_8_3_ARCHITECTURE_CONFIRMED",
+    "exactly_one_pass": "V2_8_3_PARTIAL_REPLICATION",
+    "neither_pass": "V2_8_3_ARCHITECTURE_REJECTED"
+  },
+  "outputs": {
+    "daily_metrics": "evidence/V2.8.3_CONFIRMATORY_DAILY_METRICS.csv",
+    "hypothesis_ledger": "evidence/V2.8.3_CONFIRMATORY_HYPOTHESIS_LEDGER.csv",
+    "final_receipt": "evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json"
+  },
+  "governance": {
+    "one_final_evaluation_only": true,
+    "post_result_threshold_or_hypothesis_change": "requires a new version and new unseen boundary",
+    "confirmation_effect": "may justify subsequent combination/setup research only",
+    "setup_or_episode_emission_from_this_result": false,
+    "live_authorized": false
+  }
+}
