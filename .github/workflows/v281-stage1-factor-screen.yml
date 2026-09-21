@@ -1,0 +1,53 @@
+name: V2.8.1 Stage-1 Factor Screen
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v281_stage1_factor_screen.py"
+      - ".github/workflows/v281-stage1-factor-screen.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned research runtime
+        run: |
+          pip install "huggingface_hub==1.32.0" "duckdb==1.5.5" "numpy==1.26.4" "pandas==2.2.3" "pyarrow==17.0.0"
+      - name: Run preregistered Stage-1 screen
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v281_stage1_factor_screen.py | tee v281_stage1.log
+      - name: Freeze compact Stage-1 evidence
+        if: success()
+        run: |
+          cp v281_stage1/V2.8.1_CANONICAL_RESEARCH_SNAPSHOT_RECEIPT.json evidence/
+          cp v281_stage1/V2.8.1_STAGE1_FACTOR_RESULT_LEDGER.csv evidence/
+          cp v281_stage1/V2.8.1_STAGE1_DAILY_METRICS.csv evidence/
+          cp v281_stage1/V2.8.1_STAGE1_QUANTILE_METRICS.csv evidence/
+          cp v281_stage1/V2.8.1_STAGE1_FACTOR_SCREEN_RECEIPT.json evidence/
+          cp v281_stage1/V2.8.1_FINAL_RECORD.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.1_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.1 Stage-1 factor screen"
+            git push
+          fi
+      - name: Upload reproducible panel and audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.8.1_STAGE1_FACTOR_SCREEN
+          path: |
+            v281_stage1/
+            v281_stage1.log
+          if-no-files-found: warn
+          retention-days: 30
