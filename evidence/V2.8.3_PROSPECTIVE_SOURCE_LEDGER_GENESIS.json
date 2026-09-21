@@ -1,0 +1,14 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PROSPECTIVE_SOURCE_LEDGER_GENESIS_V1",
+  "version": "V2.8.3",
+  "state": "READY_FOR_RUNNER_VALIDATION_NOT_ACTIVATED",
+  "authority_supersession": "evidence/V2.8.3_PROSPECTIVE_AUTHORITY_SUPERSESSION.json",
+  "ledger_contract": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_CONTRACT.json",
+  "capture_directory": "evidence/v283_source_pins",
+  "frozen_capture_count": 0,
+  "scheduled_capture_active": false,
+  "confirmatory_result_evaluation_active": false,
+  "setup_or_episode_emission_authorized": false,
+  "live_authorized": false,
+  "next_gate": "V2.8.3_SOURCE_LEDGER_RUNNER_SELFTEST"
+}
