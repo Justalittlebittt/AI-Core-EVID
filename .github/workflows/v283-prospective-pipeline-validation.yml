@@ -1,0 +1,36 @@
+name: V2.8.3 Prospective Pipeline Synthetic Validation
+on:
+  push:
+    paths:
+      - ".github/workflows/v283-prospective-pipeline-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "numpy>=2.0" "pandas>=2.2" "duckdb>=1.1" "huggingface_hub>=0.35" "requests>=2.32,<3" "openpyxl>=3.1,<4"
+      - name: Source ledger self-test
+        run: python scripts/v283_prospective_source_ledger.py self-test
+      - name: PIT date authority self-test
+        run: python scripts/v283_pit_date_authority.py self-test
+      - name: Exact vintage materialization gate self-test
+        run: python scripts/v283_exact_vintage_materialization_gate.py self-test
+      - name: Signal feature snapshot self-test
+        run: python scripts/v283_signal_feature_snapshot.py self-test
+      - name: Outcome resolver self-test
+        run: python scripts/v283_outcome_resolver.py self-test
+      - name: Blind information gate self-test
+        run: python scripts/v283_information_gate.py self-test
+      - name: Locked confirmatory evaluator self-test
+        run: python scripts/v283_confirmatory_evaluator.py self-test
