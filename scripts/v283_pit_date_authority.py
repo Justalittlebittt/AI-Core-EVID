@@ -14,6 +14,8 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 BASELINE = Path("evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv")
 BASELINE_SHA = "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d"
@@ -165,10 +167,27 @@ def fetch_sse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
 
 def fetch_szse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
     raw.mkdir(parents=True, exist_ok=True)
-    r = requests.get(
+    retry = Retry(
+        total=4, connect=4, read=4, status=4,
+        backoff_factor=1.0,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=frozenset({"GET"}),
+        raise_on_status=False,
+    )
+    sess = requests.Session()
+    sess.mount("https://", HTTPAdapter(max_retries=retry))
+    sess.headers.update({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+        "Referer": SZSE_REFERER,
+        "Accept": "*/*",
+    })
+    try:
+        sess.get(SZSE_REFERER, timeout=20)
+    except requests.RequestException:
+        pass
+    r = sess.get(
         SZSE_ENDPOINT,
         params={"SHOWTYPE": "xlsx", "CATALOGID": "1110", "TABKEY": "tab1"},
-        headers={"User-Agent": "Mozilla/5.0", "Referer": SZSE_REFERER},
         timeout=60,
     )
     r.raise_for_status()
