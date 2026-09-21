@@ -1,0 +1,41 @@
+name: V2.8.1 Vendor Vintage Drift Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v281_vendor_vintage_drift.py"
+      - ".github/workflows/v281-vintage-drift.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "huggingface_hub>=0.35" "duckdb>=1.1,<2" "pandas>=2,<4"
+      - name: Compare immutable AlphaDojo vintages
+        run: python scripts/v281_vendor_vintage_drift.py
+      - name: Freeze drift audit
+        if: success()
+        run: |
+          cp v281_vintage_audit/V2.8.1_VENDOR_VINTAGE_SYMBOL_AUDIT.csv evidence/
+          cp v281_vintage_audit/V2.8.1_VENDOR_VINTAGE_UNSTABLE_SYMBOLS.csv evidence/
+          cp v281_vintage_audit/V2.8.1_VENDOR_VINTAGE_DRIFT_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.1_VENDOR_VINTAGE_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.1 vendor vintage drift audit"
+            git push
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.8.1_VENDOR_VINTAGE_DRIFT
+          path: v281_vintage_audit/
+          retention-days: 30
