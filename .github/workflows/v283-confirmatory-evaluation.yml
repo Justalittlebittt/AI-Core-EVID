@@ -1,0 +1,55 @@
+name: V2.8.3 Locked Confirmatory Evaluation
+on:
+  schedule:
+    - cron: "0 4 * * 2-6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v283-locked-confirmatory-evaluation
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "numpy>=2.0" "pandas>=2.2"
+      - name: Check readiness without exposing performance
+        id: ready
+        shell: bash
+        run: |
+          if [ ! -f evidence/V2.8.3_INFORMATION_GATE_STATUS.json ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python - <<'PY'
+          import json, os
+          p="evidence/V2.8.3_INFORMATION_GATE_STATUS.json"
+          x=json.load(open(p,encoding="utf-8"))
+          ready=x.get("status")=="READY_FOR_LOCKED_CONFIRMATORY_EVALUATION"
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
+              f.write("ready="+("true" if ready else "false")+"\n")
+          PY
+      - name: Run exactly one locked confirmatory evaluation
+        if: steps.ready.outputs.ready == 'true'
+        run: python scripts/v283_confirmatory_evaluator.py evaluate
+      - name: Freeze final result if produced
+        if: steps.ready.outputs.ready == 'true'
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.3_CONFIRMATORY_DAILY_METRICS.csv                   evidence/V2.8.3_CONFIRMATORY_HYPOTHESIS_LEDGER.csv                   evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json
+          if git diff --cached --quiet; then
+            echo "No new final confirmatory result."
+            exit 0
+          fi
+          git commit -m "Freeze V2.8.3 confirmatory final result [skip ci]"
+          git pull --rebase origin main
+          git push
