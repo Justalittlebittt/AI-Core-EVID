@@ -1,0 +1,45 @@
+name: V2.8.2 CAPCO Sector Parser
+
+on:
+  push:
+    paths:
+      - "scripts/v282_capco_sector_parser.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install parser dependencies
+        run: pip install "pypdf>=6,<7" "pandas>=2,<4"
+      - name: Parse frozen CAPCO snapshots
+        run: python scripts/v282_capco_sector_parser.py
+      - name: Freeze parsed sector authority
+        if: success()
+        run: |
+          cp v282_capco_sector_parser/V2.8.2_CAPCO_SECTOR_SNAPSHOT_ROWS.csv evidence/
+          cp v282_capco_sector_parser/V2.8.2_CAPCO_SECTOR_EFFECTIVE_INTERVALS.csv evidence/
+          cp v282_capco_sector_parser/V2.8.2_CAPCO_SECTOR_PARSE_FAILURES.csv evidence/
+          cp v282_capco_sector_parser/V2.8.2_CAPCO_SECTOR_PIT_COVERAGE.csv evidence/
+          cp v282_capco_sector_parser/V2.8.2_CAPCO_SECTOR_PARSER_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.2_CAPCO_SECTOR_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.2 CAPCO sector parser outputs"
+            git push
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.8.2_CAPCO_SECTOR_PARSER
+          path: v282_capco_sector_parser/
+          retention-days: 30
