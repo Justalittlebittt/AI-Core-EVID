@@ -1,0 +1,80 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_DATA_SOURCE_CAPABILITY_V1",
+  "version": "V2.8.0",
+  "allowed_cost": "FREE_PUBLIC_ONLY",
+  "sources": [
+    {
+      "id": "ALPHADOJO_STOCK_KLINE",
+      "provider": "AlphaDojo / Hugging Face",
+      "repo": "AlphaDojo/dojo_stock_kline",
+      "current_observed_updated_date": "2026-09-20",
+      "observed_max_bar_date": "2026-09-18",
+      "fields": [
+        "symbol",
+        "kline_t",
+        "bar_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "vol",
+        "amount",
+        "change_p",
+        "adj_factor_cum",
+        "dividends",
+        "splits"
+      ],
+      "supports": [
+        "trend",
+        "relative_strength",
+        "anti_chase",
+        "volatility",
+        "liquidity",
+        "corporate_action_detection"
+      ],
+      "role": "PRICE_FEATURE_AND_SOURCE_INPUT",
+      "note": "Every actual research run must freeze the exact source revision/hash and retained bytes; this capability record is not itself a data snapshot."
+    },
+    {
+      "id": "ALPHADOJO_BENCHMARK_KLINE",
+      "provider": "AlphaDojo / Hugging Face",
+      "repo": "AlphaDojo/dojo_benchmark_kline",
+      "current_observed_updated_date": "2026-09-19",
+      "fields": [
+        "symbol",
+        "kline_t",
+        "bar_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "vol",
+        "amount",
+        "change_p"
+      ],
+      "supports": [
+        "broad_index_benchmark",
+        "market_regime"
+      ],
+      "role": "BENCHMARK_FEATURE_INPUT"
+    },
+    {
+      "id": "OFFICIAL_CERTIFIED_UNIVERSE",
+      "provider": "SSE/SZSE official evidence via AI Core EVID",
+      "file": "evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv",
+      "count": 5221,
+      "role": "MEMBERSHIP_AUTHORITY"
+    },
+    {
+      "id": "AI_CORE_EVIDENCE_CONSTITUTION_V1_2",
+      "sha256": "ce8f266f3d119581306dfe853f6c15769f6ec2f4e2bf2aa68ff0ea664f51442c",
+      "role": "AI_CORE_ELIGIBILITY_AUTHORITY",
+      "current_limitation": "Full-market V1.2 issuer classification is not yet available in the current GitHub repository."
+    }
+  ],
+  "immediate_data_gap": {
+    "id": "FULL_MARKET_AI_CORE_EVIDENCE_LABELS",
+    "effect": "V2.8.0 may build and validate technical factor infrastructure on the official Mother Pool, but no prospective AI-Core strategy Episode may be emitted until E-layer eligibility is available for the signal-date universe.",
+    "workaround_forbidden": "Do not use vendor industry tags or historical hindsight-19 as a substitute for E-layer qualification."
+  }
+}
