@@ -1,0 +1,10 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_EXACT_VINTAGE_MATERIALIZATION_GENESIS_V1",
+  "version": "V2.8.3",
+  "state": "RUNNER_NOT_YET_VALIDATED",
+  "contract": "evidence/V2.8.3_EXACT_VINTAGE_MATERIALIZATION_CONTRACT.json",
+  "prospective_signal_materialization_active": false,
+  "prospective_outcome_materialization_active": false,
+  "interim_H1_H2_evaluation_active": false,
+  "next_gate": "EXACT_VINTAGE_RUNNER_SELFTEST"
+}
