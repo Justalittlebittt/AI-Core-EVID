@@ -1,11 +1,5 @@
 name: V2.8.0 Feature Engine Selftest
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v280_scale_invariant_features.py"
-      - "validation/v280_feature_engine_selftest.py"
-      - ".github/workflows/v280-feature-selftest.yml"
   workflow_dispatch:
 permissions:
   contents: write
