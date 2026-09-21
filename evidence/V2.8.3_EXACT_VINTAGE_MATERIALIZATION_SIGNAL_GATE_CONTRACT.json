@@ -1,0 +1,102 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_EXACT_VINTAGE_MATERIALIZATION_SIGNAL_GATE_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_MATERIALIZATION_RESULTS",
+  "purpose": "Convert low-cost prospective source pins into auditable feature-source and outcome-source eligibility without backfilling later AlphaDojo vintages into earlier signal dates.",
+  "authorities": {
+    "source_ledger": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_CONTRACT.json",
+    "source_ledger_activation": "evidence/V2.8.3_SOURCE_LEDGER_ACTIVATION_RECEIPT.json",
+    "hypothesis_contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+    "execution_contract": "evidence/V2.8.3_EXECUTION_CONTRACT.json",
+    "joint_calendar_2026": "evidence/V2.7.32_JOINT_A_SHARE_TRADING_CALENDAR_2026.json"
+  },
+  "strict_signal_boundary": {
+    "first_signal_date_allowed": "2026-09-22",
+    "reason": "V2.8.3 confirmatory contract and execution mechanics were frozen after the 2026-09-21 market session.",
+    "no_grandfathering": true
+  },
+  "pin_observation_authority": {
+    "rule": "The authoritative observation time of a source-pin receipt is the committed_at timestamp of the first Git commit that created that exact pin file.",
+    "runner_descriptive_time_is_not_authority": true,
+    "latest_allowed_feature_pin_observation": "D+1 23:59:59 Asia/Shanghai",
+    "reason": "Permit normal post-close vendor publication latency while preventing later historical backfill from being treated as D-vintage information."
+  },
+  "exact_materialization": {
+    "download": "Materialize each tracked data.parquet with hf_hub_download(repo_type=dataset, revision=frozen revision_sha).",
+    "byte_gate": "Downloaded file SHA256 must exactly equal frozen target_lfs_sha256.",
+    "cache_reuse": true,
+    "routine_source_capture_download_forbidden": true,
+    "materialize_only_when_needed": true
+  },
+  "feature_source_gate": {
+    "stock_scope_for_max_date": "kline_t=1D AND market=cn AND quote_type=EQUITY",
+    "benchmark_scope_for_max_date": "symbol=000300.SS AND kline_t=1D",
+    "requires": [
+      "signal_date >= 2026-09-22",
+      "signal_date is a frozen joint A-share trading day",
+      "pin authoritative observation time <= D+1 23:59:59 Asia/Shanghai",
+      "stock exact-vintage byte SHA passes",
+      "benchmark exact-vintage byte SHA passes",
+      "stock scoped max_bar_date == D",
+      "benchmark CSI300 max_bar_date == D",
+      "CSI300 has enough source history through D to compute the frozen 60-return market state",
+      "no source/PIT integrity blocker is active"
+    ],
+    "eligible_state": "ELIGIBLE_FEATURE_SOURCE",
+    "ineligible_states": [
+      "PRE_CONFIRMATORY_BOUNDARY",
+      "NON_TRADING_SIGNAL_DATE",
+      "PIN_OBSERVED_AFTER_CUTOFF",
+      "SOURCE_BYTES_MISMATCH",
+      "STOCK_MAX_BAR_DATE_MISMATCH",
+      "BENCHMARK_MAX_BAR_DATE_MISMATCH",
+      "BENCHMARK_WARMUP_INSUFFICIENT",
+      "SOURCE_SCHEMA_BLOCKED"
+    ]
+  },
+  "outcome_source_gate": {
+    "target_dates": "Frozen D+5 and D+10 joint A-share trading dates determined at signal admission.",
+    "pending_rule": "If an exact retained T-vintage containing the target date has not yet been prospectively pinned/materialized, outcome status is OUTCOME_PENDING, not failure.",
+    "same_vintage_endpoint_rule": "For each horizon, both D close and target T close must be read from the same exact retained T-vintage stock parquet.",
+    "target_shift_forbidden": true,
+    "missing_target_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "no_feature_recompute_from_T_vintage": true
+  },
+  "append_only_signal_ledger": {
+    "path": "evidence/V2.8.3_PROSPECTIVE_SIGNAL_SOURCE_LEDGER.csv",
+    "one_row_per_signal_date": true,
+    "first_admission_is_final": true,
+    "replacement_with_later_more_favorable_pin_for_same_D": false,
+    "required_columns": [
+      "signal_date",
+      "feature_source_state",
+      "source_pin_file",
+      "source_pin_commit_sha",
+      "source_pin_committed_at_utc",
+      "stock_revision_sha",
+      "stock_lfs_sha256",
+      "benchmark_revision_sha",
+      "benchmark_lfs_sha256",
+      "stock_max_bar_date",
+      "benchmark_max_bar_date",
+      "target_d5",
+      "target_d10",
+      "outcome_d5_state",
+      "outcome_d10_state"
+    ]
+  },
+  "problem_elimination": {
+    "delete": "Do not download full parquet during routine metadata capture.",
+    "avoid": "Do not infer D-vintage eligibility from a later current snapshot.",
+    "absorb": "Use Git/Hugging Face immutable identities and existing V2.7.32 joint-calendar semantics.",
+    "substitute": "Represent not-yet-mature forward outcomes explicitly as OUTCOME_PENDING instead of rerunning statistics.",
+    "precompute_reuse": "Reuse Hugging Face cache by immutable revision/LFS identity.",
+    "optimize": "Only after correctness gates pass."
+  },
+  "governance": {
+    "interim_H1_H2_statistics_authorized": false,
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
