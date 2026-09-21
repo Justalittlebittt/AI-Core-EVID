@@ -1,0 +1,33 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PIT_DATE_AUTHORITY_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_PROSPECTIVE_CAPTURE",
+  "contract": "evidence/V2.8.3_PROSPECTIVE_PIT_DATE_AUTHORITY_CONTRACT.json",
+  "logic_validation": "evidence/V2.8.3_PIT_DATE_AUTHORITY_RUNNER_VALIDATION.json",
+  "network_source_validation": "evidence/V2.8.3_PIT_SOURCE_PROBE_VALIDATION_RECEIPT.json",
+  "activation_time_authority": "GitHub committed_at timestamp of this activation-file creation commit",
+  "first_signal_date": "2026-09-22",
+  "schedule": {
+    "cron_utc": "0 8 * * 1-5",
+    "local_asia_shanghai": "16:00 Monday-Friday",
+    "holiday_behavior": "NO_AUTHORITY_REQUIRED",
+    "late_or_wrong_window_behavior": "FAIL_CLOSED_NO_AUTHORITY"
+  },
+  "output_directory": "evidence/v283_pit_authority",
+  "capture_frequency": "ONCE_PER_WEEKDAY_MAXIMUM",
+  "official_sources": ["SSE", "SZSE"],
+  "current_authorization": {
+    "PIT_universe_capture": true,
+    "price_materialization": false,
+    "signal_feature_snapshot": false,
+    "H1_H2_interim_statistics": false,
+    "setup_or_episode_emission": false,
+    "live": false
+  },
+  "problem_elimination": {
+    "daily_full_issuer_rebuild": "DELETED",
+    "static_2026_09_20_universe_carry_forward": "FORBIDDEN",
+    "routine_price_download": "NOT_PART_OF_THIS_WORKFLOW",
+    "actual_removal_resolution": "TARGETED_ONLY_WHEN_A_REMOVAL_DELTA_OCCURS"
+  }
+}
