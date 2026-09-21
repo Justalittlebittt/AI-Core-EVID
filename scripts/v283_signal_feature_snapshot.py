@@ -170,6 +170,8 @@ def load_market_context(bench_path:Path,d:date)->tuple[float,str]:
     return ratio,market_state(ratio)
 
 def build_for_pin(d:date,pin_path:Path,write:bool=True)->dict:
+    if any(r.get("signal_date")==d.isoformat() for r in mg.ledger_rows()):
+        raise RuntimeError("SIGNAL_DATE_ALREADY_ADMITTED_NO_REPLACEMENT")
     pit_obj,pit_path,universe=load_pit_authority(d)
     pin=json.loads(pin_path.read_text(encoding="utf-8"))
     sources=mg.pin_sources(pin)
@@ -246,10 +248,30 @@ def build_for_pin(d:date,pin_path:Path,write:bool=True)->dict:
         "outcome_d10_state":"OUTCOME_PENDING",
         "interim_H1_H2_statistics_computed":False,
     }
-    receipt["receipt_sha256"]=stable_json_sha(receipt)
     if write:
+        mg.append_ledger({
+            "signal_date":d.isoformat(),
+            "feature_source_state":"ELIGIBLE_FEATURE_SOURCE",
+            "source_pin_file":str(pin_path),
+            "source_pin_commit_sha":pin_commit_sha,
+            "source_pin_committed_at_utc":pin_commit_time.isoformat(),
+            "stock_revision_sha":sources["AlphaDojo/dojo_stock_kline"]["revision_sha"],
+            "stock_lfs_sha256":sources["AlphaDojo/dojo_stock_kline"]["target_lfs_sha256"],
+            "benchmark_revision_sha":sources["AlphaDojo/dojo_benchmark_kline"]["revision_sha"],
+            "benchmark_lfs_sha256":sources["AlphaDojo/dojo_benchmark_kline"]["target_lfs_sha256"],
+            "stock_max_bar_date":sd["max_date"],
+            "benchmark_max_bar_date":bd["max_date"],
+            "target_d5":t5.isoformat() if t5 else "",
+            "target_d10":t10.isoformat() if t10 else "",
+            "outcome_d5_state":"OUTCOME_PENDING",
+            "outcome_d10_state":"OUTCOME_PENDING",
+        })
+        receipt["signal_source_ledger_file"]=str(mg.LEDGER)
+        receipt["signal_source_ledger_sha256_after_admission"]=sha_file(mg.LEDGER)
+        receipt["receipt_sha256"]=stable_json_sha(receipt)
         receipt_path.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     else:
+        receipt["receipt_sha256"]=stable_json_sha(receipt)
         csv_path.unlink(missing_ok=True)
     return receipt
 
@@ -306,6 +328,8 @@ def self_test():
     d=date(2026,9,22)
     close_t=datetime.combine(d,time(15,0),TZ).astimezone(timezone.utc)
     ck("F10_pin_window_strict_after_close",not (close_t < close_t <= mg.latest_allowed_pin_time(d)))
+    simulated=[{"signal_date":"2026-09-22"}]
+    ck("F11_signal_date_no_replacement",any(r["signal_date"]=="2026-09-22" for r in simulated))
     result={"schema":"AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_SELFTEST_V2",
             "passed":sum(x["pass"] for x in tests),"total":len(tests),
             "all_pass":all(x["pass"] for x in tests),"tests":tests}
