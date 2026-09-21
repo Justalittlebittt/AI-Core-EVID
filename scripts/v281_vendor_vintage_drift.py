@@ -71,8 +71,8 @@ def main():
     con.execute(f"""
       CREATE TEMP VIEW n_all AS
       SELECT k.symbol, cast(k.bar_time as timestamp) bar_time,
-             cast(k.open as double) open, cast(k.high as double) high,
-             cast(k.low as double) low, cast(k.close as double) close,
+             cast(k.open as double) open_px, cast(k.high as double) high_px,
+             cast(k.low as double) low_px, cast(k.close as double) close_px,
              cast(k.amount as double) amount
       FROM read_parquet({sql_lit(new)}) k
       INNER JOIN cn_symbols s USING(symbol)
