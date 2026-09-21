@@ -1,0 +1,16 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PIT_SOURCE_PROBE_V1",
+  "asof_date": "2026-09-21",
+  "captured_at_utc": "2026-09-21T10:18:54.047872+00:00",
+  "sse_count": 2320,
+  "szse_count": 2901,
+  "total_count": 5221,
+  "sse_capture_responses": 25,
+  "szse_capture_responses": 1,
+  "sse_min_list_date": "1990-12-19",
+  "sse_max_list_date": "2026-09-17",
+  "szse_min_list_date": "1991-01-29",
+  "szse_max_list_date": "2026-09-10",
+  "status": "PASS",
+  "receipt_sha256": "d18e8cb926f54cfc989a85796be2e2acab28e701b69346ac7aa57590b8852583"
+}
