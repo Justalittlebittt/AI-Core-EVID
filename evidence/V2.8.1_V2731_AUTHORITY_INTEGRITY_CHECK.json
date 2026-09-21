@@ -1,0 +1,32 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_V2731_AUTHORITY_INTEGRITY_CHECK_V1",
+  "tests": [
+    {
+      "name": "universe_sha_matches_final_record",
+      "pass": true,
+      "actual": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+      "expected": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d"
+    },
+    {
+      "name": "receipt_internal_universe_sha_matches",
+      "pass": true,
+      "actual": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+      "expected": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d"
+    },
+    {
+      "name": "receipt_seal_matches_final_record",
+      "pass": true,
+      "actual": "4802f0a0868f689516305e4e6c0f7a4fd34b3b6b5da0705c251f1660ae4ac35f",
+      "expected": "4802f0a0868f689516305e4e6c0f7a4fd34b3b6b5da0705c251f1660ae4ac35f"
+    },
+    {
+      "name": "universe_count_5221",
+      "pass": true,
+      "actual": 5221,
+      "expected": 5221
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "all_pass": true
+}
