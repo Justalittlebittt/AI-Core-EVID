@@ -1,0 +1,41 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.8.0",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_0_NEW_BASELINE",
+  "final_user_goal": "Build a new reproducible A-share AI-Core growth/trend strategy that can later enter a genuine prospective First60 experiment, without pretending to recover the lost V2.7.3 strategy.",
+  "hard_constraints": [
+    "new strategy identity must be explicit; no claim of continuity with lost V2.7.3 numerical strategy rules",
+    "official Forward Certified Universe remains the membership authority",
+    "AI-Core eligibility is a separate evidence layer and cannot be inferred from price strength, ticker tags, sector labels, or hindsight winners",
+    "technical/entry features cannot self-declare Evidence eligibility or official membership",
+    "all historical work before a future activation is Development/Diagnostic/Retro Stress only",
+    "outcome uses common joint A-share trading calendar and frozen D+10 target semantics unless a separately versioned comparator is explicitly tested",
+    "economic returns use the frozen economic-price/vintage rule; raw-close corporate-action artifacts cannot define promotion",
+    "no historical event may be promoted merely because it resembles a profitable pattern",
+    "all strategy rules, code, datasets/receipts, evaluator logic and decision rules must be Git-frozen before prospective activation",
+    "free/public data only"
+  ],
+  "soft_constraints_removed": [
+    "reconstruct old TQ thresholds",
+    "reuse old B3 chain because it existed",
+    "force a complete trading strategy before testing individual modules",
+    "make Market State an immediate hard veto",
+    "make RS/Ret20 an automatic Grade-A promotion key",
+    "choose fixed stop/take-profit/position percentages before A-share evidence supports them",
+    "require full-market PDF materialization before technical research",
+    "optimize toward a single historical headline return"
+  ],
+  "architecture": {
+    "Delete": "Discard the failed B3_ABLATION/B3_CHAIN rule family as a promotion candidate; retain only as negative-control evidence.",
+    "Avoid": "Do not create hard thresholds before module-level evidence exists.",
+    "Absorb": "Reuse V2.7.31 Universe, V2.7.30 materialization, V2.7.32 First60 ledger, calendar, PIT and economic-price governance.",
+    "Substitute": "Use explicit research factor families + walk-forward validation instead of reconstructed legacy strategy rules.",
+    "Precompute_Reuse": "Build one canonical feature panel and one canonical outcome panel, then evaluate many preregistered candidate transforms without repeatedly reacquiring data.",
+    "Optimize": "Only optimize implementation/runtime after factor definitions, leakage checks and evaluation protocol are frozen."
+  },
+  "negative_control": {
+    "source": "B3_summary.csv / B3_nonoverlap10_sensitivity.csv",
+    "result": "FAIL",
+    "policy": "B3 family may be retained as a comparator/negative control but cannot seed a hard gate without new evidence."
+  }
+}
