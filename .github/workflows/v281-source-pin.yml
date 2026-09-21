@@ -1,10 +1,5 @@
 name: V2.8.1 Hugging Face Source Pin
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v281_hf_source_pin.py"
-      - ".github/workflows/v281-source-pin.yml"
   workflow_dispatch:
 permissions:
   contents: write
