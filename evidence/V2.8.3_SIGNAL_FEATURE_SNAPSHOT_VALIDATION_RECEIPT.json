@@ -1,0 +1,26 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35587782202,
+  "job_id": 106295025764,
+  "head_sha": "3681731c074877328bb44a2dc95149f9259df91a",
+  "selftest": {
+    "passed": 8,
+    "total": 8,
+    "all_pass": true
+  },
+  "validated_mechanics": [
+    "rv10_over_rv60 finite construction after 60-return warmup",
+    "tr10_over_tr60 finite construction after 60-TR warmup",
+    "D source close capture",
+    "CALM identity threshold at ratio <= 1",
+    "STRESSED state above one",
+    "60-bar warmup fail-closed behavior",
+    "rv ratio scale invariance",
+    "true-range ratio scale invariance"
+  ],
+  "real_prospective_signal_snapshot_created": false,
+  "reason": "First confirmatory signal date is 2026-09-22; no D-vintage signal may be backfilled before then.",
+  "gate": "SIGNAL_FEATURE_SNAPSHOT_MECHANICS_VALIDATED"
+}
