@@ -1,9 +1,5 @@
 name: V2.8.3 PIT Date Authority Validation
 on:
-  push:
-    paths:
-      - "scripts/v283_pit_date_authority.py"
-      - ".github/workflows/v283-pit-date-authority-validation.yml"
   workflow_dispatch:
 
 permissions:
