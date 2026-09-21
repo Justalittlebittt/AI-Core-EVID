@@ -3,9 +3,6 @@ on:
   schedule:
     - cron: "0 1 * * 2-6"
   workflow_dispatch:
-  push:
-    paths:
-      - "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_ACTIVATION.json"
 
 permissions:
   contents: write
