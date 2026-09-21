@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_34_FINAL_RECORD_V1",
+  "version": "V2.7.34",
+  "gate": {
+    "old_runtime_exact_reconstruction": "CLOSED_NOT_FEASIBLE",
+    "old_first60_activation": "PERMANENTLY_NOT_ACTIVATABLE_WITHOUT_ORIGINAL_BYTES"
+  },
+  "reusable_foundation": [
+    "V2.7.31 Forward Certified Universe architecture",
+    "V2.7.30 on-demand evidence materialization",
+    "V2.7.32 First60 append-only prospective ledger semantics",
+    "joint A-share trading calendar",
+    "economic-price outcome correction",
+    "PIT/source-retention/fail-closed governance"
+  ],
+  "non_reusable_as_original_strategy": [
+    "lost V2.7.3 signal generator",
+    "lost TQ numerical candidate implementation",
+    "lost Setup implementation"
+  ],
+  "recommended_next_stage": "V2.8.0 NEW PROSPECTIVE STRATEGY BASELINE — explicit new strategy identity, full reproducible specification, retrospective validation, then fresh First60 activation",
+  "requires_user_approval": true,
+  "reason_for_approval": "V2.8.0 would define a new strategy rather than recover the locked V2.7.3 strategy."
+}
