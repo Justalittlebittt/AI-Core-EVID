@@ -1,10 +1,5 @@
 name: V2.8.1 PIT Membership Reconstruction
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v281_pit_membership_intervals.py"
-      - ".github/workflows/v281-pit-membership.yml"
   workflow_dispatch:
 permissions:
   contents: write
