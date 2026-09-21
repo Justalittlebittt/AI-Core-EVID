@@ -92,6 +92,19 @@ def require_sha(path: Path, expected: str, label: str) -> None:
         raise RuntimeError(f"{label} SHA mismatch: {actual} != {expected}")
 
 
+def verify_receipt_seal(path: Path, expected_seal: str, label: str) -> tuple[dict, str]:
+    obj = json.loads(path.read_text(encoding="utf-8"))
+    embedded = obj.get("receipt_sha256")
+    unsigned = dict(obj)
+    unsigned.pop("receipt_sha256", None)
+    computed = stable_json_sha(unsigned)
+    if embedded != expected_seal or computed != expected_seal:
+        raise RuntimeError(
+            f"{label} canonical seal mismatch: embedded={embedded} computed={computed} expected={expected_seal}"
+        )
+    return obj, sha_file(path)
+
+
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -165,8 +178,9 @@ def load_intervals() -> pd.DataFrame:
 
 
 def load_stable_symbols(intervals: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, str]]:
-    require_sha(VINTAGE_RECEIPT, VINTAGE_RECEIPT_SHA, "vintage drift receipt")
-    receipt = read_json(VINTAGE_RECEIPT)
+    receipt, _receipt_file_sha = verify_receipt_seal(
+        VINTAGE_RECEIPT, VINTAGE_RECEIPT_SHA, "vintage drift receipt"
+    )
     if receipt["gate"]["status"] != "VINTAGE_SCALE_INVARIANCE_PASS":
         raise RuntimeError("vintage drift gate is not PASS")
     stable_audit = pd.read_csv(STABLE_PATH)
@@ -446,7 +460,9 @@ def main() -> None:
     started = datetime.now(timezone.utc)
 
     # Freeze-authority integrity checks.
-    require_sha(VINTAGE_RECEIPT, VINTAGE_RECEIPT_SHA, "vintage receipt")
+    vintage_receipt, vintage_receipt_file_sha = verify_receipt_seal(
+        VINTAGE_RECEIPT, VINTAGE_RECEIPT_SHA, "vintage receipt"
+    )
     snapshot_contract = read_json(SNAPSHOT_CONTRACT)
     exec_contract = read_json(EXEC_CONTRACT)
     promotion = read_json(PROMOTION_RULE)
@@ -677,7 +693,8 @@ def main() -> None:
             "stock_kline_sha256": sha_file(kline),
             "benchmark_revision": BENCH_REV,
             "benchmark_sha256": sha_file(bench),
-            "vintage_receipt_sha256": sha_file(VINTAGE_RECEIPT),
+            "vintage_receipt_file_sha256": vintage_receipt_file_sha,
+            "vintage_receipt_canonical_seal": VINTAGE_RECEIPT_SHA,
             "pit_intervals_sha256": sha_file(PIT_PATH),
         },
         "population": {
