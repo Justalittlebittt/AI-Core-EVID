@@ -1,0 +1,116 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_STAGE1_EXECUTION_CONTRACT_V1",
+  "version": "V2.8.1",
+  "frozen_before_stage1_results": true,
+  "factor_order": [
+    {
+      "id": "ret_20",
+      "direction": "POSITIVE",
+      "seed_offset": 0
+    },
+    {
+      "id": "ret_60",
+      "direction": "POSITIVE",
+      "seed_offset": 1
+    },
+    {
+      "id": "ma50_vs_ma150",
+      "direction": "POSITIVE",
+      "seed_offset": 2
+    },
+    {
+      "id": "ma150_vs_ma200",
+      "direction": "POSITIVE",
+      "seed_offset": 3
+    },
+    {
+      "id": "ma200_slope20",
+      "direction": "POSITIVE",
+      "seed_offset": 4
+    },
+    {
+      "id": "dist_high60",
+      "direction": "POSITIVE",
+      "seed_offset": 5
+    },
+    {
+      "id": "dist_high252",
+      "direction": "POSITIVE",
+      "seed_offset": 6
+    },
+    {
+      "id": "rv10_over_rv60",
+      "direction": "NEGATIVE",
+      "seed_offset": 7
+    },
+    {
+      "id": "tr10_over_tr60",
+      "direction": "NEGATIVE",
+      "seed_offset": 8
+    }
+  ],
+  "date_eligibility": {
+    "factor_warmup_start": "first joint trading date on which at least one PIT-eligible security has a finite factor value",
+    "primary_outcome_availability": "D+10 target date exists in frozen joint calendar and is <= pinned source max_bar_date",
+    "eligible_dates": "every joint A-share trading date from factor_warmup_start through the last primary-outcome-available date, bounded by stage1_max_signal_date",
+    "valid_evaluation_date": "factor finite coverage / official PIT universe count >=0.70 and D+10 Rank-IC is computable",
+    "factor_valid_date_share": "valid_evaluation_dates / eligible_dates",
+    "required_factor_valid_date_share": 0.8,
+    "required_median_factor_coverage": 0.7,
+    "min_valid_dates": 200
+  },
+  "cross_section": {
+    "spearman": "Pearson correlation of within-date average ranks of factor and forward return after dropping rows missing either value",
+    "quintiles": "within-date average factor rank percentile; quintile = ceil(percentile*5), clipped to 1..5",
+    "raw_spread": "Q5 mean D+10 return minus Q1 mean D+10 return",
+    "direction_adjusted_spread": "direction_sign * raw_spread",
+    "broad_a_equal_weight": "mean D+10 economic return of all PIT-eligible rows with available D and T endpoints on the signal date",
+    "csi300": "000300.SS from pinned dojo_benchmark_kline when both D and T endpoints are present"
+  },
+  "bootstrap": {
+    "base_seed": 2801001,
+    "factor_seed": "base_seed + seed_offset",
+    "spread_seed": "base_seed + 1000 + seed_offset",
+    "block_length_dates": 20,
+    "replications": 10000,
+    "circular": true,
+    "ci": [
+      0.025,
+      0.975
+    ],
+    "one_sided_null_p": "center direction-adjusted series by subtracting observed mean; p=(1+count(null_bootstrap_mean>=observed_mean))/(B+1)"
+  },
+  "holm_bonferroni": {
+    "alpha": 0.05,
+    "family_size": 9,
+    "implementation": "sort nine one-sided D+10 Rank-IC p-values ascending; reject sequentially at alpha/(m-i) until first failure; all subsequent hypotheses fail multiplicity gate"
+  },
+  "quarter_stability": {
+    "valid_quarter_min_dates": 20,
+    "quarter_direction_requirement": "positive direction-adjusted mean D+10 IC in at least 2/3 of valid quarters",
+    "leave_one_valid_quarter_out": "for every valid quarter q, mean direction-adjusted D+10 IC over all valid dates not in q must be >0"
+  },
+  "canonical_panel_hash": {
+    "storage_format": "Parquet ZSTD, pyarrow major version pinned by workflow",
+    "sort": [
+      "canonical_security_id",
+      "signal_date"
+    ],
+    "columns": [
+      "canonical_security_id",
+      "signal_date",
+      "ret_20",
+      "ret_60",
+      "ma50_vs_ma150",
+      "ma150_vs_ma200",
+      "ma200_slope20",
+      "dist_high60",
+      "dist_high252",
+      "rv10_over_rv60",
+      "tr10_over_tr60",
+      "fwd_5",
+      "fwd_10"
+    ],
+    "note": "Panel bytes are ephemeral/reproducible; SHA256, row count, source hashes and builder code are frozen."
+  }
+}
