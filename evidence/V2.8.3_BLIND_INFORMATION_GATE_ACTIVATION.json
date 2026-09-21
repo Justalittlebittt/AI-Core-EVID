@@ -1,0 +1,28 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_BLIND_INFORMATION_GATE_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_READINESS_ONLY",
+  "contract": "evidence/V2.8.3_BLIND_INFORMATION_GATE_CONTRACT.json",
+  "validation": "evidence/V2.8.3_BLIND_INFORMATION_GATE_VALIDATION_RECEIPT.json",
+  "schedule": {
+    "cron_utc": "30 3 * * 2-6",
+    "local_asia_shanghai": "11:30 Tuesday-Saturday",
+    "ordering_intent": "Runs after the 11:00 prospective outcome resolver."
+  },
+  "allowed": [
+    "structural eligible-row counts",
+    "CALM/STRESSED valid date counts",
+    "CALM valid-quarter counts",
+    "READY or INCOMPLETE"
+  ],
+  "forbidden": [
+    "IC/correlation",
+    "factor-return spreads or quantiles",
+    "return means by factor",
+    "effect direction",
+    "bootstrap",
+    "p-values",
+    "interim H1/H2 PASS/FAIL"
+  ],
+  "confirmatory_evaluator_run_authorized_only_when": "status == READY_FOR_LOCKED_CONFIRMATORY_EVALUATION"
+}
