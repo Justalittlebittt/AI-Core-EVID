@@ -1,0 +1,26 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_OUTCOME_RESOLVER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35588688442,
+  "job_id": 106297895885,
+  "head_sha": "288b6af469f45735c5e2679270a1570d25f2bedb",
+  "selftest": {
+    "passed": 9,
+    "total": 9,
+    "all_pass": true
+  },
+  "validated_mechanics": [
+    "D and T economic endpoints come from the same exact T-vintage",
+    "price-rescaling counterexample rejects mixed-vintage endpoint construction",
+    "missing D endpoint becomes OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "missing T endpoint becomes OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "non-positive endpoints are unavailable",
+    "signal-date x horizon outcome key is append-only and non-replaceable",
+    "2026-09-22 D+5 target is 2026-09-30",
+    "2026-09-22 D+10 target is 2026-10-14"
+  ],
+  "real_prospective_outcomes_resolved": false,
+  "interim_H1_H2_statistics_computed": false,
+  "gate": "SAME_T_VINTAGE_OUTCOME_RESOLVER_VALIDATED"
+}
