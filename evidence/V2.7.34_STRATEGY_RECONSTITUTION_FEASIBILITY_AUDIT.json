@@ -1,0 +1,58 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_34_STRATEGY_RECONSTITUTION_FEASIBILITY_AUDIT_V1",
+  "version": "V2.7.34",
+  "purpose": "Determine whether the lost V2.7.3 prospective strategy runtime can be reconstructed exactly from surviving authoritative artifacts without inventing strategy semantics.",
+  "surviving_authorities": {
+    "activation_manifest": "RECOVERED",
+    "final_receipt": "RECOVERED",
+    "runtime_member_filenames_and_sha256": "RECOVERED",
+    "first60_governance": "RECOVERED_AND_SUPERSEDED_BY_V2.7.32",
+    "pit_membership_governance": "RECOVERED_AND_SUPERSEDED_BY_V2.7.31",
+    "outcome_horizon_semantics": "SUBSTANTIALLY_RECOVERED",
+    "source_retention_governance": "SUBSTANTIALLY_RECOVERED",
+    "historical_event_logs": "AVAILABLE",
+    "original_strategy_source_bytes": "ABSENT",
+    "original_tq_numerical_rule_text": "NOT_AVAILABLE_AS_INDEPENDENT_AUTHORITATIVE_ARTIFACT",
+    "original_setup_engine_rule_text": "NOT_AVAILABLE_AS_INDEPENDENT_AUTHORITATIVE_ARTIFACT"
+  },
+  "evidence": {
+    "manifest_known_specs": [
+      "specs/TQ_STRUCT_V0.1.1_PROSPECTIVE.json",
+      "specs/PROSPECTIVE_DAILY_OPERATION_V1.0.json",
+      "specs/OUTCOME_HORIZON_V1.0.json",
+      "specs/PROSPECTIVE_EXPERIMENT_PREREGISTRATION_V2.7.3.json",
+      "specs/ACTIVATION_SEMANTICS_V2.7.3.json"
+    ],
+    "manifest_note": "The manifest proves these artifacts existed and supplies hashes/byte sizes, but not their missing content bytes.",
+    "surviving_readme_note": "README_REBUILD states V2.5 did not change the numerical TQ-STRUCT V0.1.1 candidate rule, but does not itself define that full numerical rule.",
+    "historical_logs_note": "B3 event logs contain realized breakout/stop/breadth20/rs10/pullback/entry fields but are outputs, not a unique specification of the generating candidate thresholds."
+  },
+  "identifiability_assessment": {
+    "exact_old_runtime_reconstruction": "NOT_IDENTIFIABLE",
+    "reason": [
+      "hashes are one-way and cannot recover source content",
+      "event outputs do not uniquely identify all rule thresholds, ordering, tie-breaking, missing-data handling, and exclusion conditions",
+      "multiple distinct implementations can generate the same observed event subset",
+      "reconstructing from remembered behavior would violate frozen prospective governance"
+    ]
+  },
+  "allowed_paths": [
+    {
+      "id": "A",
+      "name": "ABANDON_OLD_STRATEGY_PROSPECTIVE_EXPERIMENT",
+      "effect": "Keep V2.7.3 as historical/unrecoverable; do not activate First60 for it."
+    },
+    {
+      "id": "B",
+      "name": "NEW_STRATEGY_VERSION_FROM_SURVIVING_RESEARCH",
+      "effect": "Create a clearly new strategy/runtime version, derive rules transparently from surviving research/spec principles, re-run retrospective validation, freeze all bytes/specs in GitHub, then establish a new prospective activation boundary."
+    }
+  ],
+  "forbidden": [
+    "claiming a newly written strategy is restored V2.7.3",
+    "tuning a reconstructed rule until it reproduces historical events and then calling it original",
+    "using historical First60 candidates from the lost runtime",
+    "activating V2.7.32 ledger with a newly invented signal generator under the old activation identity"
+  ],
+  "conclusion": "EXACT_RECONSTRUCTION_NOT_FEASIBLE_NEW_VERSION_REQUIRED_IF_PROJECT_CONTINUES"
+}
