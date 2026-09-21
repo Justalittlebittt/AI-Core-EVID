@@ -232,6 +232,9 @@ def self_test():
     d=date(2026,9,22)
     ck("O08_d5_target_frozen",mg.target_date(d,5,days,idx)==date(2026,9,30))
     ck("O09_d10_target_frozen",mg.target_date(d,10,days,idx)==date(2026,10,14))
+    with OUTCOME_LEDGER.open("r",encoding="utf-8",newline="") as f:
+        header=next(csv.reader(f))
+    ck("O10_outcome_ledger_header_exact",header==FIELDS)
     result={"schema":"AI_CORE_EVID_V2_8_3_OUTCOME_RESOLVER_SELFTEST_V1","tests":tests,
             "passed":sum(x["pass"] for x in tests),"total":len(tests),"all_pass":all(x["pass"] for x in tests)}
     result["receipt_sha256"]=stable_json_sha(result)
