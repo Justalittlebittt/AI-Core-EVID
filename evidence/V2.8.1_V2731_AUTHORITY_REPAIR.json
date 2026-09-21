@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_V2731_AUTHORITY_REPAIR_V1",
+  "detected_issue": "FROZEN_AUTHORITY_FILE_OVERWRITTEN_BY_LATER_EXPERIMENT_RUN",
+  "authoritative_basis": {
+    "final_record": "evidence/V2.7.31_FINAL_RECORD.json",
+    "validation_run_id": 35498780631,
+    "authoritative_commit": "4e07ce25a788d277cf913f342d9f6049872f6a33",
+    "authoritative_universe_blob_sha": "6dc30442eeddd1414ec415fdda4ca67942943b43",
+    "authoritative_receipt_blob_sha": "04fd533b9cfbe91f0c1276ec2f2102c39557085c",
+    "expected_universe_sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "expected_receipt_sha256": "4802f0a0868f689516305e4e6c0f7a4fd34b3b6b5da0705c251f1660ae4ac35f"
+  },
+  "overwrite_history": {
+    "later_overwrite_commit": "32ef56b6b88d0cc61d249d740860443bf475f316",
+    "later_run_id": 35503988063,
+    "status": "FORENSIC_ONLY_NOT_AUTHORITY"
+  },
+  "repair": {
+    "commit": "92c56bb14a44323d93f24b276fec7807c53ad977",
+    "method": "Git tree restored exact prior authoritative blob SHAs; no content regeneration.",
+    "history_rewritten": false
+  },
+  "governance_rule": "Once a version Final Record freezes an authority file hash, later experiments may write versioned diagnostic outputs but must not overwrite the frozen authority path."
+}
