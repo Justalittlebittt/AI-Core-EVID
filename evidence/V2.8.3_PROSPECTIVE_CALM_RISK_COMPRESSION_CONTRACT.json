@@ -1,0 +1,97 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "PREREGISTERED_BEFORE_UNSEEN_OUTCOME_EVALUATION",
+  "derived_from": "evidence/V2.8.2_ARCHITECTURE_DECISION.json",
+  "purpose": "Confirm or reject, on genuinely later outcomes, whether stock-level short-horizon risk compression has cross-sectional predictive information specifically when the broad market is CALM.",
+  "frozen_development_boundary": {
+    "latest_signal_date_seen_by_v2_8_2_diagnostic": "2026-09-09",
+    "latest_primary_evaluation_signal_date_in_v2_8_2": "2026-09-04",
+    "prospective_signal_rule": "Only signal_date > 2026-09-09 may enter V2.8.3 confirmation.",
+    "no_reuse_of_v2_8_1_or_v2_8_2_outcomes_for_confirmation": true
+  },
+  "population": {
+    "universe": "Same official PIT Certified Mother Pool authority and stable-vendor-symbol exclusions as the frozen V2.8.1 architecture, advanced prospectively under their own effective-date rules.",
+    "economic_return": "D+10 source-close economic return with D and T endpoints taken from the same retained T-vintage snapshot.",
+    "secondary_return": "D+5 under the same endpoint-vintage rule.",
+    "free_public_data_only": true
+  },
+  "market_state": {
+    "authority": "CSI300 000300.SS",
+    "known_at_D_only": true,
+    "daily_log_return": "ln(close_D/close_previous_joint_bar)",
+    "rv10": "population standard deviation ddof=0 of latest 10 daily log returns ending at D",
+    "rv60": "population standard deviation ddof=0 of latest 60 daily log returns ending at D",
+    "ratio": "rv10/rv60",
+    "CALM": "ratio <= 1",
+    "STRESSED": "ratio > 1",
+    "threshold_rationale": "Identity threshold fixed before prospective outcomes; not estimated from returns."
+  },
+  "confirmatory_family": [
+    {
+      "id": "H1_RV_COMPRESSION_CALM",
+      "factor": "rv10_over_rv60",
+      "direction": "NEGATIVE",
+      "primary_state": "CALM"
+    },
+    {
+      "id": "H2_TR_COMPRESSION_CALM",
+      "factor": "tr10_over_tr60",
+      "direction": "NEGATIVE",
+      "primary_state": "CALM"
+    }
+  ],
+  "primary_statistics": {
+    "unit": "signal date",
+    "within_date_statistic": "Spearman correlation between factor and D+10 economic return among eligible stocks on CALM dates.",
+    "direction_adjustment": "Multiply raw IC by -1 so positive adjusted IC means lower risk-ratio ranks predict higher forward returns.",
+    "minimum_valid_stocks_per_date": 50,
+    "no_sector_relative_filter": true,
+    "sector_context_reporting": "Descriptive/robustness only; it cannot change H1/H2 eligibility or PASS status."
+  },
+  "conditioner_validation": {
+    "contrast": "For each hypothesis compute mean direction-adjusted D+10 IC on CALM dates minus mean direction-adjusted D+10 IC on STRESSED dates.",
+    "interpretation": "A positive contrast supports the claim that the information is stronger in CALM than STRESSED conditions.",
+    "no_posthoc_market_substate_selection": true
+  },
+  "minimum_information_before_decision": {
+    "minimum_valid_calm_dates": 60,
+    "minimum_valid_stressed_dates_for_contrast": 30,
+    "minimum_distinct_calendar_quarters_with_at_least_15_valid_calm_dates": 3,
+    "insufficient_data_action": "INCOMPLETE_NOT_FAIL; accumulate genuinely later observations without changing this contract."
+  },
+  "inference": {
+    "bootstrap": "20-signal-date circular moving-block bootstrap within the prospectively accumulated date series",
+    "replications": 10000,
+    "confidence_interval": [0.025, 0.975],
+    "familywise_alpha": 0.05,
+    "multiplicity": "Holm-Bonferroni across H1 and H2 one-sided D+10 CALM-state IC p-values",
+    "one_sided_null": "Centered bootstrap null using the same method family as V2.8.1, with deterministic new V2.8.3 seeds frozen in implementation before first result.",
+    "secondary_horizon": "Direction-adjusted mean D+5 IC must be >0; no separate multiplicity significance requirement."
+  },
+  "pass_requires_each_hypothesis": [
+    "minimum information requirements are satisfied",
+    "mean direction-adjusted D+10 IC on CALM dates > 0",
+    "95% block-bootstrap confidence interval for CALM mean direction-adjusted D+10 IC excludes zero above",
+    "Holm-Bonferroni familywise test passes",
+    "CALM minus STRESSED mean direction-adjusted D+10 IC contrast > 0",
+    "95% block-bootstrap confidence interval for the CALM minus STRESSED contrast excludes zero above",
+    "direction-adjusted mean D+5 IC on CALM dates > 0",
+    "positive CALM-state direction-adjusted D+10 mean IC in at least two-thirds of valid prospective calendar quarters",
+    "leave-one-valid-prospective-quarter-out CALM-state mean direction-adjusted D+10 IC remains >0 for every omission",
+    "no implementation, source-integrity, PIT, endpoint-vintage or data-quality blocker is active"
+  ],
+  "family_decision": {
+    "architecture_confirmed": "Both H1 and H2 PASS.",
+    "partial_replication": "Exactly one of H1/H2 PASS; retain as research evidence but do not authorize production score or trading.",
+    "architecture_rejected": "Neither H1 nor H2 PASS after minimum information requirements are satisfied.",
+    "incomplete": "Minimum information requirements are not yet satisfied."
+  },
+  "anti_optional_stopping": [
+    "H1 and H2 remain in the family regardless of interim appearance.",
+    "No CALM threshold, factor transform, direction, horizon, minimum count or PASS condition may be altered after prospective outcomes are observed under this version.",
+    "No evaluation on signal dates <=2026-09-09 can count as V2.8.3 confirmation.",
+    "Any changed hypothesis requires a new version and a new unseen boundary."
+  ],
+  "promotion_effect": "A future V2.8.3 architecture confirmation would justify subsequent combination/setup research only. It does not itself emit a Setup/Episode or authorize live trading."
+}
