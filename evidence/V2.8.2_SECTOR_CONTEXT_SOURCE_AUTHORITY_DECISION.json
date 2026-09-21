@@ -1,0 +1,68 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_SECTOR_CONTEXT_SOURCE_AUTHORITY_DECISION_V1",
+  "version": "V2.8.2",
+  "status": "SOURCE_AUTHORITY_VIABLE_NOT_YET_MATERIALIZED",
+  "purpose": "Establish a free/public temporally defensible sector-context authority for the V2.8.2 top-down architecture without backfilling current static industry labels into history.",
+  "authority": {
+    "publisher": "China Association for Public Companies (CAPCO)",
+    "classification_name": "上市公司行业分类结果",
+    "methodology": "中国上市公司协会上市公司行业统计分类指引",
+    "publication_frequency": "semiannual",
+    "official_index_url": "https://www.capco.org.cn/xhgg/hyfl/hyfljg/index.html"
+  },
+  "source_snapshots": [
+    {
+      "label": "2024H1",
+      "publication_date": "2024-09-30",
+      "page_url": "https://www.capco.org.cn/xhgg/hyfl/hyfljg/202409/20240930/j_2024093015525600017276828969068447.html",
+      "artifact": "2024年上半年上市公司行业分类结果（按股票代码排序）.pdf"
+    },
+    {
+      "label": "2024H2",
+      "publication_date": "2025-04-18",
+      "page_url": "https://www.capco.org.cn/xhgg/hyfl/hyfljg/202504/20250418/j_2025041815003000017449597508305299.html",
+      "artifact": "2024年下半年上市公司行业分类结果（按股票代码排序）.pdf"
+    },
+    {
+      "label": "2025H1",
+      "publication_date": "2025-09-30",
+      "page_url": "https://www.capco.org.cn/xhgg/hyfl/hyfljg/202509/20250930/j_2025093014371200017592143530187679.html",
+      "artifact": "2025年上半年上市公司行业分类结果（按股票代码排序）.pdf"
+    },
+    {
+      "label": "2025H2",
+      "publication_date": "2026-04-03",
+      "page_url": "https://www.capco.org.cn/xhgg/hyfl/hyfljg/202604/20260403/j_2026040315001700017751997384265508.html",
+      "artifact": "2025年下半年上市公司行业分类结果（按股票代码排序）.pdf"
+    }
+  ],
+  "pit_availability_rule": {
+    "rule": "A classification snapshot becomes usable only on the first joint A-share trading date strictly after its published calendar date, unless an independently frozen publication timestamp proves pre-open availability.",
+    "reason": "Avoid same-day publication-time ambiguity and prevent retrospective backfill.",
+    "carry_forward": "Use the latest previously available CAPCO snapshot until the next snapshot becomes available under this rule.",
+    "pre_sample_coverage": "2024H1 was published before the V2.8.1/V2.8.2 historical signal sample begins in 2025, so a prior-known sector snapshot exists for the entire 2025-2026 diagnostic window."
+  },
+  "allowed_use": [
+    "sector-context grouping",
+    "sector-relative breadth/return diagnostics",
+    "within-sector exploratory cross-sectional diagnostics"
+  ],
+  "forbidden_use": [
+    "Treating the half-year label as if it were available at the start of that half-year.",
+    "Backfilling a later classification result into dates before its publication availability.",
+    "Using AlphaDojo current stock_info industry fields as historical classification authority.",
+    "Inferring AI-Core eligibility from CAPCO industry membership."
+  ],
+  "materialization_requirements": [
+    "Freeze the exact source PDF bytes or equivalent official artifact for each required snapshot.",
+    "Record source URL, publication date, SHA256 and parser version.",
+    "Parse stock code, stock name and published industry code/name with deterministic validation.",
+    "Cross-check duplicate stock codes and coverage against the official PIT research universe for each effective interval.",
+    "Do not proceed to sector-conditioned result interpretation until source-byte and mapping receipts pass."
+  ],
+  "decision": {
+    "sector_layer_data_blocked": false,
+    "current_static_industry_backfill_allowed": false,
+    "next_step": "MATERIALIZE_AND_VALIDATE_CAPCO_2024H1_2025H2_SECTOR_SNAPSHOTS"
+  }
+}
