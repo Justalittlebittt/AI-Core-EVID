@@ -1,0 +1,22 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SOURCE_LEDGER_RUNNER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35582499720,
+  "job_id": 106278324798,
+  "head_sha": "07fa27bfad77eb4e5b0048bcceb6a52a60723593",
+  "selftest": {
+    "passed": 6,
+    "total": 6,
+    "all_pass": true,
+    "receipt_sha256": "e3e62d1f2a22833a9a2b6526252bd34cce851518510f3968f4b3f5d50d2b244e"
+  },
+  "implementation_history": {
+    "prior_failed_run_ids": [35582378549, 35582441637],
+    "failure_class": "SELFTEST_IMPLEMENTATION_FALSE_POSITIVE_ONLY",
+    "contract_or_threshold_changed": false,
+    "prospective_boundary_changed": false,
+    "source_capture_policy_changed": false
+  },
+  "gate": "SOURCE_LEDGER_RUNNER_VALIDATED_READY_FOR_ACTIVATION"
+}
