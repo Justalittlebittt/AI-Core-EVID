@@ -1,0 +1,76 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PROSPECTIVE_PIT_DATE_AUTHORITY_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_FIRST_PROSPECTIVE_PIT_DATE_RESULT",
+  "purpose": "Produce an exact official A-share active-universe authority for each prospective signal date D before any V2.8.3 price materialization.",
+  "baseline": {
+    "file": "evidence/V2.7.31_FORWARD_CERTIFIED_UNIVERSE.csv",
+    "sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "role": "bootstrap previous known universe only; never silently treated as unchanged for later D"
+  },
+  "official_current_sources": {
+    "SSE": {
+      "endpoint": "https://query.sse.com.cn/sseQuery/commonQuery.do",
+      "sqlId": "COMMON_SSE_CP_GPJCTPZ_GPLB_GP_L",
+      "stock_types": ["1", "8"],
+      "role": "official current Main-A and STAR membership"
+    },
+    "SZSE": {
+      "endpoint": "https://www.szse.cn/api/report/ShowReport",
+      "params": {
+        "SHOWTYPE": "xlsx",
+        "CATALOGID": "1110",
+        "TABKEY": "tab1"
+      },
+      "role": "official current A-share membership"
+    }
+  },
+  "date_semantics": {
+    "capture_window": "after D close and no later than D+1 23:59:59 Asia/Shanghai",
+    "current_rows_filter": "official_list_date <= D",
+    "future_listings": "excluded",
+    "first_signal_date": "2026-09-22",
+    "non_joint_trading_date": "NO_AUTHORITY_REQUIRED"
+  },
+  "reconciliation": {
+    "previous_universe": "latest earlier PASS V2.8.3 PIT date universe; bootstrap from V2.7.31 if none exists",
+    "additions": "Allowed when present in official current source and official_list_date <= D.",
+    "removals": "A disappearance from the previous universe must be explained by an authoritative delist/termination date <= D. Otherwise the whole D authority is BLOCKED_UNRESOLVED_REMOVAL.",
+    "frozen_historical_delist_authority": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
+    "future_removal_policy": "If the frozen ledger cannot resolve a prospective removal, do not infer its date. A separately versioned targeted official removal resolver is required."
+  },
+  "pass_output": {
+    "authority_schema": "AI_CORE_EVID_V2_8_3_PIT_DATE_AUTHORITY_V1",
+    "required_status": "PASS",
+    "universe_snapshot_columns": [
+      "canonical_security_id",
+      "exchange",
+      "security_code",
+      "security_short_name",
+      "official_list_date"
+    ],
+    "raw_official_bundle_retained": true,
+    "authority_time": "GitHub committed_at timestamp of the PIT authority file creation commit"
+  },
+  "fail_closed": [
+    "Either exchange source capture/parse is implausible.",
+    "Duplicate canonical security identity exists.",
+    "A prior member disappears without an authoritative delist date <= D.",
+    "Source capture falls outside the D post-close cutoff.",
+    "The date is before V2.8.3 activation or not in the frozen joint calendar."
+  ],
+  "forbidden": [
+    "Do not use AlphaDojo stock_info as official PIT membership authority.",
+    "Do not carry the 2026-09-20 universe forward without a new official observation.",
+    "Do not infer removal dates from vendor price disappearance.",
+    "Do not compute V2.8.3 factor outcomes in this layer."
+  ],
+  "problem_elimination": {
+    "delete": "No full issuer/filing re-materialization is required for this U-layer factor confirmation.",
+    "avoid": "Any unresolved removal blocks before the 300MB price download.",
+    "absorb": "Reuse the official SSE/SZSE current-list access already validated in V2.7.x and the frozen V2.8.1 historical delist ledger.",
+    "substitute": "Resolve only actual removal deltas prospectively instead of re-downloading complete historical delist catalogs every day.",
+    "precompute_reuse": "Carry the last PASS universe only as the comparison base; each new D still requires a fresh official current-list observation.",
+    "optimize": "Routine daily capture remains lightweight relative to price materialization."
+  }
+}
