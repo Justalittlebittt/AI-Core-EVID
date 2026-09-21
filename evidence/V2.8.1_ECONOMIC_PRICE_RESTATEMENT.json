@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_ECONOMIC_PRICE_RESTATEMENT_V1",
+  "version": "V2.8.1",
+  "status": "RESTATED_FROM_FROZEN_V2_6_DIRECTION",
+  "formula": {
+    "economic_price": "source_close",
+    "forbidden": [
+      "source_close * adj_factor_cum",
+      "source_close / adj_factor_cum",
+      "any second adjustment applied to an already source-normalized close"
+    ],
+    "adj_factor_cum_role": "AUDIT_OR_QUOTE_SCALE_RECOVERY_ONLY"
+  },
+  "feature_semantics": {
+    "signal_date_D": "Technical features at D may use only D-or-earlier observations.",
+    "scale_invariant_features": "V2.8.0 feature engine intentionally uses price ratios/returns so uniform retrospective price scaling cancels."
+  },
+  "outcome_semantics": {
+    "target_date": "D plus N joint A-share trading sessions",
+    "primary_N": 10,
+    "secondary_N": 5,
+    "endpoint_rule": "Both D and T economic_price endpoints must be read from the same T-vintage retained snapshot.",
+    "reason": "Cross-vintage adjusted/source-close normalization may drift; mixing D-vintage D endpoint with T-vintage T endpoint can create artificial returns.",
+    "missing_T_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT"
+  },
+  "note": "This file restores the formula/role distinction into the active repository; it does not revive the lost V2.7.3 strategy."
+}
