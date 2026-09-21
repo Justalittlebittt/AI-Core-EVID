@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_BUILDER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35588448186,
+  "job_id": 106297155029,
+  "head_sha": "106302fc6fa8486b5d5bcc0419df967cef5e837f",
+  "selftest": {
+    "passed": 11,
+    "total": 11,
+    "all_pass": true
+  },
+  "validated_mechanics": [
+    "frozen rv10_over_rv60 construction",
+    "frozen tr10_over_tr60 construction",
+    "CALM/STRESSED identity threshold",
+    "60-return and 60-TR warmup fail-closed",
+    "scale invariance",
+    "missing D bar not silently shifted",
+    "source pin must be strictly after D close and within frozen cutoff",
+    "one signal date may be admitted only once",
+    "signal-source ledger and D-vintage feature snapshot are written as one admission chain"
+  ],
+  "real_prospective_signal_snapshot_created": false,
+  "first_possible_signal_date": "2026-09-22",
+  "gate": "END_TO_END_SIGNAL_FEATURE_BUILDER_VALIDATED"
+}
