@@ -1,0 +1,31 @@
+name: V2.8.1 Hugging Face Source Pin
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v281_hf_source_pin.py"
+      - ".github/workflows/v281-source-pin.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "huggingface_hub>=0.35"
+      - name: Resolve immutable public dataset revisions
+        run: python scripts/v281_hf_source_pin.py
+      - name: Freeze source pin
+        run: |
+          cp v281_hf_source_pin.json evidence/V2.8.1_HF_SOURCE_PIN.json
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.1_HF_SOURCE_PIN.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.1 Hugging Face source revisions"
+            git push
+          fi
