@@ -1,0 +1,63 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_RETROSPECTIVE_RESEARCH_CONSTITUTION_V1",
+  "version": "V2.8.0",
+  "historical_status": "DEVELOPMENT_DIAGNOSTIC_RETRO_STRESS_ONLY",
+  "certification_claims_forbidden": [
+    "STRICT_OOS",
+    "PROSPECTIVE_OOS",
+    "LIVE_VALIDATED"
+  ],
+  "unit_of_initial_factor_analysis": "SIGNAL_DATE_CROSS_SECTION",
+  "stage_1_factor_screening": {
+    "required_outputs": [
+      "daily cross-sectional Spearman Rank-IC for D+5 and D+10 economic returns",
+      "factor quantile forward-return table",
+      "monotonicity diagnostics across quantiles",
+      "top-minus-bottom spread by signal date",
+      "date-block bootstrap confidence interval",
+      "year/regime stability table",
+      "coverage/missingness/turnover diagnostics"
+    ],
+    "promotion_rule": "A factor family may enter combination research only if its directional behavior is materially stable across date blocks and is not driven by one short interval or a tiny security subset.",
+    "exact_numeric_promotion_thresholds": "NOT_YET_FROZEN; must be preregistered before results are consumed for promotion."
+  },
+  "stage_2_combination_research": {
+    "prerequisite": "Only Stage-1-promoted factor families.",
+    "method_constraints": [
+      "small candidate family; no unrestricted parameter sweep",
+      "complexity must be recorded and penalized",
+      "compare incremental value versus simpler parent specification",
+      "date-block/expanding-window evaluation",
+      "leave-one-subsector/industry sensitivity where taxonomy is available",
+      "remove-best-security and concentration stress",
+      "transaction-cost and turnover sensitivity",
+      "B3 legacy family retained as negative control"
+    ],
+    "setup_creation_status": "BLOCKED_UNTIL_STAGE_1_PROMOTION_RULES_ARE_FROZEN"
+  },
+  "leakage_controls": [
+    "feature row at D uses only D-vintage or earlier retained source",
+    "max_bar_date must equal D for a prospective-equivalent daily source",
+    "U/E membership and evidence use only information legally available before D",
+    "D->T economic return endpoints come from the same T-vintage snapshot under frozen economic-price semantics",
+    "future delisting/listing metadata cannot alter historical membership",
+    "same-day filing evidence is excluded unless availability timestamp proves it was available before the signal cutoff"
+  ],
+  "statistical_controls": [
+    "date is the primary dependence block for bootstrap/resampling",
+    "do not treat stock-day rows as independent observations",
+    "report effective date count and security concentration",
+    "multiple candidate variants within a family must be enumerated before evaluation",
+    "no optional stopping based on interim attractive results",
+    "failed variants remain in the research ledger"
+  ],
+  "benchmark_controls": [
+    "report broad-A cross-sectional baseline",
+    "report appropriate broad index benchmark where available",
+    "AI-Core peer benchmark may be supplemental but cannot be the only comparator"
+  ],
+  "promotion_boundary": {
+    "retrospective_success_can_do": "qualify a fully frozen V2.8.x strategy candidate for a new prospective activation",
+    "retrospective_success_cannot_do": "certify profitability, open S4/S5/S6, or authorize live trading"
+  }
+}
