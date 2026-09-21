@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_LOCKED_CONFIRMATORY_EVALUATOR_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_READINESS_GATED",
+  "contract": "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_CONTRACT.json",
+  "validation": "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_VALIDATION_RECEIPT.json",
+  "blind_readiness_activation": "evidence/V2.8.3_BLIND_INFORMATION_GATE_ACTIVATION.json",
+  "schedule": {
+    "cron_utc": "0 4 * * 2-6",
+    "local_asia_shanghai": "12:00 Tuesday-Saturday",
+    "ordering_intent": "Runs after 11:30 blind readiness audit."
+  },
+  "hard_entry_gate": "READY_FOR_LOCKED_CONFIRMATORY_EVALUATION",
+  "behavior_before_ready": "DO_NOT_LOAD_FACTOR_RETURN_PAIRS; DO_NOT_COMPUTE_PERFORMANCE",
+  "one_final_evaluation_only": true,
+  "final_result_replacement": false,
+  "post_result_change_rule": "Any changed hypothesis, threshold, state definition, horizon or statistical mechanic requires a new version and new unseen boundary.",
+  "current_authorization": {
+    "automatic_readiness_check": true,
+    "confirmatory_evaluation_when_READY": true,
+    "setup_or_episode_emission": false,
+    "live": false
+  }
+}
