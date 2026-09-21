@@ -1,0 +1,63 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_TOP_DOWN_CONDITIONAL_ARCHITECTURE_CONTRACT_V1",
+  "version": "V2.8.2",
+  "status": "FROZEN_BEFORE_V2_8_2_EXPLORATORY_CONDITIONAL_RESULTS",
+  "purpose": "Determine whether the useful next architecture is conditional and top-down rather than another round of unconditional single-factor promotion, without modifying or reinterpreting V2.8.1 outcomes.",
+  "frozen_inputs": {
+    "v2_8_1_final_record": "evidence/V2.8.1_FINAL_RECORD.json",
+    "v2_8_1_stage1_ledger": "evidence/V2.8.1_STAGE1_FACTOR_RESULT_LEDGER.csv",
+    "v2_8_1_daily_metrics": "evidence/V2.8.1_STAGE1_DAILY_METRICS.csv",
+    "v2_8_1_execution_contract": "evidence/V2.8.1_STAGE1_EXECUTION_CONTRACT.json",
+    "v2_8_1_promotion_rule": "evidence/V2.8.1_STAGE1_FACTOR_PROMOTION_RULE.json",
+    "v2_8_1_vintage_receipt": "evidence/V2.8.1_VENDOR_VINTAGE_DRIFT_RECEIPT.json"
+  },
+  "immutable_interpretation": {
+    "v2_8_1_promoted_count": 0,
+    "rv10_over_rv60": "NOT_PROMOTED; may only be examined as a conditioner/mechanism candidate.",
+    "tr10_over_tr60": "NOT_PROMOTED; may only be examined as a conditioner/mechanism candidate.",
+    "ret_20": "V2.8.1 positive-direction hypothesis failed; observed opposite sign is discovery evidence only.",
+    "ret_60": "V2.8.1 positive-direction hypothesis failed; observed opposite sign is discovery evidence only."
+  },
+  "architecture_order": [
+    "MARKET_CONTEXT",
+    "SECTOR_OR_CONTEXT_LAYER",
+    "STOCK_LAYER"
+  ],
+  "market_context_requirements": [
+    "Only information available at signal date D may define a market state.",
+    "No D+5/D+10 outcome, future benchmark return or future breadth value may enter the state definition.",
+    "Market context is initially a conditioner, not an automatic hard veto."
+  ],
+  "sector_context_requirements": [
+    "Historical sector membership/classification must be PIT, effective-dated, or supported by a temporally defensible frozen source.",
+    "A current static industry field cannot be backfilled across history as if it were known and unchanged.",
+    "If no defensible free/public historical sector source is available, the sector layer must be marked DATA_BLOCKED rather than fabricated.",
+    "AI-Core eligibility remains independent from sector context."
+  ],
+  "stock_layer_requirements": [
+    "No V2.8.1 failed factor becomes a hard stock-score weight merely because its exploratory conditional result looks favorable.",
+    "Any new factor direction/transform intended for confirmation requires a separately versioned preregistration.",
+    "Same-sample exploratory conditional analysis may guide architecture only; it cannot create prospective authorization."
+  ],
+  "exploratory_questions": [
+    "Do rv10_over_rv60 and tr10_over_tr60 behave primarily as market/risk conditioners rather than standalone extreme-quantile alpha factors?",
+    "Is the ret_20/ret_60 opposite sign concentrated in identifiable market states, suggesting regime-dependent reversal rather than a universal reversed factor?",
+    "Does conditioning materially reduce sign instability across calendar quarters without post-result threshold tuning?",
+    "Can a defensible free/public sector-context authority be established before sector-conditioned stock research begins?"
+  ],
+  "forbidden_shortcuts": [
+    "Do not relax the V2.8.1 spread-confidence gate.",
+    "Do not flip ret_20/ret_60 directions and call the old sample confirmatory.",
+    "Do not combine non-promoted factors into a production score.",
+    "Do not use current static sector labels as historical truth.",
+    "Do not rerun the closed Vendor Vintage Drift gate unless its pinned source contract changes."
+  ],
+  "next_execution_sequence": [
+    "1_SOURCE_AUTHORITY_CHECK_FOR_SECTOR_CONTEXT",
+    "2_MARKET_CONTEXT_FEATURE_CONTRACT",
+    "3_EXPLORATORY_CONDITIONAL_DIAGNOSTIC_ON_FROZEN_SAMPLE",
+    "4_FREEZE_ANY_NEW_CONFIRMATORY_HYPOTHESES_BEFORE_UNSEEN_OUTCOMES",
+    "5_ONLY_THEN_CONSIDER_COMBINATION_OR_SETUP_RESEARCH"
+  ],
+  "success_definition_for_v2_8_2": "Produce a leakage-safe architecture decision and frozen future-test hypotheses. V2.8.2 exploratory results themselves cannot promote a factor or authorize trading."
+}
