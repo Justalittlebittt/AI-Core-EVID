@@ -36,8 +36,17 @@ def sha_file(path: Path) -> str:
             h.update(b)
     return h.hexdigest()
 
+def json_default(o):
+    if isinstance(o, np.generic):
+        return o.item()
+    if isinstance(o, (date, datetime)):
+        return o.isoformat()
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+
 def stable_json_sha(obj) -> str:
-    b = json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+    b = json.dumps(
+        obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"), default=json_default
+    ).encode()
     return hashlib.sha256(b).hexdigest()
 
 def git_blob_sha(path: Path) -> str:
@@ -320,7 +329,10 @@ def write_json(path: Path, obj: dict) -> None:
     unsigned = dict(obj)
     unsigned.pop("receipt_sha256", None)
     obj["receipt_sha256"] = stable_json_sha(unsigned)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(obj, ensure_ascii=False, indent=2, default=json_default) + "\n",
+        encoding="utf-8"
+    )
 
 def signal_preflight(d: date, pit_authority: Path | None, calendar: list[date]) -> tuple[str, dict, pd.DataFrame | None]:
     if d < FIRST_SIGNAL_DATE:
@@ -643,7 +655,7 @@ def self_test() -> None:
         "all_pass": all(x["pass"] for x in tests),
     }
     result["receipt_sha256"] = stable_json_sha(result)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(json.dumps(result, ensure_ascii=False, indent=2, default=json_default))
     if not result["all_pass"]:
         raise SystemExit(2)
 
