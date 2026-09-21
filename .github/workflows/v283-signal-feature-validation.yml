@@ -1,5 +1,9 @@
 name: V2.8.3 Signal Feature Snapshot Validation
 on:
+  push:
+    paths:
+      - "scripts/v283_signal_feature_snapshot.py"
+      - ".github/workflows/v283-signal-feature-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
@@ -12,5 +16,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install "numpy>=2.0" "pandas>=2.2"
+      - run: pip install "numpy>=2.0" "pandas>=2.2" "duckdb>=1.1" "huggingface_hub>=0.35"
       - run: python scripts/v283_signal_feature_snapshot.py self-test
