@@ -1,0 +1,39 @@
+name: V2.8.3 Prospective Signal Feature Snapshot
+on:
+  schedule:
+    - cron: "0 2 * * 2-6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v283-signal-feature-snapshot
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "numpy>=2.0" "pandas>=2.2" "duckdb>=1.1" "huggingface_hub>=0.35"
+      - name: Build latest ready D-vintage snapshot
+        run: python scripts/v283_signal_feature_snapshot.py auto-build
+      - name: Freeze snapshot and admission ledger if produced
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A evidence/v283_signal_features evidence/V2.8.3_PROSPECTIVE_SIGNAL_SOURCE_LEDGER.csv || true
+          if git diff --cached --quiet; then
+            echo "No new eligible signal-date snapshot."
+            exit 0
+          fi
+          git commit -m "Freeze V2.8.3 prospective D-vintage signal snapshot [skip ci]"
+          git pull --rebase origin main
+          git push
