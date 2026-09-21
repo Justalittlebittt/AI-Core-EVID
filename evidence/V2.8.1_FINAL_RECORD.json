@@ -1,0 +1,42 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_FINAL_RECORD_V1",
+  "version": "V2.8.1",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_0_NEW_BASELINE",
+  "canonical_snapshot": {
+    "status": "PASS",
+    "panel_sha256": "5a37b30ccc6a33b8ac8bc3a43399c0372695bf2016e0efe0e9168116a60ccbf2",
+    "receipt_sha256": "200d60bd0fd4de564bae232b74d172554703d5fec7355044cc3525fdc938f7b3"
+  },
+  "vendor_vintage": {
+    "status": "VINTAGE_SCALE_INVARIANCE_PASS",
+    "stable_symbols": 5214,
+    "unstable_symbols": 0,
+    "receipt_sha256": "2e01b0f875a31812ba08351379846b94abb28ed02f5ba4eec553ae251aa27894"
+  },
+  "stage1": {
+    "status": "COMPLETE",
+    "promoted_count": 0,
+    "promoted_factors": [],
+    "not_promoted_factors": [
+      "ret_20",
+      "ret_60",
+      "ma50_vs_ma150",
+      "ma150_vs_ma200",
+      "ma200_slope20",
+      "dist_high60",
+      "dist_high252",
+      "rv10_over_rv60",
+      "tr10_over_tr60"
+    ],
+    "result_ledger_sha256": "e5b100cf837ef60f35d856cb8bd6986d766e3813222562de6ab63b7057db0fe0",
+    "screen_receipt_sha256": "cd5d4112151a758268e17a6626d6783770d6bdfc6b302f5c6a808642bb62ff22"
+  },
+  "governance": {
+    "retrospective_status": "DEVELOPMENT_DIAGNOSTIC_RETRO_STRESS_ONLY",
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "prospective_first60_activated": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.2 FACTOR-BASELINE REVIEW — NO STAGE1 FACTOR PROMOTED"
+}

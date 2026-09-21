@@ -1,0 +1,57 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_CANONICAL_RESEARCH_SNAPSHOT_RECEIPT_V1",
+  "source": {
+    "stock_kline_revision": "c009ad58278161e7b6eb347b68f34f51166114f3",
+    "stock_kline_sha256": "acb8ae5e31f58fe3972455b86614d668837f18afd59126c505faaae06920954b",
+    "benchmark_revision": "4cc8300a0f82cc9db76b946b80ae5b28a7beca95",
+    "benchmark_sha256": "75c4fba2de6875e125c539187fdf7e44eae90d740fce64907f8ce8df6ff58234",
+    "vintage_receipt_file_sha256": "b77d7e16d6c2838a6db6d1a0a53bcc22165d4b4157c1de8bd4fec0260275308b",
+    "vintage_receipt_canonical_seal": "2e01b0f875a31812ba08351379846b94abb28ed02f5ba4eec553ae251aa27894",
+    "pit_intervals_sha256": "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1"
+  },
+  "population": {
+    "stable_vendor_symbols": 5214,
+    "filtered_kline_rows_before_pit": 2147570,
+    "pit_eligible_kline_rows": 2147570,
+    "mapped_canonical_ids": 5214,
+    "source_min_bar_date": "2025-01-02",
+    "source_max_bar_date": "2026-09-18",
+    "vintage_stable_symbols": 5214,
+    "mapping_exact_coverage": true,
+    "mapping_authority": "official PIT interval security_code; vendor suffix crosscheck only"
+  },
+  "calendar": {
+    "joint_calendar_dates_2025_2026": 485,
+    "first_date": "2025-01-02",
+    "last_date": "2026-12-31"
+  },
+  "panel": {
+    "rows": 2111286,
+    "unique_securities": 5214,
+    "min_signal_date": "2025-01-02",
+    "max_signal_date": "2026-09-09",
+    "parquet_sha256": "5a37b30ccc6a33b8ac8bc3a43399c0372695bf2016e0efe0e9168116a60ccbf2",
+    "parquet_bytes": 133177427,
+    "sort": [
+      "canonical_security_id",
+      "signal_date"
+    ],
+    "columns": [
+      "canonical_security_id",
+      "signal_date",
+      "ret_20",
+      "ret_60",
+      "ma50_vs_ma150",
+      "ma150_vs_ma200",
+      "ma200_slope20",
+      "dist_high60",
+      "dist_high252",
+      "rv10_over_rv60",
+      "tr10_over_tr60",
+      "fwd_5",
+      "fwd_10"
+    ]
+  },
+  "status": "CANONICAL_RESEARCH_SNAPSHOT_PASS",
+  "receipt_sha256": "200d60bd0fd4de564bae232b74d172554703d5fec7355044cc3525fdc938f7b3"
+}

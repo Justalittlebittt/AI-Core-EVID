@@ -1,0 +1,38 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_STAGE1_FACTOR_SCREEN_RECEIPT_V1",
+  "run_id": "35570298504",
+  "head_sha": "97157f7bc1806d7f28e5bb426f0ba2cfe4e43549",
+  "started_at_utc": "2026-09-21T06:52:19.475477+00:00",
+  "finished_at_utc": "2026-09-21T06:58:47.070048+00:00",
+  "factor_family_size": 9,
+  "promoted_factors": [],
+  "promoted_count": 0,
+  "not_promoted_factors": [
+    "ret_20",
+    "ret_60",
+    "ma50_vs_ma150",
+    "ma150_vs_ma200",
+    "ma200_slope20",
+    "dist_high60",
+    "dist_high252",
+    "rv10_over_rv60",
+    "tr10_over_tr60"
+  ],
+  "panel_sha256": "5a37b30ccc6a33b8ac8bc3a43399c0372695bf2016e0efe0e9168116a60ccbf2",
+  "result_ledger_sha256": "e5b100cf837ef60f35d856cb8bd6986d766e3813222562de6ab63b7057db0fe0",
+  "daily_metrics_sha256": "ebd80cc66352a59b590390a09b46d332db29f2e374f18ee60db0fea93e43e987",
+  "quantile_metrics_sha256": "ae0eb688d4777b88d37a05dc31c05bb4faaf36390a6b39a2b915c5958cf3e166",
+  "frozen_rules": {
+    "promotion_rule": "93a181543e5205058b0f48a4f44af31d3c83866e9b72c705e7ea007e00f2a366",
+    "statistical_mechanics": "c777b6c97d27517889bfcd5d7cb6d4c65d381e7e59fb220dce982d213eed291f",
+    "execution_contract": "ec79e1943887e593c123c8790b47807c0f5a3876dc1703e93a2fc8b897082d69",
+    "snapshot_contract": "18955a3ce7375c2ac824c6be5fbfc1525891d5570f0d12cf2420f2717fa82ce3"
+  },
+  "gate": {
+    "status": "STAGE1_SCREEN_COMPLETE",
+    "all_nine_hypotheses_retained": true,
+    "optional_stopping_used": false,
+    "thresholds_modified_after_results": false
+  },
+  "receipt_sha256": "cd5d4112151a758268e17a6626d6783770d6bdfc6b302f5c6a808642bb62ff22"
+}
