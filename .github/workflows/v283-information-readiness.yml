@@ -1,0 +1,37 @@
+name: V2.8.3 Blind Information Readiness
+on:
+  schedule:
+    - cron: "30 3 * * 2-6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v283-blind-information-readiness
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "numpy>=2.0" "pandas>=2.2"
+      - name: Audit readiness without performance statistics
+        run: python scripts/v283_information_gate.py audit
+      - name: Freeze status only if readiness counts changed
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.3_INFORMATION_GATE_STATUS.json
+          if git diff --cached --quiet; then
+            echo "Readiness status unchanged."
+            exit 0
+          fi
+          git commit -m "Update V2.8.3 blind information readiness [skip ci]"
+          git pull --rebase origin main
+          git push
