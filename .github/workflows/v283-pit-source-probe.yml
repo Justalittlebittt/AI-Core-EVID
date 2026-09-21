@@ -1,10 +1,5 @@
 name: V2.8.3 PIT Official Source Probe
 on:
-  push:
-    paths:
-      - "scripts/v283_pit_source_probe.py"
-      - "scripts/v283_pit_date_authority.py"
-      - ".github/workflows/v283-pit-source-probe.yml"
   workflow_dispatch:
 
 permissions:
@@ -33,5 +28,3 @@ jobs:
             git pull --rebase origin main
             git push
           fi
-
-# controlled-probe-marker: 2026-09-21T18:11+08
