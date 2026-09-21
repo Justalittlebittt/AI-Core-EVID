@@ -8,6 +8,7 @@ import math
 import re
 import tarfile
 import tempfile
+import time
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -105,8 +106,24 @@ def decode_json_or_jsonp(b: bytes):
 
 def fetch_sse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
     raw.mkdir(parents=True, exist_ok=True)
+    retry = Retry(
+        total=3, connect=3, read=3, status=2,
+        backoff_factor=1.0,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=frozenset({"GET"}),
+        raise_on_status=False,
+    )
     sess = requests.Session()
-    sess.headers.update({"User-Agent": "Mozilla/5.0", "Referer": SSE_REFERER})
+    sess.mount("https://", HTTPAdapter(max_retries=retry))
+    sess.headers.update({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36",
+        "Referer": SSE_REFERER,
+        "Accept": "*/*",
+    })
+    try:
+        sess.get(SSE_REFERER, timeout=20)
+    except requests.RequestException:
+        pass
     rows = []
     captures = []
     for stock_type, board in (("1", "SSE_MAIN_A"), ("8", "SSE_STAR")):
@@ -122,6 +139,7 @@ def fetch_sse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
             "isPagination": "true",
             "pageHelp.cacheSize": "1",
             "pageHelp.pageSize": "100",
+            "_": str(int(time.time() * 1000)),
         }
         q = {**base, "pageHelp.beginPage": "1", "pageHelp.pageNo": "1", "pageHelp.endPage": "1"}
         first = sess.get(SSE_ENDPOINT, params=q, timeout=30)
