@@ -1,0 +1,101 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_CONDITIONAL_DIAGNOSTIC_CONTRACT_V1",
+  "version": "V2.8.2",
+  "status": "FROZEN_BEFORE_CONDITIONAL_DIAGNOSTIC_RESULTS",
+  "purpose": "Diagnose whether the V2.8.1 factor behavior is structurally conditional on broad-market and PIT sector context. This is exploratory architecture research only and cannot promote a factor, reverse a failed V2.8.1 hypothesis, define a production score, emit a Setup/Episode, or authorize trading.",
+  "frozen_authorities": {
+    "v2_8_1_final_record": "evidence/V2.8.1_FINAL_RECORD.json",
+    "v2_8_1_pit_membership": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
+    "v2_8_1_vendor_vintage_receipt": "evidence/V2.8.1_VENDOR_VINTAGE_DRIFT_RECEIPT.json",
+    "capco_sector_parser_receipt": "evidence/V2.8.2_CAPCO_SECTOR_PARSER_RECEIPT.json",
+    "capco_sector_snapshot_rows": "evidence/V2.8.2_CAPCO_SECTOR_SNAPSHOT_ROWS.csv",
+    "capco_sector_effective_intervals": "evidence/V2.8.2_CAPCO_SECTOR_EFFECTIVE_INTERVALS.csv"
+  },
+  "sample": {
+    "signal_max_date": "2026-09-09",
+    "primary_outcome": "D_PLUS_10_ECONOMIC_RETURN",
+    "secondary_outcome": "D_PLUS_5_ECONOMIC_RETURN",
+    "source_rule": "Reuse the exact pinned V2.8.1 stock and benchmark snapshots and the same D/T endpoint semantics.",
+    "no_new_outcome_window_claim": true
+  },
+  "factors_under_diagnosis": [
+    {
+      "factor": "ret_20",
+      "v2_8_1_preregistered_direction": "POSITIVE",
+      "v2_8_2_role": "OPPOSITE_SIGN_DISCOVERY_DIAGNOSTIC_ONLY"
+    },
+    {
+      "factor": "ret_60",
+      "v2_8_1_preregistered_direction": "POSITIVE",
+      "v2_8_2_role": "OPPOSITE_SIGN_DISCOVERY_DIAGNOSTIC_ONLY"
+    },
+    {
+      "factor": "rv10_over_rv60",
+      "v2_8_1_preregistered_direction": "NEGATIVE",
+      "v2_8_2_role": "RISK_CONDITIONER_MECHANISM_DIAGNOSTIC_ONLY"
+    },
+    {
+      "factor": "tr10_over_tr60",
+      "v2_8_1_preregistered_direction": "NEGATIVE",
+      "v2_8_2_role": "RISK_CONDITIONER_MECHANISM_DIAGNOSTIC_ONLY"
+    }
+  ],
+  "market_context": {
+    "authority": "CSI300 000300.SS from the pinned V2.8.1 benchmark snapshot",
+    "known_at_D_only": true,
+    "ret20": "close_D / close_D_minus_20_joint_bars - 1",
+    "daily_log_return": "ln(close_D / close_previous_joint_bar)",
+    "rv10": "population standard deviation ddof=0 of the latest 10 daily log returns ending at D",
+    "rv60": "population standard deviation ddof=0 of the latest 60 daily log returns ending at D",
+    "rv10_over_rv60": "rv10 / rv60",
+    "state_thresholds": {
+      "trend": "ret20 >= 0 is UP, ret20 < 0 is DOWN",
+      "volatility": "rv10_over_rv60 <= 1 is CALM, > 1 is STRESSED"
+    },
+    "states": [
+      "UP_CALM",
+      "UP_STRESSED",
+      "DOWN_CALM",
+      "DOWN_STRESSED",
+      "UNKNOWN_WARMUP"
+    ],
+    "threshold_rationale": "Zero return and a volatility ratio of one are natural identity thresholds, not thresholds estimated from outcomes."
+  },
+  "sector_context": {
+    "mapping": "Use the latest CAPCO snapshot whose frozen research_effective_date is <= D and whose research_effective_end_date is >= D.",
+    "classification_level": "Use CAPCO manufacturing subcategory for top_code=C and CAPCO top-level category otherwise, exactly as frozen in the parser receipt.",
+    "unmapped_policy": "UNKNOWN; never fill from a future CAPCO snapshot.",
+    "stock_daily_return": "close_D / close_previous_stock_bar - 1 using only source-close history available through D.",
+    "sector_daily_equal_weight_return": "Arithmetic mean of valid stock one-day returns among stocks mapped to that sector on D.",
+    "broad_a_daily_equal_weight_return": "Arithmetic mean of valid stock one-day returns in the official PIT/stable research universe on D.",
+    "sector_ret20": "Compound the latest 20 sector daily equal-weight returns through D; require 20 observations.",
+    "broad_a_ret20": "Compound the latest 20 broad-A daily equal-weight returns through D; require 20 observations.",
+    "relative_state": "STRONG if sector_ret20 - broad_a_ret20 >= 0, WEAK if < 0, UNKNOWN if sector context or 20-day state is unavailable.",
+    "relative_threshold_rationale": "Zero relative return is the natural equality threshold and is not fit to outcomes."
+  },
+  "diagnostic_statistics": {
+    "unconditional_daily_rank_ic": "Spearman factor-vs-forward-return correlation by signal date, reported as raw sign and magnitude.",
+    "market_conditioned_daily_rank_ic": "Same daily cross-sectional rank IC computed separately within each frozen market state.",
+    "market_x_sector_relative_daily_rank_ic": "Same daily cross-sectional rank IC computed within market-state x sector-relative-state stock subsets.",
+    "sector_neutral_daily_rank_ic": "For mapped sectors with at least 10 valid factor/outcome rows on a date, convert factor and outcome to within-sector average percentile ranks; pool eligible stocks across sectors and compute Pearson correlation of those within-sector ranks.",
+    "quarter_diagnostics": "Report calendar-quarter observation counts, mean raw IC and sign without a promotion rule.",
+    "minimum_rows_for_conditioned_ic": 50,
+    "minimum_rows_per_sector_for_sector_neutral_rank": 10,
+    "no_p_values_for_v2_8_2_exploration": true,
+    "no_pass_fail_factor_labels": true
+  },
+  "predefined_questions": [
+    "Are the negative raw D+10 ICs observed for ret_20 and ret_60 broadly present across market states or concentrated in a subset of states?",
+    "Do rv10_over_rv60 and tr10_over_tr60 retain their negative raw IC after sector neutralization, or is their V2.8.1 result materially explained by industry composition?",
+    "Does sector relative strength separate materially different factor behavior within the same broad-market state?",
+    "Is the conditional structure stable enough to justify freezing a new, separately versioned confirmatory hypothesis for an unseen outcome window?"
+  ],
+  "interpretation_rules": [
+    "A favorable cell in this diagnostic is not a promoted factor and is not a trading rule.",
+    "No cell threshold, state definition, factor direction or sample boundary may be changed after viewing this diagnostic and then described as preregistered.",
+    "ret_20 and ret_60 remain failed V2.8.1 POSITIVE hypotheses regardless of any favorable reversed or conditional pattern found here.",
+    "rv10_over_rv60 and tr10_over_tr60 remain NOT_PROMOTED V2.8.1 factors regardless of any favorable conditional pattern found here.",
+    "Any candidate emerging from this diagnostic must be frozen as a new hypothesis before evaluation on genuinely later/unseen outcomes."
+  ],
+  "success_definition": "Produce a leakage-safe mechanism map and a decision on whether a top-down conditional architecture is worth a future confirmatory test. No V2.8.2 exploratory result can itself authorize Stage-2 combination, Setup emission, Episode emission, prospective First60 activation, or live trading."
+}
