@@ -1,0 +1,54 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_STAGE1_STATISTICAL_MECHANICS_AMENDMENT_V1",
+  "version": "V2.8.1",
+  "amends": "evidence/V2.8.1_STAGE1_FACTOR_PROMOTION_RULE.json",
+  "frozen_before_factor_results": true,
+  "valid_evaluation_minimums": {
+    "min_valid_dates_per_factor": 200,
+    "min_valid_calendar_quarters": 4,
+    "valid_quarter_min_dates": 20
+  },
+  "direction_adjustment": {
+    "POSITIVE": 1,
+    "NEGATIVE": -1,
+    "rule": "Multiply daily IC/spread by the preregistered direction sign before one-sided inference."
+  },
+  "bootstrap": {
+    "type": "CIRCULAR_MOVING_BLOCK_BOOTSTRAP_BY_SIGNAL_DATE",
+    "block_length_dates": 20,
+    "replications": 10000,
+    "random_seed": 2801001,
+    "statistic": "arithmetic mean of the date-level series",
+    "sampling": "sample circular contiguous 20-date blocks with replacement until >=N observations, concatenate and truncate to N",
+    "confidence_interval": "2.5th and 97.5th percentiles of bootstrap statistic",
+    "one_sided_p_value": "Center the direction-adjusted date series at zero by subtracting its observed mean; bootstrap the centered series; p=(1 + count(null_bootstrap_mean >= observed_direction_adjusted_mean))/(B+1)."
+  },
+  "multiplicity": {
+    "family": "the nine preregistered promotion-eligible factor hypotheses",
+    "method": "HOLM_BONFERRONI",
+    "familywise_alpha": 0.05,
+    "p_values": "one-sided centered circular moving-block bootstrap p-values for D+10 Rank-IC",
+    "no_post_result_removal": true
+  },
+  "quantiles": {
+    "count": 5,
+    "assignment": "within-date rank using valid factor observations only",
+    "ties": "average rank then deterministic percentile bands",
+    "spread": "hypothesis-direction adjusted favorable extreme quintile minus unfavorable extreme quintile",
+    "inference": "same 20-date circular moving-block bootstrap, B=10000, seed=2801001 offset deterministically by factor id"
+  },
+  "quarter_stability": {
+    "definition": "calendar year-quarter on signal date",
+    "valid_quarter_min_dates": 20,
+    "required_direction_share": 0.6666666667,
+    "leave_one_valid_quarter_out": "Every omission must retain positive direction-adjusted mean D+10 Rank-IC."
+  },
+  "secondary_horizon": {
+    "D_plus_5": "direction-adjusted mean daily Rank-IC must be >0; no separate multiplicity significance requirement"
+  },
+  "missingness": {
+    "no_imputation_of_factor_values": true,
+    "no_imputation_of_forward_outcomes": true,
+    "excluded_date_rule": "Dates failing coverage requirements are excluded from that factor's inference and counted in coverage diagnostics."
+  }
+}
