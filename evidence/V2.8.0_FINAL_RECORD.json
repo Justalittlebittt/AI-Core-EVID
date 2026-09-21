@@ -1,0 +1,69 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_FINAL_RECORD_V1",
+  "version": "V2.8.0",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_0_NEW_BASELINE",
+  "status": "NEW_STRATEGY_RESEARCH_BASELINE_FROZEN",
+  "purpose": "Establish a new, explicitly non-legacy strategy research baseline after V2.7.3 exact reconstruction was proven impossible.",
+  "inherited_foundation": [
+    "V2.7.31 Forward Certified Universe",
+    "V2.7.30 on-demand evidence materialization",
+    "V2.7.32 First60 append-only prospective ledger semantics",
+    "joint A-share trading calendar",
+    "PIT/fail-closed governance",
+    "V2.6 economic-price endpoint rule"
+  ],
+  "research_architecture": {
+    "U": "Official Certified Mother Pool",
+    "E": "AI-Core Evidence Constitution V1.2 eligibility",
+    "T": "Threshold-free technical feature research",
+    "X": "Execution/tradability/risk layer"
+  },
+  "negative_control": {
+    "B3_ABLATION_V0_1": "FAIL",
+    "B3_CHAIN_V0_1": "FAIL",
+    "policy": "Retain as negative controls; do not promote."
+  },
+  "data_capability": {
+    "alpha_dojo_stock_kline": "AVAILABLE_FREE_PUBLIC",
+    "alpha_dojo_benchmark_kline": "AVAILABLE_FREE_PUBLIC",
+    "alpha_dojo_stock_info": "AVAILABLE_FREE_PUBLIC",
+    "observed_stock_kline_max_bar_date": "2026-09-18",
+    "full_market_ai_core_evidence_labels": "NOT_YET_AVAILABLE_IN_CURRENT_GITHUB"
+  },
+  "feature_engine": {
+    "file": "scripts/v280_scale_invariant_features.py",
+    "threshold_free": true,
+    "price_scale_invariant_core": true,
+    "outcome_generation": false,
+    "setup_generation": false,
+    "selftest": {
+      "workflow_run_id": 35566805760,
+      "passed": 6,
+      "total": 6,
+      "status": "PASS"
+    }
+  },
+  "governance": {
+    "retrospective_history": "DEVELOPMENT_DIAGNOSTIC_RETRO_STRESS_ONLY",
+    "prospective_certification_required": true,
+    "no_hard_thresholds_frozen": true,
+    "old_v273_strategy_identity_reused": false
+  },
+  "blockers_before_strategy_candidate_promotion": [
+    "Stage-1 factor promotion thresholds must be preregistered before consuming factor results for promotion.",
+    "E-layer full-market AI-Core eligibility/classification must be available before any AI-Core prospective Episode can be emitted.",
+    "Canonical historical research snapshot + retained source receipt must be frozen before large-scale factor screening."
+  ],
+  "state": {
+    "NEW_STRATEGY_IDENTITY": "FROZEN",
+    "FACTOR_REGISTRY": "FROZEN",
+    "RETROSPECTIVE_RESEARCH_CONSTITUTION": "FROZEN",
+    "FEATURE_ENGINE": "VALIDATED_PASS",
+    "HARD_GATE_THRESHOLDS": "NOT_DEFINED",
+    "SETUP_ENGINE": "NOT_BUILT",
+    "FIRST60_FOR_V2_8": "NOT_ACTIVATED",
+    "S4_S5_S6": "BLOCKED",
+    "LIVE": "BLOCKED"
+  },
+  "next_stage": "V2.8.1 CANONICAL RESEARCH SNAPSHOT + PREREGISTERED STAGE-1 FACTOR SCREEN"
+}
