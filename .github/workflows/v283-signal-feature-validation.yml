@@ -1,9 +1,5 @@
 name: V2.8.3 Signal Feature Snapshot Validation
 on:
-  push:
-    paths:
-      - "scripts/v283_signal_feature_snapshot.py"
-      - ".github/workflows/v283-signal-feature-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
