@@ -224,6 +224,9 @@ def self_test():
     )=="ELIGIBLE_FEATURE_SOURCE")
     ck("M08_d5_frozen", target_date(d,5,days,idx)==date(2026,9,30))
     ck("M09_d10_frozen", target_date(d,10,days,idx)==date(2026,10,14))
+    with LEDGER.open("r",encoding="utf-8",newline="") as f:
+        header=next(csv.reader(f))
+    ck("M10_signal_ledger_header_exact",header==FIELDS)
     result={"schema":"AI_CORE_EVID_V2_8_3_MATERIALIZATION_GATE_SELFTEST_V1",
             "passed":sum(x["pass"] for x in tests),"total":len(tests),
             "all_pass":all(x["pass"] for x in tests),"tests":tests}
