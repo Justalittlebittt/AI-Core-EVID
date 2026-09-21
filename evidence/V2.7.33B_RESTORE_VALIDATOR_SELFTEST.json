@@ -1,0 +1,66 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33B_RESTORE_VALIDATOR_SELFTEST_V1",
+  "tests": [
+    {
+      "name": "safe_normal_path",
+      "pass": true,
+      "detail": {
+        "ok": true,
+        "reason": ""
+      }
+    },
+    {
+      "name": "block_path_../escape.py",
+      "pass": true,
+      "detail": {
+        "ok": false,
+        "reason": "TRAVERSAL_OR_EMPTY_COMPONENT"
+      }
+    },
+    {
+      "name": "block_path_/abs.py",
+      "pass": true,
+      "detail": {
+        "ok": false,
+        "reason": "ABSOLUTE_OR_EMPTY_PATH"
+      }
+    },
+    {
+      "name": "block_path_C:/evil.py",
+      "pass": true,
+      "detail": {
+        "ok": false,
+        "reason": "DRIVE_PATH"
+      }
+    },
+    {
+      "name": "block_path_scripts/../evil.py",
+      "pass": true,
+      "detail": {
+        "ok": false,
+        "reason": "TRAVERSAL_OR_EMPTY_COMPONENT"
+      }
+    },
+    {
+      "name": "unknown_carrier_not_accepted",
+      "pass": true,
+      "detail": "unknown.zip"
+    },
+    {
+      "name": "recognized_name_wrong_hash_blocks",
+      "pass": true,
+      "detail": {
+        "actual": "306dd9dd891f112b57d9ac9ba03da637bef12a54b0384b1c81d243bbb3ca0c27",
+        "expected": "4e4e13276c2e68b7b834fccf0a710a31d020ddad3985711a9d1aabfb826ce22f"
+      }
+    },
+    {
+      "name": "symlink_member_detected",
+      "pass": true,
+      "detail": true
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "all_pass": true
+}
