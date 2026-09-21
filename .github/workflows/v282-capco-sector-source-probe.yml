@@ -1,0 +1,44 @@
+name: V2.8.2 CAPCO Sector Source Probe
+
+on:
+  push:
+    paths:
+      - "scripts/v282_capco_sector_source_probe.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install probe dependencies
+        run: pip install "requests>=2.32,<3" "beautifulsoup4>=4.12,<5" "pypdf>=6,<7" "pandas>=2,<4"
+      - name: Materialize official CAPCO sector snapshots
+        run: python scripts/v282_capco_sector_source_probe.py
+      - name: Freeze source probe receipt
+        if: success()
+        run: |
+          cp v282_capco_sector_probe/V2.8.2_CAPCO_SECTOR_SOURCE_PROBE_RECEIPT.json evidence/
+          cp v282_capco_sector_probe/V2.8.2_CAPCO_SECTOR_SOURCE_INVENTORY.csv evidence/
+          cp v282_capco_sector_probe/V2.8.2_CAPCO_SECTOR_TEXT_SAMPLES.json evidence/
+          cp v282_capco_sector_probe/V2.8.2_CAPCO_SECTOR_RAW_PDFS.tar.gz evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.2_CAPCO_SECTOR_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.2 CAPCO sector source probe"
+            git push
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.8.2_CAPCO_SECTOR_SOURCE_PROBE
+          path: v282_capco_sector_probe/
+          retention-days: 30
