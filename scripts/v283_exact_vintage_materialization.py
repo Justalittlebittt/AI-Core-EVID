@@ -516,6 +516,7 @@ def run_outcome(args) -> None:
     print(json.dumps(receipt, ensure_ascii=False, indent=2))
 
 def make_synthetic_snapshot(root: Path, signal_date: date, symbols: list[str], scale: float = 1.0, extra_dates: list[date] | None = None) -> tuple[Path, Path, list[date]]:
+    root.mkdir(parents=True, exist_ok=True)
     hist = list(pd.bdate_range(end=pd.Timestamp(signal_date), periods=61).date)
     dates = hist + list(extra_dates or [])
     rows = []
