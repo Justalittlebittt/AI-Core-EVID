@@ -1,0 +1,133 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_HF_SOURCE_PIN_V1",
+  "captured_at_utc": "2026-09-21T06:06:23.400075+00:00",
+  "repos": [
+    {
+      "repo_id": "AlphaDojo/dojo_stock_kline",
+      "repo_type": "dataset",
+      "revision_sha": "c009ad58278161e7b6eb347b68f34f51166114f3",
+      "last_modified": "2026-09-20 22:39:39+00:00",
+      "target_file": "data.parquet",
+      "target_metadata": {
+        "rfilename": "data.parquet",
+        "size": 308304898,
+        "lfs": {
+          "size": 308304898,
+          "sha256": "acb8ae5e31f58fe3972455b86614d668837f18afd59126c505faaae06920954b",
+          "pointer_size": 134
+        }
+      },
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "size": 2504
+        },
+        {
+          "rfilename": "README.md",
+          "size": 1482
+        },
+        {
+          "rfilename": "README_ZH.md",
+          "size": 1396
+        },
+        {
+          "rfilename": "data.parquet",
+          "size": 308304898,
+          "lfs": {
+            "size": 308304898,
+            "sha256": "acb8ae5e31f58fe3972455b86614d668837f18afd59126c505faaae06920954b",
+            "pointer_size": 134
+          }
+        }
+      ]
+    },
+    {
+      "repo_id": "AlphaDojo/dojo_benchmark_kline",
+      "repo_type": "dataset",
+      "revision_sha": "4cc8300a0f82cc9db76b946b80ae5b28a7beca95",
+      "last_modified": "2026-09-19 09:19:25+00:00",
+      "target_file": "data.parquet",
+      "target_metadata": {
+        "rfilename": "data.parquet",
+        "size": 291017,
+        "lfs": {
+          "size": 291017,
+          "sha256": "75c4fba2de6875e125c539187fdf7e44eae90d740fce64907f8ce8df6ff58234",
+          "pointer_size": 131
+        }
+      },
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "size": 2504
+        },
+        {
+          "rfilename": "README.md",
+          "size": 1140
+        },
+        {
+          "rfilename": "README_ZH.md",
+          "size": 1076
+        },
+        {
+          "rfilename": "benchmark.parquet",
+          "size": 3552,
+          "lfs": {
+            "size": 3552,
+            "sha256": "1f5640770f652087f9e1af3f59afe17dbf8ccf35de9aec2cbf6ca7eca6522c88",
+            "pointer_size": 129
+          }
+        },
+        {
+          "rfilename": "data.parquet",
+          "size": 291017,
+          "lfs": {
+            "size": 291017,
+            "sha256": "75c4fba2de6875e125c539187fdf7e44eae90d740fce64907f8ce8df6ff58234",
+            "pointer_size": 131
+          }
+        }
+      ]
+    },
+    {
+      "repo_id": "AlphaDojo/dojo_stock_info",
+      "repo_type": "dataset",
+      "revision_sha": "6654503cdfcfa87e3524145f6922c87d30b22ab0",
+      "last_modified": "2026-09-20 22:38:09+00:00",
+      "target_file": "data.parquet",
+      "target_metadata": {
+        "rfilename": "data.parquet",
+        "size": 2592719,
+        "lfs": {
+          "size": 2592719,
+          "sha256": "c548dfb42763e548fb33e275e6c1148294d52376b205fb31ce53a714cfcaf49f",
+          "pointer_size": 132
+        }
+      },
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "size": 2504
+        },
+        {
+          "rfilename": "README.md",
+          "size": 1693
+        },
+        {
+          "rfilename": "README_ZH.md",
+          "size": 1585
+        },
+        {
+          "rfilename": "data.parquet",
+          "size": 2592719,
+          "lfs": {
+            "size": 2592719,
+            "sha256": "c548dfb42763e548fb33e275e6c1148294d52376b205fb31ce53a714cfcaf49f",
+            "pointer_size": 132
+          }
+        }
+      ]
+    }
+  ],
+  "source_pin_sha256": "6deecadf9f977f20679c16e868362c162dd6481b4fa01f24fb97fdfff015400a"
+}
