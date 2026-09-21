@@ -1,0 +1,67 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_PIT_MEMBERSHIP_RECONSTRUCTION_V1",
+  "authorities": {
+    "current_universe_sha256": "8815cd4ff5fb1f82e7c49b2a142ceb8e12138a4068d7a21c8ae144b57cc3f92d",
+    "delist_artifact_id": 10535944660,
+    "delist_artifact_digest": "sha256:5ecbfe0b868e4709a97d71a703d07465156dbd48304e6d444ec93952e0b5e3dd"
+  },
+  "source_counts": {
+    "current_active": 5221,
+    "sse_delisted_a": 146,
+    "szse_terminal_total": 208,
+    "szse_explicit_b_excluded": 21,
+    "szse_delisted_a_included": 187,
+    "all_delisted_a_included": 333,
+    "interval_rows": 5554
+  },
+  "interval_semantics": "list_date <= D < delist_date; blank delist_date is open-ended",
+  "selftests": [
+    {
+      "name": "T01_reconstruct_2026_09_17_exact_set",
+      "pass": true,
+      "count": 5221,
+      "sha256": "b9733a28f99a8c91902fb5ba7fb2fbcce5f2b4845612a1bc225a888bcc2cfa6c"
+    },
+    {
+      "name": "T02_new_listing_excluded_before_list_date",
+      "pass": true
+    },
+    {
+      "name": "T03_sse_delist_effective_date_exclusive",
+      "pass": true
+    },
+    {
+      "name": "T04_szse_delist_effective_date_exclusive",
+      "pass": true
+    },
+    {
+      "name": "T05_explicit_b_share_absent",
+      "pass": true
+    },
+    {
+      "name": "T06_survivor_only_shortcut_detected",
+      "pass": true,
+      "historical_members_missing_from_survivor_only": 48
+    },
+    {
+      "name": "T07_no_identity_overlap",
+      "pass": true
+    }
+  ],
+  "research_date_diagnostics": {
+    "2025-01-02_members": 5121,
+    "2025-01-02_non_survivor_members": 48,
+    "2026-09-17_members": 5221
+  },
+  "outputs": {
+    "intervals_sha256": "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1",
+    "delist_ledger_sha256": "84d802633d2c1a60a7b0846653ee5e5eac21418680b290ce1c5002000d9f1008",
+    "b_exclusion_audit_sha256": "df341aca54f168b5c7d0b84d0c0a14b19c2ee7704f19c5c3b53a68ad06ce3d20",
+    "raw_manifest_sha256": "307f0afd958dad33d002ecc0977a668f75512865be8df72343e64a578e22cecb"
+  },
+  "gate": {
+    "status": "PIT_MEMBERSHIP_INTERVALS_PASS",
+    "survivorship_shortcut_forbidden": true
+  },
+  "receipt_sha256": "77cfc358a3e8968acf91df6c356234181554c7bdb74eded68c58c7aa3dc03326"
+}
