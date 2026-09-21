@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_JOINT_A_SHARE_CALENDAR_2025_CONTRACT_V1",
+  "year": 2025,
+  "construction_rule": "Monday-Friday except official SSE/SZSE announced A-share closure dates; weekend make-up workdays are not exchange trading days unless explicitly opened by the exchanges.",
+  "sources": [
+    {
+      "exchange": "SSE",
+      "title": "关于上海证券交易所2025年部分节假日休市安排的通知",
+      "date": "2024-12-23",
+      "url": "https://www.sse.com.cn/disclosure/announcement/general/c/c_20241223_10767108.shtml"
+    },
+    {
+      "exchange": "SZSE",
+      "title": "关于2025年部分节假日休市安排的通知",
+      "date": "2024-12-23",
+      "url": "https://www.szse.cn/disclosure/notice/t20241223_611283.html"
+    }
+  ],
+  "closure_ranges": [
+    {
+      "name": "NEW_YEAR",
+      "start": "2025-01-01",
+      "end": "2025-01-01"
+    },
+    {
+      "name": "SPRING_FESTIVAL",
+      "start": "2025-01-28",
+      "end": "2025-02-04"
+    },
+    {
+      "name": "QINGMING",
+      "start": "2025-04-04",
+      "end": "2025-04-06"
+    },
+    {
+      "name": "LABOR_DAY",
+      "start": "2025-05-01",
+      "end": "2025-05-05"
+    },
+    {
+      "name": "DRAGON_BOAT",
+      "start": "2025-05-31",
+      "end": "2025-06-02"
+    },
+    {
+      "name": "NATIONAL_DAY_MID_AUTUMN",
+      "start": "2025-10-01",
+      "end": "2025-10-08"
+    }
+  ],
+  "explicit_weekend_closures": [
+    "2025-01-26",
+    "2025-02-08",
+    "2025-04-27",
+    "2025-09-28",
+    "2025-10-11"
+  ],
+  "use": "Combine with frozen V2.7.32 2026 joint calendar for V2.8.1 D+5/D+10 target-date assignment.",
+  "frozen_before_stage1_results": true
+}
