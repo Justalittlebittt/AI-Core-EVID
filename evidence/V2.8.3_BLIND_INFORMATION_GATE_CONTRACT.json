@@ -1,0 +1,64 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_BLIND_INFORMATION_GATE_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_READINESS_RESULTS",
+  "purpose": "Determine whether the preregistered V2.8.3 minimum information requirements are satisfied without exposing factor-return association or any interim performance statistic.",
+  "authorities": {
+    "prospective_contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+    "execution_contract": "evidence/V2.8.3_EXECUTION_CONTRACT.json",
+    "signal_features": "evidence/v283_signal_features",
+    "outcomes": "evidence/v283_outcomes",
+    "outcome_ledger": "evidence/V2.8.3_PROSPECTIVE_OUTCOME_LEDGER.csv"
+  },
+  "hypotheses": [
+    {"id":"H1_RV_COMPRESSION_CALM","factor":"rv10_over_rv60"},
+    {"id":"H2_TR_COMPRESSION_CALM","factor":"tr10_over_tr60"}
+  ],
+  "valid_date_definition": {
+    "primary_outcome_only": "D+10",
+    "market_state": "CALM or STRESSED from the frozen D-vintage signal feature receipt",
+    "eligible_rows": "rows where the hypothesis factor is finite in the frozen D-vintage feature CSV and D+10 fwd_return is finite in the frozen same-T-vintage outcome CSV",
+    "minimum_eligible_rows_per_date": 50,
+    "association_computation": "FORBIDDEN"
+  },
+  "minimum_information_requirements_per_hypothesis": {
+    "valid_calm_dates": 60,
+    "valid_stressed_dates": 30,
+    "valid_calm_calendar_quarters": 3,
+    "valid_calm_dates_per_counted_quarter": 15
+  },
+  "allowed_outputs": [
+    "number of frozen signal dates",
+    "number of resolved D+10 dates",
+    "valid CALM date count per hypothesis",
+    "valid STRESSED date count per hypothesis",
+    "valid CALM date count by calendar quarter per hypothesis",
+    "count of dates structurally invalid because fewer than 50 eligible rows",
+    "READY or INCOMPLETE"
+  ],
+  "forbidden_outputs": [
+    "Rank-IC or any correlation/covariance between factor and return",
+    "factor-sorted returns, quantiles or spreads",
+    "mean/median forward return conditioned on factor",
+    "mean factor conditioned on outcome",
+    "direction-adjusted statistics",
+    "bootstrap confidence intervals",
+    "p-values",
+    "Holm-Bonferroni results",
+    "quarter sign or effect direction",
+    "any PASS/FAIL of H1 or H2 before readiness"
+  ],
+  "decision": {
+    "READY_FOR_LOCKED_CONFIRMATORY_EVALUATION": "Every hypothesis independently satisfies all minimum information requirements.",
+    "INCOMPLETE_NO_EVALUATION": "At least one hypothesis lacks minimum information; confirmatory evaluator must not run."
+  },
+  "no_optional_stopping": {
+    "readiness_may_be_checked_repeatedly": true,
+    "performance_statistics_may_not_be_checked_until_READY": true,
+    "requirements_may_not_change_after_activation": true
+  },
+  "governance": {
+    "setup_or_episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
