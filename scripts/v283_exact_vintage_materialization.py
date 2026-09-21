@@ -623,7 +623,11 @@ def self_test() -> None:
         wrong = t_new / d_old - 1.0
         check("M08_cross_vintage_wrong_method_detected", abs(wrong - 0.10) > 0.1, wrong)
 
-        dupe = pd.concat([z, z.iloc[[0]]], ignore_index=True)
+        endpoint_dup = z[
+            (z["symbol"] == sample_sym)
+            & (pd.to_datetime(z["bar_time"]).dt.date == d)
+        ].iloc[[0]]
+        dupe = pd.concat([z, endpoint_dup], ignore_index=True)
         dup_path = root / "dupe.parquet"
         dupe.to_parquet(dup_path, index=False)
         blocked = False
