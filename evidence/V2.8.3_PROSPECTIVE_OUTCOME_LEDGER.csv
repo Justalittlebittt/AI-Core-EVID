@@ -1,0 +1,1 @@
+signal_date,horizon,target_date,outcome_state,T_source_pin_file,T_source_pin_commit_sha,T_source_pin_committed_at_utc,stock_revision_sha,stock_lfs_sha256,outcome_csv,outcome_csv_sha256,resolved_count,unavailable_count\n
