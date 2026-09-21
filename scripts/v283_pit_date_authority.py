@@ -8,7 +8,7 @@ import math
 import re
 import tarfile
 import tempfile
-import time
+import time as time_module
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -139,7 +139,7 @@ def fetch_sse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
             "isPagination": "true",
             "pageHelp.cacheSize": "1",
             "pageHelp.pageSize": "100",
-            "_": str(int(time.time() * 1000)),
+            "_": str(int(time_module.time() * 1000)),
         }
         q = {**base, "pageHelp.beginPage": "1", "pageHelp.pageNo": "1", "pageHelp.endPage": "1"}
         first = sess.get(SSE_ENDPOINT, params=q, timeout=30)
