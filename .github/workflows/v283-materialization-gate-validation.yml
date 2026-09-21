@@ -1,0 +1,20 @@
+name: V2.8.3 Materialization Gate Validation
+on:
+  push:
+    paths:
+      - "scripts/v283_exact_vintage_materialization_gate.py"
+      - ".github/workflows/v283-materialization-gate-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "huggingface_hub>=0.35" "duckdb>=1.1"
+      - run: python scripts/v283_exact_vintage_materialization_gate.py self-test
