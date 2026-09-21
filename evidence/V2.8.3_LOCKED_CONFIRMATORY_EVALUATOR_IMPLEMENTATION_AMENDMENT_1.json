@@ -1,0 +1,35 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_LOCKED_CONFIRMATORY_EVALUATOR_IMPLEMENTATION_AMENDMENT_1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_CONFIRMATORY_RESULTS",
+  "base_contract": "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_CONTRACT.json",
+  "base_activation": "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_ACTIVATION.json",
+  "hardened_validation": "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_VALIDATION_RECEIPT_V2.json",
+  "changes": [
+    {
+      "type": "TERMINAL_IDEMPOTENCY",
+      "rule": "Once V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json exists, scheduled evaluation is a terminal no-op and performance statistics are never recomputed."
+    },
+    {
+      "type": "SECONDARY_HORIZON_INTEGRITY",
+      "rule": "If a D+10 daily IC is computable for a signal date/hypothesis but the same signal date/hypothesis D+5 IC is not computable, evaluation blocks as an implementation/data-integrity condition rather than silently using a smaller D+5 subset."
+    }
+  ],
+  "unchanged": [
+    "H1/H2 family",
+    "factor directions",
+    "CALM threshold",
+    "prospective boundary",
+    "minimum information gate",
+    "D+10 primary horizon",
+    "D+5 secondary sign requirement",
+    "20-date circular moving-block bootstrap",
+    "10000 replications",
+    "frozen seeds",
+    "Holm-Bonferroni alpha 0.05",
+    "quarter stability requirements",
+    "family decision semantics"
+  ],
+  "result_peeking_used": false,
+  "real_confirmatory_data_consumed": false
+}
