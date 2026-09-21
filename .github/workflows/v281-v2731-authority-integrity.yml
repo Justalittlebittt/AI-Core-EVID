@@ -1,0 +1,29 @@
+name: V2.8.1 V2.7.31 Authority Integrity
+on:
+  push:
+    branches: [main]
+    paths:
+      - "validation/v281_v2731_authority_integrity.py"
+      - ".github/workflows/v281-v2731-authority-integrity.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python validation/v281_v2731_authority_integrity.py
+      - if: success()
+        run: |
+          cp v281_v2731_authority_check.json evidence/V2.8.1_V2731_AUTHORITY_INTEGRITY_CHECK.json
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.1_V2731_AUTHORITY_INTEGRITY_CHECK.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.1 V2.7.31 authority integrity check"
+            git push
+          fi
