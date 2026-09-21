@@ -128,8 +128,8 @@ def fetch_sse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
         ph = obj.get("pageHelp", {}) if isinstance(obj, dict) else {}
         total = int(ph.get("total") or 0)
         page_size = int(ph.get("pageSize") or 100)
-        if total <= 1000 or page_size <= 0:
-            raise RuntimeError(f"SSE {board}: implausible total/page_size {total}/{page_size}")
+        if total <= 0 or page_size <= 0:
+            raise RuntimeError(f"SSE {board}: invalid total/page_size {total}/{page_size}")
         pages = max(1, math.ceil(total / page_size))
         for n in range(1, pages + 1):
             qq = {**base, "pageHelp.beginPage": str(n), "pageHelp.pageNo": str(n), "pageHelp.endPage": str(n)}
