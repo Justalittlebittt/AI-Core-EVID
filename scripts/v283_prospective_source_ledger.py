@@ -143,7 +143,8 @@ def self_test() -> None:
         "sources": [a, b],
     }
     check("S05_stable_hash_deterministic", stable_sha256(r) == stable_sha256(r))
-    check("S06_no_full_download_path", "hf_hub_download" not in Path(__file__).read_text(encoding="utf-8"))
+    source_text = Path(__file__).read_text(encoding="utf-8")
+    check("S06_no_full_download_path", "hf_hub_download(" not in source_text)
     result = {
         "schema": "AI_CORE_EVID_V2_8_3_SOURCE_LEDGER_RUNNER_SELFTEST_V1",
         "tests": tests,
