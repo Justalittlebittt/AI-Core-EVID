@@ -1,0 +1,71 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_SIGNAL_FEATURE_RESULTS",
+  "purpose": "Freeze the minimal D-vintage per-security information required for later V2.8.3 confirmation so no D feature or market state is recomputed from a later T-vintage.",
+  "input_gates": [
+    "signal_date has ELIGIBLE_FEATURE_SOURCE under V2.8.3 exact-vintage materialization gate",
+    "exact stock and benchmark bytes match the admitted source pin",
+    "an effective official prospective universe authority exists for D",
+    "signal_date >= 2026-09-22"
+  ],
+  "feature_snapshot_columns": [
+    "canonical_security_id",
+    "signal_date",
+    "rv10_over_rv60",
+    "tr10_over_tr60",
+    "source_close_d"
+  ],
+  "date_context_columns": [
+    "signal_date",
+    "market_rv10_over_rv60",
+    "market_state"
+  ],
+  "factor_definitions": {
+    "rv10_over_rv60": "population std(ddof=0) of latest 10 daily log source-close returns through D divided by population std(ddof=0) of latest 60 daily log source-close returns through D",
+    "tr_pct": "max(high-low, abs(high-prev_close), abs(low-prev_close))/prev_close",
+    "tr10_over_tr60": "mean latest 10 valid tr_pct through D divided by mean latest 60 valid tr_pct through D",
+    "market_state": "CALM iff CSI300 rv10/rv60 <= 1; otherwise STRESSED; UNKNOWN if 60-return warmup unavailable"
+  },
+  "history_rule": {
+    "D_vintage_only": true,
+    "future_rows_forbidden": true,
+    "no_imputation": true,
+    "finite_positive_denominators_required": true
+  },
+  "population_rule": {
+    "authority": "official prospective Certified Mother Pool snapshot effective for D",
+    "vendor_symbol_mapping": "security_code -> exact one canonical_security_id in the effective official universe authority",
+    "ambiguous_or_missing_mapping": "exclude row and activate data-quality blocker if ambiguity affects source integrity",
+    "newly listed_security": "included only when present in the official prospective universe authority and sufficient 60-bar factor history exists"
+  },
+  "storage": {
+    "directory": "evidence/v283_signal_features",
+    "one_snapshot_per_admitted_signal_date": true,
+    "format": "CSV plus JSON receipt",
+    "whole_source_parquet_retention_required": false,
+    "derived_snapshot_is_immutable": true,
+    "replacement_for_same_signal_date_forbidden": true
+  },
+  "receipt_requires": [
+    "signal_date",
+    "source_pin_file and source identity",
+    "official universe authority identity",
+    "market_state",
+    "eligible_universe_count",
+    "factor_row_count",
+    "finite count for each factor",
+    "snapshot CSV SHA256"
+  ],
+  "future_outcome_join": {
+    "D_features_source": "this frozen D-vintage snapshot only",
+    "D_economic_price_for_return": "must NOT use source_close_d frozen here; D and T economic endpoints are later read together from the same T-vintage under the V2.6 endpoint rule",
+    "source_close_d_role": "diagnostic only for reproducibility of D-vintage feature construction"
+  },
+  "governance": {
+    "interim_IC_or_PASS_FAIL_forbidden": true,
+    "T_vintage_feature_recompute_forbidden": true,
+    "setup_or_episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
