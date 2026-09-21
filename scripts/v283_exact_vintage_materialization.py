@@ -217,11 +217,11 @@ def load_stock_history(stock_path: Path, mapping: pd.DataFrame, d: date, bars: i
       WITH x AS (
         SELECT cast(k.symbol as varchar) symbol,
                cast(k.bar_time as date) bar_date,
-               cast(k.open as double) open,
-               cast(k.high as double) high,
-               cast(k.low as double) low,
-               cast(k.close as double) close,
-               cast(k.amount as double) amount,
+               cast(k.open as double) open_px,
+               cast(k.high as double) high_px,
+               cast(k.low as double) low_px,
+               cast(k.close as double) close_px,
+               cast(k.amount as double) amount_px,
                row_number() OVER (
                  PARTITION BY cast(k.symbol as varchar)
                  ORDER BY cast(k.bar_time as date) DESC
@@ -231,12 +231,16 @@ def load_stock_history(stock_path: Path, mapping: pd.DataFrame, d: date, bars: i
         WHERE cast(k.kline_t as varchar)='1D'
           AND cast(k.bar_time as date) <= DATE {sql_lit(d.isoformat())}
       )
-      SELECT symbol,bar_date,open,high,low,close,amount
+      SELECT symbol,bar_date,open_px,high_px,low_px,close_px,amount_px
       FROM x WHERE rn <= {int(bars)}
       ORDER BY symbol,bar_date
     """
     x = con.execute(q).fetchdf()
     con.close()
+    x = x.rename(columns={
+        "open_px": "open", "high_px": "high", "low_px": "low",
+        "close_px": "close", "amount_px": "amount"
+    })
     if x.duplicated(["symbol", "bar_date"]).any():
         raise RuntimeError("duplicate stock symbol/bar_date in exact snapshot")
     x = x.merge(mapping[["symbol", "canonical_security_id"]], on="symbol", how="left", validate="many_to_one")
@@ -245,7 +249,7 @@ def load_stock_history(stock_path: Path, mapping: pd.DataFrame, d: date, bars: i
 def benchmark_state(bench_path: Path, d: date) -> tuple[str, float, int]:
     con = duckdb.connect()
     b = con.execute(f"""
-      SELECT cast(bar_time as date) bar_date, cast(close as double) close
+      SELECT cast(bar_time as date) bar_date, cast(close as double) close_px
       FROM read_parquet({sql_lit(bench_path)})
       WHERE cast(symbol as varchar)='000300.SS'
         AND cast(kline_t as varchar)='1D'
@@ -257,7 +261,7 @@ def benchmark_state(bench_path: Path, d: date) -> tuple[str, float, int]:
     b = b.sort_values("bar_date").reset_index(drop=True)
     if len(b) < 61 or pd.to_datetime(b["bar_date"]).dt.date.iloc[-1] != d:
         return "UNKNOWN_WARMUP", float("nan"), len(b)
-    close = pd.to_numeric(b["close"], errors="coerce")
+    close = pd.to_numeric(b["close_px"], errors="coerce")
     lr = np.log(close / close.shift(1)).dropna().to_numpy(float)
     if len(lr) != 60:
         return "UNKNOWN_WARMUP", float("nan"), len(b)
@@ -290,7 +294,7 @@ def load_endpoint_prices(stock_path: Path, signal_panel: pd.DataFrame, d: date, 
     q = f"""
       SELECT cast(k.symbol as varchar) symbol,
              cast(k.bar_time as date) bar_date,
-             cast(k.close as double) close
+             cast(k.close as double) close_px
       FROM read_parquet({sql_lit(stock_path)}) k
       INNER JOIN wanted w ON cast(k.symbol as varchar)=w.symbol
       WHERE cast(k.kline_t as varchar)='1D'
@@ -301,8 +305,8 @@ def load_endpoint_prices(stock_path: Path, signal_panel: pd.DataFrame, d: date, 
     if z.duplicated(["symbol", "bar_date"]).any():
         raise RuntimeError("duplicate endpoint key in T-vintage snapshot")
     z["bar_date"] = pd.to_datetime(z["bar_date"]).dt.date
-    dpx = z[z["bar_date"] == d][["symbol", "close"]].rename(columns={"close": "source_close_d"})
-    tpx = z[z["bar_date"] == t][["symbol", "close"]].rename(columns={"close": "source_close_t"})
+    dpx = z[z["bar_date"] == d][["symbol", "close_px"]].rename(columns={"close_px": "source_close_d"})
+    tpx = z[z["bar_date"] == t][["symbol", "close_px"]].rename(columns={"close_px": "source_close_t"})
     out = symbols.merge(dpx, on="symbol", how="left").merge(tpx, on="symbol", how="left")
     out["forward_return"] = out["source_close_t"] / out["source_close_d"] - 1.0
     out["outcome_status"] = np.where(
