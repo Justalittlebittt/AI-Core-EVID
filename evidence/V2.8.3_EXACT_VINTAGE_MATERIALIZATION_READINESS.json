@@ -1,0 +1,14 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_EXACT_VINTAGE_MATERIALIZATION_READINESS_V1",
+  "version": "V2.8.3",
+  "status": "VALIDATED_NOT_ACTIVATED",
+  "contract": "evidence/V2.8.3_EXACT_VINTAGE_MATERIALIZATION_CONTRACT.json",
+  "runner": "scripts/v283_exact_vintage_materialization.py",
+  "validation_receipt": "evidence/V2.8.3_EXACT_VINTAGE_RUNNER_VALIDATION_RECEIPT.json",
+  "validated_selftests": "12/12_PASS",
+  "current_production_blocker": "PROSPECTIVE_PIT_DATE_AUTHORITY_ABSENT",
+  "large_stock_parquet_download_before_PIT_PASS": false,
+  "signal_materialization_active": false,
+  "outcome_materialization_active": false,
+  "next_stage": "V2.8.3_PROSPECTIVE_PIT_DATE_AUTHORITY"
+}
