@@ -1,0 +1,107 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_CAPCO_SECTOR_PARSER_RECEIPT_V1",
+  "started_at_utc": "2026-09-21T08:45:34.880957+00:00",
+  "finished_at_utc": "2026-09-21T08:45:59.615761+00:00",
+  "source_probe_receipt_seal": "0b252b00764c0b252d8f377d83acebde9e32541f9ac1e60c7b1f1aecc8575a10",
+  "raw_tar_sha256": "cf7c8ce0614fc3ea5a85effa4df8daeaf7cd143d8650ec3e9850cd5480539c5c",
+  "pit_membership_sha256": "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1",
+  "calendar_2025_file_sha256": "6b0ee1c69932e944312cdfadf9cb4bd8842407b6ff1e9379871f342a6b4de687",
+  "calendar_2026_file_sha256": "4f13a7b65649bf8b34168ada20ab7f39bc9850357b645d6bc85475465f6a1cbb",
+  "snapshot_count": 4,
+  "parsed_row_count": 21594,
+  "parse_failure_count": 0,
+  "structural_parser_pass": true,
+  "diagnostics": [
+    {
+      "snapshot_label": "2024H1",
+      "logical_rows": 5334,
+      "parsed_rows": 5334,
+      "parse_failures": 0,
+      "duplicate_security_codes": 0,
+      "unique_parsed_codes": 5334,
+      "probe_unique_six_digit_codes": 5334,
+      "context_missing": 0,
+      "exact_code_cardinality_match_probe": true
+    },
+    {
+      "snapshot_label": "2024H2",
+      "logical_rows": 5384,
+      "parsed_rows": 5384,
+      "parse_failures": 0,
+      "duplicate_security_codes": 0,
+      "unique_parsed_codes": 5384,
+      "probe_unique_six_digit_codes": 5384,
+      "context_missing": 0,
+      "exact_code_cardinality_match_probe": true
+    },
+    {
+      "snapshot_label": "2025H1",
+      "logical_rows": 5413,
+      "parsed_rows": 5413,
+      "parse_failures": 0,
+      "duplicate_security_codes": 0,
+      "unique_parsed_codes": 5413,
+      "probe_unique_six_digit_codes": 5413,
+      "context_missing": 0,
+      "exact_code_cardinality_match_probe": true
+    },
+    {
+      "snapshot_label": "2025H2",
+      "logical_rows": 5463,
+      "parsed_rows": 5463,
+      "parse_failures": 0,
+      "duplicate_security_codes": 0,
+      "unique_parsed_codes": 5463,
+      "probe_unique_six_digit_codes": 5463,
+      "context_missing": 0,
+      "exact_code_cardinality_match_probe": true
+    }
+  ],
+  "pit_coverage": [
+    {
+      "snapshot_label": "2024H1",
+      "research_effective_date": "2025-01-02",
+      "active_official_sse_szse_codes": 5121,
+      "mapped_active_codes": 5073,
+      "missing_active_codes": 48,
+      "active_code_coverage": 0.9906268306971294,
+      "missing_examples": "001277|001279|001391|301522|301551|301552|301556|301565|301571|301580|301585|301586|301592|301598|301600|301603|301606|301607|301608|301611|301613|301617|301618|301622|301626|301628|301631|301633|302132|603091"
+    },
+    {
+      "snapshot_label": "2024H2",
+      "research_effective_date": "2025-04-21",
+      "active_official_sse_szse_codes": 5147,
+      "mapped_active_codes": 5114,
+      "missing_active_codes": 33,
+      "active_code_coverage": 0.9935884981542646,
+      "missing_examples": "001335|001356|001382|001391|001395|301173|301275|301458|301479|301501|301535|301557|301581|301601|301602|301616|301629|301658|301662|301665|603072|603120|603124|603194|603210|603257|603271|603409|688411|688545"
+    },
+    {
+      "snapshot_label": "2025H1",
+      "research_effective_date": "2025-10-09",
+      "active_official_sse_szse_codes": 5159,
+      "mapped_active_codes": 5137,
+      "missing_active_codes": 22,
+      "active_code_coverage": 0.9957356076759062,
+      "missing_examples": "001221|001285|001388|301491|301563|301575|301584|301609|301630|301632|301656|301668|301678|600930|603262|603370|603382|603400|603406|603418|688729|688775"
+    },
+    {
+      "snapshot_label": "2025H2",
+      "research_effective_date": "2026-04-07",
+      "active_official_sse_szse_codes": 5194,
+      "mapped_active_codes": 5171,
+      "missing_active_codes": 23,
+      "active_code_coverage": 0.9955718136311128,
+      "missing_examples": "001220|001257|001369|001396|301449|301667|301680|301682|301683|301687|601112|603248|603284|603352|603402|688712|688781|688785|688805|688809|688813|688816|688818"
+    }
+  ],
+  "rows_sha256": "f1821125ee769b44ed33c12b4fc367d555315f76ce44dbae75365a80a454e135",
+  "effective_intervals_sha256": "0cefe704ac8f50dca15308ae5515c3dad78002f122f4ee4fd61c6caa8ca3960c",
+  "parse_failures_sha256": "7919c8f10e7c5a451e28ca21834b2f6cbd57aeef039041462844ddcab20ad4e6",
+  "pit_coverage_sha256": "fb6a523a651217c8a85c6a011a767041d003980fa2f723942a16289274018283",
+  "sector_context_rule": "Use manufacturing subcategory code when top_code=C; otherwise use CAPCO top-level category code.",
+  "temporal_rule": "A snapshot is usable only from the first joint A-share trading date strictly after publication; pre-sample publication is usable from sample start.",
+  "missing_sector_policy_for_later_analysis": "Do not backfill from a future CAPCO snapshot. Preserve unmapped active securities as UNKNOWN context and report coverage.",
+  "next_step": "BUILD_V2_8_2_MARKET_AND_SECTOR_CONDITIONAL_DIAGNOSTIC",
+  "receipt_sha256": "55a4ceaa6ccab4b85d2819e8918780fb333c7173650ca03448485705c62767c2"
+}
