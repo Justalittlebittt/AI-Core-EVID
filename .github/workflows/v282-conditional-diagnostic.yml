@@ -1,0 +1,52 @@
+name: V2.8.2 Conditional Architecture Diagnostic
+
+on:
+  push:
+    paths:
+      - "scripts/v282_conditional_diagnostic.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned V2.8.1 research runtime
+        run: |
+          pip install "huggingface_hub==1.32.0" "duckdb==1.5.5" "numpy==1.26.4" "pandas==2.2.3" "pyarrow==17.0.0"
+      - name: Run frozen V2.8.2 conditional diagnostic
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/v282_conditional_diagnostic.py | tee v282_conditional.log
+      - name: Freeze compact V2.8.2 diagnostic evidence
+        if: success()
+        run: |
+          cp v282_conditional/V2.8.2_CONDITIONAL_DAILY_METRICS.csv evidence/
+          cp v282_conditional/V2.8.2_CONDITIONAL_MARKET_SUMMARY.csv evidence/
+          cp v282_conditional/V2.8.2_CONDITIONAL_MARKET_SECTOR_SUMMARY.csv evidence/
+          cp v282_conditional/V2.8.2_CONDITIONAL_QUARTER_SUMMARY.csv evidence/
+          cp v282_conditional/V2.8.2_CONDITIONAL_DIAGNOSTIC_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.2_CONDITIONAL_*
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.2 conditional architecture diagnostic"
+            git push
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.8.2_CONDITIONAL_DIAGNOSTIC
+          path: |
+            v282_conditional/
+            v282_conditional.log
+          if-no-files-found: warn
+          retention-days: 30
