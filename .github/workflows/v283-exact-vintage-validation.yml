@@ -1,9 +1,5 @@
 name: V2.8.3 Exact Vintage Materialization Validation
 on:
-  push:
-    paths:
-      - "scripts/v283_exact_vintage_materialization.py"
-      - ".github/workflows/v283-exact-vintage-validation.yml"
   workflow_dispatch:
 
 permissions:
