@@ -1,0 +1,32 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_PROSPECTIVE_BUILD",
+  "feature_contract": "evidence/V2.8.3_SIGNAL_FEATURE_SNAPSHOT_CONTRACT.json",
+  "builder_validation": "evidence/V2.8.3_SIGNAL_FEATURE_BUILDER_VALIDATION_RECEIPT.json",
+  "materialization_gate_validation": "evidence/V2.8.3_MATERIALIZATION_GATE_VALIDATION_RECEIPT.json",
+  "PIT_authority_activation": "evidence/V2.8.3_PIT_DATE_AUTHORITY_ACTIVATION.json",
+  "source_ledger_activation": "evidence/V2.8.3_SOURCE_LEDGER_ACTIVATION_RECEIPT.json",
+  "first_signal_date": "2026-09-22",
+  "schedule": {
+    "cron_utc": "0 2 * * 2-6",
+    "local_asia_shanghai": "10:00 Tuesday-Saturday",
+    "ordering_intent": "Runs one hour after the 09:00 source-pin capture. PIT authority for D was captured after D close.",
+    "no_ready_input": "NO_ACTION_NO_COMMIT"
+  },
+  "download_policy": {
+    "routine_metadata_capture_full_download": false,
+    "exact_parquet_download": "ONLY_WHEN_A_READY_UNBUILT_SIGNAL_DATE_EXISTS",
+    "maximum_intent": "one exact stock/benchmark materialization per admitted D",
+    "later_T_outcome_must_not_recompute_D_features": true
+  },
+  "current_authorization": {
+    "D_vintage_feature_snapshot": true,
+    "signal_source_ledger_admission": true,
+    "outcome_resolution": false,
+    "H1_H2_interim_statistics": false,
+    "confirmatory_PASS_FAIL": false,
+    "setup_or_episode_emission": false,
+    "live": false
+  }
+}
