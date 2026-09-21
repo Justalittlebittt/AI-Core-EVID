@@ -1,0 +1,23 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_BLIND_INFORMATION_GATE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35588952793,
+  "job_id": 106298724422,
+  "head_sha": "fcf390d6b834fae17e733f7984857a1e502c0696",
+  "selftest": {
+    "passed": 9,
+    "total": 9,
+    "all_pass": true
+  },
+  "validated_mechanics": [
+    "60 CALM date minimum",
+    "30 STRESSED date minimum",
+    "3 valid CALM quarter minimum",
+    "15 valid CALM dates per counted quarter",
+    "50 eligible stock-row minimum per factor/date",
+    "no association or performance-statistic call path in readiness auditor"
+  ],
+  "performance_statistics_computed": false,
+  "gate": "BLIND_INFORMATION_GATE_VALIDATED"
+}
