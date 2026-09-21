@@ -1,0 +1,34 @@
+name: V2.8.3 PIT Official Source Probe
+on:
+  push:
+    paths:
+      - "scripts/v283_pit_source_probe.py"
+      - ".github/workflows/v283-pit-source-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pandas>=2,<4" "requests>=2.32,<3" "openpyxl>=3.1,<4"
+      - name: Probe official SSE/SZSE current-list sources
+        run: python scripts/v283_pit_source_probe.py --asof-date 2026-09-21
+      - name: Freeze source probe receipt
+        run: |
+          cp v283_pit_probe/V2.8.3_PIT_SOURCE_PROBE_RECEIPT.json evidence/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.3_PIT_SOURCE_PROBE_RECEIPT.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.3 PIT official source probe"
+            git pull --rebase origin main
+            git push
+          fi
