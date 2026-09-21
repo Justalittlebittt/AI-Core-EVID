@@ -1,0 +1,114 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_EXECUTION_CONTRACT_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_ANY_PROSPECTIVE_RESULT",
+  "hypothesis_contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+  "purpose": "Freeze implementation mechanics for the prospective CALM risk-compression confirmation so later execution cannot tune mechanics after seeing unseen outcomes.",
+  "hypothesis_order": [
+    {
+      "id": "H1_RV_COMPRESSION_CALM",
+      "factor": "rv10_over_rv60",
+      "direction_sign": -1,
+      "ic_seed": 2831001,
+      "contrast_seed": 2831101
+    },
+    {
+      "id": "H2_TR_COMPRESSION_CALM",
+      "factor": "tr10_over_tr60",
+      "direction_sign": -1,
+      "ic_seed": 2831002,
+      "contrast_seed": 2831102
+    }
+  ],
+  "prospective_boundary": {
+    "minimum_signal_date_exclusive": "2026-09-09",
+    "rule": "Reject all rows with signal_date <= 2026-09-09 from confirmatory statistics before any outcome aggregation.",
+    "boundary_is_immutable_in_v2_8_3": true
+  },
+  "date_state_construction": {
+    "joint_calendar": "Use the prospectively retained official joint A-share trading calendar authority; no future date may define an earlier state.",
+    "benchmark": "CSI300 000300.SS",
+    "market_ratio": "rv10/rv60 from benchmark daily log returns ending at D, ddof=0",
+    "CALM": "ratio <= 1",
+    "STRESSED": "ratio > 1",
+    "unknown_warmup": "Dates lacking the full 60-return benchmark window are UNKNOWN and excluded from H1/H2 confirmation.",
+    "no_trend_substate_for_pass": true
+  },
+  "stock_factor_construction": {
+    "rv10_over_rv60": "stock rv10/rv60 from daily log source-close returns through D only, ddof=0",
+    "tr10_over_tr60": "mean true-range-percent over latest 10 valid stock bars divided by mean true-range-percent over latest 60 valid stock bars through D only",
+    "true_range_percent": "max(high-low, abs(high-prev_close), abs(low-prev_close)) / prev_close",
+    "finite_positive_requirements": "All denominator inputs required by the frozen factor definition must be finite and strictly positive; otherwise factor is missing and never imputed."
+  },
+  "outcome_construction": {
+    "primary": "D+10 source-close economic return",
+    "secondary": "D+5 source-close economic return",
+    "endpoint_rule": "For every evaluated D, D and T endpoint prices must come from the same retained T-vintage snapshot.",
+    "no_partial_forward_window": true,
+    "no_outcome_imputation": true
+  },
+  "daily_cross_section": {
+    "eligible_stock_row": "PIT-authorized official-universe row, vendor-stable under the applicable source contract, finite factor, finite D/T economic outcome.",
+    "minimum_rows": 50,
+    "rank_method": "Average ranks for ties.",
+    "rank_ic": "Pearson correlation of within-date average ranks of factor and forward return.",
+    "direction_adjusted_ic": "-1 * raw rank IC for both H1 and H2."
+  },
+  "information_gate": {
+    "min_valid_calm_dates": 60,
+    "min_valid_stressed_dates_for_contrast": 30,
+    "min_valid_calm_quarters": 3,
+    "valid_calm_quarter_min_dates": 15,
+    "gate_evaluated_before_significance": true,
+    "if_not_met": "V2_8_3_INCOMPLETE_NO_DECISION",
+    "incomplete_is_not_failure": true
+  },
+  "bootstrap": {
+    "type": "CIRCULAR_MOVING_BLOCK_BOOTSTRAP_BY_SIGNAL_DATE",
+    "block_length_dates": 20,
+    "replications": 10000,
+    "confidence_interval": [0.025, 0.975],
+    "ic_seed_source": "hypothesis_order.ic_seed",
+    "contrast_seed_source": "hypothesis_order.contrast_seed",
+    "calm_ic_null": "Center the CALM direction-adjusted daily IC series by subtracting its observed mean; bootstrap centered series; one-sided p=(1+count(null_bootstrap_mean>=observed_mean))/(B+1).",
+    "contrast_series": "For inference on CALM minus STRESSED strength, construct state-specific date series and bootstrap each state's date series independently with the frozen hypothesis contrast seed split deterministically into CALM seed=contrast_seed and STRESSED seed=contrast_seed+10000; contrast replicate = calm_boot_mean - stressed_boot_mean.",
+    "contrast_ci": "2.5th and 97.5th percentiles of bootstrap contrast replicates."
+  },
+  "multiplicity": {
+    "family": ["H1_RV_COMPRESSION_CALM", "H2_TR_COMPRESSION_CALM"],
+    "method": "HOLM_BONFERRONI",
+    "familywise_alpha": 0.05,
+    "input_p_values": "one-sided centered CALM D+10 direction-adjusted IC p-values",
+    "no_hypothesis_removal_after_results": true
+  },
+  "quarter_stability": {
+    "quarter": "calendar year-quarter of signal_date",
+    "valid_quarter_min_calm_dates": 15,
+    "required_positive_quarter_share": 0.6666666667,
+    "leave_one_valid_quarter_out": "Direction-adjusted CALM D+10 mean IC must remain >0 for every valid-quarter omission."
+  },
+  "decision_order": [
+    "1_SOURCE_AND_PIT_INTEGRITY",
+    "2_PROSPECTIVE_BOUNDARY",
+    "3_INFORMATION_GATE",
+    "4_DAILY_METRICS",
+    "5_BOOTSTRAP_AND_MULTIPLICITY",
+    "6_CONDITIONER_CONTRAST",
+    "7_D5_AND_QUARTER_STABILITY",
+    "8_FAMILY_DECISION"
+  ],
+  "result_states": {
+    "V2_8_3_INCOMPLETE_NO_DECISION": "Minimum information gate not met; retain contract unchanged and do not emit PASS/FAIL.",
+    "V2_8_3_ARCHITECTURE_CONFIRMED": "Both H1 and H2 satisfy every frozen hypothesis PASS condition.",
+    "V2_8_3_PARTIAL_REPLICATION": "Exactly one hypothesis satisfies every frozen PASS condition.",
+    "V2_8_3_ARCHITECTURE_REJECTED": "Minimum information gate met and neither hypothesis satisfies every frozen PASS condition.",
+    "V2_8_3_BLOCKED": "Source/PIT/endpoint/integrity implementation blocker prevents valid evaluation."
+  },
+  "forbidden": [
+    "No use of signal dates <=2026-09-09 in confirmatory statistics.",
+    "No changing CALM threshold from one.",
+    "No post-result trend-state split, sector filter, factor transform, horizon change, seed change, block-length change or minimum-count change inside V2.8.3.",
+    "No interim PASS based on fewer observations than the information gate.",
+    "No Setup, Episode or live-trading authorization from V2.8.3 alone."
+  ]
+}
