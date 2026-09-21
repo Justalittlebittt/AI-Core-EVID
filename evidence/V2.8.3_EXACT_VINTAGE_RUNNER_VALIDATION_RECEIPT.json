@@ -1,0 +1,49 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_EXACT_VINTAGE_RUNNER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35583997536,
+  "job_id": 106282989880,
+  "head_sha": "7c8b4177960912bc0eb777f83ef15161d19824cf",
+  "selftest": {
+    "passed": 12,
+    "total": 12,
+    "all_pass": true,
+    "receipt_sha256": "b039dd947a46b4cf0313562bee5d4fbe9765ee712c31107782794f3f11df5c33"
+  },
+  "covered_invariants": [
+    "stable-vendor-only intersection",
+    "exact stock and benchmark session max-bar date",
+    "finite D-vintage rv10_over_rv60 and tr10_over_tr60",
+    "CSI300 CALM state construction",
+    "strict prospective boundary",
+    "official-calendar D+5/D+10 target construction",
+    "same-T-vintage D/T endpoint return",
+    "cross-vintage endpoint misuse detection",
+    "duplicate endpoint-key fail-closed",
+    "cheap pre-activation boundary block",
+    "cheap missing-PIT-authority block before large download",
+    "deterministic source-pin time window"
+  ],
+  "prior_failed_runs": [
+    {
+      "run_id": 35583607910,
+      "failure": "DuckDB reserved alias implementation error"
+    },
+    {
+      "run_id": 35583691019,
+      "failure": "synthetic fixture directory implementation error"
+    },
+    {
+      "run_id": 35583826133,
+      "failure": "selftest receipt NumPy scalar serialization implementation error"
+    },
+    {
+      "run_id": 35583917672,
+      "failure": "duplicate-endpoint attack fixture targeted a non-endpoint row"
+    }
+  ],
+  "governance_changed_during_repairs": false,
+  "threshold_or_PASS_condition_changed": false,
+  "gate": "EXACT_VINTAGE_RUNNER_VALIDATED"
+}
