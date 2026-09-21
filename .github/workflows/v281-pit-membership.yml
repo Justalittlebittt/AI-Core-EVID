@@ -1,0 +1,59 @@
+name: V2.8.1 PIT Membership Reconstruction
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v281_pit_membership_intervals.py"
+      - ".github/workflows/v281-pit-membership.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ARTIFACT_ID: "10535944660"
+      EXPECTED_DIGEST: "sha256:5ecbfe0b868e4709a97d71a703d07465156dbd48304e6d444ec93952e0b5e3dd"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify and download frozen V2.7.25 official artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${ARTIFACT_ID}" > artifact_meta.json
+          test "$(jq -r .digest artifact_meta.json)" = "$EXPECTED_DIGEST"
+          mkdir -p v2725_artifact
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${ARTIFACT_ID}/zip" > v2725.zip
+          unzip -q v2725.zip -d v2725_artifact
+      - name: Build PIT membership intervals
+        run: |
+          python scripts/v281_pit_membership_intervals.py             --artifact-root v2725_artifact             --artifact-meta artifact_meta.json
+      - name: Persist durable PIT evidence
+        run: |
+          mkdir -p evidence/raw/V2.8.1_PIT_DELIST
+          cp v281_pit_membership/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv evidence/
+          cp v281_pit_membership/V2.8.1_OFFICIAL_DELIST_EVENT_LEDGER.csv evidence/
+          cp v281_pit_membership/V2.8.1_SZSE_B_SHARE_EXCLUSION_AUDIT.csv evidence/
+          cp v281_pit_membership/V2.8.1_OFFICIAL_DELIST_RAW_MANIFEST.csv evidence/
+          cp v281_pit_membership/V2.8.1_PIT_MEMBERSHIP_RECONSTRUCTION_RECEIPT.json evidence/
+          cp v281_pit_membership/raw_official/* evidence/raw/V2.8.1_PIT_DELIST/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.1_* evidence/raw/V2.8.1_PIT_DELIST
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.1 historical PIT membership intervals"
+            git push
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI_CORE_EVID_V2.8.1_PIT_MEMBERSHIP
+          path: |
+            v281_pit_membership/
+            artifact_meta.json
+          retention-days: 30
