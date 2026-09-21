@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_7_33B_EXACT_BYTE_RUNTIME_RESTORE_CONTRACT_V1",
+  "version": "V2.7.33B",
+  "purpose": "Prepare a fail-closed exact-byte restore path for the original V2.7.3 prospective runtime without reconstructing strategy logic.",
+  "accepted_carriers": [
+    {
+      "filename": "AlphaDojo_V2.7.3_Prospective_Runtime_Starter.zip",
+      "sha256": "4e4e13276c2e68b7b834fccf0a710a31d020ddad3985711a9d1aabfb826ce22f",
+      "expected_member_count": 5,
+      "exact_package_hash_is_authoritative": true
+    },
+    {
+      "filename": "AlphaDojo_Model_Rebuild_V2.7.3.zip",
+      "sha256": "60c3aee8577693ee85ae8de46810ce7b2ed238a666ce0ae9f5aea2de85ad47ee",
+      "expected_member_count": 51,
+      "exact_package_hash_is_authoritative": true
+    }
+  ],
+  "critical_member_hashes": {
+    "scripts/daily_operator_cli_v273.py": "259bc9c481b7165388767ad73aa5de2e35ba987b62b568ce9013e3157a0b5fd8",
+    "scripts/daily_source_gate_v273.py": "e2a2a52da20fccd32b2f85be794a93d98fb74a88276c57cd9e7b4da7b1e8b7f9",
+    "scripts/append_only_ledgers_v273.py": "8a6e05e0d52d6fa5e3811b10fcc3985aa69a9fb3e16c03513825731d97cfc6b8",
+    "scripts/init_runtime_v273.py": "8f2bfc4c289af2306d10f38f6609a8d09382b5e9091ae060364adc47a075501d",
+    "scripts/setup_engine_v273.py": "97b8befb2d4b04992c87edec708471f433ed9735a5f0dbf3aa73c64e0b345830",
+    "scripts/prospective_daily_runner_v1.py": "6a76dfa51b1446918581f0b4fe7022a73a4f9f0bb491b23467a7edfc62dd5ce2"
+  },
+  "gate_a_exact_bytes": {
+    "pass_requires": [
+      "carrier filename is one of the accepted original filenames",
+      "whole ZIP SHA256 exactly matches the frozen receipt",
+      "ZIP member count exactly matches the frozen receipt",
+      "ZIP CRC test passes",
+      "no absolute paths, parent traversal, duplicate member paths, or symlink members",
+      "for any listed critical member present in the carrier, its SHA256 exactly matches the frozen manifest"
+    ],
+    "failure_state": "BLOCKED_NOT_ORIGINAL_BYTES"
+  },
+  "gate_b_compatibility_static_audit": {
+    "allowed": [
+      "read source text",
+      "inspect imports",
+      "enumerate referenced paths/spec files",
+      "compare assumptions against V2.7.31/V2.7.32 interfaces",
+      "produce compatibility ledger"
+    ],
+    "forbidden": [
+      "execute recovered strategy code before promotion",
+      "rewrite recovered files",
+      "silently patch imports/paths",
+      "change signal, TQ, Setup, Episode, Outcome, or economic-price semantics"
+    ],
+    "incompatible_result": "BLOCKED_NEEDS_EXPLICIT_ADAPTER_NOT_SOURCE_EDIT"
+  },
+  "promotion": {
+    "source": "recovery/staging/V2.7.3/",
+    "destination_rule": "preserve original relative paths only after exact-byte + compatibility gates pass",
+    "recovered_file_mutation_forbidden": true,
+    "activation_after_promotion": "requires a separate new activation manifest; restore alone does not activate First60"
+  }
+}
