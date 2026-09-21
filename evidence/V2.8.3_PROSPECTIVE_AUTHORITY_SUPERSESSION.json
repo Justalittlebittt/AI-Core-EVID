@@ -1,0 +1,41 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PROSPECTIVE_AUTHORITY_SUPERSESSION_V1",
+  "version": "V2.8.3",
+  "status": "FROZEN",
+  "purpose": "Resolve prospective execution authority after the V2.8.0 new strategy baseline and prevent stale V2.7.32 First60 activation artifacts from executing a superseded strategy identity.",
+  "historical_authorities_retained": {
+    "V2.7.31_FORWARD_CERTIFIED_UNIVERSE": "RETAIN_AS_FOUNDATION",
+    "V2.7.32_FIRST60_LEDGER_SEMANTICS": "RETAIN_AS_STRATEGY_AGNOSTIC_GOVERNANCE_PATTERN",
+    "V2.7.32_ACTIVATION_ARTIFACTS": "HISTORICAL_RECORD_ONLY"
+  },
+  "superseded_execution_authority": {
+    "strategy_identity": "PRE_V2_8_STRATEGY_RUNTIME",
+    "v2_7_32_first60_activation_may_append_for_v2_8_x": false,
+    "v2_7_32_candidate_ledger_may_receive_v2_8_x_entries": false,
+    "historical_files_must_not_be_rewritten": true
+  },
+  "active_strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_0_NEW_BASELINE",
+  "active_research_chain": [
+    "V2.8.1_STAGE1_SCREEN_COMPLETE_ZERO_PROMOTED",
+    "V2.8.2_CONDITIONAL_DIAGNOSTIC_COMPLETE",
+    "V2.8.2_ARCHITECTURE_DECISION_FROZEN",
+    "V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT_PREREGISTERED",
+    "V2.8.3_EXECUTION_CONTRACT_FROZEN"
+  ],
+  "active_prospective_authority": {
+    "contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+    "execution_contract": "evidence/V2.8.3_EXECUTION_CONTRACT.json",
+    "minimum_signal_date_exclusive": "2026-09-09",
+    "activation_state": "NOT_YET_SOURCE_LEDGER_ACTIVATED",
+    "setup_or_episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "problem_elimination": {
+    "delete": "Do not recover or reconstruct the missing legacy V2.7.32 strategy runner.",
+    "avoid": "Do not append V2.8.x observations into the V2.7.32 First60 candidate ledger.",
+    "absorb": "Reuse V2.7.31 official-universe authority and V2.7.32 append-only/no-backfill semantics where applicable.",
+    "substitute": "Use a V2.8.3 hypothesis-specific prospective source ledger before any later confirmatory outcome evaluation.",
+    "precompute_reuse": "Reuse frozen PIT, calendar/economic-price and source-integrity rules instead of rebuilding them.",
+    "optimize": "Only optimize data capture after source-identity governance is frozen."
+  }
+}
