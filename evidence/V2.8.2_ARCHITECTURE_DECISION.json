@@ -1,0 +1,83 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_2_ARCHITECTURE_DECISION_V1",
+  "version": "V2.8.2",
+  "status": "FROZEN_AFTER_EXPLORATORY_DIAGNOSTIC",
+  "source_receipt": "evidence/V2.8.2_CONDITIONAL_DIAGNOSTIC_RECEIPT.json",
+  "purpose": "Close the V2.8.2 exploratory architecture review without changing any V2.8.1 result, and decide what deserves a genuinely unseen confirmatory test.",
+  "predefined_question_answers": {
+    "ret20_ret60_market_state_concentration": {
+      "decision": "BROAD_REVERSAL_WITH_MATERIAL_TIME_INSTABILITY",
+      "evidence": [
+        "ret_20 and ret_60 have negative mean raw D+10 IC in every non-warmup aggregate market state.",
+        "The reversal is strongest in DOWN states, but it is not confined to them.",
+        "Both factors flip to positive ALL_MARKET_STATES mean IC in 2026Q2 and revert strongly negative in 2026Q3."
+      ],
+      "implication": "Do not freeze a simple reversed ret_20/ret_60 stock-alpha hypothesis from this sample. Market conditioning does not remove the key temporal sign-instability problem."
+    },
+    "rv_tr_sector_neutrality": {
+      "decision": "MECHANISM_SURVIVES_SECTOR_NEUTRALIZATION",
+      "evidence": [
+        "rv10_over_rv60 ALL_MARKET_STATES mean raw D+10 IC=-0.04959609395831322 and mean sector-neutral D+10 IC=-0.046781536121985316.",
+        "tr10_over_tr60 ALL_MARKET_STATES mean raw D+10 IC=-0.051742936251252654 and mean sector-neutral D+10 IC=-0.04805682085306351."
+      ],
+      "implication": "The observed risk-compression relation is not materially explained by CAPCO sector composition."
+    },
+    "market_risk_conditioning": {
+      "decision": "MATERIAL",
+      "evidence": [
+        "rv10_over_rv60 mean raw D+10 IC is -0.09857005577708157 in DOWN_CALM and -0.05727928984145585 in UP_CALM, versus -0.020396601053473757 in DOWN_STRESSED and -0.018142023826046356 in UP_STRESSED.",
+        "tr10_over_tr60 mean raw D+10 IC is -0.11255155210152888 in DOWN_CALM and -0.04999031546379582 in UP_CALM, versus -0.039371773498869625 in DOWN_STRESSED and -0.01031295582561731 in UP_STRESSED."
+      ],
+      "implication": "Broad-market CALM versus STRESSED state is worth a separately frozen prospective confirmation as a conditioner."
+    },
+    "sector_relative_strength_conditioning": {
+      "decision": "NO_CLEAR_INCREMENTAL_MECHANISM_IN_THIS_DIAGNOSTIC",
+      "evidence": [
+        "Within the same market state, STRONG versus WEAK sector-relative cells generally preserve the same factor sign and do not show a stable monotonic separation for the two risk-ratio candidates.",
+        "Sector-neutral factor behavior remains close to the raw behavior."
+      ],
+      "implication": "Retain sector context in the top-down architecture, but do not promote CAPCO relative-strength state into a mandatory stock-factor gate from this diagnostic."
+    }
+  },
+  "problem_elimination_pass": {
+    "delete": [
+      "Delete unconditional Stage-2 combination of the nine V2.8.1 factors because zero factors were promoted.",
+      "Delete same-sample sign-flip rescue of ret_20/ret_60.",
+      "Delete repeated Vendor Vintage Drift reruns while its pinned source contract is unchanged."
+    ],
+    "avoid": [
+      "Avoid fitting new market-state thresholds to the exploratory outcomes.",
+      "Avoid forcing sector-relative strength into the factor gate when the diagnostic shows no clear incremental mechanism."
+    ],
+    "absorb": [
+      "Absorb rv10_over_rv60 and tr10_over_tr60 into a market-regime-conditioned prospective hypothesis family rather than treating them as standalone promoted alphas.",
+      "Keep CAPCO PIT sector context as an independent top-down descriptive/conditioning layer for later sector-specific hypotheses."
+    ],
+    "substitute": [
+      "Substitute the immediate objective 'find a universally valid technical factor' with 'test whether risk-compression information is valid specifically under a predefined broad-market CALM state on unseen outcomes'."
+    ],
+    "precompute_reuse": [
+      "Reuse V2.8.1 pinned source, PIT universe, calendar, economic-price semantics, vintage audit and the V2.8.2 CAPCO materialization."
+    ],
+    "optimize": "No runtime or statistical-threshold optimization is authorized before the prospective contract is frozen."
+  },
+  "architecture": {
+    "order": ["MARKET_CONTEXT", "SECTOR_CONTEXT", "STOCK_LAYER"],
+    "market_context_role": "ACTIVE_CONDITIONER_CANDIDATE",
+    "sector_context_role": "RETAINED_INDEPENDENT_CONTEXT_NOT_MANDATORY_FACTOR_GATE",
+    "stock_layer_role": "NO_PRODUCTION_SCORE; ONLY_SEPARATELY_PREREGISTERED_PROSPECTIVE_HYPOTHESES"
+  },
+  "factor_status": {
+    "ret_20": "V2.8.1_NOT_PROMOTED; V2.8.2_DISCOVERY_ONLY; NO_V2.8.3_CONFIRMATORY_TEST_SELECTED",
+    "ret_60": "V2.8.1_NOT_PROMOTED; V2.8.2_DISCOVERY_ONLY; NO_V2.8.3_CONFIRMATORY_TEST_SELECTED",
+    "rv10_over_rv60": "V2.8.1_NOT_PROMOTED; SELECTED_FOR_V2.8.3_PROSPECTIVE_CONDITIONED_CONFIRMATION",
+    "tr10_over_tr60": "V2.8.1_NOT_PROMOTED; SELECTED_FOR_V2.8.3_PROSPECTIVE_CONDITIONED_CONFIRMATION"
+  },
+  "next_stage": "V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONFIRMATION",
+  "governance": {
+    "changes_v2_8_1_status": false,
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
