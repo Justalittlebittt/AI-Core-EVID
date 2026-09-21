@@ -1,0 +1,44 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PROSPECTIVE_SOURCE_LEDGER_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_SOURCE_IDENTITY_CAPTURE_ONLY",
+  "runner_validation_receipt": "evidence/V2.8.3_SOURCE_LEDGER_RUNNER_VALIDATION_RECEIPT.json",
+  "source_ledger_contract": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_CONTRACT.json",
+  "prospective_hypothesis_contract": "evidence/V2.8.3_PROSPECTIVE_CALM_RISK_COMPRESSION_CONTRACT.json",
+  "execution_contract": "evidence/V2.8.3_EXECUTION_CONTRACT.json",
+  "activation_time_authority": "GitHub committed_at timestamp of this activation-file creation commit",
+  "strict_confirmatory_signal_boundary": {
+    "development_outcome_boundary": "signal_date > 2026-09-09",
+    "contract_frozen_after_2026_09_21_close": true,
+    "first_signal_date_allowed_by_activation": "2026-09-22",
+    "rule": "A signal date before 2026-09-22 cannot enter V2.8.3 confirmatory statistics even if it is after the retrospective development boundary."
+  },
+  "capture_cadence": {
+    "cron_utc": "0 1 * * 2-6",
+    "local_equivalent_asia_taipei": "09:00 Tuesday-Saturday",
+    "intent": "One metadata-only observation on the morning after each Monday-Friday market day; holidays/no vendor change produce no new source-pin commit.",
+    "high_frequency_polling": false,
+    "full_parquet_download": false
+  },
+  "source_pin_eligibility": {
+    "a_capture_receipt_is_not_itself_a_valid_signal": true,
+    "later_exact_vintage_materialization_required": true,
+    "later_max_bar_date_must_match_candidate_signal_date": true,
+    "later_source_cutoff_and_pit_checks_required": true,
+    "no_backfill_before_authoritative_capture_commit": true
+  },
+  "current_authorization": {
+    "source_identity_capture": true,
+    "H1_H2_interim_statistics": false,
+    "confirmatory_PASS_FAIL": false,
+    "setup_emission": false,
+    "episode_emission": false,
+    "live": false
+  },
+  "information_gate_remains": {
+    "min_valid_calm_dates": 60,
+    "min_valid_stressed_dates_for_contrast": 30,
+    "min_valid_calm_quarters": 3,
+    "valid_calm_quarter_min_dates": 15
+  }
+}
