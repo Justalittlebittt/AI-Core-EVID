@@ -1,0 +1,104 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_0_FACTOR_RESEARCH_REGISTRY_V1",
+  "version": "V2.8.0",
+  "status": "RESEARCH_FEATURES_ONLY_NO_HARD_GATES",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_0_NEW_BASELINE",
+  "layer_separation": {
+    "U": "Official forward Certified A-share membership. Authority: V2.7.31.",
+    "E": "AI-Core evidence eligibility/materiality. Authority: Evidence Constitution V1.2; independent of price factors.",
+    "T": "Technical/market features. May rank or describe eligible securities but cannot create U/E eligibility.",
+    "X": "Execution/tradability/risk constraints. Separate from alpha evidence."
+  },
+  "factor_families": [
+    {
+      "id": "TQ_TREND_STRUCTURE",
+      "hypothesis": "Healthy medium-term trend structure contains information beyond short-horizon return strength.",
+      "candidate_features": [
+        "economic_price relative to rolling moving-average levels",
+        "ordering and slope of medium/long moving averages",
+        "distance from rolling high",
+        "rolling high/low structure"
+      ],
+      "initial_role": "FEATURE_ONLY",
+      "prohibited_shortcut": "Do not copy lost TQ-STRUCT thresholds."
+    },
+    {
+      "id": "RS_RELATIVE_STRENGTH",
+      "hypothesis": "Cross-sectional relative strength may contain continuation information in A shares.",
+      "candidate_features": [
+        "multi-horizon economic-price return",
+        "return minus broad-market benchmark return",
+        "cross-sectional percentile rank by signal date"
+      ],
+      "initial_role": "FEATURE_ONLY",
+      "prohibited_shortcut": "RS/Ret20 cannot automatically promote a Setup."
+    },
+    {
+      "id": "AC_ANTI_CHASE",
+      "hypothesis": "Trend continuation quality depends on avoiding extreme short-term extension/crowding.",
+      "candidate_features": [
+        "distance from short/medium moving average normalized by rolling volatility",
+        "distance from recent high",
+        "recent gap/large-bar extension",
+        "short-horizon acceleration relative to medium-horizon trend"
+      ],
+      "initial_role": "FEATURE_ONLY",
+      "prohibited_shortcut": "No fixed overextension percentage becomes a hard gate before validation."
+    },
+    {
+      "id": "VC_VOLATILITY_CONTRACTION",
+      "hypothesis": "Trend entries after volatility/range contraction may have better asymmetry than equally strong but expanded structures.",
+      "candidate_features": [
+        "short/medium realized-volatility ratio",
+        "true-range contraction",
+        "rolling high-low range contraction"
+      ],
+      "initial_role": "FEATURE_ONLY",
+      "prohibited_shortcut": "No VCP/ATR textbook threshold is imported as a rule."
+    },
+    {
+      "id": "LIQ_LIQUIDITY_EXECUTABILITY",
+      "hypothesis": "Liquidity affects implementation cost and reliability but is not itself evidence of AI-Core quality.",
+      "candidate_features": [
+        "rolling median amount",
+        "zero-volume/suspension incidence",
+        "limit-up/limit-down state when identifiable",
+        "minimum-lot/notional feasibility"
+      ],
+      "initial_role": "EXECUTION_FEATURE",
+      "prohibited_shortcut": "Liquidity cannot create alpha eligibility; it may only block or size execution after separate validation."
+    },
+    {
+      "id": "MR_MARKET_REGIME",
+      "hypothesis": "Market regime may alter expected payoff or appropriate exposure without necessarily acting as a binary signal veto.",
+      "candidate_features": [
+        "broad-index trend/return",
+        "broad-market breadth from PIT membership",
+        "cross-sectional dispersion",
+        "market turnover/amount regime"
+      ],
+      "initial_role": "FEATURE_OR_SIZING_EXPERIMENT",
+      "prohibited_shortcut": "Market State is not a hard veto until incremental value is demonstrated."
+    },
+    {
+      "id": "EV_EVIDENCE_FRESHNESS",
+      "hypothesis": "Within already-qualified AI-Core issuers, newer economically material evidence may alter opportunity ranking.",
+      "candidate_features": [
+        "days since qualifying disclosure",
+        "evidence type",
+        "revision/freshness flags"
+      ],
+      "initial_role": "RESEARCH_ONLY",
+      "prohibited_shortcut": "Evidence freshness cannot be computed from future filings or replace Constitution V1.2 eligibility."
+    }
+  ],
+  "research_horizon_policy": {
+    "primary_outcome": "D_PLUS_10_JOINT_A_SHARE_TRADING_SESSIONS",
+    "secondary_outcomes": [
+      "D_PLUS_5_JOINT_A_SHARE_TRADING_SESSIONS",
+      "MFE_MAE_DIAGNOSTICS"
+    ],
+    "exact_horizon_rule": "Use joint A-share calendar; do not shift target date because a stock has a missing/suspended bar."
+  },
+  "no_parameter_promotion_without_validation": true
+}
