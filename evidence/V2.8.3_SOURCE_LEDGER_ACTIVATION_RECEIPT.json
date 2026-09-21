@@ -1,0 +1,33 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SOURCE_LEDGER_ACTIVATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE",
+  "activation_file": "evidence/V2.8.3_PROSPECTIVE_SOURCE_LEDGER_ACTIVATION.json",
+  "controlled_capture_run_id": 35582743866,
+  "controlled_capture_job_id": 106279085013,
+  "controlled_capture_status": "SUCCESS",
+  "initial_source_pin": {
+    "file": "evidence/v283_source_pins/20260921T092059Z_44a9abb91b93155a.json",
+    "creation_commit_sha": "dabf7001010147e5e94a3fa21c579ae2f87bd843",
+    "authoritative_observed_at_utc": "2026-09-21T09:20:59Z",
+    "source_identity_sha256": "44a9abb91b93155a58e90111ee99a512969001547c016cedc40f8ab31bec96c6",
+    "receipt_sha256": "6e3a3bcf0ee3e4abe2d9a5e7de9583dbc9c9537b2b3312c1c4173c971b157de0",
+    "confirmatory_signal_effect": "BASELINE_ONLY_NOT_ELIGIBLE"
+  },
+  "captured_sources": {
+    "stock_kline_revision": "a2d80740bcf112be2719ef1925ba8176930a991b",
+    "stock_kline_lfs_sha256": "14a9fd56f3dd18364e712b156617ebffb5debae0d59cc0bf635ae340c809b3c5",
+    "benchmark_kline_revision": "a887afaf5e913ba48d2d8c59360979e392f9015d",
+    "benchmark_kline_lfs_sha256": "61d18872b5cadb3abe6f67e0d703fc3a7c1164d5354c1912ad7f8f41bc9513c9"
+  },
+  "schedule": {
+    "cron_utc": "0 1 * * 2-6",
+    "local_asia_taipei": "09:00 Tuesday-Saturday",
+    "duplicate_source_identity_commits": false,
+    "full_parquet_download": false
+  },
+  "first_confirmatory_signal_date_not_before": "2026-09-22",
+  "interim_H1_H2_evaluation_authorized": false,
+  "setup_or_episode_emission_authorized": false,
+  "live_authorized": false
+}
