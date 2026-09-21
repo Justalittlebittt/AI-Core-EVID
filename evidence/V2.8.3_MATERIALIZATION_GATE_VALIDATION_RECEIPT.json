@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_MATERIALIZATION_GATE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35587603283,
+  "job_id": 106294466673,
+  "head_sha": "d8c6f3bd095ca85e703cf09dc98f8b5f65422303",
+  "selftest": {
+    "passed": 9,
+    "total": 9,
+    "all_pass": true
+  },
+  "validated_mechanics": [
+    "strict first confirmatory signal date 2026-09-22",
+    "joint-trading-day admission",
+    "D+1 23:59:59 Asia/Shanghai source-pin observation cutoff",
+    "exact stock max_bar_date equality",
+    "exact CSI300 benchmark max_bar_date equality",
+    "61-close benchmark warmup requirement for 60 returns",
+    "D+5/D+10 frozen by official joint calendar",
+    "append-only no-replacement signal-date ledger semantics"
+  ],
+  "implementation_history": {
+    "prior_failed_run_id": 35587548531,
+    "failure_class": "SELFTEST_EXPECTED_CALENDAR_DATES_WRONG_ONLY",
+    "correct_frozen_calendar_targets_for_2026_09_22": {
+      "D_PLUS_5": "2026-09-30",
+      "D_PLUS_10": "2026-10-14"
+    },
+    "contract_changed": false,
+    "signal_boundary_changed": false,
+    "cutoff_changed": false,
+    "eligibility_logic_changed": false
+  },
+  "gate": "EXACT_VINTAGE_MATERIALIZATION_GATE_VALIDATED",
+  "real_parquet_materialization_performed_in_validation": false
+}
