@@ -1,0 +1,108 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_STAGE1_FACTOR_PROMOTION_RULE_V1",
+  "version": "V2.8.1",
+  "status": "PREREGISTERED_BEFORE_NEW_FACTOR_RESULTS",
+  "purpose": "Define exactly how threshold-free factor hypotheses may advance to combination research before the canonical V2.8.1 factor screen is run.",
+  "research_population": {
+    "layer": "U official Certified Mother Pool technical research",
+    "note": "Stage-1 tests generic technical information content on the official universe. Passing does not create AI-Core E-layer eligibility."
+  },
+  "promotion_eligible_hypotheses": [
+    {
+      "factor": "ret_20",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "ret_60",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "ma50_vs_ma150",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "ma150_vs_ma200",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "ma200_slope20",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "dist_high60",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "dist_high252",
+      "direction": "POSITIVE"
+    },
+    {
+      "factor": "rv10_over_rv60",
+      "direction": "NEGATIVE"
+    },
+    {
+      "factor": "tr10_over_tr60",
+      "direction": "NEGATIVE"
+    }
+  ],
+  "exploratory_not_promotion_eligible": [
+    "ret_5",
+    "ret_10",
+    "close_vs_ma20",
+    "close_vs_ma50",
+    "close_vs_ma150",
+    "close_vs_ma200",
+    "dist_high20",
+    "rv10",
+    "rv20",
+    "rv60",
+    "tr_pct",
+    "tr_pct_mean10",
+    "tr_pct_mean60",
+    "gap1",
+    "bar_range_pct",
+    "amount_med20",
+    "amount_vs_med20"
+  ],
+  "reason_exploratory_only": "These have either ambiguous/nonlinear expected shape, stronger anti-chase interaction risk, or execution rather than standalone-alpha interpretation. Observing them cannot promote them in V2.8.1.",
+  "outcomes": {
+    "primary": "D_PLUS_10_ECONOMIC_RETURN",
+    "secondary": "D_PLUS_5_ECONOMIC_RETURN",
+    "economic_price": "source_close",
+    "endpoint_vintage_rule": "D and T endpoints from the same T-vintage retained snapshot",
+    "benchmark_outputs": [
+      "BROAD_A_EQUAL_WEIGHT_EXCESS",
+      "CSI300_EXCESS_WHEN_ALIGNED"
+    ]
+  },
+  "daily_cross_section_method": {
+    "rank_ic": "Spearman correlation between factor and forward economic return within each signal date.",
+    "quantiles": 5,
+    "spread": "direction-adjusted Q5 minus Q1 mean forward economic return within signal date.",
+    "dependency_unit": "signal date, not stock-day row"
+  },
+  "minimum_data_quality": [
+    "evaluation begins only after each feature's required warmup is available",
+    "factor valid on at least 80% of eligible evaluation dates after warmup",
+    "median valid-security coverage at least 70% of that date's official research universe",
+    "a calendar quarter must contain at least 20 valid evaluation dates to count as a stability block"
+  ],
+  "statistical_promotion_requires_all": [
+    "direction-adjusted mean daily D+10 Rank-IC is positive",
+    "95% moving/date-block bootstrap confidence interval for mean daily D+10 Rank-IC excludes zero in the hypothesized direction",
+    "Holm-Bonferroni familywise correction at alpha=0.05 across all nine promotion-eligible hypotheses passes",
+    "direction-adjusted mean daily D+10 Q5-Q1 spread is positive",
+    "95% date-block bootstrap confidence interval for D+10 Q5-Q1 spread excludes zero in the hypothesized direction",
+    "D+10 mean Rank-IC has the hypothesized sign in at least two-thirds of valid calendar-quarter blocks",
+    "leave-one-valid-quarter-out mean D+10 Rank-IC retains the hypothesized sign for every omission",
+    "secondary D+5 mean Rank-IC has the same hypothesized sign",
+    "no implementation/data-quality blocker is active"
+  ],
+  "anti_optional_stopping": [
+    "all nine promotion-eligible factors are evaluated in one frozen run",
+    "failed factors remain in the result ledger",
+    "no factor may be removed from multiplicity correction after seeing its result",
+    "new transforms or directions require V2.8.1+1 preregistration and a new result ledger"
+  ],
+  "promotion_effect": "PASS advances the individual factor to Stage-2 combination research only. It does not define a Setup, emit an Episode, certify profitability, or authorize live trading."
+}
