@@ -1,0 +1,48 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_1_VENDOR_VINTAGE_DRIFT_AUDIT_CONTRACT_V1",
+  "version": "V2.8.1",
+  "purpose": "Empirically test whether AlphaDojo historical CN daily OHLC revisions between two immutable vintages are compatible with the scale-invariant V2.8.0 feature engine.",
+  "vintages": {
+    "old": {
+      "repo": "AlphaDojo/dojo_stock_kline",
+      "revision": "cc79371024009e10d55ee9196f443d4528411cd4",
+      "selection_reason": "Pre-existing 2026-09-09 frozen extractor manifest; selected before V2.8.1 factor results."
+    },
+    "current": {
+      "repo": "AlphaDojo/dojo_stock_kline",
+      "revision": "c009ad58278161e7b6eb347b68f34f51166114f3",
+      "data_parquet_lfs_sha256": "acb8ae5e31f58fe3972455b86614d668837f18afd59126c505faaae06920954b",
+      "selection_reason": "V2.8.1 immutable source pin."
+    },
+    "cn_symbol_map": {
+      "repo": "AlphaDojo/dojo_stock_info",
+      "revision": "6654503cdfcfa87e3524145f6922c87d30b22ab0",
+      "data_parquet_lfs_sha256": "c548dfb42763e548fb33e275e6c1148294d52376b205fb31ce53a714cfcaf49f",
+      "role": "Vendor-symbol mapping for data-quality audit only; not official membership authority."
+    }
+  },
+  "comparison_scope": {
+    "rows": "kline_t=1D, market=cn, quote_type=EQUITY, dates <= old-vintage max bar date",
+    "key": "symbol + kline_t + bar_time",
+    "minimum_old_rows_for_comparable_symbol": 60
+  },
+  "price_stability_per_symbol_requires": [
+    "no old key missing from current vintage",
+    "no newly inserted current key at or before old max date for that old-present symbol",
+    "all matched OHLC values finite and positive",
+    "one median multiplicative close scale explains OHLC with max relative residual <=0.001",
+    "99.99th percentile OHLC relative residual <=0.0001"
+  ],
+  "population_gate_requires": [
+    "price-stable comparable-symbol share >=0.98",
+    "matched-row share belonging to price-stable comparable symbols >=0.995"
+  ],
+  "handling": {
+    "unstable_old_present_symbols": "Exclude from V2.8.1 price-factor screen for all dates; exclusion is data-quality-based and outcome-blind.",
+    "current_only_symbols": "Exclude from V2.8.1 Stage-1 screen because pre-old-vintage history has not been vintage-audited.",
+    "amount_drift": "Report separately; it does not block the nine promotion-eligible price factors.",
+    "pass_effect": "Allows current pinned snapshot to supply historical scale-invariant price features only through the old-vintage max signal date.",
+    "fail_effect": "Block Stage-1 factor screen; require a different historical source architecture."
+  },
+  "no_claim": "PASS is not proof of strict historical source availability/PIT. It is a vendor-revision stability test for retrospective development only."
+}
