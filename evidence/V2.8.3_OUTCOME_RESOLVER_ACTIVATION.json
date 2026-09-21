@@ -1,0 +1,35 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_OUTCOME_RESOLVER_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_PROSPECTIVE_MATURITY_SCAN",
+  "contract": "evidence/V2.8.3_OUTCOME_MATURITY_SAME_T_VINTAGE_CONTRACT.json",
+  "validation": "evidence/V2.8.3_OUTCOME_RESOLVER_VALIDATION_RECEIPT.json",
+  "signal_feature_activation": "evidence/V2.8.3_SIGNAL_FEATURE_SNAPSHOT_ACTIVATION.json",
+  "schedule": {
+    "cron_utc": "0 3 * * 2-6",
+    "local_asia_shanghai": "11:00 Tuesday-Saturday",
+    "intent": "Scan only frozen signal receipts whose D+5 or D+10 target is already mature and unresolved.",
+    "no_mature_outcome": "NO_ACTION_NO_COMMIT"
+  },
+  "maturity_semantics": {
+    "before_target_date": "OUTCOME_PENDING",
+    "no_eligible_T_pin_yet": "OUTCOME_PENDING_NO_ELIGIBLE_T_PIN",
+    "missing_endpoint": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "target_shift": false,
+    "later_replacement_after_resolution": false
+  },
+  "economic_price_semantics": "D_AND_T_ENDPOINTS_FROM_SAME_T_VINTAGE",
+  "current_authorization": {
+    "outcome_resolution": true,
+    "D_feature_recompute": false,
+    "interim_H1_H2_statistics": false,
+    "confirmatory_PASS_FAIL": false,
+    "setup_or_episode_emission": false,
+    "live": false
+  },
+  "first_signal_date": "2026-09-22",
+  "first_frozen_targets_for_that_signal": {
+    "D5": "2026-09-30",
+    "D10": "2026-10-14"
+  }
+}
