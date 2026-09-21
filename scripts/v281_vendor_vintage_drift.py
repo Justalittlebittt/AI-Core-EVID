@@ -18,6 +18,9 @@ def sha_file(p):
         for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
     return h.hexdigest()
 
+def sql_lit(v):
+    return "'" + str(v).replace("'", "''") + "'"
+
 def lfs_meta(api,repo,rev):
     info=api.dataset_info(repo_id=repo,revision=rev,files_metadata=True)
     target=next((s for s in info.siblings or [] if s.rfilename=="data.parquet"),None)
@@ -47,38 +50,38 @@ def main():
     con=duckdb.connect()
     con.execute("PRAGMA threads=4")
     con.execute("PRAGMA memory_limit='5GB'")
-    con.execute("""
+    con.execute(f"""
       CREATE TEMP TABLE cn_symbols AS
       SELECT DISTINCT symbol
-      FROM read_parquet(?)
+      FROM read_parquet({sql_lit(info)})
       WHERE lower(cast(market as varchar))='cn'
         AND upper(cast(quote_type as varchar))='EQUITY'
         AND symbol IS NOT NULL
-    """,[str(info)])
-    con.execute("""
+    """)
+    con.execute(f"""
       CREATE TEMP VIEW o AS
       SELECT k.symbol, cast(k.bar_time as timestamp) bar_time,
              cast(k.open as double) open_px, cast(k.high as double) high_px,
              cast(k.low as double) low_px, cast(k.close as double) close_px,
              cast(k.amount as double) amount
-      FROM read_parquet(?) k
+      FROM read_parquet({sql_lit(old)}) k
       INNER JOIN cn_symbols s USING(symbol)
       WHERE cast(k.kline_t as varchar)='1D'
-    """,[str(old)])
-    con.execute("""
+    """)
+    con.execute(f"""
       CREATE TEMP VIEW n_all AS
       SELECT k.symbol, cast(k.bar_time as timestamp) bar_time,
              cast(k.open as double) open, cast(k.high as double) high,
              cast(k.low as double) low, cast(k.close as double) close,
              cast(k.amount as double) amount
-      FROM read_parquet(?) k
+      FROM read_parquet({sql_lit(new)}) k
       INNER JOIN cn_symbols s USING(symbol)
       WHERE cast(k.kline_t as varchar)='1D'
-    """,[str(new)])
+    """)
     old_min,old_max,old_rows,old_symbols=con.execute(
       "SELECT min(bar_time),max(bar_time),count(*),count(distinct symbol) FROM o"
     ).fetchone()
-    con.execute("CREATE TEMP VIEW n AS SELECT * FROM n_all WHERE bar_time <= ?",[old_max])
+    con.execute(f"CREATE TEMP VIEW n AS SELECT * FROM n_all WHERE bar_time <= {sql_lit(old_max)}")
 
     dup_o=con.execute("SELECT count(*)-count(distinct symbol||'|'||cast(bar_time as varchar)) FROM o").fetchone()[0]
     dup_n=con.execute("SELECT count(*)-count(distinct symbol||'|'||cast(bar_time as varchar)) FROM n").fetchone()[0]
