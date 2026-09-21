@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PIT_DATE_AUTHORITY_RUNNER_VALIDATION_V1",
+  "version": "V2.8.3",
+  "status": "PASS",
+  "workflow_run_id": 35584353787,
+  "job_id": 106284117991,
+  "head_sha": "4967e75ab8dc6f9b3d0f6319cc45d5d7dbf6046f",
+  "selftest": {
+    "passed": 8,
+    "total": 8,
+    "all_pass": true,
+    "receipt_sha256": "ae8488311c7605e2587869e46a48d5f89367a78b060fe4d978e8e48a04c3b398"
+  },
+  "validated_fail_closed_behavior": [
+    "unresolved removal blocks the whole D authority",
+    "delist date <=D resolves removal",
+    "future delist date does not retroactively resolve D",
+    "duplicate canonical identity blocks",
+    "first prospective signal boundary remains 2026-09-22"
+  ],
+  "network_source_parser_validation": "PENDING_SEPARATE_CONTROLLED_PROBE",
+  "threshold_or_strategy_condition_changed": false,
+  "gate": "PIT_AUTHORITY_LOGIC_VALIDATED_SOURCE_PROBE_REQUIRED"
+}
