@@ -18,6 +18,8 @@ OUT.mkdir(exist_ok=True)
 
 CONTRACT = Path("evidence/V2.8.2_CONDITIONAL_DIAGNOSTIC_CONTRACT.json")
 FINAL_RECORD = Path("evidence/V2.8.1_FINAL_RECORD.json")
+SNAPSHOT_RECEIPT = Path("evidence/V2.8.1_CANONICAL_RESEARCH_SNAPSHOT_RECEIPT.json")
+STAGE1_DAILY = Path("evidence/V2.8.1_STAGE1_DAILY_METRICS.csv")
 SECTOR_RECEIPT = Path("evidence/V2.8.2_CAPCO_SECTOR_PARSER_RECEIPT.json")
 SECTOR_RECEIPT_SEAL = "55a4ceaa6ccab4b85d2819e8918780fb333c7173650ca03448485705c62767c2"
 SECTOR_ROWS = Path("evidence/V2.8.2_CAPCO_SECTOR_SNAPSHOT_ROWS.csv")
@@ -427,12 +429,28 @@ def main() -> None:
     panel_all = s1.build_outcomes(features, calendar, source_max)
     signal = panel_all[panel_all["signal_date"] <= s1.MAX_SIGNAL_DATE].copy()
 
-    # Reproduce the exact frozen V2.8.1 panel identity before any conditional joins.
-    panel = signal[s1.PANEL_COLS].copy()
-    reproduced_panel_sha, _panel_path = s1.panel_sha(panel)
-    if reproduced_panel_sha != EXPECTED_PANEL_SHA:
+    # Semantic reproduction gate. The frozen V2.8.1 Parquet byte SHA remains the
+    # authority for the original artifact, but rewriting logically identical
+    # Parquet bytes is not required here. Verify the research population and,
+    # below, the exact Stage-1 daily statistics used by this diagnostic.
+    snapshot_receipt = json.loads(SNAPSHOT_RECEIPT.read_text(encoding="utf-8"))
+    frozen_panel = snapshot_receipt["panel"]
+    semantic_population = {
+        "rows": int(len(signal)),
+        "unique_securities": int(signal["canonical_security_id"].nunique()),
+        "min_signal_date": str(signal["signal_date"].min()),
+        "max_signal_date": str(signal["signal_date"].max()),
+    }
+    expected_population = {
+        "rows": int(frozen_panel["rows"]),
+        "unique_securities": int(frozen_panel["unique_securities"]),
+        "min_signal_date": str(frozen_panel["min_signal_date"]),
+        "max_signal_date": str(frozen_panel["max_signal_date"]),
+    }
+    if semantic_population != expected_population:
         raise RuntimeError(
-            f"canonical panel reproduction mismatch {reproduced_panel_sha} != {EXPECTED_PANEL_SHA}"
+            f"canonical panel semantic population mismatch actual={semantic_population} "
+            f"expected={expected_population}"
         )
 
     signal = attach_sector_context(signal, intervals)
@@ -479,6 +497,9 @@ def main() -> None:
                 "market_ret20": float(market_ret20.iloc[0]) if len(market_ret20) else np.nan,
                 "market_rv10_over_rv60": float(market_rv.iloc[0]) if len(market_rv) else np.nan,
                 "sector_mapped_share": mapped_share,
+                "factor_finite_count": int(
+                    np.isfinite(pd.to_numeric(g[factor], errors="coerce")).sum()
+                ),
                 "raw_ic_d10": ic10,
                 "baseline_rows_d10": n10,
                 "raw_ic_d5": ic5,
@@ -516,6 +537,94 @@ def main() -> None:
             daily_rows.append(rec)
 
     daily = pd.DataFrame(daily_rows)
+
+    # Reproduce the frozen V2.8.1 daily statistics for every factor/date used
+    # here. This is the semantic integrity gate for the reconstructed panel.
+    frozen_daily = pd.read_csv(STAGE1_DAILY, dtype={"signal_date": str})
+    frozen_focus = frozen_daily[
+        frozen_daily["factor"].isin(FOCUS_FACTORS)
+    ][
+        [
+            "factor",
+            "signal_date",
+            "factor_finite_count",
+            "rank_ic_d10",
+            "rank_ic_d5",
+        ]
+    ].copy()
+    current_focus = daily[
+        [
+            "factor",
+            "signal_date",
+            "factor_finite_count",
+            "raw_ic_d10",
+            "raw_ic_d5",
+        ]
+    ].copy()
+    semantic_check = frozen_focus.merge(
+        current_focus,
+        on=["factor", "signal_date"],
+        how="left",
+        validate="one_to_one",
+        suffixes=("_frozen", "_current"),
+        indicator=True,
+    )
+    if not semantic_check["_merge"].eq("both").all():
+        bad = semantic_check.loc[
+            semantic_check["_merge"].ne("both"), ["factor", "signal_date", "_merge"]
+        ].head(20).to_dict("records")
+        raise RuntimeError(f"Stage-1 semantic date coverage mismatch: {bad}")
+
+    count_equal = (
+        pd.to_numeric(
+            semantic_check["factor_finite_count_frozen"], errors="raise"
+        ).astype("int64")
+        == pd.to_numeric(
+            semantic_check["factor_finite_count_current"], errors="raise"
+        ).astype("int64")
+    )
+    if not count_equal.all():
+        bad = semantic_check.loc[
+            ~count_equal,
+            [
+                "factor",
+                "signal_date",
+                "factor_finite_count_frozen",
+                "factor_finite_count_current",
+            ],
+        ].head(20).to_dict("records")
+        raise RuntimeError(f"Stage-1 factor finite-count mismatch: {bad}")
+
+    max_abs_diffs = {}
+    for frozen_col, current_col, label in (
+        ("rank_ic_d10", "raw_ic_d10", "rank_ic_d10"),
+        ("rank_ic_d5", "raw_ic_d5", "rank_ic_d5"),
+    ):
+        a = pd.to_numeric(semantic_check[frozen_col], errors="coerce").to_numpy(float)
+        b = pd.to_numeric(semantic_check[current_col], errors="coerce").to_numpy(float)
+        nan_mismatch = np.isnan(a) != np.isnan(b)
+        if nan_mismatch.any():
+            raise RuntimeError(f"Stage-1 semantic NaN pattern mismatch for {label}")
+        finite = np.isfinite(a) & np.isfinite(b)
+        max_diff = float(np.max(np.abs(a[finite] - b[finite]))) if finite.any() else 0.0
+        max_abs_diffs[label] = max_diff
+        if max_diff > 1e-12:
+            raise RuntimeError(
+                f"Stage-1 semantic numerical mismatch for {label}: "
+                f"max_abs_diff={max_diff} > 1e-12"
+            )
+
+    semantic_reproduction = {
+        "status": "PASS",
+        "population": semantic_population,
+        "frozen_panel_reference_sha256": EXPECTED_PANEL_SHA,
+        "stage1_daily_rows_compared": int(len(semantic_check)),
+        "factor_finite_counts_exact": True,
+        "max_abs_ic_difference": max_abs_diffs,
+        "numerical_equivalence_tolerance": 1e-12,
+        "parquet_byte_rewrite_used_as_gate": False,
+    }
+
     market_summary = summarize_market(daily)
     interaction_summary = summarize_interactions(daily)
     quarter_summary = summarize_quarters(daily)
@@ -557,7 +666,8 @@ def main() -> None:
         "pinned_stock_kline_sha256": s1.KLINE_SHA,
         "pinned_benchmark_revision": s1.BENCH_REV,
         "pinned_benchmark_sha256": s1.BENCH_SHA,
-        "reproduced_v2_8_1_panel_sha256": reproduced_panel_sha,
+        "frozen_v2_8_1_panel_reference_sha256": EXPECTED_PANEL_SHA,
+        "semantic_panel_reproduction": semantic_reproduction,
         "source_diagnostics": source_diag,
         "primary_evaluation_first_date": primary_dates[0].isoformat(),
         "primary_evaluation_last_date": primary_dates[-1].isoformat(),
