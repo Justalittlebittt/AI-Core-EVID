@@ -1,0 +1,30 @@
+name: V2.8.5 Backward Holdout Sample Freeze
+on:
+  push:
+    paths:
+      - "scripts/v285_holdout_sample.py"
+      - ".github/workflows/v285-holdout-sample-freeze.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build deterministic membership-only sample
+        run: python scripts/v285_holdout_sample.py
+      - name: Freeze sample before any holdout price retrieval
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp v285_sample/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv evidence/
+          cp v285_sample/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_RECEIPT.json evidence/
+          git add evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_RECEIPT.json
+          git commit -m "Freeze V2.8.5 backward holdout sample [skip ci]"
+          git pull --rebase origin main
+          git push
