@@ -1,9 +1,6 @@
 name: V2.8.6 AKShare Eastmoney Source Probe
 on:
-  push:
-    paths:
-      - "scripts/v286_akshare_eastmoney_probe.py"
-      - ".github/workflows/v286-akshare-eastmoney-probe.yml"
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
