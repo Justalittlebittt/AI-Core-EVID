@@ -1,0 +1,16 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_RESILIENT_ACQUISITION_PARALLEL_LOGIN_FAILURE_V1",
+  "version": "V2.8.6",
+  "status": "PARALLEL_LOGIN_PRESSURE_BLOCKED_BEFORE_SOURCE_SNAPSHOT_FREEZE",
+  "workflow_run_id": 35707505115,
+  "failed_head_sha": "192bc3bb9d7ccd8343364973ae5369b4f8d6400a",
+  "representative_failure": "BAOSTOCK_LOGIN_ERROR:10002007:网络接收错误",
+  "observed_stage": "Initial login before any shard query",
+  "interpretation": "The four-at-once resilient shard launch created or coincided with provider login pressure; reducing connection concurrency is an acquisition-transport fix, not a research change.",
+  "research_state": {
+    "fold1_source_snapshot_committed": false,
+    "factor_or_forward_return_computed": false,
+    "mechanism_statistics_computed": false,
+    "fold2_3_4_consumed": false
+  }
+}
