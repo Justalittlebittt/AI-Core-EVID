@@ -1,0 +1,28 @@
+name: V2.8.5 Joint Calendar Freeze
+on:
+  push:
+    paths:
+      - "scripts/v285_joint_calendar.py"
+      - ".github/workflows/v285-joint-calendar-freeze.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/v285_joint_calendar.py
+      - name: Freeze calendar
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp v285_calendar/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json evidence/
+          git add evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json
+          git commit -m "Freeze V2.8.5 joint A-share calendar 2023-2024 [skip ci]"
+          git pull --rebase origin main
+          git push
