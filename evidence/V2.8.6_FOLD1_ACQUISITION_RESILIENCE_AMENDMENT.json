@@ -1,0 +1,34 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_FOLD1_ACQUISITION_RESILIENCE_AMENDMENT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_AFTER_TRANSPORT_FAILURE_BEFORE_ANY_FOLD1_FACTOR_OR_OUTCOME_COMPUTATION",
+  "failure_record": "evidence/V2.8.6_FOLD1_SOURCE_ACQUISITION_FAILURE_RECORD.json",
+  "problem_elimination": {
+    "delete": "Delete long-lived ~130-security BaoStock sessions.",
+    "avoid": "Do not retry a broken BaoStock socket without re-authentication.",
+    "substitute": "Use 16 deterministic acquisition shards by int(SHA256(canonical_security_id)[0:8],16) mod 16.",
+    "absorb": "Keep the exact same frozen 1058-security fold1 manifest and V2.8.5 row-flag integrity semantics.",
+    "precompute_reuse": "Each successful small shard becomes an independent artifact; final snapshot requires 16/16.",
+    "optimize": "Bound max parallelism to 4 and proactively reconnect every 25 symbols."
+  },
+  "transport_semantics": {
+    "shard_count": 16,
+    "max_parallel": 4,
+    "proactive_relogin_every_symbols": 25,
+    "query_error_retry_count_after_initial_attempt": 2,
+    "before_each_retry": "logout best-effort, sleep, login fresh session",
+    "persistent_error": "FAIL_ONLY_THAT_SHARD_NO_SAMPLE_REPLACEMENT"
+  },
+  "unchanged": [
+    "1058-security fold1 manifest",
+    "BaoStock 0.9.4",
+    "2022-09-01 through 2024-12-31 retrieval interval",
+    "stock adjustflag=1",
+    "benchmark adjustflag=3",
+    "row-level flag3 crosscheck",
+    "PIT membership",
+    "V2.8.6 dual-compression mechanism",
+    "all statistical thresholds, seeds and PASS conditions",
+    "fold2-4 remain untouched"
+  ]
+}
