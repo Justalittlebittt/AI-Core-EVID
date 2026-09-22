@@ -1,9 +1,5 @@
 name: V2.8.4 Candidate Collector Validation
 on:
-  push:
-    paths:
-      - "scripts/v284_candidate_collector.py"
-      - ".github/workflows/v284-candidate-collector-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
