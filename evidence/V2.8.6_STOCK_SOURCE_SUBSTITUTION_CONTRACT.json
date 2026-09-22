@@ -1,0 +1,88 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_STOCK_SOURCE_SUBSTITUTION_CONTRACT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_ANY_AKSHARE_EASTMONEY_FOLD1_PRICE_RETRIEVAL",
+  "purpose": "Substitute only the inaccessible fold1 stock-price acquisition provider while preserving the already frozen V2.8.6 mechanism, identity fold, PIT population, calendar, horizons, statistics, seeds and PASS conditions.",
+  "superseded_provider_for_fold1_stock_rows": {
+    "provider": "BaoStock 0.9.4",
+    "reason": "GitHub-hosted runners repeatedly failed at provider login/transport with error 10002007 after bounded retries and reduced concurrency.",
+    "research_result_from_failed_attempts": "NONE"
+  },
+  "replacement_provider": {
+    "library": "AKShare",
+    "version": "1.18.97",
+    "wheel_sha256": "f7a202842b1300bfe74efca69be93919041422e8a3dc1f0be204b039af27e683",
+    "upstream": "Eastmoney",
+    "interface": "stock_zh_a_hist",
+    "symbol": "six-digit A-share security_code from the frozen fold1 manifest",
+    "period": "daily",
+    "adjust": "hfq",
+    "retrieval_start": "20220901",
+    "retrieval_end": "20241231",
+    "timeout_seconds": 20
+  },
+  "adjustment_semantics": {
+    "meaning": "后复权 / back-adjusted history as documented by AKShare",
+    "pit_rationale": "AKShare documents hfq as preserving historical prices and adjusting later prices after corporate-action events; no qfq data is permitted.",
+    "factor_scale_effect": "rv10/rv60 and tr10/tr60 are ratio/percentage based and do not depend on arbitrary absolute price scale.",
+    "forward_return_rule": "D and D+5/D+10 endpoints must come from the same frozen Eastmoney-hfq snapshot for that security."
+  },
+  "benchmark": {
+    "action": "REUSE_EXISTING_FROZEN_BYTES",
+    "file": "evidence/v285_holdout_source/V2.8.5_BAOSTOCK_CSI300.parquet",
+    "sha256": "1aee2f5af524e0f99f788166731d3c9ce3a862c6f1af9203b442f11f6d5fe272",
+    "reason": "Market-state benchmark is identity-fold independent and already frozen for the exact same date interval."
+  },
+  "probe_before_fold1": {
+    "period": ["2022-01-04", "2022-03-31"],
+    "disjoint_from_fold1_retrieval_and_evaluation": true,
+    "symbols": ["600000", "000001", "300750"],
+    "allowed_checks": [
+      "package and wheel identity",
+      "network/interface success",
+      "schema exactness",
+      "date ordering and uniqueness",
+      "returned security code identity",
+      "finite positive OHLC and OHLC ordering",
+      "minimum row availability"
+    ],
+    "factor_or_forward_return_computation": false
+  },
+  "source_snapshot": {
+    "normalization": {
+      "date": "日期",
+      "security_code": "股票代码",
+      "open": "开盘",
+      "close": "收盘",
+      "high": "最高",
+      "low": "最低",
+      "volume": "成交量",
+      "amount": "成交额",
+      "tradestatus": "constant 1 for returned historical trading rows",
+      "source_adjustment": "constant hfq"
+    },
+    "freeze_rule": "Downloaded normalized bytes become the authoritative V2.8.6 fold1 stock vintage.",
+    "sample_replacement": false
+  },
+  "unchanged_research_semantics": [
+    "fold1 manifest SHA fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a and 1058 securities",
+    "fold2-4 remain untouched",
+    "official PIT membership intervals",
+    "2023-2024 joint A-share calendar",
+    "rv10_over_rv60 definition",
+    "tr10_over_tr60 definition",
+    "equal-weight dual-compression composite",
+    "D+5 and D+10 exact joint-session horizons",
+    "CALM/STRESSED definitions as replication strata only",
+    "bootstrap mechanics and seeds",
+    "all V2.8.6 PASS conditions"
+  ],
+  "forbidden": [
+    "No qfq prices.",
+    "No changing fold membership after source inspection.",
+    "No cross-vendor mixing of D and T endpoints for a security return.",
+    "No source-driven factor/threshold tuning.",
+    "No fold2-4 retrieval.",
+    "No Setup, Episode, First60 or live authorization."
+  ]
+}
