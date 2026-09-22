@@ -10,6 +10,7 @@ from playwright.sync_api import sync_playwright
 ENDPOINT = "https://www.cninfo.com.cn/new/hisAnnouncement/query"
 HOME = "https://www.cninfo.com.cn/"
 TERM = "人工智能"
+CONTROL_TERM = "年度报告"
 WINDOW = "2026-09-01~2026-09-22"
 STREAMS = [
     ("sse", "sh"),
