@@ -1,0 +1,52 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_SETUP_ADMISSION_ENVELOPE_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ENVELOPE_VALIDATION",
+  "purpose": "Bind a future strategy-specific Setup PASS receipt to the V2.8.4 AI-Core U/E precondition for the exact same security and signal date before any First60 admission can be considered.",
+  "strategy_receipt_interface": {
+    "required": [
+      "canonical_security_id",
+      "signal_date",
+      "setup_id",
+      "setup_spec_version",
+      "setup_gate_status",
+      "strategy_setup_receipt_sha256",
+      "outcome_data_consumed"
+    ],
+    "setup_gate_status_required": "PASS",
+    "outcome_data_consumed_required": false,
+    "strategy_semantics": "Opaque to V2.8.4; this layer does not define or tune the Setup strategy."
+  },
+  "ai_core_precondition_interface": {
+    "required_status": "PASS_DRY_AI_CORE_CANDIDATE",
+    "identity_and_date_must_exactly_match_strategy_receipt": true,
+    "required_U_provenance": "PASS PIT universe snapshot identity",
+    "required_E_provenance": "effective positive E event and ratification reference"
+  },
+  "output": {
+    "status": "PASS_DRY_SETUP_ADMISSION_ENVELOPE",
+    "envelope_sha256": "SHA256 canonical JSON of the envelope before adding envelope_sha256",
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "fail_closed": [
+    "Strategy receipt is not PASS.",
+    "Strategy receipt consumed outcome information.",
+    "Strategy and U/E gate security identity differ.",
+    "Strategy and U/E gate signal dates differ.",
+    "U/E gate is not PASS_DRY_AI_CORE_CANDIDATE.",
+    "U snapshot provenance is absent or malformed.",
+    "Effective E-event provenance is absent or malformed.",
+    "Strategy receipt hash is malformed."
+  ],
+  "forbidden": [
+    "No strategy threshold changes.",
+    "No price or return recomputation.",
+    "No outcome inspection.",
+    "No setup_id generation by this layer.",
+    "No First60 append from this layer.",
+    "No Episode emission.",
+    "No live authorization."
+  ]
+}
