@@ -1,0 +1,20 @@
+name: V2.8.4 Candidate Collector Validation
+on:
+  push:
+    paths:
+      - "scripts/v284_candidate_collector.py"
+      - ".github/workflows/v284-candidate-collector-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "playwright>=1.55"
+      - run: python scripts/v284_candidate_collector.py self-test
