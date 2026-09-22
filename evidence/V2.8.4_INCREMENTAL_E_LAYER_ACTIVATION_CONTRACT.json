@@ -1,0 +1,58 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_INCREMENTAL_E_LAYER_ACTIVATION_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_DESIGN_NOT_ACTIVATED",
+  "purpose": "Define a low-cost incremental prospective E-layer update model that consumes only newly observed official disclosures after the last successful watermark instead of rescanning historical CNInfo windows.",
+  "activation_prerequisites": [
+    "V2.8.4 candidate collector validation PASS",
+    "V2.8.4 official PDF materialization validation PASS",
+    "V2.8.4 PDF text extraction validation PASS",
+    "V2.8.4 page-scoped classifier validation PASS",
+    "bounded real official evidence diagnostic completes with at least one successful filing",
+    "separate activation record"
+  ],
+  "problem_elimination": {
+    "delete": "No daily full-history keyword rescan.",
+    "avoid": "No repeated PDF materialization for an already-seen announcement_id/object_sha256.",
+    "absorb": "Use the frozen 18-term candidate collector and content-addressed PDF cache.",
+    "substitute": "Maintain one append-only announcement watermark ledger.",
+    "precompute_reuse": "Persist announcement_id, first_observed_at, canonical security identity, object SHA, extraction SHA and decision SHA.",
+    "optimize": "Only unseen announcement IDs proceed to materialization and classification."
+  },
+  "incremental_watermark": {
+    "authority": "GitHub committed_at of the append-only E-layer observation receipt",
+    "dedup_key": "announcement_id",
+    "no_reclassification_for_identical_object_sha256": true,
+    "new_revision_or_new_announcement_id": "may create a new evidence event",
+    "historical_backfill_from_late_observation": false
+  },
+  "daily_scan": {
+    "window_policy": "Scan a short overlap window sufficient to tolerate CNInfo indexing latency; dedup by announcement_id makes overlap harmless.",
+    "suggested_overlap_calendar_days": 3,
+    "all_18_terms_each_scan": true,
+    "markets": ["SSE","SZSE"],
+    "same current validated CNInfo routes": true,
+    "absence_from_candidate_search": "NO_STATE_CHANGE"
+  },
+  "eligibility_transition": {
+    "positive_evidence_event": "May establish ELIGIBLE_AI_CORE prospectively only from the first trading session permitted by the frozen observation-time rule.",
+    "exclusion_or_not_established_event": "Does not erase older valid positive evidence without a separately defined revocation rule.",
+    "revocation_logic": "NOT_DEFINED_IN_V2_8_4; fail closed and retain prior positive state until a later version explicitly freezes revocation semantics."
+  },
+  "storage": {
+    "raw_pdfs_in_git": false,
+    "append_only_compact_receipts_in_git": true,
+    "content_addressed_pdf_cache": true,
+    "page_text_cache_key": "object_sha256",
+    "decision_cache_key": "page_text_sha256 + rule_engine_version"
+  },
+  "forbidden": [
+    "No price/return data in E-layer.",
+    "No rescanning all historical filings every day.",
+    "No changing the 18-term registry from live outcomes.",
+    "No retroactive eligibility before authoritative observation.",
+    "No automatic revocation based on missing candidate hits."
+  ],
+  "setup_or_episode_authorized": false,
+  "live_authorized": false
+}
