@@ -1,0 +1,13 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_EASTMONEY_PROVIDER_EXIT_RECORD_V1",
+  "version": "V2.8.6",
+  "status": "PROVIDER_SUBSTITUTED_NO_RESEARCH_RESULT",
+  "probe_run_id": 35708362972,
+  "full_run_id": 35708580379,
+  "serialized_run_id": 35710075049,
+  "reason": "Full fold1 acquisition remained transport-unstable due repeated upstream RemoteDisconnected errors, including serialized mode.",
+  "fold1_source_snapshot_committed_from_eastmoney": false,
+  "fold1_factor_or_forward_return_computed_from_eastmoney": false,
+  "fold1_mechanism_statistics_computed_from_eastmoney": false,
+  "sample_or_hypothesis_changed": false
+}
