@@ -1,0 +1,22 @@
+name: V2.8.5 BaoStock Numeric Row-Flag Diagnostic
+on:
+  push:
+    paths:
+      - "scripts/v285_baostock_numeric_rowflag.py"
+      - ".github/workflows/v285-baostock-numeric-rowflag.yml"
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip download --no-deps --only-binary=:all: baostock==0.9.4 -d wheelhouse
+          test "$(sha256sum wheelhouse/baostock-0.9.4-py3-none-any.whl | awk '{print $1}')" = "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8"
+          python -m pip install wheelhouse/baostock-0.9.4-py3-none-any.whl
+      - run: python scripts/v285_baostock_numeric_rowflag.py
