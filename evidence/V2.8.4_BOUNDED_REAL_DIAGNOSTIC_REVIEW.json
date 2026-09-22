@@ -1,0 +1,41 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_BOUNDED_REAL_DIAGNOSTIC_REVIEW_V1",
+  "version": "V2.8.4",
+  "status": "PIPELINE_COMPATIBILITY_PASS_CANDIDATE_TRIAGE_IMPROVEMENT_REQUIRED",
+  "diagnostic_receipt": "evidence/v284_real_diagnostic/V2.8.4_BOUNDED_REAL_DIAGNOSTIC_RECEIPT.json",
+  "diagnostic_results": "evidence/v284_real_diagnostic/V2.8.4_BOUNDED_REAL_DIAGNOSTIC_RESULTS.csv",
+  "observed": {
+    "candidate_rows": 15,
+    "selected_filings": 4,
+    "successful_official_pdf_materializations": 4,
+    "successful_page_text_extractions": 4,
+    "blocked_filings": 0,
+    "diagnostic_states": {
+      "NOT_ESTABLISHED": 4
+    },
+    "low_information_admin_notice_count_in_selected_sample": 3,
+    "other_selected_document_count": 1
+  },
+  "interpretation": [
+    "The end-to-end official evidence pipeline is technically compatible with real CNInfo PDFs in the bounded sample.",
+    "The four NOT_ESTABLISHED outputs are document-level diagnostic outcomes only; they are not definitive company-level non-AI claims.",
+    "Three selected filings were administrative notices about attending an AI-industry group performance briefing and did not contain the frozen positive AI-Core conjunction.",
+    "Candidate search title/keyword matches are therefore materially noisier than classifier-ready business evidence."
+  ],
+  "problem_elimination_decision": {
+    "problem": "Repeatedly materializing obvious low-information administrative meeting notices wastes network, extraction and classification work.",
+    "delete": "Suppress a narrowly defined class of administrative performance-briefing attendance/meeting notices before PDF materialization.",
+    "safety": "Suppression has NO negative eligibility meaning and produces NO_STATE_CHANGE only.",
+    "do_not_suppress": [
+      "annual reports",
+      "semiannual reports",
+      "prospectuses",
+      "contract/order/product announcements",
+      "investor-relations activity records",
+      "other documents not matched by the narrow administrative-notice rule"
+    ]
+  },
+  "formal_E_layer_state_changes": false,
+  "prospective_backfill": false,
+  "price_or_return_data_consumed": false
+}
