@@ -57,7 +57,10 @@ def runtime_guard():
 
 def fetch(symbol:str)->pd.DataFrame:
     last=""
-    for attempt in range(4):
+    backoff=[0,2,4,8,12,18]
+    for attempt in range(6):
+        if backoff[attempt]:
+            time.sleep(backoff[attempt])
         try:
             df=ak.stock_zh_a_hist(
                 symbol=symbol,period="daily",start_date=START,end_date=END,adjust="hfq",timeout=20
@@ -65,8 +68,6 @@ def fetch(symbol:str)->pd.DataFrame:
             return df
         except Exception as e:
             last=f"{type(e).__name__}:{e}"
-            if attempt<3:
-                time.sleep(1.5*(attempt+1))
     raise RuntimeError(f"PERSISTENT_EASTMONEY_QUERY_ERROR:{symbol}:{last}")
 
 def normalize(sample_row:dict,df:pd.DataFrame)->tuple[list[dict],dict]:
@@ -142,7 +143,7 @@ def run(shard_id:int,out:Path):
         })
         if i%20==0 or i==len(sample):
             print(json.dumps({"shard":shard_id,"progress":i,"total":len(sample)},ensure_ascii=False),flush=True)
-        time.sleep(0.08)
+        time.sleep(0.5)
 
     all_rows.sort(key=lambda r:(r["canonical_security_id"],r["date"]))
     pp=out/f"V2.8.6_FOLD1_EASTMONEY_STOCKS_SHARD_{shard_id}.parquet"
