@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CANDIDATE_MATERIALIZATION_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_CANDIDATE_OFFICIAL_MATERIALIZATION_CONTRACT.json",
+  "runner": "scripts/v284_candidate_materialization.py",
+  "workflow_run_id": 35692856156,
+  "workflow_job_id": 106633354453,
+  "validated_head_sha": "9195f841b55d84c9b6869afd438d1cbf4865a2af",
+  "synthetic_tests_passed": 11,
+  "synthetic_tests_total": 11,
+  "selftest_receipt_sha256": "1d1cf610f07b1dc317d3d8d1fff390038ea6aa58aba4e8a561a3867b26309103",
+  "validated": [
+    "canonical security identity mapping",
+    "inventory exact-locator reuse",
+    "validated new CNInfo candidate locator fallback",
+    "announcement-id/path consistency",
+    "official static.cninfo.com.cn origin construction",
+    "invalid locator fail-closed behavior",
+    "PDF minimum-byte and header validation",
+    "inventory identity mismatch blocking"
+  ],
+  "real_security_results_consumed": false,
+  "price_or_return_results_consumed": false,
+  "eligibility_semantics_changed": false,
+  "next_stage": "CNINFO_CANDIDATE_COLLECTION_ROUTE_RESOLUTION_THEN_OFFICIAL_PDF_TEXT_EXTRACTION"
+}
