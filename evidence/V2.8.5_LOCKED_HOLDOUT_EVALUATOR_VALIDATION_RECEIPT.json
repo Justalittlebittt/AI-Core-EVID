@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_LOCKED_HOLDOUT_EVALUATOR_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.5",
+  "status": "PASS",
+  "implementation_contract": "evidence/V2.8.5_LOCKED_HOLDOUT_IMPLEMENTATION_CONTRACT.json",
+  "runner": "scripts/v285_locked_holdout_evaluator.py",
+  "workflow": ".github/workflows/v285-locked-holdout-evaluator-validation.yml",
+  "workflow_run_id": 35699701120,
+  "validated_head_sha": "4057b5e25b63f8f54fee88ece84a7fa9e9f50141",
+  "tests_passed": 10,
+  "tests_total": 10,
+  "validated": [
+    "deterministic circular block bootstrap",
+    "positive-primary bootstrap mechanics",
+    "CALM-STRESSED contrast bootstrap mechanics",
+    "Holm pass and sequential stop behavior",
+    "average-rank Spearman implementation",
+    "exact joint-session D+5 and D+10 target indexing",
+    "end-of-calendar outcome unavailability",
+    "minimum 50 cross-sectional rows",
+    "frozen V2.8.5 bootstrap seeds",
+    "duplicate stock/date fail-closed behavior in production path"
+  ],
+  "real_holdout_factor_or_outcome_rows_consumed_by_validation": false,
+  "setup_or_episode_emission_authorized": false,
+  "live_authorized": false
+}
