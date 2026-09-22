@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_AI_CORE_RULE_ENGINE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_AI_CORE_ELIGIBILITY_CONTRACT.json",
+  "runner": "scripts/v284_ai_core_evidence_classifier.py",
+  "workflow_run_id": 35691399029,
+  "workflow_job_id": 106628966414,
+  "validated_head_sha": "55f133a29f8d70fc52c9f644e506b8dc7bc4d722",
+  "synthetic_tests_passed": 12,
+  "synthetic_tests_total": 12,
+  "first_failed_run": {
+    "workflow_run_id": 35691365845,
+    "classification": "IMPLEMENTATION_FALSE_POSITIVE_ONLY",
+    "issues": [
+      "negative commercialization phrase contained a positive substring",
+      "investee phrase contained the generic issuer token"
+    ],
+    "semantic_contract_changed": false
+  },
+  "hardening": [
+    "explicit negative-commercialization phrases take precedence",
+    "third-party/investee/industry context cannot qualify issuer business"
+  ],
+  "real_security_results_consumed": false,
+  "return_or_price_results_consumed": false,
+  "thresholds_changed_after_results": false,
+  "next_stage": "OFFICIAL_CNINFO_FULLTEXT_CANDIDATE_HINT_CONTRACT_PROBE"
+}
