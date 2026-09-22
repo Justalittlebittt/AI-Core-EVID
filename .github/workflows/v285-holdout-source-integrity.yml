@@ -1,0 +1,25 @@
+name: V2.8.5 Frozen Holdout Source Integrity Validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyarrow==21.0.0
+      - run: python scripts/v285_holdout_source_integrity.py self-test
+      - run: python scripts/v285_holdout_source_integrity.py validate
+      - name: Freeze source integrity receipt
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.5_HOLDOUT_SOURCE_INTEGRITY_VALIDATION_RECEIPT.json
+          git commit -m "Freeze V2.8.5 holdout source integrity validation [skip ci]"
+          git pull --rebase origin main
+          git push
