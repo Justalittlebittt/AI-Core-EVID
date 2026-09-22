@@ -1,0 +1,31 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_TENCENT_THROUGHPUT_EXECUTION_AMENDMENT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_TWO_WAY_CHECKPOINTED_RUN",
+  "evidence": {
+    "probe_run_id": 35710390464,
+    "probe_query_step_start": "2026-09-22T09:26:54.914Z",
+    "probe_query_step_result_time": "2026-09-22T09:27:12.638Z",
+    "probe_securities": 3,
+    "observation": "Single-runner full fold1 acquisition would risk exceeding the 60-minute workflow timeout."
+  },
+  "execution_change_only": {
+    "shard_count": 16,
+    "max_parallel": 2,
+    "per_shard_artifact_checkpoint": true,
+    "fail_fast": false,
+    "final_snapshot_requires": "16/16 shard PASS",
+    "cancel_in_progress": true
+  },
+  "unchanged_research_semantics": [
+    "1058-security fold1 manifest",
+    "Tencent Securities via AKShare 1.18.97",
+    "hfq adjustment",
+    "retrieval dates",
+    "PIT membership and joint calendar",
+    "dual-compression formula",
+    "D+5/D+10 horizons",
+    "bootstrap seeds and all PASS conditions",
+    "fold2-4 untouched"
+  ]
+}
