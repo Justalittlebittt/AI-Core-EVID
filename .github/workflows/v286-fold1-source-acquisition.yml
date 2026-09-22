@@ -1,8 +1,5 @@
 name: V2.8.6 Fold1 Source Acquisition
 on:
-  push:
-    paths:
-      - ".github/workflows/v286-fold1-source-acquisition.yml"
   workflow_dispatch:
 permissions:
   contents: write
