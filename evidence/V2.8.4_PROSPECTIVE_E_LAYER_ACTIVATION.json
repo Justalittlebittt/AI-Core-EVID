@@ -1,0 +1,67 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_E_LAYER_ACTIVATION_V1",
+  "version": "V2.8.4",
+  "status": "ACTIVE_PROSPECTIVE_EVIDENCE_LAYER_ONLY",
+  "activation_contract": "evidence/V2.8.4_INCREMENTAL_E_LAYER_ACTIVATION_CONTRACT.json",
+  "triage_rediagnostic_review": "evidence/V2.8.4_CANDIDATE_TRIAGE_REDIAGNOSTIC_REVIEW.json",
+  "activation_time_authority": "GitHub committed_at timestamp of this activation-file creation commit",
+  "gate_evaluation": {
+    "candidate_collector_validation_pass": true,
+    "official_pdf_materialization_validation_pass": true,
+    "pdf_text_extraction_validation_pass": true,
+    "page_scoped_classifier_validation_pass": true,
+    "candidate_triage_validation_pass": true,
+    "observation_ledger_validation_pass": true,
+    "effective_date_validation_pass": true,
+    "bounded_real_diagnostic_successful_filings": 4,
+    "bounded_real_diagnostic_blocked_filings": 0,
+    "separate_activation_record_present": true,
+    "result": "PASS"
+  },
+  "evidence": {
+    "candidate_collector": "evidence/V2.8.4_CANDIDATE_COLLECTOR_VALIDATION_RECEIPT.json",
+    "official_pdf_materialization": "evidence/V2.8.4_CANDIDATE_MATERIALIZATION_VALIDATION_RECEIPT.json",
+    "pdf_text_extraction": "evidence/V2.8.4_PDF_TEXT_EXTRACTION_VALIDATION_RECEIPT.json",
+    "page_scoped_classifier": "evidence/V2.8.4_PAGE_SCOPED_CLASSIFIER_VALIDATION_RECEIPT.json",
+    "candidate_triage": "evidence/V2.8.4_CANDIDATE_TRIAGE_VALIDATION_RECEIPT.json",
+    "observation_ledger": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER_VALIDATION_RECEIPT.json",
+    "effective_date": "evidence/V2.8.4_E_LAYER_EFFECTIVE_DATE_VALIDATION_RECEIPT.json",
+    "bounded_real_diagnostic": "evidence/v284_real_diagnostic/V2.8.4_BOUNDED_REAL_DIAGNOSTIC_RECEIPT.json"
+  },
+  "prospective_semantics": {
+    "only_newly_observed_official_disclosures_after_activation": true,
+    "historical_diagnostic_rows_seed_prospective_ledger": false,
+    "historical_backfill": false,
+    "same_calendar_date_activation": false,
+    "pre_open_exception_authorized": false,
+    "positive_event_effective_date_rule": "First joint A-share trading date strictly after authoritative GitHub observation date.",
+    "first_possible_effective_signal_date_for_positive_event_observed_on_2026_09_22": "2026-09-23",
+    "absence_from_candidate_search": "NO_STATE_CHANGE",
+    "triage_skip_state_has_negative_eligibility_meaning": false,
+    "revocation_logic": "NOT_DEFINED_IN_V2_8_4_FAIL_CLOSED"
+  },
+  "initial_state": {
+    "prospective_observation_ledger_rows": 0,
+    "diagnostic_rows_promoted": 0,
+    "new_ELIGIBLE_AI_CORE_issuers_created_by_activation": 0
+  },
+  "authorization": {
+    "prospective_candidate_observation": true,
+    "official_pdf_materialization_for_unseen_candidates": true,
+    "page_text_extraction": true,
+    "page_scoped_classification": true,
+    "append_only_E_layer_observation_ledger": true,
+    "effective_date_computation_for_new_positive_events": true,
+    "setup_emission": false,
+    "episode_emission": false,
+    "live_trading_or_signal_authorization": false
+  },
+  "forbidden": [
+    "No price or return data in E-layer.",
+    "No historical diagnostic promotion or backfill.",
+    "No same-day eligibility activation.",
+    "No fuzzy triage expansion required as a condition of activation.",
+    "No setup, episode or live authorization from this record."
+  ],
+  "next_stage": "IMPLEMENT_CONTROLLED_INCREMENTAL_PROSPECTIVE_E_LAYER_RUNNER_AND_FIRST_POST_ACTIVATION_OBSERVATION"
+}
