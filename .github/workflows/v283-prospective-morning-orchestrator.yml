@@ -1,0 +1,126 @@
+name: V2.8.3 Prospective Morning Orchestrator
+on:
+  schedule:
+    - cron: "0 1 * * 2-6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v283-prospective-morning-orchestrator
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install frozen runtime dependencies
+        run: pip install "numpy>=2.0" "pandas>=2.2" "duckdb>=1.1" "huggingface_hub>=0.35"
+
+      - name: Configure evidence commit identity
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+      - name: 1 Capture immutable source identity if changed
+        run: python scripts/v283_prospective_source_ledger.py capture
+
+      - name: Commit source pin locally if produced
+        run: |
+          git add -A evidence/v283_source_pins || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.3 prospective source pin [skip ci]"
+          else
+            echo "No new source identity."
+          fi
+
+      - name: 2 Build latest ready D-vintage feature snapshot
+        run: python scripts/v283_signal_feature_snapshot.py auto-build
+
+      - name: Commit signal snapshot locally if produced
+        run: |
+          git add -A evidence/v283_signal_features evidence/V2.8.3_PROSPECTIVE_SIGNAL_SOURCE_LEDGER.csv || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.3 prospective D-vintage signal snapshot [skip ci]"
+          else
+            echo "No new eligible signal-date snapshot."
+          fi
+
+      - name: 3 Resolve only newly mature D+5/D+10 outcomes
+        run: python scripts/v283_outcome_resolver.py auto-resolve
+
+      - name: Commit outcomes locally if produced
+        run: |
+          git add -A evidence/v283_outcomes evidence/V2.8.3_PROSPECTIVE_OUTCOME_LEDGER.csv || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.3 prospective outcomes [skip ci]"
+          else
+            echo "No newly mature resolvable outcomes."
+          fi
+
+      - name: 4 Audit blind information readiness
+        run: python scripts/v283_information_gate.py audit
+
+      - name: Commit readiness status locally if changed
+        run: |
+          git add evidence/V2.8.3_INFORMATION_GATE_STATUS.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update V2.8.3 blind information readiness [skip ci]"
+          else
+            echo "Readiness status unchanged."
+          fi
+
+      - name: Check locked evaluator entry gate
+        id: ready
+        shell: bash
+        run: |
+          if [ -f evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Final result already frozen; terminal no-op."
+            exit 0
+          fi
+          if [ ! -f evidence/V2.8.3_INFORMATION_GATE_STATUS.json ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python - <<'PY'
+          import json, os
+          p="evidence/V2.8.3_INFORMATION_GATE_STATUS.json"
+          x=json.load(open(p,encoding="utf-8"))
+          ready=x.get("status")=="READY_FOR_LOCKED_CONFIRMATORY_EVALUATION"
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
+              f.write("ready="+("true" if ready else "false")+"\n")
+          PY
+
+      - name: 5 Run exactly one locked confirmatory evaluation
+        if: steps.ready.outputs.ready == 'true'
+        run: python scripts/v283_confirmatory_evaluator.py evaluate
+
+      - name: Commit final confirmatory result locally if produced
+        if: steps.ready.outputs.ready == 'true'
+        run: |
+          git add evidence/V2.8.3_CONFIRMATORY_DAILY_METRICS.csv                   evidence/V2.8.3_CONFIRMATORY_HYPOTHESIS_LEDGER.csv                   evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze V2.8.3 confirmatory final result [skip ci]"
+          else
+            echo "No new final confirmatory result."
+          fi
+
+      - name: Push all newly frozen evidence once
+        run: |
+          if git diff --quiet origin/main..HEAD; then
+            echo "No new evidence commits."
+            exit 0
+          fi
+          git pull --rebase origin main
+          git push
