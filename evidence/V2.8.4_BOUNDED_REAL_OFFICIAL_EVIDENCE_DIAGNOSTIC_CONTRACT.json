@@ -1,0 +1,40 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_BOUNDED_REAL_OFFICIAL_EVIDENCE_DIAGNOSTIC_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_REAL_DIAGNOSTIC_RESULTS",
+  "purpose": "Exercise the validated V2.8.4 candidate-discovery, official-PDF, page-text and page-scoped classification chain on a small deterministic set of real CNInfo filings without creating production or prospective eligibility states.",
+  "scope": {
+    "historical_date_start": "2026-08-31",
+    "historical_date_end": "2026-08-31",
+    "markets": ["SSE","SZSE"],
+    "hint_terms": "exact 18-term registry frozen in scripts/v284_candidate_collector.py",
+    "candidate_dedup_key": "announcement_id",
+    "sample_size_max": 4,
+    "sample_selection": "Sort all deduplicated candidates by SHA256(announcement_id) ascending and take the first 4.",
+    "no_company_or_sector_manual_selection": true
+  },
+  "pipeline": [
+    "collect official CNInfo candidate hints",
+    "deduplicate and validate canonical security identity plus official adjunct_url",
+    "download only selected official PDFs from static.cninfo.com.cn",
+    "validate raw PDF bytes and bind object SHA256",
+    "extract embedded page text with 1-based physical page provenance",
+    "apply frozen sentence-level AI-Core rule engine page-by-page",
+    "aggregate filing decision with frozen page-scoped aggregation"
+  ],
+  "failure_semantics": {
+    "no_candidates": "DIAGNOSTIC_BLOCKED_NO_CANDIDATES",
+    "individual_pdf_fetch_or_text_failure": "record per-filing blocker and continue other selected filings",
+    "all_selected_filings_blocked": "DIAGNOSTIC_BLOCKED_ALL_FILINGS",
+    "partial_success": "DIAGNOSTIC_COMPLETE_WITH_BLOCKERS"
+  },
+  "governance": {
+    "classification_results_are": "DEVELOPMENT_DIAGNOSTIC_ONLY",
+    "formal_E_layer_state_changes": false,
+    "prospective_backfill": false,
+    "price_or_return_data_forbidden": true,
+    "threshold_or_term_changes_after_results": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
