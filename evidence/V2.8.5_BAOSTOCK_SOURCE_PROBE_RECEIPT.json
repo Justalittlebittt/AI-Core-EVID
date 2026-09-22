@@ -1,0 +1,62 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BAOSTOCK_SOURCE_PROBE_RECEIPT_V1",
+  "version": "V2.8.5",
+  "status": "PASS",
+  "package_version": "0.9.4",
+  "probe_start": "2022-01-04",
+  "probe_end": "2022-03-31",
+  "holdout_rows_read": false,
+  "factor_or_forward_return_computed": false,
+  "queries": [
+    {
+      "code": "sh.600000",
+      "role": "STOCK",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "adjustflag": "1",
+      "tradestatus_domain": [
+        "1"
+      ],
+      "normalized_rows_sha256": "485b2303159f61c8314e4eb40d1aeedcd898436bd5be94975870996e5f145103"
+    },
+    {
+      "code": "sz.000001",
+      "role": "STOCK",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "adjustflag": "1",
+      "tradestatus_domain": [
+        "1"
+      ],
+      "normalized_rows_sha256": "239da645d726585a5ab3d6c8d1db0e9b281bcb410d6d86aa0f5726fb9d0d0575"
+    },
+    {
+      "code": "sz.300750",
+      "role": "STOCK",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "adjustflag": "1",
+      "tradestatus_domain": [
+        "1"
+      ],
+      "normalized_rows_sha256": "e1641a6631309f10fd93c771e6e70de491118da1a8e0b913dc391cc0824d98b4"
+    },
+    {
+      "code": "sh.000300",
+      "role": "BENCHMARK",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "adjustflag": "3",
+      "tradestatus_domain": [
+        "1"
+      ],
+      "normalized_rows_sha256": "55c6b9f26d445fad4c427a88e7a26a7422873f65bc3e15ea62bd8ef05e6c803e"
+    }
+  ],
+  "price_or_outcome_analysis_performed": false,
+  "receipt_sha256": "10d6e21717a27c566f75adab943fd83e95df26470b71ace2af1d403584ad3172"
+}
