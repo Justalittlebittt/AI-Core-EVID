@@ -1,0 +1,22 @@
+name: V2.8.4 CNInfo Fulltext Candidate Probe
+on:
+  push:
+    paths:
+      - "scripts/v284_cninfo_fulltext_probe.py"
+      - ".github/workflows/v284-cninfo-fulltext-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "playwright>=1.55"
+      - run: python scripts/v284_cninfo_fulltext_probe.py
