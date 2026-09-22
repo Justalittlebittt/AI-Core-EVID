@@ -1,0 +1,103 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_STATE_INVARIANT_DUAL_COMPRESSION_CONTRACT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_FOLD1_PRICE_RETRIEVAL",
+  "purpose": "Test a new market-state-invariant dual-compression mechanism on a previously unseen identity fold without modifying or rescuing the rejected V2.8.5 CALM-conditioner hypothesis.",
+  "development_evidence": {
+    "V2.8.1": {
+      "rv10_over_rv60_direction_adjusted_D10_rank_ic": 0.04959609395831322,
+      "tr10_over_tr60_direction_adjusted_D10_rank_ic": 0.051742936251252654,
+      "note": "Both factors had strong monotonic rank-IC evidence in 2025-2026 but failed the old V2.8.1 promotion rule only because the D10 quintile-spread CI did not exclude zero."
+    },
+    "V2.8.5_fold0": {
+      "rv_calm_adjusted_D10_ic": 0.03508168128506107,
+      "rv_stressed_adjusted_D10_ic": 0.04857020202098172,
+      "tr_calm_adjusted_D10_ic": 0.04337464351942215,
+      "tr_stressed_adjusted_D10_ic": 0.0577933512135574,
+      "interpretation": "The rejected element was CALM superiority. Both factors remained directionally positive in both market states."
+    }
+  },
+  "identity_folds": {
+    "frame": "All securities whose official PIT interval intersects 2023-01-01 through 2024-12-31.",
+    "assignment": "fold = int(SHA256(canonical_security_id)[0:8],16) mod 5",
+    "fold0": "Already consumed by V2.8.5; development evidence only.",
+    "fold1": "V2.8.6 independent mechanism replication; may be read only after this contract and fold manifest are frozen.",
+    "fold2": "Reserved untouched for future Setup-shape research.",
+    "fold3": "Reserved untouched for future Setup validation.",
+    "fold4": "Reserved untouched final cross-sectional holdout.",
+    "no_security_cross_fold_overlap": true
+  },
+  "mechanism": {
+    "name": "STATE_INVARIANT_DUAL_COMPRESSION",
+    "rv_component": "Within-date favorable percentile = 1 - average-rank percentile(rv10_over_rv60).",
+    "tr_component": "Within-date favorable percentile = 1 - average-rank percentile(tr10_over_tr60).",
+    "composite": "dual_compression_score = 0.5 * rv_component + 0.5 * tr_component.",
+    "reason": "Equal-weight rank combination is scale-free, threshold-free and uses no result-fitted coefficient."
+  },
+  "population_and_source": {
+    "PIT_membership": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
+    "calendar": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "source": "BaoStock 0.9.4",
+    "stock_query_adjustflag": "1 with V2.8.5 Amendment-2 row-flag integrity semantics",
+    "benchmark": "sh.000300 adjustflag=3",
+    "retrieval_start": "2022-09-01",
+    "retrieval_end": "2024-12-31"
+  },
+  "outcomes": {
+    "primary": "Exact joint-session D+10 same-source post-adjusted close return.",
+    "secondary": "Exact joint-session D+5 same-source post-adjusted close return.",
+    "no_endpoint_shift": true
+  },
+  "market_state": {
+    "definition": "Same frozen V2.8.5 CSI300 rv10/rv60 market state: CALM iff ratio <= 1, STRESSED otherwise.",
+    "role": "Replication strata only. No state is claimed to be superior.",
+    "unknown_warmup": "Excluded from state-specific tests."
+  },
+  "statistical_mechanics": {
+    "daily_metric": "Spearman correlation of dual_compression_score versus forward return within date.",
+    "minimum_valid_securities_per_date": 50,
+    "minimum_valid_all_market_D10_dates": 200,
+    "minimum_valid_calm_D10_dates": 60,
+    "minimum_valid_stressed_D10_dates": 30,
+    "minimum_valid_quarters": 4,
+    "valid_quarter_min_dates": 20,
+    "bootstrap": "20-signal-date circular moving-block bootstrap, 10000 replications.",
+    "primary_seed": 2861001,
+    "calm_seed": 2861101,
+    "stressed_seed": 2861201,
+    "alpha": 0.05,
+    "multiplicity": "None; one preregistered primary composite hypothesis.",
+    "quarter_stability": "Positive all-market D+10 mean IC in at least two-thirds of valid quarters and every leave-one-valid-quarter-out mean > 0."
+  },
+  "pass_requires_all": [
+    "All-market mean D+10 composite Rank-IC > 0.",
+    "All-market 95% moving-block bootstrap CI is entirely above zero.",
+    "All-market one-sided bootstrap p <= 0.05.",
+    "CALM mean D+10 composite Rank-IC > 0 and its 95% CI is entirely above zero.",
+    "STRESSED mean D+10 composite Rank-IC > 0 and its 95% CI is entirely above zero.",
+    "All-market mean D+5 composite Rank-IC > 0.",
+    "Valid-quarter positive share >= 2/3.",
+    "Every leave-one-valid-quarter-out all-market D+10 mean remains > 0.",
+    "Both component factors have positive direction-adjusted all-market D+10 mean IC.",
+    "No source, PIT, calendar or implementation blocker."
+  ],
+  "decision_states": {
+    "PASS": "V2_8_6_STATE_INVARIANT_DUAL_COMPRESSION_REPLICATED",
+    "FAIL": "V2_8_6_STATE_INVARIANT_DUAL_COMPRESSION_REJECTED",
+    "INCOMPLETE": "V2_8_6_STATE_INVARIANT_DUAL_COMPRESSION_INCOMPLETE",
+    "BLOCKED": "V2_8_6_STATE_INVARIANT_DUAL_COMPRESSION_BLOCKED"
+  },
+  "promotion_effect": {
+    "PASS": "May advance to a separate V2.8.7 Setup-shape research contract using untouched fold2.",
+    "FAIL": "Do not build a Setup around dual-compression.",
+    "all_states": "No Setup, Episode, First60 or live authorization."
+  },
+  "forbidden": [
+    "No CALM superiority or CALM-minus-STRESSED gate.",
+    "No coefficient fitting or threshold search on fold1.",
+    "No inspection-driven change to fold assignment, composite weights, market-state definition, horizons, bootstrap or PASS conditions.",
+    "No use of fold2, fold3 or fold4 during V2.8.6.",
+    "No Setup construction in V2.8.6.",
+    "No modification of V2.8.3 or V2.8.5 terminal results."
+  ]
+}
