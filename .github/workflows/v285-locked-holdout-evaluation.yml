@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify one-time holdout evaluation activation
+        run: python scripts/v285_holdout_evaluation_gate.py
       - name: Locked evaluator self-test
         run: python scripts/v285_locked_holdout_evaluator.py self-test
       - name: Evaluate untouched frozen holdout
