@@ -67,42 +67,23 @@ def unseen_rows(rows:list[dict], existing:list[dict])->list[dict]:
     seen={str(r.get("announcement_id") or "").strip() for r in existing}
     return [r for r in rows if str(r.get("announcement_id") or "").strip() not in seen]
 
-def legal_name_candidates(page_rows:list[dict],max_pages:int=3)->list[str]:
-    pat=re.compile(r"([\\u4e00-\\u9fffA-Za-z0-9（）()·]{2,80}(?:股份有限公司|有限责任公司|有限公司))")
-    out=[]
-    for row in sorted(page_rows,key=lambda r:int(r["page_number"]))[:max_pages]:
-        text=str(row.get("text") or "")
-        for m in pat.finditer(text):
-            candidate=re.sub(r"\\s+","",m.group(1))
-            if 4<=len(candidate)<=90 and candidate not in out:
-                out.append(candidate)
-    return out
-
 def load_identity_bindings(path:Path=IDENTITY_BINDINGS)->list[dict]:
     return load_csv(path)
 
 def resolve_issuer_identity(page_rows:list[dict],row:dict,bindings:list[dict])->tuple[str,str]:
+    # Identity and AI evidence are deliberately separate. A positive classifier
+    # result can be recorded for an unbound issuer, but it cannot become an
+    # effective eligibility event until an official identity binding exists.
     cid=str(row.get("canonical_security_id") or "").strip()
-    sn=re.sub(r"\\s+","",str(row.get("security_name") or ""))
-    code=str(row.get("security_code") or "").strip()
-
+    sn=re.sub(r"\s+","",str(row.get("security_name") or ""))
     exact=[x for x in bindings if str(x.get("canonical_security_id") or "").strip()==cid]
-    if exact:
-        names={str(x.get("issuer_legal_name") or "").strip() for x in exact}
-        short_names={re.sub(r"\\s+","",str(x.get("security_name") or "")) for x in exact}
-        if len(names)!=1 or not next(iter(names)) or (sn and short_names!={sn}):
-            raise RuntimeError("ISSUER_IDENTITY_BINDING_CONFLICT")
-        return next(iter(names)),"PREBOUND_OFFICIAL_ISSUER_IDENTITY"
-
-    # Fallback is intentionally strict: page 1 must itself carry the security code
-    # and security short name before any legal-form string can bind the issuer.
-    page1=next((str(x.get("text") or "") for x in page_rows if int(x["page_number"])==1),"")
-    norm=re.sub(r"\\s+","",page1)
-    if code and sn and code in norm and sn in norm:
-        candidates=legal_name_candidates([{"page_number":1,"text":page1}],1)
-        if len(candidates)==1:
-            return candidates[0],"CURRENT_OFFICIAL_PDF_PAGE1_SECURITY_HEADER"
-    return "",""
+    if not exact:
+        return "",""
+    names={str(x.get("issuer_legal_name") or "").strip() for x in exact}
+    short_names={re.sub(r"\s+","",str(x.get("security_name") or "")) for x in exact}
+    if len(names)!=1 or not next(iter(names)) or (sn and short_names!={sn}):
+        raise RuntimeError("ISSUER_IDENTITY_BINDING_CONFLICT")
+    return next(iter(names)),"PREBOUND_OFFICIAL_ISSUER_IDENTITY"
 
 def normalized_utc(ts:str)->str:
     dt=datetime.fromisoformat(str(ts).replace("Z","+00:00")).astimezone(timezone.utc)
@@ -457,13 +438,13 @@ def self_test():
         "page_number":1,
         "text":"证券代码：600001 证券简称：测试科技 北京测试科技股份有限公司 关于人工智能业务的公告",
     }],header_row,[])
-    ck("P03_page1_header_identity_resolves",name2=="北京测试科技股份有限公司" and basis2=="CURRENT_OFFICIAL_PDF_PAGE1_SECURITY_HEADER")
+    ck("P03_unbound_page1_does_not_guess_identity",name2=="" and basis2=="")
 
     name3,basis3=resolve_issuer_identity([{
         "page_number":1,
         "text":"公司控股子公司北京云算科技有限公司已签订合同。",
     }],header_row,[])
-    ck("P04_subsidiary_without_security_header_rejected",name3=="" and basis3=="")
+    ck("P04_subsidiary_without_binding_rejected",name3=="" and basis3=="")
 
     conflict=False
     try:
@@ -481,7 +462,7 @@ def self_test():
         "classification_state":"ELIGIBLE_AI_CORE",
         "canonical_security_id":"SSE:600001",
         "issuer_legal_name":"测试股份有限公司",
-        "issuer_identity_basis":"CURRENT_OFFICIAL_PDF_PAGE1_SECURITY_HEADER",
+        "issuer_identity_basis":"PREBOUND_OFFICIAL_ISSUER_IDENTITY",
         "announcement_id":"123",
         "disclosure_date":"2026-09-22",
         "object_sha256":"a"*64,
@@ -506,7 +487,7 @@ def self_test():
     ck("P11_invalid_evidence_list_blocks",bad_json)
 
     result={
-        "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V3",
+        "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V4",
         "tests":tests,
         "passed":sum(x["pass"] for x in tests),
         "total":len(tests),
