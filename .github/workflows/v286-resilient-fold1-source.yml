@@ -1,8 +1,5 @@
 name: V2.8.6 Resilient Fold1 Source Acquisition
 on:
-  push:
-    paths:
-      - ".github/workflows/v286-resilient-fold1-source.yml"
   workflow_dispatch:
 permissions:
   contents: write
