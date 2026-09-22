@@ -1,0 +1,31 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_RUNNER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "runner": "scripts/v284_incremental_e_layer_runner.py",
+  "workflow": ".github/workflows/v284-prospective-runner-validation.yml",
+  "workflow_run_id": 35696782193,
+  "workflow_job_id": 106645294930,
+  "validated_head_sha": "1598c0dce786c374bb334f47f3d3415294a45fae",
+  "selftest_schema": "AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V4",
+  "synthetic_tests_passed": 11,
+  "synthetic_tests_total": 11,
+  "selftest_receipt_sha256": "9d74e675ea2d8254a516c3485059119bc41ac935b0d4cc46507ea2cab9e94f8e",
+  "validated": [
+    "seen announcement filtering",
+    "prebound official issuer identity resolution",
+    "no heuristic issuer identity guessing from an unbound PDF",
+    "subsidiary name cannot bind listed issuer without an official identity binding",
+    "conflicting issuer identity bindings fail closed",
+    "UTC observation-time normalization",
+    "complete positive record construction",
+    "strict next-trading-date effectiveness",
+    "unbound positive classification cannot create an effective event",
+    "non-positive classification creates no effective eligibility event",
+    "malformed evidence-list serialization fails closed"
+  ],
+  "old_validation_suites_rerun": false,
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false
+}
