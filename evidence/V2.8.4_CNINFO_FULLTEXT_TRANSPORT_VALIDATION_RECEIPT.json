@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CNINFO_FULLTEXT_TRANSPORT_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_CNINFO_FULLTEXT_CANDIDATE_HINT_CONTRACT.json",
+  "transport_amendments": [
+    "evidence/V2.8.4_CNINFO_CANDIDATE_HINT_TRANSPORT_AMENDMENT_1.json",
+    "evidence/V2.8.4_CNINFO_CURRENT_ROUTE_AMENDMENT_1.json"
+  ],
+  "runner": "scripts/v284_cninfo_fulltext_probe.py",
+  "workflow_run_id": 35693333541,
+  "workflow_job_id": 106634758276,
+  "validated_head_sha": "c464d4c7487afca0912a628e5fff99678e2e43c9",
+  "selftest_receipt_sha256": "76977cf715dfba5766072748e0960dfd9b5fbcb70c9c0ec139ab21873bec77d3",
+  "validated": {
+    "home_http_200": true,
+    "all_partition_requests_http_200": true,
+    "all_partition_shapes_valid": true,
+    "fulltext_mode_frozen": true,
+    "searchkey_exact": true,
+    "candidate_results_nonempty_overall": true,
+    "szse_route_transport_prevalidated": true
+  },
+  "no_hit_semantics": "A valid empty result for a market/term/window is not a transport failure and has no negative eligibility meaning.",
+  "eligibility_effect": "NONE_CANDIDATE_HINT_TRANSPORT_ONLY",
+  "real_security_classification_computed": false,
+  "price_or_return_data_consumed": false,
+  "next_stage": "OFFICIAL_PDF_TEXT_EXTRACTION_WITH_PAGE_PROVENANCE"
+}
