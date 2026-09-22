@@ -1,0 +1,18 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_SETUP_ADMISSION_ENVELOPE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json",
+  "runner": "scripts/v284_setup_admission_envelope.py",
+  "workflow": ".github/workflows/v284-setup-admission-envelope-validation.yml",
+  "workflow_run_id": 35698041135,
+  "workflow_job_id": 106649210430,
+  "validated_head_sha": "f6be74b00e57d0609d430eb434f9f8550fa52710",
+  "tests_passed": 11,
+  "tests_total": 11,
+  "real_E_event_integration_tested": true,
+  "strategy_setup_is_synthetic_interface_fixture_only": true,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false
+}
