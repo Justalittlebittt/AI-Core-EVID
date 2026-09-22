@@ -1,0 +1,106 @@
+name: V2.8.4 Controlled Prospective E-Layer Observation
+on:
+  push:
+    paths:
+      - "scripts/v284_incremental_e_layer_runner.py"
+      - ".github/workflows/v284-controlled-prospective-e-layer.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v284-controlled-prospective-e-layer
+  cancel-in-progress: false
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+      - name: Restore content-addressed E-layer cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/v284_e_layer
+          key: v284-e-layer-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            v284-e-layer-
+      - name: New runner self-test only
+        run: python scripts/v284_incremental_e_layer_runner.py self-test
+      - name: Resolve activation boundary and scan window
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTIVATION_SHA="$(git log --diff-filter=A --format=%H -1 -- evidence/V2.8.4_PROSPECTIVE_E_LAYER_ACTIVATION.json)"
+          test -n "$ACTIVATION_SHA"
+          ACTIVATION_AT="$(git show -s --format=%cI "$ACTIVATION_SHA")"
+          AS_OF="$(TZ=Asia/Shanghai date +%F)"
+          START="$(python - "$AS_OF" <<'PY'
+          import sys
+          from datetime import date,timedelta
+          d=date.fromisoformat(sys.argv[1])
+          print((d-timedelta(days=2)).isoformat())
+          PY
+          )"
+          RUN_KEY="${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}"
+          {
+            echo "ACTIVATION_SHA=$ACTIVATION_SHA"
+            echo "ACTIVATION_AT=$ACTIVATION_AT"
+            echo "AS_OF=$AS_OF"
+            echo "START=$START"
+            echo "RUN_KEY=$RUN_KEY"
+          } >> "$GITHUB_ENV"
+      - name: Controlled prospective scan
+        run: |
+          python scripts/v284_incremental_e_layer_runner.py scan \
+            --start "$START" \
+            --end "$AS_OF" \
+            --out v284_prospective_run \
+            --run-id "$RUN_KEY" \
+            --activation-sha "$ACTIVATION_SHA" \
+            --activation-at "$ACTIVATION_AT"
+      - name: Commit authoritative observation receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p evidence/v284_prospective_runs
+          cp "v284_prospective_run/V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_${RUN_KEY}.csv" evidence/v284_prospective_runs/
+          cp "v284_prospective_run/V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_${RUN_KEY}.json" evidence/v284_prospective_runs/
+          git add evidence/v284_prospective_runs/
+          git commit -m "Freeze V2.8.4 prospective E-layer observation ${RUN_KEY} [skip ci]"
+          git pull --rebase origin main
+          git push
+          OBS_SHA="$(git rev-parse HEAD)"
+          OBS_TIME="$(git show -s --format=%cI HEAD)"
+          {
+            echo "OBS_SHA=$OBS_SHA"
+            echo "OBS_TIME=$OBS_TIME"
+          } >> "$GITHUB_ENV"
+      - name: Finalize append-only ledger from authoritative commit
+        run: |
+          python scripts/v284_incremental_e_layer_runner.py finalize \
+            --results "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_${RUN_KEY}.csv" \
+            --receipt "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_${RUN_KEY}.json" \
+            --ledger evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv \
+            --out "v284_prospective_run/V2.8.4_PROSPECTIVE_FINALIZATION_RECEIPT_${RUN_KEY}.json" \
+            --observation-commit-sha "$OBS_SHA" \
+            --observed-at "$OBS_TIME"
+      - name: Commit prospective ledger finalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "v284_prospective_run/V2.8.4_PROSPECTIVE_FINALIZATION_RECEIPT_${RUN_KEY}.json" evidence/v284_prospective_runs/
+          git add evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv evidence/v284_prospective_runs/
+          if git diff --cached --quiet; then
+            echo "No finalization changes"
+            exit 0
+          fi
+          git commit -m "Finalize V2.8.4 prospective E-layer observation ${RUN_KEY} [skip ci]"
+          git pull --rebase origin main
+          git push
