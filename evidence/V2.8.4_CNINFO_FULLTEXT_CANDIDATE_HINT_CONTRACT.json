@@ -1,0 +1,67 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CNINFO_FULLTEXT_CANDIDATE_HINT_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_CANDIDATE_HINT_RESULTS",
+  "purpose": "Use free official CNInfo title+fulltext search only as a low-cost candidate discovery layer so full-market PDF prefetch is unnecessary.",
+  "authority_boundary": {
+    "candidate_search_is_eligibility_authority": false,
+    "candidate_hit_can_make_ELIGIBLE_AI_CORE": false,
+    "only_materialized_official_filing_text_can_support_eligibility": true,
+    "absence_from_search_results": "NO_NEGATIVE_CLASSIFICATION"
+  },
+  "source": {
+    "platform": "CNInfo official disclosure platform",
+    "query_endpoint": "https://www.cninfo.com.cn/new/hisAnnouncement/query",
+    "mode": "tabName=fulltext",
+    "market_columns": [
+      {"column": "sse", "plate": "sh"},
+      {"column": "szse", "plate": "sz"}
+    ],
+    "page_size": 30
+  },
+  "frozen_hint_terms_v1": [
+    "人工智能",
+    "生成式人工智能",
+    "大模型",
+    "基础模型",
+    "机器学习",
+    "深度学习",
+    "AI芯片",
+    "人工智能芯片",
+    "NPU",
+    "GPU",
+    "AI服务器",
+    "智算",
+    "算力",
+    "机器视觉",
+    "AI算法",
+    "人工智能算法",
+    "自动驾驶",
+    "具身智能"
+  ],
+  "query_policy": {
+    "each_term_queried_separately": true,
+    "reason": "Avoid undocumented multi-keyword AND/OR semantics.",
+    "retain_raw_query_page_sha256": true,
+    "deduplicate_by_announcement_id": true,
+    "map_to_canonical_security_id_before_materialization": true,
+    "unmapped_identity": "BLOCK_FOR_THAT_HIT",
+    "pagination_must_close_against_server_total": true
+  },
+  "candidate_priority": {
+    "preferred_document_types": [
+      "ANNUAL_REPORT",
+      "SEMIANNUAL_REPORT",
+      "IPO_PROSPECTUS",
+      "issuer_business_operation announcement"
+    ],
+    "priority_is_cost_control_only": true,
+    "priority_does_not_change_eligibility_rule": true
+  },
+  "temporal_governance": {
+    "historical_bootstrap": "Development/diagnostic only if first observed after the claimed PIT date.",
+    "prospective": "Only search results prospectively observed and frozen before the applicable signal cutoff may create a new future evidence candidate.",
+    "no_backfill": true
+  },
+  "next_gate": "MATERIALIZE_CANDIDATE_OFFICIAL_PDF_AND_RUN_V2_8_4_ELIGIBILITY_CLASSIFIER"
+}
