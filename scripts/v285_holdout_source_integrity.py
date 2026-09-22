@@ -26,6 +26,11 @@ def sha_file(path:Path)->str:
 def bucket(cid:str)->int:
     return int(hashlib.sha256(cid.encode()).hexdigest()[:8],16)%8
 
+def stable_sha(obj)->str:
+    return hashlib.sha256(
+        json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()
+    ).hexdigest()
+
 def validate(out:Path):
     if sha_file(SAMPLE)!=SAMPLE_SHA:
         raise RuntimeError("SAMPLE_SHA_BLOCKED")
@@ -53,7 +58,10 @@ def validate(out:Path):
         raise RuntimeError("QUERY_MANIFEST_STATUS_BLOCKED")
 
     expected_rows={r["canonical_security_id"]:int(r["rows"]) for r in manifest}
+    expected_raw_sha={r["canonical_security_id"]:r["rows_sha256"] for r in manifest}
     observed_rows={cid:0 for cid in sample_ids}
+    raw_by={cid:[] for cid in sample_ids}
+    raw_fields=["date","code","open","high","low","close","preclose","volume","amount","adjustflag","tradestatus"]
     total=0
     part_receipts=[]
     for pr in sorted(rec["stock_partitions"],key=lambda x:int(x["bucket"])):
@@ -82,6 +90,7 @@ def validate(out:Path):
                 raise RuntimeError(f"PARTITION_DUPLICATE_STOCK_DATE:{cid}:{d}")
             seen.add(key)
             observed_rows[cid]+=1
+            raw_by[cid].append({k:str(r.get(k) if r.get(k) is not None else "") for k in raw_fields})
         total+=len(data)
         if len(data)!=int(pr["rows"]):
             raise RuntimeError(f"PARTITION_ROW_COUNT_BLOCKED:{b}")
@@ -92,6 +101,13 @@ def validate(out:Path):
     mismatches=[cid for cid in sample_ids if observed_rows[cid]!=expected_rows[cid]]
     if mismatches:
         raise RuntimeError(f"PER_SYMBOL_ROW_COUNT_BLOCKED:{mismatches[:10]}")
+    raw_hash_mismatch=[]
+    for cid in sorted(sample_ids):
+        rows=sorted(raw_by[cid],key=lambda r:r["date"])
+        if stable_sha(rows)!=expected_raw_sha[cid]:
+            raw_hash_mismatch.append(cid)
+    if raw_hash_mismatch:
+        raise RuntimeError(f"PER_SYMBOL_RAW_HASH_BLOCKED:{raw_hash_mismatch[:10]}")
 
     bp=SOURCE_DIR/rec["benchmark"]["file"]
     if not bp.exists() or sha_file(bp)!=rec["benchmark"]["parquet_sha256"]:
@@ -126,6 +142,7 @@ def validate(out:Path):
       "successful_nonzero_symbols":sum(r["status"]=="SUCCESS" for r in manifest),
       "zero_row_symbols":len(zero_manifest),
       "stock_rows":total,
+      "per_symbol_raw_hashes_revalidated":1031,
       "partitions":part_receipts,
       "benchmark_rows":len(bt),
       "official_joint_dates_required":len(cal),
@@ -146,8 +163,9 @@ def self_test():
       {"name":"I02_bucket_range","pass":all(0<=bucket(f"SSE:{i:06d}")<8 for i in range(20))},
       {"name":"I03_frozen_sample_sha","pass":len(SAMPLE_SHA)==64},
       {"name":"I04_holdout_range_frozen","pass":START=="2022-09-01" and END=="2024-12-31"},
+      {"name":"I05_stable_raw_hash","pass":stable_sha([{"date":"2023-01-03","close":"1"}])==stable_sha([{"close":"1","date":"2023-01-03"}])},
     ]
-    out={"schema":"AI_CORE_EVID_V2_8_5_SOURCE_INTEGRITY_VALIDATOR_SELFTEST_V1",
+    out={"schema":"AI_CORE_EVID_V2_8_5_SOURCE_INTEGRITY_VALIDATOR_SELFTEST_V2",
          "tests":tests,"passed":sum(x["pass"] for x in tests),"total":len(tests),"all_pass":all(x["pass"] for x in tests)}
     print(json.dumps(out,ensure_ascii=False,indent=2))
     if not out["all_pass"]: raise SystemExit(2)
