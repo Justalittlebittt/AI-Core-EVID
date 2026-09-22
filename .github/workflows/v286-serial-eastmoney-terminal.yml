@@ -1,8 +1,5 @@
 name: V2.8.6 Serial Eastmoney Source and Terminal Replication
 on:
-  push:
-    paths:
-      - ".github/workflows/v286-serial-eastmoney-terminal.yml"
   workflow_dispatch:
 permissions:
   contents: write
