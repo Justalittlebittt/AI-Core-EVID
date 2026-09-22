@@ -122,7 +122,7 @@ def main():
         ids=[]
         for x in part:
             ids.extend(x["first_page_ids"])
-        by_stream[column]={
+        by_stream[key]={
             "windows":len(part),
             "http_200_all":all(x["http_status"]==200 for x in part),
             "shape_valid_all":all(x["response_shape_valid"] for x in part),
