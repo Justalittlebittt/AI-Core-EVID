@@ -8,7 +8,7 @@ import re
 import tempfile
 from pathlib import Path
 
-import fitz
+import pymupdf as fitz
 
 MIN_CHARS = 20
 
@@ -139,6 +139,9 @@ def self_test():
         fake=root/"fake.pdf"; fake.write_bytes(b"x"*2048)
         ck("E08_header_blocks",lambda:extract_pdf(fake),"BLOCKED_INPUT_INTEGRITY")
         blank=root/"blank.pdf"; make_pdf(blank,["",""])
+        if blank.stat().st_size < 1024:
+            with blank.open("ab") as f:
+                f.write(b"\n%PAD-" + b"x"*2048)
         ck("E09_all_blank_blocks",lambda:extract_pdf(blank),"BLOCKED_TEXT_EXTRACTION")
         ck("E10_page_text_hash_deterministic",lambda:(rows,rec),validator=lambda x:stable_sha256(x[0])==x[1]["page_text_sha256"])
     result={
