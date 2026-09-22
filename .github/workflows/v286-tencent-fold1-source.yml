@@ -1,11 +1,14 @@
 name: V2.8.6 Tencent Fold1 Source Acquisition
 on:
+  push:
+    paths:
+      - ".github/workflows/v286-tencent-fold1-source.yml"
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: v286-tencent-fold1-source
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   acquire_shards:
     strategy:
@@ -27,6 +30,7 @@ jobs:
           python -m pip install wheelhouse/akshare-1.18.97-py3-none-any.whl pyarrow==21.0.0
       - name: Acquire Tencent fold1 shard
         run: |
+          sleep $(( ${{ matrix.shard }} % 2 * 4 ))
           python scripts/v286_tencent_fold1_acquisition.py             --shard ${{ matrix.shard }}             --out "v286_tx_shard_${{ matrix.shard }}"
       - uses: actions/upload-artifact@v4
         with:
