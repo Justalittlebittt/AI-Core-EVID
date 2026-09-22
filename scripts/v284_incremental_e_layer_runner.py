@@ -66,16 +66,19 @@ def unseen_rows(rows:list[dict], existing:list[dict])->list[dict]:
     seen={str(r.get("announcement_id") or "").strip() for r in existing}
     return [r for r in rows if str(r.get("announcement_id") or "").strip() not in seen]
 
-def issuer_legal_name(page_rows:list[dict])->str:
+def issuer_legal_name(page_rows:list[dict],security_name:str="")->str:
     # Evidence-record completeness helper only. It does not affect classification.
-    # Restrict to explicit Chinese corporate legal-form strings in the official PDF.
+    # Fail closed: a legal-form candidate must also contain the official CNInfo
+    # security_name, preventing a subsidiary/customer company name from being
+    # mislabeled as the listed issuer.
     pat=re.compile(r"([\u4e00-\u9fffA-Za-z0-9（）()·]{2,80}(?:股份有限公司|有限责任公司|有限公司))")
+    sn=re.sub(r"\s+","",str(security_name or ""))
     for row in sorted(page_rows,key=lambda r:int(r["page_number"]))[:3]:
         text=str(row.get("text") or "")
         for m in pat.finditer(text):
-            s=re.sub(r"\s+","",m.group(1))
-            if 4<=len(s)<=90:
-                return s
+            candidate=re.sub(r"\s+","",m.group(1))
+            if 4<=len(candidate)<=90 and (not sn or sn in candidate):
+                return candidate
     return ""
 
 def normalized_utc(ts:str)->str:
@@ -219,7 +222,7 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                         "matched_ai_role":json.dumps(ev.get("matched_ai_role") or [],ensure_ascii=False,separators=(",",":")),
                         "matched_commerciality":json.dumps(ev.get("matched_commerciality") or [],ensure_ascii=False,separators=(",",":")),
                         "classification_reason":ev["reason"],
-                        "issuer_legal_name":issuer_legal_name(pages),
+                        "issuer_legal_name":issuer_legal_name(pages,row.get("security_name","")),
                         "decision_sha256":decision["decision_sha256"],
                         "blocker":"",
                     })
@@ -400,12 +403,15 @@ def self_test():
     ck("P01_unseen_filters_existing", [r["announcement_id"] for r in unseen_rows(rows,existing)]==["2"])
     ck("P02_legal_name_extracts", issuer_legal_name([
         {"page_number":1,"text":"北京测试科技股份有限公司 关于人工智能业务的公告"}
-    ])=="北京测试科技股份有限公司")
+    ],"测试科技")=="北京测试科技股份有限公司")
     ck("P03_legal_name_absent_fails_closed", issuer_legal_name([
         {"page_number":1,"text":"关于人工智能业务的公告"}
-    ])=="")
-    ck("P04_normalized_utc", normalized_utc("2026-09-22T14:34:38+08:00")=="2026-09-22T06:34:38Z")
-    good={
+    ],"测试科技")=="")
+    ck("P04_subsidiary_name_rejected", issuer_legal_name([
+        {"page_number":1,"text":"公司控股子公司北京云算科技有限公司已签订合同。"}
+    ],"测试科技")=="")
+    ck("P05_normalized_utc", normalized_utc("2026-09-22T14:34:38+08:00")=="2026-09-22T06:34:38Z")
+        good={
         "classification_state":"ELIGIBLE_AI_CORE",
         "canonical_security_id":"SSE:600001",
         "issuer_legal_name":"测试股份有限公司",
@@ -418,13 +424,13 @@ def self_test():
         "matched_commerciality":"[\"批量交付\"]",
     }
     rec=evidence_record(good,"2026-09-22T06:34:38Z")
-    ck("P05_positive_record_complete",rec.get("record_complete") is True)
-    ck("P06_positive_next_day_effective",rec.get("effective_signal_date")=="2026-09-23")
+    ck("P06_positive_record_complete",rec.get("record_complete") is True)
+    ck("P07_positive_next_day_effective",rec.get("effective_signal_date")=="2026-09-23")
     bad={**good,"issuer_legal_name":""}
     rec2=evidence_record(bad,"2026-09-22T06:34:38Z")
-    ck("P07_incomplete_positive_blocks_effect",rec2.get("record_complete") is False and "effective_signal_date" not in rec2)
+    ck("P08_incomplete_positive_blocks_effect",rec2.get("record_complete") is False and "effective_signal_date" not in rec2)
     non={**good,"classification_state":"NOT_ESTABLISHED"}
-    ck("P08_nonpositive_has_no_effective_record",evidence_record(non,"2026-09-22T06:34:38Z")=={})
+    ck("P09_nonpositive_has_no_effective_record",evidence_record(non,"2026-09-22T06:34:38Z")=={})
 
     result={
         "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V1",
