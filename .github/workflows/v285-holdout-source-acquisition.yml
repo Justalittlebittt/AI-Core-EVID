@@ -1,5 +1,8 @@
 name: V2.8.5 Frozen Holdout Source Acquisition
 on:
+  push:
+    paths:
+      - ".github/workflows/v285-holdout-source-acquisition.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -7,9 +10,14 @@ concurrency:
   group: v285-holdout-source-acquisition
   cancel-in-progress: false
 jobs:
-  acquire:
+  acquire_stock_buckets:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        bucket: [0,1,2,3,4,5,6,7]
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,17 +28,71 @@ jobs:
           python -m pip download --no-deps --only-binary=:all: baostock==0.9.4 -d wheelhouse
           test "$(sha256sum wheelhouse/baostock-0.9.4-py3-none-any.whl | awk '{print $1}')" = "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8"
           python -m pip install wheelhouse/baostock-0.9.4-py3-none-any.whl pyarrow==21.0.0
-      - name: Acquire frozen 20 percent holdout source
-        run: python scripts/v285_holdout_source_acquisition.py
+      - name: Acquire deterministic stock bucket
+        run: |
+          python scripts/v285_holdout_source_acquisition.py             --bucket ${{ matrix.bucket }}             --out "v285_bucket_${{ matrix.bucket }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v285-stock-bucket-${{ matrix.bucket }}
+          path: v285_bucket_${{ matrix.bucket }}/*
+          if-no-files-found: error
+          retention-days: 1
+
+  acquire_benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned acquisition runtime
+        run: |
+          python -m pip download --no-deps --only-binary=:all: baostock==0.9.4 -d wheelhouse
+          test "$(sha256sum wheelhouse/baostock-0.9.4-py3-none-any.whl | awk '{print $1}')" = "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8"
+          python -m pip install wheelhouse/baostock-0.9.4-py3-none-any.whl pyarrow==21.0.0
+      - name: Acquire benchmark
+        run: |
+          python scripts/v285_holdout_source_acquisition.py             --benchmark             --out v285_benchmark
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v285-benchmark
+          path: v285_benchmark/*
+          if-no-files-found: error
+          retention-days: 1
+
+  finalize:
+    needs: [acquire_stock_buckets, acquire_benchmark]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyarrow==21.0.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v285-*
+          merge-multiple: true
+          path: v285_artifacts
+      - name: Validate and merge all frozen source parts
+        run: |
+          python scripts/v285_holdout_source_finalize.py             --artifact-root v285_artifacts             --out v285_final
       - name: Freeze normalized snapshot and compact provenance
         run: |
           set -euo pipefail
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
           mkdir -p evidence/v285_holdout_source
-          cp v285_holdout_source/*.parquet evidence/v285_holdout_source/
-          cp v285_holdout_source/V2.8.5_BAOSTOCK_QUERY_MANIFEST.csv evidence/v285_holdout_source/
-          cp v285_holdout_source/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          cp v285_artifacts/*.parquet evidence/v285_holdout_source/
+          cp v285_artifacts/V2.8.5_BAOSTOCK_BUCKET_*_RECEIPT.json evidence/v285_holdout_source/
+          cp v285_artifacts/V2.8.5_BAOSTOCK_QUERY_MANIFEST_BUCKET_*.csv evidence/v285_holdout_source/
+          cp v285_artifacts/V2.8.5_BAOSTOCK_BENCHMARK_RECEIPT.json evidence/v285_holdout_source/
+          cp v285_final/V2.8.5_BAOSTOCK_QUERY_MANIFEST.csv evidence/v285_holdout_source/
+          cp v285_final/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json evidence/
           git add evidence/v285_holdout_source evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json
           git commit -m "Freeze V2.8.5 untouched backward-holdout source snapshot [skip ci]"
           git pull --rebase origin main
