@@ -22,6 +22,7 @@ import v284_e_layer_effective_date as ed
 ACTIVATION = Path("evidence/V2.8.4_PROSPECTIVE_E_LAYER_ACTIVATION.json")
 INVENTORY = Path("evidence/V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv")
 LEDGER = Path("evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv")
+IDENTITY_BINDINGS = Path("evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv")
 STATIC = "https://static.cninfo.com.cn/"
 CACHE_ROOT = Path(".cache/v284_e_layer")
 
@@ -31,7 +32,7 @@ RESULT_FIELDS = [
     "pipeline_status","object_sha256","bytes","page_text_sha256","pdf_page_count",
     "pages_with_text","total_nonwhitespace_characters","classification_state",
     "evidence_page_number","evidence_sentence","matched_ai_role","matched_commerciality",
-    "classification_reason","issuer_legal_name","decision_sha256","blocker"
+    "classification_reason","issuer_legal_name","issuer_identity_basis","decision_sha256","blocker"
 ]
 
 def stable_sha256(obj)->str:
@@ -66,20 +67,42 @@ def unseen_rows(rows:list[dict], existing:list[dict])->list[dict]:
     seen={str(r.get("announcement_id") or "").strip() for r in existing}
     return [r for r in rows if str(r.get("announcement_id") or "").strip() not in seen]
 
-def issuer_legal_name(page_rows:list[dict],security_name:str="")->str:
-    # Evidence-record completeness helper only. It does not affect classification.
-    # Fail closed: a legal-form candidate must also contain the official CNInfo
-    # security_name, preventing a subsidiary/customer company name from being
-    # mislabeled as the listed issuer.
-    pat=re.compile(r"([\u4e00-\u9fffA-Za-z0-9（）()·]{2,80}(?:股份有限公司|有限责任公司|有限公司))")
-    sn=re.sub(r"\s+","",str(security_name or ""))
-    for row in sorted(page_rows,key=lambda r:int(r["page_number"]))[:3]:
+def legal_name_candidates(page_rows:list[dict],max_pages:int=3)->list[str]:
+    pat=re.compile(r"([\\u4e00-\\u9fffA-Za-z0-9（）()·]{2,80}(?:股份有限公司|有限责任公司|有限公司))")
+    out=[]
+    for row in sorted(page_rows,key=lambda r:int(r["page_number"]))[:max_pages]:
         text=str(row.get("text") or "")
         for m in pat.finditer(text):
-            candidate=re.sub(r"\s+","",m.group(1))
-            if 4<=len(candidate)<=90 and (not sn or sn in candidate):
-                return candidate
-    return ""
+            candidate=re.sub(r"\\s+","",m.group(1))
+            if 4<=len(candidate)<=90 and candidate not in out:
+                out.append(candidate)
+    return out
+
+def load_identity_bindings(path:Path=IDENTITY_BINDINGS)->list[dict]:
+    return load_csv(path)
+
+def resolve_issuer_identity(page_rows:list[dict],row:dict,bindings:list[dict])->tuple[str,str]:
+    cid=str(row.get("canonical_security_id") or "").strip()
+    sn=re.sub(r"\\s+","",str(row.get("security_name") or ""))
+    code=str(row.get("security_code") or "").strip()
+
+    exact=[x for x in bindings if str(x.get("canonical_security_id") or "").strip()==cid]
+    if exact:
+        names={str(x.get("issuer_legal_name") or "").strip() for x in exact}
+        short_names={re.sub(r"\\s+","",str(x.get("security_name") or "")) for x in exact}
+        if len(names)!=1 or not next(iter(names)) or (sn and short_names!={sn}):
+            raise RuntimeError("ISSUER_IDENTITY_BINDING_CONFLICT")
+        return next(iter(names)),"PREBOUND_OFFICIAL_ISSUER_IDENTITY"
+
+    # Fallback is intentionally strict: page 1 must itself carry the security code
+    # and security short name before any legal-form string can bind the issuer.
+    page1=next((str(x.get("text") or "") for x in page_rows if int(x["page_number"])==1),"")
+    norm=re.sub(r"\\s+","",page1)
+    if code and sn and code in norm and sn in norm:
+        candidates=legal_name_candidates([{"page_number":1,"text":page1}],1)
+        if len(candidates)==1:
+            return candidates[0],"CURRENT_OFFICIAL_PDF_PAGE1_SECURITY_HEADER"
+    return "",""
 
 def normalized_utc(ts:str)->str:
     dt=datetime.fromisoformat(str(ts).replace("Z","+00:00")).astimezone(timezone.utc)
@@ -148,6 +171,7 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
     out_dir.mkdir(parents=True,exist_ok=True)
     existing=ledger.load_rows(LEDGER)
     inventory=load_inventory()
+    identity_bindings=load_identity_bindings()
 
     with tempfile.TemporaryDirectory() as td:
         tmp=Path(td)
@@ -207,6 +231,7 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                     pages,extract=te.extract_pdf(pdf,mat["object_sha256"])
                     decision=pc.classify_pages(pages)
                     ev=decision["evidence"]
+                    issuer_name,identity_basis=resolve_issuer_identity(pages,row,identity_bindings)
                     results.append({
                         **base,
                         "pipeline_status":"SUCCESS",
@@ -222,7 +247,8 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                         "matched_ai_role":json.dumps(ev.get("matched_ai_role") or [],ensure_ascii=False,separators=(",",":")),
                         "matched_commerciality":json.dumps(ev.get("matched_commerciality") or [],ensure_ascii=False,separators=(",",":")),
                         "classification_reason":ev["reason"],
-                        "issuer_legal_name":issuer_legal_name(pages,row.get("security_name","")),
+                        "issuer_legal_name":issuer_name,
+                        "issuer_identity_basis":identity_basis,
                         "decision_sha256":decision["decision_sha256"],
                         "blocker":"",
                     })
@@ -289,14 +315,16 @@ def evidence_record(row:dict,observed_at_utc:str)->dict:
     if state!="ELIGIBLE_AI_CORE":
         return {}
     issuer=str(row.get("issuer_legal_name") or "").strip()
+    identity_basis=str(row.get("issuer_identity_basis") or "").strip()
     sentence=str(row.get("evidence_sentence") or "").strip()
     page=int(row.get("evidence_page_number") or 0)
     roles=json.loads(row.get("matched_ai_role") or "[]")
     commercial=json.loads(row.get("matched_commerciality") or "[]")
-    complete=bool(issuer and sentence and page>0 and roles and commercial)
+    complete=bool(issuer and identity_basis and sentence and page>0 and roles and commercial)
     rec={
         "canonical_security_id":row["canonical_security_id"],
         "issuer_legal_name":issuer,
+        "issuer_identity_basis":identity_basis,
         "document_type":"CNINFO_ISSUER_DISCLOSURE",
         "announcement_id":row["announcement_id"],
         "disclosure_date":row["disclosure_date"],
@@ -400,40 +428,66 @@ def self_test():
 
     existing=[{"announcement_id":"1"}]
     rows=[{"announcement_id":"1"},{"announcement_id":"2"}]
-    ck("P01_unseen_filters_existing", [r["announcement_id"] for r in unseen_rows(rows,existing)]==["2"])
-    ck("P02_legal_name_extracts", issuer_legal_name([
-        {"page_number":1,"text":"北京测试科技股份有限公司 关于人工智能业务的公告"}
-    ],"测试科技")=="北京测试科技股份有限公司")
-    ck("P03_legal_name_absent_fails_closed", issuer_legal_name([
-        {"page_number":1,"text":"关于人工智能业务的公告"}
-    ],"测试科技")=="")
-    ck("P04_subsidiary_name_rejected", issuer_legal_name([
-        {"page_number":1,"text":"公司控股子公司北京云算科技有限公司已签订合同。"}
-    ],"测试科技")=="")
-    ck("P05_normalized_utc", normalized_utc("2026-09-22T14:34:38+08:00")=="2026-09-22T06:34:38Z")
-        good={
+    ck("P01_unseen_filters_existing",[r["announcement_id"] for r in unseen_rows(rows,existing)]==["2"])
+
+    bindings=[{
+        "canonical_security_id":"SZSE:300634",
+        "security_name":"彩讯股份",
+        "issuer_legal_name":"彩讯科技股份有限公司",
+    }]
+    bound_row={"canonical_security_id":"SZSE:300634","security_name":"彩讯股份","security_code":"300634"}
+    name,basis=resolve_issuer_identity([{"page_number":1,"text":"无关文本"}],bound_row,bindings)
+    ck("P02_prebound_identity_resolves",name=="彩讯科技股份有限公司" and basis=="PREBOUND_OFFICIAL_ISSUER_IDENTITY")
+
+    header_row={"canonical_security_id":"SSE:600001","security_name":"测试科技","security_code":"600001"}
+    name2,basis2=resolve_issuer_identity([{
+        "page_number":1,
+        "text":"证券代码：600001 证券简称：测试科技 北京测试科技股份有限公司 关于人工智能业务的公告",
+    }],header_row,[])
+    ck("P03_page1_header_identity_resolves",name2=="北京测试科技股份有限公司" and basis2=="CURRENT_OFFICIAL_PDF_PAGE1_SECURITY_HEADER")
+
+    name3,basis3=resolve_issuer_identity([{
+        "page_number":1,
+        "text":"公司控股子公司北京云算科技有限公司已签订合同。",
+    }],header_row,[])
+    ck("P04_subsidiary_without_security_header_rejected",name3=="" and basis3=="")
+
+    conflict=False
+    try:
+        resolve_issuer_identity([],bound_row,bindings+[{
+            "canonical_security_id":"SZSE:300634",
+            "security_name":"彩讯股份",
+            "issuer_legal_name":"错误名称股份有限公司",
+        }])
+    except RuntimeError:
+        conflict=True
+    ck("P05_identity_conflict_blocks",conflict)
+    ck("P06_normalized_utc",normalized_utc("2026-09-22T14:34:38+08:00")=="2026-09-22T06:34:38Z")
+
+    good={
         "classification_state":"ELIGIBLE_AI_CORE",
         "canonical_security_id":"SSE:600001",
         "issuer_legal_name":"测试股份有限公司",
+        "issuer_identity_basis":"CURRENT_OFFICIAL_PDF_PAGE1_SECURITY_HEADER",
         "announcement_id":"123",
         "disclosure_date":"2026-09-22",
         "object_sha256":"a"*64,
         "evidence_page_number":"2",
         "evidence_sentence":"公司AI服务器已向客户批量交付。",
-        "matched_ai_role":"[\"AI服务器\"]",
-        "matched_commerciality":"[\"批量交付\"]",
+        "matched_ai_role":"[\\\"AI服务器\\\"]",
+        "matched_commerciality":"[\\\"批量交付\\\"]",
     }
     rec=evidence_record(good,"2026-09-22T06:34:38Z")
-    ck("P06_positive_record_complete",rec.get("record_complete") is True)
-    ck("P07_positive_next_day_effective",rec.get("effective_signal_date")=="2026-09-23")
-    bad={**good,"issuer_legal_name":""}
+    ck("P07_positive_record_complete",rec.get("record_complete") is True)
+    ck("P08_positive_next_day_effective",rec.get("effective_signal_date")=="2026-09-23")
+    bad={**good,"issuer_identity_basis":""}
     rec2=evidence_record(bad,"2026-09-22T06:34:38Z")
-    ck("P08_incomplete_positive_blocks_effect",rec2.get("record_complete") is False and "effective_signal_date" not in rec2)
+    ck("P09_unbound_positive_blocks_effect",rec2.get("record_complete") is False and "effective_signal_date" not in rec2)
     non={**good,"classification_state":"NOT_ESTABLISHED"}
-    ck("P09_nonpositive_has_no_effective_record",evidence_record(non,"2026-09-22T06:34:38Z")=={})
+    ck("P10_nonpositive_has_no_effective_record",evidence_record(non,"2026-09-22T06:34:38Z")=={})
 
     result={
-        "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V1",
+        "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V2",
         "tests":tests,
         "passed":sum(x["pass"] for x in tests),
         "total":len(tests),
