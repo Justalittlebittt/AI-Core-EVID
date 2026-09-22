@@ -1,0 +1,48 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_DRY_AI_CORE_SETUP_ELIGIBILITY_GATE_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_DRY_INTEGRATION_VALIDATION",
+  "purpose": "Define the strategy-agnostic precondition gate that a future Setup candidate must pass before any Setup-specific logic may treat it as an AI-Core candidate.",
+  "inputs": {
+    "identity": ["canonical_security_id", "signal_date"],
+    "U_layer": "V2.8.3 PASS PIT date authority and its exact universe snapshot for signal date D",
+    "E_layer": "V2.8.4 effective E-state resolver for the same canonical_security_id and signal date D"
+  },
+  "decision_order": [
+    "1_SIGNAL_DATE_AND_CANONICAL_ID_VALIDITY",
+    "2_PIT_U_AUTHORITY_EXISTS_AND_PASS",
+    "3_SECURITY_IS_MEMBER_OF_U_D",
+    "4_E_D_IS_ELIGIBLE_AI_CORE"
+  ],
+  "result_states": {
+    "PASS_DRY_AI_CORE_CANDIDATE": "U(D) membership is PASS and E(D)=ELIGIBLE_AI_CORE. This authorizes only downstream dry Setup evaluation.",
+    "BLOCK_NO_PIT_U_AUTHORITY": "No frozen PASS PIT universe authority exists for D.",
+    "BLOCK_U_AUTHORITY": "The D authority or snapshot fails integrity/date/schema checks.",
+    "BLOCK_NOT_IN_U_D": "Security is not a member of the official PIT universe for D.",
+    "BLOCK_E_NOT_ELIGIBLE": "E(D) is NOT_ESTABLISHED."
+  },
+  "problem_elimination": {
+    "delete": "No full-market daily Setup precomputation.",
+    "avoid": "Do not mix price/factor logic into U/E eligibility.",
+    "absorb": "Reuse the already frozen V2.8.3 PIT U authority and V2.8.4 E-state resolver.",
+    "substitute": "Expose one deterministic precondition function for future Setup implementations.",
+    "precompute_reuse": "Reuse sparse E effective-event ledger and per-date PIT universe snapshot.",
+    "optimize": "One security/date membership lookup plus one E-state lookup."
+  },
+  "forbidden": [
+    "No price or return data.",
+    "No factor or technical-signal threshold.",
+    "No Setup strategy definition or setup_id generation.",
+    "No append to First60 candidate ledger.",
+    "No Episode emission.",
+    "No live trading authorization.",
+    "No use of V2.7.31 static universe as a substitute for missing U(D)."
+  ],
+  "downstream": {
+    "future_setup_gate_may_consume_PASS": true,
+    "first60_append_authorized": false,
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
