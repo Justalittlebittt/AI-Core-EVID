@@ -1,0 +1,15 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CANDIDATE_TRIAGE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_CANDIDATE_TRIAGE_CONTRACT.json",
+  "runner": "scripts/v284_candidate_triage.py",
+  "workflow_run_id": 35694178061,
+  "workflow_job_id": 106637308622,
+  "validated_head_sha": "2c533e8379cffc4d8c4a11b0d87820fdda859215",
+  "synthetic_tests_passed": 7,
+  "synthetic_tests_total": 7,
+  "selftest_receipt_sha256": "",
+  "skip_has_negative_eligibility_meaning": false,
+  "price_or_return_data_consumed": false
+}
