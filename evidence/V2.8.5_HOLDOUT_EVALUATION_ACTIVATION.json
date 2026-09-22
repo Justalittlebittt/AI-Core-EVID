@@ -1,0 +1,30 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_HOLDOUT_EVALUATION_ACTIVATION_V1",
+  "version": "V2.8.5",
+  "status": "ACTIVE_ONE_TIME_BACKWARD_HOLDOUT_EVALUATION",
+  "source_snapshot_receipt": "evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json",
+  "source_snapshot_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9",
+  "sample_receipt": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_RECEIPT.json",
+  "sample_receipt_sha256": "c5ff327105f5ab7b4d3170e997dd8d38d8ef2e0e9a5ccc774ae9a12b379176e8",
+  "calendar_receipt": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+  "calendar_receipt_sha256": "1f6e44915ec0a6f3db0396a491c83118b6ce57448f7f08b2d35a7d8ee7cf4ed8",
+  "evaluator_validation_receipt": "evidence/V2.8.5_LOCKED_HOLDOUT_EVALUATOR_VALIDATION_RECEIPT.json",
+  "evaluator_validation_commit_sha": "5c661f2a5fc5404bf72d43a2a899a13fa970305a",
+  "activation_scope": [
+    "Run the frozen V2.8.5 evaluator exactly once against the frozen 2023-2024 holdout source snapshot.",
+    "Freeze daily metrics, hypothesis ledger when information-complete, and the terminal final receipt."
+  ],
+  "forbidden": [
+    "No sample changes.",
+    "No source re-download.",
+    "No factor or threshold changes.",
+    "No bootstrap seed or multiplicity changes.",
+    "No V2.8.3 contract changes.",
+    "No Setup or Episode emission.",
+    "No First60 append.",
+    "No live authorization."
+  ],
+  "setup_or_episode_emission_authorized": false,
+  "first60_append_authorized": false,
+  "live_authorized": false
+}
