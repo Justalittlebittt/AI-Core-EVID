@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_FOLD1_ACQUISITION_RESILIENCE_AMENDMENT_2_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_LOW_CONCURRENCY_SUPERSEDING_RUN",
+  "supersedes_execution_only": "max-parallel=4 and single-attempt login behavior from Amendment 1",
+  "execution": {
+    "shard_count": 16,
+    "max_parallel": 2,
+    "concurrency_group": "v286-resilient-fold1-source",
+    "cancel_in_progress": true,
+    "initial_login_attempts": 6,
+    "login_backoff_seconds": [2,4,6,8,10],
+    "proactive_relogin_every_symbols": 25,
+    "query_retries_after_initial_attempt": 2,
+    "query_retry_requires_fresh_login": true
+  },
+  "unchanged": [
+    "1058-security fold1 manifest",
+    "BaoStock 0.9.4",
+    "retrieval interval",
+    "post-adjusted stock query semantics",
+    "row-level flag3 crosscheck",
+    "dual-compression mechanism",
+    "all statistical gates and seeds",
+    "fold2-4 untouched"
+  ]
+}
