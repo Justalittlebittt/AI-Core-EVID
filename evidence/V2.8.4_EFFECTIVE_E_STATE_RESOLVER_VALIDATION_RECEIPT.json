@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_EFFECTIVE_E_STATE_RESOLVER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_EFFECTIVE_ELIGIBILITY_EVENT_LEDGER_CONTRACT.json",
+  "ledger": "evidence/V2.8.4_E_LAYER_EFFECTIVE_ELIGIBILITY_EVENTS.csv",
+  "runner": "scripts/v284_effective_e_state_resolver.py",
+  "workflow": ".github/workflows/v284-effective-e-state-resolver-validation.yml",
+  "workflow_run_id": 35697036654,
+  "workflow_job_id": 106646073431,
+  "validated_head_sha": "73a51c0cafe73a7cb4369281986c9715bfe3d12a",
+  "synthetic_tests_passed": 10,
+  "synthetic_tests_total": 10,
+  "validated": [
+    "state is NOT_ESTABLISHED before an event effective date",
+    "state becomes ELIGIBLE_AI_CORE on the effective date",
+    "positive state persists on later dates while revocation is undefined",
+    "unknown security defaults to NOT_ESTABLISHED",
+    "first effective-event provenance is preserved",
+    "non-positive rows cannot enter the effective-event ledger",
+    "duplicate event conflicts fail closed",
+    "non-joint-trading signal dates fail closed",
+    "noncanonical security IDs fail closed",
+    "earliest effective positive event remains the authority when later positives exist"
+  ],
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false
+}
