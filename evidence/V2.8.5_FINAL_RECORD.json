@@ -1,0 +1,45 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_FINAL_RECORD_V1",
+  "version": "V2.8.5",
+  "status": "BACKWARD_HOLDOUT_REJECTED",
+  "terminal_receipt": "evidence/V2.8.5_BACKWARD_HOLDOUT_FINAL_RECEIPT.json",
+  "terminal_receipt_sha256": "b6805843053455d90ca24e0899f86bbc721773bf9907e9ab7a4b079685b1bd00",
+  "result": {
+    "H1_RV_COMPRESSION_CALM_BACKWARD_HOLDOUT": "FAIL",
+    "H2_TR_COMPRESSION_CALM_BACKWARD_HOLDOUT": "FAIL",
+    "passed_count": 0
+  },
+  "why": {
+    "H1": [
+      "CALM mean adjusted D10 IC was positive and bootstrap-significant.",
+      "Holm-Bonferroni passed.",
+      "D5 and quarter stability conditions passed.",
+      "But CALM-minus-STRESSED adjusted D10 IC was negative and its confidence interval did not exclude zero above."
+    ],
+    "H2": [
+      "CALM mean adjusted D10 IC was positive and bootstrap-significant.",
+      "Holm-Bonferroni passed.",
+      "D5 and quarter stability conditions passed.",
+      "But CALM-minus-STRESSED adjusted D10 IC was negative and its confidence interval did not exclude zero above."
+    ]
+  },
+  "interpretation": [
+    "The risk-compression factors show directional cross-sectional information in CALM periods, but the frozen holdout does not support the stronger claim that CALM is the validating conditioner relative to STRESSED periods.",
+    "Therefore V2.8.3 CALM risk-compression should not be promoted into a Setup design basis.",
+    "The V2.8.4 E-layer infrastructure remains valid and independent of this rejection."
+  ],
+  "decision": {
+    "build_setup_around_calm_risk_compression": false,
+    "modify_v2_8_3_to_rescue_result": false,
+    "reuse_old_v2_7_3_strategy_identity": false,
+    "next_stage": "V2.8.6_NEW_MECHANISM_DISCOVERY_GATE"
+  },
+  "governance": {
+    "optional_stopping_used": false,
+    "sample_modified_after_results": false,
+    "V2_8_3_contract_changed": false,
+    "setup_or_episode_emission_authorized": false,
+    "first60_append_authorized": false,
+    "live_authorized": false
+  }
+}
