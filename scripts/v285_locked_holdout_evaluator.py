@@ -134,7 +134,9 @@ def symbol_panel(g:pd.DataFrame,meta:dict,days:list[str],tgt:dict[str,tuple[str|
     x=g.loc[g["tradestatus"].astype(str)=="1"].copy()
     if x.empty:
         return []
-    x=x.sort_values("date",kind="mergesort").drop_duplicates("date",keep=False)
+    x=x.sort_values("date",kind="mergesort")
+    if x["date"].duplicated().any():
+        raise RuntimeError(f"DUPLICATE_STOCK_DATE:{meta['canonical_security_id']}")
     close=numeric(x["close"]); high=numeric(x["high"]); low=numeric(x["low"])
     prev=close.shift(1)
     logret=np.log(close/prev)
