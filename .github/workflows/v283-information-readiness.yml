@@ -1,7 +1,5 @@
 name: V2.8.3 Blind Information Readiness
 on:
-  schedule:
-    - cron: "30 3 * * 2-6"
   workflow_dispatch:
 
 permissions:
