@@ -1,0 +1,47 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PAGE_SCOPED_CLASSIFICATION_AGGREGATION_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_REAL_SECURITY_CLASSIFICATION",
+  "purpose": "Preserve PDF page provenance while applying the already-validated sentence-level AI-Core rule engine and aggregate page decisions into one filing-level state without weakening positive-evidence requirements.",
+  "upstream": {
+    "eligibility_contract": "evidence/V2.8.4_AI_CORE_ELIGIBILITY_CONTRACT.json",
+    "rule_engine_validation": "evidence/V2.8.4_AI_CORE_RULE_ENGINE_VALIDATION_RECEIPT.json",
+    "text_extraction_contract": "evidence/V2.8.4_OFFICIAL_PDF_TEXT_EXTRACTION_CONTRACT.json"
+  },
+  "page_evaluation": {
+    "engine": "scripts/v284_ai_core_evidence_classifier.py classify_text",
+    "semantic_rule_changes": false,
+    "page_number_required": true,
+    "search_title_or_snippet_allowed": false
+  },
+  "filing_aggregation": {
+    "precedence": [
+      "ELIGIBLE_AI_CORE",
+      "BLOCKED_AMBIGUOUS",
+      "EXCLUDED_AI_ADOPTER_ONLY",
+      "EXCLUDED_AI_RND_ONLY",
+      "NOT_ESTABLISHED"
+    ],
+    "ELIGIBLE_AI_CORE": "At least one page contains the already-frozen positive conjunction. Positive evidence is never canceled by weaker exclusion-only language elsewhere in the filing.",
+    "BLOCKED_AMBIGUOUS": "No positive conjunction exists, but both adopter-only and R&D-only direct-AI evidence states occur in the filing; do not force one exclusion interpretation.",
+    "EXCLUDED_AI_ADOPTER_ONLY": "No positive conjunction or R&D-only evidence; at least one adopter-only page exists.",
+    "EXCLUDED_AI_RND_ONLY": "No positive conjunction or adopter-only evidence; at least one R&D-only page exists.",
+    "NOT_ESTABLISHED": "No page establishes positive or explicit exclusion evidence."
+  },
+  "evidence_output_required": [
+    "classification_state",
+    "page_number",
+    "evidence_sentence",
+    "matched_ai_role",
+    "matched_commerciality",
+    "reason"
+  ],
+  "governance": {
+    "real_security_classification_authorized_by_this_contract": false,
+    "synthetic_validation_authorized": true,
+    "price_or_return_data_forbidden": true,
+    "eligibility_threshold_changed": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
