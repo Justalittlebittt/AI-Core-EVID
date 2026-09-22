@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_HOLDOUT_EVALUATION_GATE_CONTRACT_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_BEFORE_SOURCE_ACQUISITION_COMPLETION",
+  "purpose": "Separate frozen-source acquisition from the one-time statistical opening of the untouched 2023-2024 holdout.",
+  "activation_prerequisites": [
+    "V2.8.5 BaoStock disjoint source probe PASS",
+    "V2.8.5 backward holdout deterministic sample PASS and frozen before holdout price retrieval",
+    "V2.8.5 joint A-share 2023-2024 calendar PASS",
+    "V2.8.5 frozen holdout source snapshot receipt status PASS",
+    "V2.8.5 locked holdout evaluator validation PASS",
+    "all source partition and benchmark hashes referenced by the snapshot receipt exist and match",
+    "separate V2.8.5 holdout evaluation activation record"
+  ],
+  "one_time_semantics": {
+    "terminal_final_receipt": "evidence/V2.8.5_BACKWARD_HOLDOUT_FINAL_RECEIPT.json",
+    "if_terminal_final_exists": "NO_REEVALUATION",
+    "rerun_to_seek_different_bootstrap_or_result": false,
+    "result_driven_contract_change": false
+  },
+  "allowed_after_activation": [
+    "read frozen 2022-09-01 through 2024-12-31 sampled source snapshot",
+    "compute frozen rv10_over_rv60 and tr10_over_tr60 features",
+    "compute frozen exact D+5 and D+10 outcomes",
+    "compute frozen CALM/STRESSED market state",
+    "run locked V2.8.5 transportability statistics once",
+    "freeze daily metrics, hypothesis ledger when information-complete, and terminal final receipt"
+  ],
+  "forbidden": [
+    "No sample replacement.",
+    "No source re-download after successful snapshot freeze.",
+    "No Setup construction inside the evaluator.",
+    "No use of holdout result to alter V2.8.3.",
+    "No First60 append.",
+    "No Episode or live authorization."
+  ]
+}
