@@ -1,11 +1,5 @@
 name: V2.8.4 Effective E-State Resolver Validation
 on:
-  push:
-    paths:
-      - "scripts/v284_effective_e_state_resolver.py"
-      - "evidence/V2.8.4_EFFECTIVE_ELIGIBILITY_EVENT_LEDGER_CONTRACT.json"
-      - "evidence/V2.8.4_E_LAYER_EFFECTIVE_ELIGIBILITY_EVENTS.csv"
-      - ".github/workflows/v284-effective-e-state-resolver-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
