@@ -1,0 +1,21 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_IDENTITY_FOLD_RESERVATION_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_FOLD1_MANIFEST_BUILD",
+  "assignment": "int(SHA256(canonical_security_id)[0:8],16) mod 5",
+  "fold_roles": {
+    "0": "CONSUMED_V2_8_5_DEVELOPMENT",
+    "1": "V2_8_6_MECHANISM_REPLICATION",
+    "2": "RESERVED_SETUP_SHAPE_RESEARCH",
+    "3": "RESERVED_SETUP_VALIDATION",
+    "4": "RESERVED_FINAL_CROSS_SECTIONAL_HOLDOUT"
+  },
+  "price_retrieval_authorization": {
+    "fold0": false,
+    "fold1": true,
+    "fold2": false,
+    "fold3": false,
+    "fold4": false
+  },
+  "note": "Folds 2-4 remain untouched until separately activated by later versioned contracts."
+}
