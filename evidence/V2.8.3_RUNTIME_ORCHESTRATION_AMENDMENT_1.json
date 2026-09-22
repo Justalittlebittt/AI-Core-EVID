@@ -1,0 +1,59 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_RUNTIME_ORCHESTRATION_AMENDMENT_1",
+  "version": "V2.8.3",
+  "status": "FROZEN_BEFORE_FIRST_CONFIRMATORY_SIGNAL_ADMISSION",
+  "purpose": "Reduce prospective runtime failure surface by consolidating five independent morning schedules into one sequential orchestrator while preserving all frozen research, PIT, source-vintage, outcome and confirmatory semantics.",
+  "problem_elimination": {
+    "final_goal": "Prospectively retain valid D-vintage features and same-T-vintage outcomes with the smallest reliable operational surface.",
+    "hard_constraints_unchanged": [
+      "first confirmatory signal date remains 2026-09-22",
+      "PIT authority remains post-close and date-specific",
+      "source pin remains immutable and prospective",
+      "D-vintage feature snapshot semantics unchanged",
+      "D/T economic endpoints remain same T-vintage",
+      "blind information gate remains performance-blind",
+      "locked confirmatory evaluator remains readiness-gated and one-final-evaluation-only",
+      "no setup, episode or live authorization"
+    ],
+    "soft_constraint_deleted": "Each morning stage requires its own independent GitHub schedule.",
+    "replacement": "One 09:00 Asia/Shanghai morning orchestrator runs the already-validated stages sequentially."
+  },
+  "schedule_authority": {
+    "post_close_pit": {
+      "workflow": ".github/workflows/v283-pit-date-authority.yml",
+      "cron_utc": "0 8 * * 1-5",
+      "local_asia_shanghai": "16:00 Monday-Friday",
+      "role": "Capture D PIT authority after market close."
+    },
+    "morning_orchestrator": {
+      "workflow": ".github/workflows/v283-prospective-morning-orchestrator.yml",
+      "cron_utc": "0 1 * * 2-6",
+      "local_asia_shanghai": "09:00 Tuesday-Saturday",
+      "ordered_stages": [
+        "1_SOURCE_PIN_CAPTURE",
+        "2_D_VINTAGE_SIGNAL_FEATURE_SNAPSHOT",
+        "3_MATURE_OUTCOME_RESOLUTION",
+        "4_BLIND_INFORMATION_READINESS",
+        "5_LOCKED_CONFIRMATORY_EVALUATION_IF_READY"
+      ]
+    }
+  },
+  "superseded_schedule_fields_only": [
+    "evidence/V2.8.3_SOURCE_LEDGER_ACTIVATION_RECEIPT.json schedule remains semantically satisfied by the orchestrator",
+    "evidence/V2.8.3_SIGNAL_FEATURE_SNAPSHOT_ACTIVATION.json standalone 10:00 schedule",
+    "evidence/V2.8.3_OUTCOME_RESOLVER_ACTIVATION.json standalone 11:00 schedule",
+    "evidence/V2.8.3_BLIND_INFORMATION_GATE_ACTIVATION.json standalone 11:30 schedule",
+    "evidence/V2.8.3_LOCKED_CONFIRMATORY_EVALUATOR_ACTIVATION.json standalone 12:00 schedule"
+  ],
+  "manual_recovery": {
+    "component_workflows_retained": true,
+    "component_schedule_removed": true,
+    "workflow_dispatch_retained": true,
+    "reason": "Allow targeted recovery without creating duplicate automatic executions."
+  },
+  "scientific_semantics_changed": false,
+  "thresholds_changed": false,
+  "hypotheses_changed": false,
+  "prospective_boundary_changed": false,
+  "outcome_visibility_changed": false
+}
