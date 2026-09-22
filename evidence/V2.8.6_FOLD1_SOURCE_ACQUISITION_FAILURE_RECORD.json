@@ -1,0 +1,26 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_FOLD1_SOURCE_ACQUISITION_FAILURE_RECORD_V1",
+  "version": "V2.8.6",
+  "status": "NETWORK_SESSION_FAILURE_BEFORE_SOURCE_SNAPSHOT_FREEZE",
+  "workflow_run_id": 35706670155,
+  "failed_head_sha": "31db5429b839f90971063514bc7977f1cea8cc2a",
+  "benchmark_job": "PASS",
+  "stock_shard_jobs": {
+    "attempted_large_buckets": 8,
+    "failed_large_buckets": 8,
+    "common_failed_step": "Acquire deterministic fold1 stock bucket"
+  },
+  "representative_traceback": "PERSISTENT_QUERY_ERROR:sh.605228:10002007:网络接收错误",
+  "observed_transport_errors": [
+    "Connection reset by peer",
+    "Broken pipe",
+    "BaoStock error_code 10002007 网络接收错误"
+  ],
+  "research_state": {
+    "fold1_source_snapshot_committed": false,
+    "factor_or_forward_return_computed": false,
+    "fold1_mechanism_statistics_computed": false,
+    "fold2_3_4_consumed": false
+  },
+  "sample_or_hypothesis_changed": false
+}
