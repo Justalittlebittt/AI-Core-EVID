@@ -310,6 +310,19 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
     rp.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(receipt,ensure_ascii=False,indent=2))
 
+def parsed_list(value)->list:
+    if isinstance(value,list):
+        return value
+    if value in (None,""):
+        return []
+    try:
+        out=json.loads(str(value))
+    except json.JSONDecodeError as e:
+        raise RuntimeError("EVIDENCE_LIST_JSON_BLOCKED") from e
+    if not isinstance(out,list):
+        raise RuntimeError("EVIDENCE_LIST_TYPE_BLOCKED")
+    return out
+
 def evidence_record(row:dict,observed_at_utc:str)->dict:
     state=row["classification_state"]
     if state!="ELIGIBLE_AI_CORE":
@@ -318,8 +331,8 @@ def evidence_record(row:dict,observed_at_utc:str)->dict:
     identity_basis=str(row.get("issuer_identity_basis") or "").strip()
     sentence=str(row.get("evidence_sentence") or "").strip()
     page=int(row.get("evidence_page_number") or 0)
-    roles=json.loads(row.get("matched_ai_role") or "[]")
-    commercial=json.loads(row.get("matched_commerciality") or "[]")
+    roles=parsed_list(row.get("matched_ai_role"))
+    commercial=parsed_list(row.get("matched_commerciality"))
     complete=bool(issuer and identity_basis and sentence and page>0 and roles and commercial)
     rec={
         "canonical_security_id":row["canonical_security_id"],
@@ -474,8 +487,8 @@ def self_test():
         "object_sha256":"a"*64,
         "evidence_page_number":"2",
         "evidence_sentence":"公司AI服务器已向客户批量交付。",
-        "matched_ai_role":"[\\\"AI服务器\\\"]",
-        "matched_commerciality":"[\\\"批量交付\\\"]",
+        "matched_ai_role":["AI服务器"],
+        "matched_commerciality":["批量交付"],
     }
     rec=evidence_record(good,"2026-09-22T06:34:38Z")
     ck("P07_positive_record_complete",rec.get("record_complete") is True)
@@ -485,9 +498,15 @@ def self_test():
     ck("P09_unbound_positive_blocks_effect",rec2.get("record_complete") is False and "effective_signal_date" not in rec2)
     non={**good,"classification_state":"NOT_ESTABLISHED"}
     ck("P10_nonpositive_has_no_effective_record",evidence_record(non,"2026-09-22T06:34:38Z")=={})
+    bad_json=False
+    try:
+        parsed_list("[bad]")
+    except RuntimeError:
+        bad_json=True
+    ck("P11_invalid_evidence_list_blocks",bad_json)
 
     result={
-        "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V2",
+        "schema":"AI_CORE_EVID_V2_8_4_INCREMENTAL_PROSPECTIVE_RUNNER_SELFTEST_V3",
         "tests":tests,
         "passed":sum(x["pass"] for x in tests),
         "total":len(tests),
