@@ -1,9 +1,5 @@
 name: V2.8.4 PDF Text Extraction Validation
 on:
-  push:
-    paths:
-      - "scripts/v284_pdf_text_extractor.py"
-      - ".github/workflows/v284-pdf-text-extraction-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
