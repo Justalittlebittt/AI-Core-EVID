@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BAOSTOCK_ADJUSTFLAG_SEMANTICS_DIAGNOSTIC_V1",
+  "version": "V2.8.5",
+  "status": "SOURCE_SEMANTICS_IDENTIFIED_NO_HOLDOUT_STATISTICS",
+  "failed_acquisition_run_id": 35699254345,
+  "diagnostic_runs": [35701119379, 35701263193, 35701388348],
+  "example_security": "SSE:603273",
+  "provider_code": "sh.603273",
+  "requested_post_adjustflag": "1",
+  "observed": {
+    "rows": 292,
+    "returned_flag_3_rows": 2,
+    "returned_flag_1_rows": 290,
+    "returned_flag_3_first_date": "2023-10-23",
+    "returned_flag_3_last_date": "2023-10-24",
+    "all_returned_flag_3_rows_numerically_equal_same_date_unadjusted_prices": true,
+    "returned_flag_1_rows_numerically_different_from_unadjusted_count": 116
+  },
+  "interpretation": [
+    "BaoStock 0.9.4 may return row-level adjustflag=3 inside a query requested with adjustflag=1.",
+    "For the diagnosed rows, returned flag=3 denoted dates whose OHLC/preclose values were numerically identical to the provider's same-date unadjusted query.",
+    "The same requested post-adjusted series later contains flag=1 rows whose values differ from unadjusted prices, proving the requested post-adjusted series was not silently replaced by a fully unadjusted series.",
+    "Therefore the failed implementation assumption 'every returned row flag must equal the requested query flag' is invalid for BaoStock row metadata."
+  ],
+  "factor_or_forward_return_computed": false,
+  "holdout_statistics_computed": false,
+  "sample_changed": false,
+  "hypothesis_or_pass_condition_changed": false
+}
