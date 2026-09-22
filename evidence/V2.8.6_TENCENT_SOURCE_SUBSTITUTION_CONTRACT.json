@@ -1,0 +1,46 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_TENCENT_SOURCE_SUBSTITUTION_CONTRACT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_ANY_TENCENT_FOLD1_PRICE_RETRIEVAL",
+  "purpose": "Replace only the rate-limited Eastmoney stock-price transport with AKShare Tencent historical A-share data while preserving all frozen V2.8.6 research semantics.",
+  "superseded_stock_provider": {
+    "provider": "Eastmoney via AKShare stock_zh_a_hist",
+    "probe_status": "PASS",
+    "full_fold1_status": "FAILED_TRANSPORT",
+    "representative_error": "RemoteDisconnected"
+  },
+  "replacement_provider": {
+    "library": "AKShare",
+    "version": "1.18.97",
+    "wheel_sha256": "f7a202842b1300bfe74efca69be93919041422e8a3dc1f0be204b039af27e683",
+    "upstream": "Tencent Securities",
+    "interface": "stock_zh_a_hist_tx",
+    "adjust": "hfq",
+    "scope": "SSE and SZSE A-shares only",
+    "retrieval_start": "2022-09-01",
+    "retrieval_end": "2024-12-31"
+  },
+  "probe_before_fold1": {
+    "period": ["2022-01-04","2022-03-31"],
+    "symbols": ["sh600000","sz000001","sz300750"],
+    "disjoint_from_fold1_retrieval": true,
+    "factor_or_forward_return_computation": false
+  },
+  "unchanged": [
+    "1058-security fold1 manifest and SHA",
+    "fold2-4 untouched",
+    "PIT membership",
+    "2023-2024 joint calendar",
+    "rv10_over_rv60 and tr10_over_tr60 definitions",
+    "equal-weight dual-compression score",
+    "exact D+5/D+10 horizons",
+    "market-state strata",
+    "bootstrap, seeds, quarterly stability and PASS conditions"
+  ],
+  "forbidden": [
+    "No qfq.",
+    "No sample replacement.",
+    "No result-driven research changes.",
+    "No Setup/Episode/First60/live authorization."
+  ]
+}
