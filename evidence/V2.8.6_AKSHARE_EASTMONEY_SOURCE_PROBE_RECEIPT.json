@@ -1,0 +1,40 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_AKSHARE_EASTMONEY_SOURCE_PROBE_RECEIPT_V1",
+  "version": "V2.8.6",
+  "status": "PASS",
+  "akshare_version": "1.18.97",
+  "upstream": "Eastmoney",
+  "interface": "stock_zh_a_hist",
+  "period": "daily",
+  "adjust": "hfq",
+  "probe_start": "2022-01-04",
+  "probe_end": "2022-03-31",
+  "queries": [
+    {
+      "symbol": "600000",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "normalized_rows_sha256": "5fa615fb433c9444d4088bff75c193899ccd79b7a7112052f3c67ed7c9c6c31c"
+    },
+    {
+      "symbol": "000001",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "normalized_rows_sha256": "5b554dff77010ce62c1c706606fe835c70f1b8dd176bebb2c163a317bd8bf9fa"
+    },
+    {
+      "symbol": "300750",
+      "rows": 58,
+      "min_date": "2022-01-04",
+      "max_date": "2022-03-31",
+      "normalized_rows_sha256": "d688624a3c4ff5dc3e9527f8a3697f37a801795bff3965e63755e8db1b7297e8"
+    }
+  ],
+  "fold1_price_rows_read": false,
+  "factor_or_forward_return_computed": false,
+  "mechanism_statistics_computed": false,
+  "fold2_3_4_consumed": false,
+  "receipt_sha256": "7dd906254b4f2ed6d8615822ec7a55fcb86efde6e30f6143659e214edc66ad8d"
+}
