@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_EASTMONEY_ACQUISITION_RESILIENCE_AMENDMENT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_SERIALIZED_RETRY_RUN",
+  "execution_only_changes": {
+    "matrix_shards": 16,
+    "max_parallel": 1,
+    "per_symbol_attempts": 6,
+    "backoff_seconds": [2,4,8,12,18],
+    "inter_symbol_pause_seconds": 0.5,
+    "persistent_query_error": "FAIL_ONLY_CURRENT_SHARD_NO_SAMPLE_REPLACEMENT"
+  },
+  "unchanged": [
+    "AKShare 1.18.97 / Eastmoney",
+    "hfq price semantics",
+    "1058-security fold1 manifest",
+    "retrieval interval",
+    "PIT membership",
+    "joint calendar",
+    "dual-compression factor definitions",
+    "all statistical mechanics, seeds and PASS conditions",
+    "fold2-4 remain untouched"
+  ]
+}
