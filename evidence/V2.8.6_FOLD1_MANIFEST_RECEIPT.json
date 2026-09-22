@@ -1,0 +1,23 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_FOLD1_MANIFEST_RECEIPT_V1",
+  "version": "V2.8.6",
+  "status": "PASS",
+  "frame_count": 5218,
+  "fold_counts": {
+    "0": 1031,
+    "1": 1058,
+    "2": 1048,
+    "3": 1039,
+    "4": 1042
+  },
+  "target_fold": 1,
+  "fold1_count": 1058,
+  "sse_count": 468,
+  "szse_count": 590,
+  "canonical_sorted_newline_sha256": "4b455a9aa74d722edcbdde4670e4fc75d0ff982f9c39d5abc72a9601cd0c971f",
+  "manifest_file": "V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv",
+  "manifest_sha256": "fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a",
+  "fold0_overlap_count": 0,
+  "price_rows_read": false,
+  "fold2_3_4_price_rows_read": false
+}
