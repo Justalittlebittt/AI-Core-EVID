@@ -1,0 +1,28 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_E_LAYER_EFFECTIVE_DATE_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_E_LAYER_ACTIVATION",
+  "purpose": "Operationalize the parent AI-Core eligibility temporal rule so a newly observed positive evidence event cannot contaminate the same trading date.",
+  "parent_temporal_rule": "evidence/V2.8.4_AI_CORE_ELIGIBILITY_CONTRACT.json temporal_rule.prospective",
+  "calendar_authority": "evidence/V2.7.32_JOINT_A_SHARE_TRADING_CALENDAR_2026.json",
+  "authoritative_observation_time": "GitHub committed_at of the first prospective evidence-event commit.",
+  "effective_date_rule": {
+    "timezone": "Asia/Shanghai",
+    "default": "Convert authoritative observation time to Asia/Shanghai calendar date O. The earliest eligible signal date is the first joint A-share trading date D such that D > O.",
+    "same_calendar_date_activation": false,
+    "pre_open_exception": "NOT_AUTHORIZED_IN_V2_8_4",
+    "weekend_or_holiday": "Advance to the first later joint trading date.",
+    "reason": "Conservative no-leakage interpretation of 'first trading date after authoritative repository observation time'; avoids dependence on intraday publication/commit timing."
+  },
+  "examples": [
+    {"observation_local_date":"2026-09-22","earliest_effective_signal_date":"2026-09-23"},
+    {"observation_local_date":"2026-09-24","earliest_effective_signal_date":"2026-09-28"},
+    {"observation_local_date":"2026-09-30","earliest_effective_signal_date":"2026-10-08"}
+  ],
+  "revision_rule": "A new official filing revision creates a new evidence event and can alter state only from its own separately computed effective date.",
+  "no_backfill": true,
+  "historical_diagnostic_results_do_not_create_effective_dates": true,
+  "price_or_return_data_forbidden": true,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false
+}
