@@ -19,7 +19,7 @@ PROBE=Path("evidence/V2.8.5_BAOSTOCK_SOURCE_PROBE_RECEIPT.json")
 START="2022-09-01"
 END="2024-12-31"
 FIELDS=["date","code","open","high","low","close","preclose","volume","amount","adjustflag","tradestatus"]
-OUT=Path("v285_holdout_source")
+PRICE_KEYS=("open","high","low","close","preclose")
 MAX_GIT_OBJECT_BYTES=95_000_000
 
 def sha_file(path:Path)->str:
@@ -74,16 +74,22 @@ def fetch(code:str,adjustflag:str)->list[dict]:
             time.sleep(0.5*(attempt+1))
     raise RuntimeError(f"PERSISTENT_QUERY_ERROR:{code}:{last}")
 
-def validate_rows(code:str,rows:list[dict],expected_adjustflag:str):
+def numeric_equal(a:str,b:str)->bool:
+    try:
+        x=float(a); y=float(b)
+    except Exception:
+        return a==b
+    if not (math.isfinite(x) and math.isfinite(y)):
+        return False
+    return abs(x-y)<=1e-12*max(1.0,abs(x),abs(y))
+
+def validate_common(code:str,rows:list[dict])->dict:
     if not rows:
         return {"status":"ZERO_ROWS","rows":0,"trading_rows":0,"min_date":"","max_date":"","rows_sha256":stable_sha([])}
-    dates=[]
-    trading=0
+    dates=[]; trading=0
     for r in rows:
         if r["code"]!=code:
             raise RuntimeError(f"CODE_DRIFT:{code}")
-        if r["adjustflag"]!=expected_adjustflag:
-            raise RuntimeError(f"ADJUSTFLAG_DRIFT:{code}:{r['adjustflag']}")
         if r["tradestatus"] not in {"0","1"}:
             raise RuntimeError(f"TRADESTATUS_DOMAIN:{code}:{r['tradestatus']}")
         if not (START<=r["date"]<=END):
@@ -107,49 +113,66 @@ def validate_rows(code:str,rows:list[dict],expected_adjustflag:str):
     if dates!=sorted(dates) or len(dates)!=len(set(dates)):
         raise RuntimeError(f"DATE_ORDER_OR_DUPLICATE:{code}")
     return {
-        "status":"SUCCESS",
-        "rows":len(rows),
-        "trading_rows":trading,
-        "min_date":dates[0],
-        "max_date":dates[-1],
-        "rows_sha256":stable_sha(rows),
+        "status":"SUCCESS","rows":len(rows),"trading_rows":trading,
+        "min_date":dates[0],"max_date":dates[-1],"rows_sha256":stable_sha(rows),
+    }
+
+def validate_unadjusted(code:str,rows:list[dict])->dict:
+    rec=validate_common(code,rows)
+    if rows and {r["adjustflag"] for r in rows}!={"3"}:
+        raise RuntimeError(f"UNADJUSTED_ROWFLAG_DRIFT:{code}:{sorted({r['adjustflag'] for r in rows})}")
+    return rec
+
+def validate_post_adjusted(code:str,rows:list[dict])->dict:
+    rec=validate_common(code,rows)
+    if not rows:
+        return {**rec,"returned_adjustflags":"","flag3_rows":0,"flag3_crosschecked_rows":0}
+    flags={r["adjustflag"] for r in rows}
+    if not flags.issubset({"1","3"}):
+        raise RuntimeError(f"POST_ADJUST_ROWFLAG_BLOCK:{code}:{sorted(flags)}")
+    flag3=[r for r in rows if r["adjustflag"]=="3"]
+    checked=0
+    if flag3:
+        raw=fetch(code,"3")
+        validate_unadjusted(code,raw)
+        by_date={r["date"]:r for r in raw}
+        for r in flag3:
+            q=by_date.get(r["date"])
+            if q is None:
+                raise RuntimeError(f"FLAG3_RAW_DATE_MISSING:{code}:{r['date']}")
+            for k in PRICE_KEYS:
+                if not numeric_equal(r[k],q[k]):
+                    raise RuntimeError(f"FLAG3_RAW_PRICE_MISMATCH:{code}:{r['date']}:{k}")
+            checked+=1
+    return {
+        **rec,
+        "returned_adjustflags":"|".join(sorted(flags)),
+        "flag3_rows":len(flag3),
+        "flag3_crosschecked_rows":checked,
     }
 
 def enriched_rows(sample_row:dict,raw:list[dict])->list[dict]:
     cid=sample_row["canonical_security_id"]
     b=bucket(cid)
-    out=[]
-    for r in raw:
-        out.append({
-            "canonical_security_id":cid,
-            "exchange":sample_row["exchange"],
-            "security_code":sample_row["security_code"],
-            "baostock_code":sample_row["baostock_code"],
-            "sample_bucket":b,
-            **r,
-        })
-    return out
+    return [{
+        "canonical_security_id":cid,
+        "exchange":sample_row["exchange"],
+        "security_code":sample_row["security_code"],
+        "baostock_code":sample_row["baostock_code"],
+        "sample_bucket":b,
+        **r,
+    } for r in raw]
 
 def write_parquet(path:Path,rows:list[dict]):
     path.parent.mkdir(parents=True,exist_ok=True)
-    cols=[
-        "canonical_security_id","exchange","security_code","baostock_code","sample_bucket",
-        *FIELDS
-    ]
+    cols=["canonical_security_id","exchange","security_code","baostock_code","sample_bucket",*FIELDS]
     data={c:[r.get(c,"") for r in rows] for c in cols}
     table=pa.table(data)
-    pq.write_table(
-        table,path,
-        compression="zstd",
-        compression_level=9,
-        use_dictionary=True,
-        write_statistics=True,
-        version="2.6",
-    )
+    pq.write_table(table,path,compression="zstd",compression_level=9,use_dictionary=True,write_statistics=True,version="2.6")
     if path.stat().st_size>=MAX_GIT_OBJECT_BYTES:
         raise RuntimeError(f"PARQUET_PARTITION_TOO_LARGE:{path}:{path.stat().st_size}")
 
-def run(out:Path):
+def runtime_guard():
     if json.loads(PROBE.read_text(encoding="utf-8")).get("status")!="PASS":
         raise RuntimeError("SOURCE_PROBE_NOT_PASS")
     if importlib.metadata.version("baostock")!="0.9.4":
@@ -157,109 +180,113 @@ def run(out:Path):
     pav=importlib.metadata.version("pyarrow")
     if pav!="21.0.0":
         raise RuntimeError(f"PYARROW_VERSION_MISMATCH:{pav}")
+    return pav
 
-    sample=load_sample()
+def run_bucket(bucket_id:int,out:Path):
+    pav=runtime_guard()
+    sample=[r for r in load_sample() if bucket(r["canonical_security_id"])==bucket_id]
+    if not sample:
+        raise RuntimeError(f"EMPTY_BUCKET:{bucket_id}")
     out.mkdir(parents=True,exist_ok=True)
     lg=bs.login()
     if lg.error_code!="0":
         raise RuntimeError(f"BAOSTOCK_LOGIN_ERROR:{lg.error_code}:{lg.error_msg}")
-
-    partitions={i:[] for i in range(8)}
-    manifest=[]
+    all_rows=[]; manifest=[]
     try:
         for i,s in enumerate(sample,1):
             code=s["baostock_code"]
             raw=fetch(code,"1")
-            rec=validate_rows(code,raw,"1")
+            rec=validate_post_adjusted(code,raw)
             manifest.append({
                 "canonical_security_id":s["canonical_security_id"],
                 "baostock_code":code,
-                "sample_bucket":bucket(s["canonical_security_id"]),
+                "sample_bucket":bucket_id,
                 **rec,
             })
             if raw:
-                partitions[bucket(s["canonical_security_id"])].extend(enriched_rows(s,raw))
-            if i%100==0 or i==len(sample):
-                print(json.dumps({"progress_symbols":i,"total_symbols":len(sample)},ensure_ascii=False),flush=True)
-
-        bench_raw=fetch("sh.000300","3")
-        bench_rec=validate_rows("sh.000300",bench_raw,"3")
-        if bench_rec["status"]!="SUCCESS":
-            raise RuntimeError("BENCHMARK_ZERO_ROWS_BLOCKED")
+                all_rows.extend(enriched_rows(s,raw))
+            if i%50==0 or i==len(sample):
+                print(json.dumps({"bucket":bucket_id,"progress_symbols":i,"bucket_total":len(sample)},ensure_ascii=False),flush=True)
     finally:
         bs.logout()
 
-    part_meta=[]
-    stock_row_count=0
-    trading_row_count=0
-    for b in range(8):
-        rows=sorted(partitions[b],key=lambda r:(r["canonical_security_id"],r["date"]))
-        p=out/f"V2.8.5_BAOSTOCK_STOCKS_BUCKET_{b}.parquet"
-        write_parquet(p,rows)
-        stock_row_count+=len(rows)
-        trading_row_count+=sum(r["tradestatus"]=="1" for r in rows)
-        part_meta.append({
-            "bucket":b,"file":p.name,"rows":len(rows),"bytes":p.stat().st_size,"sha256":sha_file(p)
-        })
-
-    bench_rows=[{
-        "canonical_security_id":"BENCHMARK:CSI300",
-        "exchange":"SSE_INDEX",
-        "security_code":"000300",
-        "baostock_code":"sh.000300",
-        "sample_bucket":-1,
-        **r,
-    } for r in bench_raw]
-    bench_path=out/"V2.8.5_BAOSTOCK_CSI300.parquet"
-    write_parquet(bench_path,bench_rows)
-
-    manifest_path=out/"V2.8.5_BAOSTOCK_QUERY_MANIFEST.csv"
-    fields=["canonical_security_id","baostock_code","sample_bucket","status","rows","trading_rows","min_date","max_date","rows_sha256"]
-    with manifest_path.open("w",encoding="utf-8",newline="") as f:
+    all_rows.sort(key=lambda r:(r["canonical_security_id"],r["date"]))
+    pp=out/f"V2.8.5_BAOSTOCK_STOCKS_BUCKET_{bucket_id}.parquet"
+    write_parquet(pp,all_rows)
+    mp=out/f"V2.8.5_BAOSTOCK_QUERY_MANIFEST_BUCKET_{bucket_id}.csv"
+    fields=[
+        "canonical_security_id","baostock_code","sample_bucket","status","rows","trading_rows",
+        "min_date","max_date","rows_sha256","returned_adjustflags","flag3_rows","flag3_crosschecked_rows"
+    ]
+    with mp.open("w",encoding="utf-8",newline="") as f:
         w=csv.DictWriter(f,fieldnames=fields,lineterminator="\n")
         w.writeheader(); w.writerows(manifest)
-
     zero=[r["canonical_security_id"] for r in manifest if r["status"]=="ZERO_ROWS"]
     receipt={
-        "schema":"AI_CORE_EVID_V2_8_5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT_V1",
-        "version":"V2.8.5",
-        "status":"PASS",
-        "provider":"BaoStock",
-        "baostock_version":"0.9.4",
-        "pyarrow_version":pav,
-        "retrieval_start":START,
-        "retrieval_end":END,
+        "schema":"AI_CORE_EVID_V2_8_5_BAOSTOCK_BUCKET_RECEIPT_V1",
+        "version":"V2.8.5","status":"PASS","bucket":bucket_id,
+        "baostock_version":"0.9.4","pyarrow_version":pav,
+        "retrieval_start":START,"retrieval_end":END,
         "sample_manifest_sha256":SAMPLE_SHA,
-        "sample_count":len(sample),
+        "bucket_sample_count":len(sample),
         "successful_nonzero_symbols":sum(r["status"]=="SUCCESS" for r in manifest),
-        "zero_row_symbols":len(zero),
-        "zero_row_canonical_ids":zero,
-        "persistent_query_errors":0,
-        "stock_rows":stock_row_count,
-        "stock_trading_rows":trading_row_count,
-        "stock_partitions":part_meta,
-        "benchmark":{
-            **bench_rec,
-            "file":bench_path.name,
-            "bytes":bench_path.stat().st_size,
-            "parquet_sha256":sha_file(bench_path),
-        },
-        "query_manifest_file":manifest_path.name,
-        "query_manifest_sha256":sha_file(manifest_path),
+        "zero_row_symbols":len(zero),"zero_row_canonical_ids":zero,
+        "flag3_rows_total":sum(int(r.get("flag3_rows") or 0) for r in manifest),
+        "flag3_crosschecked_rows_total":sum(int(r.get("flag3_crosschecked_rows") or 0) for r in manifest),
+        "stock_rows":len(all_rows),
+        "parquet_file":pp.name,"parquet_bytes":pp.stat().st_size,"parquet_sha256":sha_file(pp),
+        "query_manifest_file":mp.name,"query_manifest_sha256":sha_file(mp),
         "factor_or_forward_return_computed":False,
         "holdout_outcome_inspected":False,
         "sample_replacement_used":False,
     }
     receipt["receipt_sha256"]=stable_sha(receipt)
-    rp=out/"V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json"
+    rp=out/f"V2.8.5_BAOSTOCK_BUCKET_{bucket_id}_RECEIPT.json"
+    rp.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(json.dumps(receipt,ensure_ascii=False,indent=2))
+
+def run_benchmark(out:Path):
+    pav=runtime_guard()
+    out.mkdir(parents=True,exist_ok=True)
+    lg=bs.login()
+    if lg.error_code!="0":
+        raise RuntimeError(f"BAOSTOCK_LOGIN_ERROR:{lg.error_code}:{lg.error_msg}")
+    try:
+        raw=fetch("sh.000300","3")
+        rec=validate_unadjusted("sh.000300",raw)
+    finally:
+        bs.logout()
+    if rec["status"]!="SUCCESS":
+        raise RuntimeError("BENCHMARK_ZERO_ROWS_BLOCKED")
+    rows=[{
+        "canonical_security_id":"BENCHMARK:CSI300","exchange":"SSE_INDEX","security_code":"000300",
+        "baostock_code":"sh.000300","sample_bucket":-1,**r
+    } for r in raw]
+    pp=out/"V2.8.5_BAOSTOCK_CSI300.parquet"
+    write_parquet(pp,rows)
+    receipt={
+        "schema":"AI_CORE_EVID_V2_8_5_BAOSTOCK_BENCHMARK_RECEIPT_V1",
+        "version":"V2.8.5","status":"PASS","baostock_version":"0.9.4","pyarrow_version":pav,
+        "retrieval_start":START,"retrieval_end":END,
+        **rec,"file":pp.name,"bytes":pp.stat().st_size,"parquet_sha256":sha_file(pp),
+        "factor_or_forward_return_computed":False,"holdout_outcome_inspected":False,
+    }
+    receipt["receipt_sha256"]=stable_sha(receipt)
+    rp=out/"V2.8.5_BAOSTOCK_BENCHMARK_RECEIPT.json"
     rp.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(receipt,ensure_ascii=False,indent=2))
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("--out",default=str(OUT))
+    g=ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--bucket",type=int,choices=range(8))
+    g.add_argument("--benchmark",action="store_true")
+    ap.add_argument("--out",required=True)
     a=ap.parse_args()
-    run(Path(a.out))
+    if a.benchmark:
+        run_benchmark(Path(a.out))
+    else:
+        run_bucket(a.bucket,Path(a.out))
 
 if __name__=="__main__":
     main()
