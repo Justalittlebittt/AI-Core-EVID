@@ -94,7 +94,7 @@ def validate_benchmark(root:Path)->dict:
     if not rp.exists():
         raise RuntimeError("BENCHMARK_RECEIPT_MISSING")
     rec=json.loads(rp.read_text(encoding="utf-8"))
-    if rec.get("status")!="PASS":
+    if rec.get("status") not in {"PASS","SUCCESS"}:
         raise RuntimeError("BENCHMARK_NOT_PASS")
     pp=root/rec["file"]
     if not pp.exists() or sha_file(pp)!=rec["parquet_sha256"]:
