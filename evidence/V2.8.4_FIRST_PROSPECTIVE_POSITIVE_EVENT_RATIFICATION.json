@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_FIRST_PROSPECTIVE_POSITIVE_EVENT_RATIFICATION_V1",
+  "version": "V2.8.4",
+  "status": "RATIFIED_FOR_PROSPECTIVE_EFFECTIVE_DATE",
+  "event": {
+    "canonical_security_id": "SZSE:300634",
+    "security_name": "彩讯股份",
+    "issuer_legal_name": "彩讯科技股份有限公司",
+    "announcement_id": "1225573666",
+    "announcement_title": "关于签订算力技术服务合同的公告",
+    "source_object_sha256": "a4a2e9ad44985e3d7426bc07ccb4eb315ba8d3ad862b099ebd1de5f1e610c040",
+    "page_text_sha256": "474386db25a7fdde8cc501c96b03b6c014f8cbe4b4c7fd5c1da68b9bf6893447",
+    "decision_sha256": "45d798fcdd631f536ef4279e9e48e33fa7e25a73dfcfd440df1b69a616a9d23f",
+    "classification_state": "ELIGIBLE_AI_CORE",
+    "evidence_page_number": 3,
+    "matched_ai_role": ["智算"],
+    "matched_commerciality": ["合同"]
+  },
+  "classification_authority": {
+    "observation_run_id": "35696039272_1",
+    "observation_commit_sha": "490e6ea039abfe64ac99172cea4b3bcc186164c7",
+    "observation_committed_at_utc": "2026-09-22T06:43:07Z",
+    "original_finalization_commit_sha": "ab8d65ab3528da2a1e421af54be40aa80b11e00c",
+    "classifier_semantics_changed": false,
+    "decision_recomputed": false
+  },
+  "issuer_identity_authority": {
+    "contract": "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDING_CONTRACT.json",
+    "binding_ledger": "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv",
+    "binding_commit_sha": "68ddf78d5c4eb142502149446222f9795f0f95d8",
+    "binding_committed_at_utc": "2026-09-22T06:47:46Z",
+    "binding_state": "OFFICIAL_CNINFO_IDENTITY_BOUND",
+    "source_announcement_id": "1224934290",
+    "source_adjunct_url": "finalpage/2026-01-15/1224934290.PDF",
+    "identity_only_not_AI_evidence": true
+  },
+  "temporal_ratification": {
+    "AI_evidence_authoritative_date_asia_shanghai": "2026-09-22",
+    "issuer_identity_binding_authoritative_date_asia_shanghai": "2026-09-22",
+    "eligibility_completeness_time_utc": "2026-09-22T06:47:46Z",
+    "effective_date_rule": "first joint A-share trading date strictly after the later authoritative date required to complete the positive event",
+    "effective_signal_date": "2026-09-23",
+    "same_day_activation": false,
+    "historical_backfill": false
+  },
+  "interpretation": [
+    "The original prospective classification remains unchanged.",
+    "The later issuer-identity binding does not create or strengthen the AI classification; it only closes issuer legal-name provenance.",
+    "Because both AI evidence observation and identity binding were authoritative on 2026-09-22, the earliest effective signal date remains 2026-09-23.",
+    "The earlier finalization receipt is retained immutably; this ratification is the authoritative provenance completion record for downstream E-layer use."
+  ],
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false
+}
