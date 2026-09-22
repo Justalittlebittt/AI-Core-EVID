@@ -1,9 +1,5 @@
 name: V2.8.5 BaoStock Source Probe
 on:
-  push:
-    paths:
-      - "scripts/v285_baostock_source_probe.py"
-      - ".github/workflows/v285-baostock-source-probe.yml"
   workflow_dispatch:
 permissions:
   contents: write
