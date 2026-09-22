@@ -1,9 +1,5 @@
 name: V2.8.4 Controlled Prospective E-Layer Observation
 on:
-  push:
-    paths:
-      - "scripts/v284_incremental_e_layer_runner.py"
-      - ".github/workflows/v284-controlled-prospective-e-layer.yml"
   workflow_dispatch:
 permissions:
   contents: write
