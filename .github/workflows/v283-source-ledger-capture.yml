@@ -1,7 +1,5 @@
 name: V2.8.3 Prospective Source Pin Capture
 on:
-  schedule:
-    - cron: "0 1 * * 2-6"
   workflow_dispatch:
 
 permissions:
