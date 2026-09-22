@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PDF_TEXT_EXTRACTION_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_OFFICIAL_PDF_TEXT_EXTRACTION_CONTRACT.json",
+  "runner": "scripts/v284_pdf_text_extractor.py",
+  "workflow_run_id": 35693535720,
+  "workflow_job_id": 106635370715,
+  "validated_head_sha": "a5a682d2745d4998bcbc8af941c62c8fde4a0573",
+  "synthetic_tests_passed": 10,
+  "synthetic_tests_total": 10,
+  "selftest_receipt_sha256": "ce68abaca11e60f3510363cf139040a0ca0765f8b70f4b7974d8d1d625fc71c9",
+  "validated": [
+    "PDF object SHA revalidation",
+    "PDF header and minimum-size integrity",
+    "1-based physical page numbering",
+    "empty individual pages allowed",
+    "all-empty embedded text blocks fail closed",
+    "page text hash determinism",
+    "OCR remains disabled",
+    "page count and text-page count integrity"
+  ],
+  "ocr_used": false,
+  "real_security_classification_computed": false,
+  "price_or_return_data_consumed": false,
+  "next_stage": "BOUNDED_REAL_OFFICIAL_EVIDENCE_DIAGNOSTIC"
+}
