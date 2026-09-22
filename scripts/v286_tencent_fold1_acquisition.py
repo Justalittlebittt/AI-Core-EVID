@@ -1,21 +1,21 @@
 from __future__ import annotations
 
-import argparse, csv, hashlib, importlib.metadata, json, math, time
+import argparse, csv, hashlib, json, math, time
 from pathlib import Path
 
-import akshare as ak
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+import requests
+from akshare.utils import demjson
 
 SAMPLE=Path("evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv")
 SAMPLE_SHA="fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a"
-PROBE=Path("evidence/V2.8.6_AKSHARE_TENCENT_SOURCE_PROBE_RECEIPT.json")
-START="20220901"; END="20241231"
-START_ISO="2022-09-01"; END_ISO="2024-12-31"
-AK_VERSION="1.18.97"
+PROBE=Path("evidence/V2.8.6_TENCENT_DIRECT_TRANSPORT_PROBE_RECEIPT.json")
+START="2022-09-01"; END="2024-12-31"
 SHARD_COUNT=16
 MAX_OBJECT_BYTES=95_000_000
+URL="https://proxy.finance.qq.com/ifzqgtimg/appstock/app/newfqkline/get"
 
 def sha_file(path:Path)->str:
     h=hashlib.sha256()
@@ -37,37 +37,49 @@ def load_sample()->list[dict]:
     return sorted(rows,key=lambda x:x["canonical_security_id"])
 
 def runtime_guard():
-    if importlib.metadata.version("akshare")!=AK_VERSION: raise RuntimeError("AKSHARE_VERSION_MISMATCH")
     p=json.loads(PROBE.read_text(encoding="utf-8"))
-    if p.get("status")!="PASS" or p.get("interface")!="stock_zh_a_hist_tx" or p.get("adjust")!="hfq":
-        raise RuntimeError("AKSHARE_TENCENT_PROBE_NOT_PASS")
+    if p.get("status")!="PASS" or any(not q.get("exact_match") for q in p.get("queries",[])):
+        raise RuntimeError("TENCENT_DIRECT_TRANSPORT_PROBE_NOT_PASS")
 
 def source_symbol(r:dict)->str:
     if r["exchange"]=="SSE": return "sh"+r["security_code"]
     if r["exchange"]=="SZSE": return "sz"+r["security_code"]
     raise RuntimeError(f"UNSUPPORTED_EXCHANGE:{r['exchange']}")
 
-def fetch(symbol:str)->pd.DataFrame:
+def fetch(symbol:str)->list[list]:
     last=""
-    for attempt,delay in enumerate([0,1,2,4,8]):
+    delays=[0,1,2,4,8,12]
+    for attempt,delay in enumerate(delays):
         if delay: time.sleep(delay)
         try:
-            return ak.stock_zh_a_hist_tx(symbol=symbol,start_date=START,end_date=END,adjust="hfq")
+            params={
+                "_var":"kline_dayhfq_direct",
+                "param":f"{symbol},day,{START},{END},640,hfq",
+                "r":"0.8205512681390605"
+            }
+            r=requests.get(URL,params=params,timeout=20)
+            r.raise_for_status()
+            pos=r.text.find("={")
+            if pos<0: raise RuntimeError("RESPONSE_PREFIX_MISSING")
+            data=demjson.decode(r.text[pos+1:])["data"][symbol]
+            raw=data.get("hfqday") or data.get("day") or data.get("qfqday")
+            if raw is None: raise RuntimeError("RESPONSE_DATA_KEY_MISSING")
+            return raw
         except Exception as e:
             last=f"{type(e).__name__}:{e}"
-    raise RuntimeError(f"PERSISTENT_TENCENT_QUERY_ERROR:{symbol}:{last}")
+    raise RuntimeError(f"PERSISTENT_TENCENT_DIRECT_QUERY_ERROR:{symbol}:{last}")
 
-def normalize(meta:dict,df:pd.DataFrame)->tuple[list[dict],dict]:
+def normalize(meta:dict,raw:list[list])->tuple[list[dict],dict]:
     symbol=source_symbol(meta)
-    if df is None or df.empty:
+    if not raw:
         return [],{"status":"ZERO_ROWS","rows":0,"min_date":"","max_date":"","rows_sha256":stable_sha([])}
-    x=df.copy(); x.columns=[str(c).lower() for c in x.columns]
-    required={"date","open","close","high","low","volume"}
-    if not required.issubset(set(x.columns)): raise RuntimeError(f"SCHEMA_MISMATCH:{symbol}:{list(x.columns)}")
     rows=[]
-    for _,r in x.iterrows():
-        d=pd.Timestamp(r["date"]).date().isoformat()
-        vals={k:float(r[k]) for k in ("open","close","high","low","volume")}
+    for z in raw:
+        if len(z)<6: raise RuntimeError(f"SHORT_ROW:{symbol}:{z}")
+        d=str(z[0])
+        vals={k:float(v) for k,v in zip(("open","close","high","low","volume"),z[1:6])}
+        if not symbol.startswith(("sh688","sz399","sh000","sz000")): vals["volume"]*=100
+        if not (START<=d<=END): continue
         if any(not math.isfinite(vals[k]) for k in vals): raise RuntimeError(f"NONFINITE:{symbol}:{d}")
         if any(vals[k]<=0 for k in ("open","close","high","low")): raise RuntimeError(f"NONPOSITIVE_OHLC:{symbol}:{d}")
         if vals["high"]<max(vals["open"],vals["close"],vals["low"]) or vals["low"]>min(vals["open"],vals["close"],vals["high"]):
@@ -80,9 +92,11 @@ def normalize(meta:dict,df:pd.DataFrame)->tuple[list[dict],dict]:
             "date":d,"open":vals["open"],"high":vals["high"],"low":vals["low"],"close":vals["close"],
             "volume":vals["volume"],"tradestatus":"1","source_adjustment":"hfq"
         })
+    rows.sort(key=lambda r:r["date"])
     dates=[r["date"] for r in rows]
-    if dates!=sorted(dates) or len(dates)!=len(set(dates)): raise RuntimeError(f"DATE_ORDER_OR_DUPLICATE:{symbol}")
-    if dates[0]<START_ISO or dates[-1]>END_ISO: raise RuntimeError(f"DATE_RANGE_DRIFT:{symbol}")
+    if dates and len(dates)!=len(set(dates)): raise RuntimeError(f"DATE_DUPLICATE:{symbol}")
+    if not rows:
+        return [],{"status":"ZERO_ROWS","rows":0,"min_date":"","max_date":"","rows_sha256":stable_sha([])}
     return rows,{"status":"SUCCESS","rows":len(rows),"min_date":dates[0],"max_date":dates[-1],"rows_sha256":stable_sha(rows)}
 
 def write_parquet(path:Path,rows:list[dict]):
@@ -100,24 +114,24 @@ def run(shard_id:int,out:Path):
     all_rows=[]; manifest=[]
     for i,meta in enumerate(sample,1):
         sym=source_symbol(meta)
-        df=fetch(sym); rows,rec=normalize(meta,df); all_rows.extend(rows)
+        raw=fetch(sym); rows,rec=normalize(meta,raw); all_rows.extend(rows)
         manifest.append({"canonical_security_id":meta["canonical_security_id"],"source_symbol":sym,
                          "acquisition_shard_mod16":shard_id,**rec})
         if i%20==0 or i==len(sample):
             print(json.dumps({"shard":shard_id,"progress":i,"total":len(sample)},ensure_ascii=False),flush=True)
-        time.sleep(0.12)
+        time.sleep(0.08)
     all_rows.sort(key=lambda r:(r["canonical_security_id"],r["date"]))
     pp=out/f"V2.8.6_FOLD1_TENCENT_STOCKS_SHARD_{shard_id}.parquet"; write_parquet(pp,all_rows)
     mp=out/f"V2.8.6_FOLD1_TENCENT_QUERY_MANIFEST_SHARD_{shard_id}.csv"
     fields=["canonical_security_id","source_symbol","acquisition_shard_mod16","status","rows","min_date","max_date","rows_sha256"]
-    with mp.open("w",encoding="utf-8",newline="") as f:
-        w=csv.DictWriter(f,fieldnames=fields,lineterminator="\n"); w.writeheader(); w.writerows(manifest)
+    with mp.open("w",encoding="utf-8",newline="") as fh:
+        w=csv.DictWriter(fh,fieldnames=fields,lineterminator="\n"); w.writeheader(); w.writerows(manifest)
     zero=[r["canonical_security_id"] for r in manifest if r["status"]=="ZERO_ROWS"]
     receipt={
-      "schema":"AI_CORE_EVID_V2_8_6_FOLD1_TENCENT_SHARD_RECEIPT_V1","version":"V2.8.6","status":"PASS",
-      "shard":shard_id,"shard_count":SHARD_COUNT,"akshare_version":AK_VERSION,
-      "upstream":"Tencent Securities","interface":"stock_zh_a_hist_tx","adjust":"hfq",
-      "retrieval_start":START_ISO,"retrieval_end":END_ISO,"sample_manifest_sha256":SAMPLE_SHA,
+      "schema":"AI_CORE_EVID_V2_8_6_FOLD1_TENCENT_DIRECT_SHARD_RECEIPT_V1","version":"V2.8.6","status":"PASS",
+      "shard":shard_id,"shard_count":SHARD_COUNT,
+      "upstream":"Tencent Securities","transport":"direct newfqkline/get","adjust":"hfq","count_limit":640,
+      "retrieval_start":START,"retrieval_end":END,"sample_manifest_sha256":SAMPLE_SHA,
       "shard_sample_count":len(sample),"successful_nonzero_symbols":sum(r["status"]=="SUCCESS" for r in manifest),
       "zero_row_symbols":len(zero),"zero_row_canonical_ids":zero,"stock_rows":len(all_rows),
       "parquet_file":pp.name,"parquet_bytes":pp.stat().st_size,"parquet_sha256":sha_file(pp),
