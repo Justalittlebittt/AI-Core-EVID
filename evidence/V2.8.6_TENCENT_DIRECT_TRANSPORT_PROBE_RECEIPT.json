@@ -1,0 +1,32 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_TENCENT_DIRECT_TRANSPORT_PROBE_V1",
+  "version": "V2.8.6",
+  "status": "PASS",
+  "queries": [
+    {
+      "symbol": "sh600000",
+      "rows": 58,
+      "rows_sha256": "e6dad2ecb8e4ff4f1fdb4d8501a6ded86fa934d6a40b8d2c253d3b1dcfaa6c49",
+      "expected_sha256": "e6dad2ecb8e4ff4f1fdb4d8501a6ded86fa934d6a40b8d2c253d3b1dcfaa6c49",
+      "exact_match": true
+    },
+    {
+      "symbol": "sz000001",
+      "rows": 58,
+      "rows_sha256": "6cdd0cbc2e22893c21883eecd8d8975a1ee6c2621de7df87eb134c4e86890a35",
+      "expected_sha256": "6cdd0cbc2e22893c21883eecd8d8975a1ee6c2621de7df87eb134c4e86890a35",
+      "exact_match": true
+    },
+    {
+      "symbol": "sz300750",
+      "rows": 58,
+      "rows_sha256": "8e644f390aa254dc90d51ce6beb47537b3ab963af914db2d1dbd9184da86bb83",
+      "expected_sha256": "8e644f390aa254dc90d51ce6beb47537b3ab963af914db2d1dbd9184da86bb83",
+      "exact_match": true
+    }
+  ],
+  "fold1_price_rows_read": false,
+  "factor_or_forward_return_computed": false,
+  "fold2_3_4_consumed": false,
+  "receipt_sha256": "f34d07337f6e5e61667e77374b2a0a0f71ab916fc2c083145e6ab37334256800"
+}
