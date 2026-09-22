@@ -1,0 +1,42 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_HOLDOUT_SOURCE_INTEGRITY_AMENDMENT_2_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_AFTER_SOURCE_SEMANTICS_DIAGNOSTIC_BEFORE_ANY_FACTOR_OR_OUTCOME_COMPUTATION",
+  "supersedes_only": "The per-row adjustflag equality rule in evidence/V2.8.5_HOLDOUT_ACQUISITION_INTEGRITY_AMENDMENT.json",
+  "diagnostic": "evidence/V2.8.5_BAOSTOCK_ADJUSTFLAG_SEMANTICS_DIAGNOSTIC.json",
+  "post_adjust_query_rule": {
+    "query_request_remains": "adjustflag=1",
+    "allowed_returned_row_flags": ["1", "3"],
+    "flag_2_in_post_adjust_query": "BLOCK_WHOLE_ACQUISITION",
+    "flag_3_acceptance_requires": "For the same security, fetch adjustflag=3 and verify every returned flag=3 row has the same date and numerically equivalent open/high/low/close/preclose as the unadjusted row.",
+    "flag_3_crosscheck_failure": "BLOCK_WHOLE_ACQUISITION",
+    "use_unadjusted_rows_in_frozen_snapshot": false,
+    "snapshot_rows": "Always persist the rows returned by the original adjustflag=1 query."
+  },
+  "benchmark_rule": {
+    "query_request": "adjustflag=3",
+    "allowed_returned_row_flags": ["3"]
+  },
+  "acquisition_architecture": {
+    "reason": "Sequential run processed about 200 of 1031 sample securities before 15 minutes elapsed; the original 45-minute single-job design has avoidable timeout risk.",
+    "partition_rule_unchanged": "int(SHA256(canonical_security_id)[0:8],16) mod 8",
+    "execution": "Acquire the eight frozen deterministic buckets independently, with bounded parallelism, then merge only after all bucket integrity receipts PASS.",
+    "sample_membership_unchanged": true,
+    "replacement_after_failure": false
+  },
+  "unchanged": [
+    "BaoStock version 0.9.4",
+    "stock query adjustflag=1",
+    "benchmark adjustflag=3",
+    "retrieval dates",
+    "1031-security frozen sample",
+    "PIT membership",
+    "H1/H2 factor definitions",
+    "CALM threshold",
+    "D+5/D+10 outcomes",
+    "bootstrap and Holm mechanics",
+    "all V2.8.5 decision conditions"
+  ],
+  "factor_or_forward_return_computed_before_amendment": false,
+  "holdout_statistics_computed_before_amendment": false
+}
