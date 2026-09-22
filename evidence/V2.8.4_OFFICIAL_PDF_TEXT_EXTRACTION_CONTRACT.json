@@ -1,0 +1,68 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_OFFICIAL_PDF_TEXT_EXTRACTION_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_REAL_SECURITY_CLASSIFICATION",
+  "purpose": "Extract auditable page-scoped text from already validated official filing PDF bytes so the AI-Core classifier never consumes search snippets, titles, OCR guesses, or unproven source text.",
+  "upstream": {
+    "eligibility_contract": "evidence/V2.8.4_AI_CORE_ELIGIBILITY_CONTRACT.json",
+    "candidate_materialization_contract": "evidence/V2.8.4_CANDIDATE_OFFICIAL_MATERIALIZATION_CONTRACT.json",
+    "candidate_materialization_validation": "evidence/V2.8.4_CANDIDATE_MATERIALIZATION_VALIDATION_RECEIPT.json"
+  },
+  "input_gate": {
+    "required": [
+      "official materialization receipt exists",
+      "raw PDF object SHA256 revalidates",
+      "PDF header revalidates",
+      "canonical_security_id and announcement_id are bound to the object"
+    ],
+    "failure": "BLOCKED_INPUT_INTEGRITY"
+  },
+  "extraction": {
+    "engine": "PyMuPDF text layer",
+    "page_numbering": "1-based physical PDF page index",
+    "normalize": "Unicode text preserved; line-ending and redundant whitespace normalization allowed; semantic rewriting forbidden",
+    "page_provenance_required": true,
+    "full_document_page_count_required": true,
+    "empty_pages_allowed": true,
+    "all_pages_without_extractable_text": "BLOCKED_TEXT_EXTRACTION",
+    "minimum_total_nonwhitespace_characters": 20
+  },
+  "problem_elimination": {
+    "delete": "Do not OCR every filing by default.",
+    "avoid": "Do not let search-result title/highlight text enter the classifier.",
+    "absorb": "Use the PDF's embedded text layer when present.",
+    "substitute": "If the entire filing lacks an extractable text layer, block that filing instead of launching an expensive automatic OCR workflow.",
+    "precompute_reuse": "Cache compact page-text extraction by raw PDF object SHA256.",
+    "optimize": "OCR may only be considered later as a separately frozen exception path if material coverage proves it necessary."
+  },
+  "output": {
+    "page_text_rows": [
+      "object_sha256",
+      "page_number",
+      "text"
+    ],
+    "receipt_fields": [
+      "canonical_security_id",
+      "announcement_id",
+      "object_sha256",
+      "pdf_page_count",
+      "pages_with_text",
+      "total_nonwhitespace_characters",
+      "page_text_sha256",
+      "status"
+    ],
+    "git_raw_pdf_required": false,
+    "git_compact_text_artifact_allowed": true
+  },
+  "downstream": {
+    "classifier_may_consume_only_extracted_page_text": true,
+    "qualifying_evidence_record_must_preserve_page_number": true,
+    "real_security_classification_authorized_by_this_contract": false
+  },
+  "governance": {
+    "price_or_return_data_forbidden": true,
+    "eligibility_rule_changed": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
