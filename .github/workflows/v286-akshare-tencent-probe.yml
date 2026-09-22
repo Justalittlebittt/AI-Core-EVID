@@ -1,0 +1,32 @@
+name: V2.8.6 AKShare Tencent Source Probe
+on:
+  push:
+    paths:
+      - "scripts/v286_akshare_tencent_probe.py"
+      - ".github/workflows/v286-akshare-tencent-probe.yml"
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned AKShare
+        run: |
+          python -m pip download --no-deps --only-binary=:all: akshare==1.18.97 -d wheelhouse
+          test "$(sha256sum wheelhouse/akshare-1.18.97-py3-none-any.whl | awk '{print $1}')" = "f7a202842b1300bfe74efca69be93919041422e8a3dc1f0be204b039af27e683"
+          python -m pip install wheelhouse/akshare-1.18.97-py3-none-any.whl
+      - run: python scripts/v286_akshare_tencent_probe.py
+      - name: Freeze source probe
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp v286_tencent_probe/V2.8.6_AKSHARE_TENCENT_SOURCE_PROBE_RECEIPT.json evidence/
+          git add evidence/V2.8.6_AKSHARE_TENCENT_SOURCE_PROBE_RECEIPT.json
+          git commit -m "Freeze V2.8.6 AKShare-Tencent source probe [skip ci]"
+          git pull --rebase origin main
+          git push
