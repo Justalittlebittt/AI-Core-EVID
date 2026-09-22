@@ -117,8 +117,9 @@ def main():
         api.dispose()
 
     by_stream={}
-    for column,_plate in STREAMS:
-        part=[x for x in rows if x["column"]==column]
+    for column,plate in STREAMS:
+        key="sse" if plate=="sh" else "szse"
+        part=[x for x in rows if x["column"]==column and x["plate"]==plate]
         ids=[]
         for x in part:
             ids.extend(x["first_page_ids"])
