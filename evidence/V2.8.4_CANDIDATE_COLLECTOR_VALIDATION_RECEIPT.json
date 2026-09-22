@@ -1,0 +1,26 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CANDIDATE_COLLECTOR_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "runner": "scripts/v284_candidate_collector.py",
+  "workflow_run_id": 35693151682,
+  "workflow_job_id": 106634231764,
+  "validated_head_sha": "731f34d43eb60385f0cd170c454e6b81154c7de2",
+  "synthetic_tests_passed": 11,
+  "synthetic_tests_total": 11,
+  "selftest_receipt_sha256": "0de3ecfe5ce2e2df7865aa50c25a630558afda2c72bfd0bfb0fc645f475d566d",
+  "validated": [
+    "deterministic date partitioning",
+    "SSE canonical identity mapping",
+    "SZSE canonical identity mapping",
+    "CNInfo highlight removal",
+    "announcement_id deduplication",
+    "multi-term merge",
+    "official locator consistency",
+    "duplicate announcement conflict blocking",
+    "18-term frozen registry"
+  ],
+  "real_security_classification_computed": false,
+  "price_or_return_data_consumed": false,
+  "next_stage": "OFFICIAL_PDF_TEXT_EXTRACTION_WITH_PAGE_PROVENANCE"
+}
