@@ -1,5 +1,8 @@
 name: V2.8.5 Frozen Holdout Source Acquisition
 on:
+  push:
+    paths:
+      - ".github/workflows/v285-holdout-source-acquisition.yml"
   workflow_dispatch:
 permissions:
   contents: write
