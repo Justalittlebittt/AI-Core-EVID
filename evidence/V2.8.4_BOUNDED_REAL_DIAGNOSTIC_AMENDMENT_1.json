@@ -1,0 +1,30 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_BOUNDED_REAL_DIAGNOSTIC_AMENDMENT_1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_REAL_FILING_CLASSIFICATION_RESULT",
+  "parent_contract": "evidence/V2.8.4_BOUNDED_REAL_OFFICIAL_EVIDENCE_DIAGNOSTIC_CONTRACT.json",
+  "trigger": "The original single-day 2026-08-31 candidate scan returned zero candidates across the frozen 18-term registry; no filing was downloaded or classified.",
+  "replacement_scope": {
+    "historical_date_start": "2026-09-01",
+    "historical_date_end": "2026-09-07"
+  },
+  "preexisting_basis": {
+    "transport_validation_receipt": "evidence/V2.8.4_CNINFO_FULLTEXT_TRANSPORT_VALIDATION_RECEIPT.json",
+    "observed_before_real_filing_classification": true,
+    "fact": "The already-run transport probe returned 12 SSE candidates for term 人工智能 in 2026-09-01~2026-09-07."
+  },
+  "unchanged": [
+    "both SSE and SZSE routes",
+    "all frozen 18 hint terms",
+    "announcement_id deduplication",
+    "SHA256(announcement_id) ascending deterministic selection",
+    "maximum four PDFs",
+    "official static.cninfo.com.cn PDF only",
+    "page-text extraction rules",
+    "page-scoped classifier semantics",
+    "development-diagnostic-only effect",
+    "no price or return data",
+    "no prospective backfill"
+  ],
+  "real_filing_classification_results_seen_before_amendment": false
+}
