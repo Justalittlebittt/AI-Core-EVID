@@ -12,6 +12,7 @@ from playwright.sync_api import sync_playwright
 import v284_candidate_collector as cc
 import v284_pdf_text_extractor as te
 import v284_page_scoped_classifier as pc
+import v284_candidate_triage as ct
 
 DATE_START = "2026-09-01"
 DATE_END = "2026-09-07"
@@ -66,9 +67,22 @@ def run(out_dir:Path):
         )
         dedup=candidates/"V2.8.4_CNINFO_CANDIDATE_DEDUPED.csv"
         rows=list(csv.DictReader(dedup.read_text(encoding="utf-8").splitlines()))
-        selected=select_candidates(rows)
+        triaged=[]
+        skipped=[]
+        for row in rows:
+            q=ct.triage_title(row.get("announcement_title",""),row.get("security_name",""))
+            if q["triage_state"]=="MATERIALIZE_CANDIDATE":
+                triaged.append(row)
+            else:
+                skipped.append({
+                    "announcement_id":row["announcement_id"],
+                    "canonical_security_id":row["canonical_security_id"],
+                    "announcement_title":row["announcement_title"],
+                    "triage_state":q["triage_state"],
+                })
+        selected=select_candidates(triaged)
         if not selected:
-            raise RuntimeError("DIAGNOSTIC_BLOCKED_NO_CANDIDATES")
+            raise RuntimeError("DIAGNOSTIC_BLOCKED_NO_MATERIALIZABLE_CANDIDATES")
 
         results=[]
         with sync_playwright() as pw:
@@ -141,10 +155,12 @@ def run(out_dir:Path):
         "diagnostic_date_start":DATE_START,
         "diagnostic_date_end":DATE_END,
         "candidate_rows":len(rows),
+        "triage_skipped_count":len(skipped),
+        "materializable_candidate_rows":len(triaged),
         "selected_count":len(selected),
         "successful_filings":success,
         "blocked_filings":blocked,
-        "selection_rule":"SHA256(announcement_id)_ASC_FIRST_4",
+        "selection_rule":"V2.8.4_CANDIDATE_TRIAGE_THEN_SHA256(announcement_id)_ASC_FIRST_4",
         "results_file":str(csv_path),
         "results_file_sha256":te.sha_file(csv_path),
         "classification_effect":"DEVELOPMENT_DIAGNOSTIC_ONLY",
