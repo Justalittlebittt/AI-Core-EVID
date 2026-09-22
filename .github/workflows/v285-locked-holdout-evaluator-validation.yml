@@ -1,9 +1,5 @@
 name: V2.8.5 Locked Holdout Evaluator Validation
 on:
-  push:
-    paths:
-      - "scripts/v285_locked_holdout_evaluator.py"
-      - ".github/workflows/v285-locked-holdout-evaluator-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
