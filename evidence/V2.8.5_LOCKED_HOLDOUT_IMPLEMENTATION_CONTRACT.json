@@ -1,0 +1,58 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_LOCKED_HOLDOUT_IMPLEMENTATION_CONTRACT_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_BEFORE_ANY_HOLDOUT_FACTOR_OR_FORWARD_RETURN_COMPUTATION",
+  "parent": "evidence/V2.8.5_BACKWARD_HOLDOUT_TRANSPORTABILITY_CONTRACT.json",
+  "panel": {
+    "stock_rows_used": "tradestatus == 1 only",
+    "signal_date_requires_exact_D_bar": true,
+    "membership_required_on_D": "official_list_date <= D < official_delist_date; blank delist open-ended",
+    "factor_history": "Observed valid stock trading bars through D only; no calendar padding and no imputation.",
+    "rv10_over_rv60": "std(ddof=0) of latest 10 log close returns / latest 60 log close returns",
+    "tr_pct": "max(high-low, abs(high-prev_close), abs(low-prev_close))/prev_close",
+    "tr10_over_tr60": "mean latest 10 tr_pct / mean latest 60 tr_pct",
+    "forward_D5_D10": "Exact D and target joint-trading-date close bars from the same frozen BaoStock post-adjusted snapshot; missing exact target bar => outcome unavailable, no shift.",
+    "market_state": "CSI300 exact D benchmark close history; 60-return warmup required; CALM iff rv10/rv60 <= 1 else STRESSED.",
+    "2023_2024_joint_calendar": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "first_evaluation_date": "2023-01-03",
+    "last_signal_date": "last 2024 joint trading date with D+10 target <= 2024-12-31"
+  },
+  "daily_cross_section": {
+    "rank": "average rank",
+    "correlation": "Pearson correlation of average ranks, equivalent to Spearman with average ties",
+    "minimum_valid_rows": 50,
+    "direction_adjustment": -1
+  },
+  "bootstrap": {
+    "replications": 10000,
+    "block_length_signal_dates": 20,
+    "type": "circular moving-block bootstrap",
+    "primary_null": "Center CALM adjusted-IC series by its observed mean; one-sided p=(1+count(null_boot_mean>=observed_mean))/(B+1).",
+    "primary_ci": "2.5% and 97.5% quantiles of non-centered bootstrap means.",
+    "contrast": "Bootstrap CALM and STRESSED date series independently; contrast replicate = calm mean - stressed mean.",
+    "seeds": {
+      "H1_RV_COMPRESSION_CALM_BACKWARD_HOLDOUT": {"ic_seed": 2851001, "contrast_seed": 2851101},
+      "H2_TR_COMPRESSION_CALM_BACKWARD_HOLDOUT": {"ic_seed": 2851002, "contrast_seed": 2851102}
+    }
+  },
+  "multiplicity": {
+    "method": "Holm-Bonferroni",
+    "familywise_alpha": 0.05,
+    "family": ["H1_RV_COMPRESSION_CALM_BACKWARD_HOLDOUT","H2_TR_COMPRESSION_CALM_BACKWARD_HOLDOUT"]
+  },
+  "decision_order": [
+    "SOURCE_AND_SNAPSHOT_INTEGRITY",
+    "PIT_MEMBERSHIP_AND_CALENDAR_INTEGRITY",
+    "MINIMUM_INFORMATION_GATE",
+    "DAILY_IC_METRICS",
+    "BOOTSTRAP_AND_HOLM",
+    "CALM_MINUS_STRESSED_CONTRAST",
+    "D5_AND_QUARTER_STABILITY",
+    "FAMILY_DECISION"
+  ],
+  "forbidden": [
+    "No Setup definition or threshold tuning.",
+    "No E-layer historical backfill.",
+    "No changing sample, factors, CALM threshold, horizons, seeds, bootstrap mechanics or PASS conditions after holdout factor/outcome computation starts."
+  ]
+}
