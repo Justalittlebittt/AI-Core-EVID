@@ -1,0 +1,20 @@
+name: V2.8.6 Locked Mechanism Replication Validation
+on:
+  push:
+    paths:
+      - "scripts/v286_locked_mechanism_replication.py"
+      - ".github/workflows/v286-locked-mechanism-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - run: python scripts/v286_locked_mechanism_replication.py self-test
