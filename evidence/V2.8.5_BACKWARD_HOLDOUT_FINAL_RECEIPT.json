@@ -1,0 +1,21 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BACKWARD_HOLDOUT_FINAL_RECEIPT_V1",
+  "version": "V2.8.5",
+  "status": "V2_8_5_BACKWARD_HOLDOUT_REJECTED",
+  "hypothesis_pass": {
+    "H1_RV_COMPRESSION_CALM_BACKWARD_HOLDOUT": false,
+    "H2_TR_COMPRESSION_CALM_BACKWARD_HOLDOUT": false
+  },
+  "passed_count": 0,
+  "panel_rows": 483737,
+  "panel_identity_sha256": "79696564de96096274b735520c90c7556289adcedeed371f3800a38c8afee3ff",
+  "source_snapshot_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9",
+  "daily_metrics_sha256": "5a8c702f53ea914978fed7971c27fdf81a8b29dd2eda40ae977c381ed7b3a9eb",
+  "hypothesis_ledger_sha256": "1d197dc92dd0f23c60af12ec174b4451bd8b12c94a010cc54bb7e9ef5f6e2f18",
+  "optional_stopping_used": false,
+  "sample_modified_after_results": false,
+  "V2_8_3_contract_changed": false,
+  "setup_or_episode_emission_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "b6805843053455d90ca24e0899f86bbc721773bf9907e9ab7a4b079685b1bd00"
+}
