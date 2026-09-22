@@ -1,0 +1,50 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_EFFECTIVE_ELIGIBILITY_EVENT_LEDGER_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_STATE_RESOLVER_VALIDATION",
+  "purpose": "Resolve point-in-time E-layer eligibility from a sparse append-only ledger of ratified effective positive events instead of materializing daily full-market E-layer snapshots.",
+  "problem_elimination": {
+    "delete": "No daily full-market eligibility snapshot files.",
+    "avoid": "Do not recompute issuer classifications for every signal date.",
+    "absorb": "Use ratified prospective positive events and the frozen effective-date rule.",
+    "substitute": "Default every security/date to NOT_ESTABLISHED unless an effective positive event exists.",
+    "precompute_reuse": "Persist one compact effective event row and reuse it for all later signal dates.",
+    "optimize": "Index/query only by canonical_security_id and effective_signal_date."
+  },
+  "ledger": "evidence/V2.8.4_E_LAYER_EFFECTIVE_ELIGIBILITY_EVENTS.csv",
+  "required_fields": [
+    "canonical_security_id",
+    "issuer_legal_name",
+    "source_announcement_id",
+    "source_object_sha256",
+    "decision_sha256",
+    "evidence_observation_commit_sha",
+    "issuer_identity_binding_commit_sha",
+    "eligibility_completeness_time_utc",
+    "effective_signal_date",
+    "classification_state",
+    "ratification_file"
+  ],
+  "state_resolution": {
+    "default_state": "NOT_ESTABLISHED",
+    "positive_state": "ELIGIBLE_AI_CORE",
+    "rule": "For canonical security S on signal date D, return ELIGIBLE_AI_CORE iff at least one ratified event for S has effective_signal_date <= D; otherwise return NOT_ESTABLISHED.",
+    "revocation": "NOT_DEFINED_IN_V2_8_4",
+    "multiple_positive_events": "Earliest effective positive event is sufficient; later positive events do not move eligibility backward.",
+    "signal_date_scope": "Must be a frozen joint A-share trading date in the V2.7.32 calendar."
+  },
+  "append_semantics": {
+    "primary_event_key": "canonical_security_id + source_announcement_id",
+    "exact_duplicate": "NO_ACTION_DUPLICATE",
+    "same_event_conflicting_hash_or_effective_date": "BLOCK_EVENT_CONFLICT",
+    "overwrite_existing_row": false
+  },
+  "governance": {
+    "historical_diagnostic_rows_allowed": false,
+    "unratified_positive_rows_allowed": false,
+    "price_or_return_data_forbidden": true,
+    "technical_factor_override_forbidden": true,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
