@@ -1,0 +1,22 @@
+name: V2.8.4 Prospective Runner Validation
+on:
+  push:
+    paths:
+      - "scripts/v284_incremental_e_layer_runner.py"
+      - "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDING_CONTRACT.json"
+      - "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv"
+      - ".github/workflows/v284-prospective-runner-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+      - run: python scripts/v284_incremental_e_layer_runner.py self-test
