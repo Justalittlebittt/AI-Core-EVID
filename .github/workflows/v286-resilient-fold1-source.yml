@@ -1,0 +1,76 @@
+name: V2.8.6 Resilient Fold1 Source Acquisition
+on:
+  push:
+    paths:
+      - ".github/workflows/v286-resilient-fold1-source.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v286-resilient-fold1-source
+  cancel-in-progress: false
+jobs:
+  acquire_shards:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned runtime
+        run: |
+          python -m pip download --no-deps --only-binary=:all: baostock==0.9.4 -d wheelhouse
+          test "$(sha256sum wheelhouse/baostock-0.9.4-py3-none-any.whl | awk '{print $1}')" = "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8"
+          python -m pip install wheelhouse/baostock-0.9.4-py3-none-any.whl pyarrow==21.0.0
+      - name: Acquire resilient fold1 shard
+        run: |
+          python scripts/v286_fold1_source_acquisition_resilient.py             --shard ${{ matrix.shard }}             --out "v286_shard_${{ matrix.shard }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v286-resilient-shard-${{ matrix.shard }}
+          path: v286_shard_${{ matrix.shard }}/*
+          if-no-files-found: error
+          retention-days: 1
+
+  finalize:
+    needs: acquire_shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyarrow==21.0.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v286-resilient-shard-*
+          merge-multiple: true
+          path: v286_artifacts
+      - name: Validate and merge resilient fold1 source
+        run: |
+          python scripts/v286_fold1_source_finalize_resilient.py             --artifact-root v286_artifacts             --out v286_final
+      - name: Freeze fold1 source snapshot
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p evidence/v286_fold1_source
+          cp v286_artifacts/*.parquet evidence/v286_fold1_source/
+          cp v286_artifacts/V2.8.6_FOLD1_SOURCE_SHARD_*_RECEIPT.json evidence/v286_fold1_source/
+          cp v286_artifacts/V2.8.6_FOLD1_QUERY_MANIFEST_SHARD_*.csv evidence/v286_fold1_source/
+          cp v286_final/V2.8.6_FOLD1_BAOSTOCK_QUERY_MANIFEST.csv evidence/v286_fold1_source/
+          cp v286_final/V2.8.6_FOLD1_BAOSTOCK_CSI300.parquet evidence/v286_fold1_source/
+          cp v286_final/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          git add evidence/v286_fold1_source evidence/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json
+          git commit -m "Freeze V2.8.6 resilient fold1 source snapshot [skip ci]"
+          git pull --rebase origin main
+          git push
