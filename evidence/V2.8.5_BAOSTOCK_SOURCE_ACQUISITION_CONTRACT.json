@@ -1,0 +1,64 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BAOSTOCK_SOURCE_ACQUISITION_CONTRACT_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_BEFORE_HOLDOUT_SOURCE_PROBE",
+  "purpose": "Acquire a one-time frozen free historical source snapshot for the untouched V2.8.5 backward holdout with bounded API and repository cost.",
+  "provider": {
+    "name": "BaoStock",
+    "python_package": "baostock",
+    "package_version": "0.9.4",
+    "package_wheel_sha256": "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8",
+    "cost": "FREE",
+    "daily_api": "query_history_k_data_plus"
+  },
+  "query": {
+    "frequency": "d",
+    "adjustflag": "1",
+    "adjustment_semantics": "post-adjusted / 后复权",
+    "stock_fields": ["date","code","open","high","low","close","preclose","volume","amount","adjustflag","tradestatus"],
+    "benchmark_code": "sh.000300",
+    "benchmark_fields": ["date","code","open","high","low","close","preclose","volume","amount","adjustflag","tradestatus"],
+    "retrieval_start": "2022-09-01",
+    "retrieval_end": "2024-12-31"
+  },
+  "probe_before_holdout": {
+    "probe_period": ["2022-01-04","2022-03-31"],
+    "disjoint_from_holdout_and_warmup_retrieval": true,
+    "probe_symbols": ["sh.600000","sz.000001","sz.300750","sh.000300"],
+    "allowed_checks": [
+      "login/query success",
+      "schema exactness",
+      "requested adjustflag exactness",
+      "date ordering and uniqueness",
+      "positive finite OHLC",
+      "tradestatus domain",
+      "benchmark availability"
+    ],
+    "factor_or_forward_return_computation": false
+  },
+  "snapshot_freeze": {
+    "raw_per_symbol_files_in_git": false,
+    "normalized_sample_snapshot": "Parquet partitioned if necessary to keep each Git object below 100MB",
+    "query_manifest_in_git": true,
+    "snapshot_sha256_in_git": true,
+    "failed_symbol_list_in_git": true,
+    "failed_symbol_replacement": false,
+    "provider_history_revision_id_available": false,
+    "therefore_downloaded_bytes_become_authoritative_frozen_vintage": true
+  },
+  "problem_elimination": {
+    "delete": "No 5,554-security full-market download.",
+    "avoid": "No repeated vendor polling or later re-download as a substitute for frozen bytes.",
+    "absorb": "Reuse V2.8.1 official PIT membership intervals and V2.8.3 factor definitions.",
+    "substitute": "Deterministic 20% identity-hash sample preserves a large cross-section at about one-fifth of API/storage cost.",
+    "precompute_reuse": "Download once, freeze normalized Parquet and hashes, and reuse locally for every V2.8.5 calculation.",
+    "optimize": "Only if the bounded acquisition itself proves too slow."
+  },
+  "forbidden": [
+    "No holdout outcome inspection during source probe.",
+    "No changing sample membership due to missing/poor returns.",
+    "No current-only survivor universe.",
+    "No forward-adjusted adjustflag=2 in V2.8.5.",
+    "No data from 2025 or later."
+  ]
+}
