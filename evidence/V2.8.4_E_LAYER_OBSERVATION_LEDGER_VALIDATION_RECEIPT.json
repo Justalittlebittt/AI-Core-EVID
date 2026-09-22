@@ -1,0 +1,26 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_E_LAYER_OBSERVATION_LEDGER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER_CONTRACT.json",
+  "runner": "scripts/v284_e_layer_observation_ledger.py",
+  "workflow_run_id": 35693824884,
+  "workflow_job_id": 106636249705,
+  "validated_head_sha": "8a38194719a82c317248682990cb1dccc36bf7a6",
+  "synthetic_tests_passed": 8,
+  "synthetic_tests_total": 8,
+  "selftest_receipt_sha256": "",
+  "validated": [
+    "new announcement append",
+    "exact duplicate no-op",
+    "identity conflict blocking",
+    "object conflict blocking",
+    "duplicate primary-key blocking",
+    "mode fail-closed",
+    "append persistence",
+    "duplicate does not rewrite"
+  ],
+  "prospective_activation_authorized": false,
+  "formal_E_layer_state_changes": false,
+  "price_or_return_data_consumed": false
+}
