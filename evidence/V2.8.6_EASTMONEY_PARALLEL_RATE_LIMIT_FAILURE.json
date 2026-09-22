@@ -1,0 +1,18 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_EASTMONEY_PARALLEL_RATE_LIMIT_FAILURE_V1",
+  "version": "V2.8.6",
+  "status": "TRANSPORT_CONCURRENCY_BLOCK_BEFORE_SOURCE_SNAPSHOT_FREEZE",
+  "workflow_run_id": 35708580379,
+  "source_probe_run_id": 35708362972,
+  "source_probe_status": "PASS",
+  "observed_failure": "RemoteDisconnected: Remote end closed connection without response",
+  "failed_shards": 16,
+  "interpretation": "The Eastmoney interface was reachable and schema-valid in the disjoint probe, but the four-way shard concurrency was not tolerated by the upstream service.",
+  "research_state": {
+    "fold1_source_snapshot_committed": false,
+    "fold1_factor_or_forward_return_computed": false,
+    "fold1_mechanism_statistics_computed": false,
+    "fold2_3_4_consumed": false
+  },
+  "sample_or_hypothesis_changed": false
+}
