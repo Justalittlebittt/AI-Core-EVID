@@ -1,0 +1,23 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_HOLDOUT_SOURCE_ACQUISITION_FAILURE_RECORD_V1",
+  "version": "V2.8.5",
+  "status": "SOURCE_INTEGRITY_BLOCKED_BEFORE_SNAPSHOT_FREEZE",
+  "failed_workflow_run_id": 35699254345,
+  "failed_head_sha": "31469255567f6519d36719adb51ece39391069d9",
+  "failed_symbol": "SSE:603273",
+  "provider_code": "sh.603273",
+  "failure": "ADJUSTFLAG_DRIFT:sh.603273:3",
+  "progress_before_block": {
+    "sample_count": 1031,
+    "last_reported_completed_symbols": 200,
+    "snapshot_committed": false
+  },
+  "holdout_governance": {
+    "sample_changed": false,
+    "factor_or_forward_return_computed": false,
+    "holdout_statistics_computed": false,
+    "terminal_holdout_result_created": false
+  },
+  "diagnostic_action": "Investigate BaoStock row-level adjustflag semantics without computing factors, outcomes or holdout statistics.",
+  "threshold_or_pass_condition_changed": false
+}
