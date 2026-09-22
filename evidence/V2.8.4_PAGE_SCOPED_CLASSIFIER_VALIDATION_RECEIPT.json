@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PAGE_SCOPED_CLASSIFIER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_PAGE_SCOPED_CLASSIFICATION_AGGREGATION_CONTRACT.json",
+  "runner": "scripts/v284_page_scoped_classifier.py",
+  "workflow_run_id": 35693502577,
+  "workflow_job_id": 106635270688,
+  "validated_head_sha": "4581a325a083c1837e45c4c7bc5bb172812930b3",
+  "synthetic_tests_passed": 9,
+  "synthetic_tests_total": 9,
+  "selftest_receipt_sha256": "901da9e50512fe6fa4738a574e8d5a9f91674bd7788d3a70962064bd83bdb4af",
+  "validated": [
+    "positive evidence page aggregation",
+    "physical page-number preservation",
+    "adopter-only exclusion",
+    "R&D-only exclusion",
+    "mixed exclusion ambiguity blocking",
+    "positive evidence precedence",
+    "not-established state",
+    "duplicate page provenance blocking"
+  ],
+  "real_security_classification_computed": false,
+  "price_or_return_data_consumed": false,
+  "eligibility_semantics_changed": false,
+  "next_stage": "BOUNDED_REAL_EVIDENCE_DIAGNOSTIC_AFTER_TEXT_EXTRACTION_PASS"
+}
