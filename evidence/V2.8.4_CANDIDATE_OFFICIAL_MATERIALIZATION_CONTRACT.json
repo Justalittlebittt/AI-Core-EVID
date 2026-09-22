@@ -1,0 +1,63 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CANDIDATE_OFFICIAL_MATERIALIZATION_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_REAL_SECURITY_CLASSIFICATION",
+  "purpose": "Convert non-authoritative CNInfo candidate hints into validated official filing objects and classifier-ready evidence inputs without full-market PDF prefetch.",
+  "upstream": {
+    "eligibility_contract": "evidence/V2.8.4_AI_CORE_ELIGIBILITY_CONTRACT.json",
+    "candidate_hint_contract": "evidence/V2.8.4_CNINFO_FULLTEXT_CANDIDATE_HINT_CONTRACT.json",
+    "transport_amendment": "evidence/V2.8.4_CNINFO_CANDIDATE_HINT_TRANSPORT_AMENDMENT_1.json",
+    "primary_locator_inventory": "evidence/V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv",
+    "materialization_contract_reused": "evidence/V2.7.30_EVIDENCE_MATERIALIZATION_CONTRACT.json"
+  },
+  "problem_elimination": {
+    "delete": "No full-market PDF download.",
+    "avoid": "Do not classify from search-result snippets or titles.",
+    "absorb": "Reuse V2.7.29 canonical identity and known official locators whenever announcement_id already exists there.",
+    "substitute": "For candidate hits absent from the inventory, validate the hit's official CNInfo announcement_id/adjunct_url directly and materialize only that filing.",
+    "precompute_reuse": "Content-addressed object cache keyed by raw PDF SHA256; locator-to-object mapping is reusable.",
+    "optimize": "Only candidate files are fetched and extracted."
+  },
+  "candidate_identity_gate": {
+    "required": [
+      "announcement_id present",
+      "six-digit security code present",
+      "canonical_security_id resolvable from exchange stream and security code",
+      "adjunct_url matches finalpage/YYYY-MM-DD/<announcement_id>.PDF",
+      "announcement_id matches path",
+      "disclosure date/time provenance is available",
+      "candidate belongs to the applicable U-layer security universe when used for a signal date"
+    ],
+    "unmapped_or_ambiguous": "BLOCK_CANDIDATE_ONLY"
+  },
+  "locator_priority": [
+    "exact announcement_id match in V2.7.29 primary locator inventory",
+    "otherwise validated candidate hit adjunct_url from official CNInfo response"
+  ],
+  "materialization": {
+    "allowed_origin": "https://static.cninfo.com.cn/",
+    "pdf_header_required": true,
+    "minimum_payload_bytes": 1024,
+    "raw_object_key": "SHA256(raw_pdf_bytes)",
+    "git_stores_raw_pdf": false,
+    "git_stores_receipt": true
+  },
+  "text_extraction": {
+    "classification_input_must_come_from_materialized_pdf": true,
+    "search_highlight_or_title_is_not_classifier_input": true,
+    "page_number_must_be_preserved_for_any qualifying evidence sentence": true,
+    "extraction_failure": "BLOCKED_TEXT_EXTRACTION"
+  },
+  "temporal": {
+    "historical_bootstrap": "Development/diagnostic only unless the evidence was prospectively observed before the signal cutoff.",
+    "prospective_activation": "Eligibility change starts no earlier than the first trading date after authoritative observation unless an earlier exact availability timestamp is frozen.",
+    "no_backfill": true
+  },
+  "governance": {
+    "real_security_classification_authorized_by_this_contract": false,
+    "synthetic_validation_authorized": true,
+    "price_or_return_data_forbidden": true,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
