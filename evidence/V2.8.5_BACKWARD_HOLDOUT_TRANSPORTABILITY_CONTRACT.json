@@ -1,0 +1,95 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BACKWARD_HOLDOUT_TRANSPORTABILITY_CONTRACT_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_BEFORE_ANY_2023_2024_HOLDOUT_PRICE_RETRIEVAL",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_5_RESEARCH_ONLY_NEW_VERSION",
+  "purpose": "Run a genuinely untouched backward historical transportability test of the V2.8.3 CALM risk-compression mechanism on a time interval never consumed by V2.8.1/V2.8.2, without claiming restoration of the lost V2.7.3 strategy.",
+  "separation_from_prior_versions": {
+    "V2.7.3_old_strategy_restoration": "FORBIDDEN",
+    "V2.8.1_development_source_min_date": "2025-01-02",
+    "V2.8.2_development_uses_2025_2026_only": true,
+    "V2.8.3_prospective_contract_remains_independent": true,
+    "V2.8.5_holdout_has_not_been_inspected_before_contract": true
+  },
+  "holdout": {
+    "evaluation_calendar_interval": ["2023-01-01", "2024-12-31"],
+    "source_retrieval_start_for_60_return_warmup": "2022-09-01",
+    "source_retrieval_end": "2024-12-31",
+    "last_eligible_signal_date": "latest frozen joint trading date whose D+10 endpoint also lies on or before 2024-12-31",
+    "no_2025_or_2026_rows": true
+  },
+  "population": {
+    "membership_authority": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
+    "membership_sha256": "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1",
+    "membership_rule": "official_list_date <= D < official_delist_date, with blank delist open-ended",
+    "survivor_bias_control": "Current active plus frozen official delisted A-share intervals are retained.",
+    "sampling_frame": "All canonical securities whose official membership interval intersects 2023-01-01 through 2024-12-31.",
+    "deterministic_sample_rule": "Keep a security iff int(SHA256(canonical_security_id)[0:8],16) mod 5 == 0.",
+    "expected_fraction": 0.20,
+    "replacement_after_download_failure": false,
+    "sample_rule_may_not_change_after_any_holdout_price_is_seen": true
+  },
+  "hypothesis_family": [
+    {
+      "id": "H1_RV_COMPRESSION_CALM_BACKWARD_HOLDOUT",
+      "factor": "rv10_over_rv60",
+      "direction": "NEGATIVE",
+      "primary_state": "CALM"
+    },
+    {
+      "id": "H2_TR_COMPRESSION_CALM_BACKWARD_HOLDOUT",
+      "factor": "tr10_over_tr60",
+      "direction": "NEGATIVE",
+      "primary_state": "CALM"
+    }
+  ],
+  "factor_semantics": {
+    "rv10_over_rv60": "Same V2.8.3 definition: population std of latest 10 daily log close returns through D divided by latest 60, finite positive denominator required.",
+    "tr10_over_tr60": "Same V2.8.3 true-range-percent 10/60 mean ratio definition using only rows through D.",
+    "market_state": "Same V2.8.3 CSI300 rule: CALM iff CSI300 rv10/rv60 <= 1; STRESSED otherwise; UNKNOWN when warmup is insufficient.",
+    "no_imputation": true
+  },
+  "outcome_semantics": {
+    "primary": "D+10 same-frozen-source post-adjusted close return",
+    "secondary": "D+5 same-frozen-source post-adjusted close return",
+    "same_snapshot_endpoints": true,
+    "cross_vendor_return_magnitude_pooling_with_V2.8.1": false,
+    "role": "Independent transportability evidence only."
+  },
+  "statistical_mechanics": {
+    "within_date_metric": "Spearman factor rank versus forward return across sampled PIT-eligible securities.",
+    "direction_adjustment": -1,
+    "minimum_valid_securities_per_date": 50,
+    "minimum_valid_calm_dates": 60,
+    "minimum_valid_stressed_dates_for_contrast": 30,
+    "minimum_valid_calm_quarters": 3,
+    "valid_calm_quarter_min_dates": 15,
+    "bootstrap": "20-signal-date circular moving-block bootstrap",
+    "bootstrap_replications": 10000,
+    "familywise_alpha": 0.05,
+    "multiplicity": "Holm-Bonferroni across H1 and H2",
+    "quarter_stability": "positive CALM direction-adjusted D+10 mean IC in at least two-thirds of valid quarters and every leave-one-valid-quarter-out mean remains >0",
+    "secondary_D5": "direction-adjusted CALM mean D+5 IC >0"
+  },
+  "decision_states": {
+    "V2_8_5_BACKWARD_HOLDOUT_REPLICATED_BOTH": "Both H1 and H2 satisfy all frozen transportability conditions.",
+    "V2_8_5_BACKWARD_HOLDOUT_PARTIAL": "Exactly one satisfies all frozen conditions.",
+    "V2_8_5_BACKWARD_HOLDOUT_REJECTED": "Minimum information is sufficient and neither satisfies all conditions.",
+    "V2_8_5_BACKWARD_HOLDOUT_INCOMPLETE": "Frozen minimum information is not met.",
+    "V2_8_5_BACKWARD_HOLDOUT_BLOCKED": "Source, identity, PIT, calendar or implementation integrity prevents evaluation."
+  },
+  "promotion_effect": {
+    "replicated_both": "May advance to a separately frozen V2.8.6 Setup-design study.",
+    "partial": "Research evidence only; no automatic Setup design authorization.",
+    "rejected": "Do not build a Setup around the CALM risk-compression mechanism.",
+    "all_states": "No Setup, Episode, First60, or live authorization."
+  },
+  "forbidden": [
+    "No inspection-driven change to sample rule, CALM threshold, factors, directions, horizon, bootstrap, multiplicity or pass conditions.",
+    "No use of 2023-2024 outcomes to modify the V2.8.3 prospective contract.",
+    "No claim that V2.8.5 restores V2.7.3.",
+    "No E-layer historical backfill onto 2023-2024.",
+    "No Setup or Episode emission.",
+    "No live authorization."
+  ]
+}
