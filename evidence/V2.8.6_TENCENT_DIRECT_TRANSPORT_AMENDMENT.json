@@ -1,0 +1,38 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_TENCENT_DIRECT_TRANSPORT_AMENDMENT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_DIRECT_TRANSPORT_PROBE",
+  "purpose": "Delete AKShare's redundant start-year discovery and yearly loop for the bounded V2.8.6 interval while preserving Tencent hfq bytes and all research semantics.",
+  "upstream": "Tencent Securities",
+  "endpoint": "https://proxy.finance.qq.com/ifzqgtimg/appstock/app/newfqkline/get",
+  "reference_implementation": "AKShare stock_zh_a_hist_tx 1.18.97",
+  "bounded_interval_fact": {
+    "retrieval_start": "2022-09-01",
+    "retrieval_end": "2024-12-31",
+    "joint_session_count_is_below_endpoint_limit": true,
+    "endpoint_count_limit": 640,
+    "direct_requests_per_security": 1
+  },
+  "direct_request": {
+    "period": "day",
+    "adjust": "hfq",
+    "count": 640,
+    "start": "2022-09-01",
+    "end": "2024-12-31"
+  },
+  "pre_fold1_equivalence_gate": {
+    "period": ["2022-01-04","2022-03-31"],
+    "symbols": ["sh600000","sz000001","sz300750"],
+    "required": "Normalized date/open/close/high/low/volume rows SHA256 must exactly equal the already frozen AKShare-Tencent probe for all 3 symbols.",
+    "fold1_price_rows_read": false
+  },
+  "unchanged": [
+    "Tencent hfq economic prices",
+    "1058-security fold1 manifest",
+    "PIT membership and calendar",
+    "dual-compression factors and composite",
+    "D+5/D+10 outcomes",
+    "bootstrap seeds and all PASS conditions",
+    "fold2-4 untouched"
+  ]
+}
