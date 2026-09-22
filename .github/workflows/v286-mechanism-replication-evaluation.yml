@@ -1,0 +1,33 @@
+name: V2.8.6 One-Time Mechanism Replication
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v286-one-time-mechanism-replication
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify one-time replication activation
+        run: python scripts/v286_mechanism_replication_gate.py
+      - name: Evaluate untouched fold1
+        run: python scripts/v286_locked_mechanism_replication.py evaluate
+      - name: Freeze terminal replication result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.6_FOLD1_DAILY_METRICS.csv evidence/V2.8.6_MECHANISM_REPLICATION_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.6 fold1 mechanism-replication result [skip ci]"
+          git pull --rebase origin main
+          git push
