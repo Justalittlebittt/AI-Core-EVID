@@ -1,0 +1,25 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_MECHANISM_REPLICATION_EVALUATION_GATE_CONTRACT_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_FOLD1_SOURCE_SNAPSHOT_COMPLETION",
+  "purpose": "Require exact frozen-source and validation bindings before the one-time V2.8.6 fold1 mechanism replication may inspect real fold1 outcomes.",
+  "prerequisites": [
+    "V2.8.6 fold1 manifest receipt PASS.",
+    "V2.8.6 fold1 source snapshot receipt PASS.",
+    "V2.8.6 locked mechanism replication validation PASS.",
+    "All source partition and benchmark hashes referenced by the source receipt match repository bytes.",
+    "Separate one-time activation record binds exact source receipt hash, fold1 manifest hash, and evaluator validation commit."
+  ],
+  "one_time": {
+    "terminal_receipt": "evidence/V2.8.6_MECHANISM_REPLICATION_FINAL_RECEIPT.json",
+    "if_terminal_receipt_exists": "NO_REEVALUATION",
+    "repeat_bootstrap_to_seek_different_result": false
+  },
+  "forbidden": [
+    "No fold2-4 reads.",
+    "No coefficient/threshold changes.",
+    "No Setup construction.",
+    "No First60 append.",
+    "No Episode or live authorization."
+  ]
+}
