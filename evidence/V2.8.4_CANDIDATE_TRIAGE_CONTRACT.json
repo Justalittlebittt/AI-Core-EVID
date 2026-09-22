@@ -17,7 +17,8 @@
     "regex_intent": [
       "关于参加.*业绩说明会.*公告",
       "关于召开.*业绩说明会.*公告"
-    ]
+    ],
+    "title_normalization": "Exact CNInfo security_name prefix may be stripped before applying the anchored administrative-notice patterns."
   },
   "explicitly_not_suppressed_by_this_version": [
     "年度报告 or 半年度报告",
