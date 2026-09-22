@@ -13,7 +13,8 @@ import v284_candidate_collector as cc
 import v284_pdf_text_extractor as te
 import v284_page_scoped_classifier as pc
 
-DATE = "2026-08-31"
+DATE_START = "2026-09-01"
+DATE_END = "2026-09-07"
 MAX_SAMPLE = 4
 STATIC = "https://static.cninfo.com.cn/"
 
@@ -59,8 +60,8 @@ def run(out_dir:Path):
         tmp=Path(td)
         candidates=tmp/"candidates"
         cc.collect(
-            __import__("datetime").date.fromisoformat(DATE),
-            __import__("datetime").date.fromisoformat(DATE),
+            __import__("datetime").date.fromisoformat(DATE_START),
+            __import__("datetime").date.fromisoformat(DATE_END),
             candidates
         )
         dedup=candidates/"V2.8.4_CNINFO_CANDIDATE_DEDUPED.csv"
@@ -137,7 +138,8 @@ def run(out_dir:Path):
         "schema":"AI_CORE_EVID_V2_8_4_BOUNDED_REAL_DIAGNOSTIC_RECEIPT_V1",
         "version":"V2.8.4",
         "status":status,
-        "diagnostic_date":DATE,
+        "diagnostic_date_start":DATE_START,
+        "diagnostic_date_end":DATE_END,
         "candidate_rows":len(rows),
         "selected_count":len(selected),
         "successful_filings":success,
@@ -172,7 +174,7 @@ def self_test():
         {"name":"D01_selection_size","pass":len(a)==4},
         {"name":"D02_order_invariant","pass":[x["announcement_id"] for x in a]==[x["announcement_id"] for x in b]},
         {"name":"D03_selection_hash_sorted","pass":[deterministic_key(x["announcement_id"]) for x in a]==sorted(deterministic_key(x["announcement_id"]) for x in rows)[:4]},
-        {"name":"D04_fixed_date","pass":DATE=="2026-08-31"},
+        {"name":"D04_fixed_window","pass":DATE_START=="2026-09-01" and DATE_END=="2026-09-07"},
         {"name":"D05_max_sample_four","pass":MAX_SAMPLE==4},
     ]
     result={"schema":"AI_CORE_EVID_V2_8_4_BOUNDED_REAL_DIAGNOSTIC_SELFTEST_V1",
