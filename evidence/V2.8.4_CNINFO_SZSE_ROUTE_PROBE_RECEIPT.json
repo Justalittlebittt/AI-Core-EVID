@@ -1,0 +1,27 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CNINFO_SZSE_ROUTE_PROBE_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "workflow_run_id": 35692897727,
+  "workflow_job_id": 106633486198,
+  "validated_head_sha": "26fea39038f7cc8b4bcbf112087a4aee9acec70d",
+  "control_term": "半年度报告",
+  "control_window": "2026-08-31~2026-08-31",
+  "selected_route": {
+    "column": "",
+    "plate": "sz"
+  },
+  "selected_route_result": {
+    "http_status": 200,
+    "server_total": 9,
+    "first_page_count": 9,
+    "sample_six_digit_codes": ["002571","300866","002044","002531","002130"]
+  },
+  "rejected_for_szse_authority": {
+    "blank_column_blank_plate": "Returned broad cross-market/non-A-share instruments.",
+    "legacy_szse_plus_sz": "Did not provide usable broad fulltext candidate results in current probe context."
+  },
+  "eligibility_effect": "NONE_TRANSPORT_ONLY",
+  "real_security_classification_computed": false,
+  "price_or_return_data_consumed": false
+}
