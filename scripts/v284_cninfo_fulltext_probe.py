@@ -20,14 +20,14 @@ def stable_sha256(obj) -> str:
     b=json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()
     return hashlib.sha256(b).hexdigest()
 
-def one(api, column: str, plate: str) -> dict:
+def one(api, column: str, plate: str, term: str = TERM) -> dict:
     payload = {
         "pageNum": "1",
         "pageSize": "30",
         "tabName": "fulltext",
         "column": column,
         "stock": "",
-        "searchkey": TERM,
+        "searchkey": term,
         "secid": "",
         "plate": plate,
         "category": "",
@@ -101,7 +101,7 @@ def main():
         "finished_at_utc":datetime.now(timezone.utc).isoformat(),
         "term":TERM,
         "window":WINDOW,
-        "streams":rows,
+        "streams":rows,\n        "szse_transport_matrix_control_term": CONTROL_TERM,\n        "szse_transport_matrix": sz_transport_matrix,
         "checks":checks,
         "all_pass":all(checks.values()),
         "eligibility_effect":"NONE_CANDIDATE_HINT_TRANSPORT_ONLY",
