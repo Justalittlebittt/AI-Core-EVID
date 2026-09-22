@@ -1,0 +1,18 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_E_LAYER_EFFECTIVE_DATE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_E_LAYER_EFFECTIVE_DATE_CONTRACT.json",
+  "runner": "scripts/v284_e_layer_effective_date.py",
+  "workflow_run_id": 35694027310,
+  "workflow_job_id": 106636847912,
+  "validated_head_sha": "9e5804f462b58fd7dbfe35926eb57063873ffc6e",
+  "synthetic_tests_passed": 6,
+  "synthetic_tests_total": 6,
+  "selftest_receipt_sha256": "",
+  "same_calendar_date_activation": false,
+  "pre_open_exception_authorized": false,
+  "holiday_and_weekend_roll_forward_validated": true,
+  "prospective_activation_authorized": false,
+  "price_or_return_data_consumed": false
+}
