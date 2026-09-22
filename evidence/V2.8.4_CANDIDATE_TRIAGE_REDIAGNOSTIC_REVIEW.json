@@ -1,0 +1,38 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CANDIDATE_TRIAGE_REDIAGNOSTIC_REVIEW_V1",
+  "version": "V2.8.4",
+  "status": "PASS_WITH_NONBLOCKING_RESIDUAL_NOISE",
+  "source_freeze_commit": "31e51bc5098297961b38e1f3e77d3d61e71fd5f6",
+  "triage_contract": "evidence/V2.8.4_CANDIDATE_TRIAGE_CONTRACT.json",
+  "triage_validation": "evidence/V2.8.4_CANDIDATE_TRIAGE_VALIDATION_RECEIPT.json",
+  "diagnostic_receipt": "evidence/v284_real_diagnostic/V2.8.4_BOUNDED_REAL_DIAGNOSTIC_RECEIPT.json",
+  "diagnostic_results": "evidence/v284_real_diagnostic/V2.8.4_BOUNDED_REAL_DIAGNOSTIC_RESULTS.csv",
+  "observed": {
+    "candidate_rows": 15,
+    "triage_skipped_count": 11,
+    "materializable_candidate_rows": 4,
+    "selected_count": 4,
+    "successful_filings": 4,
+    "blocked_filings": 0,
+    "classification_states": {
+      "NOT_ESTABLISHED": 4
+    }
+  },
+  "rediagnostic_interpretation": [
+    "Candidate triage is operationally compatible with the bounded real CNInfo pipeline.",
+    "The rediagnostic completed all four selected official PDF materializations, text extractions and classifications without a blocker.",
+    "One residual low-information performance-briefing attendance notice remained because the announcement title used a legal-name issuer prefix while CNInfo security_name carried a short-name form.",
+    "That residual is a triage efficiency miss, not an eligibility correctness failure: the downstream frozen classifier safely returned NOT_ESTABLISHED.",
+    "Perfect issuer-name normalization is therefore not an activation prerequisite in V2.8.4."
+  ],
+  "problem_elimination_decision": {
+    "hard_requirement": "Fail-closed eligibility correctness and official-evidence provenance.",
+    "soft_optimization": "Perfect pre-materialization suppression of every low-information administrative notice.",
+    "decision": "DO_NOT_ADD_MORE_NAME_NORMALIZATION_BEFORE_ACTIVATION",
+    "reason": "The residual only adds bounded processing cost; downstream classification preserves correctness. Additional fuzzy/legal-name normalization would add complexity without closing a correctness gap."
+  },
+  "formal_E_layer_state_changes": false,
+  "prospective_backfill": false,
+  "price_or_return_data_consumed": false,
+  "next_gate": "PROSPECTIVE_E_LAYER_ACTIVATION"
+}
