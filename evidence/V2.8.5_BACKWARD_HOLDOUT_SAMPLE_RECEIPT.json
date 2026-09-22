@@ -1,0 +1,18 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BACKWARD_HOLDOUT_SAMPLE_RECEIPT_V1",
+  "version": "V2.8.5",
+  "status": "PASS",
+  "membership_interval_rows": 5554,
+  "holdout_intersecting_frame_count": 5218,
+  "sample_rule": "int(SHA256(canonical_security_id)[0:8],16) mod 5 == 0",
+  "sample_count": 1031,
+  "sample_fraction_of_frame": 0.197585281717133,
+  "sse_count": 446,
+  "szse_count": 585,
+  "canonical_sorted_newline_sha256": "809c68f16d51f72e159a694d261dca9e2da90109062602adac9906b5c3403dc5",
+  "manifest_file": "v285_sample/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv",
+  "manifest_sha256": "199864ece6c02f3257647d59ba63fe261a7b478a2525b7ed8042bbf475a9fe48",
+  "holdout_price_rows_read": false,
+  "replacement_after_download_failure": false,
+  "receipt_sha256": "c5ff327105f5ab7b4d3170e997dd8d38d8ef2e0e9a5ccc774ae9a12b379176e8"
+}
