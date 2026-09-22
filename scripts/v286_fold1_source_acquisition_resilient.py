@@ -51,14 +51,26 @@ def load_sample()->list[dict]:
     return sorted(rows,key=lambda x:x["canonical_security_id"])
 
 def login_fresh():
+    last=""
     try:
         bs.logout()
     except Exception:
         pass
-    time.sleep(0.15)
-    lg=bs.login()
-    if lg.error_code!="0":
-        raise RuntimeError(f"BAOSTOCK_LOGIN_ERROR:{lg.error_code}:{lg.error_msg}")
+    for attempt in range(6):
+        if attempt:
+            time.sleep(2*attempt)
+        try:
+            lg=bs.login()
+            if lg.error_code=="0":
+                return
+            last=f"{lg.error_code}:{lg.error_msg}"
+        except Exception as e:
+            last=f"{type(e).__name__}:{e}"
+        try:
+            bs.logout()
+        except Exception:
+            pass
+    raise RuntimeError(f"BAOSTOCK_LOGIN_ERROR:{last}")
 
 def query_once(code:str,adjustflag:str):
     return bs.query_history_k_data_plus(
