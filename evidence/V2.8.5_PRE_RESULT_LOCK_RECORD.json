@@ -1,0 +1,70 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_PRE_RESULT_LOCK_RECORD_V1",
+  "version": "V2.8.5",
+  "status": "LOCKED_BEFORE_TERMINAL_HOLDOUT_RESULT",
+  "strategy_identity": "AI_CORE_GROWTH_TREND_V2_8_5_RESEARCH_ONLY_NEW_VERSION",
+  "locked_authorities": {
+    "holdout_contract": {
+      "file": "evidence/V2.8.5_BACKWARD_HOLDOUT_TRANSPORTABILITY_CONTRACT.json",
+      "creation_commit": "ab854d5e127614ab58625abd03707cc97b7de71e"
+    },
+    "source_contract": {
+      "file": "evidence/V2.8.5_BAOSTOCK_SOURCE_ACQUISITION_CONTRACT.json",
+      "creation_commit": "1255dc7cf0b170c5efe82af9999db3e426dc66d0"
+    },
+    "source_integrity_amendment": {
+      "file": "evidence/V2.8.5_HOLDOUT_ACQUISITION_INTEGRITY_AMENDMENT.json",
+      "creation_commit": "ee23ed1bc6ddc631ccdf8116ea92f7660d3a341c"
+    },
+    "sample_receipt": {
+      "file": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_RECEIPT.json",
+      "receipt_sha256": "c5ff327105f5ab7b4d3170e997dd8d38d8ef2e0e9a5ccc774ae9a12b379176e8",
+      "sample_count": 1031,
+      "sample_set_sha256": "809c68f16d51f72e159a694d261dca9e2da90109062602adac9906b5c3403dc5"
+    },
+    "calendar": {
+      "file": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+      "receipt_sha256": "1f6e44915ec0a6f3db0396a491c83118b6ce57448f7f08b2d35a7d8ee7cf4ed8",
+      "joint_trading_days": 484
+    },
+    "implementation_contract": {
+      "file": "evidence/V2.8.5_LOCKED_HOLDOUT_IMPLEMENTATION_CONTRACT.json",
+      "creation_commit": "51a82ecc84515b263637e6d736d4b4e3037c1332"
+    },
+    "evaluator_validation": {
+      "file": "evidence/V2.8.5_LOCKED_HOLDOUT_EVALUATOR_VALIDATION_RECEIPT.json",
+      "creation_commit": "5c661f2a5fc5404bf72d43a2a899a13fa970305a",
+      "tests_passed": 10,
+      "tests_total": 10
+    },
+    "evaluation_gate_contract": {
+      "file": "evidence/V2.8.5_HOLDOUT_EVALUATION_GATE_CONTRACT.json",
+      "creation_commit": "f9a9ecfc348c80f1bc180df7d53883a92db105fd"
+    }
+  },
+  "source_probe": {
+    "status": "PASS",
+    "holdout_rows_read": false,
+    "receipt_sha256": "10d6e21717a27c566f75adab943fd83e95df26470b71ace2af1d403584ad3172"
+  },
+  "source_acquisition_run": 35699254345,
+  "source_acquisition_state_when_this_record_was_designed": "IN_PROGRESS",
+  "terminal_holdout_result_exists_when_lock_record_designed": false,
+  "frozen_before_result": [
+    "security sample",
+    "data provider/version and adjustment modes",
+    "official joint trading calendar",
+    "PIT membership rule",
+    "H1/H2 factors and directions",
+    "CALM threshold",
+    "D+5/D+10 endpoints",
+    "minimum information",
+    "bootstrap mechanics and seeds",
+    "Holm family",
+    "quarter stability conditions",
+    "family decision mapping"
+  ],
+  "setup_or_episode_emission_authorized": false,
+  "first60_append_authorized": false,
+  "live_authorized": false
+}
