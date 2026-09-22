@@ -1,0 +1,27 @@
+name: V2.8.6 Tencent Direct Transport Probe
+on:
+  push:
+    paths:
+      - ".github/workflows/v286-tencent-direct-probe.yml"
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install akshare==1.18.97
+      - run: python scripts/v286_tencent_direct_probe.py
+      - name: Freeze direct-transport equivalence probe
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp v286_direct_probe/V2.8.6_TENCENT_DIRECT_TRANSPORT_PROBE_RECEIPT.json evidence/
+          git add evidence/V2.8.6_TENCENT_DIRECT_TRANSPORT_PROBE_RECEIPT.json
+          git commit -m "Freeze V2.8.6 Tencent direct-transport equivalence probe [skip ci]"
+          git pull --rebase origin main
+          git push
