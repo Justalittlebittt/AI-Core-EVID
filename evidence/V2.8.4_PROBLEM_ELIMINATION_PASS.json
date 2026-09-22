@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROBLEM_ELIMINATION_PASS_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_V2_8_4_ISSUER_CLASSIFICATION_RESULT",
+  "final_user_goal": "Create a reproducible, PIT-safe AI-Core eligibility layer for the A-share official Mother Pool so technical signals can only become AI-theme candidates when issuer evidence independently establishes an AI business.",
+  "hard_constraints": [
+    "Eligibility must be independent of price strength, technical factors, realized returns and later winners.",
+    "Official Mother Pool remains the U-layer membership authority.",
+    "Positive AI-Core eligibility requires issuer-level official disclosure evidence available before the signal date.",
+    "Free/public sources only.",
+    "Current vendor industry/theme tags may never substitute for eligibility evidence.",
+    "Same-day disclosure is excluded unless an availability timestamp proves it was available before the signal cutoff.",
+    "Historical reconstructed evidence observed after its purported PIT date cannot be relabeled prospective.",
+    "Ambiguity fails closed.",
+    "Missing evidence means NOT_ESTABLISHED, not a claim that the issuer is definitively non-AI."
+  ],
+  "soft_constraints_removed": [
+    "Download and parse 5221 full PDFs before any positive AI-Core classification is possible.",
+    "Produce a definitive negative AI/non-AI judgment for every issuer.",
+    "Require industry taxonomy to define AI-Core.",
+    "Treat generic AI adoption, R&D intention or market-trend language as an AI business.",
+    "Recover the missing historical AI-Core Evidence Constitution V1.2 body from its SHA256 reference."
+  ],
+  "architecture": {
+    "Delete": "Delete full-market PDF prefetch and definitive-negative classification as prerequisites.",
+    "Avoid": "Do not infer AI-Core from sector labels, company names, keyword counts, technical strength or hindsight.",
+    "Absorb": "Reuse V2.7.29 full-market official Primary Locator Inventory and V2.7.30 on-demand immutable official PDF materialization.",
+    "Substitute": "Use positive-evidence qualification: proven issuers become ELIGIBLE_AI_CORE; all others remain NOT_ESTABLISHED unless an explicit exclusion state is evidenced.",
+    "Precompute_Reuse": "Use cheap non-authoritative candidate hints only to prioritize which official filings are materialized; cache each official PDF once by content hash.",
+    "Optimize": "Only optimize candidate discovery and text extraction after the semantic rule engine passes synthetic validation."
+  },
+  "historical_v1_2_reference": {
+    "referenced_sha256": "ce8f266f3d119581306dfe853f6c15769f6ec2f4e2bf2aa68ff0ea664f51442c",
+    "body_present_in_current_repository": false,
+    "policy": "Do not claim exact restoration. V2.8.4 is a new explicitly versioned executable eligibility implementation consistent with surviving V2.8.0 hard constraints."
+  }
+}
