@@ -13,7 +13,7 @@ HOME = "https://www.cninfo.com.cn/"
 TERM = "人工智能"
 STREAMS = [
     ("sse", "sh"),
-    ("szse", "sz"),
+    ("", "sz"),
 ]
 WINDOWS = [
     "2026-09-01~2026-09-07",
