@@ -17,8 +17,11 @@ COMMERCIAL = [
     "量产", "批量生产", "商业化", "商用", "收费", "提供服务", "上线运营"
 ]
 RND_ONLY = [
-    "计划研发", "拟研发", "正在研发", "探索", "研究阶段", "预研", "尚未形成收入",
-    "尚未商业化", "未来计划", "拟开展"
+    "计划研发", "拟研发", "正在研发", "探索", "研究阶段", "预研",
+    "未来计划", "拟开展"
+]
+NEGATIVE_COMMERCIAL = [
+    "尚未形成收入", "尚未商业化", "尚未量产", "尚无订单", "尚无客户"
 ]
 INTERNAL_USE = [
     "内部使用", "办公效率", "内部管理", "内部运营", "自身生产效率", "内部提效"
@@ -77,23 +80,34 @@ def classify_text(text: str) -> Decision:
         ch = hits(s, COMMERCIAL)
         sh = hits(s, COMPANY_SUBJECT)
         rh = hits(s, RND_ONLY)
+        nh = hits(s, NEGATIVE_COMMERCIAL)
         ih = hits(s, INTERNAL_USE)
         third = hits(s, THIRD_PARTY_CONTEXT)
+
+        # Third-party / investee / industry context is never issuer business proof.
+        if third:
+            continue
 
         # Explicit internal adoption is never an external AI business.
         if ih and sh:
             adopter.append((raw, ah))
             continue
 
+        # Explicit negation of commercialization has priority over positive-token
+        # substring matches such as "尚未商业化" containing "商业化".
+        if nh and sh:
+            rnd.append((raw, ah))
+            continue
+
         # R&D/future-only statements do not qualify unless the same sentence
-        # contains concrete commercialization evidence.
+        # also contains concrete positive commercialization evidence.
         if rh and not ch and sh:
             rnd.append((raw, ah))
             continue
 
         # Direct positive evidence requires issuer subject + AI role + commercial
-        # operation in the same sentence. Third-party/industry-only context cannot qualify.
-        if sh and ah and ch and not (third and not sh):
+        # operation in the same sentence.
+        if sh and ah and ch:
             eligible.append((raw, ah, ch))
 
     if eligible:
