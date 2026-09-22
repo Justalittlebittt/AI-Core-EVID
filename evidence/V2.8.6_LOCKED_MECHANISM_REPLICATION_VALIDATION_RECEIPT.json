@@ -1,0 +1,19 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_LOCKED_MECHANISM_REPLICATION_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.6",
+  "status": "PASS",
+  "contract": "evidence/V2.8.6_STATE_INVARIANT_DUAL_COMPRESSION_CONTRACT.json",
+  "implementation": "evidence/V2.8.6_LOCKED_MECHANISM_REPLICATION_IMPLEMENTATION.json",
+  "runner": "scripts/v286_locked_mechanism_replication.py",
+  "workflow": ".github/workflows/v286-locked-mechanism-validation.yml",
+  "workflow_run_id": 35706864243,
+  "workflow_job_id": 106677785918,
+  "validated_head_sha": "cd88566d1eb2f1979abece0935bb1841b7cf2c5c",
+  "tests_passed": 10,
+  "tests_total": 10,
+  "real_fold1_price_rows_consumed": false,
+  "fold2_3_4_consumed": false,
+  "setup_or_episode_emission_authorized": false,
+  "first60_append_authorized": false,
+  "live_authorized": false
+}
