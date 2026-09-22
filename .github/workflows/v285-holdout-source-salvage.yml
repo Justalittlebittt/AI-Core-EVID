@@ -1,0 +1,47 @@
+name: V2.8.5 Holdout Source Artifact Salvage
+on:
+  push:
+    paths:
+      - ".github/workflows/v285-holdout-source-salvage.yml"
+permissions:
+  actions: read
+  contents: write
+jobs:
+  salvage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyarrow==21.0.0
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 35701775365
+          pattern: v285-*
+          merge-multiple: true
+          path: v285_artifacts
+      - name: Re-finalize existing frozen source artifacts
+        run: |
+          python scripts/v285_holdout_source_finalize.py             --artifact-root v285_artifacts             --out v285_final
+      - name: Freeze salvaged normalized snapshot
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p evidence/v285_holdout_source
+          cp v285_artifacts/*.parquet evidence/v285_holdout_source/
+          cp v285_artifacts/V2.8.5_BAOSTOCK_BUCKET_*_RECEIPT.json evidence/v285_holdout_source/
+          cp v285_artifacts/V2.8.5_BAOSTOCK_QUERY_MANIFEST_BUCKET_*.csv evidence/v285_holdout_source/
+          cp v285_artifacts/V2.8.5_BAOSTOCK_BENCHMARK_RECEIPT.json evidence/v285_holdout_source/
+          cp v285_final/V2.8.5_BAOSTOCK_QUERY_MANIFEST.csv evidence/v285_holdout_source/
+          cp v285_final/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          git add evidence/v285_holdout_source evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json
+          git commit -m "Freeze V2.8.5 untouched backward-holdout source snapshot [skip ci]"
+          git pull --rebase origin main
+          git push
