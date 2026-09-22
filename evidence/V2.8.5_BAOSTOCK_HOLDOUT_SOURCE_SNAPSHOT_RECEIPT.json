@@ -1,0 +1,112 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT_V2",
+  "version": "V2.8.5",
+  "status": "PASS",
+  "provider": "BaoStock",
+  "baostock_version": "0.9.4",
+  "retrieval_start": "2022-09-01",
+  "retrieval_end": "2024-12-31",
+  "sample_manifest_sha256": "199864ece6c02f3257647d59ba63fe261a7b478a2525b7ed8042bbf475a9fe48",
+  "sample_count": 1031,
+  "successful_nonzero_symbols": 1031,
+  "zero_row_symbols": 0,
+  "zero_row_canonical_ids": [],
+  "persistent_query_errors": 0,
+  "stock_rows": 563125,
+  "stock_trading_rows": 562124,
+  "flag3_rows_total": 6,
+  "flag3_crosschecked_rows_total": 6,
+  "stock_partitions": [
+    {
+      "bucket": 0,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_0.parquet",
+      "rows": 67407,
+      "bytes": 3070399,
+      "sha256": "ebb1ebc739a75c1581dcd95cbd6baaa0183b05c6e5eedb6d004b947f1d49e697",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_0_RECEIPT.json",
+      "bucket_receipt_sha256": "023059f712a5a910c40d94853583e6c1ac3c91284eeb168033c712fb809f37be"
+    },
+    {
+      "bucket": 1,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_1.parquet",
+      "rows": 62251,
+      "bytes": 2828193,
+      "sha256": "df7a0f97d9d0aadff9e91e572b2f288fe6f47df1e2c3f0d6a3651b27a9befe11",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_1_RECEIPT.json",
+      "bucket_receipt_sha256": "7b37fd5733bf4a4971e2198ea759076d1c3b16a720ea897b1a814bf9fa17e993"
+    },
+    {
+      "bucket": 2,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_2.parquet",
+      "rows": 73269,
+      "bytes": 3309464,
+      "sha256": "080dc825810c3044dd4e810c565f82486c7ec659a61454bd69fbe2f164828989",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_2_RECEIPT.json",
+      "bucket_receipt_sha256": "c8d39dfa9195d18e8a2b8dcf112444e11ddc2263f8f0e1cc57c5098ab192fb63"
+    },
+    {
+      "bucket": 3,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_3.parquet",
+      "rows": 77394,
+      "bytes": 3468674,
+      "sha256": "d9c94fc04eb0534fdacb87a7c5eb438d7027c4fd68b55495d09602a626e71f8c",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_3_RECEIPT.json",
+      "bucket_receipt_sha256": "c7299a56b4dbc14e6c1e2b82e5edf5522b6f66b08aa2de87ad5f61e863663bbf"
+    },
+    {
+      "bucket": 4,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_4.parquet",
+      "rows": 76872,
+      "bytes": 3489833,
+      "sha256": "2ac5826d2fe8786c2c777330009ce851347ed02d4ee73bce859d32dacf35fe4c",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_4_RECEIPT.json",
+      "bucket_receipt_sha256": "4f74b9f719dd46f51a4fe0f9d8af6504a34e1fc96b361f2e181af82a65de7e7e"
+    },
+    {
+      "bucket": 5,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_5.parquet",
+      "rows": 77002,
+      "bytes": 3381941,
+      "sha256": "45c7fc03ee0a85d7258fedc41e34ddb5691b29985e481c59f400d773fb41887f",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_5_RECEIPT.json",
+      "bucket_receipt_sha256": "ba904971e7175b44d19a0baed5c0cce516219eb47d61f41d6130fd74587d05c1"
+    },
+    {
+      "bucket": 6,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_6.parquet",
+      "rows": 63432,
+      "bytes": 2924929,
+      "sha256": "eaf531c7ce7a3b2fe81e3d836d71004431481673b7dec649a9c889c4f61a1357",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_6_RECEIPT.json",
+      "bucket_receipt_sha256": "863702ea5bea736b5b1d3b0e8c7f58689542a13b56d4bc1a80ded539cb15e036"
+    },
+    {
+      "bucket": 7,
+      "file": "V2.8.5_BAOSTOCK_STOCKS_BUCKET_7.parquet",
+      "rows": 65498,
+      "bytes": 3008040,
+      "sha256": "908edb5c8abd67895412c2533ccd4c28ac85cfb1a5d74be77a85911e4c687526",
+      "bucket_receipt": "V2.8.5_BAOSTOCK_BUCKET_7_RECEIPT.json",
+      "bucket_receipt_sha256": "3a18140be48222627a3d3b0cb06d7c6a14f82351d2cd4a3aa07069c9c7e92fc2"
+    }
+  ],
+  "benchmark": {
+    "status": "PASS",
+    "rows": 565,
+    "trading_rows": 565,
+    "min_date": "2022-09-01",
+    "max_date": "2024-12-31",
+    "file": "V2.8.5_BAOSTOCK_CSI300.parquet",
+    "bytes": 31127,
+    "parquet_sha256": "1aee2f5af524e0f99f788166731d3c9ce3a862c6f1af9203b442f11f6d5fe272",
+    "benchmark_receipt": "V2.8.5_BAOSTOCK_BENCHMARK_RECEIPT.json",
+    "benchmark_receipt_sha256": "e3a02677f0764a9e7df6ef3d91901b76247275b1e9045ecd2a57a6b93cb7da25"
+  },
+  "query_manifest_file": "V2.8.5_BAOSTOCK_QUERY_MANIFEST.csv",
+  "query_manifest_sha256": "f557a570165f2d165d3f62e2223f0bfd58b2ad9911dad74eaee1624466aa964a",
+  "acquisition_architecture": "8 deterministic stock buckets plus separate benchmark; bounded max-parallel=4",
+  "factor_or_forward_return_computed": false,
+  "holdout_outcome_inspected": false,
+  "sample_replacement_used": false,
+  "receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BAOSTOCK_BENCHMARK_RECEIPT_V1",
+  "version": "V2.8.5",
+  "status": "SUCCESS",
+  "baostock_version": "0.9.4",
+  "pyarrow_version": "21.0.0",
+  "retrieval_start": "2022-09-01",
+  "retrieval_end": "2024-12-31",
+  "rows": 565,
+  "trading_rows": 565,
+  "min_date": "2022-09-01",
+  "max_date": "2024-12-31",
+  "rows_sha256": "de6ef60e99daea8bb2b90c64ab9166477d7a73af6bc578bd64a9ab7e12b32074",
+  "file": "V2.8.5_BAOSTOCK_CSI300.parquet",
+  "bytes": 31127,
+  "parquet_sha256": "1aee2f5af524e0f99f788166731d3c9ce3a862c6f1af9203b442f11f6d5fe272",
+  "factor_or_forward_return_computed": false,
+  "holdout_outcome_inspected": false,
+  "receipt_sha256": "e3a02677f0764a9e7df6ef3d91901b76247275b1e9045ecd2a57a6b93cb7da25"
+}
