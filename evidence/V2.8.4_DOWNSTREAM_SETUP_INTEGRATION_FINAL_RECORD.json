@@ -1,0 +1,46 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_DOWNSTREAM_SETUP_INTEGRATION_FINAL_RECORD_V1",
+  "version": "V2.8.4",
+  "status": "DRY_INTEGRATION_PASS_REAL_SETUP_BLOCKED_NEW_STRATEGY_VERSION_REQUIRED",
+  "completed_layers": {
+    "prospective_E_layer_activation": "PASS",
+    "first_prospective_positive_event": "RATIFIED",
+    "effective_E_state_resolver": "PASS_10_OF_10",
+    "dry_U_E_setup_eligibility_gate": "PASS_13_OF_13",
+    "setup_admission_envelope": "PASS_11_OF_11"
+  },
+  "current_positive_event": {
+    "canonical_security_id": "SZSE:300634",
+    "effective_signal_date": "2026-09-23",
+    "state_before_effective_date": "NOT_ESTABLISHED",
+    "state_on_and_after_effective_date": "ELIGIBLE_AI_CORE",
+    "does_not_itself_create_setup": true
+  },
+  "downstream_blocker": {
+    "authority": "evidence/V2.7.34_STRATEGY_RECONSTITUTION_FEASIBILITY_AUDIT.json",
+    "exact_old_runtime_reconstruction": "NOT_IDENTIFIABLE",
+    "original_strategy_source_bytes": "ABSENT",
+    "original_setup_engine_rule_text": "NOT_AVAILABLE_AS_INDEPENDENT_AUTHORITATIVE_ARTIFACT",
+    "old_First60_activation_may_not_be_reused_for_new_signal_generator": true
+  },
+  "problem_elimination_decision": {
+    "delete": "Do not attempt further reverse engineering of the lost V2.7.3 strategy from hashes or historical outputs.",
+    "avoid": "Do not modify V2.7.32 First60 ledger to accept a newly invented generator under FIRST60_ACTIVATION_001.",
+    "absorb": "Retain V2.8.4 U/E eligibility interfaces as reusable strategy-agnostic infrastructure.",
+    "substitute": "Create a clearly new strategy version from surviving research evidence with its own frozen specification, validation, and future prospective activation boundary.",
+    "precompute_reuse": "Reuse PIT U authority, E-state resolver, dry eligibility gate, and Setup admission envelope.",
+    "optimize": "Only after a new strategy specification is frozen."
+  },
+  "forbidden": [
+    "No claim that a new strategy restores V2.7.3.",
+    "No tuning a new strategy to reproduce historical lost-runtime events.",
+    "No append to V2.7.32 First60 from V2.8.4 dry integration.",
+    "No Setup or Episode emission.",
+    "No live trading authorization."
+  ],
+  "next_stage": "V2.8.5_NEW_STRATEGY_VERSION_DESIGN_GATE_FROM_SURVIVING_RESEARCH",
+  "setup_emission_authorized": false,
+  "episode_emission_authorized": false,
+  "first60_append_authorized": false,
+  "live_authorized": false
+}
