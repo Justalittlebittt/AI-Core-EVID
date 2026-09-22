@@ -1,0 +1,13 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_BAOSTOCK_PROVIDER_EXIT_RECORD_V1",
+  "version": "V2.8.6",
+  "status": "PROVIDER_SUBSTITUTED_NO_RESEARCH_RESULT",
+  "failed_runs": [35706670155, 35707505115, 35707730742],
+  "terminal_reason": "BaoStock login/transport remained unavailable from GitHub-hosted runners after large-bucket, sharded, lower-concurrency, proactive reconnect and six-attempt bounded-login strategies.",
+  "representative_error": "10002007 网络接收错误",
+  "fold1_source_snapshot_committed_from_baostock": false,
+  "fold1_factor_or_forward_return_computed_from_baostock": false,
+  "fold1_mechanism_statistics_computed_from_baostock": false,
+  "sample_or_hypothesis_changed": false,
+  "next_action": "SUBSTITUTE_AKSHARE_EASTMONEY_HFQ"
+}
