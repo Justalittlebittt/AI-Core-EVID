@@ -1,10 +1,5 @@
 name: V2.8.4 Setup Admission Envelope Validation
 on:
-  push:
-    paths:
-      - "scripts/v284_setup_admission_envelope.py"
-      - "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json"
-      - ".github/workflows/v284-setup-admission-envelope-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
