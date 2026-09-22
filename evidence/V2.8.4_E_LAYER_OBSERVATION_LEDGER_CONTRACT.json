@@ -1,0 +1,47 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_E_LAYER_OBSERVATION_LEDGER_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_DESIGN_NOT_ACTIVATED",
+  "purpose": "Provide an append-only, content-bound observation ledger for prospective E-layer evidence events so duplicate CNInfo announcements never trigger repeated materialization or classification.",
+  "identity": {
+    "primary_key": "announcement_id",
+    "immutable_bindings": [
+      "canonical_security_id",
+      "adjunct_url",
+      "object_sha256"
+    ],
+    "first_observed_at_authority": "GitHub committed_at of the first ledger/event commit that records the announcement",
+    "runner_wall_clock_is_descriptive_only": true
+  },
+  "rows": [
+    "announcement_id",
+    "canonical_security_id",
+    "adjunct_url",
+    "object_sha256",
+    "page_text_sha256",
+    "decision_sha256",
+    "diagnostic_or_prospective_mode",
+    "classification_state",
+    "first_observation_commit_sha",
+    "first_observed_at_utc"
+  ],
+  "append_semantics": {
+    "same_announcement_same_object": "NO_ACTION_DUPLICATE",
+    "same_announcement_different_object": "BLOCKED_ANNOUNCEMENT_OBJECT_CONFLICT",
+    "same_announcement_different_security": "BLOCKED_IDENTITY_CONFLICT",
+    "new_announcement": "APPEND_ALLOWED",
+    "overwrite_existing_row": false
+  },
+  "eligibility_effect": {
+    "ledger_row_alone_changes_eligibility": false,
+    "diagnostic_row_changes_eligibility": false,
+    "prospective_positive_row_requires_separate_activation_and_effective-date logic": true
+  },
+  "governance": {
+    "price_or_return_data_forbidden": true,
+    "raw_pdf_in_git": false,
+    "prospective_activation_authorized_by_this_contract": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
