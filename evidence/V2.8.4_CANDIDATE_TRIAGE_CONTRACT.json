@@ -1,0 +1,43 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CANDIDATE_TRIAGE_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_TRIAGE_REDIAGNOSTIC_RESULTS",
+  "purpose": "Delete predictable low-value PDF materialization work for narrowly defined administrative meeting notices while preserving conservative AI-Core semantics.",
+  "input": "Deduplicated CNInfo candidate hints only.",
+  "triage_states": {
+    "MATERIALIZE_CANDIDATE": "Candidate remains eligible for official PDF materialization and classifier processing.",
+    "SKIP_LOW_INFORMATION_ADMIN_NOTICE": "Do not materialize this candidate in the routine E-layer pipeline; this is a cost-control state only and has no eligibility meaning."
+  },
+  "narrow_skip_rule": {
+    "scope": "Administrative announcements whose title only announces attendance at, or convening of, a performance-results briefing/collective performance-results briefing.",
+    "examples": [
+      "关于参加科创板2026年半年度人工智能行业集体业绩说明会的公告",
+      "关于召开2026年半年度业绩说明会的公告"
+    ],
+    "regex_intent": [
+      "关于参加.*业绩说明会.*公告",
+      "关于召开.*业绩说明会.*公告"
+    ]
+  },
+  "explicitly_not_suppressed_by_this_version": [
+    "年度报告 or 半年度报告",
+    "招股说明书",
+    "合同/订单/产品/业务进展公告",
+    "投资者关系活动记录表",
+    "问询回复",
+    "任何未命中窄规则的文档"
+  ],
+  "semantics": {
+    "skip_is_negative_classification": false,
+    "skip_changes_existing_eligibility": false,
+    "absence_from_materialization_after_skip": "NO_STATE_CHANGE",
+    "later substantive filing_can_establish_eligibility": true
+  },
+  "governance": {
+    "rule_changes_from_price_or_return_results": false,
+    "price_or_return_data_forbidden": true,
+    "prospective_backfill": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
