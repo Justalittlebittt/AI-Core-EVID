@@ -1,5 +1,8 @@
 name: V2.8.5 Locked Backward Holdout Evaluation
 on:
+  push:
+    paths:
+      - "evidence/V2.8.5_HOLDOUT_EVALUATION_ACTIVATION.json"
   workflow_dispatch:
 permissions:
   contents: write
