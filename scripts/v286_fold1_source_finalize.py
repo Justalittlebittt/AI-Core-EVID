@@ -90,7 +90,7 @@ def validate_bucket(root:Path,b:int,sample:dict[str,dict])->tuple[dict,list[dict
     return rec,manifest
 
 def validate_benchmark(root:Path)->dict:
-    rp=root/"V2.8.5_BAOSTOCK_BENCHMARK_RECEIPT.json"
+    rp=root/"V2.8.6_FOLD1_BAOSTOCK_BENCHMARK_RECEIPT.json"
     if not rp.exists():
         raise RuntimeError("BENCHMARK_RECEIPT_MISSING")
     rec=json.loads(rp.read_text(encoding="utf-8"))
@@ -182,7 +182,7 @@ def main():
             "file":bench["file"],
             "bytes":int(bench["bytes"]),
             "parquet_sha256":bench["parquet_sha256"],
-            "benchmark_receipt":"V2.8.5_BAOSTOCK_BENCHMARK_RECEIPT.json",
+            "benchmark_receipt":"V2.8.6_FOLD1_BAOSTOCK_BENCHMARK_RECEIPT.json",
             "benchmark_receipt_sha256":bench["receipt_sha256"],
         },
         "query_manifest_file":mp.name,
