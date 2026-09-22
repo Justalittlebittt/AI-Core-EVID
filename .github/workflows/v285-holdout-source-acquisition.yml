@@ -1,0 +1,37 @@
+name: V2.8.5 Frozen Holdout Source Acquisition
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v285-holdout-source-acquisition
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned acquisition runtime
+        run: |
+          python -m pip download --no-deps --only-binary=:all: baostock==0.9.4 -d wheelhouse
+          test "$(sha256sum wheelhouse/baostock-0.9.4-py3-none-any.whl | awk '{print $1}')" = "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8"
+          python -m pip install wheelhouse/baostock-0.9.4-py3-none-any.whl pyarrow==21.0.0
+      - name: Acquire frozen 20 percent holdout source
+        run: python scripts/v285_holdout_source_acquisition.py
+      - name: Freeze normalized snapshot and compact provenance
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p evidence/v285_holdout_source
+          cp v285_holdout_source/*.parquet evidence/v285_holdout_source/
+          cp v285_holdout_source/V2.8.5_BAOSTOCK_QUERY_MANIFEST.csv evidence/v285_holdout_source/
+          cp v285_holdout_source/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          git add evidence/v285_holdout_source evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json
+          git commit -m "Freeze V2.8.5 untouched backward-holdout source snapshot [skip ci]"
+          git pull --rebase origin main
+          git push
