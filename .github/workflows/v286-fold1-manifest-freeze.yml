@@ -1,0 +1,28 @@
+name: V2.8.6 Fold1 Manifest Freeze
+on:
+  push:
+    paths:
+      - "scripts/v286_fold1_manifest.py"
+      - ".github/workflows/v286-fold1-manifest-freeze.yml"
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/v286_fold1_manifest.py
+      - name: Freeze fold1 manifest
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp v286_fold1/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv evidence/
+          cp v286_fold1/V2.8.6_FOLD1_MANIFEST_RECEIPT.json evidence/
+          git add evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv evidence/V2.8.6_FOLD1_MANIFEST_RECEIPT.json
+          git commit -m "Freeze V2.8.6 fold1 mechanism-replication manifest [skip ci]"
+          git pull --rebase origin main
+          git push
