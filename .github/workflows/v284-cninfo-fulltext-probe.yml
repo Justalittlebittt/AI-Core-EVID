@@ -1,9 +1,5 @@
 name: V2.8.4 CNInfo Fulltext Candidate Probe
 on:
-  push:
-    paths:
-      - "scripts/v284_cninfo_fulltext_probe.py"
-      - ".github/workflows/v284-cninfo-fulltext-probe.yml"
   workflow_dispatch:
 
 permissions:
