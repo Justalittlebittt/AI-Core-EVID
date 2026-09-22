@@ -1,9 +1,6 @@
 name: V2.8.6 AKShare Tencent Source Probe
 on:
-  push:
-    paths:
-      - "scripts/v286_akshare_tencent_probe.py"
-      - ".github/workflows/v286-akshare-tencent-probe.yml"
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
