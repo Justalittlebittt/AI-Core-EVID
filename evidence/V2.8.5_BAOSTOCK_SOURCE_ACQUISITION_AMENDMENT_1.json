@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_BAOSTOCK_SOURCE_ACQUISITION_AMENDMENT_1_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_BEFORE_FIRST_SOURCE_PROBE",
+  "parent": "evidence/V2.8.5_BAOSTOCK_SOURCE_ACQUISITION_CONTRACT.json",
+  "reason": "Separate stock corporate-action adjustment semantics from benchmark-index semantics before any probe data is observed.",
+  "amendment": {
+    "stock_adjustflag": "1",
+    "stock_adjustment": "后复权 / post-adjusted",
+    "benchmark_code": "sh.000300",
+    "benchmark_adjustflag": "3",
+    "benchmark_adjustment": "unadjusted index level; corporate-action adjustment is not applicable",
+    "market_state_factor": "rv10/rv60 from benchmark log close returns remains scale-invariant"
+  },
+  "unchanged": [
+    "probe period",
+    "holdout period",
+    "deterministic 20% security sampling",
+    "factor definitions",
+    "outcomes",
+    "statistical mechanics",
+    "PASS conditions"
+  ]
+}
