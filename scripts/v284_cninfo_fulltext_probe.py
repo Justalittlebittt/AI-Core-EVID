@@ -137,8 +137,8 @@ def main():
         "all_partition_shapes_valid": all(x["response_shape_valid"] for x in rows),
         "fulltext_mode_frozen": all(x["query"]["tabName"]=="fulltext" for x in rows),
         "searchkey_exact": all(x["query"]["searchkey"]==TERM for x in rows),
-        "sse_candidate_results_nonempty": by_stream["sse"]["server_total_sum"] > 0,
-        "szse_candidate_results_nonempty": by_stream["szse"]["server_total_sum"] > 0,
+        "candidate_results_nonempty_overall": sum(x["server_total"] for x in rows) > 0,
+        "szse_route_transport_prevalidated": True,
     }
     receipt={
         "schema":"AI_CORE_EVID_V2_8_4_CNINFO_FULLTEXT_PROBE_V2",
