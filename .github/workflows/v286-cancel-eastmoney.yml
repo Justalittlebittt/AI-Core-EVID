@@ -1,0 +1,15 @@
+name: V2.8.6 Cancel Eastmoney Acquisition
+on:
+  push:
+    paths:
+      - ".github/workflows/v286-cancel-eastmoney.yml"
+permissions:
+  contents: read
+concurrency:
+  group: v286-eastmoney-fold1-source
+  cancel-in-progress: true
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Supersede obsolete Eastmoney acquisition path"
