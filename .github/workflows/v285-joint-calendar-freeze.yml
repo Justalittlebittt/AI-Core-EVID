@@ -1,9 +1,5 @@
 name: V2.8.5 Joint Calendar Freeze
 on:
-  push:
-    paths:
-      - "scripts/v285_joint_calendar.py"
-      - ".github/workflows/v285-joint-calendar-freeze.yml"
   workflow_dispatch:
 permissions:
   contents: write
