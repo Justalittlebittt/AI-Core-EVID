@@ -1,0 +1,26 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_DRY_AI_CORE_SETUP_ELIGIBILITY_GATE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "PASS",
+  "contract": "evidence/V2.8.4_DRY_AI_CORE_SETUP_ELIGIBILITY_GATE_CONTRACT.json",
+  "runner": "scripts/v284_ai_core_setup_eligibility_gate.py",
+  "workflow": ".github/workflows/v284-dry-ai-core-setup-gate-validation.yml",
+  "workflow_run_id": 35697844521,
+  "workflow_job_id": 106648581122,
+  "validated_head_sha": "9cb7f0958ffee65df90a9de916b17026d358c85f",
+  "synthetic_and_integration_tests_passed": 13,
+  "synthetic_and_integration_tests_total": 13,
+  "real_E_event_integration": {
+    "canonical_security_id": "SZSE:300634",
+    "2026-09-22": "BLOCK_E_NOT_ELIGIBLE",
+    "2026-09-23": "PASS_DRY_AI_CORE_CANDIDATE"
+  },
+  "real_PIT_U_authority_used": false,
+  "reason_real_U_not_used": "No V2.8.3 PIT authority artifact for 2026-09-22 existed at validation time; U-layer loader/integrity behavior was validated with bounded synthetic PASS and failure fixtures.",
+  "old_validation_suites_rerun": false,
+  "price_or_return_data_consumed": false,
+  "setup_emission_authorized": false,
+  "episode_emission_authorized": false,
+  "first60_append_authorized": false,
+  "live_authorized": false
+}
