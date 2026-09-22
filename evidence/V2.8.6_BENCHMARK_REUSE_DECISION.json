@@ -1,0 +1,20 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_BENCHMARK_REUSE_DECISION_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_RESILIENT_FOLD1_RERUN",
+  "reused_authority": {
+    "source_snapshot": "evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json",
+    "source_snapshot_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9",
+    "benchmark_file": "evidence/v285_holdout_source/V2.8.5_BAOSTOCK_CSI300.parquet",
+    "benchmark_parquet_sha256": "1aee2f5af524e0f99f788166731d3c9ce3a862c6f1af9203b442f11f6d5fe272",
+    "rows": 565,
+    "retrieval_start": "2022-09-01",
+    "retrieval_end": "2024-12-31",
+    "provider": "BaoStock 0.9.4",
+    "query": "sh.000300, frequency=d, adjustflag=3"
+  },
+  "equivalence_to_v2_8_6_requirement": true,
+  "problem_elimination": "Precompute/Reuse: benchmark is market-wide and independent of identity fold, so a second identical network retrieval adds cost and failure risk but no information.",
+  "stock_fold1_price_rows_consumed_by_this_decision": false,
+  "fold2_3_4_consumed": false
+}
