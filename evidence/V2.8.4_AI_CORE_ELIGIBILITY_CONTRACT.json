@@ -1,0 +1,94 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_AI_CORE_ELIGIBILITY_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_V2_8_4_ISSUER_CLASSIFICATION_RESULT",
+  "purpose": "Define a positive-evidence, point-in-time AI-Core eligibility layer independent of market performance.",
+  "upstream": {
+    "mother_pool": "Official U-layer / prospective PIT universe for the signal date.",
+    "historical_primary_locator_inventory": "evidence/V2.7.29_PRIMARY_LOCATOR_INVENTORY.csv",
+    "materialization_contract": "evidence/V2.7.30_EVIDENCE_MATERIALIZATION_CONTRACT.json"
+  },
+  "source_authority": {
+    "eligibility_evidence_allowed": [
+      "official CNInfo issuer filing bytes",
+      "official SSE/SZSE issuer disclosure bytes"
+    ],
+    "candidate_hint_only_not_authority": [
+      "vendor industry/theme labels",
+      "CAPCO industry context",
+      "company-name keyword heuristics",
+      "official filing search metadata before underlying filing text is verified"
+    ],
+    "price_or_return_evidence_forbidden": true
+  },
+  "temporal_rule": {
+    "historical": "Evidence disclosure_date must be strictly before signal_date unless an exact pre-signal availability timestamp is frozen.",
+    "prospective": "A newly observed evidence item may only change eligibility from the first trading date after its authoritative repository observation time; no backfill.",
+    "revision": "A later official revision supersedes the earlier document only from the revision's legal availability time forward."
+  },
+  "classification_states": {
+    "ELIGIBLE_AI_CORE": "Official filing proves that the issuer or consolidated subsidiary offers a product/service whose substantive function is AI/ML/model/AI-compute and also proves commercial operation.",
+    "EXCLUDED_AI_ADOPTER_ONLY": "Evidence only shows internal use/procurement of AI to improve the issuer's own operations; no external AI business is established.",
+    "EXCLUDED_AI_RND_ONLY": "Evidence only shows research, planning, exploration, testing or future intention; commercialization is not established.",
+    "NOT_ESTABLISHED": "No qualifying positive evidence has been verified. This is not a definitive non-AI claim.",
+    "BLOCKED_AMBIGUOUS": "Evidence is contradictory, identity/temporal provenance is unresolved, or the text cannot establish the required conjunction."
+  },
+  "eligibility_conjunction": {
+    "all_required": [
+      "COMPANY_BUSINESS_SUBJECT",
+      "DIRECT_AI_PRODUCT_OR_SERVICE",
+      "COMMERCIAL_OPERATION"
+    ],
+    "COMPANY_BUSINESS_SUBJECT": "The statement concerns the issuer or a consolidated operating subsidiary, not an industry trend, investee, customer or unrelated third party.",
+    "DIRECT_AI_PRODUCT_OR_SERVICE": [
+      "AI/ML/model software or platform",
+      "AI algorithm product/service",
+      "AI chip/accelerator/NPU/GPU product",
+      "AI server/accelerator card/intelligent-computing platform",
+      "machine-vision/robot/autonomy product only when AI/ML is explicitly part of the product function"
+    ],
+    "COMMERCIAL_OPERATION": [
+      "sale or revenue",
+      "shipment or delivery",
+      "commercial deployment or paid service",
+      "production/volume production plus customer-facing supply",
+      "customer/order/contract evidence tied to the AI product/service"
+    ]
+  },
+  "explicit_non_qualifiers": [
+    "generic statements that AI is an industry trend",
+    "internal AI office/management/manufacturing efficiency use only",
+    "planned/future AI R&D without commercial evidence",
+    "generic semiconductor/electronics/data-center products merely benefiting from AI demand",
+    "generic robot/automation/smart-product wording without explicit AI/ML functionality",
+    "holding an equity investment in an AI company without the issuer itself operating the qualifying business",
+    "keyword frequency by itself"
+  ],
+  "evidence_record_required_fields": [
+    "canonical_security_id",
+    "issuer_legal_name",
+    "document_type",
+    "announcement_id",
+    "disclosure_date",
+    "source_object_sha256",
+    "page_number",
+    "evidence_text",
+    "matched_ai_role",
+    "matched_commerciality",
+    "classification_state"
+  ],
+  "full_market_semantics": {
+    "every_U_layer_member_has_state": true,
+    "default_without_verified_positive_evidence": "NOT_ESTABLISHED",
+    "default_is_not_negative_claim": true,
+    "eligible_set": ["ELIGIBLE_AI_CORE"]
+  },
+  "governance": {
+    "classification_rule_may_not_change_after_inspecting_security_returns": true,
+    "classification_rule_may_not_change_to_rescue_a_named_stock": true,
+    "technical_factor_layer_cannot_override_E": true,
+    "E_layer_cannot_override_U_membership": true,
+    "setup_or_episode_requires_E_eligible": true,
+    "live_authorized": false
+  }
+}
