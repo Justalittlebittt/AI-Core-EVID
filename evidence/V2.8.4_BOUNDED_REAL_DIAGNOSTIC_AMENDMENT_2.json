@@ -1,0 +1,23 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_BOUNDED_REAL_DIAGNOSTIC_AMENDMENT_2",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_TRIAGED_REDIAGNOSTIC_RESULTS",
+  "parent_contract": "evidence/V2.8.4_BOUNDED_REAL_OFFICIAL_EVIDENCE_DIAGNOSTIC_CONTRACT.json",
+  "parent_window_amendment": "evidence/V2.8.4_BOUNDED_REAL_DIAGNOSTIC_AMENDMENT_1.json",
+  "trigger": "The first successful real diagnostic showed 3 of 4 selected candidates were low-information administrative performance-briefing notices.",
+  "new_upstream_step": "Apply V2.8.4_CANDIDATE_TRIAGE_CONTRACT before deterministic sample selection.",
+  "selection_after_triage": "Among MATERIALIZE_CANDIDATE rows only, sort by SHA256(announcement_id) ascending and take the first 4.",
+  "skip_state": "SKIP_LOW_INFORMATION_ADMIN_NOTICE has NO_STATE_CHANGE and no negative eligibility meaning.",
+  "unchanged": [
+    "2026-09-01 through 2026-09-07 diagnostic window",
+    "all frozen 18 hint terms",
+    "both markets",
+    "maximum four PDFs",
+    "official PDF integrity gates",
+    "page-text extraction",
+    "AI-Core classifier semantics",
+    "development-diagnostic-only effect",
+    "no price or return data",
+    "no prospective backfill"
+  ]
+}
