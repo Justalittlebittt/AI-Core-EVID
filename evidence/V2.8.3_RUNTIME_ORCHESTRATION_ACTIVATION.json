@@ -1,0 +1,44 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_RUNTIME_ORCHESTRATION_ACTIVATION_V1",
+  "version": "V2.8.3",
+  "status": "ACTIVE_TWO_SCHEDULE_RUNTIME",
+  "amendment": "evidence/V2.8.3_RUNTIME_ORCHESTRATION_AMENDMENT_1.json",
+  "active_schedules": [
+    {
+      "workflow": ".github/workflows/v283-pit-date-authority.yml",
+      "cron_utc": "0 8 * * 1-5",
+      "local_asia_shanghai": "16:00 Monday-Friday",
+      "role": "POST_CLOSE_PIT_DATE_AUTHORITY"
+    },
+    {
+      "workflow": ".github/workflows/v283-prospective-morning-orchestrator.yml",
+      "cron_utc": "0 1 * * 2-6",
+      "local_asia_shanghai": "09:00 Tuesday-Saturday",
+      "role": "SOURCE_PIN_TO_FINAL_READINESS_SEQUENTIAL_PIPELINE"
+    }
+  ],
+  "standalone_component_schedules_removed": [
+    ".github/workflows/v283-source-ledger-capture.yml",
+    ".github/workflows/v283-signal-feature-snapshot.yml",
+    ".github/workflows/v283-outcome-resolver.yml",
+    ".github/workflows/v283-information-readiness.yml",
+    ".github/workflows/v283-confirmatory-evaluation.yml"
+  ],
+  "manual_component_recovery_retained": true,
+  "static_schedule_audit": {
+    "v2_8_3_scheduled_workflow_count": 2,
+    "unexpected_v2_8_3_schedule_present": false
+  },
+  "first_runtime_checkpoint": {
+    "signal_date": "2026-09-22",
+    "expected_first_stage": "POST_CLOSE_PIT_DATE_AUTHORITY",
+    "expected_local_time": "2026-09-22T16:00:00+08:00",
+    "signal_ledger_before_checkpoint": "EMPTY",
+    "outcome_ledger_before_checkpoint": "EMPTY"
+  },
+  "scientific_semantics_changed": false,
+  "thresholds_changed": false,
+  "hypotheses_changed": false,
+  "setup_or_episode_emission_authorized": false,
+  "live_authorized": false
+}
