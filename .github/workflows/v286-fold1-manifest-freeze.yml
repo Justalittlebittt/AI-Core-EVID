@@ -1,9 +1,6 @@
 name: V2.8.6 Fold1 Manifest Freeze
 on:
-  push:
-    paths:
-      - "scripts/v286_fold1_manifest.py"
-      - ".github/workflows/v286-fold1-manifest-freeze.yml"
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
