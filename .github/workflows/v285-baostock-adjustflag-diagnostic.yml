@@ -1,9 +1,6 @@
 name: V2.8.5 BaoStock Adjustflag Diagnostic
 on:
-  push:
-    paths:
-      - "scripts/v285_baostock_adjustflag_diagnostic.py"
-      - ".github/workflows/v285-baostock-adjustflag-diagnostic.yml"
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
