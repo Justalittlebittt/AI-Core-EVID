@@ -1,0 +1,69 @@
+name: V2.8.6 Serial Tencent Source and Terminal Replication
+on:
+  push:
+    paths:
+      - ".github/workflows/v286-serial-tencent-terminal.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v286-tencent-fold1-source
+  cancel-in-progress: true
+jobs:
+  acquire_and_evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned runtime once
+        run: |
+          python -m pip download --no-deps --only-binary=:all: akshare==1.18.97 -d wheelhouse
+          test "$(sha256sum wheelhouse/akshare-1.18.97-py3-none-any.whl | awk '{print $1}')" = "f7a202842b1300bfe74efca69be93919041422e8a3dc1f0be204b039af27e683"
+          python -m pip install wheelhouse/akshare-1.18.97-py3-none-any.whl pyarrow==21.0.0
+      - name: Acquire all 16 Tencent fold1 shards serially
+        run: |
+          set -euo pipefail
+          mkdir -p v286_tx_artifacts
+          for shard in $(seq 0 15); do
+            echo "=== TENCENT FOLD1 SHARD $shard / 15 ==="
+            python scripts/v286_tencent_fold1_acquisition.py               --shard "$shard"               --out v286_tx_artifacts
+          done
+      - name: Validate and finalize frozen Tencent fold1 snapshot
+        run: |
+          python scripts/v286_tencent_fold1_finalize.py             --artifact-root v286_tx_artifacts             --out v286_tx_final
+      - name: Freeze source snapshot locally before opening outcomes
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          rm -rf evidence/v286_fold1_source
+          mkdir -p evidence/v286_fold1_source
+          cp v286_tx_artifacts/*.parquet evidence/v286_fold1_source/
+          cp v286_tx_artifacts/V2.8.6_FOLD1_TENCENT_SHARD_*_RECEIPT.json evidence/v286_fold1_source/
+          cp v286_tx_artifacts/V2.8.6_FOLD1_TENCENT_QUERY_MANIFEST_SHARD_*.csv evidence/v286_fold1_source/
+          cp v286_tx_final/V2.8.6_FOLD1_TENCENT_QUERY_MANIFEST.csv evidence/v286_fold1_source/
+          cp v286_tx_final/V2.8.6_FOLD1_BAOSTOCK_CSI300.parquet evidence/v286_fold1_source/
+          cp v286_tx_final/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          git add -A evidence/v286_fold1_source evidence/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json
+          git commit -m "Freeze V2.8.6 Tencent fold1 source snapshot [skip ci]"
+      - name: Create and freeze one-time replication activation locally
+        run: |
+          python scripts/v286_create_replication_activation.py
+          git add evidence/V2.8.6_MECHANISM_REPLICATION_ACTIVATION.json
+          git commit -m "Activate one-time V2.8.6 fold1 mechanism replication [skip ci]"
+      - name: Verify exact activation and frozen source bindings
+        run: python scripts/v286_mechanism_replication_gate.py
+      - name: Run terminal fold1 mechanism replication
+        run: python scripts/v286_locked_mechanism_replication.py evaluate
+      - name: Freeze terminal result and push ordered provenance chain
+        run: |
+          set -euo pipefail
+          git add evidence/V2.8.6_FOLD1_DAILY_METRICS.csv evidence/V2.8.6_MECHANISM_REPLICATION_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.6 Tencent fold1 mechanism-replication result [skip ci]"
+          git pull --rebase origin main
+          git push
