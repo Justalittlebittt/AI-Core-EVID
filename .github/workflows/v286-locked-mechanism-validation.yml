@@ -1,9 +1,5 @@
 name: V2.8.6 Locked Mechanism Replication Validation
 on:
-  push:
-    paths:
-      - "scripts/v286_locked_mechanism_replication.py"
-      - ".github/workflows/v286-locked-mechanism-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
