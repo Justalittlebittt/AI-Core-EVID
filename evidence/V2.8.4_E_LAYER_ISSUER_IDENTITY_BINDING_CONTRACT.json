@@ -1,0 +1,38 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_E_LAYER_ISSUER_IDENTITY_BINDING_CONTRACT_V1",
+  "version": "V2.8.4",
+  "status": "FROZEN_IDENTITY_ONLY",
+  "purpose": "Bind canonical A-share security identity to issuer legal name without allowing identity evidence to create or strengthen AI-Core eligibility.",
+  "allowed_authority": [
+    "official CNInfo issuer filing",
+    "official SSE issuer disclosure",
+    "official SZSE issuer disclosure"
+  ],
+  "binding_rule": {
+    "required": [
+      "canonical_security_id",
+      "security_name",
+      "issuer_legal_name",
+      "source_announcement_id",
+      "source_adjunct_url",
+      "source_disclosure_date",
+      "identity_evidence_text"
+    ],
+    "same_security_conflicting_legal_name": "BLOCK_IDENTITY_BINDING_CONFLICT",
+    "historical_official_filing_allowed_for_static_identity": true,
+    "historical_identity_binding_creates_AI_eligibility": false,
+    "historical_identity_binding_changes_effective_date": false
+  },
+  "prospective_use": {
+    "positive_AI_event_requires_resolved_issuer_legal_name": true,
+    "positive_AI_event_requires_identity_basis": true,
+    "unresolved_identity": "BLOCK_POSITIVE_EFFECT_ONLY",
+    "classification_result_itself_may_remain_recorded": true
+  },
+  "governance": {
+    "price_or_return_data_forbidden": true,
+    "historical_backfill": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false
+  }
+}
