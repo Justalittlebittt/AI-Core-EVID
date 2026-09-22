@@ -1,0 +1,43 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_FINALIZATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "FINALIZED",
+  "run_id": "35696039272_1",
+  "observation_receipt": "V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_35696039272_1.json",
+  "observation_commit_sha": "490e6ea039abfe64ac99172cea4b3bcc186164c7",
+  "authoritative_observed_at_utc": "2026-09-22T06:43:07Z",
+  "successful_observation_rows": 1,
+  "ledger_rows_before": 0,
+  "ledger_rows_appended": 1,
+  "ledger_duplicate_noops": 0,
+  "ledger_rows_after": 1,
+  "effective_positive_events": [
+    {
+      "canonical_security_id": "SZSE:300634",
+      "issuer_legal_name": "彩讯科技股份有限公司",
+      "document_type": "CNINFO_ISSUER_DISCLOSURE",
+      "announcement_id": "1225573666",
+      "disclosure_date": "2026-09-21",
+      "source_object_sha256": "a4a2e9ad44985e3d7426bc07ccb4eb315ba8d3ad862b099ebd1de5f1e610c040",
+      "page_number": 3,
+      "evidence_text": "3、本合同的签署有利于公司落实“全栈AI”战略、拓展智算服务业务，积",
+      "matched_ai_role": [
+        "智算"
+      ],
+      "matched_commerciality": [
+        "合同"
+      ],
+      "classification_state": "ELIGIBLE_AI_CORE",
+      "authoritative_observed_at_utc": "2026-09-22T06:43:07Z",
+      "record_complete": true,
+      "effective_signal_date": "2026-09-23"
+    }
+  ],
+  "blocked_incomplete_positive_records": [],
+  "historical_backfill": false,
+  "same_day_eligibility_activation": false,
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "58ac8c8d1e3d1b9b47f8efed88c6ee065da4341e3ef3c6edadb0e7075d6c603a"
+}
