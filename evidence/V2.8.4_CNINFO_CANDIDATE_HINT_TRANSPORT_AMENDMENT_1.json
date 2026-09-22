@@ -1,0 +1,28 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_CNINFO_CANDIDATE_HINT_TRANSPORT_AMENDMENT_1",
+  "version": "V2.8.4",
+  "status": "FROZEN_BEFORE_ANY_REAL_SECURITY_CLASSIFICATION",
+  "parent_contract": "evidence/V2.8.4_CNINFO_FULLTEXT_CANDIDATE_HINT_CONTRACT.json",
+  "trigger": "A broad SZSE full-market fulltext request over 2026-09-01 through 2026-09-22 returned HTTP 504 while SSE transport succeeded.",
+  "problem_elimination": {
+    "deleted_soft_constraint": "One keyword-market query must cover the whole requested date interval in one request.",
+    "replacement": "Partition each requested date interval deterministically into short non-overlapping windows, query the same frozen keyword separately per window, then union and deduplicate by announcement_id.",
+    "reason": "Reduce official endpoint query load without changing candidate semantics or eligibility authority."
+  },
+  "empty_response_semantics": "HTTP 200 with announcements=null and server total=0 is a valid empty result page, not a malformed response.",
+  "retry_semantics": {
+    "transient_statuses": [429,500,502,503,504],
+    "max_attempts_per_partition": 3,
+    "eligibility_effect_of_retry": "NONE"
+  },
+  "unchanged": [
+    "candidate search is not eligibility authority",
+    "only materialized official filing text can support ELIGIBLE_AI_CORE",
+    "each hint term remains queried separately",
+    "absence from search remains no negative classification",
+    "announcement_id remains deduplication key",
+    "PIT/no-backfill rules remain unchanged"
+  ],
+  "real_security_classification_consumed_before_amendment": false,
+  "price_or_return_data_consumed": false
+}
