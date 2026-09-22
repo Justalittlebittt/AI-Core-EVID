@@ -1,9 +1,5 @@
 name: V2.8.4 E-Layer Effective Date Validation
 on:
-  push:
-    paths:
-      - "scripts/v284_e_layer_effective_date.py"
-      - ".github/workflows/v284-e-layer-effective-date-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
