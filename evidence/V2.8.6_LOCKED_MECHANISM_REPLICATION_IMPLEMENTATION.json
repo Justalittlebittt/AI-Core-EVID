@@ -1,0 +1,45 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_LOCKED_MECHANISM_REPLICATION_IMPLEMENTATION_V1",
+  "version": "V2.8.6",
+  "status": "FROZEN_BEFORE_FOLD1_SOURCE_SNAPSHOT_COMPLETION",
+  "parent_contract": "evidence/V2.8.6_STATE_INVARIANT_DUAL_COMPRESSION_CONTRACT.json",
+  "panel": {
+    "stock_rows_used": "tradestatus == 1 only",
+    "signal_date_requires_exact_D_bar": true,
+    "membership_required_on_D": "official_list_date <= D < official_delist_date; blank delist open-ended",
+    "factor_history": "Observed valid trading bars through D only; no imputation.",
+    "rv10_over_rv60": "population std(ddof=0) latest 10 log close returns / latest 60",
+    "tr10_over_tr60": "latest 10 mean true-range-percent / latest 60 mean true-range-percent",
+    "rv_favorable_percentile": "1 - within-date average-rank percentile(rv10_over_rv60)",
+    "tr_favorable_percentile": "1 - within-date average-rank percentile(tr10_over_tr60)",
+    "dual_compression_score": "0.5 * rv_favorable_percentile + 0.5 * tr_favorable_percentile",
+    "forward_D5_D10": "Exact frozen joint-session targets using same frozen BaoStock post-adjusted source; missing exact target bar => unavailable.",
+    "market_state": "Same V2.8.5 CSI300 exact-D rv10/rv60 rule."
+  },
+  "statistics": {
+    "daily_composite_ic": "Spearman dual_compression_score versus forward return.",
+    "daily_component_adjusted_ic": "-Spearman(raw compression ratio versus forward return).",
+    "minimum_valid_rows": 50,
+    "bootstrap_replications": 10000,
+    "block_length_dates": 20,
+    "all_market_seed": 2861001,
+    "calm_seed": 2861101,
+    "stressed_seed": 2861201,
+    "one_sided_null": "Center series by observed mean; p=(1+count(null_boot_mean>=observed_mean))/(B+1).",
+    "ci": "2.5% and 97.5% non-centered moving-block bootstrap mean quantiles.",
+    "quarter_min_dates": 20,
+    "valid_quarters_min": 4
+  },
+  "terminal_outputs": [
+    "evidence/V2.8.6_FOLD1_DAILY_METRICS.csv",
+    "evidence/V2.8.6_MECHANISM_REPLICATION_FINAL_RECEIPT.json"
+  ],
+  "terminal_once": true,
+  "forbidden": [
+    "No coefficient fitting.",
+    "No quintile threshold or Setup construction.",
+    "No fold2-4 reads.",
+    "No result-driven contract changes.",
+    "No Setup, Episode, First60 or live authorization."
+  ]
+}
