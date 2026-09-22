@@ -1,0 +1,21 @@
+name: V2.8.4 Effective E-State Resolver Validation
+on:
+  push:
+    paths:
+      - "scripts/v284_effective_e_state_resolver.py"
+      - "evidence/V2.8.4_EFFECTIVE_ELIGIBILITY_EVENT_LEDGER_CONTRACT.json"
+      - "evidence/V2.8.4_E_LAYER_EFFECTIVE_ELIGIBILITY_EVENTS.csv"
+      - ".github/workflows/v284-effective-e-state-resolver-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/v284_effective_e_state_resolver.py self-test
