@@ -1,7 +1,5 @@
 name: V2.8.3 Prospective Outcome Resolver
 on:
-  schedule:
-    - cron: "0 3 * * 2-6"
   workflow_dispatch:
 
 permissions:
