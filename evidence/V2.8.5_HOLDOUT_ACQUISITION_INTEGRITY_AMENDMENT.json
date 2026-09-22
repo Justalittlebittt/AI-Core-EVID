@@ -1,0 +1,36 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_5_HOLDOUT_ACQUISITION_INTEGRITY_AMENDMENT_V1",
+  "version": "V2.8.5",
+  "status": "FROZEN_BEFORE_FIRST_HOLDOUT_PRICE_QUERY",
+  "parent_source_contract": "evidence/V2.8.5_BAOSTOCK_SOURCE_ACQUISITION_CONTRACT.json",
+  "parent_holdout_contract": "evidence/V2.8.5_BACKWARD_HOLDOUT_TRANSPORTABILITY_CONTRACT.json",
+  "purpose": "Predefine acquisition failure semantics before any 2023-2024 holdout price row is queried.",
+  "query_failure_semantics": {
+    "bounded_retry_count_after_initial_attempt": 2,
+    "persistent_login_or_query_error": "BLOCK_WHOLE_ACQUISITION",
+    "nonzero_rows_with_schema_adjustflag_identity_date_or_OHLC_integrity_error": "BLOCK_WHOLE_ACQUISITION",
+    "successful_query_with_zero_rows": "RECORD_ZERO_ROWS_NO_REPLACEMENT",
+    "sample_member_replacement": false,
+    "minimum_success_percentage_gate": "NONE; do not invent a post hoc coverage threshold",
+    "downstream_information_gate": "The frozen V2.8.5 evaluator minimum valid securities/date and minimum valid dates determine whether evidence is evaluable."
+  },
+  "snapshot_storage": {
+    "normalization": "One row schema across all sampled stocks, with canonical_security_id retained explicitly.",
+    "partition_rule": "Deterministic 8 buckets by int(SHA256(canonical_security_id)[0:8],16) mod 8.",
+    "benchmark_separate_file": true,
+    "format": "Parquet with deterministic sorted rows and zstd compression",
+    "git_object_limit_guard_bytes": 95000000,
+    "partition_over_limit": "BLOCK_BEFORE_COMMIT; do not silently change the frozen partition rule"
+  },
+  "immutability": {
+    "same_snapshot_rerun_after_success": false,
+    "later_provider_retrieval_cannot_replace_frozen_bytes": true,
+    "failed_or_zero_row_symbols_cannot_be substituted": true
+  },
+  "forbidden": [
+    "No factor calculation during acquisition.",
+    "No forward-return calculation during acquisition.",
+    "No inspection-driven sample modification.",
+    "No 2025+ data."
+  ]
+}
