@@ -1,9 +1,5 @@
 name: V2.8.4 CNInfo SZSE Route Probe
 on:
-  push:
-    paths:
-      - "scripts/v284_cninfo_szse_route_probe.py"
-      - ".github/workflows/v284-cninfo-szse-route-probe.yml"
   workflow_dispatch:
 permissions:
   contents: read
