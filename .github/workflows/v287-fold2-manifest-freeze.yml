@@ -1,9 +1,6 @@
 name: V2.8.7 Fold2 Setup Shape Manifest Freeze
 on:
-  push:
-    paths:
-      - "scripts/v287_fold2_manifest.py"
-      - ".github/workflows/v287-fold2-manifest-freeze.yml"
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
