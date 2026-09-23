@@ -594,7 +594,7 @@ def self_test() -> dict:
     ck("T04_bootstrap_frozen", BOOT_REPS == 10000 and BOOT_SEEDS == {0: 2891000, 1: 2891001, 2: 2891002})
     ck("T05_no_fold3_4_source_config", set(FOLDS) == {0, 1, 2})
 
-    days = [f"2024-01-{d:02d}" for d in range(2, 22)]
+    days = pd.bdate_range("2024-01-02", periods=40).strftime("%Y-%m-%d").tolist()
     base = pd.DataFrame([
         {"canonical_security_id": "SSE:TEST", "signal_date": days[0], "rv10_over_rv60": 1.2, "tr10_over_tr60": 1.1},
         {"canonical_security_id": "SSE:TEST", "signal_date": days[1], "rv10_over_rv60": 0.9, "tr10_over_tr60": 0.8},
