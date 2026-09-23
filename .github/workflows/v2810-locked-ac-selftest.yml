@@ -1,0 +1,23 @@
+name: V2.8.10 Locked AC Pullback-Reclaim Evaluator Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2810-locked-ac-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install locked self-test runtime
+        run: python -m pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify evaluator blob
+        run: test "$(git hash-object scripts/v2810_locked_ac_pullback_reclaim_evaluator.py)" = "2b7fe4443d2cc484f5f85078aeee1f2c83cd306d"
+      - name: Run V2.8.10 locked AC evaluator self-test only
+        run: python scripts/v2810_locked_ac_pullback_reclaim_evaluator.py self-test
