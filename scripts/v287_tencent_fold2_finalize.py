@@ -27,7 +27,7 @@ def load_sample():
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--artifact-root",required=True); ap.add_argument("--out",required=True); a=ap.parse_args()
     root=Path(a.artifact_root); out=Path(a.out); out.mkdir(parents=True,exist_ok=True); sample=load_sample()
-    allm=[]; parts=[]; zero=[]; stock_rows=0; success=0
+    allm=[]; parts=[]; zero=[]; invalid=[]; invalid_details=[]; stock_rows=0; success=0
     for sid in range(N):
         rp=root/f"V2.8.7_FOLD2_TENCENT_SHARD_{sid}_RECEIPT.json"
         if not rp.exists(): raise RuntimeError(f"SHARD_RECEIPT_MISSING:{sid}")
@@ -43,7 +43,11 @@ def main():
         if t.num_rows and set(t.column("source_adjustment").to_pylist())!={"hfq"}: raise RuntimeError(f"ADJUSTMENT_BLOCK:{sid}")
         counts=Counter(cids); mcounts={r["canonical_security_id"]:int(r["rows"]) for r in m}
         if counts!={k:v for k,v in mcounts.items() if v>0}: raise RuntimeError(f"ROWCOUNT_BLOCK:{sid}")
-        allm.extend(m); zero.extend(rec["zero_row_canonical_ids"]); success+=int(rec["successful_nonzero_symbols"]); stock_rows+=int(rec["stock_rows"])
+        allm.extend(m)
+        zero.extend(rec.get("zero_row_canonical_ids",[]))
+        invalid.extend(rec.get("source_invalid_canonical_ids",[]))
+        invalid_details.extend(rec.get("source_invalid_details",[]))
+        success+=int(rec["successful_nonzero_symbols"]); stock_rows+=int(rec["stock_rows"])
         parts.append({"shard":sid,"file":rec["parquet_file"],"rows":int(rec["stock_rows"]),"bytes":int(rec["parquet_bytes"]),
                       "sha256":rec["parquet_sha256"],"shard_receipt":rp.name,"shard_receipt_sha256":rec["receipt_sha256"]})
     ids=[r["canonical_security_id"] for r in allm]
@@ -57,9 +61,12 @@ def main():
     bp=out/"V2.8.7_FOLD2_BAOSTOCK_CSI300.parquet"; shutil.copyfile(BENCH,bp)
     receipt={
       "schema":"AI_CORE_EVID_V2_8_7_FOLD2_SOURCE_SNAPSHOT_RECEIPT_V1","version":"V2.8.7","status":"PASS",
-      "stock_provider":"Tencent Securities via AKShare 1.18.97","stock_interface":"stock_zh_a_hist_tx","stock_adjustment":"hfq",
+      "stock_provider":"Tencent Securities direct transport","stock_interface":"newfqkline/get","stock_adjustment":"hfq",
       "retrieval_start":"2022-09-01","retrieval_end":"2024-12-31","sample_manifest_sha256":SAMPLE_SHA,"sample_count":1048,
-      "successful_nonzero_symbols":success,"zero_row_symbols":len(zero),"zero_row_canonical_ids":sorted(zero),
+      "successful_nonzero_symbols":success,
+      "zero_row_symbols":len(zero),"zero_row_canonical_ids":sorted(zero),
+      "source_invalid_symbols":len(invalid),"source_invalid_canonical_ids":sorted(invalid),
+      "source_invalid_details":sorted(invalid_details,key=lambda x:x["canonical_security_id"]),
       "stock_rows":stock_rows,"stock_partitions":parts,
       "benchmark":{"status":"PASS","rows":565,"file":bp.name,"parquet_sha256":BENCH_SHA,
                    "reused_from":"evidence/v285_holdout_source/V2.8.5_BAOSTOCK_CSI300.parquet"},
