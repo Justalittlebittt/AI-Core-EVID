@@ -1,0 +1,24 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_SOURCE_REUSE_DECISION_V1",
+  "version": "V2.8.7",
+  "status": "FROZEN_BEFORE_FOLD2_SOURCE_RETRIEVAL",
+  "stock_source": {
+    "provider": "Tencent Securities via AKShare",
+    "interface": "stock_zh_a_hist_tx",
+    "akshare_version": "1.18.97",
+    "adjustment": "hfq",
+    "probe_receipt": "evidence/V2.8.6_AKSHARE_TENCENT_SOURCE_PROBE_RECEIPT.json",
+    "probe_receipt_sha256": "aeb12aebc5033c03c4e1047492d46e89e37c37d21d369949c3cb6ae0514f2d8d",
+    "reuse_reason": "Same provider/interface/version/adjustment/date semantics already passed a disjoint source probe and successfully froze V2.8.6 fold1."
+  },
+  "benchmark": {
+    "reuse_file": "evidence/v285_holdout_source/V2.8.5_BAOSTOCK_CSI300.parquet",
+    "sha256": "1aee2f5af524e0f99f788166731d3c9ce3a862c6f1af9203b442f11f6d5fe272",
+    "rows": 565,
+    "reason": "Market-state benchmark is identity-fold independent and already frozen for the exact same date interval."
+  },
+  "fold2_manifest_sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+  "fold2_count": 1048,
+  "fold3_4_consumed": false,
+  "factor_or_forward_return_computed": false
+}
