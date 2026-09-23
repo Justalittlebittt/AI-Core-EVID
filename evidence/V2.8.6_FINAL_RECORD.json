@@ -1,0 +1,40 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_FINAL_RECORD_V1",
+  "version": "V2.8.6",
+  "status": "STATE_INVARIANT_DUAL_COMPRESSION_REPLICATED",
+  "terminal_receipt": "evidence/V2.8.6_MECHANISM_REPLICATION_FINAL_RECEIPT.json",
+  "terminal_receipt_sha256": "b1aea5e114facb0e1204dd9d5ac0b93238c6e6d8e2031ebbeacb92d748c63e93",
+  "source_snapshot_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e",
+  "sample": {
+    "fold": 1,
+    "securities": 1058,
+    "panel_rows": 495418,
+    "fold2_3_4_consumed": false
+  },
+  "result": {
+    "all_market_D10_mean_ic": 0.048784081625637465,
+    "all_market_D10_ci": [0.02274245043089302,0.07581938462756567],
+    "all_market_one_sided_p": 0.00029997000299970003,
+    "calm_D10_mean_ic": 0.04368416429016773,
+    "calm_D10_ci": [0.015292864642571504,0.07171020406303137],
+    "stressed_D10_mean_ic": 0.05958785387577734,
+    "stressed_D10_ci": [0.028848280186114926,0.09390913732283425],
+    "all_market_D5_mean_ic": 0.04323281328116898,
+    "rv_component_adjusted_D10_ic": 0.04506572399134838,
+    "tr_component_adjusted_D10_ic": 0.049898930481482404,
+    "positive_quarter_share": 1.0,
+    "failed_gates": []
+  },
+  "interpretation": [
+    "The replicated mechanism is market-state-invariant dual compression, not CALM superiority.",
+    "Both component factors remain directionally positive and the equal-weight rank composite is positive in all-market, CALM and STRESSED strata.",
+    "V2.8.5 remains correctly rejected because its stronger CALM-superiority condition failed; V2.8.6 does not rewrite that result."
+  ],
+  "promotion": {
+    "may_enter": "V2.8.7_SETUP_SHAPE_RESEARCH_GATE_USING_UNTOUCHED_FOLD2",
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "first60_append_authorized": false,
+    "live_authorized": false
+  }
+}
