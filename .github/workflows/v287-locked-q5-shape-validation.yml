@@ -1,0 +1,19 @@
+name: V2.8.7 Locked Q5 Setup Shape Validation
+on:
+  push:
+    paths:
+      - "scripts/v287_locked_q5_setup_shape.py"
+      - ".github/workflows/v287-locked-q5-shape-validation.yml"
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - run: python scripts/v287_locked_q5_setup_shape.py self-test
