@@ -1,0 +1,28 @@
+name: V2.8.7 Fold2 Setup Shape Manifest Freeze
+on:
+  push:
+    paths:
+      - "scripts/v287_fold2_manifest.py"
+      - ".github/workflows/v287-fold2-manifest-freeze.yml"
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/v287_fold2_manifest.py
+      - name: Freeze fold2 manifest
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp v287_fold2/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv evidence/
+          cp v287_fold2/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST_RECEIPT.json evidence/
+          git add evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST_RECEIPT.json
+          git commit -m "Freeze V2.8.7 fold2 setup-shape manifest [skip ci]"
+          git pull --rebase origin main
+          git push
