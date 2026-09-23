@@ -1,9 +1,6 @@
 name: V2.8.7 Locked Q5 Setup Shape Validation
 on:
-  push:
-    paths:
-      - "scripts/v287_locked_q5_setup_shape.py"
-      - ".github/workflows/v287-locked-q5-shape-validation.yml"
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
