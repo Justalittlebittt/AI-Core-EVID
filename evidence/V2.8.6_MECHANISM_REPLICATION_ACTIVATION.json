@@ -1,0 +1,16 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_6_MECHANISM_REPLICATION_ACTIVATION_V1",
+  "version": "V2.8.6",
+  "status": "ACTIVE_ONE_TIME_V2_8_6_MECHANISM_REPLICATION",
+  "source_snapshot_receipt": "evidence/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json",
+  "source_snapshot_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e",
+  "fold1_manifest": "evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv",
+  "fold1_manifest_sha256": "fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a",
+  "evaluator_validation_receipt": "evidence/V2.8.6_LOCKED_MECHANISM_REPLICATION_VALIDATION_RECEIPT.json",
+  "evaluator_validation_commit_sha": "5358c888408b2ebd64d3f8db3068f4a9d5690552",
+  "scope": "Run the already frozen V2.8.6 evaluator exactly once on the frozen Tencent fold1 snapshot.",
+  "fold2_3_4_consumed": false,
+  "setup_or_episode_emission_authorized": false,
+  "first60_append_authorized": false,
+  "live_authorized": false
+}
