@@ -1,0 +1,133 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_8_FINAL_RECORD_V1",
+  "version": "V2.8.8",
+  "status": "NO_STATIC_LEVEL_SETUP_SHAPE_SELECTED",
+  "terminal_receipt": "evidence/V2.8.8_SETUP_SHAPE_DISCOVERY_FINAL_RECEIPT.json",
+  "terminal_receipt_sha256": "be3e6293ce4d7cc3dea0e30d80f6d99fe6a96d67f4d550e913e1d715a4c2249a",
+  "terminal_result_commit": "3801e3bb81b8c6cff6b05671b8d1e8d1c625f882",
+  "parent_results": {
+    "V2.8.6": "STATE_INVARIANT_DUAL_COMPRESSION_REPLICATED",
+    "V2.8.7": "Q5_SETUP_SHAPE_REJECTED",
+    "V2.8.8": "V2_8_8_NO_SETUP_SHAPE_SELECTED"
+  },
+  "result": {
+    "selected_candidate_id": null,
+    "candidate_count": 3,
+    "candidate_summary": {
+      "C1_DC_TREND": {
+        "eligible": false,
+        "foldwise_mean_D10_Q5_minus_Q1": {
+          "fold0": 0.0013276089427047063,
+          "fold1": -0.0008952009514939347,
+          "fold2": 0.0002621463798630727
+        },
+        "minimum_foldwise_D10_spread": -0.0008952009514939347
+      },
+      "C2_DC_MOMENTUM": {
+        "eligible": false,
+        "foldwise_mean_D10_Q5_minus_Q1": {
+          "fold0": -0.0018684794771632789,
+          "fold1": -0.0010725708729381587,
+          "fold2": -0.0015414381149098644
+        },
+        "minimum_foldwise_D10_spread": -0.0018684794771632789
+      },
+      "C3_DC_NEAR_HIGH": {
+        "eligible": false,
+        "foldwise_mean_D10_Q5_minus_Q1": {
+          "fold0": 0.00006324319032070977,
+          "fold1": -0.0012891882187926705,
+          "fold2": -0.000560616739641756
+        },
+        "minimum_foldwise_D10_spread": -0.0012891882187926705
+      }
+    }
+  },
+  "interpretation": [
+    "V2.8.8 selected no candidate under the frozen cross-fold development eligibility rule.",
+    "C2 dual-compression plus momentum is directionally negative on D+10 in all three consumed folds and is retired.",
+    "C3 dual-compression plus near-high structure is not cross-fold robust and is retired.",
+    "C1 dual-compression plus trend structure is positive in folds 0 and 2 but negative in fold1 and fails additional cross-fold stability conditions; it is not promotable and must not be rescued by post-result weight, threshold or trend-definition tuning.",
+    "V2.8.8 does not invalidate the independently replicated V2.8.6 continuous dual-compression mechanism. It rejects the three frozen additive static-level translations tested here.",
+    "Together with V2.8.7, the evidence does not justify treating a high same-day level of the compression score, alone or in the three tested equal-weight structural combinations, as a validated Setup event."
+  ],
+  "setup_interface_boundary": {
+    "authority": "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json",
+    "finding": "The downstream admission envelope requires a PASS strategy receipt for the same security/date with outcome_data_consumed=false, but it treats strategy semantics as opaque and does not require a Q5 or other fixed cross-sectional percentile definition.",
+    "consequence": "A static top-quintile level rule is an implementation assumption, not a system hard constraint."
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Produce one prospective, non-leaking and economically meaningful entry Setup that can later issue a strategy PASS receipt and survive untouched validation.",
+    "hard_constraints": [
+      "Keep V2.8.6 continuous dual-compression replication intact as historical evidence.",
+      "Honor V2.8.7 and V2.8.8 terminal rejections without reevaluation or rescue.",
+      "Keep fold3 and fold4 untouched until one materially new Setup hypothesis, implementation and validation gate are frozen.",
+      "A future Setup receipt must be signal-date causal and must not consume outcome data.",
+      "U/E eligibility remains independent from T-layer strategy evidence.",
+      "No Setup, First60, Episode or live authorization exists yet."
+    ],
+    "soft_assumptions_removed": [
+      "A Setup must be defined by the same-day level of a continuous cross-sectional score.",
+      "A Setup must use Q5 >80% versus Q1 <=20% as its action interface.",
+      "Adding another static structural score to dual compression is necessary to create entry timing."
+    ],
+    "priority_actions": {
+      "Delete": "Retire V2.8.7 pure-compression Q5 and all three V2.8.8 additive static-level candidates as Setup candidates.",
+      "Avoid": "Do not spend more development budget on percentile grids, equal-weight variants, coefficient fitting or nearby static threshold rescue on folds 0-2.",
+      "Absorb": "Retain dual compression only as a replicated continuous T-layer state/ranking primitive; reuse existing source snapshots, identity folds and scale-invariant feature engine.",
+      "Substitute": "Move the next Setup research question from static level classification to a temporal event/transition hypothesis: whether a causal change in compression state can define entry timing better than being highly compressed on every qualifying date.",
+      "Precompute_Reuse": "Derive any D-only transition features from already frozen folds 0-2 and existing daily feature histories; do not re-fetch folds 0-2 solely for this purpose.",
+      "Optimize": "Only after one transition/event hypothesis is frozen; no local optimization of the rejected static-level candidates."
+    }
+  },
+  "why_transition_is_the_next_question_not_a_result": [
+    "The existing V2.8.7/V2.8.8 evaluators score static same-day levels repeatedly across signal dates; they do not encode a transition or first-occurrence event.",
+    "A replicated continuous cross-sectional relation can exist without implying that every day in a high-score state is a distinct entry event.",
+    "V2.8.8 therefore does not claim that a transition Setup works. It only establishes that transition/event semantics are a materially different, still-unanswered hypothesis that avoids further static-threshold rescue."
+  ],
+  "fold_disposition": {
+    "fold0": "consumed development",
+    "fold1": "consumed independent mechanism replication and V2.8.8 development",
+    "fold2": "consumed V2.8.7/V2.8.8 setup-shape research",
+    "fold3": "sealed untouched validation for one future pre-frozen materially new Setup hypothesis",
+    "fold4": "sealed untouched final cross-sectional holdout after fold3 success"
+  },
+  "implementation_incident": {
+    "failed_run_id": 35827523712,
+    "amendment": "evidence/V2.8.8_LEGACY_AMOUNT_SOFT_DEPENDENCY_AMENDMENT.json",
+    "classification": "implementation-only soft dependency",
+    "research_contract_changed": false,
+    "candidate_library_changed": false,
+    "thresholds_changed": false,
+    "pass_conditions_changed": false,
+    "successful_terminal_run_id": 35827926217
+  },
+  "decision": {
+    "promote_any_V2_8_8_candidate": false,
+    "rescue_C1": false,
+    "search_static_percentile_or_weight_variants": false,
+    "consume_fold3_now": false,
+    "consume_fold4": false,
+    "next_stage": "V2.8.9_SETUP_EVENT_TRANSITION_HYPOTHESIS_GATE"
+  },
+  "next_stage_constraints": [
+    "V2.8.9 must define a materially new temporal/event hypothesis rather than another static score-level threshold.",
+    "Hypothesis generation and diagnostics may use only already-consumed folds 0-2.",
+    "Any transition feature must use D and earlier observations only; no future-state confirmation is permitted in signal construction.",
+    "Episode/de-duplication semantics, if used, must be frozen before inspecting fold3.",
+    "Freeze exactly one candidate event definition and one fold3 PASS/FAIL contract before any fold3 price/outcome access.",
+    "Fold3 remains validation-only; a failure cannot be tuned on fold3.",
+    "Fold4 remains sealed unless the pre-frozen fold3 gate passes."
+  ],
+  "governance": {
+    "sample_modified_after_results": false,
+    "optional_stopping_used": false,
+    "candidate_library_modified_after_results": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
