@@ -18,5 +18,7 @@ jobs:
           python-version: "3.12"
       - name: Install locked self-test runtime
         run: python -m pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify evaluator blob
+        run: test "$(git hash-object scripts/v289_locked_transition_evaluator.py)" = "426c27c001df186bbd85c61954c17149f30f9b2d"
       - name: Run V2.8.9 locked transition evaluator self-test only
         run: python scripts/v289_locked_transition_evaluator.py self-test
