@@ -1,0 +1,55 @@
+name: V2.8.8 One-Time Setup Shape Discovery
+on:
+  push:
+    paths:
+      - ".github/workflows/v288-setup-shape-discovery.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v288-one-time-setup-shape-discovery
+  cancel-in-progress: false
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install locked runtime
+        run: python -m pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify frozen evaluator and authorization
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v288_locked_setup_shape_discovery.py)" = "cb0b71c8a261c54fc9a6fdd3eaa5273063828f49"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.8_LOCKED_DISCOVERY_EVALUATOR_VALIDATION_RECEIPT.json").read_text())
+          c=json.loads(Path("evidence/V2.8.8_NEW_SETUP_SHAPE_DISCOVERY_GATE_CONTRACT.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["evaluator"]["blob_sha"]=="cb0b71c8a261c54fc9a6fdd3eaa5273063828f49"
+          assert v["authorization"]["real_discovery_execution_on_consumed_folds0_1_2"] is True
+          assert v["authorization"]["fold3_access"] is False
+          assert v["authorization"]["fold4_access"] is False
+          assert c["status"]=="FROZEN_BEFORE_V2_8_8_DISCOVERY_EXECUTION"
+          assert c["authorization"]["fold3_access"] is False
+          assert c["authorization"]["fold4_access"] is False
+          assert [x["id"] for x in c["candidate_library"]]==["C1_DC_TREND","C2_DC_MOMENTUM","C3_DC_NEAR_HIGH"]
+          print("V2.8.8 locked discovery binding PASS")
+          PY
+      - name: Run one-time real discovery on consumed folds 0-2
+        run: python scripts/v288_locked_setup_shape_discovery.py evaluate
+      - name: Freeze V2.8.8 discovery result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.8_SETUP_SHAPE_DISCOVERY_DAILY_METRICS.csv evidence/V2.8.8_SETUP_SHAPE_DISCOVERY_LEDGER.csv evidence/V2.8.8_SETUP_SHAPE_DISCOVERY_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.8 Setup-shape discovery result [skip ci]"
+          git pull --rebase origin main
+          git push
