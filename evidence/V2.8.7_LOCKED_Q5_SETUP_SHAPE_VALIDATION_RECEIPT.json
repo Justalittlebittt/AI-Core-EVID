@@ -1,0 +1,21 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_LOCKED_Q5_SETUP_SHAPE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.7",
+  "status": "PASS",
+  "contract": "evidence/V2.8.7_Q5_SETUP_SHAPE_RESEARCH_CONTRACT.json",
+  "implementation": "evidence/V2.8.7_LOCKED_Q5_SETUP_SHAPE_IMPLEMENTATION.json",
+  "runner": "scripts/v287_locked_q5_setup_shape.py",
+  "workflow": ".github/workflows/v287-locked-q5-shape-validation.yml",
+  "workflow_run_id": 35821993660,
+  "workflow_job_id": 107055628788,
+  "validated_head_sha": "6b73611e82efc26099ebce98d9b8230762b42f5f",
+  "tests_passed": 10,
+  "tests_total": 10,
+  "real_fold2_price_rows_consumed": false,
+  "alternate_threshold_search_used": false,
+  "fold3_4_consumed": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false
+}
