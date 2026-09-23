@@ -1,0 +1,22 @@
+name: V2.8.9 Locked Transition Evaluator Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v289-locked-transition-selftest.yml"
+      - "scripts/v289_locked_transition_evaluator.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install locked self-test runtime
+        run: python -m pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Run V2.8.9 locked transition evaluator self-test only
+        run: python scripts/v289_locked_transition_evaluator.py self-test
