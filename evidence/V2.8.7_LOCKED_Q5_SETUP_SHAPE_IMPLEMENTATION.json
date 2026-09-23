@@ -1,0 +1,53 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_LOCKED_Q5_SETUP_SHAPE_IMPLEMENTATION_V1",
+  "version": "V2.8.7",
+  "status": "FROZEN_BEFORE_ANY_FOLD2_FACTOR_OR_FORWARD_RETURN_COMPUTATION",
+  "parent_contract": "evidence/V2.8.7_Q5_SETUP_SHAPE_RESEARCH_CONTRACT.json",
+  "panel": {
+    "stock_rows_used": "tradestatus == 1 only",
+    "signal_date_requires_exact_D_bar": true,
+    "membership_required_on_D": "official_list_date <= D < official_delist_date; blank delist open-ended",
+    "factor_history": "Observed valid trading bars through D only; no imputation.",
+    "rv10_over_rv60": "population std(ddof=0) latest 10 log close returns / latest 60",
+    "tr10_over_tr60": "latest 10 mean true-range-percent / latest 60 mean true-range-percent",
+    "dual_compression_score": "0.5*(1-rank_pct(rv)) + 0.5*(1-rank_pct(tr)) among rows where both factors are finite",
+    "score_rank_percentile": "average-rank percentile of dual_compression_score within signal date",
+    "Q1": "score_rank_percentile <= 0.20",
+    "Q2": "0.20 < percentile <= 0.40",
+    "Q3": "0.40 < percentile <= 0.60",
+    "Q4": "0.60 < percentile <= 0.80",
+    "Q5": "percentile > 0.80",
+    "forward_D5_D10": "Exact frozen joint-session targets from same frozen Tencent hfq source; no target shift."
+  },
+  "daily_metrics": {
+    "primary": "mean(Q5 D10 return) - mean(Q1 D10 return)",
+    "secondary": "mean(Q5 D5 return) - mean(Q1 D5 return)",
+    "supporting": "mean(Q5 D10 return) - mean(all valid D10 returns)",
+    "quintile_means": "Daily mean return for each fixed score quintile band."
+  },
+  "statistics": {
+    "minimum_Q5_rows": 50,
+    "minimum_Q1_rows": 50,
+    "bootstrap_replications": 10000,
+    "block_length_signal_dates": 20,
+    "all_market_D10_seed": 2871001,
+    "calm_D10_seed": 2871101,
+    "stressed_D10_seed": 2871201,
+    "quarter_min_dates": 20,
+    "quarter_positive_share": ">= 2/3",
+    "leave_one_valid_quarter_out": "all D10 Q5-Q1 means > 0"
+  },
+  "quintile_shape_gate": "Q5 aggregate mean D10 return must be strictly greater than the aggregate daily-mean D10 return of Q1, Q2, Q3 and Q4.",
+  "terminal_outputs": [
+    "evidence/V2.8.7_FOLD2_Q5_SETUP_SHAPE_DAILY_METRICS.csv",
+    "evidence/V2.8.7_Q5_SETUP_SHAPE_FINAL_RECEIPT.json"
+  ],
+  "terminal_once": true,
+  "forbidden": [
+    "No alternate percentile threshold search.",
+    "No coefficient fit.",
+    "No trend/breakout filter addition.",
+    "No fold3-4 source read.",
+    "No Setup/First60/Episode/live emission."
+  ]
+}
