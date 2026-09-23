@@ -1,8 +1,5 @@
 name: V2.8.6 One-Time Mechanism Replication
 on:
-  push:
-    paths:
-      - "evidence/V2.8.6_MECHANISM_REPLICATION_ACTIVATION.json"
   workflow_dispatch:
 permissions:
   contents: write
