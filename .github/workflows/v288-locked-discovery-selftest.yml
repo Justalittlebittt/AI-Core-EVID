@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - ".github/workflows/v288-locked-discovery-selftest.yml"
+      - "scripts/v288_locked_setup_shape_discovery.py"
   workflow_dispatch:
 permissions:
   contents: read
