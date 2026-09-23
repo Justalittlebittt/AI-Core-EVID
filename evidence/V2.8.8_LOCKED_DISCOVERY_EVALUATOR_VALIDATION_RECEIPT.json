@@ -1,0 +1,61 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_8_LOCKED_DISCOVERY_EVALUATOR_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.8",
+  "status": "PASS",
+  "evaluator": {
+    "path": "scripts/v288_locked_setup_shape_discovery.py",
+    "blob_sha": "cb0b71c8a261c54fc9a6fdd3eaa5273063828f49",
+    "implementation_commit": "6c8f4268e924ceea447a860c6613cd112e6ab59d"
+  },
+  "discovery_contract": {
+    "path": "evidence/V2.8.8_NEW_SETUP_SHAPE_DISCOVERY_GATE_CONTRACT.json",
+    "blob_sha": "8c849916b9bf9d1647c3a841f7e4166fbdb4e947",
+    "freeze_commit": "59ce4e1a8953dc02ac22330d8e7f2c45b1690ff0"
+  },
+  "self_test": {
+    "workflow_run_id": 35827236742,
+    "workflow_head_sha": "45e6739217af413b8027cabf765140281b72b0ad",
+    "job_id": 107071548165,
+    "conclusion": "success",
+    "passed": 12,
+    "total": 12,
+    "all_pass": true,
+    "real_consumed_fold_price_rows_read": false,
+    "fold3_4_price_rows_read": false
+  },
+  "locked_properties": [
+    "candidate library exactly C1_DC_TREND, C2_DC_MOMENTUM, C3_DC_NEAR_HIGH",
+    "minimum side size 50",
+    "minimum D+10 and D+5 valid dates 200",
+    "source configuration contains folds 0,1,2 only",
+    "candidate scoring is deterministic",
+    "common Q5 > 0.80 and Q1 <= 0.20 projection is fixed",
+    "maximin selection is deterministic",
+    "bootstrap/p-value is not used for development candidate selection",
+    "liquidity is not an alpha component",
+    "no threshold grid is implemented",
+    "V2.8.0 feature engine is reused",
+    "fold3 and fold4 remain sealed"
+  ],
+  "static_audit": {
+    "evaluator_line_count": 633,
+    "fold_source_configs": [
+      0,
+      1,
+      2
+    ],
+    "forbidden_fold3_4_source_references": false,
+    "threshold_70_or_90_grid_present": false,
+    "sklearn_or_statsmodels_present": false,
+    "reevaluation_guard_present": true
+  },
+  "authorization": {
+    "real_discovery_execution_on_consumed_folds0_1_2": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
