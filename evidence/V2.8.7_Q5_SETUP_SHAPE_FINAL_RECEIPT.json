@@ -1,0 +1,89 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_Q5_SETUP_SHAPE_FINAL_RECEIPT_V1",
+  "version": "V2.8.7",
+  "status": "V2_8_7_Q5_SETUP_SHAPE_REJECTED",
+  "panel_rows": 492605,
+  "panel_identity_sha256": "d6cda62d34076495a813cf1e4fa423941e5d1233fc2739e50d4d5dc809ab04f1",
+  "valid_dates": {
+    "all_D10": 474,
+    "calm_D10": 322,
+    "stressed_D10": 152,
+    "all_D5": 479
+  },
+  "all_market_D10_Q5_minus_Q1": {
+    "mean": 0.007449095242225023,
+    "ci_low": 0.0014920032073635423,
+    "ci_high": 0.013336933898212165,
+    "one_sided_p": 0.007399260073992601
+  },
+  "calm_D10_Q5_minus_Q1": {
+    "mean": 0.00585538803421119,
+    "ci_low": -0.00019508372614269096,
+    "ci_high": 0.01198775612913311,
+    "one_sided_p": 0.029697030296970302
+  },
+  "stressed_D10_Q5_minus_Q1": {
+    "mean": 0.010825238143412219,
+    "ci_low": 0.003487465476562225,
+    "ci_high": 0.02059986685232065,
+    "one_sided_p": 0.0164983501649835
+  },
+  "all_market_mean_D5_Q5_minus_Q1": 0.004300915009026687,
+  "all_market_mean_D10_Q5_excess_all": 0.0024659129802250984,
+  "aggregate_D10_quintile_means": {
+    "1": -0.0018122122407207833,
+    "2": 0.003792447799734866,
+    "3": 0.004269035418736282,
+    "4": 0.003936132396920253,
+    "5": 0.00563688300150424
+  },
+  "quarter_means": {
+    "2023Q1": -0.0017522859974658756,
+    "2023Q2": 0.002943851740825899,
+    "2023Q3": 0.0077462092594056085,
+    "2023Q4": 0.0004513242067488969,
+    "2024Q1": 0.005767111638145299,
+    "2024Q2": 0.001777211263583926,
+    "2024Q3": 0.022105143021684905,
+    "2024Q4": 0.021248133882310075
+  },
+  "positive_quarter_share": 0.875,
+  "leave_one_quarter_out_means": {
+    "2023Q1": 0.008757243418470237,
+    "2023Q2": 0.008089599740014298,
+    "2023Q3": 0.007402716468811468,
+    "2023Q4": 0.008463264957511417,
+    "2024Q1": 0.007683602571639984,
+    "2024Q2": 0.008255459470513758,
+    "2024Q3": 0.005161321930309333,
+    "2024Q4": 0.005785381363633208
+  },
+  "gates": {
+    "all_market_D10_spread_positive": true,
+    "all_market_D10_ci_above_zero": true,
+    "all_market_one_sided_p_le_0_05": true,
+    "calm_D10_spread_positive": true,
+    "calm_D10_ci_above_zero": false,
+    "stressed_D10_spread_positive": true,
+    "stressed_D10_ci_above_zero": true,
+    "all_market_D5_spread_positive": true,
+    "Q5_D10_excess_all_positive": true,
+    "Q5_highest_aggregate_D10_quintile_mean": true,
+    "positive_quarter_share_ge_two_thirds": true,
+    "leave_one_quarter_out_all_positive": true
+  },
+  "failed_gates": [
+    "calm_D10_ci_above_zero"
+  ],
+  "source_snapshot_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63",
+  "sample_modified_after_results": false,
+  "optional_stopping_used": false,
+  "alternate_threshold_search_used": false,
+  "fold3_4_consumed": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false,
+  "daily_metrics_sha256": "84c74fc5e2cbc454dc974a04bfd9398ae2b1be5a2b5f02625997d0b00a354306",
+  "receipt_sha256": "9fb9767dbfd93d2fa3ff445925197c359f2d0f40cfd5a663845ebb109e0279a1"
+}
