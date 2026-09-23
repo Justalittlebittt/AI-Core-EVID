@@ -1,0 +1,92 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_FINAL_RECORD_V1",
+  "version": "V2.8.7",
+  "status": "Q5_SETUP_SHAPE_REJECTED",
+  "terminal_receipt": "evidence/V2.8.7_Q5_SETUP_SHAPE_FINAL_RECEIPT.json",
+  "terminal_receipt_sha256": "9fb9767dbfd93d2fa3ff445925197c359f2d0f40cfd5a663845ebb109e0279a1",
+  "terminal_result_commit": "31f5849dc886c02567ce5b776a4c5461db17493e",
+  "source_snapshot_receipt": "evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json",
+  "source_snapshot_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63",
+  "result": {
+    "fold": 2,
+    "manifest_securities": 1048,
+    "panel_rows": 492605,
+    "all_market_D10_Q5_minus_Q1_mean": 0.007449095242225023,
+    "all_market_D10_ci": [
+      0.0014920032073635423,
+      0.013336933898212165
+    ],
+    "all_market_one_sided_p": 0.007399260073992601,
+    "calm_D10_Q5_minus_Q1_mean": 0.00585538803421119,
+    "calm_D10_ci": [
+      -0.00019508372614269096,
+      0.01198775612913311
+    ],
+    "stressed_D10_Q5_minus_Q1_mean": 0.010825238143412219,
+    "stressed_D10_ci": [
+      0.003487465476562225,
+      0.02059986685232065
+    ],
+    "all_market_D5_Q5_minus_Q1_mean": 0.004300915009026687,
+    "positive_quarter_share": 0.875,
+    "failed_gates": [
+      "calm_D10_ci_above_zero"
+    ]
+  },
+  "interpretation": [
+    "V2.8.6 state-invariant dual compression remains independently replicated; V2.8.7 rejects only the frozen Q5 (>80%) versus Q1 (<=20%) Setup-shape promotion.",
+    "The all-market and STRESSED D+10 spreads are positive with confidence intervals above zero, but the frozen contract required the CALM D+10 confidence interval to be entirely above zero as well.",
+    "Because the CALM lower confidence bound is below zero, the all-gates-must-pass contract requires rejection even though the miss is numerically small.",
+    "This rejection must not be rescued by alternative percentile thresholds, optional stopping, coefficient refit to the observed fold2 outcome, sample replacement, or post-result gate changes."
+  ],
+  "problem_elimination_pass": {
+    "final_user_goal": "Obtain a robust prospective Setup candidate that survives independent validation, not make the V2.8.7 Q5 candidate pass.",
+    "hard_constraints": [
+      "Keep the frozen V2.8.7 Q5/Q1 definitions, bootstrap, sample and PASS conditions unchanged.",
+      "Honor the terminal rejection with no reevaluation.",
+      "Keep fold3 and fold4 untouched until a new candidate and its gates are frozen.",
+      "Do not authorize Setup, First60, Episode or live emission from V2.8.7."
+    ],
+    "soft_constraint_removed": "A prospective Setup does not have to be the top quintile of the V2.8.6 dual-compression score.",
+    "priority_actions": {
+      "Delete": "Delete Q5 as a promotion candidate; do not spend more research budget trying to rescue it.",
+      "Avoid": "Do not use fold3 as a diagnostic set for the failed Q5 definition.",
+      "Absorb": "Reuse already-consumed folds 0-2, the frozen feature engine, source snapshots and existing metrics for future hypothesis generation where applicable.",
+      "Substitute": "If research continues, formulate a materially new Setup-shape hypothesis rather than another percentile cut of the same observed fold2 result.",
+      "Precompute_Reuse": "Do not re-fetch or re-run already frozen V2.8.6/V2.8.7 evidence unless a new hypothesis strictly requires a new derived field.",
+      "Optimize": "Not applicable at this stage; no local tuning of the rejected Q5 candidate is permitted."
+    }
+  },
+  "fold_disposition": {
+    "fold0": "consumed development",
+    "fold1": "consumed independent mechanism replication",
+    "fold2": "consumed V2.8.7 Setup-shape research",
+    "fold3": "reserved untouched validation for one future pre-frozen Setup candidate",
+    "fold4": "reserved untouched final cross-sectional holdout after fold3 success"
+  },
+  "decision": {
+    "promote_Q5_setup_shape": false,
+    "search_alternative_Q5_percentiles_on_fold2": false,
+    "consume_fold3_to_rescue_V2_8_7": false,
+    "consume_fold4": false,
+    "next_stage": "V2.8.8_NEW_SETUP_SHAPE_DISCOVERY_GATE"
+  },
+  "next_stage_constraints": [
+    "Use only already-consumed folds 0-2 for hypothesis generation and development diagnostics.",
+    "A new candidate must be materially distinct from post-hoc Q5 percentile rescue.",
+    "Freeze exactly one candidate definition, implementation binding and evaluation gate before any fold3 price/outcome access.",
+    "Fold3 is validation, not tuning; a fold3 failure cannot be tuned on fold3.",
+    "Fold4 remains sealed unless the pre-frozen fold3 gate passes.",
+    "No Setup, First60, Episode or live authorization is created by entering V2.8.8."
+  ],
+  "governance": {
+    "sample_modified_after_results": false,
+    "optional_stopping_used": false,
+    "alternate_threshold_search_used": false,
+    "fold3_4_consumed": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
