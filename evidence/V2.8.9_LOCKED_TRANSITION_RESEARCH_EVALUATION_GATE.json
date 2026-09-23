@@ -1,0 +1,171 @@
+{
+  "schema":"AI_CORE_EVID_V2_8_9_LOCKED_TRANSITION_RESEARCH_EVALUATION_GATE_V1",
+  "version":"V2.8.9",
+  "status":"FROZEN_BEFORE_TRANSITION_OUTCOME_RESEARCH",
+  "purpose":"Freeze information sufficiency, event-level outcome metrics, time-clustered diagnostics and deterministic PASS/FAIL logic for DC_RAW_RATIO_ONSET_V1 on consumed folds 0-2 before any transition outcome is read.",
+  "hypothesis_gate":{
+    "file":"evidence/V2.8.9_SETUP_EVENT_TRANSITION_HYPOTHESIS_GATE.json",
+    "candidate_id":"DC_RAW_RATIO_ONSET_V1",
+    "candidate_count":1,
+    "candidate_definition_mutable_after_results":false
+  },
+  "folds":{
+    "fold0":{
+      "role":"consumed development",
+      "securities":1031,
+      "source_receipt":"evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256":"b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9"
+    },
+    "fold1":{
+      "role":"consumed independent mechanism replication and development",
+      "securities":1058,
+      "source_receipt":"evidence/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256":"fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e"
+    },
+    "fold2":{
+      "role":"consumed setup research and development",
+      "securities":1048,
+      "source_receipt":"evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256":"f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63"
+    },
+    "fold3":{
+      "role":"sealed untouched future validation",
+      "price_or_outcome_access_authorized":false
+    },
+    "fold4":{
+      "role":"sealed untouched final holdout",
+      "price_or_outcome_access_authorized":false
+    }
+  },
+  "source_and_calendar_policy":{
+    "calendar":"evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "new_retrieval_folds0_1_2":false,
+    "cross_vendor_row_fallback":false,
+    "cross_vendor_pooling":false,
+    "foldwise_evaluation_required":true,
+    "same_source_D_and_T_endpoints_within_fold":true,
+    "missing_or_suspended_target_bar":"OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "missing_outcome_replacement_event":false
+  },
+  "event_construction_lock":{
+    "feature_engine":"scripts/v280_scale_invariant_features.py",
+    "D_state":"rv10_over_rv60(D) < 1.0 AND tr10_over_tr60(D) < 1.0",
+    "P_state":"rv10_over_rv60(P) >= 1.0 OR tr10_over_tr60(P) >= 1.0",
+    "P":"immediately preceding joint trading session; do not skip backward over missing/suspended stock bars",
+    "signal_timestamp":"D close/end-of-session",
+    "future_persistence_confirmation":false,
+    "same_security_episode_suppression":"suppress new event from start D through its fixed D+10 target date inclusive",
+    "threshold_search":false
+  },
+  "baseline_definitions":{
+    "same_date_universe_baseline":{
+      "definition":"For each fold and signal date D, arithmetic mean exact-horizon return of all finite-return PIT-eligible, tradestatus=1 securities in that fold on D.",
+      "event_security_included_in_universe_mean":true,
+      "reason":"Keep the baseline deterministic and aligned with prior foldwise same-date market-relative diagnostics."
+    },
+    "compressed_non_onset_baseline":{
+      "definition":"On the same fold/date D, securities satisfying the finite/tradable P and D requirements and DUAL_COMPRESSED on D but NOT satisfying the P-to-D onset transition.",
+      "purpose":"Measure whether eventization adds timing information beyond occupancy of the raw dual-compressed state.",
+      "minimum_controls_per_date":20,
+      "dates_below_minimum_controls":"excluded from incremental timing diagnostic only; they remain eligible for event-vs-universe analysis"
+    }
+  },
+  "event_metrics":{
+    "per_event":{
+      "D10_return":"exact same-source close(T10)/close(D)-1",
+      "D5_return":"exact same-source close(T5)/close(D)-1",
+      "D10_excess_universe":"event D10 return minus same-date fold-universe D10 mean",
+      "D5_excess_universe":"event D5 return minus same-date fold-universe D5 mean"
+    },
+    "per_signal_date":{
+      "D10_onset_excess_mean":"mean D10_excess_universe across valid onset events on D",
+      "D5_onset_excess_mean":"mean D5_excess_universe across valid onset events on D",
+      "D10_incremental_timing_spread":"mean onset-event D10 return minus mean compressed-non-onset D10 return on dates with >=20 valid compressed non-onset controls"
+    },
+    "fold_aggregate":{
+      "primary":"equal-weight mean across valid signal dates of D10_onset_excess_mean",
+      "secondary":"equal-weight mean across valid signal dates of D5_onset_excess_mean",
+      "incremental":"equal-weight mean across valid diagnostic dates of D10_incremental_timing_spread",
+      "quarter_primary":"equal-weight mean D10_onset_excess_mean within each valid calendar quarter",
+      "leave_one_valid_quarter_out_primary":"equal-weight mean D10_onset_excess_mean after excluding each valid quarter in turn"
+    },
+    "reason_for_date_weighting":"A transition can cluster across many securities on one market date; equal date weighting prevents a synchronized market transition day from dominating merely by event count."
+  },
+  "minimum_information_per_fold":{
+    "minimum_total_onset_events":200,
+    "minimum_distinct_onset_securities":100,
+    "minimum_distinct_onset_signal_dates":80,
+    "maximum_single_signal_date_share_of_events":0.10,
+    "minimum_valid_D10_events":150,
+    "minimum_valid_D5_events":150,
+    "minimum_valid_D10_signal_dates":60,
+    "minimum_valid_D5_signal_dates":60,
+    "minimum_incremental_diagnostic_dates":40,
+    "minimum_valid_quarters":4,
+    "valid_quarter_min_D10_signal_dates":10,
+    "valid_quarter_min_D10_events":20
+  },
+  "bootstrap_diagnostic":{
+    "used_for_development_PASS_FAIL":false,
+    "unit":"signal-date cluster",
+    "procedure":"Within each fold, resample valid signal dates with replacement; when a date is selected, retain all valid onset-event observations and recompute the date-weighted aggregate.",
+    "replicates":10000,
+    "confidence_interval":"two-sided 95% percentile interval",
+    "seeds":{
+      "fold0":2891000,
+      "fold1":2891001,
+      "fold2":2891002
+    },
+    "p_values_for_candidate_selection":false,
+    "reason":"Consumed folds are development evidence; fresh confirmatory significance is reserved for untouched fold3."
+  },
+  "development_PASS_requires_all":[
+    "All minimum-information conditions pass independently in folds 0, 1 and 2.",
+    "Primary mean D+10 onset excess versus same-date universe is > 0 independently in folds 0, 1 and 2.",
+    "D+10 incremental timing spread versus compressed non-onset occupancy is > 0 independently in folds 0, 1 and 2.",
+    "Positive valid-quarter primary D+10 share is >= 2/3 independently in folds 0, 1 and 2.",
+    "Every leave-one-valid-quarter-out primary D+10 mean is > 0 independently in folds 0, 1 and 2.",
+    "Secondary mean D+5 onset excess versus same-date universe is > 0 in at least two of the three folds.",
+    "No source, PIT, calendar, identity, event-suppression or implementation blocker exists."
+  ],
+  "terminal_logic":{
+    "if_PASS":"V2_8_9_TRANSITION_DEVELOPMENT_PASS; freeze the exact implementation and a separate pre-fold3 confirmatory contract before any fold3 access.",
+    "if_FAIL":"V2_8_9_TRANSITION_DEVELOPMENT_REJECTED; fold3 and fold4 remain sealed.",
+    "if_INSUFFICIENT_INFORMATION":"V2_8_9_TRANSITION_DEVELOPMENT_INCONCLUSIVE; do not relax thresholds post-result and keep fold3/fold4 sealed.",
+    "maximum_candidates_promoted":1,
+    "no_optional_stopping":true,
+    "no_post_result_gate_change":true
+  },
+  "implementation_validation_required_before_execution":[
+    "Locked evaluator must bind this gate and the V2.8.9 hypothesis-gate candidate id exactly.",
+    "Deterministic self-tests must verify P is the immediately previous joint trading session and never a skipped-back stock bar.",
+    "Self-tests must verify D+1 or later data cannot affect event construction.",
+    "Self-tests must verify same-security D through D+10 suppression.",
+    "Self-tests must verify date-weighted aggregation and clustered bootstrap determinism.",
+    "Self-tests must verify fold3/fold4 are absent from source configuration.",
+    "Evaluator hash and validation receipt must be frozen before real folds0-2 execution."
+  ],
+  "forbidden":[
+    "No alternative 1.0 boundary variants.",
+    "No percentile or score-weight search.",
+    "No persistence-length tuning.",
+    "No release-from-compression candidate.",
+    "No post-result trend/momentum/near-high/market-state/evidence filter.",
+    "No coefficient fit or machine learning.",
+    "No event-count threshold relaxation after seeing results.",
+    "No bootstrap-CI or p-value rule added after seeing development results.",
+    "No fold3/fold4 price or outcome retrieval.",
+    "No Setup/First60/Episode/live emission."
+  ],
+  "authorization":{
+    "build_and_validate_locked_evaluator":true,
+    "run_real_transition_research_on_folds0_1_2":false,
+    "fold3_access":false,
+    "fold4_access":false,
+    "setup_emission_authorized":false,
+    "first60_append_authorized":false,
+    "episode_emission_authorized":false,
+    "live_authorized":false
+  },
+  "next_stage":"V2.8.9_LOCKED_TRANSITION_EVALUATOR_IMPLEMENTATION_VALIDATION"
+}
