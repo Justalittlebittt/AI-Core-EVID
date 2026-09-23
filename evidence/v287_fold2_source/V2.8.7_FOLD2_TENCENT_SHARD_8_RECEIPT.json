@@ -1,0 +1,39 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_FOLD2_TENCENT_DIRECT_SHARD_RECEIPT_V1",
+  "version": "V2.8.7",
+  "status": "PASS",
+  "shard": 8,
+  "shard_count": 16,
+  "upstream": "Tencent Securities",
+  "transport": "direct newfqkline/get",
+  "adjust": "hfq",
+  "count_limit": 640,
+  "retrieval_start": "2022-09-01",
+  "retrieval_end": "2024-12-31",
+  "sample_manifest_sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+  "shard_sample_count": 63,
+  "successful_nonzero_symbols": 62,
+  "zero_row_symbols": 0,
+  "zero_row_canonical_ids": [],
+  "source_invalid_symbols": 1,
+  "source_invalid_canonical_ids": [
+    "SSE:600767"
+  ],
+  "source_invalid_details": [
+    {
+      "canonical_security_id": "SSE:600767",
+      "reason": "NONPOSITIVE_OHLC:2023-06-09"
+    }
+  ],
+  "stock_rows": 33584,
+  "parquet_file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_8.parquet",
+  "parquet_bytes": 504041,
+  "parquet_sha256": "767209534c3acac3e5911cfd15eb56a7086beed2e49d124c7655b16a85af2187",
+  "query_manifest_file": "V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST_SHARD_8.csv",
+  "query_manifest_sha256": "329eb8d098ffc959024c51ad2d857a52707e95db4c3d4940a41753a74c83ff21",
+  "factor_or_forward_return_computed": false,
+  "mechanism_statistics_computed": false,
+  "sample_replacement_used": false,
+  "fold3_4_consumed": false,
+  "receipt_sha256": "49b73f71b4cc6f7fc10b8226c74ec27bd1197e43c3cb2e9bbe176937e5f6d6ed"
+}

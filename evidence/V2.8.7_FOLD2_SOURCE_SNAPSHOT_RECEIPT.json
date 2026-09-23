@@ -1,0 +1,186 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_FOLD2_SOURCE_SNAPSHOT_RECEIPT_V1",
+  "version": "V2.8.7",
+  "status": "PASS",
+  "stock_provider": "Tencent Securities direct transport",
+  "stock_interface": "newfqkline/get",
+  "stock_adjustment": "hfq",
+  "retrieval_start": "2022-09-01",
+  "retrieval_end": "2024-12-31",
+  "sample_manifest_sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+  "sample_count": 1048,
+  "successful_nonzero_symbols": 1047,
+  "zero_row_symbols": 0,
+  "zero_row_canonical_ids": [],
+  "source_invalid_symbols": 1,
+  "source_invalid_canonical_ids": [
+    "SSE:600767"
+  ],
+  "source_invalid_details": [
+    {
+      "canonical_security_id": "SSE:600767",
+      "reason": "NONPOSITIVE_OHLC:2023-06-09"
+    }
+  ],
+  "stock_rows": 571253,
+  "stock_partitions": [
+    {
+      "shard": 0,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_0.parquet",
+      "rows": 32713,
+      "bytes": 522875,
+      "sha256": "bd8fa6e007b79986ce2b57454fe66a9cf0cfa9bfd4dec6f93bd50ac6fd98167e",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_0_RECEIPT.json",
+      "shard_receipt_sha256": "ff0a1ef596fa785dc7ed3e4a1ca3febfeda006238df4f9688ede83a089d373f2"
+    },
+    {
+      "shard": 1,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_1.parquet",
+      "rows": 39718,
+      "bytes": 664495,
+      "sha256": "692ab14440324c459c60860c6ba1405acd01283127e6212799cfff9d45bcf13f",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_1_RECEIPT.json",
+      "shard_receipt_sha256": "7b4fc0ad2158ed4d187535bccb001cc957ae44c4d3188c5a0bd75be9876ee748"
+    },
+    {
+      "shard": 2,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_2.parquet",
+      "rows": 37846,
+      "bytes": 608174,
+      "sha256": "1092b9032651006b61437b9c2bf7e412ee79b506093fc25b150ebd2e3d1a6c13",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_2_RECEIPT.json",
+      "shard_receipt_sha256": "3974b943a8fc66c419eae504a4aab3901166b48d7c5e1ff545f35c88b87cd8dc"
+    },
+    {
+      "shard": 3,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_3.parquet",
+      "rows": 37089,
+      "bytes": 592584,
+      "sha256": "7ab4241850a5a855d3f358ca4c6b8579e121d341493868e5b204e1ef66df3634",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_3_RECEIPT.json",
+      "shard_receipt_sha256": "c401736026ff26ebd27ae9e68fda4afd275d8a3a198ce6fa3bbaa667c737150a"
+    },
+    {
+      "shard": 4,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_4.parquet",
+      "rows": 33289,
+      "bytes": 527725,
+      "sha256": "89675901e553feaeddbbde49bb2e0c2d3e34414ba4ed23d6f736f22e5f3d5b15",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_4_RECEIPT.json",
+      "shard_receipt_sha256": "0825424bba01df348a44e6cf6f1eddee15f392f324a7faf8cb90c93342f3a277"
+    },
+    {
+      "shard": 5,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_5.parquet",
+      "rows": 34585,
+      "bytes": 565991,
+      "sha256": "17b09940339715c44135f836522ab57936615554e08ce7d8be488946aec2e5ee",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_5_RECEIPT.json",
+      "shard_receipt_sha256": "3878ec7715409eccaa04573d6bf0924de89af1cb46342085524027f2dd361ff2"
+    },
+    {
+      "shard": 6,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_6.parquet",
+      "rows": 39742,
+      "bytes": 656951,
+      "sha256": "627e2cb61cb7756cca538721c54b02589e6315d77bc4a76c73d6887c63d106fb",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_6_RECEIPT.json",
+      "shard_receipt_sha256": "018cecec5aa96481df277d22d1224a8473a24ab3e25ce89687cadae0d9c34a28"
+    },
+    {
+      "shard": 7,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_7.parquet",
+      "rows": 32167,
+      "bytes": 540389,
+      "sha256": "3c150bbce610416be78edddcfd76aac77a0275883dba08b292033b3ea4ce19c4",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_7_RECEIPT.json",
+      "shard_receipt_sha256": "c459a9709a11dcd5306d009d06979e20c3adf1846e65efba4f8924f99bd3fb1b"
+    },
+    {
+      "shard": 8,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_8.parquet",
+      "rows": 33584,
+      "bytes": 504041,
+      "sha256": "767209534c3acac3e5911cfd15eb56a7086beed2e49d124c7655b16a85af2187",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_8_RECEIPT.json",
+      "shard_receipt_sha256": "49b73f71b4cc6f7fc10b8226c74ec27bd1197e43c3cb2e9bbe176937e5f6d6ed"
+    },
+    {
+      "shard": 9,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_9.parquet",
+      "rows": 42230,
+      "bytes": 676575,
+      "sha256": "0eab551b835c1bd9f5ff8aa8bbf60ad95923c52476c6f214bca5d022b5886a69",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_9_RECEIPT.json",
+      "shard_receipt_sha256": "3d1587bf1c891f9994f90c8f6cd284aaa3af3f0d30130e86caf7f2bf3092b5d2"
+    },
+    {
+      "shard": 10,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_10.parquet",
+      "rows": 36432,
+      "bytes": 570135,
+      "sha256": "36c4170c5c792a370479e702d3fb364ab5840366ef2eb1a2ef3cdc2d47465607",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_10_RECEIPT.json",
+      "shard_receipt_sha256": "db8737c982b7cc6ac462323424e5047598dd2706d12d4ce14b20bbebbf349a71"
+    },
+    {
+      "shard": 11,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_11.parquet",
+      "rows": 35010,
+      "bytes": 562442,
+      "sha256": "9eeaac33268af08e61ebee7c0c6f9627b26e1049fe4e109a03fed2249098e05a",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_11_RECEIPT.json",
+      "shard_receipt_sha256": "fd24ef503fbdcefcdfdfeb5139b8520a97d44b625fd386d8f9474c925e336c44"
+    },
+    {
+      "shard": 12,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_12.parquet",
+      "rows": 29786,
+      "bytes": 495422,
+      "sha256": "399c4cc292730ac01008c59de402b401ff8eb8f3a1bbb812217ae4561a19edf3",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_12_RECEIPT.json",
+      "shard_receipt_sha256": "8f99d9c6a5ef5e8996a8b0ff1810b86c5db33cbd58697930e26ea92bce6483b7"
+    },
+    {
+      "shard": 13,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_13.parquet",
+      "rows": 35051,
+      "bytes": 581980,
+      "sha256": "8a96c9021eb78c1090d4f3c3afdf62aa142893e38efb06c5aea5845be2766c8f",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_13_RECEIPT.json",
+      "shard_receipt_sha256": "4d45e73643786ebd1f0ed68bc611800fd209fe28bd267221d65abf7bd3f50ffe"
+    },
+    {
+      "shard": 14,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_14.parquet",
+      "rows": 34403,
+      "bytes": 558976,
+      "sha256": "dd11cfd83b20af71ba77d223e6d251b0dbee9e4db93a110195b034d7423d8ac4",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_14_RECEIPT.json",
+      "shard_receipt_sha256": "739332e358ae7caa12772868db7070232a2779c77bd9ab00fa3ac2ee7d8ddb64"
+    },
+    {
+      "shard": 15,
+      "file": "V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_15.parquet",
+      "rows": 37608,
+      "bytes": 591473,
+      "sha256": "51166f3335bd56d6e6692aeaa654cb183c92d598934d1598bdeed821adcf4c18",
+      "shard_receipt": "V2.8.7_FOLD2_TENCENT_SHARD_15_RECEIPT.json",
+      "shard_receipt_sha256": "4ffb3c042d7408bcc5a5aa7fe4b68a1e7de590693af9845358272e9c7db120c2"
+    }
+  ],
+  "benchmark": {
+    "status": "PASS",
+    "rows": 565,
+    "file": "V2.8.7_FOLD2_BAOSTOCK_CSI300.parquet",
+    "parquet_sha256": "1aee2f5af524e0f99f788166731d3c9ce3a862c6f1af9203b442f11f6d5fe272",
+    "reused_from": "evidence/v285_holdout_source/V2.8.5_BAOSTOCK_CSI300.parquet"
+  },
+  "query_manifest_file": "V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST.csv",
+  "query_manifest_sha256": "9532b8cde7617cacd5de44b9a99fbb876b9d0ab32df6bfa02984e5bf3ea5a1c1",
+  "factor_or_forward_return_computed": false,
+  "mechanism_statistics_computed": false,
+  "sample_replacement_used": false,
+  "fold3_4_consumed": false,
+  "receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63"
+}
