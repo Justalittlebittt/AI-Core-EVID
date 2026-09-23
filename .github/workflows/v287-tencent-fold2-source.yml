@@ -1,8 +1,5 @@
 name: V2.8.7 Tencent Fold2 Source Acquisition
 on:
-  push:
-    paths:
-      - ".github/workflows/v287-tencent-fold2-source.yml"
   workflow_dispatch:
 permissions:
   contents: write
