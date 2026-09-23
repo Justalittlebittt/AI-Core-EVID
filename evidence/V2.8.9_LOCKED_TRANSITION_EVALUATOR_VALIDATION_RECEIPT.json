@@ -58,7 +58,7 @@
     "V2.8.0 feature engine is reused"
   ],
   "static_audit": {
-    "evaluator_line_count": 5,
+    "evaluator_line_count": 681,
     "fold_source_configs": [
       0,
       1,
@@ -68,7 +68,9 @@
     "evaluator_has_terminal_no_reevaluation_guard": true,
     "evaluator_has_real_evaluate_entrypoint": true,
     "threshold_grid_present": false,
-    "machine_learning_dependency_present": false
+    "machine_learning_dependency_present": false,
+    "content_length_chars": 29411,
+    "line_count_source": "GitHub raw main content"
   },
   "authorization": {
     "real_transition_research_on_consumed_folds0_1_2": true,
