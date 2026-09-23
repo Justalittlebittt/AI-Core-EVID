@@ -1,0 +1,67 @@
+name: V2.8.7 Serial Tencent Fold2 Source and Q5 Research
+on:
+  push:
+    paths:
+      - ".github/workflows/v287-serial-tencent-q5-terminal.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v287-tencent-fold2-source
+  cancel-in-progress: true
+jobs:
+  acquire_and_evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install runtime once
+        run: |
+          python -m pip install pyarrow==21.0.0 numpy==2.3.2 pandas==2.3.2 requests
+      - name: Acquire all 16 fold2 Tencent shards serially
+        run: |
+          set -euo pipefail
+          mkdir -p v287_tx_artifacts
+          for shard in $(seq 0 15); do
+            echo "=== V2.8.7 FOLD2 SHARD $shard / 15 ==="
+            python scripts/v287_tencent_fold2_acquisition.py               --shard "$shard"               --out v287_tx_artifacts
+          done
+      - name: Validate and finalize frozen fold2 source
+        run: |
+          python scripts/v287_tencent_fold2_finalize.py             --artifact-root v287_tx_artifacts             --out v287_tx_final
+      - name: Freeze source snapshot locally before opening outcomes
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          rm -rf evidence/v287_fold2_source
+          mkdir -p evidence/v287_fold2_source
+          cp v287_tx_artifacts/*.parquet evidence/v287_fold2_source/
+          cp v287_tx_artifacts/V2.8.7_FOLD2_TENCENT_SHARD_*_RECEIPT.json evidence/v287_fold2_source/
+          cp v287_tx_artifacts/V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST_SHARD_*.csv evidence/v287_fold2_source/
+          cp v287_tx_final/V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST.csv evidence/v287_fold2_source/
+          cp v287_tx_final/V2.8.7_FOLD2_BAOSTOCK_CSI300.parquet evidence/v287_fold2_source/
+          cp v287_tx_final/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          git add -A evidence/v287_fold2_source evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json
+          git commit -m "Freeze V2.8.7 Tencent fold2 source snapshot [skip ci]"
+      - name: Create one-time Q5 shape activation locally
+        run: |
+          python scripts/v287_create_q5_shape_activation.py
+          git add evidence/V2.8.7_Q5_SETUP_SHAPE_ACTIVATION.json
+          git commit -m "Activate one-time V2.8.7 Q5 setup-shape research [skip ci]"
+      - name: Verify exact frozen bindings
+        run: python scripts/v287_q5_setup_shape_gate.py
+      - name: Run terminal Q5 setup-shape research
+        run: python scripts/v287_locked_q5_setup_shape.py evaluate
+      - name: Freeze terminal result and push ordered provenance chain
+        run: |
+          set -euo pipefail
+          git add evidence/V2.8.7_FOLD2_Q5_SETUP_SHAPE_DAILY_METRICS.csv evidence/V2.8.7_Q5_SETUP_SHAPE_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.7 fold2 Q5 setup-shape result [skip ci]"
+          git pull --rebase origin main
+          git push
