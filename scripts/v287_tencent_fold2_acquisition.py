@@ -71,20 +71,38 @@ def fetch(symbol:str)->list[list]:
 
 def normalize(meta:dict,raw:list[list])->tuple[list[dict],dict]:
     symbol=source_symbol(meta)
+    def empty(status,reason=""):
+        return [],{
+            "status":status,"rows":0,"min_date":"","max_date":"",
+            "rows_sha256":stable_sha([]),"source_invalid_reason":reason
+        }
     if not raw:
-        return [],{"status":"ZERO_ROWS","rows":0,"min_date":"","max_date":"","rows_sha256":stable_sha([])}
+        return empty("ZERO_ROWS")
     rows=[]
+    seen=set()
     for z in raw:
-        if len(z)<6: raise RuntimeError(f"SHORT_ROW:{symbol}:{z}")
-        d=str(z[0])
-        vals={k:float(v) for k,v in zip(("open","close","high","low","volume"),z[1:6])}
-        if not symbol.startswith(("sh688","sz399","sh000","sz000")): vals["volume"]*=100
-        if not (START<=d<=END): continue
-        if any(not math.isfinite(vals[k]) for k in vals): raise RuntimeError(f"NONFINITE:{symbol}:{d}")
-        if any(vals[k]<=0 for k in ("open","close","high","low")): raise RuntimeError(f"NONPOSITIVE_OHLC:{symbol}:{d}")
-        if vals["high"]<max(vals["open"],vals["close"],vals["low"]) or vals["low"]>min(vals["open"],vals["close"],vals["high"]):
-            raise RuntimeError(f"OHLC_ORDER:{symbol}:{d}")
-        if vals["volume"]<0: raise RuntimeError(f"NEGATIVE_VOLUME:{symbol}:{d}")
+        try:
+            if len(z)<6:
+                return empty("SOURCE_INVALID_ZERO_ROWS",f"SHORT_ROW:{z}")
+            d=str(z[0])
+            if not (START<=d<=END):
+                continue
+            if d in seen:
+                return empty("SOURCE_INVALID_ZERO_ROWS",f"DATE_DUPLICATE:{d}")
+            seen.add(d)
+            vals={k:float(v) for k,v in zip(("open","close","high","low","volume"),z[1:6])}
+            if not symbol.startswith(("sh688","sz399","sh000","sz000")):
+                vals["volume"]*=100
+            if any(not math.isfinite(vals[k]) for k in vals):
+                return empty("SOURCE_INVALID_ZERO_ROWS",f"NONFINITE:{d}")
+            if any(vals[k]<=0 for k in ("open","close","high","low")):
+                return empty("SOURCE_INVALID_ZERO_ROWS",f"NONPOSITIVE_OHLC:{d}")
+            if vals["high"]<max(vals["open"],vals["close"],vals["low"]) or vals["low"]>min(vals["open"],vals["close"],vals["high"]):
+                return empty("SOURCE_INVALID_ZERO_ROWS",f"OHLC_ORDER:{d}")
+            if vals["volume"]<0:
+                return empty("SOURCE_INVALID_ZERO_ROWS",f"NEGATIVE_VOLUME:{d}")
+        except Exception as e:
+            return empty("SOURCE_INVALID_ZERO_ROWS",f"ROW_PARSE:{d if 'd' in locals() else 'UNKNOWN'}:{type(e).__name__}:{e}")
         rows.append({
             "canonical_security_id":meta["canonical_security_id"],
             "exchange":meta["exchange"],"security_code":meta["security_code"],
@@ -93,11 +111,13 @@ def normalize(meta:dict,raw:list[list])->tuple[list[dict],dict]:
             "volume":vals["volume"],"tradestatus":"1","source_adjustment":"hfq"
         })
     rows.sort(key=lambda r:r["date"])
-    dates=[r["date"] for r in rows]
-    if dates and len(dates)!=len(set(dates)): raise RuntimeError(f"DATE_DUPLICATE:{symbol}")
     if not rows:
-        return [],{"status":"ZERO_ROWS","rows":0,"min_date":"","max_date":"","rows_sha256":stable_sha([])}
-    return rows,{"status":"SUCCESS","rows":len(rows),"min_date":dates[0],"max_date":dates[-1],"rows_sha256":stable_sha(rows)}
+        return empty("ZERO_ROWS")
+    dates=[r["date"] for r in rows]
+    return rows,{
+        "status":"SUCCESS","rows":len(rows),"min_date":dates[0],"max_date":dates[-1],
+        "rows_sha256":stable_sha(rows),"source_invalid_reason":""
+    }
 
 def write_parquet(path:Path,rows:list[dict]):
     cols=["canonical_security_id","exchange","security_code","source_symbol","acquisition_shard_mod16",
@@ -123,17 +143,21 @@ def run(shard_id:int,out:Path):
     all_rows.sort(key=lambda r:(r["canonical_security_id"],r["date"]))
     pp=out/f"V2.8.7_FOLD2_TENCENT_STOCKS_SHARD_{shard_id}.parquet"; write_parquet(pp,all_rows)
     mp=out/f"V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST_SHARD_{shard_id}.csv"
-    fields=["canonical_security_id","source_symbol","acquisition_shard_mod16","status","rows","min_date","max_date","rows_sha256"]
+    fields=["canonical_security_id","source_symbol","acquisition_shard_mod16","status","rows","min_date","max_date","rows_sha256","source_invalid_reason"]
     with mp.open("w",encoding="utf-8",newline="") as fh:
         w=csv.DictWriter(fh,fieldnames=fields,lineterminator="\n"); w.writeheader(); w.writerows(manifest)
     zero=[r["canonical_security_id"] for r in manifest if r["status"]=="ZERO_ROWS"]
+    invalid=[r["canonical_security_id"] for r in manifest if r["status"]=="SOURCE_INVALID_ZERO_ROWS"]
+    invalid_detail=[{"canonical_security_id":r["canonical_security_id"],"reason":r["source_invalid_reason"]} for r in manifest if r["status"]=="SOURCE_INVALID_ZERO_ROWS"]
     receipt={
       "schema":"AI_CORE_EVID_V2_8_7_FOLD2_TENCENT_DIRECT_SHARD_RECEIPT_V1","version":"V2.8.7","status":"PASS",
       "shard":shard_id,"shard_count":SHARD_COUNT,
       "upstream":"Tencent Securities","transport":"direct newfqkline/get","adjust":"hfq","count_limit":640,
       "retrieval_start":START,"retrieval_end":END,"sample_manifest_sha256":SAMPLE_SHA,
       "shard_sample_count":len(sample),"successful_nonzero_symbols":sum(r["status"]=="SUCCESS" for r in manifest),
-      "zero_row_symbols":len(zero),"zero_row_canonical_ids":zero,"stock_rows":len(all_rows),
+      "zero_row_symbols":len(zero),"zero_row_canonical_ids":zero,
+      "source_invalid_symbols":len(invalid),"source_invalid_canonical_ids":invalid,"source_invalid_details":invalid_detail,
+      "stock_rows":len(all_rows),
       "parquet_file":pp.name,"parquet_bytes":pp.stat().st_size,"parquet_sha256":sha_file(pp),
       "query_manifest_file":mp.name,"query_manifest_sha256":sha_file(mp),
       "factor_or_forward_return_computed":False,"mechanism_statistics_computed":False,
