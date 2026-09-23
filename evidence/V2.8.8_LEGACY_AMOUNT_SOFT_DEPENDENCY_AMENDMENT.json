@@ -1,0 +1,43 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_8_LEGACY_AMOUNT_SOFT_DEPENDENCY_AMENDMENT_V1",
+  "version": "V2.8.8",
+  "status": "FROZEN_IMPLEMENTATION_FIX_NO_RESEARCH_CHANGE",
+  "failed_run_id": 35827523712,
+  "failure": "SOURCE_COLUMNS_BLOCK:['amount']",
+  "diagnosis": [
+    "The failed run reached the locked real discovery evaluator and stopped before any discovery output was frozen.",
+    "The failure was caused by a frozen source partition lacking the liquidity field amount required by the generic V2.8.0 feature-engine input schema.",
+    "V2.8.8 explicitly forbids amount_med20 and amount_vs_med20 as alpha components; none of C1/C2/C3 depends on amount."
+  ],
+  "problem_elimination_pass": {
+    "hard_constraints": [
+      "Do not change C1/C2/C3 candidate definitions.",
+      "Do not change Q5/Q1 projection.",
+      "Do not change development eligibility or maximin selection.",
+      "Do not access fold3 or fold4."
+    ],
+    "soft_dependency_removed": "Presence of amount in every frozen legacy source partition.",
+    "fix": "When amount is absent, provide a constant engine-only placeholder. Required alpha features are computed only from OHLC and remain unchanged.",
+    "source_repair_or_retrieval": false,
+    "alpha_imputation": false
+  },
+  "implementation": {
+    "path": "scripts/v288_locked_setup_shape_discovery.py",
+    "commit": "5dff2509e0c5aee381e58a82ad2e4688733e51bc",
+    "blob_sha": "96fd0e927d6d6ba6924a428e20175046c42827d4"
+  },
+  "verification": {
+    "self_test_run_id": 35827819924,
+    "job_id": 107073353792,
+    "passed": 13,
+    "total": 13,
+    "all_pass": true,
+    "targeted_test": "D13_liquidity_placeholder_cannot_change_alpha_features",
+    "real_consumed_fold_price_rows_read": false,
+    "fold3_4_price_rows_read": false
+  },
+  "research_contract_changed": false,
+  "candidate_library_changed": false,
+  "thresholds_changed": false,
+  "pass_conditions_changed": false
+}
