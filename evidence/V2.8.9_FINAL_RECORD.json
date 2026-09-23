@@ -1,0 +1,159 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_9_FINAL_RECORD_V1",
+  "version": "V2.8.9",
+  "status": "TRANSITION_ENTRY_HYPOTHESIS_REJECTED_COMPRESSION_DEMOTED_FROM_ENTRY_TRIGGER",
+  "terminal_receipt": "evidence/V2.8.9_TRANSITION_RESEARCH_FINAL_RECEIPT.json",
+  "terminal_receipt_sha256": "9002fba389abd1c63c2eb15e6e7d784c0e82e56c0aa42ab06ed7ac0b77a942ff",
+  "terminal_result_commit": "41e5f3f47c3c2ccfc874c0e97cc83ea3eaf7e959",
+  "candidate": {
+    "id": "DC_RAW_RATIO_ONSET_V1",
+    "result": "V2_8_9_TRANSITION_DEVELOPMENT_REJECTED"
+  },
+  "information_sufficiency": {
+    "fold0": {
+      "events": 14079,
+      "signal_dates": 455,
+      "minimum_information_pass": true
+    },
+    "fold1": {
+      "events": 14115,
+      "signal_dates": 455,
+      "minimum_information_pass": true
+    },
+    "fold2": {
+      "events": 14216,
+      "signal_dates": 458,
+      "minimum_information_pass": true
+    },
+    "conclusion": "Rejection is not attributable to insufficient event count, date dispersion, security coverage or quarter coverage."
+  },
+  "key_results": {
+    "mean_D10_onset_excess_vs_same_date_universe": {
+      "fold0": 0.0010186401127005734,
+      "fold1": 0.00016187884957457457,
+      "fold2": 0.0030763227911961197
+    },
+    "mean_D5_onset_excess_vs_same_date_universe": {
+      "fold0": 0.00012795553662968022,
+      "fold1": 0.0005958792484401638,
+      "fold2": 0.0007407679784298662
+    },
+    "mean_D10_incremental_timing_spread_vs_compressed_non_onset": {
+      "fold0": -0.00010245367696290174,
+      "fold1": -0.0004981699193844852,
+      "fold2": 0.001039243841763973
+    },
+    "positive_valid_quarter_share": {
+      "fold0": 0.625,
+      "fold1": 0.625,
+      "fold2": 0.75
+    },
+    "leave_one_valid_quarter_out_all_positive": {
+      "fold0": true,
+      "fold1": false,
+      "fold2": true
+    }
+  },
+  "frozen_failed_checks": [
+    "fold0:incremental_D10_timing_spread",
+    "fold0:positive_quarter_share",
+    "fold1:incremental_D10_timing_spread",
+    "fold1:positive_quarter_share",
+    "fold1:leave_one_quarter_out"
+  ],
+  "interpretation": [
+    "The raw dual-compression onset event does not deliver robust incremental entry-timing value across consumed folds 0-2.",
+    "All three folds show positive average D+10 onset excess versus their same-date fold universe, so the rejection does not imply that compression-related state information is useless.",
+    "The critical incremental comparison fails in folds 0 and 1: newly entering the dual-compressed state is not better than already occupying the dual-compressed state.",
+    "Therefore the evidence does not support promoting compression onset itself to a Setup trigger.",
+    "Together with V2.8.7 and V2.8.8, the tested evidence rejects three routes from compression to entry: static high compression, additive static compression structures, and raw compression onset timing.",
+    "The V2.8.6 replicated continuous dual-compression mechanism remains historical evidence, but its role is demoted from candidate entry trigger to state/ranking primitive unless future independent evidence establishes otherwise."
+  ],
+  "problem_elimination_pass": {
+    "final_user_goal": "Build one prospective, causal and economically meaningful Setup that can survive untouched validation, not force the replicated compression feature to become the entry trigger.",
+    "hard_constraints": [
+      "Honor V2.8.7, V2.8.8 and V2.8.9 terminal rejections without reevaluation or rescue.",
+      "Keep V2.8.6 replicated dual-compression evidence intact.",
+      "Keep fold3 and fold4 untouched until one materially independent Setup hypothesis and confirmatory gate are frozen.",
+      "Future signal construction must use D and earlier information only.",
+      "U/E eligibility remains independent from T-layer strategy mechanics.",
+      "No Setup, First60, Episode or live authorization exists yet."
+    ],
+    "expensive_soft_assumption_removed": "A useful replicated T-layer factor must itself provide the entry trigger.",
+    "counterfactual_result": "If compression is retained only as state/ranking context and entry timing is supplied by an independent mechanism, the downstream Setup interface remains valid because V2.8.4 treats strategy semantics as opaque and requires only a causal PASS strategy receipt.",
+    "actions": {
+      "Delete": [
+        "Retire DC_RAW_RATIO_ONSET_V1.",
+        "Do not search alternative compression ratio boundaries such as 0.8/0.9/1.1/1.2.",
+        "Do not search 2/3/5-day compression persistence.",
+        "Do not search release-from-compression as a rescue of V2.8.9.",
+        "Do not reopen V2.8.7/V2.8.8 percentile or weight grids."
+      ],
+      "Avoid": [
+        "Do not make the next Setup candidate depend on compression-derived timing.",
+        "Do not add compression as a mandatory filter to a new entry mechanism before that mechanism is independently evaluated."
+      ],
+      "Absorb": [
+        "Retain rv10_over_rv60 and tr10_over_tr60 as validated/research T-layer state descriptors or ranking inputs.",
+        "Reuse frozen folds0-2 sources, PIT identities, calendar and feature engine."
+      ],
+      "Substitute": "Search for one materially independent entry mechanism from surviving non-liquidity research families rather than another transformation of volatility contraction.",
+      "Precompute_Reuse": "Use existing folds0-2 histories and existing scale-invariant features wherever possible; no new retrieval solely to reformulate compression.",
+      "Optimize": "Only after an independent entry mechanism survives its own development gate; compression interaction may be studied later as an incremental overlay, not as a rescue."
+    }
+  },
+  "factor_role_disposition": {
+    "VC_VOLATILITY_CONTRACTION": {
+      "current_role": "STATE_OR_RANKING_PRIMITIVE_ONLY",
+      "entry_trigger_authorized": false,
+      "rationale": "Replicated continuous information exists, but three separate entry translations failed."
+    },
+    "LIQ_LIQUIDITY_EXECUTABILITY": {
+      "current_role": "EXECUTION_ONLY",
+      "entry_trigger_authorized": false
+    },
+    "candidate_families_for_next_independent_entry_discovery": [
+      "TQ_TREND_STRUCTURE",
+      "RS_RELATIVE_STRENGTH",
+      "AC_ANTI_CHASE"
+    ],
+    "not_selected_yet": true,
+    "note": "Listing candidate families does not promote any feature, threshold or Setup. V2.8.10 must select and freeze at most one materially independent hypothesis before outcome execution."
+  },
+  "fold_disposition": {
+    "fold0": "consumed development",
+    "fold1": "consumed independent mechanism replication and later development",
+    "fold2": "consumed setup-shape and transition research",
+    "fold3": "sealed untouched validation for one future pre-frozen independent Setup hypothesis",
+    "fold4": "sealed untouched final holdout after fold3 success"
+  },
+  "governance": {
+    "sample_modified_after_results": false,
+    "optional_stopping_used": false,
+    "threshold_changed_after_results": false,
+    "compression_rescue_search_authorized": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "decision": {
+    "promote_DC_RAW_RATIO_ONSET_V1": false,
+    "search_more_compression_entry_variants": false,
+    "consume_fold3_now": false,
+    "consume_fold4": false,
+    "next_stage": "V2.8.10_INDEPENDENT_ENTRY_MECHANISM_DISCOVERY_GATE"
+  },
+  "next_stage_constraints": [
+    "Use only already-consumed folds 0-2 for hypothesis generation and development.",
+    "Select at most one materially independent entry hypothesis before real outcome execution.",
+    "The next candidate may not use compression level, compression percentile, compression onset, compression persistence or compression release as its trigger.",
+    "The candidate must be causal at D and must not consume D+1-or-later information.",
+    "Do not use liquidity as alpha.",
+    "Do not import lost V2.7.3 thresholds or attempt to reproduce old historical events.",
+    "Freeze exact candidate semantics, implementation and development PASS/FAIL contract before executing outcomes.",
+    "Fold3 remains sealed until development PASS and a separate pre-fold3 confirmatory contract are frozen."
+  ]
+}
