@@ -1,0 +1,77 @@
+name: V2.8.7 Tencent Fold2 Source Acquisition
+on:
+  push:
+    paths:
+      - ".github/workflows/v287-tencent-fold2-source.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v287-tencent-fold2-source
+  cancel-in-progress: false
+jobs:
+  acquire_shards:
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned AKShare runtime
+        run: |
+          python -m pip download --no-deps --only-binary=:all: akshare==1.18.97 -d wheelhouse
+          test "$(sha256sum wheelhouse/akshare-1.18.97-py3-none-any.whl | awk '{print $1}')" = "f7a202842b1300bfe74efca69be93919041422e8a3dc1f0be204b039af27e683"
+          python -m pip install wheelhouse/akshare-1.18.97-py3-none-any.whl pyarrow==21.0.0
+      - name: Acquire Tencent fold2 shard
+        run: |
+          python scripts/v287_tencent_fold2_acquisition.py             --shard ${{ matrix.shard }}             --out "v287_tx_shard_${{ matrix.shard }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v287-tx-shard-${{ matrix.shard }}
+          path: v287_tx_shard_${{ matrix.shard }}/*
+          if-no-files-found: error
+          retention-days: 1
+
+  finalize:
+    needs: acquire_shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyarrow==21.0.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v287-tx-shard-*
+          merge-multiple: true
+          path: v287_tx_artifacts
+      - name: Validate and merge Tencent fold2 source
+        run: |
+          python scripts/v287_tencent_fold2_finalize.py             --artifact-root v287_tx_artifacts             --out v287_tx_final
+      - name: Freeze Tencent fold2 source snapshot
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          rm -rf evidence/v287_fold2_source
+          mkdir -p evidence/v287_fold2_source
+          cp v287_tx_artifacts/*.parquet evidence/v287_fold2_source/
+          cp v287_tx_artifacts/V2.8.7_FOLD2_TENCENT_SHARD_*_RECEIPT.json evidence/v287_fold2_source/
+          cp v287_tx_artifacts/V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST_SHARD_*.csv evidence/v287_fold2_source/
+          cp v287_tx_final/V2.8.7_FOLD2_TENCENT_QUERY_MANIFEST.csv evidence/v287_fold2_source/
+          cp v287_tx_final/V2.8.7_FOLD2_BAOSTOCK_CSI300.parquet evidence/v287_fold2_source/
+          cp v287_tx_final/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json evidence/
+          git add -A evidence/v287_fold2_source evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json
+          git commit -m "Freeze V2.8.7 Tencent fold2 source snapshot [skip ci]"
+          git pull --rebase origin main
+          git push
