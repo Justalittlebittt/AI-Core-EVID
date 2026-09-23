@@ -1,0 +1,197 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_8_NEW_SETUP_SHAPE_DISCOVERY_GATE_CONTRACT_V1",
+  "version": "V2.8.8",
+  "status": "FROZEN_BEFORE_V2_8_8_DISCOVERY_EXECUTION",
+  "purpose": "Use only already-consumed folds 0-2 to select at most one materially new Setup-shape score for later unchanged validation on untouched fold3, without rescuing the rejected V2.8.7 pure dual-compression Q5 candidate.",
+  "parent": {
+    "v287_final_record": "evidence/V2.8.7_FINAL_RECORD.json",
+    "v287_terminal_status": "Q5_SETUP_SHAPE_REJECTED",
+    "v286_mechanism": "STATE_INVARIANT_DUAL_COMPRESSION_REPLICATED"
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Find one robust prospective Setup-shape candidate that can survive untouched validation, not optimize the rejected V2.8.7 Q5 rule.",
+    "hard_constraints": [
+      "fold3 and fold4 remain completely untouched during V2.8.8 discovery",
+      "V2.8.7 Q5/Q1 result is terminal and is not reevaluated",
+      "no percentile threshold grid, weight grid, coefficient fit, optional stopping or post-result candidate edits",
+      "no Setup, First60, Episode or live authorization"
+    ],
+    "soft_constraints_removed": [
+      "the Setup candidate does not have to be pure dual compression",
+      "development folds do not need to be pooled into one cross-vendor panel",
+      "statistical significance on consumed development folds is not required as a promotion claim"
+    ],
+    "architecture": "Keep each consumed fold source-native, compute only signal-date-or-earlier scale-invariant features and within-date ranks, evaluate candidates independently by fold, and select by cross-fold robustness."
+  },
+  "folds": {
+    "assignment": "int(SHA256(canonical_security_id)[0:8],16) mod 5",
+    "fold0": {
+      "role": "consumed development",
+      "securities": 1031,
+      "source_receipt": "evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9",
+      "provider": "BaoStock"
+    },
+    "fold1": {
+      "role": "consumed independent mechanism replication",
+      "securities": 1058,
+      "source_receipt": "evidence/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e",
+      "provider": "Tencent Securities via AKShare 1.18.97"
+    },
+    "fold2": {
+      "role": "consumed V2.8.7 setup-shape research",
+      "securities": 1048,
+      "source_receipt": "evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63",
+      "provider": "Tencent Securities direct transport"
+    },
+    "fold3": {
+      "role": "sealed future setup validation",
+      "securities": 1039,
+      "price_or_outcome_access_authorized": false
+    },
+    "fold4": {
+      "role": "sealed final cross-sectional holdout",
+      "securities": 1042,
+      "price_or_outcome_access_authorized": false
+    }
+  },
+  "source_policy": {
+    "new_retrieval_for_folds0_1_2": false,
+    "cross_vendor_row_fallback": false,
+    "cross_vendor_panel_pooling_for_candidate_selection": false,
+    "foldwise_evaluation_required": true,
+    "same_source_signal_and_outcome_endpoints_within_each_fold": true,
+    "source_invalid_security_handling": "inherit each frozen source snapshot and its already-frozen fail-closed rules; do not repair or replace securities during discovery"
+  },
+  "feature_authority": {
+    "engine": "scripts/v280_scale_invariant_features.py",
+    "contract": "evidence/V2.8.0_SCALE_INVARIANT_FEATURE_ENGINE_CONTRACT.json",
+    "allowed_primitives": [
+      "ret_20",
+      "ret_60",
+      "ma50_vs_ma150",
+      "ma150_vs_ma200",
+      "ma200_slope20",
+      "dist_high60",
+      "dist_high252",
+      "rv10_over_rv60",
+      "tr10_over_tr60"
+    ],
+    "forbidden_as_alpha_components": [
+      "amount_med20",
+      "amount_vs_med20"
+    ],
+    "liquidity_role": "execution-only; cannot improve discovery score or create Setup eligibility",
+    "rank_rule": "average-rank percentile within the same signal date among finite PIT-eligible securities in the same fold"
+  },
+  "fixed_component_scores": {
+    "dual_compression": "0.5*(1-rank_pct(rv10_over_rv60)) + 0.5*(1-rank_pct(tr10_over_tr60))",
+    "trend_structure": "(rank_pct(ma50_vs_ma150) + rank_pct(ma150_vs_ma200) + rank_pct(ma200_slope20))/3",
+    "momentum_structure": "0.5*rank_pct(ret_20) + 0.5*rank_pct(ret_60)",
+    "near_high_structure": "0.5*rank_pct(dist_high60) + 0.5*rank_pct(dist_high252)"
+  },
+  "candidate_library": [
+    {
+      "id": "C1_DC_TREND",
+      "semantic": "compression inside an established medium/long trend structure",
+      "score": "0.5*dual_compression + 0.5*trend_structure"
+    },
+    {
+      "id": "C2_DC_MOMENTUM",
+      "semantic": "compression combined with medium-horizon continuation strength",
+      "score": "0.5*dual_compression + 0.5*momentum_structure"
+    },
+    {
+      "id": "C3_DC_NEAR_HIGH",
+      "semantic": "compression while price remains structurally near its medium/long rolling highs",
+      "score": "0.5*dual_compression + 0.5*near_high_structure"
+    }
+  ],
+  "candidate_library_lock": {
+    "candidate_count": 3,
+    "add_candidate_after_results": false,
+    "remove_candidate_after_results": false,
+    "change_component_direction_after_results": false,
+    "change_component_weights_after_results": false,
+    "compression_only_candidate_allowed": false,
+    "reason": "All three candidates add one orthogonal structural family to the replicated compression mechanism; none is a percentile rescue of the rejected V2.8.7 pure dual-compression score."
+  },
+  "setup_shape_projection_for_discovery": {
+    "within_date_candidate_rank": "average-rank percentile of the frozen candidate score",
+    "Q5": "candidate_rank_percentile > 0.80",
+    "Q1": "candidate_rank_percentile <= 0.20",
+    "threshold_search": false,
+    "note": "The fixed quintile projection is common to all materially different candidate scores and is not tunable during discovery."
+  },
+  "outcomes": {
+    "primary": "exact D+10 same-source return: daily mean Q5 minus daily mean Q1",
+    "secondary": "exact D+5 same-source return: daily mean Q5 minus daily mean Q1",
+    "supporting": [
+      "Q5 D+10 excess versus all valid securities in the same fold/date",
+      "aggregate D+10 mean by all five candidate-score quintiles",
+      "valid-quarter D+10 Q5-Q1 means",
+      "leave-one-valid-quarter-out D+10 Q5-Q1 means"
+    ]
+  },
+  "minimum_information_per_fold": {
+    "minimum_Q5_per_date": 50,
+    "minimum_Q1_per_date": 50,
+    "minimum_valid_D10_dates": 200,
+    "minimum_valid_D5_dates": 200,
+    "minimum_valid_quarters": 4,
+    "valid_quarter_min_dates": 20
+  },
+  "development_eligibility_requires_all": [
+    "candidate has sufficient minimum information in each of folds 0, 1 and 2",
+    "mean D+10 Q5-Q1 spread is > 0 independently in each of folds 0, 1 and 2",
+    "mean D+10 Q5 excess versus all valid securities is > 0 independently in each fold",
+    "Q5 has the highest aggregate mean D+10 return among five candidate-score quintiles independently in each fold",
+    "positive valid-quarter D+10 spread share is >= 2/3 independently in each fold",
+    "every leave-one-valid-quarter-out D+10 Q5-Q1 mean spread is > 0 independently in each fold",
+    "mean D+5 Q5-Q1 spread is > 0 in at least two of the three consumed folds",
+    "no source, PIT, calendar, identity or implementation blocker"
+  ],
+  "selection_rule": {
+    "maximum_selected_candidates": 1,
+    "if_none_eligible": "V2_8_8_NO_SETUP_SHAPE_SELECTED; keep fold3 and fold4 sealed",
+    "if_one_eligible": "select that candidate",
+    "if_multiple_eligible": [
+      "select the candidate with the largest minimum foldwise mean D+10 Q5-Q1 spread across folds 0-2",
+      "if tied, select the larger median foldwise mean D+10 Q5-Q1 spread",
+      "if still tied, select lexicographically smallest candidate id"
+    ],
+    "bootstrap_or_p_value_used_for_selection": false,
+    "reason": "Consumed folds are for development robustness, not fresh confirmatory significance. Statistical confirmation is deferred to untouched fold3."
+  },
+  "next_stage_if_selected": {
+    "stage": "V2.8.8_SELECTED_SETUP_SHAPE_PREFOLD3_FREEZE",
+    "required_before_any_fold3_access": [
+      "freeze selected candidate id and exact score formula",
+      "freeze implementation hash and deterministic self-tests",
+      "freeze fold3 manifest and source acquisition contract without reading outcomes",
+      "freeze fold3 PASS/FAIL statistics, seeds and gates",
+      "bind all prerequisite hashes in a one-time activation record"
+    ]
+  },
+  "forbidden": [
+    "no fold3 or fold4 price/outcome retrieval during discovery",
+    "no 70/80/90 or other percentile grid",
+    "no score-weight grid",
+    "no regression or machine-learning coefficient fitting",
+    "no adding trend, breakout, pullback or market-state conditions after seeing candidate results",
+    "no using a candidate-specific provider fallback",
+    "no re-running V2.8.7 Q5 terminal evaluation",
+    "no Setup/First60/Episode/live emission"
+  ],
+  "authorization": {
+    "discovery_on_consumed_folds0_1_2": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
