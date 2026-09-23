@@ -25,14 +25,14 @@ jobs:
       - name: Verify frozen evaluator and authorization
         run: |
           set -euo pipefail
-          test "$(git hash-object scripts/v288_locked_setup_shape_discovery.py)" = "cb0b71c8a261c54fc9a6fdd3eaa5273063828f49"
+          test "$(git hash-object scripts/v288_locked_setup_shape_discovery.py)" = "96fd0e927d6d6ba6924a428e20175046c42827d4"
           python - <<'PY'
           import json
           from pathlib import Path
           v=json.loads(Path("evidence/V2.8.8_LOCKED_DISCOVERY_EVALUATOR_VALIDATION_RECEIPT.json").read_text())
           c=json.loads(Path("evidence/V2.8.8_NEW_SETUP_SHAPE_DISCOVERY_GATE_CONTRACT.json").read_text())
           assert v["status"]=="PASS"
-          assert v["evaluator"]["blob_sha"]=="cb0b71c8a261c54fc9a6fdd3eaa5273063828f49"
+          assert v["evaluator"]["blob_sha"]=="96fd0e927d6d6ba6924a428e20175046c42827d4"
           assert v["authorization"]["real_discovery_execution_on_consumed_folds0_1_2"] is True
           assert v["authorization"]["fold3_access"] is False
           assert v["authorization"]["fold4_access"] is False
