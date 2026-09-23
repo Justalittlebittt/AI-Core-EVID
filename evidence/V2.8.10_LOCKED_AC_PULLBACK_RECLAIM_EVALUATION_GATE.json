@@ -1,0 +1,182 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATION_GATE_V1",
+  "version": "V2.8.10",
+  "status": "FROZEN_BEFORE_AC_PULLBACK_RECLAIM_OUTCOME_RESEARCH",
+  "purpose": "Freeze information sufficiency, comparison baselines, event-level metrics, time-clustered diagnostics and deterministic development PASS/FAIL logic for AC_MA20_PULLBACK_RECLAIM_V1 before reading any real AC event outcomes.",
+  "hypothesis_gate": {
+    "file": "evidence/V2.8.10_INDEPENDENT_ENTRY_MECHANISM_DISCOVERY_GATE.json",
+    "candidate_id": "AC_MA20_PULLBACK_RECLAIM_V1",
+    "candidate_count": 1,
+    "candidate_definition_mutable_after_results": false
+  },
+  "folds": {
+    "fold0": {
+      "role": "consumed development",
+      "securities": 1031,
+      "source_receipt": "evidence/V2.8.5_BAOSTOCK_HOLDOUT_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9"
+    },
+    "fold1": {
+      "role": "consumed independent mechanism replication and later development",
+      "securities": 1058,
+      "source_receipt": "evidence/V2.8.6_FOLD1_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e"
+    },
+    "fold2": {
+      "role": "consumed setup-shape and transition research; allowed for development",
+      "securities": 1048,
+      "source_receipt": "evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json",
+      "source_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63"
+    },
+    "fold3": {
+      "role": "sealed untouched future validation",
+      "price_or_outcome_access_authorized": false
+    },
+    "fold4": {
+      "role": "sealed untouched final holdout",
+      "price_or_outcome_access_authorized": false
+    }
+  },
+  "source_and_calendar_policy": {
+    "calendar": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "new_retrieval_folds0_1_2": false,
+    "cross_vendor_row_fallback": false,
+    "cross_vendor_pooling": false,
+    "foldwise_evaluation_required": true,
+    "same_source_D_and_T_endpoints_within_fold": true,
+    "missing_or_suspended_target_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+    "missing_outcome_replacement_event": false
+  },
+  "event_construction_lock": {
+    "feature_engine": "scripts/v280_scale_invariant_features.py",
+    "required_features": [
+      "close_vs_ma20",
+      "close_vs_ma50"
+    ],
+    "P": "immediately preceding joint SSE+SZSE A-share trading session; do not skip backward over a missing/suspended stock bar",
+    "P_state": "close_vs_ma20(P) <= 0.0 AND close_vs_ma50(P) > 0.0",
+    "D_state": "close_vs_ma20(D) > 0.0 AND close_vs_ma50(D) > 0.0",
+    "signal_timestamp": "D close/end-of-session",
+    "future_persistence_confirmation": false,
+    "same_security_episode_suppression": "suppress new accepted event from D through its fixed D+10 joint-calendar target date inclusive",
+    "threshold_search": false,
+    "compression_features_used": false,
+    "liquidity_alpha_used": false
+  },
+  "baseline_definitions": {
+    "same_date_universe_baseline": {
+      "definition": "For each fold and signal date D, arithmetic mean exact-horizon return of all finite-return PIT-eligible, tradestatus=1 securities in that fold on D.",
+      "event_security_included_in_universe_mean": true,
+      "reason": "Provide a deterministic broad same-date benchmark aligned with prior development research."
+    },
+    "intact_trend_non_reclaim_baseline": {
+      "definition": "On the same fold/date D, securities with finite/tradable P and D features such that close_vs_ma20(P) > 0.0, close_vs_ma50(P) > 0.0, close_vs_ma20(D) > 0.0 and close_vs_ma50(D) > 0.0; accepted reclaim events are excluded.",
+      "purpose": "Test whether a pullback-reclaim event adds timing information beyond simply occupying an intact above-MA20/above-MA50 trend state.",
+      "minimum_controls_per_date": 20,
+      "dates_below_minimum_controls": "excluded from incremental timing diagnostic only; they remain eligible for event-vs-universe analysis"
+    }
+  },
+  "event_metrics": {
+    "per_event": {
+      "D10_return": "exact same-source close(T10)/close(D)-1",
+      "D5_return": "exact same-source close(T5)/close(D)-1",
+      "D10_excess_universe": "event D10 return minus same-date fold-universe D10 mean",
+      "D5_excess_universe": "event D5 return minus same-date fold-universe D5 mean"
+    },
+    "per_signal_date": {
+      "D10_reclaim_excess_mean": "mean D10_excess_universe across valid accepted reclaim events on D",
+      "D5_reclaim_excess_mean": "mean D5_excess_universe across valid accepted reclaim events on D",
+      "D10_incremental_timing_spread": "mean accepted reclaim-event D10 return minus mean intact-trend-non-reclaim D10 return on dates with >=20 valid controls"
+    },
+    "fold_aggregate": {
+      "primary": "equal-weight mean across valid signal dates of D10_reclaim_excess_mean",
+      "secondary": "equal-weight mean across valid signal dates of D5_reclaim_excess_mean",
+      "incremental": "equal-weight mean across valid diagnostic dates of D10_incremental_timing_spread",
+      "quarter_primary": "equal-weight mean D10_reclaim_excess_mean within each valid calendar quarter",
+      "leave_one_valid_quarter_out_primary": "equal-weight mean D10_reclaim_excess_mean after excluding each valid quarter in turn"
+    },
+    "reason_for_date_weighting": "Event incidence can cluster on broad market pullback/recovery dates; equal signal-date weighting prevents one synchronized date from dominating through event count."
+  },
+  "minimum_information_per_fold": {
+    "minimum_total_reclaim_events": 200,
+    "minimum_distinct_reclaim_securities": 100,
+    "minimum_distinct_reclaim_signal_dates": 80,
+    "maximum_single_signal_date_share_of_events": 0.1,
+    "minimum_valid_D10_events": 150,
+    "minimum_valid_D5_events": 150,
+    "minimum_valid_D10_signal_dates": 60,
+    "minimum_valid_D5_signal_dates": 60,
+    "minimum_incremental_diagnostic_dates": 40,
+    "minimum_valid_quarters": 4,
+    "valid_quarter_min_D10_signal_dates": 10,
+    "valid_quarter_min_D10_events": 20
+  },
+  "bootstrap_diagnostic": {
+    "used_for_development_PASS_FAIL": false,
+    "unit": "signal-date cluster",
+    "procedure": "Within each fold, resample valid signal dates with replacement; when a date is selected, retain all valid reclaim-event observations and recompute the date-weighted aggregate.",
+    "replicates": 10000,
+    "confidence_interval": "two-sided 95% percentile interval",
+    "seeds": {
+      "fold0": 2810000,
+      "fold1": 2810001,
+      "fold2": 2810002
+    },
+    "p_values_for_candidate_selection": false,
+    "reason": "Folds0-2 are consumed development evidence; untouched fold3 is reserved for later confirmatory inference."
+  },
+  "development_PASS_requires_all": [
+    "All minimum-information conditions pass independently in folds 0, 1 and 2.",
+    "Primary mean D+10 reclaim excess versus same-date universe is > 0 independently in folds 0, 1 and 2.",
+    "D+10 incremental timing spread versus intact-trend non-reclaim occupancy is > 0 independently in folds 0, 1 and 2.",
+    "Positive valid-quarter primary D+10 share is >= 2/3 independently in folds 0, 1 and 2.",
+    "Every leave-one-valid-quarter-out primary D+10 mean is > 0 independently in folds 0, 1 and 2.",
+    "Secondary mean D+5 reclaim excess versus same-date universe is > 0 in at least two of the three folds.",
+    "No source, PIT, calendar, identity, event-suppression or implementation blocker exists."
+  ],
+  "terminal_logic": {
+    "if_PASS": "V2_8_10_AC_PULLBACK_RECLAIM_DEVELOPMENT_PASS; freeze exact implementation and a separate pre-fold3 confirmatory contract before any fold3 access.",
+    "if_FAIL": "V2_8_10_AC_PULLBACK_RECLAIM_DEVELOPMENT_REJECTED; fold3 and fold4 remain sealed.",
+    "if_INSUFFICIENT_INFORMATION": "V2_8_10_AC_PULLBACK_RECLAIM_DEVELOPMENT_INCONCLUSIVE; do not relax thresholds post-result and keep fold3/fold4 sealed.",
+    "maximum_candidates_promoted": 1,
+    "no_optional_stopping": true,
+    "no_post_result_gate_change": true
+  },
+  "implementation_validation_required_before_execution": [
+    "Locked evaluator must bind this gate and V2.8.10 candidate id exactly.",
+    "Deterministic self-tests must verify P is the immediately previous joint trading session and never a skipped-back stock bar.",
+    "Self-tests must verify the P<=MA20/P>MA50 to D>MA20/D>MA50 transition exactly.",
+    "Self-tests must verify D+1-or-later data cannot affect D event construction.",
+    "Self-tests must verify same-security D through D+10 suppression.",
+    "Self-tests must verify intact-trend non-reclaim controls exclude accepted reclaim events.",
+    "Self-tests must verify equal signal-date weighting and clustered bootstrap determinism.",
+    "Self-tests must verify compression features and liquidity alpha are not used.",
+    "Self-tests must verify fold3/fold4 are absent from source configuration.",
+    "Evaluator hash and validation receipt must be frozen before real folds0-2 execution."
+  ],
+  "forbidden": [
+    "No moving-average-period grid.",
+    "No distance buffer around MA20 or MA50.",
+    "No future reclaim persistence requirement.",
+    "No compression-derived condition or overlay.",
+    "No ret_20/ret_60 continuation filter.",
+    "No trend percentile or weighted score.",
+    "No gap, bar-range, distance-from-high, market-state or evidence-freshness filter after seeing results.",
+    "No event-count threshold relaxation after seeing results.",
+    "No bootstrap-CI or p-value rule added after seeing development results.",
+    "No coefficient fitting or machine learning.",
+    "No fold3/fold4 price or outcome retrieval.",
+    "No Setup/First60/Episode/live emission."
+  ],
+  "authorization": {
+    "build_and_validate_locked_evaluator": true,
+    "run_real_AC_research_on_folds0_1_2": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATOR_IMPLEMENTATION_VALIDATION"
+}
