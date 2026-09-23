@@ -4,8 +4,8 @@
   "status": "PASS",
   "evaluator": {
     "path": "scripts/v288_locked_setup_shape_discovery.py",
-    "blob_sha": "cb0b71c8a261c54fc9a6fdd3eaa5273063828f49",
-    "implementation_commit": "6c8f4268e924ceea447a860c6613cd112e6ab59d"
+    "blob_sha": "96fd0e927d6d6ba6924a428e20175046c42827d4",
+    "implementation_commit": "5dff2509e0c5aee381e58a82ad2e4688733e51bc"
   },
   "discovery_contract": {
     "path": "evidence/V2.8.8_NEW_SETUP_SHAPE_DISCOVERY_GATE_CONTRACT.json",
@@ -13,12 +13,12 @@
     "freeze_commit": "59ce4e1a8953dc02ac22330d8e7f2c45b1690ff0"
   },
   "self_test": {
-    "workflow_run_id": 35827236742,
-    "workflow_head_sha": "45e6739217af413b8027cabf765140281b72b0ad",
-    "job_id": 107071548165,
+    "workflow_run_id": 35827819924,
+    "workflow_head_sha": "cae23a35948ad7d278cddcb01c9e2c03640d8b66",
+    "job_id": 107073353792,
     "conclusion": "success",
-    "passed": 12,
-    "total": 12,
+    "passed": 13,
+    "total": 13,
     "all_pass": true,
     "real_consumed_fold_price_rows_read": false,
     "fold3_4_price_rows_read": false
@@ -35,10 +35,11 @@
     "liquidity is not an alpha component",
     "no threshold grid is implemented",
     "V2.8.0 feature engine is reused",
-    "fold3 and fold4 remain sealed"
+    "fold3 and fold4 remain sealed",
+    "legacy missing amount is handled only by a constant engine-input placeholder; alpha features are invariant to the placeholder"
   ],
   "static_audit": {
-    "evaluator_line_count": 633,
+    "evaluator_line_count": 650,
     "fold_source_configs": [
       0,
       1,
@@ -57,5 +58,6 @@
     "first60_append_authorized": false,
     "episode_emission_authorized": false,
     "live_authorized": false
-  }
+  },
+  "implementation_amendment": "evidence/V2.8.8_LEGACY_AMOUNT_SOFT_DEPENDENCY_AMENDMENT.json"
 }
