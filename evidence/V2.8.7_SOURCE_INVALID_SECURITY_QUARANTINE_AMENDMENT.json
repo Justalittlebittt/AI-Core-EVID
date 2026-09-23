@@ -1,0 +1,25 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_SOURCE_INVALID_SECURITY_QUARANTINE_AMENDMENT_V1",
+  "version": "V2.8.7",
+  "status": "FROZEN_AFTER_SOURCE_ANOMALY_BEFORE_ANY_FOLD2_FACTOR_OR_OUTCOME_COMPUTATION",
+  "parent": "evidence/V2.8.7_SOURCE_REUSE_DECISION.json",
+  "rule": {
+    "scope": "Apply uniformly to every fold2 security.",
+    "trigger": "Any in-range Tencent hfq row is nonfinite, has nonpositive OHLC, violates OHLC ordering, has negative volume, is malformed, or duplicates a date.",
+    "action": "Quarantine the entire security snapshot as SOURCE_INVALID_ZERO_ROWS.",
+    "persist_partial_good_rows": false,
+    "imputation": false,
+    "cross_vendor_row_or_security_fallback": false,
+    "sample_replacement": false,
+    "downstream": "The security remains in the frozen manifest but contributes no source rows. Frozen minimum-information rules decide evaluability."
+  },
+  "reason": "A full-security fail-closed quarantine avoids fabricated prices, cross-gap returns and post-observation vendor selection.",
+  "unchanged": [
+    "fold2 manifest and 1048 identities",
+    "Q5/Q1 threshold definitions",
+    "dual-compression score",
+    "D+5/D+10 outcomes",
+    "bootstrap seeds and PASS gates",
+    "fold3-4 untouched"
+  ]
+}
