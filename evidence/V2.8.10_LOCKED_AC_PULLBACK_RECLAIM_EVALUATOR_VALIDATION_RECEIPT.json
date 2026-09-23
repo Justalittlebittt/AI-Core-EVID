@@ -1,0 +1,78 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATOR_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.10",
+  "status": "PASS",
+  "evaluator": {
+    "path": "scripts/v2810_locked_ac_pullback_reclaim_evaluator.py",
+    "blob_sha": "43fe0bd1a0a0bdc1245e58ed105e9ac752845fdc",
+    "implementation_commit": "2a1f322491bbf27dec9313efb9ef18625f0bc00f"
+  },
+  "hypothesis_gate": {
+    "path": "evidence/V2.8.10_INDEPENDENT_ENTRY_MECHANISM_DISCOVERY_GATE.json",
+    "freeze_commit": "ecdf42d9f80804575c024f12b011efb2090991ef"
+  },
+  "evaluation_gate": {
+    "path": "evidence/V2.8.10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATION_GATE.json",
+    "freeze_commit": "4d78ae077cebd3e1d46dceff736a791e623c5131"
+  },
+  "self_test": {
+    "workflow_run_id": 35846900471,
+    "workflow_head_sha": "fa68573415791ddbe497cbd22055980b9c32760d",
+    "job_id": 107135116210,
+    "conclusion": "success",
+    "evaluator_blob_verified": true,
+    "passed": 16,
+    "total": 16,
+    "all_pass": true,
+    "real_consumed_fold_price_rows_read": false,
+    "real_AC_outcomes_read": false,
+    "fold3_4_price_rows_read": false
+  },
+  "first_self_test_incident": {
+    "workflow_run_id": 35846821300,
+    "classification": "STATIC_SELFTEST_SCAN_SCOPE_ONLY",
+    "failed_tests": [
+      "A11_no_compression_alpha",
+      "A12_no_liquidity_alpha",
+      "A13_no_ret_filter"
+    ],
+    "cause": "The static scan searched the entire source file, including the self-test strings that named the forbidden fields, so the test detected its own assertions rather than alpha usage.",
+    "fix": "Restrict the static scan to evaluator implementation text before def self_test().",
+    "research_contract_changed": false,
+    "event_definition_changed": false,
+    "thresholds_changed": false,
+    "pass_conditions_changed": false
+  },
+  "validated_properties": [
+    "candidate id exactly AC_MA20_PULLBACK_RECLAIM_V1",
+    "event is exact P<=MA20/P>MA50 to D>MA20/D>MA50 transition",
+    "P is exact previous joint trading session and cannot skip a missing/suspended bar",
+    "D+1-or-later state cannot alter the D event",
+    "same-security event starts are suppressed from D through fixed D+10 inclusive",
+    "intact-trend non-reclaim controls exclude accepted reclaim events",
+    "date-cluster bootstrap is deterministic",
+    "fold aggregation is equal-weight by signal date",
+    "compression features are not used as alpha",
+    "liquidity features are not used as alpha",
+    "ret_20 and ret_60 are not used as entry filters",
+    "natural zero boundaries are used for MA20 and MA50",
+    "source configuration contains folds0-2 only",
+    "fold3 and fold4 remain sealed",
+    "real AC outcome research was not executed during validation"
+  ],
+  "provider_neutral_tradability_note": {
+    "policy": "If a frozen source exposes tradestatus, require tradestatus=1. If the provider snapshot has no tradestatus field, exact joint-date source-bar existence is used as the provider-native tradability evidence; no row is backfilled or skipped.",
+    "research_semantics_changed": false,
+    "new_source_retrieval": false
+  },
+  "authorization": {
+    "real_AC_research_on_consumed_folds0_1_2": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.10_ONE_TIME_REAL_AC_PULLBACK_RECLAIM_RESEARCH_ON_CONSUMED_FOLDS0_1_2"
+}
