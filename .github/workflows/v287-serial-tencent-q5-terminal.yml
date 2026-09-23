@@ -1,8 +1,5 @@
 name: V2.8.7 Serial Tencent Fold2 Source and Q5 Research
 on:
-  push:
-    paths:
-      - ".github/workflows/v287-serial-tencent-q5-terminal.yml"
   workflow_dispatch:
 permissions:
   contents: write
