@@ -1,0 +1,341 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_9_TRANSITION_RESEARCH_FINAL_RECEIPT_V1",
+  "version": "V2.8.9",
+  "status": "V2_8_9_TRANSITION_DEVELOPMENT_REJECTED",
+  "candidate_id": "DC_RAW_RATIO_ONSET_V1",
+  "hypothesis_gate_schema": "AI_CORE_EVID_V2_8_9_SETUP_EVENT_TRANSITION_HYPOTHESIS_GATE_V1",
+  "evaluation_gate_schema": "AI_CORE_EVID_V2_8_9_LOCKED_TRANSITION_RESEARCH_EVALUATION_GATE_V1",
+  "fold_panels": [
+    {
+      "fold": 0,
+      "sample_count": 1031,
+      "source_rows": 563125,
+      "panel_rows": 483737,
+      "accepted_onset_events": 14079,
+      "panel_identity_sha256": "cabe39e92a1747e1cc28cd0a185b9bd360e70216688ba7f5da80bad0c6c54371",
+      "source_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9"
+    },
+    {
+      "fold": 1,
+      "sample_count": 1058,
+      "source_rows": 574055,
+      "panel_rows": 495418,
+      "accepted_onset_events": 14115,
+      "panel_identity_sha256": "c60eb608cb3070383c126c653f21a6591f25773fd4a6524999bd1e660f4d20e2",
+      "source_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e"
+    },
+    {
+      "fold": 2,
+      "sample_count": 1048,
+      "source_rows": 571253,
+      "panel_rows": 492605,
+      "accepted_onset_events": 14216,
+      "panel_identity_sha256": "8c9bad0f82dd2448dc4988de5de72a3077a99a56587eaf48057febbcd267b508",
+      "source_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63"
+    }
+  ],
+  "fold_summaries": [
+    {
+      "fold": 0,
+      "candidate_id": "DC_RAW_RATIO_ONSET_V1",
+      "total_onset_events": 14079,
+      "distinct_onset_securities": 1022,
+      "distinct_onset_signal_dates": 455,
+      "maximum_single_signal_date_share": 0.01718872078982882,
+      "valid_D10_events": 14065,
+      "valid_D5_events": 14071,
+      "valid_D10_signal_dates": 455,
+      "valid_D5_signal_dates": 455,
+      "incremental_diagnostic_dates": 445,
+      "valid_quarters": 8,
+      "minimum_information_checks": {
+        "total_onset_events": true,
+        "distinct_onset_securities": true,
+        "distinct_onset_signal_dates": true,
+        "single_date_share": true,
+        "valid_D10_events": true,
+        "valid_D5_events": true,
+        "valid_D10_signal_dates": true,
+        "valid_D5_signal_dates": true,
+        "incremental_diagnostic_dates": true,
+        "valid_quarters": true
+      },
+      "minimum_information_pass": true,
+      "mean_D10_onset_excess": 0.0010186401127005734,
+      "mean_D5_onset_excess": 0.00012795553662968022,
+      "mean_D10_incremental_timing_spread": -0.00010245367696290174,
+      "positive_valid_quarter_share": 0.625,
+      "quarter_primary": {
+        "2023Q1": {
+          "signal_dates": 58,
+          "events": 1579,
+          "mean_D10_onset_excess": 0.00026823991086226786
+        },
+        "2023Q2": {
+          "signal_dates": 59,
+          "events": 1895,
+          "mean_D10_onset_excess": 0.0035623191676494356
+        },
+        "2023Q3": {
+          "signal_dates": 64,
+          "events": 1973,
+          "mean_D10_onset_excess": -0.00015415890935862003
+        },
+        "2023Q4": {
+          "signal_dates": 60,
+          "events": 1771,
+          "mean_D10_onset_excess": 0.0021777488370956053
+        },
+        "2024Q1": {
+          "signal_dates": 45,
+          "events": 1502,
+          "mean_D10_onset_excess": -0.006367780263387976
+        },
+        "2024Q2": {
+          "signal_dates": 59,
+          "events": 1678,
+          "mean_D10_onset_excess": -8.764346649835935e-05
+        },
+        "2024Q3": {
+          "signal_dates": 64,
+          "events": 2018,
+          "mean_D10_onset_excess": 0.004506387944098498
+        },
+        "2024Q4": {
+          "signal_dates": 46,
+          "events": 1649,
+          "mean_D10_onset_excess": 0.0026143476844392734
+        }
+      },
+      "leave_one_valid_quarter_out_primary": {
+        "2023Q1": 0.0011282703688885376,
+        "2023Q2": 0.0006396576272410209,
+        "2023Q3": 0.0012106072160555312,
+        "2023Q4": 0.0008425729646912021,
+        "2024Q1": 0.001829344788124927,
+        "2024Q2": 0.0011834651914196066,
+        "2024Q3": 0.0004477555571776399,
+        "2024Q4": 0.0008391717794487883
+      },
+      "leave_one_valid_quarter_out_all_positive": true,
+      "bootstrap_primary_D10": {
+        "n_dates": 455,
+        "mean": 0.0010186401127005734,
+        "ci95": [
+          -0.0011109482465762298,
+          0.0032420921087079097
+        ]
+      },
+      "source_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9",
+      "panel_identity_sha256": "cabe39e92a1747e1cc28cd0a185b9bd360e70216688ba7f5da80bad0c6c54371"
+    },
+    {
+      "fold": 1,
+      "candidate_id": "DC_RAW_RATIO_ONSET_V1",
+      "total_onset_events": 14115,
+      "distinct_onset_securities": 1051,
+      "distinct_onset_signal_dates": 455,
+      "maximum_single_signal_date_share": 0.018207580588026923,
+      "valid_D10_events": 14092,
+      "valid_D5_events": 14100,
+      "valid_D10_signal_dates": 455,
+      "valid_D5_signal_dates": 455,
+      "incremental_diagnostic_dates": 448,
+      "valid_quarters": 8,
+      "minimum_information_checks": {
+        "total_onset_events": true,
+        "distinct_onset_securities": true,
+        "distinct_onset_signal_dates": true,
+        "single_date_share": true,
+        "valid_D10_events": true,
+        "valid_D5_events": true,
+        "valid_D10_signal_dates": true,
+        "valid_D5_signal_dates": true,
+        "incremental_diagnostic_dates": true,
+        "valid_quarters": true
+      },
+      "minimum_information_pass": true,
+      "mean_D10_onset_excess": 0.00016187884957457457,
+      "mean_D5_onset_excess": 0.0005958792484401638,
+      "mean_D10_incremental_timing_spread": -0.0004981699193844852,
+      "positive_valid_quarter_share": 0.625,
+      "quarter_primary": {
+        "2023Q1": {
+          "signal_dates": 58,
+          "events": 1600,
+          "mean_D10_onset_excess": -0.0006874703476874417
+        },
+        "2023Q2": {
+          "signal_dates": 59,
+          "events": 1855,
+          "mean_D10_onset_excess": 0.0044253502790188946
+        },
+        "2023Q3": {
+          "signal_dates": 63,
+          "events": 1969,
+          "mean_D10_onset_excess": 0.0003542480556108248
+        },
+        "2023Q4": {
+          "signal_dates": 60,
+          "events": 1800,
+          "mean_D10_onset_excess": 0.0016135986175282967
+        },
+        "2024Q1": {
+          "signal_dates": 49,
+          "events": 1503,
+          "mean_D10_onset_excess": -0.013781564913567376
+        },
+        "2024Q2": {
+          "signal_dates": 59,
+          "events": 1718,
+          "mean_D10_onset_excess": -0.0007658957524748094
+        },
+        "2024Q3": {
+          "signal_dates": 64,
+          "events": 1974,
+          "mean_D10_onset_excess": 0.0014271294159692045
+        },
+        "2024Q4": {
+          "signal_dates": 43,
+          "events": 1673,
+          "mean_D10_onset_excess": 0.008429004494041731
+        }
+      },
+      "leave_one_valid_quarter_out_primary": {
+        "2023Q1": 0.0002859651302828788,
+        "2023Q2": -0.0004733353280446555,
+        "2023Q3": 0.000130962370033034,
+        "2023Q4": -5.863554555763633e-05,
+        "2024Q1": 0.0018447082692641197,
+        "2024Q2": 0.000300107893819306,
+        "2024Q3": -4.522098738004514e-05,
+        "2024Q4": -0.0007009522249693282
+      },
+      "leave_one_valid_quarter_out_all_positive": false,
+      "bootstrap_primary_D10": {
+        "n_dates": 455,
+        "mean": 0.00016187884957457457,
+        "ci95": [
+          -0.0019028476925731065,
+          0.0022782589592172044
+        ]
+      },
+      "source_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e",
+      "panel_identity_sha256": "c60eb608cb3070383c126c653f21a6591f25773fd4a6524999bd1e660f4d20e2"
+    },
+    {
+      "fold": 2,
+      "candidate_id": "DC_RAW_RATIO_ONSET_V1",
+      "total_onset_events": 14216,
+      "distinct_onset_securities": 1041,
+      "distinct_onset_signal_dates": 458,
+      "maximum_single_signal_date_share": 0.01850028137310073,
+      "valid_D10_events": 14197,
+      "valid_D5_events": 14196,
+      "valid_D10_signal_dates": 458,
+      "valid_D5_signal_dates": 458,
+      "incremental_diagnostic_dates": 448,
+      "valid_quarters": 8,
+      "minimum_information_checks": {
+        "total_onset_events": true,
+        "distinct_onset_securities": true,
+        "distinct_onset_signal_dates": true,
+        "single_date_share": true,
+        "valid_D10_events": true,
+        "valid_D5_events": true,
+        "valid_D10_signal_dates": true,
+        "valid_D5_signal_dates": true,
+        "incremental_diagnostic_dates": true,
+        "valid_quarters": true
+      },
+      "minimum_information_pass": true,
+      "mean_D10_onset_excess": 0.0030763227911961197,
+      "mean_D5_onset_excess": 0.0007407679784298662,
+      "mean_D10_incremental_timing_spread": 0.001039243841763973,
+      "positive_valid_quarter_share": 0.75,
+      "quarter_primary": {
+        "2023Q1": {
+          "signal_dates": 58,
+          "events": 1545,
+          "mean_D10_onset_excess": -0.00011947409245020735
+        },
+        "2023Q2": {
+          "signal_dates": 59,
+          "events": 1882,
+          "mean_D10_onset_excess": 0.005780783485063157
+        },
+        "2023Q3": {
+          "signal_dates": 64,
+          "events": 2024,
+          "mean_D10_onset_excess": 0.00420497015740064
+        },
+        "2023Q4": {
+          "signal_dates": 60,
+          "events": 1820,
+          "mean_D10_onset_excess": 0.0004448930404051322
+        },
+        "2024Q1": {
+          "signal_dates": 47,
+          "events": 1503,
+          "mean_D10_onset_excess": 0.0013630958122278914
+        },
+        "2024Q2": {
+          "signal_dates": 59,
+          "events": 1748,
+          "mean_D10_onset_excess": -0.0022859853605448122
+        },
+        "2024Q3": {
+          "signal_dates": 64,
+          "events": 2004,
+          "mean_D10_onset_excess": 0.002517030501413843
+        },
+        "2024Q4": {
+          "signal_dates": 47,
+          "events": 1671,
+          "mean_D10_onset_excess": 0.014653725928089511
+        }
+      },
+      "leave_one_valid_quarter_out_primary": {
+        "2023Q1": 0.003539713339324837,
+        "2023Q2": 0.0026764150695466078,
+        "2023Q3": 0.0028929892088684827,
+        "2023Q4": 0.0034730207435766714,
+        "2024Q1": 0.0032722392583774016,
+        "2024Q2": 0.0038692455504761077,
+        "2024Q3": 0.003167172300196287,
+        "2024Q4": 0.0017523861794345892
+      },
+      "leave_one_valid_quarter_out_all_positive": true,
+      "bootstrap_primary_D10": {
+        "n_dates": 458,
+        "mean": 0.0030763227911961197,
+        "ci95": [
+          -0.00032002066187655103,
+          0.0069285316026277905
+        ]
+      },
+      "source_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63",
+      "panel_identity_sha256": "8c9bad0f82dd2448dc4988de5de72a3077a99a56587eaf48057febbcd267b508"
+    }
+  ],
+  "failed_checks": [
+    "fold0:incremental_D10_timing_spread",
+    "fold0:positive_quarter_share",
+    "fold1:incremental_D10_timing_spread",
+    "fold1:positive_quarter_share",
+    "fold1:leave_one_quarter_out"
+  ],
+  "bootstrap_used_for_development_pass_fail": false,
+  "sample_modified_after_results": false,
+  "optional_stopping_used": false,
+  "threshold_changed_after_results": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false,
+  "event_ledger_sha256": "ffa46fed337b3305654b7015b3fb59c0ba40321f76672b6384858849aa729b10",
+  "daily_metrics_sha256": "de89d15d678e42aa19224c5e0b94907674cc9b0767983fc051ab11cc421d7308",
+  "receipt_sha256": "9002fba389abd1c63c2eb15e6e7d784c0e82e56c0aa42ab06ed7ac0b77a942ff"
+}
