@@ -1,0 +1,139 @@
+{
+  "schema":"AI_CORE_EVID_V2_8_9_SETUP_EVENT_TRANSITION_HYPOTHESIS_GATE_V1",
+  "version":"V2.8.9",
+  "status":"FROZEN_BEFORE_TRANSITION_RESEARCH_EXECUTION",
+  "purpose":"Freeze one causal Setup-event hypothesis: transition into raw dual compression, not another static cross-sectional level rule.",
+  "parents":{
+    "v286":"STATE_INVARIANT_DUAL_COMPRESSION_REPLICATED",
+    "v287":"Q5_SETUP_SHAPE_REJECTED",
+    "v288":"NO_STATIC_LEVEL_SETUP_SHAPE_SELECTED",
+    "v288_final_record":"evidence/V2.8.8_FINAL_RECORD.json"
+  },
+  "problem_elimination_pass":{
+    "final_user_goal":"Define one prospective entry event that can later be validated untouched.",
+    "hard_constraints":[
+      "Preserve V2.8.6 dual-compression replication.",
+      "Do not rescue V2.8.7/V2.8.8 static candidates.",
+      "Use only D and earlier observations in signal construction.",
+      "Keep fold3/fold4 sealed until separate locked validation artifacts exist.",
+      "Do not reuse lost V2.7.3 strategy identity or V2.7.32 First60 activation.",
+      "No Setup/First60/Episode/live emission is authorized."
+    ],
+    "soft_assumptions_removed":[
+      "Event boundary must be a cross-sectional percentile.",
+      "Trend/momentum/near-high additive scores are required.",
+      "Every favorable-state date is a new signal."
+    ],
+    "actions":{
+      "Delete":"No more static percentile/weight/coefficient search.",
+      "Avoid":"Use the natural ratio boundary 1.0 rather than tuning a new threshold.",
+      "Absorb":"Reuse rv10_over_rv60 and tr10_over_tr60.",
+      "Substitute":"Represent timing as a one-day transition into dual compression.",
+      "Precompute_Reuse":"Use frozen folds0-2 histories; no new retrieval for hypothesis development.",
+      "Optimize":"Forbidden before untouched validation."
+    }
+  },
+  "single_hypothesis":{
+    "candidate_id":"DC_RAW_RATIO_ONSET_V1",
+    "name":"Dual Compression Onset Event",
+    "hypothesis":"The causal transition into simultaneous short-vs-medium realized-volatility and true-range compression may contain entry-timing information not captured by static high compression levels.",
+    "feature_authority":"scripts/v280_scale_invariant_features.py",
+    "D_state":{
+      "rv":"rv10_over_rv60(D) < 1.0",
+      "tr":"tr10_over_tr60(D) < 1.0",
+      "DUAL_COMPRESSED":"both true"
+    },
+    "P_state":{
+      "P":"immediately preceding joint SSE+SZSE A-share trading session",
+      "requirements":[
+        "PIT-eligible on P",
+        "tradestatus=1 on P",
+        "both ratios finite on P"
+      ],
+      "NOT_DUAL_COMPRESSED":"rv10_over_rv60(P) >= 1.0 OR tr10_over_tr60(P) >= 1.0"
+    },
+    "event_D_requires":[
+      "PIT-eligible on D",
+      "tradestatus=1 on D",
+      "both ratios finite on D",
+      "DUAL_COMPRESSED on D",
+      "all P requirements satisfied",
+      "NOT_DUAL_COMPRESSED on P",
+      "no active same-security research episode spans D"
+    ],
+    "timestamp":"D close/end-of-session only; no intraday timing claim",
+    "boundary_rationale":"1.0 means short-window statistic equals medium-window statistic; it is defined by ratio semantics, not observed returns.",
+    "material_difference":[
+      "temporal transition instead of same-day cross-sectional level",
+      "no Q5/Q1 or percentile boundary",
+      "no trend/momentum/near-high additive score",
+      "one onset date per compression spell rather than every occupancy date"
+    ]
+  },
+  "fail_closed":[
+    "Missing P calendar mapping => no event.",
+    "Missing/suspended P or D stock bar => no event.",
+    "Nonfinite ratio on P or D => no event.",
+    "Do not skip backward over a missing/suspended P bar.",
+    "No future persistence confirmation.",
+    "No D+1-or-later feature/state/outcome in signal construction."
+  ],
+  "research_episode_semantics":{
+    "principle_authority":"evidence/V2.7.32_FIRST60_CONTRACT.json",
+    "old_activation_reused":false,
+    "unit":"TRANSITION_EPISODE_START",
+    "non_overlap_per_security":true,
+    "suppression":"After event D, suppress another event for same security through fixed D+10 target date inclusive.",
+    "target_date_frozen_at_start":true,
+    "missing_target_bar":"OUTCOME_UNAVAILABLE_NO_SHIFT; no replacement event"
+  },
+  "development_scope":{
+    "fold0":"consumed; allowed",
+    "fold1":"consumed; allowed",
+    "fold2":"consumed; allowed",
+    "fold3":"sealed untouched validation",
+    "fold4":"sealed untouched final holdout",
+    "new_source_retrieval_folds0_1_2":false,
+    "cross_vendor_row_fallback":false,
+    "foldwise_analysis_required":true
+  },
+  "future_evaluator_intent":{
+    "primary_horizon":"D+10 joint A-share sessions",
+    "secondary_horizon":"D+5 joint A-share sessions",
+    "same_source_D_T_endpoints":true,
+    "primary_question":"Does onset-event D+10 excess versus same-date valid fold universe remain positive across consumed folds?",
+    "incremental_diagnostic":"Compare onset-event outcomes with already-compressed non-onset occupancy dates; diagnostic only until separately frozen."
+  },
+  "not_yet_frozen":[
+    "minimum event counts/temporal dispersion",
+    "bootstrap mechanics/seeds",
+    "development PASS/FAIL thresholds",
+    "fold3 confirmatory gate",
+    "fold3 source activation"
+  ],
+  "forbidden":[
+    "No alternative raw-ratio boundary search.",
+    "No parallel Q5/Q1 transition candidate.",
+    "No 2/3/5-day persistence grid.",
+    "No release-from-compression candidate in this gate.",
+    "No post-result trend/momentum/near-high/market-state/evidence-freshness filter.",
+    "No coefficient fitting or ML.",
+    "No fold3/fold4 price or outcome access.",
+    "No reinterpretation of V2.8.7/V2.8.8 as PASS."
+  ],
+  "next_phase":{
+    "stage":"V2.8.9_LOCKED_TRANSITION_RESEARCH_EVALUATION_GATE",
+    "purpose":"Freeze information sufficiency, foldwise metrics, temporal-dispersion checks and deterministic development PASS/FAIL logic before reading transition outcomes.",
+    "fold3_access":false
+  },
+  "authorization":{
+    "build_locked_transition_evaluator":true,
+    "run_transition_outcome_research_now":false,
+    "fold3_access":false,
+    "fold4_access":false,
+    "setup_emission_authorized":false,
+    "first60_append_authorized":false,
+    "episode_emission_authorized":false,
+    "live_authorized":false
+  }
+}
