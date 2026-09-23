@@ -1,0 +1,17 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_Q5_SETUP_SHAPE_ACTIVATION_V1",
+  "version": "V2.8.7",
+  "status": "ACTIVE_ONE_TIME_V2_8_7_Q5_SETUP_SHAPE_RESEARCH",
+  "source_snapshot_receipt": "evidence/V2.8.7_FOLD2_SOURCE_SNAPSHOT_RECEIPT.json",
+  "source_snapshot_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63",
+  "fold2_manifest": "evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv",
+  "fold2_manifest_sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+  "evaluator_validation_receipt": "evidence/V2.8.7_LOCKED_Q5_SETUP_SHAPE_VALIDATION_RECEIPT.json",
+  "evaluator_validation_commit_sha": "062efa5a117cb7de94e0737d531fb12b2a894437",
+  "alternate_threshold_search_authorized": false,
+  "fold3_4_consumed": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false
+}
