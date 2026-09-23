@@ -1,0 +1,58 @@
+name: V2.8.9 One-Time Real Transition Research
+on:
+  push:
+    paths:
+      - ".github/workflows/v289-real-transition-research.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v289-one-time-real-transition-research
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install locked runtime
+        run: python -m pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify frozen evaluator and authorization
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v289_locked_transition_evaluator.py)" = "426c27c001df186bbd85c61954c17149f30f9b2d"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.9_LOCKED_TRANSITION_EVALUATOR_VALIDATION_RECEIPT.json").read_text())
+          h=json.loads(Path("evidence/V2.8.9_SETUP_EVENT_TRANSITION_HYPOTHESIS_GATE.json").read_text())
+          e=json.loads(Path("evidence/V2.8.9_LOCKED_TRANSITION_RESEARCH_EVALUATION_GATE.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["evaluator"]["blob_sha"]=="426c27c001df186bbd85c61954c17149f30f9b2d"
+          assert v["authorization"]["real_transition_research_on_consumed_folds0_1_2"] is True
+          assert v["authorization"]["fold3_access"] is False
+          assert v["authorization"]["fold4_access"] is False
+          assert h["single_hypothesis"]["candidate_id"]=="DC_RAW_RATIO_ONSET_V1"
+          assert h["authorization"]["fold3_access"] is False
+          assert h["authorization"]["fold4_access"] is False
+          assert e["status"]=="FROZEN_BEFORE_TRANSITION_OUTCOME_RESEARCH"
+          assert e["authorization"]["fold3_access"] is False
+          assert e["authorization"]["fold4_access"] is False
+          print("V2.8.9 locked real-transition binding PASS")
+          PY
+      - name: Run one-time real transition research on consumed folds 0-2
+        run: python scripts/v289_locked_transition_evaluator.py evaluate
+      - name: Freeze V2.8.9 transition research result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.9_TRANSITION_EVENT_LEDGER.csv evidence/V2.8.9_TRANSITION_DAILY_METRICS.csv evidence/V2.8.9_TRANSITION_RESEARCH_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.9 transition research result [skip ci]"
+          git pull --rebase origin main
+          git push
