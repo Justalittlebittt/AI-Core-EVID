@@ -1,0 +1,23 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_FOLD2_SETUP_SHAPE_MANIFEST_RECEIPT_V1",
+  "version": "V2.8.7",
+  "status": "PASS",
+  "target_fold": 2,
+  "frame_count": 5218,
+  "fold_counts": {
+    "0": 1031,
+    "1": 1058,
+    "2": 1048,
+    "3": 1039,
+    "4": 1042
+  },
+  "fold2_count": 1048,
+  "sse_count": 470,
+  "szse_count": 578,
+  "manifest_file": "V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv",
+  "manifest_sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+  "canonical_sorted_newline_sha256": "a2036c4b9667e76ae52cab66f5239106630e1ae64abd4b2baae5631147e42510",
+  "fold0_1_overlap_count": 0,
+  "price_rows_read": false,
+  "fold3_4_price_rows_read": false
+}
