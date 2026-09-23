@@ -204,7 +204,7 @@ def self_test():
  qq=suppress(q,days); ck("A08_control_excludes_accepted_event",not bool(qq.loc[qq.accepted_reclaim,"intact_trend_non_reclaim"].iloc[0]))
  ck("A09_bootstrap_deterministic",boot(pd.Series([1.,-1.]),123,500)==boot(pd.Series([1.,-1.]),123,500))
  ck("A10_equal_date_weighting",abs(pd.Series([.1,-.02]).mean()-.04)<1e-12)
- src=Path(__file__).read_text(); ck("A11_no_compression_alpha","rv10_over_rv60" not in src and "tr10_over_tr60" not in src)
+ src=Path(__file__).read_text().split("def self_test():")[0]; ck("A11_no_compression_alpha","rv10_over_rv60" not in src and "tr10_over_tr60" not in src)
  ck("A12_no_liquidity_alpha","amount_vs_med20" not in src and "amount_med20" not in src)
  ck("A13_no_ret_filter","ret_20" not in src and "ret_60" not in src)
  ck("A14_natural_zero_boundaries","<=0" in src and ">0" in src)
