@@ -1,0 +1,485 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_8_SETUP_SHAPE_DISCOVERY_FINAL_RECEIPT_V1",
+  "version": "V2.8.8",
+  "status": "V2_8_8_NO_SETUP_SHAPE_SELECTED",
+  "selected_candidate_id": null,
+  "contract_schema": "AI_CORE_EVID_V2_8_8_NEW_SETUP_SHAPE_DISCOVERY_GATE_CONTRACT_V1",
+  "fold_panels": [
+    {
+      "fold": 0,
+      "sample_count": 1031,
+      "source_rows": 563125,
+      "panel_rows": 483737,
+      "panel_identity_sha256": "3b8f0aa5edf5671721a22174fcbf124fc140ad1f72ae40a85c9309da397d3458",
+      "source_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9"
+    },
+    {
+      "fold": 1,
+      "sample_count": 1058,
+      "source_rows": 574055,
+      "panel_rows": 495418,
+      "panel_identity_sha256": "c04383fb67ec28773e601dccc621a3504be0893d534b3522014cfa7fb88f2156",
+      "source_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e"
+    },
+    {
+      "fold": 2,
+      "sample_count": 1048,
+      "source_rows": 571253,
+      "panel_rows": 492605,
+      "panel_identity_sha256": "592e8c4194f4b2f4efd5e11a0fbd1084b72a7fa019401cfc31b254088660b4cf",
+      "source_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63"
+    }
+  ],
+  "candidate_evaluations": [
+    {
+      "candidate_id": "C1_DC_TREND",
+      "eligible": false,
+      "failed_checks": [
+        "fold0:leave_one_quarter_out_all_positive",
+        "fold1:D10_spread_positive",
+        "fold1:D10_Q5_excess_all_positive",
+        "fold1:Q5_highest_aggregate_D10_quintile_mean",
+        "fold1:leave_one_quarter_out_all_positive",
+        "fold2:D10_Q5_excess_all_positive",
+        "fold2:Q5_highest_aggregate_D10_quintile_mean",
+        "fold2:leave_one_quarter_out_all_positive"
+      ],
+      "minimum_foldwise_D10_spread": -0.0008952009514939347,
+      "median_foldwise_D10_spread": 0.0002621463798630727
+    },
+    {
+      "candidate_id": "C2_DC_MOMENTUM",
+      "eligible": false,
+      "failed_checks": [
+        "fold0:D10_spread_positive",
+        "fold0:Q5_highest_aggregate_D10_quintile_mean",
+        "fold0:positive_quarter_share_ge_two_thirds",
+        "fold0:leave_one_quarter_out_all_positive",
+        "fold1:D10_spread_positive",
+        "fold1:Q5_highest_aggregate_D10_quintile_mean",
+        "fold1:positive_quarter_share_ge_two_thirds",
+        "fold1:leave_one_quarter_out_all_positive",
+        "fold2:D10_spread_positive",
+        "fold2:Q5_highest_aggregate_D10_quintile_mean",
+        "fold2:positive_quarter_share_ge_two_thirds",
+        "fold2:leave_one_quarter_out_all_positive",
+        "D5_spread_positive_in_at_least_two_folds"
+      ],
+      "minimum_foldwise_D10_spread": -0.0018684794771632789,
+      "median_foldwise_D10_spread": -0.0015414381149098644
+    },
+    {
+      "candidate_id": "C3_DC_NEAR_HIGH",
+      "eligible": false,
+      "failed_checks": [
+        "fold0:Q5_highest_aggregate_D10_quintile_mean",
+        "fold0:positive_quarter_share_ge_two_thirds",
+        "fold0:leave_one_quarter_out_all_positive",
+        "fold1:D10_spread_positive",
+        "fold1:D10_Q5_excess_all_positive",
+        "fold1:Q5_highest_aggregate_D10_quintile_mean",
+        "fold1:positive_quarter_share_ge_two_thirds",
+        "fold1:leave_one_quarter_out_all_positive",
+        "fold2:D10_spread_positive",
+        "fold2:D10_Q5_excess_all_positive",
+        "fold2:Q5_highest_aggregate_D10_quintile_mean",
+        "fold2:positive_quarter_share_ge_two_thirds",
+        "fold2:leave_one_quarter_out_all_positive",
+        "D5_spread_positive_in_at_least_two_folds"
+      ],
+      "minimum_foldwise_D10_spread": -0.0012891882187926705,
+      "median_foldwise_D10_spread": -0.000560616739641756
+    }
+  ],
+  "fold_summaries": [
+    {
+      "fold": 0,
+      "candidate_id": "C1_DC_TREND",
+      "valid_D10_dates": 336,
+      "valid_D5_dates": 341,
+      "valid_quarters": 6,
+      "mean_D10_Q5_minus_Q1": 0.0013276089427047063,
+      "mean_D5_Q5_minus_Q1": 0.0009316123632420533,
+      "mean_D10_Q5_excess_all": 0.0010752963919823558,
+      "aggregate_D10_quintile_means": {
+        "1": 0.0031487176007560487,
+        "2": 0.0031789525636784764,
+        "3": 0.0037108056725497543,
+        "4": 0.00249011514584405,
+        "5": 0.004476326543460756
+      },
+      "positive_quarter_share": 0.6666666666666666,
+      "quarter_means": {
+        "2023Q3": -0.0012182452225748353,
+        "2023Q4": 0.007969624317412051,
+        "2024Q1": 0.0010764182171092357,
+        "2024Q2": 0.003859421503067652,
+        "2024Q3": -0.005026920191152991,
+        "2024Q4": 0.0010409157344669674
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q3": 0.0017112308032262808,
+        "2023Q4": -0.00011630744310123825,
+        "2024Q1": 0.0013800156408505229,
+        "2024Q2": 0.0007883420074649453,
+        "2024Q3": 0.0028227922683182823,
+        "2024Q4": 0.001378911937863038
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": true,
+      "D10_Q5_excess_all_positive": true,
+      "Q5_highest_aggregate_D10_quintile_mean": true,
+      "positive_quarter_share_ge_two_thirds": true,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": true
+    },
+    {
+      "fold": 0,
+      "candidate_id": "C2_DC_MOMENTUM",
+      "valid_D10_dates": 474,
+      "valid_D5_dates": 479,
+      "valid_quarters": 8,
+      "mean_D10_Q5_minus_Q1": -0.0018684794771632789,
+      "mean_D5_Q5_minus_Q1": -0.0005253603989333553,
+      "mean_D10_Q5_excess_all": 2.5110734108201337e-05,
+      "aggregate_D10_quintile_means": {
+        "1": 0.005782530453920808,
+        "2": 0.005537983198282537,
+        "3": 0.00127901389575014,
+        "4": 0.002939968664229816,
+        "5": 0.003914050976757529
+      },
+      "positive_quarter_share": 0.375,
+      "quarter_means": {
+        "2023Q1": 0.0024307691183884307,
+        "2023Q2": -0.002743808473406005,
+        "2023Q3": -0.007900857707738296,
+        "2023Q4": 0.0027200742551533965,
+        "2024Q1": -0.009190154785711694,
+        "2024Q2": -0.005089915267763318,
+        "2024Q3": -0.000959682103706986,
+        "2024Q4": 0.0072551788384951155
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q1": -0.002479697952193522,
+        "2023Q2": -0.001744035113842024,
+        "2023Q3": -0.0009268399484881541,
+        "2023Q4": -0.002533487264455551,
+        "2024Q1": -0.0008476689774137402,
+        "2024Q2": -0.0014104922201864057,
+        "2024Q3": -0.002010340530580847,
+        "2024Q4": -0.002968495018767482
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": false,
+      "D10_Q5_excess_all_positive": true,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": false,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": false
+    },
+    {
+      "fold": 0,
+      "candidate_id": "C3_DC_NEAR_HIGH",
+      "valid_D10_dates": 304,
+      "valid_D5_dates": 309,
+      "valid_quarters": 5,
+      "mean_D10_Q5_minus_Q1": 6.324319032070977e-05,
+      "mean_D5_Q5_minus_Q1": 0.00037202229082391027,
+      "mean_D10_Q5_excess_all": 0.00021418493150945366,
+      "aggregate_D10_quintile_means": {
+        "1": 0.00534037676129068,
+        "2": 0.005943843325020336,
+        "3": 0.005396401330877095,
+        "4": 0.0038532971321214634,
+        "5": 0.00540361995161139
+      },
+      "positive_quarter_share": 0.4,
+      "quarter_means": {
+        "2023Q4": 0.008411373637178128,
+        "2024Q1": -0.003052296025323426,
+        "2024Q2": 0.0065952121708373074,
+        "2024Q3": -0.007013491607437032,
+        "2024Q4": -0.000756029939054589
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q4": -0.0019895757720212784,
+        "2024Q1": 0.0007978012167733919,
+        "2024Q2": -0.0015097615845792059,
+        "2024Q3": 0.001950372469722774,
+        "2024Q4": 0.00022839310968094832
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": true,
+      "D10_Q5_excess_all_positive": true,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": false,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": true
+    },
+    {
+      "fold": 1,
+      "candidate_id": "C1_DC_TREND",
+      "valid_D10_dates": 336,
+      "valid_D5_dates": 341,
+      "valid_quarters": 6,
+      "mean_D10_Q5_minus_Q1": -0.0008952009514939347,
+      "mean_D5_Q5_minus_Q1": -0.0007335608164844053,
+      "mean_D10_Q5_excess_all": -0.0011504090773381535,
+      "aggregate_D10_quintile_means": {
+        "1": 0.0037313022088714476,
+        "2": 0.004685771822533059,
+        "3": 0.004722152481915985,
+        "4": 0.003957561885994121,
+        "5": 0.002836101257377513
+      },
+      "positive_quarter_share": 0.6666666666666666,
+      "quarter_means": {
+        "2023Q3": 0.006139870184280449,
+        "2023Q4": 0.0017661922978511116,
+        "2024Q1": 0.00045717386717563843,
+        "2024Q2": 0.005861481278150609,
+        "2024Q3": -0.01028821877322329,
+        "2024Q4": -0.007662957331414725
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q3": -0.00195528016373391,
+        "2023Q4": -0.001473764701351553,
+        "2024Q1": -0.0011773510935185218,
+        "2024Q2": -0.0023343498740536037,
+        "2024Q3": 0.001314920888912973,
+        "2024Q4": 0.0003158712428076807
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": false,
+      "D10_Q5_excess_all_positive": false,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": true,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": false
+    },
+    {
+      "fold": 1,
+      "candidate_id": "C2_DC_MOMENTUM",
+      "valid_D10_dates": 474,
+      "valid_D5_dates": 479,
+      "valid_quarters": 8,
+      "mean_D10_Q5_minus_Q1": -0.0010725708729381587,
+      "mean_D5_Q5_minus_Q1": -0.0005545629567170834,
+      "mean_D10_Q5_excess_all": 0.0003080268169909926,
+      "aggregate_D10_quintile_means": {
+        "1": 0.005560896976106208,
+        "2": 0.004780990510419258,
+        "3": 0.00196994148091828,
+        "4": 0.004111152446305316,
+        "5": 0.004488326103168049
+      },
+      "positive_quarter_share": 0.5,
+      "quarter_means": {
+        "2023Q1": 0.0044514886017711745,
+        "2023Q2": -0.003306655741330467,
+        "2023Q3": -0.0018651311991830155,
+        "2023Q4": 0.0014144976039486305,
+        "2024Q1": -0.012997074880798678,
+        "2024Q2": -0.0024991317515137635,
+        "2024Q3": 0.0019675836226520746,
+        "2024Q4": 0.004586442598980564
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q1": -0.0018579190874149073,
+        "2023Q2": -0.0007549539880341916,
+        "2023Q3": -0.0009488541390853027,
+        "2023Q4": -0.0014330155797333461,
+        "2024Q1": 0.0005899801666193172,
+        "2024Q2": -0.0008697586034539162,
+        "2024Q3": -0.0015471315746888293,
+        "2024Q4": -0.0017548632773538913
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": false,
+      "D10_Q5_excess_all_positive": true,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": false,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": false
+    },
+    {
+      "fold": 1,
+      "candidate_id": "C3_DC_NEAR_HIGH",
+      "valid_D10_dates": 304,
+      "valid_D5_dates": 309,
+      "valid_quarters": 5,
+      "mean_D10_Q5_minus_Q1": -0.0012891882187926705,
+      "mean_D5_Q5_minus_Q1": -0.000719677444105472,
+      "mean_D10_Q5_excess_all": -0.0007653982491557192,
+      "aggregate_D10_quintile_means": {
+        "1": 0.006161363502205119,
+        "2": 0.005744136675927826,
+        "3": 0.00528398618188656,
+        "4": 0.006138325224688486,
+        "5": 0.004872175283412447
+      },
+      "positive_quarter_share": 0.4,
+      "quarter_means": {
+        "2023Q4": 0.006343015921424341,
+        "2024Q1": -0.003630217005490075,
+        "2024Q2": 0.010206311162613856,
+        "2024Q3": -0.012482416151275367,
+        "2024Q4": -0.005253862920252149
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q4": -0.003165959728682099,
+        "2024Q1": -0.0007372383422542579,
+        "2024Q2": -0.004057492151457916,
+        "2024Q3": 0.001695672563202715,
+        "2024Q4": -0.0004899850181032111
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": false,
+      "D10_Q5_excess_all_positive": false,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": false,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": false
+    },
+    {
+      "fold": 2,
+      "candidate_id": "C1_DC_TREND",
+      "valid_D10_dates": 336,
+      "valid_D5_dates": 341,
+      "valid_quarters": 6,
+      "mean_D10_Q5_minus_Q1": 0.0002621463798630727,
+      "mean_D5_Q5_minus_Q1": 9.461886498278827e-05,
+      "mean_D10_Q5_excess_all": -0.0002482681242704067,
+      "aggregate_D10_quintile_means": {
+        "1": 0.0024126782957231206,
+        "2": 0.0032111783943906138,
+        "3": 0.0033272008880269044,
+        "4": 0.0029913971183982173,
+        "5": 0.0026748246755861943
+      },
+      "positive_quarter_share": 0.6666666666666666,
+      "quarter_means": {
+        "2023Q3": 0.00373536932277643,
+        "2023Q4": 0.004436015652998984,
+        "2024Q1": 0.002192916694854912,
+        "2024Q2": 0.002288729055992206,
+        "2024Q3": -0.004154890234772539,
+        "2024Q4": -0.00664210222211357
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q3": -0.0002612159813978446,
+        "2023Q4": -0.0006452165056012557,
+        "2024Q1": -0.00014067620384026068,
+        "2024Q2": -0.00016950841396948666,
+        "2024Q3": 0.0013014491127185104,
+        "2024Q4": 0.001497643498111524
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": true,
+      "D10_Q5_excess_all_positive": false,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": true,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": true
+    },
+    {
+      "fold": 2,
+      "candidate_id": "C2_DC_MOMENTUM",
+      "valid_D10_dates": 474,
+      "valid_D5_dates": 479,
+      "valid_quarters": 8,
+      "mean_D10_Q5_minus_Q1": -0.0015414381149098644,
+      "mean_D5_Q5_minus_Q1": -0.0007468004455431249,
+      "mean_D10_Q5_excess_all": 0.00026794144623381753,
+      "aggregate_D10_quintile_means": {
+        "1": 0.004980349582422822,
+        "2": 0.0035183359644908613,
+        "3": 0.0016320029130765879,
+        "4": 0.0022945077173472006,
+        "5": 0.0034389114675129596
+      },
+      "positive_quarter_share": 0.375,
+      "quarter_means": {
+        "2023Q1": 0.004454906839886383,
+        "2023Q2": -0.005520599118542855,
+        "2023Q3": -0.006875508416722808,
+        "2023Q4": -0.00013428222415838714,
+        "2024Q1": -0.009162028270880827,
+        "2024Q2": -0.0046054735178318335,
+        "2024Q3": 0.0012138620194972944,
+        "2024Q4": 0.009916805060952128
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q1": -0.002393930530170054,
+        "2023Q2": -0.0009757260686102345,
+        "2023Q3": -0.0007088027507244289,
+        "2023Q4": -0.001745373751250658,
+        "2024Q1": -0.0004789519873946814,
+        "2024Q2": -0.001105828262446259,
+        "2024Q3": -0.0019715337456465915,
+        "2024Q4": -0.0029229284268932247
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": false,
+      "D10_Q5_excess_all_positive": true,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": false,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": false
+    },
+    {
+      "fold": 2,
+      "candidate_id": "C3_DC_NEAR_HIGH",
+      "valid_D10_dates": 304,
+      "valid_D5_dates": 309,
+      "valid_quarters": 5,
+      "mean_D10_Q5_minus_Q1": -0.000560616739641756,
+      "mean_D5_Q5_minus_Q1": -0.0004947269312226546,
+      "mean_D10_Q5_excess_all": -6.54834246062003e-08,
+      "aggregate_D10_quintile_means": {
+        "1": 0.005159841570169329,
+        "2": 0.004385546470887113,
+        "3": 0.0034439655082144404,
+        "4": 0.005412153704985364,
+        "5": 0.004599224830527574
+      },
+      "positive_quarter_share": 0.6,
+      "quarter_means": {
+        "2023Q4": 0.004863592828897201,
+        "2024Q1": 0.0009705821905182597,
+        "2024Q2": 0.0065601912550504815,
+        "2024Q3": -0.007834562983457527,
+        "2024Q4": -0.004556746771544319
+      },
+      "leave_one_quarter_out_means": {
+        "2023Q4": -0.0018944387646923201,
+        "2024Q1": -0.0009216311215494024,
+        "2024Q2": -0.002275423562853356,
+        "2024Q3": 0.001379102258709116,
+        "2024Q4": 0.0002449272588840562
+      },
+      "minimum_information_pass": true,
+      "D10_spread_positive": false,
+      "D10_Q5_excess_all_positive": false,
+      "Q5_highest_aggregate_D10_quintile_mean": false,
+      "positive_quarter_share_ge_two_thirds": false,
+      "leave_one_quarter_out_all_positive": false,
+      "D5_spread_positive": false
+    }
+  ],
+  "selection_rule": "eligible candidates only; maximin foldwise D10 spread, then median, then lexical id",
+  "bootstrap_or_p_value_used_for_selection": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "sample_modified_after_results": false,
+  "optional_stopping_used": false,
+  "candidate_library_modified_after_results": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false,
+  "daily_metrics_sha256": "c306b9b1be72f356c38e1861169f3552cb4bbb9e6843cdbe2db5142ca3d6d7c2",
+  "ledger_sha256": "e85dd2898066063e73f3ff61b62fce140ea2562a21f0883f95407666ed7ff73d",
+  "receipt_sha256": "be3e6293ce4d7cc3dea0e30d80f6d99fe6a96d67f4d550e913e1d715a4c2249a"
+}
