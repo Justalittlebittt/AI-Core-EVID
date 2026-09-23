@@ -1,0 +1,21 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_Q5_SETUP_SHAPE_EVALUATION_GATE_CONTRACT_V1",
+  "version": "V2.8.7",
+  "status": "FROZEN_BEFORE_FOLD2_SOURCE_SNAPSHOT_COMPLETION",
+  "purpose": "Permit exactly one fold2 Q5 setup-shape evaluation only after source, manifest and locked-evaluator validation are frozen and exactly bound.",
+  "prerequisites": [
+    "V2.8.7 fold2 manifest PASS and exact manifest SHA.",
+    "V2.8.7 fold2 source snapshot PASS and exact 1048-security binding.",
+    "V2.8.7 locked Q5 evaluator validation PASS.",
+    "All source partition, benchmark and query-manifest hashes match repository bytes.",
+    "One-time activation binds source receipt SHA, fold2 manifest SHA and validation receipt commit."
+  ],
+  "no_validation_rerun": true,
+  "terminal_receipt": "evidence/V2.8.7_Q5_SETUP_SHAPE_FINAL_RECEIPT.json",
+  "if_terminal_receipt_exists": "NO_REEVALUATION",
+  "fold3_4_consumed": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false
+}
