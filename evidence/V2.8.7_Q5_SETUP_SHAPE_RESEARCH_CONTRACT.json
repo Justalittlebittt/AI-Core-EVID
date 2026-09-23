@@ -1,0 +1,93 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_Q5_SETUP_SHAPE_RESEARCH_CONTRACT_V1",
+  "version": "V2.8.7",
+  "status": "FROZEN_BEFORE_ANY_FOLD2_PRICE_RETRIEVAL",
+  "purpose": "Determine whether the replicated V2.8.6 continuous dual-compression mechanism concentrates strongly enough in its top quintile to justify a single fixed prospective Setup-shape candidate, without threshold search.",
+  "parent": {
+    "mechanism": "V2.8.6_STATE_INVARIANT_DUAL_COMPRESSION",
+    "terminal_receipt": "evidence/V2.8.6_MECHANISM_REPLICATION_FINAL_RECEIPT.json",
+    "terminal_receipt_sha256": "b1aea5e114facb0e1204dd9d5ac0b93238c6e6d8e2031ebbeacb92d748c63e93"
+  },
+  "identity_fold": {
+    "assignment": "int(SHA256(canonical_security_id)[0:8],16) mod 5",
+    "target_fold": 2,
+    "expected_count_from_frozen_frame": 1048,
+    "fold0": "consumed development",
+    "fold1": "consumed independent mechanism replication",
+    "fold2": "V2.8.7 setup-shape research only",
+    "fold3": "reserved untouched setup validation",
+    "fold4": "reserved untouched final cross-sectional holdout"
+  },
+  "setup_shape_candidate": {
+    "score": "Same V2.8.6 dual_compression_score = 0.5*rv_favorable_percentile + 0.5*tr_favorable_percentile.",
+    "within_date_score_rank": "average-rank percentile among valid PIT-eligible fold2 securities.",
+    "Q5": "score_rank_percentile > 0.80",
+    "Q1": "score_rank_percentile <= 0.20",
+    "candidate_setup_shape": "Q5 only",
+    "threshold_search": false,
+    "alternate_percentiles_after_result": "FORBIDDEN_IN_V2_8_7"
+  },
+  "outcomes": {
+    "primary_daily_metric": "mean exact D+10 same-source hfq return of Q5 minus mean exact D+10 same-source hfq return of Q1",
+    "secondary_daily_metric": "Q5 minus Q1 exact D+5 spread",
+    "supporting_metric": "Q5 D+10 excess versus all valid fold2 securities on the same date",
+    "same_snapshot_endpoints": true
+  },
+  "market_state": {
+    "definition": "Reuse frozen CSI300 rv10/rv60 CALM/STRESSED state.",
+    "role": "Robustness strata only; no state superiority claim."
+  },
+  "minimum_information": {
+    "minimum_Q5_per_date": 50,
+    "minimum_Q1_per_date": 50,
+    "minimum_valid_all_market_D10_dates": 200,
+    "minimum_valid_calm_D10_dates": 60,
+    "minimum_valid_stressed_D10_dates": 30,
+    "minimum_valid_quarters": 4,
+    "valid_quarter_min_dates": 20
+  },
+  "statistics": {
+    "bootstrap": "20-signal-date circular moving-block bootstrap, 10000 replications",
+    "all_market_D10_seed": 2871001,
+    "calm_D10_seed": 2871101,
+    "stressed_D10_seed": 2871201,
+    "alpha": 0.05,
+    "quarter_stability": "positive all-market D10 Q5-Q1 mean spread in at least two-thirds of valid quarters and every leave-one-valid-quarter-out mean spread > 0"
+  },
+  "pass_requires_all": [
+    "All-market mean D10 Q5-Q1 spread > 0.",
+    "All-market D10 spread 95% moving-block bootstrap CI entirely above zero.",
+    "All-market one-sided bootstrap p <= 0.05.",
+    "CALM mean D10 Q5-Q1 spread > 0 and its 95% CI entirely above zero.",
+    "STRESSED mean D10 Q5-Q1 spread > 0 and its 95% CI entirely above zero.",
+    "All-market mean D5 Q5-Q1 spread > 0.",
+    "All-market mean D10 Q5 excess versus all valid fold2 securities > 0.",
+    "Q5 has the highest aggregate mean D10 return among the five score quintile bands.",
+    "Valid-quarter positive-spread share >= 2/3.",
+    "Every leave-one-valid-quarter-out D10 Q5-Q1 mean spread > 0.",
+    "No source, PIT, calendar, identity or implementation blocker."
+  ],
+  "decision_states": {
+    "PASS": "V2_8_7_Q5_SETUP_SHAPE_SUPPORTED",
+    "FAIL": "V2_8_7_Q5_SETUP_SHAPE_REJECTED",
+    "INCOMPLETE": "V2_8_7_Q5_SETUP_SHAPE_INCOMPLETE",
+    "BLOCKED": "V2_8_7_Q5_SETUP_SHAPE_BLOCKED"
+  },
+  "promotion_effect": {
+    "PASS": "Freeze Q5 as the only V2.8.8 Setup-shape candidate and validate it unchanged on untouched fold3.",
+    "FAIL": "Do not search alternative score percentiles on fold2.",
+    "all_states": "No Setup emission, Episode, First60 append or live authorization."
+  },
+  "E_layer_boundary": {
+    "historical_E_backfill_into_2023_2024": false,
+    "note": "V2.8.7 is technical Setup-shape research only. Prospective AI-Core use still requires V2.8.4 U(D) AND E(D)=ELIGIBLE_AI_CORE at signal time."
+  },
+  "forbidden": [
+    "No 70/80/90 threshold grid search.",
+    "No coefficient refit.",
+    "No added trend/breakout filter on fold2.",
+    "No fold3 or fold4 price retrieval.",
+    "No rewriting V2.8.6.",
+    "No Setup/First60/Episode/live emission."
+  ]
+}
