@@ -1,0 +1,83 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_9_LOCKED_TRANSITION_EVALUATOR_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.9",
+  "status": "PASS",
+  "evaluator": {
+    "path": "scripts/v289_locked_transition_evaluator.py",
+    "blob_sha": "426c27c001df186bbd85c61954c17149f30f9b2d",
+    "implementation_commit": "b565846659628171c08c9adadca05734f168475e"
+  },
+  "hypothesis_gate": {
+    "path": "evidence/V2.8.9_SETUP_EVENT_TRANSITION_HYPOTHESIS_GATE.json",
+    "freeze_commit": "727dc1dc790914f623078ff2cdb1bc374e75f261"
+  },
+  "evaluation_gate": {
+    "path": "evidence/V2.8.9_LOCKED_TRANSITION_RESEARCH_EVALUATION_GATE.json",
+    "freeze_commit": "7a33dbdbe4f54b55d51d17e1f1d07754b80e9e97"
+  },
+  "self_test": {
+    "workflow_run_id": 35837555703,
+    "workflow_head_sha": "afa5b88d61fdd5ff55a3fe9cb3de7ead98ba98a9",
+    "job_id": 107104535732,
+    "conclusion": "success",
+    "evaluator_blob_verified": true,
+    "passed": 16,
+    "total": 16,
+    "all_pass": true,
+    "real_consumed_fold_price_rows_read": false,
+    "real_transition_outcomes_read": false,
+    "fold3_4_price_rows_read": false
+  },
+  "first_self_test_incident": {
+    "workflow_run_id": 35837421417,
+    "classification": "SYNTHETIC_FIXTURE_HORIZON_ONLY",
+    "failed_test": "T10_D_through_D10_same_symbol_suppression",
+    "cause": "The synthetic calendar ended before the third expected event had a freezeable D+10 target date, so the evaluator correctly rejected that synthetic episode start.",
+    "fix": "Extend only the synthetic business-day calendar fixture from 20 to 40 sessions.",
+    "research_contract_changed": false,
+    "event_definition_changed": false,
+    "thresholds_changed": false,
+    "pass_conditions_changed": false
+  },
+  "validated_properties": [
+    "candidate id exactly DC_RAW_RATIO_ONSET_V1",
+    "raw-ratio boundary exactly 1.0 with no threshold search",
+    "minimum-information thresholds match the frozen evaluation gate",
+    "bootstrap replicates and seeds match the frozen evaluation gate",
+    "source configuration contains folds 0,1,2 only",
+    "onset is exact previous-joint-session P to D transition",
+    "already-compressed occupancy is not onset",
+    "missing/suspended previous joint session cannot be skipped backward",
+    "future D+1-or-later state cannot alter the D event",
+    "same-security event starts are suppressed from D through fixed D+10 inclusive",
+    "date-cluster bootstrap is deterministic",
+    "fold aggregate is equal-weight by signal date rather than event count",
+    "bootstrap is diagnostic and not a development PASS/FAIL gate",
+    "fold3 and fold4 remain sealed",
+    "real transition research was not executed during validation",
+    "V2.8.0 feature engine is reused"
+  ],
+  "static_audit": {
+    "evaluator_line_count": 5,
+    "fold_source_configs": [
+      0,
+      1,
+      2
+    ],
+    "fold3_or_fold4_source_config_present": false,
+    "evaluator_has_terminal_no_reevaluation_guard": true,
+    "evaluator_has_real_evaluate_entrypoint": true,
+    "threshold_grid_present": false,
+    "machine_learning_dependency_present": false
+  },
+  "authorization": {
+    "real_transition_research_on_consumed_folds0_1_2": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.9_ONE_TIME_REAL_TRANSITION_RESEARCH_ON_CONSUMED_FOLDS0_1_2"
+}
