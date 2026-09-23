@@ -172,7 +172,7 @@ def build_symbol_rows(
     if x.empty:
         return []
 
-    required = {"date", "open", "high", "low", "close", "amount", "canonical_security_id"}
+    required = {"date", "open", "high", "low", "close", "canonical_security_id"}
     miss = required - set(x.columns)
     if miss:
         raise RuntimeError(f"SOURCE_COLUMNS_BLOCK:{sorted(miss)}")
@@ -182,11 +182,15 @@ def build_symbol_rows(
     if x["date"].duplicated().any():
         raise RuntimeError(f"DUPLICATE_STOCK_DATE:{meta['canonical_security_id']}")
 
+    # V2.8.8 alpha candidates never use liquidity. Some frozen legacy
+    # source partitions omit amount; provide a constant engine-only
+    # placeholder rather than changing or repairing any price feature.
     feat_in = x.rename(columns={"date": "bar_date"})[
-        ["canonical_security_id", "bar_date", "open", "high", "low", "close", "amount"]
+        ["canonical_security_id", "bar_date", "open", "high", "low", "close"]
     ].copy()
-    for c in ["open", "high", "low", "close", "amount"]:
+    for c in ["open", "high", "low", "close"]:
         feat_in[c] = numeric(feat_in[c])
+    feat_in["amount"] = numeric(x["amount"]) if "amount" in x.columns else 1.0
 
     feat = build_features(feat_in)
     feat["bar_date"] = feat["bar_date"].astype(str)
@@ -601,6 +605,25 @@ def self_test() -> dict:
     ck("D10_no_threshold_grid", True)
     ck("D11_same_feature_engine_import", build_features.__module__ == "v280_scale_invariant_features")
     ck("D12_fold3_4_sealed_by_contract", read_json(CONTRACT)["authorization"]["fold3_access"] is False and read_json(CONTRACT)["authorization"]["fold4_access"] is False)
+
+    n = 320
+    dates = pd.date_range("2023-01-01", periods=n, freq="D").date.astype(str)
+    close = np.linspace(10.0, 20.0, n) + 0.15 * np.sin(np.arange(n) / 7.0)
+    base = pd.DataFrame({
+        "canonical_security_id": ["SSE:TEST"] * n,
+        "bar_date": dates,
+        "open": close * 0.999,
+        "high": close * 1.01,
+        "low": close * 0.99,
+        "close": close,
+        "amount": np.ones(n),
+    })
+    a = build_features(base)
+    b = build_features(base.assign(amount=np.full(n, 123456789.0)))
+    ck(
+        "D13_liquidity_placeholder_cannot_change_alpha_features",
+        all(np.allclose(numeric(a[k]), numeric(b[k]), equal_nan=True) for k in REQUIRED_FEATURES),
+    )
 
     result = {
         "schema": "AI_CORE_EVID_V2_8_8_LOCKED_DISCOVERY_EVALUATOR_SELFTEST_V1",
