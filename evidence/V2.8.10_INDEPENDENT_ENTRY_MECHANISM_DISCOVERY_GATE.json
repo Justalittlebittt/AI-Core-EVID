@@ -1,0 +1,168 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_10_INDEPENDENT_ENTRY_MECHANISM_DISCOVERY_GATE_V1",
+  "version": "V2.8.10",
+  "status": "FROZEN_BEFORE_INDEPENDENT_ENTRY_OUTCOME_RESEARCH",
+  "purpose": "Select and freeze exactly one compression-independent entry hypothesis from surviving T-layer research families before any new outcome execution.",
+  "parents": {
+    "v289_final_record": "evidence/V2.8.9_FINAL_RECORD.json",
+    "v289_status": "TRANSITION_ENTRY_HYPOTHESIS_REJECTED_COMPRESSION_DEMOTED_FROM_ENTRY_TRIGGER",
+    "factor_registry": "evidence/V2.8.0_FACTOR_RESEARCH_REGISTRY.json",
+    "stage1_result_ledger": "evidence/V2.8.1_STAGE1_FACTOR_RESULT_LEDGER.csv",
+    "stage1_result_ledger_sha256": "e5b100cf837ef60f35d856cb8bd6986d766e3813222562de6ab63b7057db0fe0",
+    "stage1_screen_receipt_sha256": "cd5d4112151a758268e17a6626d6783770d6bdfc6b302f5c6a808642bb62ff22"
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Find one causal entry mechanism that can eventually issue a strategy PASS receipt and survive untouched validation, without forcing compression to provide timing.",
+    "hard_constraints": [
+      "Use only D and earlier information in signal construction.",
+      "Do not use compression level, percentile, onset, persistence or release as the trigger.",
+      "Do not use liquidity as alpha.",
+      "Do not import lost V2.7.3 thresholds or recreate historical V2.7.3 events.",
+      "Use only already-consumed folds 0-2 for development.",
+      "Keep fold3 and fold4 sealed until development PASS and a separate confirmatory contract are frozen.",
+      "Freeze one candidate only; no post-result candidate additions or threshold search.",
+      "No Setup, First60, Episode or live authorization is created by this gate."
+    ],
+    "family_review": {
+      "RS_RELATIVE_STRENGTH": {
+        "disposition": "NOT_SELECTED",
+        "reason": [
+          "Stage-1 ret_20 and ret_60 were preregistered as positive continuation factors but both produced negative direction-adjusted D+10 Rank-IC and negative direction-adjusted D+10 spreads.",
+          "Selecting RS continuation now would require reversing or reinterpreting a previously frozen direction after observing results, which is not an acceptable clean next hypothesis."
+        ]
+      },
+      "TQ_TREND_STRUCTURE": {
+        "disposition": "NOT_SELECTED",
+        "reason": [
+          "Stage-1 ma50_vs_ma150, ma150_vs_ma200 and ma200_slope20 did not produce a consistent promotable positive trend-structure signal.",
+          "V2.8.8 C1_DC_TREND also failed cross-fold Setup eligibility; this does not invalidate all trend context, but it weakens the case for making static trend structure itself the next entry trigger."
+        ]
+      },
+      "AC_ANTI_CHASE": {
+        "disposition": "SELECTED_FOR_ONE_EVENT_HYPOTHESIS",
+        "reason": [
+          "AC was intentionally exploratory-only in V2.8.1 because its expected shape is nonlinear and interaction/event-like rather than monotonic.",
+          "That makes AC structurally suitable for a timing hypothesis after static ranking and compression-timing routes failed.",
+          "The selected event uses natural zero boundaries around moving-average distance rather than an outcome-tuned overextension percentage."
+        ]
+      }
+    },
+    "actions": {
+      "Delete": [
+        "Do not reopen compression-derived entry variants.",
+        "Do not run RS continuation with reversed sign as a rescue.",
+        "Do not run a static TQ percentile or weighted score."
+      ],
+      "Avoid": "Avoid threshold grids by using only arithmetic identity boundaries where price equals its moving average.",
+      "Absorb": "Reuse V2.8.0 scale-invariant feature engine, frozen PIT identities, joint calendar and folds0-2 source snapshots.",
+      "Substitute": "Use a pullback-reclaim event to represent anti-chase timing instead of a static rank or compression transition.",
+      "Precompute_Reuse": "No new source retrieval for folds0-2 is authorized solely for V2.8.10 development.",
+      "Optimize": "Forbidden until the single frozen event survives development and untouched validation."
+    }
+  },
+  "selected_family": "AC_ANTI_CHASE",
+  "single_hypothesis": {
+    "candidate_id": "AC_MA20_PULLBACK_RECLAIM_V1",
+    "name": "MA20 Pullback Reclaim With Intact MA50",
+    "economic_semantic": "After a short-term pullback has removed immediate extension, price reclaims the short-term trend reference while the medium-term price structure remains intact.",
+    "feature_authority": "scripts/v280_scale_invariant_features.py",
+    "required_features": [
+      "close_vs_ma20",
+      "close_vs_ma50"
+    ],
+    "previous_session_P": {
+      "definition": "immediately preceding joint SSE+SZSE A-share trading session before D",
+      "requirements": [
+        "security is PIT-eligible on P",
+        "security has tradestatus=1 on P",
+        "close_vs_ma20(P) and close_vs_ma50(P) are finite",
+        "close_vs_ma20(P) <= 0.0",
+        "close_vs_ma50(P) > 0.0"
+      ]
+    },
+    "signal_session_D": {
+      "requirements": [
+        "security is PIT-eligible on D",
+        "security has tradestatus=1 on D",
+        "close_vs_ma20(D) and close_vs_ma50(D) are finite",
+        "close_vs_ma20(D) > 0.0",
+        "close_vs_ma50(D) > 0.0",
+        "no same-security active research episode already spans D"
+      ]
+    },
+    "event_definition": "P is at/below MA20 but above MA50; D closes back above MA20 while remaining above MA50.",
+    "event_timestamp": "D close / end-of-session state only; no intraday timing claim",
+    "natural_boundary_rationale": [
+      "close_vs_ma20 = 0 means close equals MA20.",
+      "close_vs_ma50 = 0 means close equals MA50.",
+      "No percentage extension, percentile or fitted coefficient is introduced."
+    ],
+    "material_independence": [
+      "does not use rv10_over_rv60 or tr10_over_tr60",
+      "does not use compression state, onset, persistence or release",
+      "does not use ret_20 or ret_60 continuation ranking",
+      "does not use ma50_vs_ma150, ma150_vs_ma200 or ma200_slope20 as the trigger",
+      "is an event transition rather than a static cross-sectional percentile"
+    ]
+  },
+  "fail_closed_event_rules": [
+    "If P is missing from the joint trading calendar mapping, no event.",
+    "If P or D lacks a tradable stock bar, no event.",
+    "If required MA-distance features are nonfinite on P or D, no event.",
+    "A suspension or missing P bar may not be skipped backward to an older stock bar.",
+    "No D+1-or-later persistence or recovery confirmation is permitted.",
+    "No future outcome, target bar or future feature may affect event construction."
+  ],
+  "research_episode_semantics": {
+    "unit": "INDEPENDENT_ENTRY_EPISODE_START",
+    "non_overlap_per_security": true,
+    "suppression_rule": "After an accepted event starts at D, suppress another event for the same security through the fixed D+10 joint-calendar target date inclusive.",
+    "target_date_frozen_at_start": true,
+    "missing_target_bar": "OUTCOME_UNAVAILABLE_NO_SHIFT; no replacement event"
+  },
+  "development_scope": {
+    "fold0": "consumed; allowed for development",
+    "fold1": "consumed; allowed for development",
+    "fold2": "consumed; allowed for development",
+    "fold3": "sealed untouched validation",
+    "fold4": "sealed untouched final holdout",
+    "new_source_retrieval_folds0_1_2": false,
+    "cross_vendor_row_fallback": false,
+    "foldwise_analysis_required": true
+  },
+  "forbidden": [
+    "No MA10/MA30/MA60 or other moving-average grid.",
+    "No +/-1%, +/-2% or other distance buffer around MA20 or MA50.",
+    "No requirement that the reclaim persist for 2/3/5 future sessions.",
+    "No compression filter or compression interaction in V2.8.10 candidate definition.",
+    "No ret_20/ret_60 strength filter.",
+    "No trend-score percentile or Q5/Q1 projection.",
+    "No gap, bar-range or distance-from-high condition may be added after seeing outcomes.",
+    "No market-state or evidence-freshness filter may be added after seeing outcomes.",
+    "No coefficient fit or machine learning.",
+    "No fold3/fold4 price or outcome access."
+  ],
+  "not_yet_frozen": [
+    "minimum event counts and temporal dispersion",
+    "same-date comparison baseline",
+    "development PASS/FAIL thresholds",
+    "bootstrap mechanics and seeds",
+    "fold3 confirmatory PASS/FAIL contract",
+    "fold3 source activation"
+  ],
+  "next_phase": {
+    "stage": "V2.8.10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATION_GATE",
+    "purpose": "Freeze information sufficiency, comparison baselines, metrics and deterministic development PASS/FAIL logic before reading AC event outcomes.",
+    "fold3_access": false
+  },
+  "authorization": {
+    "build_locked_evaluator_contract": true,
+    "run_real_outcome_research_now": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
