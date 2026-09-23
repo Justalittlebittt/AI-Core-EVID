@@ -1,0 +1,20 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_7_TENCENT_SOURCE_ANOMALY_RECORD_V1",
+  "version": "V2.8.7",
+  "status": "SOURCE_ROW_ANOMALY_BEFORE_FACTOR_OR_OUTCOME_COMPUTATION",
+  "failed_run_id": 35822344044,
+  "security": "SSE:600767",
+  "source_symbol": "sh600767",
+  "anomaly_date": "2023-06-09",
+  "anomaly": "NONPOSITIVE_OHLC returned by Tencent direct hfq source",
+  "context": {
+    "official_SSE_termination_announcement_date": "2023-05-23",
+    "official_SSE_rule_context": "The termination decision states the security enters a 15-trading-day delisting arrangement period before delisting.",
+    "external_trade_crosscheck": "A separate historical quote source reports a nonzero daily move on 2023-06-09.",
+    "interpretation": "Treat Tencent zero OHLC as unusable source data, not as a real zero-price trading bar."
+  },
+  "completed_shards_before_block": [0,1,2,3,4,5,6,7],
+  "factor_or_forward_return_computed": false,
+  "setup_shape_statistics_computed": false,
+  "fold3_4_consumed": false
+}
