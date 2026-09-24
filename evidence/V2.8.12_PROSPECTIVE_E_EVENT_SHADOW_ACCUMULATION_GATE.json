@@ -1,0 +1,224 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PROSPECTIVE_E_EVENT_SHADOW_ACCUMULATION_GATE_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_SHADOW_LEDGER_IMPLEMENTATION",
+  "purpose": "Accumulate prospective, causal, outcome-blind positive E filings as append-only shadow observations until a precommitted diversity/information threshold is reached; only then may a separate outcome-observation contract be designed and authorized.",
+  "parents": {
+    "v2811_final_record": "evidence/V2.8.11_FINAL_RECORD.json",
+    "v2811_status": "EVIDENCE_RECONSTRUCTION_TECHNICALLY_FEASIBLE_BUT_TOO_SPARSE_FOR_FULL_BACKFILL",
+    "prospective_activation": "evidence/V2.8.4_PROSPECTIVE_E_LAYER_ACTIVATION.json",
+    "observation_ledger_contract": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER_CONTRACT.json",
+    "effective_date_contract": "evidence/V2.8.4_E_LAYER_EFFECTIVE_DATE_CONTRACT.json",
+    "issuer_identity_contract": "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDING_CONTRACT.json"
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Build enough causal evidence-event observations to test an evidence-anchored Setup without expensive historical backfill, semantic overengineering, or repeated chat-driven polling.",
+    "hard_constraints": [
+      "Only prospectively observed official issuer filings after V2.8.4 activation may enter the V2.8.12 shadow ledger.",
+      "A shadow row requires a complete ELIGIBLE_AI_CORE record with resolved issuer identity and a conservative effective signal date from existing V2.8.4 authority.",
+      "Historical V2.8.11 reconstructed positives never seed or count toward prospective shadow readiness.",
+      "No price, return, benchmark, D+5/D+10 outcome, fold3 or fold4 data may be read before the V2.8.12 readiness gate passes and a separate outcome contract is frozen.",
+      "No change to E classifier, triage, keywords, identity rules or effective-date semantics.",
+      "No Setup, First60, Episode or live authorization."
+    ],
+    "soft_problem_deleted": "Do not build an NLP system that decides whether two positive filings describe the same underlying commercial project before enough prospective observations exist.",
+    "replacement": "Treat each unique positive official filing as one shadow filing-event observation. Preserve same-issuer recurrence explicitly, but measure research readiness using issuer/date/month diversity and issuer concentration rather than pretending repeated filings are independent issuers.",
+    "actions": {
+      "Delete": [
+        "No semantic project-lineage clustering in V2.8.12.",
+        "No full historical backfill or extra historical windows.",
+        "No manual tagging of filings as 'new project' versus 'progress update' for readiness counting."
+      ],
+      "Avoid": [
+        "Do not count the same announcement twice.",
+        "Do not count historical reconstructed events toward the prospective threshold.",
+        "Do not let repeated filings from one issuer dominate readiness."
+      ],
+      "Absorb": [
+        "Reuse V2.8.4 announcement_id/object conflict rules, issuer identity binding, page-scoped classification and conservative next-trading-date effective rule.",
+        "Reuse the existing prospective scanner and GitHub Actions cadence rather than chat-driven polling."
+      ],
+      "Substitute": "Use simple append-only filing-event observations plus issuer recurrence metadata instead of subjective semantic event clustering.",
+      "Precompute_Reuse": "Persist content hashes, decision hashes, evidence sentence hashes and prior-issuer linkage once; duplicate announcements become no-ops.",
+      "Optimize": "Event-family stratification or technical overlays are deferred until after the minimum prospective sample exists and the outcome contract is frozen."
+    }
+  },
+  "shadow_event_definition": {
+    "name": "PROSPECTIVE_POSITIVE_E_FILING_EVENT",
+    "qualifying_source": "A committed V2.8.4 prospective finalization receipt effective_positive_events entry whose underlying observation-ledger row is PROSPECTIVE and ELIGIBLE_AI_CORE.",
+    "required_conditions": [
+      "announcement_id is new to the V2.8.12 shadow ledger",
+      "canonical_security_id is valid and matches the V2.8.4 observation record",
+      "issuer_legal_name and issuer_identity_basis are complete",
+      "classification_state is ELIGIBLE_AI_CORE",
+      "source_object_sha256 and decision_sha256 are bound to the same announcement",
+      "matched_ai_role is non-empty",
+      "matched_commerciality is non-empty",
+      "authoritative_observed_at_utc is present",
+      "effective_signal_date is the existing conservative first joint A-share trading date strictly after the authoritative observation date"
+    ],
+    "nonqualifying": [
+      "NOT_ESTABLISHED, EXCLUDED_AI_ADOPTER_ONLY, EXCLUDED_AI_RND_ONLY or BLOCKED_AMBIGUOUS classifications",
+      "positive classification with unresolved issuer identity",
+      "historical V2.8.11 reconstruction rows",
+      "same announcement already present",
+      "conflicting announcement identity/object bindings"
+    ]
+  },
+  "identity_and_recurrence": {
+    "primary_filing_identity": "announcement_id",
+    "shadow_event_id": "SHA256('V2.8.12|' + announcement_id + '|' + canonical_security_id + '|' + decision_sha256 + '|' + effective_signal_date)",
+    "same_announcement_same_bindings": "NO_ACTION_DUPLICATE",
+    "same_announcement_changed_security_or_object_or_decision": "BLOCK_CONFLICT",
+    "issuer_recurrence_policy": {
+      "first_positive_for_issuer": "issuer_positive_sequence_number = 1; recurrence_status = FIRST_POSITIVE_FOR_ISSUER",
+      "later_positive_for_issuer": "Append as a separate filing-event observation with issuer_positive_sequence_number incremented and recurrence_status = SUBSEQUENT_POSITIVE_FOR_ISSUER.",
+      "linkage_fields": [
+        "prior_positive_announcement_id",
+        "prior_positive_effective_signal_date"
+      ],
+      "semantic_project_lineage": "NOT_ASSIGNED_IN_V2_8_12",
+      "rationale": "Repeated filings remain observable facts but are not assumed to be independent commercial projects or independent issuers."
+    }
+  },
+  "shadow_ledger_schema": {
+    "file": "evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv",
+    "append_only": true,
+    "overwrite_existing_row": false,
+    "fields": [
+      "shadow_event_id",
+      "announcement_id",
+      "canonical_security_id",
+      "issuer_legal_name",
+      "source_object_sha256",
+      "page_text_sha256",
+      "decision_sha256",
+      "evidence_sentence_sha256",
+      "matched_ai_role_json",
+      "matched_commerciality_json",
+      "evidence_observation_commit_sha",
+      "issuer_identity_binding_commit_sha",
+      "authoritative_observed_at_utc",
+      "eligibility_completeness_time_utc",
+      "effective_signal_date",
+      "issuer_positive_sequence_number",
+      "recurrence_status",
+      "prior_positive_announcement_id",
+      "prior_positive_effective_signal_date",
+      "source_finalization_receipt",
+      "source_ratification_file",
+      "historical_reconstruction",
+      "price_or_return_data_consumed"
+    ],
+    "invariants": [
+      "historical_reconstruction must be false",
+      "price_or_return_data_consumed must be false",
+      "issuer_positive_sequence_number is deterministic from earlier committed shadow rows only",
+      "prior_positive fields are empty for sequence 1 and bind exactly to sequence N-1 for sequence N>1"
+    ]
+  },
+  "genesis": {
+    "authorized": true,
+    "source": "evidence/V2.8.4_FIRST_PROSPECTIVE_POSITIVE_EVENT_RATIFICATION.json",
+    "announcement_id": "1225573666",
+    "canonical_security_id": "SZSE:300634",
+    "effective_signal_date": "2026-09-23",
+    "reason": "This event was genuinely prospective, causally observed and ratified under V2.8.4 before V2.8.12; it is not a historical reconstruction.",
+    "expected_initial_shadow_rows": 1,
+    "v2811_historical_positives_seeded": 0
+  },
+  "readiness_gate": {
+    "purpose": "Authorize drafting and execution of a separately frozen outcome-observation research contract; it does not establish alpha or authorize Setup.",
+    "requires_all": [
+      "total prospective positive shadow filing-events >= 20",
+      "distinct canonical_security_id issuers >= 12",
+      "distinct effective_signal_date values >= 12",
+      "positive events occur in >= 6 distinct calendar months",
+      "maximum share of shadow filing-events from any one canonical_security_id <= 0.20",
+      "all rows pass provenance/integrity checks",
+      "no price or return data have been consumed by the shadow accumulation process"
+    ],
+    "historical_v2811_rows_count": false,
+    "repeated_same_issuer_rows_count_toward_total_events": true,
+    "repeated_same_issuer_rows_count_toward_distinct_issuers": false,
+    "gate_not_alpha_test": true,
+    "if_not_ready": "Continue blind append-only prospective accumulation; do not notify or rerun outcome research.",
+    "if_ready": "Freeze V2.8.13 prospective E-event outcome-observation contract before any post-event price/return resolution."
+  },
+  "blind_readiness_status": {
+    "file": "evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json",
+    "allowed_fields": [
+      "shadow_event_count",
+      "distinct_issuer_count",
+      "distinct_effective_date_count",
+      "distinct_positive_calendar_month_count",
+      "maximum_single_issuer_event_share",
+      "provenance_checks",
+      "status"
+    ],
+    "forbidden_fields": [
+      "price",
+      "return",
+      "benchmark_return",
+      "excess_return",
+      "D5",
+      "D10",
+      "rank_ic",
+      "win_rate",
+      "p_value"
+    ],
+    "ready_status": "READY_FOR_V2_8_13_OUTCOME_CONTRACT",
+    "not_ready_status": "ACCUMULATING_PROSPECTIVE_E_EVENTS"
+  },
+  "automation_architecture": {
+    "no_chat_polling_required": true,
+    "existing_collector": "scripts/v284_incremental_e_layer_runner.py",
+    "existing_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "existing_scheduled_orchestrator": ".github/workflows/v283-prospective-morning-orchestrator.yml",
+    "design_requirement": "Implementation should absorb V2.8.4 prospective E observation plus V2.8.12 shadow append/readiness audit into a GitHub Actions scheduled cadence. Do not create an hourly polling loop.",
+    "cadence_intent": "One workday-morning collection cycle is sufficient; overlapping 3-calendar-day scan plus announcement_id deduplication handles missed/nontrading days.",
+    "exact_schedule_to_freeze_during_implementation": true,
+    "concurrency_requirement": "Use a single non-overlapping E-layer/shadow accumulation concurrency group or a serialized workflow path to avoid concurrent ledger writes."
+  },
+  "implementation_validation_required": [
+    "Genesis creates exactly one shadow row from announcement 1225573666 and imports zero V2.8.11 historical rows.",
+    "Exact duplicate announcement is a no-op.",
+    "Announcement identity/object/decision conflict blocks.",
+    "First issuer positive gets sequence 1 and empty prior-positive linkage.",
+    "Second positive for the same issuer gets sequence 2 and links exactly to the previous issuer row without semantic project inference.",
+    "A positive for a different issuer starts sequence 1.",
+    "Readiness counts repeated issuer filings toward total events but only unique securities toward issuer diversity.",
+    "20 events with fewer than 12 issuers cannot pass.",
+    "20 events with one issuer share above 20% cannot pass.",
+    "All readiness conditions can pass only without any price/return fields or imports.",
+    "Historical V2.8.11 positive files are absent from ingestion sources.",
+    "Scheduled collection is serialized and retains V2.8.4 no-backfill/no-same-day semantics."
+  ],
+  "forbidden": [
+    "No outcome resolver or price source import in the V2.8.12 shadow accumulator.",
+    "No D+5/D+10 computation or hidden preview before readiness PASS.",
+    "No historical V2.8.11 row promotion.",
+    "No semantic event-family NLP, manual event grouping or manual issuer selection.",
+    "No classifier/triage/keyword relaxation to accelerate accumulation.",
+    "No full historical backfill.",
+    "No pure-price entry search restart.",
+    "No fold3/fold4 access.",
+    "No Setup, First60, Episode or live emission."
+  ],
+  "governance": {
+    "prospective_shadow_event_accumulation_authorized": false,
+    "scheduled_shadow_collection_authorized": false,
+    "outcome_research_authorized": false,
+    "outcome_contract_drafting_authorized_after_readiness_only": true,
+    "evidence_event_alpha_claim_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "pure_price_entry_search_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.12_SHADOW_LEDGER_ACCUMULATOR_AND_SCHEDULED_CADENCE_IMPLEMENTATION_VALIDATION"
+}
