@@ -1,0 +1,23 @@
+name: V2.8.12 Shadow Accumulator Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2812-shadow-accumulator-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify shadow accumulator blob
+        run: test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "de5fd0249f75e3ef7cdb74929bb9f017b3473246"
+      - name: Run V2.8.12 shadow self-test only
+        run: python scripts/v2812_shadow_accumulator.py self-test
