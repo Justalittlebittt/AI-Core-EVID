@@ -205,7 +205,7 @@ def self_test():
   for i in range(20):
    cid=f"SSE:{600000+(i%12):06d}"
    syn.append({**x[0],"announcement_id":str(2000+i),"canonical_security_id":cid,"effective_signal_date":f"2026-{1+(i%6):02d}-{1+(i%20):02d}","issuer_positive_sequence_number":"1","historical_reconstruction":"false","price_or_return_data_consumed":"false"})
-  r=readiness(syn);ck("S08_20_events_12_issuers_can_pass",r["shadow_event_count"]==20 and r["distinct_issuer_count"]==12)
+  r=readiness(syn);ck("S08_20_events_12_issuers_can_pass",r["shadow_event_count"]==20 and r["distinct_issuer_count"]==12 and r["status"]=="READY_FOR_V2_8_13_OUTCOME_CONTRACT")
   few=[{**z,"canonical_security_id":f"SSE:{600000+(i%5):06d}"} for i,z in enumerate(syn)]
   ck("S09_fewer_than_12_issuers_fails",readiness(few)["status"]!="READY_FOR_V2_8_13_OUTCOME_CONTRACT")
   conc=[dict(z) for z in syn]
