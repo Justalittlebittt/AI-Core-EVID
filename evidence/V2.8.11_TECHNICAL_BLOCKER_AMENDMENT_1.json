@@ -1,0 +1,54 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_TECHNICAL_BLOCKER_AMENDMENT_1",
+  "version": "V2.8.11",
+  "status": "FROZEN_BEFORE_RETRY1_IMPLEMENTATION",
+  "blocked_run": {
+    "workflow_run_id": 35965093945,
+    "result_commit": "479921bd4e2fa26a5b5bcca21dd99f1aeef05f58",
+    "final_receipt": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_FINAL_RECEIPT.json",
+    "status": "V2_8_11_E_RECONSTRUCTION_TECHNICALLY_BLOCKED",
+    "selected_filings": 0,
+    "positive_filings": 0
+  },
+  "root_cause": {
+    "classification": "PURE_IMPLEMENTATION_ORCHESTRATION_DEFECT",
+    "signature": "Playwright Sync API inside the asyncio loop",
+    "explanation": "The V2.8.11 runner opened one outer sync_playwright() context and then called v284_candidate_collector.collect(), which itself opens sync_playwright(). The nested Sync API context blocked every window before candidate collection.",
+    "occurred_before_candidate_results": true,
+    "occurred_before_pdf_materialization": true,
+    "price_or_return_data_consumed": false
+  },
+  "repair_scope": {
+    "allowed": [
+      "Remove the outer Playwright context around candidate collection.",
+      "Let v284_candidate_collector.collect() own its existing Playwright request context.",
+      "Open a separate non-nested Playwright request context only after candidate collection for selected PDF downloads.",
+      "Write retry outputs under a RETRY1 namespace while retaining the original technically-blocked evidence immutably."
+    ],
+    "forbidden": [
+      "No changes to the eight frozen windows.",
+      "No changes to the 18-term registry.",
+      "No changes to triage or classifier semantics.",
+      "No changes to six-per-window or forty-eight-total caps.",
+      "No changes to temporal provenance rules.",
+      "No changes to technical or density gates.",
+      "No price/return access and no fold3/fold4 access."
+    ]
+  },
+  "retry1_outputs": {
+    "windows": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_WINDOWS.json",
+    "results": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_RESULTS.csv",
+    "positive_events": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_POSITIVE_EVENTS.csv",
+    "final_receipt": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_FINAL_RECEIPT.json"
+  },
+  "authorization": {
+    "implement_retry1": true,
+    "validate_retry1_before_execution": true,
+    "execute_retry1_now": false,
+    "outcome_research": false,
+    "price_or_return_data": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "next_stage": "V2.8.11_RETRY1_IMPLEMENTATION_VALIDATION"
+}
