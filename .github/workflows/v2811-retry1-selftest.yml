@@ -1,0 +1,21 @@
+name: V2.8.11 Retry1 Bounded E Reconstruction Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2811-retry1-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify Retry1 runner blob
+        run: test "$(git hash-object scripts/v2811_bounded_e_reconstruction_retry1.py)" = "db979c75e40d6c15451d41949849d8d7965fbc75"
+      - name: Run Retry1 self-test only
+        run: python scripts/v2811_bounded_e_reconstruction_retry1.py self-test
