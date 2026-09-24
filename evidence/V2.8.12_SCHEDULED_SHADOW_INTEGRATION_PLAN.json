@@ -1,0 +1,44 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_SCHEDULED_SHADOW_INTEGRATION_PLAN_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_READY_FOR_SEPARATE_ACTIVATION_COMMIT",
+  "parent_gate": "evidence/V2.8.12_PROSPECTIVE_E_EVENT_SHADOW_ACCUMULATION_GATE.json",
+  "cadence_contract": "evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json",
+  "target_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+  "exact_activation_patch": {
+    "triggers": {
+      "retain_workflow_dispatch": true,
+      "add_schedule_cron_utc": "0 1 * * 2-6"
+    },
+    "concurrency": {
+      "replace_group_with": "v284-v2812-prospective-e-shadow-serial",
+      "cancel_in_progress": false
+    },
+    "ordering": [
+      "V2.8.4 prospective scan",
+      "commit authoritative observation receipt",
+      "V2.8.4 finalize observation ledger",
+      "commit V2.8.4 finalization",
+      "run python scripts/v2812_shadow_accumulator.py accumulate",
+      "commit evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv and evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json"
+    ],
+    "shadow_commit_message": "Update V2.8.12 prospective E shadow ledger [skip ci]",
+    "no_outcome_steps": true,
+    "no_price_steps": true
+  },
+  "activation_guards": [
+    "Require V2.8.12 implementation validation receipt status PASS.",
+    "Require accumulator blob to equal the validated blob.",
+    "Require cadence contract status FROZEN_BEFORE_SCHEDULE_ACTIVATION and cron exactly 0 1 * * 2-6.",
+    "Require V2.8.4 activation to remain ACTIVE_PROSPECTIVE_EVIDENCE_LAYER_ONLY.",
+    "Do not alter V2.8.4 scan overlap, classifier, triage, effective-date or no-backfill semantics.",
+    "One separate activation commit only; no shadow accumulation run is authorized before that commit."
+  ],
+  "rollback_behavior": {
+    "workflow_failure": "Fail closed; do not partially rewrite an existing shadow row.",
+    "duplicate_event": "NO_ACTION_DUPLICATE",
+    "conflict": "BLOCK_CONFLICT and stop shadow update",
+    "readiness_not_met": "Continue prospective accumulation only; no outcome action."
+  },
+  "active_now": false
+}
