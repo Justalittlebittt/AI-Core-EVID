@@ -1,0 +1,176 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_10_FINAL_RECORD_V1",
+  "version": "V2.8.10",
+  "status": "AC_REJECTED_PURE_PRICE_ENTRY_SEARCH_STOPPED",
+  "terminal_receipt": "evidence/V2.8.10_AC_RESEARCH_FINAL_RECEIPT.json",
+  "terminal_receipt_sha256": "1480da283881032ce86adef4eb77877890e16d65a1ad6ea4ad8737d26ae3c186",
+  "terminal_result_commit": "c55e17f82a37b72f3a96e40f5b1a8b1fba58c5b9",
+  "candidate": {
+    "id": "AC_MA20_PULLBACK_RECLAIM_V1",
+    "result": "V2_8_10_AC_PULLBACK_RECLAIM_DEVELOPMENT_REJECTED"
+  },
+  "information_sufficiency": {
+    "fold0": {
+      "events": 5774,
+      "securities": 1015,
+      "signal_dates": 446,
+      "minimum_information_pass": true
+    },
+    "fold1": {
+      "events": 5946,
+      "securities": 1044,
+      "signal_dates": 449,
+      "minimum_information_pass": true
+    },
+    "fold2": {
+      "events": 5865,
+      "securities": 1034,
+      "signal_dates": 452,
+      "minimum_information_pass": true
+    },
+    "conclusion": "The rejection is not attributable to low event count, poor security coverage, weak temporal dispersion or insufficient quarter coverage."
+  },
+  "key_results": {
+    "mean_D10_reclaim_excess_vs_same_date_universe": {
+      "fold0": -0.0058686352673732265,
+      "fold1": -0.004305244077099943,
+      "fold2": -0.0033651384164933977
+    },
+    "mean_D5_reclaim_excess_vs_same_date_universe": {
+      "fold0": -0.005066769560940662,
+      "fold1": -0.004899191436984539,
+      "fold2": -0.0020518198515162953
+    },
+    "mean_D10_incremental_timing_spread_vs_intact_trend_non_reclaim": {
+      "fold0": 0.0016208719110463712,
+      "fold1": 0.002398607867763606,
+      "fold2": 0.004352596951452216
+    },
+    "positive_valid_quarter_share": {
+      "fold0": 0.25,
+      "fold1": 0.375,
+      "fold2": 0.25
+    },
+    "leave_one_valid_quarter_out_all_positive": {
+      "fold0": false,
+      "fold1": false,
+      "fold2": false
+    }
+  },
+  "frozen_failed_checks": [
+    "fold0:primary",
+    "fold0:quarter_share",
+    "fold0:loo",
+    "fold1:primary",
+    "fold1:quarter_share",
+    "fold1:loo",
+    "fold2:primary",
+    "fold2:quarter_share",
+    "fold2:loo",
+    "D5_positive_in_two_folds"
+  ],
+  "interpretation": [
+    "The pullback-reclaim event improves relative performance versus ordinary intact-trend occupancy in all three folds, but its absolute D+10 excess versus the same-date fold universe is negative in all three folds.",
+    "This means the event appears to select a relatively less-bad subset of an intact-trend state rather than a robust positive-excess entry opportunity.",
+    "Quarter stability is weak in every fold and every leave-one-valid-quarter-out primary mean remains non-positive.",
+    "The result therefore rejects AC_MA20_PULLBACK_RECLAIM_V1 as a Setup trigger and does not justify nearby MA-period, buffer, persistence or overlay rescue."
+  ],
+  "accumulated_price_only_evidence": {
+    "rejected_routes": [
+      "V2.8.7 static high dual-compression Q5 setup shape",
+      "V2.8.8 additive static compression + trend/momentum/near-high setup shapes",
+      "V2.8.9 raw dual-compression onset timing",
+      "V2.8.10 MA20 pullback-reclaim with MA50 intact"
+    ],
+    "supporting_context": [
+      "V2.8.1 ret_20 and ret_60 continuation directions were negative under their preregistered positive continuation hypotheses.",
+      "V2.8.1 trend-structure factors did not produce a promotable standalone positive signal.",
+      "V2.8.6 dual compression remains replicated as continuous T-layer information, but subsequent attempts to convert it into entry timing failed."
+    ],
+    "conclusion": "Current evidence does not support continuing an open-ended search for a pure-price Setup trigger on already-consumed folds0-2."
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Select a small number of genuinely promising AI-Core A-share opportunities and enter them under a prospective, causal, economically meaningful rule that can survive untouched validation.",
+    "hard_constraints": [
+      "U membership and E eligibility/materiality remain independent authorities and cannot be created by technical price factors.",
+      "A future Setup receipt must be causal at D and outcome_data_consumed=false.",
+      "No reuse of lost V2.7.3 thresholds or historical event mimicry.",
+      "Free/public data architecture remains required.",
+      "Fold3 and fold4 remain untouched until a materially new strategy architecture and confirmatory gate are frozen.",
+      "No Setup, First60, Episode or live authorization exists yet."
+    ],
+    "expensive_soft_assumption_removed": "A valid Setup must first be discovered as a broad-universe pure-price technical trigger and only afterward intersected with AI-Core U/E eligibility.",
+    "counterfactual_result": "Removing the pure-price-trigger assumption does not break downstream integration. V2.8.4 Setup admission treats strategy semantics as opaque and requires only a same-security/date causal PASS strategy receipt plus independently valid U/E provenance.",
+    "actions": {
+      "Delete": [
+        "Stop open-ended pure-price entry-trigger discovery on folds0-2.",
+        "Do not rescue V2.8.10 with MA10/MA30/MA60, percentage buffers, persistence, gap, range, near-high, compression, momentum or market-state additions.",
+        "Do not reverse failed RS continuation directions after seeing results.",
+        "Do not reopen rejected static Q5/weight/coefficient searches."
+      ],
+      "Avoid": [
+        "Do not consume fold3 merely because another technical shape can be invented.",
+        "Do not build a large new technical-feature library before changing the strategy architecture.",
+        "Do not treat the first prospective E event as proof of investment alpha."
+      ],
+      "Absorb": [
+        "Retain replicated dual-compression and other T-layer features as state/ranking/context primitives, not mandatory entry triggers.",
+        "Retain V2.8.4 U/E resolver, dry candidate gate and Setup admission envelope as reusable strategy-agnostic infrastructure.",
+        "Retain X-layer liquidity/tradability/risk as execution constraints only."
+      ],
+      "Substitute": "Change the next research architecture from price-originated timing to evidence-anchored candidate timing: a new economically material AI-Core E event or its causal freshness state defines why/when a security becomes research-relevant; T-layer information may rank, contextualize or guard execution but must not create E eligibility.",
+      "Precompute_Reuse": "Before any broad historical E backfill, audit whether existing official E-layer ledgers and a bounded official-filing reconstruction can support a low-cost retrospective pilot. Reuse existing issuer identity, classifier and effective-date machinery.",
+      "Optimize": "Only after the evidence-anchored architecture demonstrates a measurable outcome relation; technical overlays may then be tested for incremental value rather than used to rescue a failed base signal."
+    }
+  },
+  "architecture_boundary": {
+    "setup_admission_authority": "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json",
+    "finding": "The envelope requires a PASS strategy receipt matched to U/E for the same security/date but treats strategy semantics as opaque.",
+    "consequence": "A future strategy may be evidence-anchored rather than price-triggered, provided it is independently specified, causal and validated.",
+    "caution": "The E event is currently an eligibility/materiality authority, not a validated alpha signal. The next stage must test data sufficiency and research design before any claim that evidence freshness predicts returns."
+  },
+  "layer_roles_after_v2810": {
+    "U": "Official Certified A-share membership; unchanged.",
+    "E": "AI-Core economic/material evidence eligibility and potential future timing anchor subject to separate validation; does not itself authorize Setup.",
+    "T": "Technical state/ranking/context and later incremental overlays; pure-price entry-trigger search is stopped for now.",
+    "X": "Execution/tradability/risk constraints only."
+  },
+  "fold_disposition": {
+    "fold0": "consumed development",
+    "fold1": "consumed mechanism replication and development",
+    "fold2": "consumed setup-shape/transition/AC development",
+    "fold3": "sealed untouched validation",
+    "fold4": "sealed untouched final holdout"
+  },
+  "governance": {
+    "sample_modified_after_results": false,
+    "optional_stopping_used": false,
+    "thresholds_changed_after_results": false,
+    "pure_price_entry_search_authorized": false,
+    "evidence_event_alpha_claim_authorized": false,
+    "historical_E_backfill_authorized": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "decision": {
+    "promote_AC_MA20_PULLBACK_RECLAIM_V1": false,
+    "search_nearby_AC_variants": false,
+    "continue_open_ended_pure_price_entry_discovery": false,
+    "consume_fold3_now": false,
+    "consume_fold4": false,
+    "next_stage": "V2.8.11_EVIDENCE_ANCHORED_SETUP_ARCHITECTURE_GATE"
+  },
+  "next_stage_constraints": [
+    "Do not run outcome research in V2.8.11 before the architecture and data-sufficiency plan are frozen.",
+    "First audit what historical/prospective E-event data already exists and what exact fields/timestamps are authoritative.",
+    "Use the existing effective-date rule; no historical same-day backfill or future knowledge.",
+    "Before authorizing large historical filing reconstruction, run a Problem Elimination Pass on data acquisition cost and determine whether a bounded pilot can answer feasibility.",
+    "Do not treat E eligibility itself as alpha; define a testable evidence-freshness or evidence-event hypothesis separately.",
+    "T-layer features may be proposed only as secondary state/ranking/guardrail inputs and cannot be used to create E eligibility.",
+    "Keep fold3 and fold4 sealed."
+  ]
+}
