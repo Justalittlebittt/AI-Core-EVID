@@ -1,0 +1,167 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT_V1",
+  "version": "V2.8.11",
+  "status": "FROZEN_BEFORE_PILOT_IMPLEMENTATION_VALIDATION",
+  "parent_gate": "evidence/V2.8.11_EVIDENCE_ANCHORED_SETUP_ARCHITECTURE_GATE.json",
+  "objective": "Implement a deterministic, bounded, outcome-blind historical E-event reconstruction pilot that measures official-evidence reconstruction feasibility and positive-event density without reading any security price or return data.",
+  "calendar": {
+    "authority": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "calendar_receipt_sha256": "1f6e44915ec0a6f3db0396a491c83118b6ce57448f7f08b2d35a7d8ee7cf4ed8",
+    "rule": "For each 2023-2024 calendar quarter, anchor on the 21st joint A-share trading session and query anchor through anchor+6 calendar days inclusive.",
+    "frozen_windows": [
+      {
+        "quarter": "2023Q1",
+        "quarter_joint_sessions": 59,
+        "anchor": "2023-02-07",
+        "start": "2023-02-07",
+        "end": "2023-02-13"
+      },
+      {
+        "quarter": "2023Q2",
+        "quarter_joint_sessions": 59,
+        "anchor": "2023-05-05",
+        "start": "2023-05-05",
+        "end": "2023-05-11"
+      },
+      {
+        "quarter": "2023Q3",
+        "quarter_joint_sessions": 64,
+        "anchor": "2023-07-31",
+        "start": "2023-07-31",
+        "end": "2023-08-06"
+      },
+      {
+        "quarter": "2023Q4",
+        "quarter_joint_sessions": 60,
+        "anchor": "2023-11-06",
+        "start": "2023-11-06",
+        "end": "2023-11-12"
+      },
+      {
+        "quarter": "2024Q1",
+        "quarter_joint_sessions": 58,
+        "anchor": "2024-01-30",
+        "start": "2024-01-30",
+        "end": "2024-02-05"
+      },
+      {
+        "quarter": "2024Q2",
+        "quarter_joint_sessions": 59,
+        "anchor": "2024-05-06",
+        "start": "2024-05-06",
+        "end": "2024-05-12"
+      },
+      {
+        "quarter": "2024Q3",
+        "quarter_joint_sessions": 64,
+        "anchor": "2024-07-29",
+        "start": "2024-07-29",
+        "end": "2024-08-04"
+      },
+      {
+        "quarter": "2024Q4",
+        "quarter_joint_sessions": 61,
+        "anchor": "2024-11-05",
+        "start": "2024-11-05",
+        "end": "2024-11-11"
+      }
+    ],
+    "windows_mutable_after_candidate_results": false
+  },
+  "discovery_and_selection": {
+    "collector": "scripts/v284_candidate_collector.py",
+    "collector_semantics": "Exact existing 18-term registry, SSE/SZSE routes and announcement_id deduplication; no term changes.",
+    "triage": "scripts/v284_candidate_triage.py using frozen V2.8.4 narrow administrative-notice skip semantics.",
+    "maximum_selected_per_window": 6,
+    "maximum_selected_total": 48,
+    "selection_order": "SHA256(announcement_id) ascending, then announcement_id ascending as deterministic tie-break.",
+    "security_diversity": "Within each window, after ordering, keep the first row for each canonical_security_id and stop after six selected rows.",
+    "manual_security_selection": false,
+    "manual_document_selection": false,
+    "no_positive_yield_resampling": true
+  },
+  "temporal_provenance": {
+    "required_candidate_fields": [
+      "announcement_id",
+      "canonical_security_id",
+      "announcement_time",
+      "adjunct_url",
+      "path_disclosure_date"
+    ],
+    "announcement_time_interpretation": "CNInfo announcement_time must be a finite Unix timestamp in milliseconds or seconds and is converted from UTC to Asia/Shanghai calendar date.",
+    "path_rule": "adjunct_url must remain finalpage/YYYY-MM-DD/<announcement_id>.PDF and its YYYY-MM-DD must equal path_disclosure_date.",
+    "consistency_rule": "Asia/Shanghai calendar date derived from announcement_time must equal path_disclosure_date. Missing, unparsable or conflicting values block temporal provenance for that filing.",
+    "retrospective_causal_effective_date": "First frozen joint A-share trading date strictly after path_disclosure_date.",
+    "same_day_effective_date_forbidden": true,
+    "fallback_to_earlier_or_later_metadata_date": false,
+    "future_revision_backfill_forbidden": true,
+    "historical_pilot_creates_formal_E_state": false,
+    "prospective_ledger_mutation": false
+  },
+  "materialization_and_classification": {
+    "official_pdf_origin": "https://static.cninfo.com.cn/",
+    "raw_pdf_git_storage": false,
+    "pdf_validation": "Reuse V2.8.4 official PDF validator and SHA256 object binding.",
+    "page_text_extraction": "Reuse V2.8.4 extractor with physical page provenance.",
+    "classifier": "Reuse frozen V2.8.4 page-scoped AI-Core classifier and aggregation semantics without changes.",
+    "candidate_search_title_or_snippet_is_classifier_input": false,
+    "positive_state": "ELIGIBLE_AI_CORE"
+  },
+  "outputs": {
+    "plan": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_WINDOWS.json",
+    "selected_and_results": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RESULTS.csv",
+    "positive_events": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_POSITIVE_EVENTS.csv",
+    "final_receipt": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_FINAL_RECEIPT.json",
+    "raw_pdf_files_in_git": false
+  },
+  "feasibility_gate": {
+    "technical": [
+      "Eight windows are represented by either COMPLETED or explicit WINDOW_SOURCE_BLOCKED status.",
+      "Successful classifier-ready materialization rate across selected filings is >= 0.90.",
+      "Every reconstructed positive has valid canonical security identity.",
+      "Every reconstructed positive has temporal provenance PASS and a conservative next-joint-trading-date retrospective effective date.",
+      "Classifier, triage, keyword registry, selection cap and density thresholds are unchanged after classifications."
+    ],
+    "density": [
+      "ELIGIBLE_AI_CORE filings >= 4.",
+      "Distinct positive canonical securities >= 4.",
+      "Distinct positive calendar quarters >= 3."
+    ],
+    "if_technical_and_density_pass": "V2_8_11_BOUNDED_E_RECONSTRUCTION_FEASIBLE",
+    "if_technical_pass_density_fail": "V2_8_11_E_EVENT_RECONSTRUCTION_TOO_SPARSE",
+    "if_technical_fail": "V2_8_11_E_RECONSTRUCTION_TECHNICALLY_BLOCKED"
+  },
+  "implementation_validation_required": [
+    "Self-test recomputes all eight frozen windows from the frozen joint calendar exactly.",
+    "Self-test proves deterministic selection is input-order invariant and enforces at most one filing per security per window.",
+    "Self-test proves maximum six selected per window and maximum forty-eight globally.",
+    "Self-test proves announcement_time/path-date agreement passes and one-day conflict blocks.",
+    "Self-test proves retrospective effective date is strictly later than disclosure date and uses the next frozen joint trading date.",
+    "Self-test proves missing announcement_time blocks temporal provenance.",
+    "Self-test proves no same-day effective date.",
+    "Self-test proves outcome/price modules and fold3/fold4 source paths are absent from pilot configuration.",
+    "Pilot runner hash and validation receipt must be frozen before any real historical candidate query."
+  ],
+  "forbidden": [
+    "No security price, return, benchmark, fold0/1/2 price source, fold3 or fold4 access.",
+    "No D+5/D+10 outcome computation.",
+    "No change to the 18-term collector registry.",
+    "No change to classifier/triage semantics after pilot classifications.",
+    "No expanding a sparse window, shifting a window, or selecting extra PDFs to rescue positive yield.",
+    "No historical reconstructed row appended to the prospective E ledgers.",
+    "No Setup/First60/Episode/live emission."
+  ],
+  "authorization": {
+    "build_and_validate_pilot_runner": true,
+    "execute_real_historical_pilot_now": false,
+    "full_historical_backfill": false,
+    "outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_IMPLEMENTATION_VALIDATION"
+}
