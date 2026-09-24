@@ -1,0 +1,61 @@
+name: V2.8.11 One-Time Bounded Historical E Reconstruction Pilot
+on:
+  push:
+    paths:
+      - ".github/workflows/v2811-real-bounded-e-pilot.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v2811-one-time-bounded-e-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install bounded pilot runtime
+        run: python -m pip install playwright==1.55.0 pymupdf==1.26.4 pandas==2.3.2
+      - name: Verify frozen runner and authorization
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v2811_bounded_e_reconstruction_pilot.py)" = "b19bb2ed4ecb1588b4593653b3d33d11f2f898e8"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_PILOT_VALIDATION_RECEIPT.json").read_text())
+          c=json.loads(Path("evidence/V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["runner"]["blob_sha"]=="b19bb2ed4ecb1588b4593653b3d33d11f2f898e8"
+          a=v["authorization"]
+          assert a["execute_bounded_historical_pilot"] is True
+          assert a["full_historical_backfill"] is False
+          assert a["outcome_research"] is False
+          assert a["price_or_return_data"] is False
+          assert a["fold3_access"] is False
+          assert a["fold4_access"] is False
+          assert c["authorization"]["execute_real_historical_pilot_now"] is False
+          assert c["authorization"]["outcome_research"] is False
+          assert c["authorization"]["fold3_access"] is False
+          assert c["authorization"]["fold4_access"] is False
+          assert c["discovery_and_selection"]["maximum_selected_total"]==48
+          assert len(c["calendar"]["frozen_windows"])==8
+          print("V2.8.11 bounded E pilot binding PASS")
+          PY
+      - name: Run one-time bounded historical E reconstruction pilot
+        run: python scripts/v2811_bounded_e_reconstruction_pilot.py run
+      - name: Freeze V2.8.11 bounded E reconstruction result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_WINDOWS.json evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RESULTS.csv evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_POSITIVE_EVENTS.csv evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.11 bounded E reconstruction pilot result [skip ci]"
+          git pull --rebase origin main
+          git push
