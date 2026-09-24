@@ -214,7 +214,7 @@ def self_test():
   hist=dict(x[0]);hist["historical_reconstruction"]="true"
   ck("S11_historical_fails_provenance",readiness([hist])["provenance_checks"]["provenance_integrity_pass"] is False)
   c=rj(CADENCE);ck("S12_frozen_cadence",c["cadence"]["cron_utc"]=="0 1 * * 2-6" and c["integration"]["active_now"] is False)
-  src=Path(__file__).read_text()
+  src=Path(__file__).read_text().split("def self_test():")[0]
   ck("S13_no_price_modules",all(q not in src for q in ["v283_outcome_resolver","v280_scale_invariant_features","fwd10","fwd5"]))
   ck("S14_no_v2811_ingestion","V2.8.11_RECONCILED" not in src and "V2.8.11_TARGETED" not in src)
  out={"schema":"AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_SELFTEST_V1","tests":t,"passed":sum(z["pass"] for z in t),"total":len(t),"all_pass":all(z["pass"] for z in t),"real_shadow_ledger_modified":False,"price_or_return_data_consumed":False,"schedule_activated":False,"fold3_4_accessed":False}
