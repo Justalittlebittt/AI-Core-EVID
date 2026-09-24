@@ -1,0 +1,170 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_FINAL_RECORD_V1",
+  "version": "V2.8.11",
+  "status": "EVIDENCE_RECONSTRUCTION_TECHNICALLY_FEASIBLE_BUT_TOO_SPARSE_FOR_FULL_BACKFILL",
+  "reconciled_receipt": "evidence/V2.8.11_RECONCILED_FINAL_RECEIPT.json",
+  "reconciled_receipt_sha256": "a823dc88e06f204615479b02a6909d769479f68bd154fede0ec03d5b0ad8f68f",
+  "terminal_result_commit": "d8acf0ef3a299ad142197234778b155721bd87b4",
+  "execution_history": {
+    "original_pilot": {
+      "run_id": 35965093945,
+      "status": "TECHNICALLY_BLOCKED",
+      "cause": "Nested Playwright orchestration blocked all windows before candidate results."
+    },
+    "retry1": {
+      "run_id": 35971866911,
+      "status": "TECHNICALLY_BLOCKED_AFTER_REAL_DATA",
+      "selected_window_ledger_count": 21,
+      "emitted_result_rows": 19,
+      "classifier_ready_rows": 18,
+      "blockers": [
+        "post-processing canonical-ID regex bug",
+        "selected-filings denominator undercount",
+        "2023Q3 PDF-stage CNInfo home preflight abort"
+      ]
+    },
+    "targeted_retry2": {
+      "run_id": 35972796821,
+      "scope": "2023Q3 only",
+      "selected_rows": 2,
+      "classifier_ready_rows": 2,
+      "positive_rows": 0,
+      "status": "SUCCESS",
+      "source_drift": false
+    }
+  },
+  "reconciled_results": {
+    "selected_filings": 21,
+    "successful_classifier_ready_filings": 20,
+    "materialization_rate": 0.9523809523809523,
+    "technical_gate_pass": true,
+    "positive_filings": 3,
+    "distinct_positive_securities": 2,
+    "distinct_positive_quarters": 3,
+    "density_gate": {
+      "positive_filings_ge_4": false,
+      "distinct_positive_securities_ge_4": false,
+      "distinct_positive_quarters_ge_3": true
+    },
+    "final_status": "V2_8_11_E_EVENT_RECONSTRUCTION_TOO_SPARSE"
+  },
+  "reconstructed_positive_events": [
+    {
+      "quarter": "2024Q1",
+      "canonical_security_id": "SSE:600186",
+      "security_name": "莲花健康",
+      "announcement_id": "1219028938",
+      "title": "莲花健康关于转型算力业务相关进展情况的公告",
+      "disclosure_date": "2024-01-30",
+      "retrospective_causal_effective_date": "2024-01-31",
+      "matched_ai_role": [
+        "gpu"
+      ],
+      "matched_commerciality": [
+        "交付"
+      ]
+    },
+    {
+      "quarter": "2024Q2",
+      "canonical_security_id": "SSE:603300",
+      "security_name": "华铁应急",
+      "announcement_id": "1219987028",
+      "title": "浙江华铁应急设备科技股份有限公司关于投资智算中心建设的公告",
+      "disclosure_date": "2024-05-07",
+      "retrospective_causal_effective_date": "2024-05-08",
+      "matched_ai_role": [
+        "gpu",
+        "智算"
+      ],
+      "matched_commerciality": [
+        "客户"
+      ]
+    },
+    {
+      "quarter": "2024Q3",
+      "canonical_security_id": "SSE:600186",
+      "security_name": "莲花控股",
+      "announcement_id": "1220755485",
+      "title": "莲花控股股份有限公司关于转型算力业务相关进展情况的公告",
+      "disclosure_date": "2024-07-31",
+      "retrospective_causal_effective_date": "2024-08-01",
+      "matched_ai_role": [
+        "gpu"
+      ],
+      "matched_commerciality": [
+        "交付"
+      ]
+    }
+  ],
+  "interpretation": [
+    "The official filing discovery/materialization/classification pipeline is technically viable at bounded scale: 20 of 21 selected filings reached classifier-ready output.",
+    "The bounded sample does not establish enough positive-event density to justify an expensive full 2023-2024 historical backfill under the frozen feasibility gate.",
+    "The density failure is not a classifier or technical failure: positives were found in three distinct quarters, but only three positive filings and two distinct securities were reconstructed.",
+    "No price or return data were consumed, so this phase makes no alpha, excess-return or investment-performance claim about E events.",
+    "The two 2023Q3 targeted Retry2 filings were both successfully reconstructed and classified NOT_ESTABLISHED; they do not rescue density.",
+    "The existing 2024Q4 embedded-text blocker remains fail-closed and was not rescued with OCR."
+  ],
+  "problem_elimination_pass": {
+    "final_user_goal": "Obtain enough causal evidence-event observations to validate an evidence-anchored Setup without paying for a broad historical filing reconstruction that the bounded sample does not justify.",
+    "hard_constraints": [
+      "Do not treat E eligibility or an E event as validated alpha before outcome research is separately authorized.",
+      "Do not change the frozen E classifier, triage semantics or materiality rule to increase event yield.",
+      "Do not reopen full historical backfill under V2.8.11.",
+      "Do not resume open-ended pure-price entry-trigger discovery.",
+      "Keep fold3 and fold4 sealed.",
+      "No Setup, First60, Episode or live authorization exists."
+    ],
+    "removed_soft_assumptions": [
+      "A large historical backfill is necessary before any future evidence-anchored learning can continue.",
+      "Sparse historical reconstruction must be solved by expanding keywords or hand-picking windows.",
+      "Repeated retries of already-successful historical windows add useful information."
+    ],
+    "actions": {
+      "Delete": [
+        "Do not launch a full 2023-2024 CNInfo backfill.",
+        "Do not expand the eight V2.8.11 windows after seeing sparse positive density.",
+        "Do not add search terms, relax classifier semantics, or manually select AI-looking companies to increase positive yield."
+      ],
+      "Avoid": [
+        "Do not use price outcomes to choose which E-event types to preserve or discard at the data-collection stage.",
+        "Do not treat repeated positive filings from the same issuer as distinct cross-sectional validation evidence without explicit event-level design."
+      ],
+      "Absorb": [
+        "Reuse the already-working prospective E observation ledger, issuer identity binding, effective-date resolver and daily/prospective collection infrastructure.",
+        "Reuse future qualifying filings as append-only causal observations rather than reconstructing the whole past."
+      ],
+      "Substitute": "Shift from broad retrospective reconstruction to prospective shadow accumulation of qualifying E events, including event identity/type/provenance and later outcome fields only after a separately frozen outcome-observation contract.",
+      "Precompute_Reuse": "Persist each future official positive filing once with content hashes and causal effective date; deduplicate by announcement_id and issuer/event identity.",
+      "Optimize": "Only after a minimum prospective event sample is accumulated should outcome evaluation, event-type stratification or technical-overlay incremental tests be authorized."
+    }
+  },
+  "governance": {
+    "historical_full_backfill_authorized": false,
+    "bounded_historical_reconstruction_complete": true,
+    "evidence_event_alpha_claim_authorized": false,
+    "prospective_shadow_event_accumulation_authorized": false,
+    "outcome_research_authorized": false,
+    "pure_price_entry_search_authorized": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "decision": {
+    "full_historical_backfill": false,
+    "widen_v2811_windows": false,
+    "expand_keywords_to_rescue_density": false,
+    "alter_classifier_to_rescue_density": false,
+    "consume_fold3_now": false,
+    "next_stage": "V2.8.12_PROSPECTIVE_E_EVENT_SHADOW_ACCUMULATION_GATE"
+  },
+  "next_stage_constraints": [
+    "First freeze what constitutes one prospective shadow E event and how repeated positive filings for the same issuer are represented.",
+    "Define append-only provenance fields and causal effective date using existing V2.8.4 authority.",
+    "Do not compute or inspect post-event returns until the outcome-observation contract and minimum sample rule are frozen.",
+    "Use automated prospective collection rather than repeated chat-driven polling where existing GitHub Actions infrastructure can absorb the work.",
+    "Do not authorize trading, Setup emission, First60 append, fold3 or fold4 access."
+  ]
+}
