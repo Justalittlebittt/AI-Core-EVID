@@ -1,0 +1,38 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_INFORMATION_GATE_STATUS_V1",
+  "version": "V2.8.3",
+  "status": "INCOMPLETE_NO_EVALUATION",
+  "frozen_signal_date_count": 0,
+  "resolved_d10_date_count": 0,
+  "hypotheses": {
+    "H1_RV_COMPRESSION_CALM": {
+      "factor": "rv10_over_rv60",
+      "valid_calm_dates": 0,
+      "required_calm_dates": 60,
+      "valid_stressed_dates": 0,
+      "required_stressed_dates": 30,
+      "calm_dates_by_quarter": {},
+      "valid_calm_quarters": 0,
+      "required_valid_calm_quarters": 3,
+      "required_calm_dates_per_quarter": 15,
+      "structurally_invalid_d10_dates_lt_50_rows": 0,
+      "readiness": "INCOMPLETE"
+    },
+    "H2_TR_COMPRESSION_CALM": {
+      "factor": "tr10_over_tr60",
+      "valid_calm_dates": 0,
+      "required_calm_dates": 60,
+      "valid_stressed_dates": 0,
+      "required_stressed_dates": 30,
+      "calm_dates_by_quarter": {},
+      "valid_calm_quarters": 0,
+      "required_valid_calm_quarters": 3,
+      "required_calm_dates_per_quarter": 15,
+      "structurally_invalid_d10_dates_lt_50_rows": 0,
+      "readiness": "INCOMPLETE"
+    }
+  },
+  "performance_statistics_computed": false,
+  "confirmatory_evaluator_authorized": false,
+  "receipt_sha256": "c4f5de343d9851e88d29b501b78a87199bb6104118088806be70edcc625e219f"
+}
