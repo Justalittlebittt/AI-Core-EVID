@@ -1,0 +1,21 @@
+name: V2.8.11 Targeted Retry2 Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2811-targeted-retry2-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify targeted Retry2 blob
+        run: test "$(git hash-object scripts/v2811_targeted_retry2.py)" = "d1c2245f42f044f159a0fdc7b82db47404923a45"
+      - name: Run targeted Retry2 self-test only
+        run: python scripts/v2811_targeted_retry2.py self-test
