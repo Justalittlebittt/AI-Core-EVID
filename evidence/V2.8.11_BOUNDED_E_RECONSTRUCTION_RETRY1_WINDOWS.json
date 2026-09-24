@@ -1,0 +1,168 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_BOUNDED_E_RECONSTRUCTION_RETRY1_WINDOWS_V1",
+  "frozen_plan": [
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-02-07",
+      "start": "2023-02-07",
+      "end": "2023-02-13"
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-05-05",
+      "start": "2023-05-05",
+      "end": "2023-05-11"
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2023-07-31",
+      "start": "2023-07-31",
+      "end": "2023-08-06"
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor": "2023-11-06",
+      "start": "2023-11-06",
+      "end": "2023-11-12"
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor": "2024-01-30",
+      "start": "2024-01-30",
+      "end": "2024-02-05"
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2024-05-06",
+      "start": "2024-05-06",
+      "end": "2024-05-12"
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2024-07-29",
+      "start": "2024-07-29",
+      "end": "2024-08-04"
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor": "2024-11-05",
+      "start": "2024-11-05",
+      "end": "2024-11-11"
+    }
+  ],
+  "runtime_windows": [
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-02-07",
+      "start": "2023-02-07",
+      "end": "2023-02-13",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 8,
+      "triage_skipped": 0,
+      "materializable_rows": 8,
+      "selected_count": 4
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-05-05",
+      "start": "2023-05-05",
+      "end": "2023-05-11",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 5,
+      "triage_skipped": 0,
+      "materializable_rows": 5,
+      "selected_count": 2
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2023-07-31",
+      "start": "2023-07-31",
+      "end": "2023-08-06",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:APIRequestContext.get: aborted\nCall log:\n  - → GET https://www.cninfo.com.cn/\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n  - ← 200 200\n    - date: Thu, 24 Sep 2026 07:52:52 GMT\n    - content-type: text/html;charset=utf-8\n    - transfer-encoding: chunked\n    - connection: keep-alive\n    - server: openresty\n    - set-cookie: JSESSIONID=7A6DE4DD0E48C138671D977487CA935F; Path=/new; HttpOnly,JSESSIONID=7A6DE4DD0E48C138671D977487CA935F;Path=/new;HttpOnly,SF_cookie_4=90357558; path=/\n    - content-language: en-US\n    - vary: Accept-Encoding\n    - content-security-policy: default-src *;style-src 'self' 'unsafe-inline' *.cninfo.com.cn *.szse.cn ;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.cninfo.com.cn *.szse.cn;img-src * *.cninfo.com.cn *.szse.cn data:;worker-src * *.cninfo.com.cn *.szse.cn blob:;font-src 'self' *.cninfo.com.cn *.szse.cn data:;\n    - access-control-allow-credentials: true\n    - access-control-allow-headers: X-Requested-With\n    - access-control-allow-methods: GET, POST, OPTIONS\n    - content-encoding: br\n    - x-ccdn-origin-time: 497\n    - age: 1\n    - via: LA-MEX-queretaro-EDGE3-CACHE6[532],LA-MEX-queretaro-EDGE3-CACHE5[527,TCP_MISS,530],LA-MEX-mexicocity-GLOBAL1-CACHE17[501],LA-MEX-mexicocity-GLOBAL1-CACHE21[497,TCP_MISS,499]\n    - x-hcs-proxy-type: 0\n    - x-ccdn-cachettl: 0\n    - x-ccdn-req-id-46b1: 36b8235b7e027497144fb7a555526a9a\n",
+      "candidate_rows": 2,
+      "triage_skipped": 0,
+      "materializable_rows": 2,
+      "selected_count": 2
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor": "2023-11-06",
+      "start": "2023-11-06",
+      "end": "2023-11-12",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 3,
+      "triage_skipped": 0,
+      "materializable_rows": 3,
+      "selected_count": 2
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor": "2024-01-30",
+      "start": "2024-01-30",
+      "end": "2024-02-05",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 3,
+      "triage_skipped": 0,
+      "materializable_rows": 3,
+      "selected_count": 3
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2024-05-06",
+      "start": "2024-05-06",
+      "end": "2024-05-12",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 9,
+      "triage_skipped": 0,
+      "materializable_rows": 9,
+      "selected_count": 3
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2024-07-29",
+      "start": "2024-07-29",
+      "end": "2024-08-04",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 1,
+      "triage_skipped": 0,
+      "materializable_rows": 1,
+      "selected_count": 1
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor": "2024-11-05",
+      "start": "2024-11-05",
+      "end": "2024-11-11",
+      "window_status": "COMPLETED",
+      "source_blocker": "",
+      "candidate_rows": 4,
+      "triage_skipped": 0,
+      "materializable_rows": 4,
+      "selected_count": 4
+    }
+  ],
+  "price_or_return_data_consumed": false
+}\n
