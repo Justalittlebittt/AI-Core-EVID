@@ -1,0 +1,92 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_AND_CADENCE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "gate": {
+    "path": "evidence/V2.8.12_PROSPECTIVE_E_EVENT_SHADOW_ACCUMULATION_GATE.json",
+    "freeze_commit": "a54bdb29c2ab1e1c80211e8922c1ca368ddc9f26"
+  },
+  "cadence_contract": {
+    "path": "evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json",
+    "freeze_commit": "e105d9ac8a40605c1dbd965bc5832764744ae6f0",
+    "cron_utc": "0 1 * * 2-6",
+    "active_now": false
+  },
+  "integration_plan": {
+    "path": "evidence/V2.8.12_SCHEDULED_SHADOW_INTEGRATION_PLAN.json",
+    "freeze_commit": "2e3912d318523ca5d95e0514f5f93fb27b4fbc96",
+    "target_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "concurrency_group": "v284-v2812-prospective-e-shadow-serial"
+  },
+  "accumulator": {
+    "path": "scripts/v2812_shadow_accumulator.py",
+    "implementation_commit": "65a5a228ce3fc7033f6c2bee4a42753ddc4234a3",
+    "blob_sha": "66fe3735c512e09252ee2400e458334a4043536b"
+  },
+  "self_test": {
+    "workflow_run_id": 35974943940,
+    "workflow_head_sha": "b793bb36720e6bb39b95697a85571e18815a6e8f",
+    "job_id": 107553103542,
+    "conclusion": "success",
+    "runner_blob_verified": true,
+    "passed": 14,
+    "total": 14,
+    "all_pass": true,
+    "real_shadow_ledger_modified": false,
+    "price_or_return_data_consumed": false,
+    "schedule_activated": false,
+    "fold3_4_accessed": false
+  },
+  "earlier_self_test_incidents": [
+    {
+      "workflow_run_id": 35974791297,
+      "classification": "STATIC_SELFTEST_SCAN_SCOPE_ONLY",
+      "failed_tests": [
+        "S13_no_price_modules",
+        "S14_no_v2811_ingestion"
+      ],
+      "cause": "Static scan searched the entire source file and matched forbidden names inside its own assertions.",
+      "research_semantics_changed": false
+    },
+    {
+      "workflow_run_id": 35974861770,
+      "classification": "STATIC_SELFTEST_PATCH_NOT_APPLIED_TO_ACTUAL_SOURCE_LINE",
+      "failed_tests": [
+        "S13_no_price_modules",
+        "S14_no_v2811_ingestion"
+      ],
+      "cause": "The first corrective text replacement did not match the actual source line, leaving full-file scan behavior unchanged.",
+      "research_semantics_changed": false
+    }
+  ],
+  "validated": [
+    "Genesis is exactly one prospective shadow row from announcement 1225573666; zero V2.8.11 historical rows are imported.",
+    "Exact duplicate announcements are no-ops and identity/object/decision conflicts block.",
+    "First positive filing for an issuer gets sequence 1 with empty prior linkage.",
+    "Later positive filing for the same issuer gets the next sequence and links exactly to the immediately prior issuer filing without semantic project inference.",
+    "A different issuer starts at sequence 1.",
+    "The readiness gate can only reach READY when all frozen conditions pass: >=20 events, >=12 issuers, >=12 effective dates, >=6 calendar months, max issuer share <=20%, provenance PASS and no price/return consumption.",
+    "Repeated filings contribute to event count but not distinct-issuer count.",
+    "Historical reconstruction rows fail provenance and cannot seed readiness.",
+    "Accumulator has no price/outcome modules and no V2.8.11 ingestion path.",
+    "Exact scheduled cadence is frozen at 0 1 * * 2-6 UTC but remains inactive until a separate activation commit.",
+    "Scheduled integration is serialized after V2.8.4 finalization and uses a shared non-overlapping concurrency path.",
+    "No fold3/fold4 access, Setup emission, First60 append, Episode emission or live authorization occurs during validation."
+  ],
+  "authorization": {
+    "create_genesis_shadow_ledger_in_activation": true,
+    "activate_prospective_shadow_accumulation_in_separate_commit": true,
+    "activate_frozen_schedule_in_separate_commit": true,
+    "outcome_research": false,
+    "outcome_contract_drafting_before_readiness": false,
+    "price_or_return_data": false,
+    "historical_backfill": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.12_SHADOW_ACCUMULATION_AND_SCHEDULE_ACTIVATION"
+}
