@@ -1,0 +1,168 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_BOUNDED_E_RECONSTRUCTION_WINDOWS_V1",
+  "frozen_plan": [
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-02-07",
+      "start": "2023-02-07",
+      "end": "2023-02-13"
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-05-05",
+      "start": "2023-05-05",
+      "end": "2023-05-11"
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2023-07-31",
+      "start": "2023-07-31",
+      "end": "2023-08-06"
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor": "2023-11-06",
+      "start": "2023-11-06",
+      "end": "2023-11-12"
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor": "2024-01-30",
+      "start": "2024-01-30",
+      "end": "2024-02-05"
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2024-05-06",
+      "start": "2024-05-06",
+      "end": "2024-05-12"
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2024-07-29",
+      "start": "2024-07-29",
+      "end": "2024-08-04"
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor": "2024-11-05",
+      "start": "2024-11-05",
+      "end": "2024-11-11"
+    }
+  ],
+  "runtime_windows": [
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-02-07",
+      "start": "2023-02-07",
+      "end": "2023-02-13",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2023-05-05",
+      "start": "2023-05-05",
+      "end": "2023-05-11",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2023-07-31",
+      "start": "2023-07-31",
+      "end": "2023-08-06",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor": "2023-11-06",
+      "start": "2023-11-06",
+      "end": "2023-11-12",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor": "2024-01-30",
+      "start": "2024-01-30",
+      "end": "2024-02-05",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor": "2024-05-06",
+      "start": "2024-05-06",
+      "end": "2024-05-12",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor": "2024-07-29",
+      "start": "2024-07-29",
+      "end": "2024-08-04",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor": "2024-11-05",
+      "start": "2024-11-05",
+      "end": "2024-11-11",
+      "window_status": "WINDOW_SOURCE_BLOCKED",
+      "source_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "candidate_rows": 0,
+      "triage_skipped": 0,
+      "materializable_rows": 0,
+      "selected_count": 0
+    }
+  ],
+  "price_or_return_data_consumed": false
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_BOUNDED_E_RECONSTRUCTION_FINAL_RECEIPT_V1",
+  "version": "V2.8.11",
+  "status": "V2_8_11_E_RECONSTRUCTION_TECHNICALLY_BLOCKED",
+  "window_count": 8,
+  "selected_filings": 0,
+  "successful_classifier_ready_filings": 0,
+  "materialization_rate": 0.0,
+  "positive_filings": 0,
+  "distinct_positive_securities": 0,
+  "distinct_positive_quarters": 0,
+  "technical_checks": {
+    "eight_windows_accounted_for": true,
+    "classifier_ready_materialization_rate_ge_0_90": false,
+    "positive_identity_complete": true,
+    "positive_temporal_provenance_complete": true,
+    "semantics_unchanged": true
+  },
+  "density_checks": {
+    "positive_filings_ge_4": false,
+    "distinct_positive_securities_ge_4": false,
+    "distinct_positive_quarters_ge_3": false
+  },
+  "windows_sha256": "073df4648539e182cb56a284706509aa079cea0bbd82de74e2f27ae128144fda",
+  "results_sha256": "5108088440ddbfc62240f482a83842494970be7922b0fca967218c13d4b2e9d1",
+  "positive_events_sha256": "5108088440ddbfc62240f482a83842494970be7922b0fca967218c13d4b2e9d1",
+  "price_or_return_data_consumed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "prospective_E_ledger_modified": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "6dade94876ef739d2b0c4dd4e72a7ef09f87e0a195a34ad7e24b4a71b26a8b79"
+}
