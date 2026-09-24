@@ -1,0 +1,58 @@
+name: V2.8.10 One-Time Real AC Pullback-Reclaim Research
+on:
+  push:
+    paths:
+      - ".github/workflows/v2810-real-ac-research.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v2810-one-time-real-ac-research
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install locked runtime
+        run: python -m pip install numpy==2.3.2 pandas==2.3.2 pyarrow==21.0.0
+      - name: Verify frozen evaluator and authorization
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v2810_locked_ac_pullback_reclaim_evaluator.py)" = "43fe0bd1a0a0bdc1245e58ed105e9ac752845fdc"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATOR_VALIDATION_RECEIPT.json").read_text())
+          h=json.loads(Path("evidence/V2.8.10_INDEPENDENT_ENTRY_MECHANISM_DISCOVERY_GATE.json").read_text())
+          e=json.loads(Path("evidence/V2.8.10_LOCKED_AC_PULLBACK_RECLAIM_EVALUATION_GATE.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["evaluator"]["blob_sha"]=="43fe0bd1a0a0bdc1245e58ed105e9ac752845fdc"
+          assert v["authorization"]["real_AC_research_on_consumed_folds0_1_2"] is True
+          assert v["authorization"]["fold3_access"] is False
+          assert v["authorization"]["fold4_access"] is False
+          assert h["single_hypothesis"]["candidate_id"]=="AC_MA20_PULLBACK_RECLAIM_V1"
+          assert h["authorization"]["fold3_access"] is False
+          assert h["authorization"]["fold4_access"] is False
+          assert e["status"]=="FROZEN_BEFORE_AC_PULLBACK_RECLAIM_OUTCOME_RESEARCH"
+          assert e["authorization"]["fold3_access"] is False
+          assert e["authorization"]["fold4_access"] is False
+          print("V2.8.10 locked real-AC binding PASS")
+          PY
+      - name: Run one-time real AC research on consumed folds 0-2
+        run: python scripts/v2810_locked_ac_pullback_reclaim_evaluator.py evaluate
+      - name: Freeze V2.8.10 AC research result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.10_AC_EVENT_LEDGER.csv evidence/V2.8.10_AC_DAILY_METRICS.csv evidence/V2.8.10_AC_RESEARCH_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.10 AC pullback-reclaim research result [skip ci]"
+          git pull --rebase origin main
+          git push
