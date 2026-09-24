@@ -16,6 +16,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Verify targeted Retry2 blob
-        run: test "$(git hash-object scripts/v2811_targeted_retry2.py)" = "d1c2245f42f044f159a0fdc7b82db47404923a45"
+        run: test "$(git hash-object scripts/v2811_targeted_retry2.py)" = "8976d4c929c174b31ff42e2022b07287932cd733"
       - name: Run targeted Retry2 self-test only
         run: python scripts/v2811_targeted_retry2.py self-test
