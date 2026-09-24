@@ -1,0 +1,163 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_EVIDENCE_ANCHORED_SETUP_ARCHITECTURE_GATE_V1",
+  "version": "V2.8.11",
+  "status": "FROZEN_BEFORE_HISTORICAL_E_RECONSTRUCTION_PILOT",
+  "purpose": "Replace open-ended pure-price entry discovery with an evidence-anchored research architecture, while first proving that historical positive E events can be reconstructed causally and cheaply enough to justify any larger research effort.",
+  "parents": {
+    "v2810_final_record": "evidence/V2.8.10_FINAL_RECORD.json",
+    "v2810_status": "AC_REJECTED_PURE_PRICE_ENTRY_SEARCH_STOPPED",
+    "e_eligibility_contract": "evidence/V2.8.4_AI_CORE_ELIGIBILITY_CONTRACT.json",
+    "e_effective_date_contract": "evidence/V2.8.4_E_LAYER_EFFECTIVE_DATE_CONTRACT.json",
+    "setup_admission_envelope": "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json",
+    "candidate_materialization_contract": "evidence/V2.8.4_CANDIDATE_OFFICIAL_MATERIALIZATION_CONTRACT.json"
+  },
+  "architecture_decision": {
+    "pure_price_entry_trigger_required": false,
+    "evidence_anchor_role": "A newly qualifying economically material AI-Core filing/event defines when a security becomes research-relevant. This is a candidate-time anchor only until outcome value is separately validated.",
+    "T_layer_role": "State, ranking, context and later incremental overlays only. T features do not create E eligibility.",
+    "X_layer_role": "Tradability, liquidity, risk and execution constraints only.",
+    "U_layer_role": "Official PIT A-share membership authority, unchanged.",
+    "setup_admission_compatibility": "PASS. V2.8.4 admission treats strategy semantics as opaque and only requires a causal outcome-free PASS strategy receipt matched to valid U/E provenance for the same security and date."
+  },
+  "current_data_audit": {
+    "prospective_observation_ledger": {
+      "file": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv",
+      "prospective_rows": 1,
+      "positive_rows": 1,
+      "conclusion": "Operationally valid but far too small for any alpha or return inference."
+    },
+    "effective_event_ledger": {
+      "file": "evidence/V2.8.4_E_LAYER_EFFECTIVE_ELIGIBILITY_EVENTS.csv",
+      "effective_positive_events": 1,
+      "conclusion": "Confirms effective-date machinery but is not a research sample."
+    },
+    "bounded_real_diagnostic": {
+      "source_window": "2026-09-01 through 2026-09-07",
+      "candidate_rows": 15,
+      "triage_skipped": 11,
+      "materialized_and_classified": 4,
+      "blocked": 0,
+      "positive_events": 0,
+      "conclusion": "Pipeline compatibility is proven; one bounded week is insufficient to estimate positive-event reconstruction density."
+    },
+    "candidate_discovery": {
+      "collector": "scripts/v284_candidate_collector.py",
+      "frozen_hint_terms": 18,
+      "exchanges": [
+        "SSE",
+        "SZSE"
+      ],
+      "deterministic_identity": "announcement_id + canonical security + official adjunct_url",
+      "official_announcement_time_available_in_candidate_metadata": true
+    }
+  },
+  "temporal_authority": {
+    "prospective": "Retain V2.8.4 rule: first joint A-share trading date strictly after authoritative repository observation date; no same-day activation and no backfill.",
+    "retrospective_reconstruction": "Historical pilot is diagnostic only. A reconstructed filing may receive a RETROSPECTIVE_CAUSAL_EFFECTIVE_DATE equal to the first joint A-share trading date strictly after the official filing disclosure date/path date. If official metadata and official path date conflict or temporal provenance is ambiguous, that candidate is blocked.",
+    "historical_reconstruction_does_not_create_formal_E_state": true,
+    "historical_reconstruction_does_not_modify_prospective_ledger": true,
+    "same_day_historical_signal_forbidden": true,
+    "future_revision_backfill_forbidden": true
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Determine whether evidence-anchored candidate timing is practically researchable without paying the cost of a multi-year full-market filing backfill first.",
+    "hard_constraints": [
+      "Official issuer filings only for E evidence.",
+      "Frozen V2.8.4 eligibility/classification semantics; no rule changes from return outcomes.",
+      "Causal historical timestamp treatment and no same-day use.",
+      "No price or return data may be read during the reconstruction-feasibility pilot.",
+      "No full-market PDF prefetch.",
+      "No fold3/fold4 access.",
+      "No Setup/First60/Episode/live authorization."
+    ],
+    "soft_assumptions_deleted": [
+      "Delete the assumption that all 2023-2024 candidate PDFs must be downloaded before feasibility is known.",
+      "Delete the assumption that prospective accumulation must continue for months before architecture feasibility can be tested.",
+      "Delete the assumption that candidate title/keyword hits are sufficient evidence."
+    ],
+    "preferred_order": {
+      "Delete": "Do not run a full historical backfill.",
+      "Avoid": "Use title triage before PDF materialization and block temporal ambiguity.",
+      "Absorb": "Reuse the existing 18-term collector, official PDF materializer, page text extractor, classifier, issuer identity logic and joint calendar.",
+      "Substitute": "Estimate reconstruction yield from a deterministic quarter-spread sample instead of exhaustive history.",
+      "Precompute_Reuse": "Content-addressed PDF/object hashes and announcement IDs prevent duplicate work.",
+      "Optimize": "Only if bounded reconstruction proves positive-event density and provenance quality."
+    }
+  },
+  "bounded_historical_reconstruction_pilot": {
+    "objective": "Measure reconstruction feasibility, positive-event yield, temporal provenance quality and official-document cost. It does not test returns or investment alpha.",
+    "historical_period": "2023-01-01 through 2024-12-31",
+    "quarter_count": 8,
+    "window_rule": "For each calendar quarter, use the 21st joint A-share trading session in that quarter as anchor A and collect CNInfo candidate hints from calendar date A through A+6 calendar days inclusive.",
+    "windows_are_determined_before_any_candidate_results": true,
+    "candidate_collector": "Reuse scripts/v284_candidate_collector.py with its exact frozen 18-term registry and SSE/SZSE routes.",
+    "triage": "Apply frozen V2.8.4_CANDIDATE_TRIAGE_CONTRACT before materialization.",
+    "per_window_selection": {
+      "maximum_selected_official_pdfs": 6,
+      "dedupe_key": "announcement_id",
+      "security_diversity": "At most one selected filing per canonical_security_id in each window.",
+      "deterministic_order": "SHA256(announcement_id) ascending after triage; take the first eligible distinct-security rows until six are selected.",
+      "manual_company_selection": false,
+      "manual_document_selection": false
+    },
+    "global_max_selected_official_pdfs": 48,
+    "official_pdf_only": true,
+    "raw_pdf_git_storage": false,
+    "classification": "Reuse frozen page-scoped V2.8.4 classifier and aggregation semantics with no rule changes.",
+    "price_or_return_data_forbidden": true
+  },
+  "pilot_required_outputs": [
+    "all eight computed anchor dates and seven-calendar-day query windows",
+    "candidate counts before and after deduplication per window",
+    "triage skip and materializable counts per window",
+    "selected announcement IDs and canonical security IDs with deterministic selection hashes",
+    "official announcement_time and path_disclosure_date completeness/consistency",
+    "PDF materialization and page-text extraction success/blocker counts",
+    "classification state per selected filing",
+    "for every historical ELIGIBLE_AI_CORE filing: evidence page, evidence sentence hash, matched AI role, matched commerciality, source object hash and retrospective causal effective date",
+    "distinct positive securities and distinct positive quarters",
+    "PDFs materialized per positive event",
+    "no price/return fields or computations"
+  ],
+  "pilot_feasibility_gate": {
+    "technical_requires_all": [
+      "All eight deterministic query windows execute or have an explicit source blocker.",
+      "At least 90% of selected filings successfully materialize and yield classifier-ready page text.",
+      "100% of reconstructed positive events have unambiguous canonical security identity.",
+      "100% of reconstructed positive events have non-conflicting official temporal provenance sufficient for the conservative next-trading-date rule.",
+      "No classifier, triage or eligibility semantic changes are made after seeing pilot classifications."
+    ],
+    "positive_event_density_for_expansion": [
+      "At least 4 reconstructed ELIGIBLE_AI_CORE filings.",
+      "At least 4 distinct canonical securities among those positives.",
+      "Positive events span at least 3 distinct calendar quarters."
+    ],
+    "rationale": "This is not an alpha-significance threshold. It is the minimum evidence that the pipeline produces more than isolated one-off positives across time and issuers at a bounded document cost.",
+    "if_all_pass": "V2_8_11_BOUNDED_E_RECONSTRUCTION_FEASIBLE; authorize a separately frozen historical E-event reconstruction expansion design, still without return inspection.",
+    "if_technical_pass_density_fail": "V2_8_11_E_EVENT_RECONSTRUCTION_TOO_SPARSE; do not authorize broad backfill; continue prospective E accumulation or reconsider evidence-source architecture without price tuning.",
+    "if_technical_fail": "V2_8_11_E_RECONSTRUCTION_TECHNICALLY_BLOCKED; fix only provenance/materialization implementation defects, not classification semantics or density thresholds."
+  },
+  "explicitly_not_authorized": [
+    "No D+5/D+10 or other return computation in the pilot.",
+    "No use of folds0-2 price histories during the pilot.",
+    "No historical E state backfill into the prospective ledger.",
+    "No treating historical reconstructed positives as already validated Setup signals.",
+    "No full 2023-2024 CNInfo PDF sweep.",
+    "No keyword expansion, classifier relaxation or hand-picking companies to increase positive yield.",
+    "No technical filter overlays in the pilot.",
+    "No fold3/fold4 access."
+  ],
+  "governance": {
+    "evidence_event_alpha_claim_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "bounded_reconstruction_pilot_authorized": true,
+    "outcome_research_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT_AND_VALIDATION"
+}
