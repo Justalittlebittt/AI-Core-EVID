@@ -21,7 +21,11 @@ EXPECTED_CANDIDATES=2; EXPECTED_MATERIALIZABLE=2; EXPECTED_SELECTED=2
 TOTAL_SELECTED=21
 CANON=re.compile(r"^(SSE|SZSE):\d{6}$")
 
-def rj(p:Path): return json.loads(p.read_text(encoding="utf-8").replace("\\n\n","\n").replace("}\n","}"))
+def rj(p:Path):
+    s=p.read_text(encoding="utf-8").strip()
+    while s.endswith("\\n"):
+        s=s[:-2].rstrip()
+    return json.loads(s)
 def sha_file(p:Path):
     h=hashlib.sha256()
     with p.open("rb") as f:
