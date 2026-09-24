@@ -18,6 +18,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Verify shadow accumulator blob
-        run: test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "8a4c51840e960274242ff3c89c5314f1828d44ad"
+        run: test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "66fe3735c512e09252ee2400e458334a4043536b"
       - name: Run V2.8.12 shadow self-test only
         run: python scripts/v2812_shadow_accumulator.py self-test
