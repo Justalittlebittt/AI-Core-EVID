@@ -1,0 +1,60 @@
+name: V2.8.11 One-Time Bounded Historical E Reconstruction Retry1
+on:
+  push:
+    paths:
+      - ".github/workflows/v2811-real-bounded-e-retry1.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v2811-one-time-bounded-e-retry1
+  cancel-in-progress: false
+jobs:
+  retry1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Retry1 runtime
+        run: python -m pip install playwright==1.55.0 pymupdf==1.26.4 pandas==2.3.2
+      - name: Verify frozen Retry1 runner and authorization
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v2811_bounded_e_reconstruction_retry1.py)" = "db979c75e40d6c15451d41949849d8d7965fbc75"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_VALIDATION_RECEIPT.json").read_text())
+          a=json.loads(Path("evidence/V2.8.11_TECHNICAL_BLOCKER_AMENDMENT_1.json").read_text())
+          c=json.loads(Path("evidence/V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["runner"]["blob_sha"]=="db979c75e40d6c15451d41949849d8d7965fbc75"
+          assert v["authorization"]["execute_retry1"] is True
+          assert v["authorization"]["full_historical_backfill"] is False
+          assert v["authorization"]["outcome_research"] is False
+          assert v["authorization"]["price_or_return_data"] is False
+          assert v["authorization"]["fold3_access"] is False
+          assert v["authorization"]["fold4_access"] is False
+          assert a["status"]=="FROZEN_BEFORE_RETRY1_IMPLEMENTATION"
+          assert a["authorization"]["implement_retry1"] is True
+          assert a["authorization"]["execute_retry1_now"] is False
+          assert c["discovery_and_selection"]["maximum_selected_total"]==48
+          assert len(c["calendar"]["frozen_windows"])==8
+          print("V2.8.11 Retry1 binding PASS")
+          PY
+      - name: Run one-time bounded historical E reconstruction Retry1
+        run: python scripts/v2811_bounded_e_reconstruction_retry1.py run
+      - name: Freeze V2.8.11 Retry1 result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_WINDOWS.json evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_RESULTS.csv evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_POSITIVE_EVENTS.csv evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.11 bounded E reconstruction Retry1 result [skip ci]"
+          git pull --rebase origin main
+          git push
