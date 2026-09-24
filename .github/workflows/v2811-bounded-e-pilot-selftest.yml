@@ -1,0 +1,21 @@
+name: V2.8.11 Bounded E Reconstruction Pilot Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2811-bounded-e-pilot-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify pilot runner blob
+        run: test "$(git hash-object scripts/v2811_bounded_e_reconstruction_pilot.py)" = "b19bb2ed4ecb1588b4593653b3d33d11f2f898e8"
+      - name: Run V2.8.11 bounded E pilot self-test only
+        run: python scripts/v2811_bounded_e_reconstruction_pilot.py self-test
