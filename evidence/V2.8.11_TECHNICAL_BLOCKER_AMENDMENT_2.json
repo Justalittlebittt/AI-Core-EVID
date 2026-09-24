@@ -1,0 +1,114 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_TECHNICAL_BLOCKER_AMENDMENT_2_V1",
+  "version": "V2.8.11",
+  "status": "FROZEN_BEFORE_TARGETED_RETRY2_IMPLEMENTATION",
+  "parent_contract": "evidence/V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT.json",
+  "retry1": {
+    "run_id": 35971866911,
+    "result_commit": "9eeae78508bcc95190dc48f31bc423a092ec120b",
+    "final_receipt": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_FINAL_RECEIPT.json",
+    "results": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_RESULTS.csv",
+    "windows": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_WINDOWS.json",
+    "frozen_receipt_sha256": "53bb2283a5c5a5dc676bf7ce9d000a8c1a66eaec58e6a5559cbe8255ea0725e3"
+  },
+  "blockers": [
+    {
+      "id": "B1_IDENTITY_REGEX_POSTPROCESSING",
+      "classification": "PURE_RECEIPT_EVALUATION_DEFECT",
+      "evidence": "Retry1 positive rows use valid canonical IDs SSE:600186 and SSE:603300, but the final-gate regex in Retry1 source is r'(SSE|SZSE):\\\\d{6}', which matches a literal backslash-d rather than six digits.",
+      "occurred_after_classification": true,
+      "changes_candidate_or_classification_results": false,
+      "repair": "Use the already-established canonical pattern r'(SSE|SZSE):\\d{6}' when reconciling the final technical gate."
+    },
+    {
+      "id": "B2_SELECTED_DENOMINATOR_UNDERCOUNT",
+      "classification": "PURE_RECEIPT_AGGREGATION_DEFECT",
+      "evidence": "Retry1 window ledger selected_count sums to 21, while final receipt selected_filings=19 because two 2023Q3 selected rows were lost when the PDF request context failed before row emission.",
+      "correct_denominator_rule": "selected_filings equals sum(runtime_windows.selected_count), including selected rows in an explicitly blocked window.",
+      "retry1_correct_denominator": 21,
+      "current_classifier_ready_successes": 18,
+      "current_correct_rate": 0.8571428571428571
+    },
+    {
+      "id": "B3_2023Q3_PDF_CONTEXT_PREFLIGHT_ABORT",
+      "classification": "TARGETED_SOURCE_ORCHESTRATION_BLOCKER",
+      "window": "2023Q3",
+      "frozen_window_start": "2023-07-31",
+      "frozen_window_end": "2023-08-06",
+      "retry1_candidate_rows": 2,
+      "retry1_materializable_rows": 2,
+      "retry1_selected_count": 2,
+      "signature": "APIRequestContext.get https://www.cninfo.com.cn/ aborted after HTTP 200 response headers",
+      "occurred_after_candidate_collection_and_selection": true,
+      "selected_ids_not_persisted": true,
+      "repair": [
+        "Re-run candidate collection for this one frozen window only using the unchanged V2.8.4 collector/18 terms.",
+        "Require candidate_rows=2, materializable_rows=2 and deterministic selected_count=2; otherwise fail closed as source-drift blocker.",
+        "Persist the two Retry2 selected identities before PDF fetch.",
+        "Delete the non-semantic www.cninfo.com.cn home preflight from the PDF-download stage; fetch only selected official static.cninfo.com.cn PDFs using the frozen materialization rule."
+      ]
+    }
+  ],
+  "immutable_existing_result": {
+    "retained_successful_or_blocked_rows": 19,
+    "existing_classifier_ready_rows": 18,
+    "existing_positive_filings": 3,
+    "existing_distinct_positive_securities": 2,
+    "existing_distinct_positive_quarters": 3,
+    "existing_2024Q4_text_extraction_blocker": "Retained unchanged; no OCR or extraction-rule rescue is authorized."
+  },
+  "problem_elimination": {
+    "delete": "Do not rerun all eight historical windows and do not repeat the 19 already emitted Retry1 rows.",
+    "avoid": "Remove the unnecessary CNInfo home preflight from the static PDF-download stage.",
+    "absorb": "Reuse the immutable Retry1 results for seven windows and the existing 2024Q4 fail-closed blocker.",
+    "substitute": "Target only the missing 2023Q3 selected rows, then reconcile the gate from frozen Retry1 + targeted Retry2 outputs.",
+    "precompute_reuse": "Bind all original Retry1 file hashes before reconciliation.",
+    "optimize": "No classifier, triage, keyword, window, cap, temporal or density threshold changes."
+  },
+  "retry2_scope": {
+    "only_window": "2023Q3",
+    "start": "2023-07-31",
+    "end": "2023-08-06",
+    "expected_candidate_rows": 2,
+    "expected_materializable_rows": 2,
+    "expected_selected_rows": 2,
+    "maximum_pdf_fetches": 2,
+    "allowed_origin": "https://static.cninfo.com.cn/",
+    "no_home_preflight": true
+  },
+  "reconciliation_rules": {
+    "selected_filings_denominator": "sum frozen Retry1 runtime_windows.selected_count = 21",
+    "classifier_ready_numerator": "18 existing Retry1 successes plus Retry2 successful classifier-ready rows",
+    "materialization_rate": "classifier_ready_numerator / 21",
+    "positive_pool": "existing Retry1 positive rows plus Retry2 positive rows",
+    "canonical_id_regex": "^(SSE|SZSE):\\d{6}$",
+    "density_thresholds_unchanged": {
+      "positive_filings_ge_4": 4,
+      "distinct_positive_securities_ge_4": 4,
+      "distinct_positive_quarters_ge_3": 3
+    },
+    "terminal_logic_unchanged": {
+      "technical_and_density_pass": "V2_8_11_BOUNDED_E_RECONSTRUCTION_FEASIBLE",
+      "technical_pass_density_fail": "V2_8_11_E_EVENT_RECONSTRUCTION_TOO_SPARSE",
+      "technical_fail": "V2_8_11_E_RECONSTRUCTION_TECHNICALLY_BLOCKED"
+    }
+  },
+  "forbidden": [
+    "No rerun of the other seven windows.",
+    "No PDF refetch for any Retry1 row already emitted.",
+    "No OCR or alternate extraction for the existing 2024Q4 blocker.",
+    "No keyword expansion, triage/classifier change, manual company selection, window shift or extra sampling.",
+    "No price/return access, folds0-4 price access, outcome research, Setup/First60/Episode/live emission."
+  ],
+  "authorization": {
+    "implement_targeted_retry2": true,
+    "validate_before_execution": true,
+    "execute_retry2_now": false,
+    "reconcile_from_frozen_outputs_after_retry2": true,
+    "outcome_research": false,
+    "price_or_return_data": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "next_stage": "V2.8.11_TARGETED_2023Q3_RETRY2_IMPLEMENTATION_VALIDATION"
+}
