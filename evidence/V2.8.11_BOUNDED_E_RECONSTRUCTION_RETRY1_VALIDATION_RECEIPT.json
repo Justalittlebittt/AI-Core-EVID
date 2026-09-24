@@ -1,0 +1,53 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_BOUNDED_E_RECONSTRUCTION_RETRY1_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.11",
+  "status": "PASS",
+  "amendment": {
+    "path": "evidence/V2.8.11_TECHNICAL_BLOCKER_AMENDMENT_1.json",
+    "freeze_commit": "b045c5a5f9b6a2682dc4b1525971a40737bad60d"
+  },
+  "runner": {
+    "path": "scripts/v2811_bounded_e_reconstruction_retry1.py",
+    "implementation_commit": "3cea331fe92786d2f9a20992473f7b19c6c32a2d",
+    "blob_sha": "db979c75e40d6c15451d41949849d8d7965fbc75"
+  },
+  "self_test": {
+    "workflow_run_id": 35971154021,
+    "workflow_head_sha": "43fa2ad70eff7a2d4920201a834d522aff73a690",
+    "job_id": 107540948584,
+    "conclusion": "success",
+    "runner_blob_verified": true,
+    "passed": 17,
+    "total": 17,
+    "all_pass": true,
+    "real_CNInfo_queries_executed": false,
+    "real_PDFs_downloaded": false,
+    "price_or_return_data_consumed": false,
+    "fold3_4_accessed": false
+  },
+  "validated": [
+    "all original eight frozen windows preserved",
+    "all original selection caps and density gates preserved",
+    "candidate collection executes before any PDF-download Playwright context",
+    "v284_candidate_collector.collect owns its own Playwright context without nesting",
+    "PDF download Playwright context is opened separately only after candidate collection",
+    "original technical blocker occurred before candidate results and before PDF materialization",
+    "no classifier, triage, temporal, keyword, threshold or feasibility-gate semantics changed",
+    "Retry1 writes only RETRY1-namespaced outputs and preserves the original blocked evidence",
+    "no price/return modules are imported",
+    "fold3/fold4 remain sealed"
+  ],
+  "authorization": {
+    "execute_retry1": true,
+    "full_historical_backfill": false,
+    "outcome_research": false,
+    "price_or_return_data": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.11_ONE_TIME_BOUNDED_HISTORICAL_E_RECONSTRUCTION_RETRY1"
+}
