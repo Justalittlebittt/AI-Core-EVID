@@ -1,0 +1,54 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_TARGETED_RETRY2_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.11",
+  "status": "PASS",
+  "amendment": {
+    "path": "evidence/V2.8.11_TECHNICAL_BLOCKER_AMENDMENT_2.json",
+    "freeze_commit": "a76d786b5eda9438b5ce0d448806b4e9f5e08c2f"
+  },
+  "runner": {
+    "path": "scripts/v2811_targeted_retry2.py",
+    "implementation_commit": "1d49fc915c077fbc044d0d01bb55bb686573ec77",
+    "blob_sha": "8976d4c929c174b31ff42e2022b07287932cd733"
+  },
+  "self_test": {
+    "workflow_run_id": 35972681800,
+    "workflow_head_sha": "8476f192a3f196f23b75943450dca76762c476c6",
+    "job_id": 107545820211,
+    "conclusion": "success",
+    "runner_blob_verified": true,
+    "passed": 11,
+    "total": 11,
+    "all_pass": true,
+    "real_CNInfo_queries_executed": false,
+    "real_PDFs_downloaded": false,
+    "price_or_return_data_consumed": false,
+    "fold3_4_accessed": false
+  },
+  "validated": [
+    "canonical identity regex is the established digit pattern",
+    "selected denominator is frozen at 21 from Retry1 window ledger",
+    "18/21 fails the 90% technical gate while 19/21 passes",
+    "only 2023Q3 2023-07-31 through 2023-08-06 may be requeried",
+    "Retry2 must reproduce 2 candidate rows, 2 materializable rows and 2 selected rows or fail closed as source drift",
+    "PDF stage has no CNInfo home preflight",
+    "existing static.cninfo.com.cn PDF materialization path is reused",
+    "existing Retry1 rows are not refetched",
+    "existing 2024Q4 embedded-text blocker is not rescued by OCR",
+    "no price/return modules are used and fold3/fold4 remain sealed"
+  ],
+  "authorization": {
+    "execute_targeted_retry2": true,
+    "reconcile_from_frozen_retry1": true,
+    "full_historical_backfill": false,
+    "outcome_research": false,
+    "price_or_return_data": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.11_ONE_TIME_TARGETED_2023Q3_RETRY2_AND_RECONCILIATION"
+}
