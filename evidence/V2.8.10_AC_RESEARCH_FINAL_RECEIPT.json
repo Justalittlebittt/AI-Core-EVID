@@ -1,0 +1,312 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_10_AC_RESEARCH_FINAL_RECEIPT_V1",
+  "version": "V2.8.10",
+  "status": "V2_8_10_AC_PULLBACK_RECLAIM_DEVELOPMENT_REJECTED",
+  "candidate_id": "AC_MA20_PULLBACK_RECLAIM_V1",
+  "fold_summaries": [
+    {
+      "fold": 0,
+      "candidate_id": "AC_MA20_PULLBACK_RECLAIM_V1",
+      "total_reclaim_events": 5774,
+      "distinct_reclaim_securities": 1015,
+      "distinct_reclaim_signal_dates": 446,
+      "maximum_single_signal_date_share": 0.03204018011776931,
+      "minimum_information_checks": {
+        "events": true,
+        "secs": true,
+        "dates": true,
+        "maxshare": true,
+        "d10e": true,
+        "d5e": true,
+        "d10d": true,
+        "d5d": true,
+        "incd": true,
+        "quarters": true
+      },
+      "minimum_information_pass": true,
+      "valid_D10_events": 5771,
+      "valid_D5_events": 5771,
+      "valid_D10_signal_dates": 446,
+      "valid_D5_signal_dates": 446,
+      "incremental_diagnostic_dates": 446,
+      "valid_quarters": 8,
+      "mean_D10_reclaim_excess": -0.0058686352673732265,
+      "mean_D5_reclaim_excess": -0.005066769560940662,
+      "mean_D10_incremental_timing_spread": 0.0016208719110463712,
+      "positive_valid_quarter_share": 0.25,
+      "quarter_primary": {
+        "2023Q1": {
+          "dates": 58,
+          "events": 961,
+          "mean": -0.007994833043029823
+        },
+        "2023Q2": {
+          "dates": 58,
+          "events": 576,
+          "mean": -0.005248267328791035
+        },
+        "2023Q3": {
+          "dates": 63,
+          "events": 658,
+          "mean": -0.016739607881928808
+        },
+        "2023Q4": {
+          "dates": 55,
+          "events": 714,
+          "mean": 0.008504461766707092
+        },
+        "2024Q1": {
+          "dates": 49,
+          "events": 298,
+          "mean": -0.005905762917756664
+        },
+        "2024Q2": {
+          "dates": 58,
+          "events": 747,
+          "mean": -0.008620300968585785
+        },
+        "2024Q3": {
+          "dates": 58,
+          "events": 391,
+          "mean": -0.00894969902939555
+        },
+        "2024Q4": {
+          "dates": 47,
+          "events": 1426,
+          "mean": 0.0009783143523993522
+        }
+      },
+      "leave_one_valid_quarter_out_primary": {
+        "2023Q1": -0.005550801579259612,
+        "2023Q2": -0.005961370680872626,
+        "2023Q3": -0.004080459615370612,
+        "2023Q4": -0.00789042641027455,
+        "2024Q1": -0.005864052761406505,
+        "2024Q2": -0.0054573037965734116,
+        "2024Q3": -0.005408063880266797,
+        "2024Q4": -0.006675168179978016
+      },
+      "leave_one_valid_quarter_out_all_positive": false,
+      "bootstrap_primary_D10": {
+        "n_dates": 446,
+        "mean": -0.0058686352673732265,
+        "ci95": [
+          -0.01063153823115701,
+          -0.0008679984891802626
+        ]
+      },
+      "source_receipt_sha256": "b38838f4c6a4fe679cc45300093cfb366ae15cb8f1fa52746cf50ca9faae62a9"
+    },
+    {
+      "fold": 1,
+      "candidate_id": "AC_MA20_PULLBACK_RECLAIM_V1",
+      "total_reclaim_events": 5946,
+      "distinct_reclaim_securities": 1044,
+      "distinct_reclaim_signal_dates": 449,
+      "maximum_single_signal_date_share": 0.035317860746720484,
+      "minimum_information_checks": {
+        "events": true,
+        "secs": true,
+        "dates": true,
+        "maxshare": true,
+        "d10e": true,
+        "d5e": true,
+        "d10d": true,
+        "d5d": true,
+        "incd": true,
+        "quarters": true
+      },
+      "minimum_information_pass": true,
+      "valid_D10_events": 5939,
+      "valid_D5_events": 5940,
+      "valid_D10_signal_dates": 449,
+      "valid_D5_signal_dates": 449,
+      "incremental_diagnostic_dates": 449,
+      "valid_quarters": 8,
+      "mean_D10_reclaim_excess": -0.004305244077099943,
+      "mean_D5_reclaim_excess": -0.004899191436984539,
+      "mean_D10_incremental_timing_spread": 0.002398607867763606,
+      "positive_valid_quarter_share": 0.375,
+      "quarter_primary": {
+        "2023Q1": {
+          "dates": 58,
+          "events": 968,
+          "mean": -0.0016080056178171757
+        },
+        "2023Q2": {
+          "dates": 57,
+          "events": 574,
+          "mean": -0.00811999199747471
+        },
+        "2023Q3": {
+          "dates": 64,
+          "events": 708,
+          "mean": -0.006450494009124358
+        },
+        "2023Q4": {
+          "dates": 59,
+          "events": 790,
+          "mean": 0.0021406457252826938
+        },
+        "2024Q1": {
+          "dates": 45,
+          "events": 327,
+          "mean": -0.024542362267515525
+        },
+        "2024Q2": {
+          "dates": 57,
+          "events": 693,
+          "mean": 0.002927056226107714
+        },
+        "2024Q3": {
+          "dates": 61,
+          "events": 405,
+          "mean": -0.006775875691526968
+        },
+        "2024Q4": {
+          "dates": 48,
+          "events": 1474,
+          "mean": 0.005426569004105507
+        }
+      },
+      "leave_one_valid_quarter_out_primary": {
+        "2023Q1": -0.004705345945740354,
+        "2023Q2": -0.003750548588678102,
+        "2023Q3": -0.003948631101386794,
+        "2023Q4": -0.005280391508742445,
+        "2024Q1": -0.0020511096251972175,
+        "2024Q2": -0.0053568795803724855,
+        "2024Q3": -0.003916820034625591,
+        "2024Q4": -0.0054701493835784005
+      },
+      "leave_one_valid_quarter_out_all_positive": false,
+      "bootstrap_primary_D10": {
+        "n_dates": 449,
+        "mean": -0.004305244077099943,
+        "ci95": [
+          -0.009194679564305737,
+          0.0007026134832838608
+        ]
+      },
+      "source_receipt_sha256": "fc9606a8ea1e024c40911202bfc7c7bddeb86403322e16176ceff6138c382a7e"
+    },
+    {
+      "fold": 2,
+      "candidate_id": "AC_MA20_PULLBACK_RECLAIM_V1",
+      "total_reclaim_events": 5865,
+      "distinct_reclaim_securities": 1034,
+      "distinct_reclaim_signal_dates": 452,
+      "maximum_single_signal_date_share": 0.03154305200341006,
+      "minimum_information_checks": {
+        "events": true,
+        "secs": true,
+        "dates": true,
+        "maxshare": true,
+        "d10e": true,
+        "d5e": true,
+        "d10d": true,
+        "d5d": true,
+        "incd": true,
+        "quarters": true
+      },
+      "minimum_information_pass": true,
+      "valid_D10_events": 5858,
+      "valid_D5_events": 5862,
+      "valid_D10_signal_dates": 452,
+      "valid_D5_signal_dates": 452,
+      "incremental_diagnostic_dates": 452,
+      "valid_quarters": 8,
+      "mean_D10_reclaim_excess": -0.0033651384164933977,
+      "mean_D5_reclaim_excess": -0.0020518198515162953,
+      "mean_D10_incremental_timing_spread": 0.004352596951452216,
+      "positive_valid_quarter_share": 0.25,
+      "quarter_primary": {
+        "2023Q1": {
+          "dates": 58,
+          "events": 980,
+          "mean": -0.010564657779656468
+        },
+        "2023Q2": {
+          "dates": 59,
+          "events": 543,
+          "mean": -0.00499593877625006
+        },
+        "2023Q3": {
+          "dates": 63,
+          "events": 683,
+          "mean": -0.009935782696559392
+        },
+        "2023Q4": {
+          "dates": 58,
+          "events": 759,
+          "mean": -0.0029558018318632546
+        },
+        "2024Q1": {
+          "dates": 46,
+          "events": 296,
+          "mean": -0.0029146448591434353
+        },
+        "2024Q2": {
+          "dates": 58,
+          "events": 766,
+          "mean": 0.0022688947592008437
+        },
+        "2024Q3": {
+          "dates": 61,
+          "events": 352,
+          "mean": -0.004785886618769397
+        },
+        "2024Q4": {
+          "dates": 49,
+          "events": 1479,
+          "mean": 0.009760727390347062
+        }
+      },
+      "leave_one_valid_quarter_out_primary": {
+        "2023Q1": -0.002305310692982082,
+        "2023Q2": -0.0031203108815680966,
+        "2023Q3": -0.002300998083217927,
+        "2023Q4": -0.003425396086312047,
+        "2024Q1": -0.003416179558459156,
+        "2024Q2": -0.004194513858600671,
+        "2024Q3": -0.0031434871624298785,
+        "2024Q4": -0.004961087360749432
+      },
+      "leave_one_valid_quarter_out_all_positive": false,
+      "bootstrap_primary_D10": {
+        "n_dates": 452,
+        "mean": -0.0033651384164933977,
+        "ci95": [
+          -0.008453531848948802,
+          0.0021733498142086703
+        ]
+      },
+      "source_receipt_sha256": "f6c5df739dc82182f8ce8f660599106331c54cdd6597e98d0efacfb187d11d63"
+    }
+  ],
+  "failed_checks": [
+    "fold0:primary",
+    "fold0:quarter_share",
+    "fold0:loo",
+    "fold1:primary",
+    "fold1:quarter_share",
+    "fold1:loo",
+    "fold2:primary",
+    "fold2:quarter_share",
+    "fold2:loo",
+    "D5_positive_in_two_folds"
+  ],
+  "bootstrap_used_for_development_pass_fail": false,
+  "sample_modified_after_results": false,
+  "optional_stopping_used": false,
+  "threshold_changed_after_results": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_emission_authorized": false,
+  "first60_append_authorized": false,
+  "episode_emission_authorized": false,
+  "live_authorized": false,
+  "event_ledger_sha256": "b46cf43858f700ba4d2b24d158b4dc159645f3fe2d2f5ee597f03877add4a949",
+  "daily_metrics_sha256": "4c5c2e5e613e8081575bb654d62a37a759211962823ab043f7480f718e1b306d",
+  "receipt_sha256": "1480da283881032ce86adef4eb77877890e16d65a1ad6ea4ad8737d26ae3c186"
+}
