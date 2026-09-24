@@ -1,0 +1,99 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_11_BOUNDED_E_RECONSTRUCTION_PILOT_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.11",
+  "status": "PASS",
+  "contract": {
+    "path": "evidence/V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT.json",
+    "freeze_commit": "56cf84eecbe0c72ab6e9d0bdb98f4059a73f9b77",
+    "blob_sha": "01be05517641c2385e0751b617751cd4b84a0446"
+  },
+  "runner": {
+    "path": "scripts/v2811_bounded_e_reconstruction_pilot.py",
+    "implementation_commit": "8331568b0bc950ce6274308473b370b30ca0c024",
+    "blob_sha": "b19bb2ed4ecb1588b4593653b3d33d11f2f898e8"
+  },
+  "self_test": {
+    "workflow_run_id": 35964919726,
+    "workflow_head_sha": "0646f6160b4b26e68f0d6c20097875bc4bbde8b8",
+    "job_id": 107521270571,
+    "conclusion": "success",
+    "runner_blob_verified": true,
+    "passed": 16,
+    "total": 16,
+    "all_pass": true,
+    "real_CNInfo_queries_executed": false,
+    "real_PDFs_downloaded": false,
+    "price_or_return_data_consumed": false,
+    "fold3_4_accessed": false
+  },
+  "validated": [
+    "all eight 2023-2024 quarter windows recompute exactly from the frozen joint calendar",
+    "global PDF cap is exactly 48 and per-window cap exactly 6",
+    "selection is input-order invariant",
+    "selection enforces at most one filing per security within each window",
+    "CNInfo announcement_time and official PDF path date agreement is required",
+    "metadata/path date conflicts fail closed",
+    "missing announcement_time fails closed",
+    "announcement_id/path locator mismatch fails closed",
+    "retrospective causal effective date is the first frozen joint trading date strictly after disclosure date",
+    "same-day historical effective date is impossible",
+    "pilot runner imports no V2.8 price feature engine or prior price evaluator",
+    "real pilot execution is blocked until this validation receipt exists",
+    "fold3 and fold4 remain sealed"
+  ],
+  "frozen_windows": [
+    {
+      "quarter": "2023Q1",
+      "start": "2023-02-07",
+      "end": "2023-02-13"
+    },
+    {
+      "quarter": "2023Q2",
+      "start": "2023-05-05",
+      "end": "2023-05-11"
+    },
+    {
+      "quarter": "2023Q3",
+      "start": "2023-07-31",
+      "end": "2023-08-06"
+    },
+    {
+      "quarter": "2023Q4",
+      "start": "2023-11-06",
+      "end": "2023-11-12"
+    },
+    {
+      "quarter": "2024Q1",
+      "start": "2024-01-30",
+      "end": "2024-02-05"
+    },
+    {
+      "quarter": "2024Q2",
+      "start": "2024-05-06",
+      "end": "2024-05-12"
+    },
+    {
+      "quarter": "2024Q3",
+      "start": "2024-07-29",
+      "end": "2024-08-04"
+    },
+    {
+      "quarter": "2024Q4",
+      "start": "2024-11-05",
+      "end": "2024-11-11"
+    }
+  ],
+  "authorization": {
+    "execute_bounded_historical_pilot": true,
+    "full_historical_backfill": false,
+    "outcome_research": false,
+    "price_or_return_data": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.11_ONE_TIME_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT"
+}
