@@ -1,0 +1,56 @@
+name: V2.8.11 One-Time Targeted 2023Q3 Retry2
+on:
+  push:
+    paths:
+      - ".github/workflows/v2811-real-targeted-retry2.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v2811-one-time-targeted-retry2
+  cancel-in-progress: false
+jobs:
+  retry2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install targeted Retry2 runtime
+        run: python -m pip install playwright==1.55.0 pymupdf==1.26.4 pandas==2.3.2
+      - name: Verify targeted Retry2 binding
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v2811_targeted_retry2.py)" = "8976d4c929c174b31ff42e2022b07287932cd733"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.11_TARGETED_RETRY2_VALIDATION_RECEIPT.json").read_text())
+          a=json.loads(Path("evidence/V2.8.11_TECHNICAL_BLOCKER_AMENDMENT_2.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["runner"]["blob_sha"]=="8976d4c929c174b31ff42e2022b07287932cd733"
+          assert v["authorization"]["execute_targeted_retry2"] is True
+          assert v["authorization"]["outcome_research"] is False
+          assert v["authorization"]["price_or_return_data"] is False
+          assert v["authorization"]["fold3_access"] is False
+          assert v["authorization"]["fold4_access"] is False
+          assert a["retry2_scope"]["only_window"]=="2023Q3"
+          assert a["retry2_scope"]["expected_selected_rows"]==2
+          assert a["reconciliation_rules"]["selected_filings_denominator"]=="sum frozen Retry1 runtime_windows.selected_count = 21"
+          print("V2.8.11 targeted Retry2 binding PASS")
+          PY
+      - name: Run targeted 2023Q3 Retry2 and reconcile
+        run: python scripts/v2811_targeted_retry2.py run
+      - name: Freeze targeted Retry2 and reconciled result
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.8.11_TARGETED_RETRY2_SELECTED.csv evidence/V2.8.11_TARGETED_RETRY2_RESULTS.csv evidence/V2.8.11_TARGETED_RETRY2_POSITIVE_EVENTS.csv evidence/V2.8.11_RECONCILED_RESULTS.csv evidence/V2.8.11_RECONCILED_FINAL_RECEIPT.json
+          git commit -m "Freeze V2.8.11 targeted Retry2 reconciled result [skip ci]"
+          git pull --rebase origin main
+          git push
