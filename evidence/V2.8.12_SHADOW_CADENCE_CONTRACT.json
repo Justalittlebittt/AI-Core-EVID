@@ -1,0 +1,42 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_SHADOW_CADENCE_CONTRACT_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_SCHEDULE_ACTIVATION",
+  "parent_gate": "evidence/V2.8.12_PROSPECTIVE_E_EVENT_SHADOW_ACCUMULATION_GATE.json",
+  "cadence": {
+    "cron_utc": "0 1 * * 2-6",
+    "local_interpretation": "09:00 Asia/Shanghai every Tuesday through Saturday",
+    "reason": "One morning cycle after each Monday-Friday disclosure day; existing three-calendar-day overlap plus announcement_id deduplication absorbs weekends and isolated missed runs.",
+    "hourly_polling": false
+  },
+  "integration": {
+    "collector_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "desired_serial_path": [
+      "V2.8.4 prospective scan",
+      "authoritative observation commit",
+      "V2.8.4 finalization and observation-ledger update",
+      "V2.8.12 shadow append from committed effective positive events",
+      "V2.8.12 blind readiness audit",
+      "single push of any new shadow/readiness evidence"
+    ],
+    "concurrency_group": "v284-v2812-prospective-e-shadow-serial",
+    "cancel_in_progress": false,
+    "activation_method": "After V2.8.12 implementation validation PASS, one separate activation commit may add the frozen cron and shadow steps to the existing controlled prospective E-layer workflow.",
+    "active_now": false
+  },
+  "scan_semantics": {
+    "as_of_timezone": "Asia/Shanghai",
+    "overlap_calendar_days": 3,
+    "start_rule": "AS_OF minus 2 calendar days",
+    "end_rule": "AS_OF",
+    "announcement_dedup_authority": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv"
+  },
+  "governance": {
+    "schedule_activation_authorized_now": false,
+    "shadow_append_authorized_now": false,
+    "outcome_research": false,
+    "price_or_return_data": false,
+    "fold3_access": false,
+    "fold4_access": false
+  }
+}
