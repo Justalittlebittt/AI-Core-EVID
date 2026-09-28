@@ -1,0 +1,82 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_DOWNSTREAM_DECISION_SEMANTICS_SUPERSESSION_V1",
+  "version": "V2.8.12",
+  "status": "ACTIVE_PROSPECTIVE_SEMANTIC_SUPERSESSION",
+  "authority": "evidence/V2.8.12_HUMAN_DECISION_GATE_CONTRACT.json",
+  "purpose": "Prospectively remove any ambiguity between research-state terminology and a securities transaction. This record supersedes downstream interpretation only; it does not rewrite historical contracts, receipts, hashes, thresholds or research results.",
+  "preservation": {
+    "historical_files_immutable": true,
+    "prior_pass_rejected_results_unchanged": true,
+    "prior_thresholds_and_sample_rules_unchanged": true,
+    "U_E_T_X_research_architecture_unchanged": true,
+    "V2_8_12_shadow_accumulation_unchanged": true
+  },
+  "semantic_migrations": {
+    "Setup_PASS": {
+      "new_interpretation": "RESEARCH_CONDITIONS_SATISFIED",
+      "not_equivalent_to": ["BUY", "ENTER_POSITION", "ORDER", "TRADE_AUTHORIZATION"]
+    },
+    "PASS_DRY_SETUP_ADMISSION_ENVELOPE": {
+      "new_interpretation": "RESEARCH_CANDIDATE_ADMISSION_CONDITIONS_SATISFIED",
+      "not_equivalent_to": ["BUY", "POSITION_OPEN", "ORDER_AUTHORIZATION"]
+    },
+    "First60": {
+      "prospective_interpretation": "POST_ADMISSION_RESEARCH_MONITORING_WINDOW",
+      "not_equivalent_to": ["OPEN_POSITION", "MANAGE_BROKER_POSITION", "AUTOMATED_TRADE_LIFECYCLE"]
+    },
+    "Episode": {
+      "prospective_interpretation": "RESEARCH_OR_DISCIPLINE_MONITORING_EPISODE",
+      "not_equivalent_to": ["BROKERAGE_POSITION", "AUTONOMOUS_POSITION_MANAGEMENT"]
+    },
+    "live": {
+      "prospective_interpretation": "LIVE_RESEARCH_MONITORING_ONLY_WHEN_SEPARATELY_AUTHORIZED",
+      "not_equivalent_to": ["LIVE_TRADING", "AUTO_ORDER_EXECUTION"]
+    },
+    "stop_loss": {
+      "prospective_interpretation": "FROZEN_EXIT_CONDITION_FOR_DISCIPLINE_CHECK",
+      "output_when_triggered": "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+      "automatic_order": false
+    },
+    "take_profit": {
+      "prospective_interpretation": "FROZEN_EXIT_OR_TRAILING_RULE_FOR_DISCIPLINE_CHECK",
+      "automatic_order": false
+    },
+    "add_position": {
+      "prospective_interpretation": "PRECOMMITTED_CONDITION_CHECK_FOR_HUMAN_CONSIDERATION",
+      "automatic_order": false
+    }
+  },
+  "V2_8_4_setup_envelope_ratification": {
+    "contract": "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json",
+    "existing_dry_semantics_preserved": true,
+    "existing_first60_append_authorized_false_preserved": true,
+    "existing_episode_emission_authorized_false_preserved": true,
+    "existing_live_authorized_false_preserved": true,
+    "additional_rule": "Any future strategy Setup PASS consumed by this envelope must also carry or inherit the V2.8.12 Human Decision Gate boundary."
+  },
+  "future_output_requirements": {
+    "capital_action_related_output_must_include": [
+      "research_state",
+      "rule_basis",
+      "requires_human_decision",
+      "order_execution_authorized"
+    ],
+    "requires_human_decision_for_capital_action": true,
+    "order_execution_authorized_required_value": false,
+    "must_not_emit_prohibited_executable_status": true
+  },
+  "brokerage_boundary": {
+    "broker_connection_required_for_research": false,
+    "broker_order_api_in_scope": false,
+    "order_submission_in_scope": false,
+    "portfolio_execution_in_scope": false,
+    "user_controlled_manual_execution_outside_system": true
+  },
+  "governance": {
+    "applies_to_future_downstream_designs": true,
+    "retroactive_research_result_reinterpretation": false,
+    "autonomous_financial_decision_authorized": false,
+    "autonomous_investment_transaction_authorized": false,
+    "human_decision_gate_required": true
+  }
+}
