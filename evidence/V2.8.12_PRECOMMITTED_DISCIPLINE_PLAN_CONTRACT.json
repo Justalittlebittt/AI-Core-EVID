@@ -1,0 +1,219 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PRECOMMITTED_DISCIPLINE_PLAN_CONTRACT_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_DISCIPLINE_PLAN_VALIDATION",
+  "purpose": "Define the immutable pre-capital-action discipline plan required before any real Human Review Packet can be generated. The plan converts thesis, invalidation, stop, take-profit, add/reduce exposure and risk-budget intentions into explicit rule objects that can be checked later without silently rewriting history.",
+  "parents": {
+    "human_decision_gate": "evidence/V2.8.12_HUMAN_DECISION_GATE_CONTRACT.json",
+    "human_review_packet_contract": "evidence/V2.8.12_HUMAN_REVIEW_PACKET_CONTRACT.json",
+    "human_review_packet_validation": "evidence/V2.8.12_HUMAN_REVIEW_PACKET_VALIDATION_RECEIPT.json"
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Reduce emotion-driven investing errors by comparing a contemplated action with rules frozen before that action, without turning AI Core EVID into an autonomous trading system.",
+    "expensive_or_failure_prone_soft_assumption_removed": "A discipline plan does not need a complex portfolio-management engine or free-form LLM reinterpretation on every review.",
+    "replacement": "Freeze a compact typed rule snapshot once, preserve it by hash/version, evaluate it deterministically where possible, and surface unknowns or conflicts to the Human Decision Gate.",
+    "actions": {
+      "Delete": [
+        "No automatic order mapping from a discipline trigger.",
+        "No mutable stop/take-profit values stored only as current state without historical versions.",
+        "No requirement for a new NLP interpretation of the original thesis on every review."
+      ],
+      "Avoid": [
+        "Do not allow current P&L, hope for rebound, FOMO or desire to improve average cost to silently loosen frozen risk rules.",
+        "Do not treat missing data as PASS.",
+        "Do not overwrite prior rule versions after a new action is contemplated."
+      ],
+      "Absorb": [
+        "Reuse Human Decision Gate for final capital-action authority.",
+        "Reuse Human Review Packet for rule-conformance presentation and behavioral-discipline flags."
+      ],
+      "Substitute": "Use versioned rule objects plus an explicit amendment ledger instead of mutable free-form trading instructions.",
+      "Precompute_Reuse": "Hash the full discipline plan and each rule family so future reviews can bind to exactly the plan that existed before the contemplated action.",
+      "Optimize": "Later usability improvements may simplify presentation, but cannot remove version history, unknown handling, human review or frozen-rule comparison."
+    }
+  },
+  "plan_identity": {
+    "required_fields": [
+      "discipline_plan_id",
+      "discipline_plan_version",
+      "canonical_security_id",
+      "strategy_or_setup_spec_id",
+      "created_at_utc",
+      "frozen_at_utc",
+      "frozen_before_current_action",
+      "supersedes_plan_id",
+      "plan_sha256"
+    ],
+    "discipline_plan_id": "SHA256 canonical JSON of canonical_security_id + strategy_or_setup_spec_id + discipline_plan_version + frozen_at_utc before plan_sha256 is added.",
+    "plan_sha256": "SHA256 canonical JSON of the complete plan before plan_sha256 is added.",
+    "frozen_before_current_action_required": true,
+    "version_rule": "Version is append-only. A later version may supersede an earlier version but never edits or deletes it."
+  },
+  "required_rule_families": [
+    "thesis",
+    "thesis_invalidation",
+    "stop",
+    "take_profit",
+    "add_position",
+    "reduce_exposure",
+    "risk_budget",
+    "position_or_exposure_limit",
+    "unknown_data_policy",
+    "amendment_policy"
+  ],
+  "rule_object_common_schema": {
+    "required_fields": [
+      "rule_id",
+      "enabled",
+      "trigger_or_condition",
+      "evaluation_basis",
+      "when_satisfied_state",
+      "when_not_satisfied_state",
+      "when_unknown_state",
+      "rationale"
+    ],
+    "allowed_unknown_states": [
+      "UNKNOWN_INSUFFICIENT_EVIDENCE",
+      "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+      "REQUIRES_HUMAN_REVIEW"
+    ],
+    "forbidden_unknown_behavior": "PASS_BY_DEFAULT"
+  },
+  "thesis": {
+    "required_fields": ["statement", "evidence_required_to_remain_valid", "time_horizon_or_review_condition"],
+    "must_be_nonempty": true,
+    "cannot_be_replaced_by_price_performance_alone": true
+  },
+  "thesis_invalidation": {
+    "minimum_conditions": 1,
+    "condition_schema": ["condition_id", "condition", "evidence_source_or_measure", "on_trigger_state", "unknown_state"],
+    "on_trigger_state_required": "THESIS_INVALIDATED_REQUIRES_HUMAN_REVIEW",
+    "unknown_state_must_not_be_pass": true
+  },
+  "stop": {
+    "required": true,
+    "must_define": ["trigger_or_condition", "evaluation_basis", "on_trigger_state"],
+    "on_trigger_state_required": "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+    "automatic_order_authorized": false,
+    "loosening_after_loss_without_precommitted_rule": "FORBIDDEN",
+    "allowed_switching": "Only a switching/tightening rule explicitly frozen in this plan or a later version justified by new external evidence and preserving the old version."
+  },
+  "take_profit": {
+    "required": true,
+    "must_define": ["trigger_or_condition", "evaluation_basis", "on_trigger_state"],
+    "on_trigger_state_required": "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+    "automatic_order_authorized": false,
+    "raising_target_after_gains_without_precommitted_switch_rule": "FORBIDDEN",
+    "allowed_switching": "A trailing or revised objective is permitted only if the switching condition was frozen before the contemplated change or is introduced as a new preserved plan version based on new external evidence."
+  },
+  "add_position": {
+    "required": true,
+    "must_define": ["eligibility_conditions", "maximum_add_events", "maximum_incremental_exposure", "maximum_total_exposure_after_add", "disallowed_rationales"],
+    "default_if_conditions_missing": "ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES",
+    "averaging_down_due_only_to_price_decline": "NOT_A_VALID_PRECOMMITTED_BASIS",
+    "required_supported_state": "ADD_POSITION_PRECONDITIONS_SATISFIED_REQUIRES_HUMAN_CONFIRMATION",
+    "automatic_add_authorized": false
+  },
+  "reduce_exposure": {
+    "required": true,
+    "must_define": ["trigger_conditions", "evaluation_basis", "on_trigger_state"],
+    "on_trigger_state_required": "REDUCE_EXPOSURE_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+    "automatic_reduce_authorized": false
+  },
+  "risk_budget": {
+    "required": true,
+    "must_define": ["risk_budget_measure", "maximum_risk_budget", "breach_state"],
+    "breach_state_required": "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+    "position_sizing_output_semantics": "HYPOTHETICAL_OR_RULE_CONSTRAINED_SIZE_NOT_ORDER_QUANTITY"
+  },
+  "position_or_exposure_limit": {
+    "required": true,
+    "must_define": ["exposure_measure", "maximum_exposure", "breach_state"],
+    "breach_state_required": "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+    "automatic_rebalance_authorized": false
+  },
+  "unknown_data_policy": {
+    "required": true,
+    "global_rule": "A required rule input that is unavailable, stale, conflicted or not causally observable at review time cannot be coerced to PASS.",
+    "allowed_resolution_states": [
+      "UNKNOWN_INSUFFICIENT_EVIDENCE",
+      "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+      "REQUIRES_HUMAN_REVIEW"
+    ]
+  },
+  "amendment_policy": {
+    "append_only_versions": true,
+    "original_plan_preserved": true,
+    "amendment_requires": [
+      "new discipline_plan_version",
+      "new frozen_at_utc",
+      "supersedes_plan_id binding",
+      "explicit amendment_reason",
+      "amendment_basis",
+      "whether amendment loosens or tightens risk",
+      "new plan_sha256"
+    ],
+    "permitted_bases": [
+      "NEW_EXTERNAL_EVIDENCE",
+      "CORPORATE_ACTION_OR_DATA_NORMALIZATION_CORRECTION",
+      "PRECOMMITTED_SWITCH_RULE_TRIGGERED",
+      "NON_SEMANTIC_MEASUREMENT_CORRECTION"
+    ],
+    "forbidden_bases": [
+      "HOPE_FOR_REBOUND_AFTER_LOSS",
+      "AVERAGE_COST_IMPROVEMENT_ALONE",
+      "FOMO",
+      "GREED_AFTER_GAIN",
+      "AVOID_REALIZING_A_LOSS",
+      "UNRECORDED_SUBJECTIVE_OVERRIDE"
+    ],
+    "risk_loosening_after_adverse_move": "Blocked unless the new version is supported by a permitted basis independent of the desire to avoid or delay a loss; old version remains visible for comparison.",
+    "user_override": "The user may explicitly override a frozen rule at the Human Decision Gate, but the override is recorded as an override and does not become a rule amendment unless it separately satisfies this amendment policy."
+  },
+  "packet_activation_gate": {
+    "purpose": "Authorize a real Human Review Packet only when a valid precommitted discipline plan and a separately valid research/strategy state both exist.",
+    "requires_all": [
+      "Human Review Packet interface validation receipt status PASS",
+      "discipline plan validator status PASS for the exact plan hash",
+      "discipline plan frozen_at_utc precedes the contemplated capital-action review timestamp",
+      "canonical_security_id matches the research/strategy receipt",
+      "strategy_or_setup_spec_id binds to the research/strategy authority used by the packet",
+      "all required rule families are complete",
+      "no required rule input is silently defaulted to PASS",
+      "human decision status is UNSET at packet creation",
+      "order_execution_authorized is false"
+    ],
+    "E_layer_positive_alone_is_insufficient": true,
+    "real_packet_generation_authorized_now": false,
+    "activation_requires_separate_receipt": true
+  },
+  "synthetic_validation_required": [
+    "A complete plan with all rule families and frozen-before-action metadata passes.",
+    "Missing stop, take-profit, invalidation, add-position, risk-budget or exposure-limit rules fail.",
+    "A plan frozen after the contemplated action timestamp fails.",
+    "Unknown required evidence cannot resolve to PASS.",
+    "Averaging down solely because price fell cannot satisfy add-position eligibility.",
+    "A stop-loosening amendment based only on hope for rebound fails.",
+    "A precommitted stop-tightening switch may create a new valid plan version while preserving the prior version.",
+    "A user override can be recorded without mutating the plan.",
+    "No plan field authorizes order execution or brokerage routing.",
+    "No market price/return data are required for interface validation."
+  ],
+  "governance": {
+    "discipline_plan_template_implementation_authorized": true,
+    "real_discipline_plan_creation_authorized": false,
+    "real_candidate_packet_generation_authorized": false,
+    "decision_discipline_log_activation_authorized": false,
+    "outcome_research_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false,
+    "shadow_accumulation_may_continue": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.12_DISCIPLINE_PLAN_TEMPLATE_IMPLEMENTATION_VALIDATION"
+}
