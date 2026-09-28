@@ -71,9 +71,6 @@ def load_identity_bindings(path:Path=IDENTITY_BINDINGS)->list[dict]:
     return load_csv(path)
 
 def resolve_issuer_identity(page_rows:list[dict],row:dict,bindings:list[dict])->tuple[str,str]:
-    # Identity and AI evidence are deliberately separate. A positive classifier
-    # result can be recorded for an unbound issuer, but it cannot become an
-    # effective eligibility event until an official identity binding exists.
     cid=str(row.get("canonical_security_id") or "").strip()
     sn=re.sub(r"\s+","",str(row.get("security_name") or ""))
     exact=[x for x in bindings if str(x.get("canonical_security_id") or "").strip()==cid]
@@ -141,7 +138,6 @@ def materialize(api,row:dict,inventory:list[dict],tmp:Path)->tuple[Path,dict]:
     cp=CACHE_ROOT/"pdf"/f"{v['object_sha256']}.pdf"
     cp.parent.mkdir(parents=True,exist_ok=True)
     cp.write_bytes(b)
-    # Revalidate from the persisted cache object.
     te.validate_pdf(cp,v["object_sha256"])
     cmap[aid]={"adjunct_url":loc["adjunct_url"],"object_sha256":v["object_sha256"]}
     save_cache_map(cmap)
@@ -191,10 +187,6 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
             api=pw.request.new_context(extra_http_headers={
                 "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
             })
-            home=api.get("https://www.cninfo.com.cn/",timeout=30000)
-            if home.status!=200:
-                raise RuntimeError(f"CNINFO_HOME_HTTP_{home.status}")
-
             for row,q in materializable:
                 base={
                     "announcement_id":row["announcement_id"],
