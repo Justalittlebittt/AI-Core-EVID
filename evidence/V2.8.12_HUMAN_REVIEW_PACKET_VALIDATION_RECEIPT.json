@@ -1,0 +1,63 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_HUMAN_REVIEW_PACKET_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "contract": {
+    "path": "evidence/V2.8.12_HUMAN_REVIEW_PACKET_CONTRACT.json",
+    "freeze_commit": "207f1834ff4c4273b37c2b70dc6acae7a0176f05"
+  },
+  "interface_validator": {
+    "path": "scripts/v2812_human_review_packet.py",
+    "implementation_commit": "74800fbf2626f646323592b25c478bac842c4b9f",
+    "blob_sha": "450bfcc1beac802baa27246aa93a8eecb1509f69"
+  },
+  "self_test": {
+    "workflow_run_id": 36385162024,
+    "workflow_head_sha": "7feb224e3eadd43a6960320418e16646f30e0e87",
+    "job_id": 108808897238,
+    "conclusion": "success",
+    "validator_blob_verified": true,
+    "passed": 17,
+    "total": 17,
+    "all_pass": true,
+    "real_candidate_packet_generated": false,
+    "price_or_return_data_consumed": false,
+    "brokerage_or_order_action_executed": false,
+    "decision_log_modified": false,
+    "shadow_accumulation_modified": false,
+    "fold3_4_accessed": false
+  },
+  "validated": [
+    "A complete synthetic Human Review Packet validates only when it contains research provenance, a precommitted discipline plan, explicit rule-conformance checks and a Human Decision Gate.",
+    "Human decision status defaults to UNSET at packet generation.",
+    "order_execution_authorized remains false.",
+    "AUTO_BUY and equivalent executable states are rejected.",
+    "order_execution_authorized=true is rejected.",
+    "Capital-action-related packets without requires_human_decision=true are rejected.",
+    "E-layer eligibility alone cannot generate a positive research packet without a separate strategy/Setup receipt.",
+    "Packets missing precommitted discipline-plan fields are rejected.",
+    "UNKNOWN_INSUFFICIENT_EVIDENCE cannot be coerced into a positive Setup/add-position research state.",
+    "An unsupported averaging-down/add-position scenario is representable only as ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES and preserves the original frozen plan.",
+    "A triggered exit condition can be surfaced prominently while order authority remains false.",
+    "An explicit user override can be recorded with a reason without rewriting the frozen plan.",
+    "The active V2.8.12 prospective shadow accumulation remains active and unmodified.",
+    "No real candidate packet or decision-discipline log has been activated yet.",
+    "The interface implementation contains no broker/order execution path."
+  ],
+  "governance": {
+    "human_review_packet_interface_validated": true,
+    "real_candidate_packet_generation_authorized": false,
+    "decision_discipline_log_activation_authorized": false,
+    "outcome_research_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false,
+    "shadow_accumulation_may_continue": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.12_PRECOMMITTED_DISCIPLINE_PLAN_TEMPLATE_AND_PACKET_ACTIVATION_GATE"
+}
