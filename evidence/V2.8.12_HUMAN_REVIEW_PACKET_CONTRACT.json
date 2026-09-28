@@ -1,0 +1,235 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_HUMAN_REVIEW_PACKET_CONTRACT_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_PACKET_INTERFACE_VALIDATION",
+  "purpose": "Define the only permitted downstream packet for presenting an AI Core EVID research state to the user for manual review. The packet summarizes evidence, frozen strategy/risk rules, rule conformance and behavioral-discipline flags; it never authorizes or executes a securities transaction.",
+  "parents": {
+    "human_decision_gate": "evidence/V2.8.12_HUMAN_DECISION_GATE_CONTRACT.json",
+    "semantic_supersession": "evidence/V2.8.12_DOWNSTREAM_DECISION_SEMANTICS_SUPERSESSION.json",
+    "setup_admission_envelope": "evidence/V2.8.4_SETUP_ADMISSION_ENVELOPE_CONTRACT.json",
+    "active_shadow_accumulation": "evidence/V2.8.12_SHADOW_ACCUMULATION_ACTIVATION.json"
+  },
+  "problem_elimination_pass": {
+    "final_user_goal": "Use AI research to reduce emotion-driven investing decisions by comparing contemplated actions against evidence and rules frozen before the decision, while preserving user control of the final action.",
+    "hard_constraints": [
+      "No Human Review Packet may be interpreted as a brokerage order, automatic buy/sell/hold instruction or final financial decision.",
+      "Every capital-action-related packet must terminate at HUMAN_DECISION_GATE with final decision authority USER.",
+      "A positive E-layer event alone cannot create a Human Review Packet with RESEARCH_CONDITIONS_SATISFIED status; a future valid strategy/Setup state is separately required.",
+      "Historical PASS/REJECTED research records, U/E/T/X authorities, fold assignments and V2.8.12 shadow accumulation remain unchanged.",
+      "No packet-generation step may submit, route or prepare a brokerage order.",
+      "Frozen thesis, stop, take-profit, invalidation, add-position and exposure rules may be checked but not silently rewritten after the contemplated action is known."
+    ],
+    "soft_problem_deleted": "Do not build a trading dashboard that combines research output and order execution. The interface ends before execution.",
+    "replacement": "Use a compact, immutable research snapshot plus explicit discipline comparison and a blank human-decision field. Any execution remains outside AI Core EVID.",
+    "actions": {
+      "Delete": [
+        "No AUTO_BUY/AUTO_SELL/AUTO_HOLD/AUTO_REBALANCE states.",
+        "No brokerage credentials, order endpoints, order tickets or submit buttons in the packet schema.",
+        "No recommendation score that directly maps to an executable action."
+      ],
+      "Avoid": [
+        "Do not generate a packet from E eligibility alone.",
+        "Do not overwrite the original thesis/stop/take-profit/invalidation values when the user later proposes a change.",
+        "Do not hide rule failures behind a single overall score."
+      ],
+      "Absorb": [
+        "Reuse U/E/T/X research provenance and future Setup/strategy receipts.",
+        "Reuse V2.8.12 Human Decision Gate canonical states and behavioral-discipline boundaries."
+      ],
+      "Substitute": "Replace a trade recommendation with a rule-conformance packet that states what is satisfied, what is violated, what evidence is missing and which human decision remains unresolved.",
+      "Precompute_Reuse": "Hash each packet and freeze the rule snapshot it was evaluated against so later overrides can be compared to the original plan.",
+      "Optimize": "Only presentation and usability may be optimized later; the human-decision boundary and frozen-rule comparison cannot be optimized away."
+    }
+  },
+  "packet_schema": {
+    "required_top_level_fields": [
+      "packet_id",
+      "packet_created_at_utc",
+      "canonical_security_id",
+      "research_as_of_date",
+      "research_state",
+      "capital_action_related",
+      "requires_human_decision",
+      "order_execution_authorized",
+      "research_provenance",
+      "research_snapshot",
+      "frozen_discipline_plan",
+      "rule_conformance",
+      "behavioral_discipline_flags",
+      "human_decision",
+      "packet_sha256"
+    ],
+    "packet_id": "SHA256 canonical JSON of identity, research_as_of_date, research_state and frozen rule snapshot before packet_sha256 is added.",
+    "packet_sha256": "SHA256 canonical JSON of the complete packet before packet_sha256 is added.",
+    "capital_action_related": true,
+    "requires_human_decision": true,
+    "order_execution_authorized": false
+  },
+  "research_provenance": {
+    "required": [
+      "U_authority",
+      "E_authority",
+      "T_authority",
+      "X_authority",
+      "strategy_or_setup_receipt",
+      "human_decision_gate_contract"
+    ],
+    "strategy_or_setup_receipt_rule": "For RESEARCH_CONDITIONS_SATISFIED or any add/reduce/exit precondition state, a separately frozen causal strategy/discipline receipt must exist. E-layer eligibility alone is insufficient.",
+    "outcome_data_consumed_must_match_source_receipt": true
+  },
+  "research_snapshot": {
+    "required": [
+      "U_state",
+      "E_state",
+      "T_state",
+      "X_state",
+      "setup_or_strategy_state",
+      "evidence_for",
+      "evidence_against",
+      "missing_or_uncertain",
+      "risk_summary"
+    ],
+    "no_hidden_overall_trade_score": true,
+    "state_meaning": "Descriptive research state only; never an order instruction."
+  },
+  "frozen_discipline_plan": {
+    "required": [
+      "thesis",
+      "thesis_invalidation_conditions",
+      "stop_rule",
+      "take_profit_rule",
+      "add_position_rule",
+      "reduce_exposure_rule",
+      "maximum_risk_budget_rule",
+      "maximum_position_or_exposure_rule",
+      "rule_snapshot_frozen_before_current_action"
+    ],
+    "rule_snapshot_frozen_before_current_action_required": true,
+    "missing_required_plan_behavior": "PACKET_BLOCKED_MISSING_PRECOMMITTED_DISCIPLINE_PLAN",
+    "after_the_fact_rule_rewrite_forbidden": true
+  },
+  "rule_conformance": {
+    "required_checks": [
+      "thesis_still_valid",
+      "invalidation_triggered",
+      "stop_condition_triggered",
+      "take_profit_condition_triggered",
+      "add_position_preconditions_satisfied",
+      "reduce_exposure_condition_triggered",
+      "risk_budget_within_limit",
+      "position_or_exposure_within_limit",
+      "contemplated_action_supported_by_frozen_rules"
+    ],
+    "allowed_values": ["PASS", "FAIL", "NOT_APPLICABLE", "UNKNOWN_INSUFFICIENT_EVIDENCE"],
+    "overall_rule_state": [
+      "RESEARCH_CONDITIONS_SATISFIED",
+      "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+      "THESIS_INVALIDATED_REQUIRES_HUMAN_REVIEW",
+      "ADD_POSITION_PRECONDITIONS_SATISFIED_REQUIRES_HUMAN_CONFIRMATION",
+      "ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES",
+      "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+      "REDUCE_EXPOSURE_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+      "RESEARCH_MONITORING_STATE_UNCHANGED",
+      "PACKET_BLOCKED_MISSING_PRECOMMITTED_DISCIPLINE_PLAN"
+    ],
+    "failed_checks_must_be_explicit": true,
+    "unknown_checks_must_not_be_coerced_to_pass": true
+  },
+  "behavioral_discipline_flags": {
+    "standard_flags": [
+      "AVERAGING_DOWN_WITHOUT_PRECOMMITTED_BASIS",
+      "STOP_MOVED_OR_CANCELLED_AFTER_LOSS",
+      "TAKE_PROFIT_RAISED_WITHOUT_PRECOMMITTED_SWITCH_RULE",
+      "FOMO_ACTION_WITH_MISSING_RESEARCH_CONDITIONS",
+      "POSITION_OR_RISK_LIMIT_OVERRIDE",
+      "THESIS_INVALIDATION_IGNORED",
+      "POST_HOC_RULE_CHANGE",
+      "NO_BEHAVIORAL_DEVIATION_DETECTED",
+      "INSUFFICIENT_CONTEXT_TO_ASSESS_BEHAVIORAL_DEVIATION"
+    ],
+    "flag_is_evidence_of_rule_deviation_not_psychological_diagnosis": true,
+    "system_may_surface_flag": true,
+    "system_may_force_action": false
+  },
+  "human_decision": {
+    "default_status": "UNSET",
+    "allowed_statuses": [
+      "UNSET",
+      "NO_ACTION",
+      "USER_WILL_CONSIDER_ENTRY",
+      "USER_WILL_CONSIDER_ADD_POSITION",
+      "USER_WILL_CONSIDER_REDUCE_EXPOSURE",
+      "USER_WILL_CONSIDER_EXIT",
+      "USER_OVERRIDE_OF_FROZEN_RULES_RECORDED"
+    ],
+    "must_default_to_unset_at_packet_generation": true,
+    "user_override_requires_reason": true,
+    "user_override_does_not_rewrite_original_frozen_plan": true,
+    "execution_occurs_outside_ai_core_evid": true
+  },
+  "decision_discipline_log": {
+    "file": "evidence/V2.8.12_HUMAN_DECISION_DISCIPLINE_LOG.csv",
+    "append_only": true,
+    "creation_authorized_now": false,
+    "purpose": "Future optional record of the user's explicit review outcome against the immutable packet; not an order ledger and not a brokerage execution record.",
+    "required_fields_when_later_authorized": [
+      "decision_record_id",
+      "packet_sha256",
+      "canonical_security_id",
+      "decision_recorded_at_utc",
+      "human_decision_status",
+      "frozen_rule_state_at_decision",
+      "override_of_frozen_rule",
+      "override_reason",
+      "execution_recorded",
+      "brokerage_order_id"
+    ],
+    "execution_recorded_must_always_be": false,
+    "brokerage_order_id_must_always_be_empty": true
+  },
+  "forbidden_fields_or_semantics": [
+    "AUTO_BUY",
+    "AUTO_SELL",
+    "AUTO_HOLD",
+    "AUTO_REBALANCE",
+    "AUTO_ADD_POSITION",
+    "AUTO_REDUCE_POSITION",
+    "AUTO_EXIT",
+    "ORDER_SUBMIT",
+    "EXECUTE_TRADE",
+    "BROKER_ROUTE_ORDER",
+    "brokerage_credentials",
+    "brokerage_order_payload",
+    "brokerage_order_id at packet generation",
+    "automatic_order_quantity"
+  ],
+  "implementation_validation_required": [
+    "A complete synthetic research packet with a human gate and no execution authority validates.",
+    "A packet with AUTO_BUY or equivalent status is rejected.",
+    "A packet with order_execution_authorized=true is rejected.",
+    "A capital-action packet with requires_human_decision=false is rejected.",
+    "A packet generated from E eligibility alone without a strategy/Setup receipt is rejected.",
+    "A packet missing the precommitted discipline plan is rejected.",
+    "Unknown rule checks cannot be converted to PASS.",
+    "An unsupported add-position scenario resolves to ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES and preserves the original plan.",
+    "A triggered invalidation/exit condition may be surfaced but never authorizes an order.",
+    "A post-hoc override can be recorded only as a user override and never rewrites the frozen plan.",
+    "No price/outcome data are required for interface validation.",
+    "Current V2.8.12 shadow accumulation remains unchanged."
+  ],
+  "governance": {
+    "packet_interface_implementation_authorized": true,
+    "real_candidate_packet_generation_authorized": false,
+    "decision_discipline_log_activation_authorized": false,
+    "outcome_research_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.12_HUMAN_REVIEW_PACKET_INTERFACE_IMPLEMENTATION_VALIDATION"
+}
