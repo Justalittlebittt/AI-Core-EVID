@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_HUMAN_DECISION_BOUNDARY_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "human_decision_gate": {
+    "path": "evidence/V2.8.12_HUMAN_DECISION_GATE_CONTRACT.json",
+    "freeze_commit": "c300074a747418c5f3130f371e39fb4e4feb6b17"
+  },
+  "semantic_supersession": {
+    "path": "evidence/V2.8.12_DOWNSTREAM_DECISION_SEMANTICS_SUPERSESSION.json",
+    "freeze_commit": "66b02c298e8e819bc31298a1f52498352034ec7b",
+    "status": "ACTIVE_PROSPECTIVE_SEMANTIC_SUPERSESSION"
+  },
+  "validator": {
+    "path": "scripts/v2812_human_decision_boundary.py",
+    "implementation_commit": "7131bda56b29b6a45679a2f2a9b09acdc14d8aba",
+    "blob_sha": "af0a8e112c518c40e0da5600ce74cee489ea3eed"
+  },
+  "self_test": {
+    "workflow_run_id": 36384374030,
+    "workflow_head_sha": "5ec4f045fd71610ccfa991f8b2f27c12584aaae1",
+    "job_id": 108806556967,
+    "conclusion": "success",
+    "validator_blob_verified": true,
+    "synthetic_tests_passed": 12,
+    "synthetic_tests_total": 12,
+    "all_pass": true,
+    "price_or_return_data_consumed": false,
+    "brokerage_or_order_action_executed": false,
+    "historical_research_semantics_modified": false
+  },
+  "validated": [
+    "The active V2.8.4 Setup envelope remains dry-only with First60, Episode and live authorization false.",
+    "The active V2.8.12 shadow accumulation has no outcome, Setup, First60, Episode or live authorization.",
+    "Setup PASS is prospectively interpreted as RESEARCH_CONDITIONS_SATISFIED, not a buy/order instruction.",
+    "First60 is prospectively a post-admission research-monitoring window, not a brokerage position lifecycle.",
+    "Episode is prospectively a research/discipline monitoring episode, not an autonomously managed position.",
+    "Add-position condition checking is allowed only as a preregistered rule-conformance state requiring human confirmation.",
+    "Triggered exit/invalidation conditions may be surfaced prominently but cannot automatically submit a securities transaction.",
+    "Hypothetical or rule-constrained position sizing is allowed when explicitly labeled as not an order quantity and remains subject to human decision.",
+    "AUTO_BUY and equivalent executable states are rejected.",
+    "order_execution_authorized=true is rejected.",
+    "A capital-action-related output without requires_human_decision=true is rejected.",
+    "The active E-layer workflow contains no brokerage/order execution path."
+  ],
+  "governance": {
+    "research_and_analysis_authorized": true,
+    "risk_and_discipline_rule_checks_authorized": true,
+    "hypothetical_sizing_research_authorized": true,
+    "autonomous_financial_decision_authorized": false,
+    "autonomous_investment_transaction_authorized": false,
+    "brokerage_execution_authorized": false,
+    "human_decision_gate_required_for_capital_action": true,
+    "V2_8_12_shadow_accumulation_may_continue": true,
+    "fold3_access_changed": false,
+    "fold4_access_changed": false
+  },
+  "effective_scope": "All future downstream AI Core EVID designs and outputs from this receipt forward.",
+  "next_stage": "CONTINUE_V2_8_12_SHADOW_ACCUMULATION_UNDER_HUMAN_DECISION_BOUNDARY"
+}
