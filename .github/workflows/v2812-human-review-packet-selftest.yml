@@ -1,0 +1,21 @@
+name: V2.8.12 Human Review Packet Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2812-human-review-packet-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify Human Review Packet validator blob
+        run: test "$(git hash-object scripts/v2812_human_review_packet.py)" = "450bfcc1beac802baa27246aa93a8eecb1509f69"
+      - name: Run Human Review Packet self-test only
+        run: python scripts/v2812_human_review_packet.py
