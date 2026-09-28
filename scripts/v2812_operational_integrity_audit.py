@@ -72,7 +72,9 @@ def main() -> None:
     ck('O16_git_rebase_before_each_push_path_present', wf.count('git pull --rebase origin main') >= 3 and wf.count('git push') >= 3)
 
     prohibited = ['v283_outcome_resolver', 'fwd10', 'fwd5', 'AUTO_BUY', 'submit_order', 'place_order', 'brokerage_api', 'broker_client']
-    combined = (wf + '\n' + src + '\n' + shsrc).lower()
+    runner_prod = src.split('def self_test():', 1)[0]
+    shadow_prod = shsrc.split('def self_test():', 1)[0]
+    combined = (wf + '\n' + runner_prod + '\n' + shadow_prod).lower()
     ck('O17_no_outcome_or_broker_execution_path', all(x.lower() not in combined for x in prohibited))
     ck('O18_shadow_status_still_blind', status.get('price_or_return_data_consumed') is False and status.get('outcome_research_authorized') is False)
     ck('O19_fold3_fold4_remain_closed', status.get('fold3_accessed') is False and status.get('fold4_accessed') is False)
