@@ -1,0 +1,76 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PRECOMMITTED_DISCIPLINE_PLAN_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "contract": {
+    "path": "evidence/V2.8.12_PRECOMMITTED_DISCIPLINE_PLAN_CONTRACT.json",
+    "initial_freeze_commit": "5c2e7d1aba2131b9a2f1968901cb0413afc610db",
+    "schema_correction_commit": "57211a0461c848fe234e317b32493ad5405ceec5",
+    "schema_correction": "Version 1 supersedes_plan_id may be empty; version 2+ must bind a prior plan. No research/risk threshold or discipline semantic changed."
+  },
+  "template": {
+    "path": "evidence/V2.8.12_PRECOMMITTED_DISCIPLINE_PLAN_TEMPLATE.json",
+    "commit": "7a77654d5f41b26bb2aed10bafc914d401e31e58",
+    "template_only": true,
+    "not_a_real_security_plan": true
+  },
+  "validator": {
+    "path": "scripts/v2812_precommitted_discipline_plan.py",
+    "implementation_commit": "08c1f365840a7134ba9a648632d42e2411daf54c",
+    "blob_sha": "0d62e3fb01731efe02c5f14caea4b60078eba144"
+  },
+  "self_test": {
+    "workflow_run_id": 36385994860,
+    "workflow_head_sha": "1363c3933a85f10d040d4e6fae7df324e93f7b30",
+    "job_id": 108811377716,
+    "conclusion": "success",
+    "validator_blob_verified": true,
+    "passed": 19,
+    "total": 19,
+    "all_pass": true,
+    "real_discipline_plan_created": false,
+    "real_candidate_packet_generated": false,
+    "price_or_return_data_consumed": false,
+    "brokerage_or_order_action_executed": false,
+    "shadow_accumulation_modified": false,
+    "fold3_4_accessed": false
+  },
+  "earlier_incident": {
+    "workflow_run_id": 36385854711,
+    "classification": "CONTRACT_SCHEMA_INTERNAL_CONTRADICTION",
+    "cause": "supersedes_plan_id was initially required non-empty for all versions while version 1 correctly required no predecessor.",
+    "repair": "Make supersedes_plan_id conditionally required: empty is valid for version 1; version 2+ requires a predecessor binding.",
+    "research_semantics_changed": false,
+    "risk_rules_changed": false
+  },
+  "validated": [
+    "A complete precommitted discipline plan with thesis, invalidation, stop, take-profit, add-position, reduce-exposure, risk-budget, exposure-limit, unknown-data and amendment policies validates.",
+    "Missing stop, take-profit, invalidation, add-position, risk-budget or exposure-limit families fail closed.",
+    "A discipline plan frozen after the contemplated action timestamp fails.",
+    "Unknown required data cannot default to PASS.",
+    "Price decline / average-cost improvement alone cannot support an add-position rule.",
+    "A hope-for-rebound amendment that loosens risk fails.",
+    "A precommitted tightening/switch rule may create a new version while preserving the predecessor plan identity/hash.",
+    "Order-execution and brokerage-execution authority are rejected.",
+    "The published template is explicitly not a real-security plan.",
+    "Real Human Review Packet activation remains a separate gate.",
+    "V2.8.12 prospective E shadow accumulation remains active and unchanged."
+  ],
+  "governance": {
+    "discipline_plan_template_validated": true,
+    "real_discipline_plan_creation_authorized": false,
+    "real_candidate_packet_generation_authorized": false,
+    "decision_discipline_log_activation_authorized": false,
+    "outcome_research_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false,
+    "shadow_accumulation_may_continue": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  },
+  "next_stage": "V2.8.12_REAL_PACKET_ACTIVATION_READINESS_GATE"
+}
