@@ -1,0 +1,21 @@
+name: V2.8.12 Human Decision Boundary Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2812-human-decision-boundary-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify Human Decision Boundary validator blob
+        run: test "$(git hash-object scripts/v2812_human_decision_boundary.py)" = "af0a8e112c518c40e0da5600ce74cee489ea3eed"
+      - name: Run Human Decision Boundary self-test only
+        run: python scripts/v2812_human_decision_boundary.py
