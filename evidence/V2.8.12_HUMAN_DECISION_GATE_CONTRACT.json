@@ -1,0 +1,143 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_HUMAN_DECISION_GATE_CONTRACT_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_DOWNSTREAM_HUMAN_DECISION_BOUNDARY",
+  "purpose": "Keep AI Core EVID as a personal research, risk-discipline and rule-consistency system. Research may identify evidence, estimate uncertainty, evaluate frozen strategy conditions and flag behavioral deviations, but no model or agent may autonomously make or execute the user's final securities transaction decision.",
+  "scope": {
+    "applies_to": [
+      "all future Setup receipts and Setup-admission envelopes",
+      "all future First60 states",
+      "all future Episode or position-monitoring states",
+      "all future risk, stop, take-profit, add-position, reduce-exposure and exit states",
+      "all future live or prospective research monitoring outputs"
+    ],
+    "does_not_change": [
+      "U-layer PIT membership authority",
+      "E-layer evidence eligibility/materiality/classification",
+      "T-layer research factors, state, ranking or overlays",
+      "X-layer tradability, liquidity and risk measurement",
+      "historical backtests, frozen thresholds, fold assignments or prior PASS/REJECTED results",
+      "V2.8.12 prospective E shadow accumulation"
+    ]
+  },
+  "system_role": {
+    "allowed": [
+      "financial research and analysis",
+      "historical and prospective evidence evaluation",
+      "probability, uncertainty and scenario analysis",
+      "comparison with precommitted strategy rules",
+      "risk-budget and hypothetical position-size calculations",
+      "detecting whether a proposed action conflicts with frozen thesis, stop, take-profit, invalidation, add-position or exposure rules",
+      "flagging possible emotion-driven rule changes such as averaging down without a preregistered basis, moving a stop after loss, FOMO entry or raising a take-profit solely from greed",
+      "presenting reasons, counterevidence and rule-conformance status for human review"
+    ],
+    "not_allowed_by_architecture": [
+      "autonomous final buy/sell/hold/rebalance decision on behalf of the user",
+      "brokerage order submission or order routing",
+      "automatic securities purchase, sale, rebalance, add-position or exit",
+      "using broker credentials or brokerage trading APIs to execute strategy outputs",
+      "silently converting a research state into an executable order"
+    ]
+  },
+  "mandatory_pipeline": [
+    "RESEARCH",
+    "EVIDENCE",
+    "STRATEGY_STATE",
+    "RISK_AND_DISCIPLINE_CHECK",
+    "HUMAN_DECISION_GATE",
+    "USER_CONTROLLED_EXECUTION_OUTSIDE_AI_CORE_EVID"
+  ],
+  "human_decision_gate": {
+    "required_for_every_capital_action": true,
+    "final_decision_authority": "USER",
+    "execution_authority": "USER_CONTROLLED_OUTSIDE_AI_CORE_EVID",
+    "human_confirmation_cannot_be_preauthorized": true,
+    "research_state_never_implies_execution": true,
+    "order_execution_authorized": false,
+    "brokerage_connector_authorized": false
+  },
+  "canonical_downstream_states": {
+    "setup_pass": {
+      "canonical_status": "RESEARCH_CONDITIONS_SATISFIED",
+      "meaning": "The frozen research conditions for a candidate are satisfied. This is not a recommendation, order or authorization to buy.",
+      "requires_human_review": true
+    },
+    "risk_blocked": {
+      "canonical_status": "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+      "meaning": "A contemplated capital action conflicts with one or more frozen strategy/risk rules. Surface the conflict and evidence; do not execute anything.",
+      "requires_human_review": true
+    },
+    "thesis_invalidated": {
+      "canonical_status": "THESIS_INVALIDATED_REQUIRES_HUMAN_REVIEW",
+      "meaning": "A frozen invalidation condition has been met. Preserve the original rule and show the conflict; do not automatically trade.",
+      "requires_human_review": true
+    },
+    "add_position_supported": {
+      "canonical_status": "ADD_POSITION_PRECONDITIONS_SATISFIED_REQUIRES_HUMAN_CONFIRMATION",
+      "meaning": "All preregistered conditions for considering additional exposure are satisfied. It remains a human decision, not an automatic add-position instruction.",
+      "requires_human_review": true
+    },
+    "add_position_not_supported": {
+      "canonical_status": "ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES",
+      "meaning": "The contemplated add-position action lacks preregistered support or violates frozen constraints. Identify the failed rules and preserve the original plan.",
+      "requires_human_review": true
+    },
+    "exit_condition_triggered": {
+      "canonical_status": "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+      "meaning": "A preregistered exit condition has triggered. Surface it prominently for human action; no autonomous order is permitted.",
+      "requires_human_review": true
+    },
+    "reduce_exposure_condition_triggered": {
+      "canonical_status": "REDUCE_EXPOSURE_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+      "meaning": "A preregistered risk/exposure reduction condition has triggered. Surface it for human review; do not execute an order.",
+      "requires_human_review": true
+    },
+    "monitoring_unchanged": {
+      "canonical_status": "RESEARCH_MONITORING_STATE_UNCHANGED",
+      "meaning": "No frozen state transition was detected. This is descriptive monitoring, not a hold recommendation.",
+      "requires_human_review": false
+    }
+  },
+  "position_sizing_boundary": {
+    "allowed": "Compute hypothetical/scenario position sizes, exposure limits, loss budgets and rule-constrained ranges for research and human review.",
+    "required_label": "HYPOTHETICAL_OR_RULE_CONSTRAINED_SIZE_NOT_ORDER_QUANTITY",
+    "final_order_quantity_requires_human_decision": true,
+    "automatic_rebalance": false
+  },
+  "discipline_boundary": {
+    "frozen_rules_have_priority_in_consistency_checks": true,
+    "after_the_fact_override_must_be_explicitly_identified": true,
+    "system_may_flag_emotional_or_non_preregistered_rationale": true,
+    "system_may_not_force_or_execute_action": true,
+    "examples_of_flaggable_deviation": [
+      "averaging down because price fell without a frozen add-position condition",
+      "moving or cancelling a stop because of hope for a rebound",
+      "raising a take-profit target solely after gains without a preregistered switching rule",
+      "entering from FOMO despite missing research conditions"
+    ]
+  },
+  "prohibited_executable_statuses": [
+    "AUTO_BUY",
+    "AUTO_SELL",
+    "AUTO_HOLD",
+    "AUTO_REBALANCE",
+    "AUTO_ADD_POSITION",
+    "AUTO_REDUCE_POSITION",
+    "AUTO_EXIT",
+    "ORDER_SUBMIT",
+    "EXECUTE_TRADE",
+    "BROKER_ROUTE_ORDER"
+  ],
+  "governance": {
+    "personal_research_scope": true,
+    "research_and_analysis_authorized": true,
+    "rule_consistency_and_behavioral_discipline_checks_authorized": true,
+    "autonomous_financial_decision_authorized": false,
+    "autonomous_investment_transaction_authorized": false,
+    "brokerage_execution_authorized": false,
+    "human_review_required_before_capital_action": true,
+    "historical_research_records_modified": false,
+    "fold3_access_changed": false,
+    "fold4_access_changed": false
+  }
+}
