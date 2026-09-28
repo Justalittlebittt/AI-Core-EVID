@@ -1,0 +1,124 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_FINAL_RECORD_V1",
+  "version": "V2.8.12",
+  "status": "AUTOMATED_BLIND_ACCUMULATION_SEALED_PENDING_READINESS_AND_FIRST_SCHEDULE_CONFIRMATION",
+  "purpose": "Close V2.8.12 development while preserving blind prospective E-event accumulation, downstream human-decision safeguards, and all research/governance locks until the frozen information gate is satisfied.",
+  "finalized_components": {
+    "prospective_shadow_accumulation": {
+      "status": "ACTIVE",
+      "ledger": "evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv",
+      "information_gate_status": "evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json",
+      "current_shadow_event_count": 1,
+      "current_distinct_issuer_count": 1,
+      "current_distinct_effective_date_count": 1,
+      "current_distinct_positive_calendar_month_count": 1,
+      "current_maximum_single_issuer_event_share": 1.0,
+      "readiness_status": "ACCUMULATING_PROSPECTIVE_E_EVENTS"
+    },
+    "daily_collection_cadence": {
+      "authority": "evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_1.json",
+      "validation_receipt": "evidence/V2.8.12_DAILY_CADENCE_VALIDATION_RECEIPT.json",
+      "cron_utc": "0 1 * * *",
+      "local_interpretation": "09:00 Asia/Shanghai every calendar day",
+      "overlap_calendar_days": 3,
+      "dedup_authority": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv"
+    },
+    "transport_reliability": {
+      "authority": "evidence/V2.8.12_TRANSPORT_RELIABILITY_AMENDMENT_1.json",
+      "validated_runner_blob_sha": "df07a5d2a5771deff39528c3533a39934e96a68c",
+      "unnecessary_cninfo_home_preflight_removed": true,
+      "direct_official_pdf_validation_preserved": true,
+      "research_semantics_changed": false
+    },
+    "operational_integrity": {
+      "receipt": "evidence/V2.8.12_PROSPECTIVE_AUTOMATION_OPERATIONAL_INTEGRITY_AUDIT_RECEIPT.json",
+      "status": "CORE_OPERATIONAL_INTEGRITY_PASS_PENDING_FIRST_REAL_DAILY_SCHEDULED_RUN",
+      "runner_self_test": "11/11 PASS",
+      "operational_tests": "19/19 PASS",
+      "post_binding_audit": "PASS",
+      "first_real_daily_scheduled_run_observed": false
+    },
+    "human_decision_boundary": {
+      "receipt": "evidence/V2.8.12_HUMAN_DECISION_BOUNDARY_VALIDATION_RECEIPT.json",
+      "status": "PASS",
+      "capital_action_requires_human_decision": true,
+      "autonomous_financial_decision_authorized": false,
+      "brokerage_execution_authorized": false
+    },
+    "human_review_packet_interface": {
+      "receipt": "evidence/V2.8.12_HUMAN_REVIEW_PACKET_VALIDATION_RECEIPT.json",
+      "status": "PASS",
+      "real_candidate_packet_generation_authorized": false,
+      "E_layer_positive_alone_is_sufficient": false
+    },
+    "precommitted_discipline_plan": {
+      "receipt": "evidence/V2.8.12_PRECOMMITTED_DISCIPLINE_PLAN_VALIDATION_RECEIPT.json",
+      "status": "PASS",
+      "template_validated": true,
+      "real_security_plan_created": false,
+      "real_security_plan_requires_validated_strategy_first": true
+    },
+    "real_packet_activation_gate": {
+      "path": "evidence/V2.8.12_REAL_PACKET_ACTIVATION_READINESS_GATE.json",
+      "status": "NOT_READY_NO_VALIDATED_REAL_STRATEGY_AND_NO_REAL_DISCIPLINE_PLAN",
+      "manual_promotion_from_E_event_forbidden": true
+    }
+  },
+  "frozen_information_gate": {
+    "requires_all": {
+      "prospective_positive_shadow_events_min": 20,
+      "distinct_issuers_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_positive_calendar_months_min": 6,
+      "maximum_single_issuer_event_share": 0.20,
+      "provenance_integrity_pass": true,
+      "price_or_return_data_consumed": false
+    },
+    "status_when_ready": "READY_FOR_V2_8_13_OUTCOME_CONTRACT",
+    "historical_v2811_rows_count_toward_gate": false
+  },
+  "research_interpretation": {
+    "V2_8_11_result": "Official E-event reconstruction is technically feasible at bounded scale but too sparse to justify full historical backfill.",
+    "V2_8_12_role": "Accumulate genuinely prospective positive E filing-events blindly until minimum information and diversity are sufficient for a separately frozen outcome-observation study.",
+    "E_event_is_alpha_claim": false,
+    "E_event_is_buy_instruction": false,
+    "Setup_PASS_future_semantics": "RESEARCH_CONDITIONS_SATISFIED_REQUIRES_HUMAN_DECISION",
+    "First60_future_semantics": "POST_ADMISSION_RESEARCH_MONITORING_WINDOW",
+    "Episode_future_semantics": "RESEARCH_OR_DISCIPLINE_MONITORING_EPISODE"
+  },
+  "governance": {
+    "V2_8_12_development_closed": true,
+    "automated_blind_accumulation_active": true,
+    "manual_intervention_required_for_normal_daily_collection": false,
+    "scheduler_empirical_confirmation_complete": false,
+    "outcome_research_authorized": false,
+    "outcome_contract_drafting_authorized_now": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "pure_price_entry_search_authorized": false,
+    "real_candidate_packet_generation_authorized": false,
+    "real_discipline_plan_creation_without_validated_strategy_authorized": false,
+    "decision_discipline_log_activation_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_allowed_transitions": {
+    "scheduler_confirmation": "After a genuine GitHub Actions event=schedule run under the active daily workflow completes successfully, freeze a narrow scheduler empirical-confirmation receipt only; do not reopen V2.8.12 architecture.",
+    "research_transition": "Only when V2.8.12_SHADOW_INFORMATION_GATE_STATUS becomes READY_FOR_V2_8_13_OUTCOME_CONTRACT may V2.8.13 Prospective E-Event Outcome-Observation Contract be drafted before any outcome data are resolved.",
+    "real_packet_transition": "Only after a separately validated real strategy/Setup exists for a security/date and a security-specific precommitted discipline plan is frozen may the first real Human Review Packet be generated."
+  },
+  "prohibited_shortcuts": [
+    "Do not inspect D5/D10, benchmark return, excess return, IC, win rate or p-values before the V2.8.13 contract is frozen and authorized.",
+    "Do not widen V2.8.11 historical windows or reopen full historical E backfill to accelerate the readiness count.",
+    "Do not relax E classifier, materiality, triage, identity, diversity or concentration rules to increase event yield.",
+    "Do not hand-promote the genesis shadow event or any future E positive into a real candidate packet without a separately validated strategy and discipline plan.",
+    "Do not introduce AUTO_BUY, AUTO_SELL, AUTO_REBALANCE, order submission or brokerage execution paths."
+  ],
+  "terminal_current_state": "V2.8.12 is sealed for development and remains in automated blind prospective accumulation. The system should collect rather than invent new research structure until an allowed transition condition is actually satisfied."
+}
