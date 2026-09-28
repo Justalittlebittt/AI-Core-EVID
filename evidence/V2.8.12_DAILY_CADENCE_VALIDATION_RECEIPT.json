@@ -1,0 +1,73 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_DAILY_CADENCE_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "amendment": {
+    "path": "evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_1.json",
+    "freeze_commit": "4edd5457c15712a0e81134b17a40645376ed0322",
+    "status": "ACTIVE_CADENCE_SUPERSESSION",
+    "active_cron_utc": "0 1 * * *",
+    "active_local_interpretation": "09:00 Asia/Shanghai every calendar day"
+  },
+  "active_workflow": {
+    "path": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "daily_cadence_activation_commit": "958e1b4e93ced4c62d6cb21103179e36343fa636",
+    "concurrency_group": "v284-v2812-prospective-e-shadow-serial",
+    "cancel_in_progress": false
+  },
+  "validator": {
+    "path": "scripts/v2812_daily_cadence_validation.py",
+    "implementation_commit": "e47084d275750f3132733b9bab422d5db0ca8c3d",
+    "blob_sha": "8baa7f7d16050a5a71972b72d4248f8e5ee508db"
+  },
+  "self_test": {
+    "workflow_run_id": 36388321037,
+    "workflow_head_sha": "e6b15c0378835b05dd9547b1dec1e3ed6a2483d5",
+    "job_id": 108818376686,
+    "conclusion": "success",
+    "validator_blob_verified": true,
+    "passed": 13,
+    "total": 13,
+    "all_pass": true,
+    "real_collection_run_triggered_by_validation": false,
+    "price_or_return_data_consumed": false,
+    "research_thresholds_changed": false,
+    "fold3_4_accessed": false
+  },
+  "validated": [
+    "The original Tuesday-Saturday cadence contract is preserved unchanged as historical frozen evidence.",
+    "Cadence Amendment 1 is the active operational schedule authority and supersedes only the schedule.",
+    "The active workflow runs every calendar day at 01:00 UTC / 09:00 Asia/Shanghai.",
+    "The three-calendar-day overlapping scan remains AS_OF-2 through AS_OF.",
+    "announcement_id deduplication authority remains the V2.8.4 E-layer observation ledger.",
+    "The V2.8.4 scan -> finalization -> V2.8.12 shadow accumulation pipeline remains serialized under the same non-overlapping concurrency group.",
+    "The workflow fails closed unless the active daily cadence amendment is present and valid.",
+    "No outcome resolver, D5/D10 forward-return path, broker execution path or order submission path was added.",
+    "Outcome research, price/return research, fold3/fold4, Setup, First60, Episode, live and brokerage execution remain unauthorized.",
+    "The cadence correction does not change the V2.8.12 shadow readiness state or thresholds.",
+    "The trading-day-only scheduling assumption is deleted, removing the weekend/non-trading-day disclosure gap class."
+  ],
+  "current_operational_cadence": {
+    "cron_utc": "0 1 * * *",
+    "timezone_interpretation": "Asia/Shanghai",
+    "local_time": "09:00",
+    "days": "EVERY_CALENDAR_DAY",
+    "overlap_calendar_days": 3,
+    "dedup": "announcement_id",
+    "manual_polling_required": false
+  },
+  "governance": {
+    "daily_schedule_active": true,
+    "prospective_shadow_accumulation_may_continue": true,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false
+  },
+  "next_stage": "V2.8.12_PROSPECTIVE_AUTOMATION_OPERATIONAL_INTEGRITY_AUDIT"
+}
