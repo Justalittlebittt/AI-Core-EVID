@@ -19,3 +19,4 @@ jobs:
         run: test "$(git hash-object scripts/v2812_precommitted_discipline_plan.py)" = "0d62e3fb01731efe02c5f14caea4b60078eba144"
       - name: Run discipline plan self-test only
         run: python scripts/v2812_precommitted_discipline_plan.py
+# V2.8.12 v1 supersedes_plan_id schema contradiction corrected before this run.
