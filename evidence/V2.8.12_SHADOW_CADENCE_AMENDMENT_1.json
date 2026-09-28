@@ -1,0 +1,66 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_SHADOW_CADENCE_AMENDMENT_1",
+  "version": "V2.8.12",
+  "status": "ACTIVE_CADENCE_SUPERSESSION",
+  "supersedes_schedule_only": {
+    "contract": "evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json",
+    "activation_record": "evidence/V2.8.12_SHADOW_ACCUMULATION_ACTIVATION.json",
+    "old_cron_utc": "0 1 * * 2-6",
+    "old_local_interpretation": "09:00 Asia/Shanghai every Tuesday through Saturday"
+  },
+  "problem_elimination_pass": {
+    "final_goal": "Capture prospective official E-layer disclosures without weekend, holiday or non-trading-day observation gaps while keeping collection simple and deterministic.",
+    "hard_constraints": [
+      "Preserve the three-calendar-day overlapping scan window.",
+      "Preserve announcement_id deduplication and append-only observation semantics.",
+      "Preserve V2.8.4 classifier, triage, identity and effective-date rules.",
+      "Do not open outcome research, price/return research, fold3/fold4, Setup, First60, Episode or live execution."
+    ],
+    "soft_assumption_removed": "Official disclosures needing capture occur only on Monday-Friday trading days and can therefore be collected only Tuesday-Saturday mornings.",
+    "counterexample": "A disclosure published after the Saturday 09:00 run or on Sunday can fall outside a later three-calendar-day scan if Sunday and Monday scheduled runs do not exist.",
+    "selected_action": "DELETE_TRADING_DAY_SCHEDULE_ASSUMPTION",
+    "replacement": "Run once every calendar day at 09:00 Asia/Shanghai. Empty/no-new-disclosure days are harmless no-ops because announcement_id deduplication remains authoritative."
+  },
+  "active_cadence": {
+    "cron_utc": "0 1 * * *",
+    "local_interpretation": "09:00 Asia/Shanghai every calendar day",
+    "frequency": "DAILY",
+    "hourly_polling": false
+  },
+  "scan_semantics_unchanged": {
+    "as_of_timezone": "Asia/Shanghai",
+    "overlap_calendar_days": 3,
+    "start_rule": "AS_OF minus 2 calendar days",
+    "end_rule": "AS_OF",
+    "announcement_dedup_authority": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv"
+  },
+  "unchanged_research_semantics": [
+    "V2.8.4 prospective E collection/classification",
+    "issuer identity binding",
+    "effective_signal_date next-trading-date causality rule",
+    "V2.8.12 shadow event identity and recurrence semantics",
+    "V2.8.12 readiness thresholds 20/12/12/6/max20pct",
+    "Human Decision Gate and Human Review Packet boundaries"
+  ],
+  "operational_binding": {
+    "workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "concurrency_group": "v284-v2812-prospective-e-shadow-serial",
+    "cancel_in_progress": false,
+    "must_validate_this_amendment_before_collection": true
+  },
+  "governance": {
+    "daily_schedule_authorized": true,
+    "scheduled_shadow_collection_authorized": true,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false
+  },
+  "next_stage": "V2.8.12_DAILY_CADENCE_OPERATIONAL_VALIDATION"
+}
