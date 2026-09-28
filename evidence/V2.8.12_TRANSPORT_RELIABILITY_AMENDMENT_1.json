@@ -1,0 +1,72 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_TRANSPORT_RELIABILITY_AMENDMENT_1_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_TRANSPORT_PATCH_VALIDATION",
+  "purpose": "Remove an unnecessary CNInfo homepage transport preflight from the active prospective E-layer runner so a homepage abort cannot fail an otherwise reachable static.cninfo.com.cn target-PDF observation cycle.",
+  "triggering_audit": "V2.8.12_PROSPECTIVE_AUTOMATION_OPERATIONAL_INTEGRITY_AUDIT",
+  "problem_elimination_pass": {
+    "final_goal": "Reliably collect each candidate's official target PDF and preserve fail-closed evidence classification.",
+    "hard_constraints": [
+      "Candidate discovery semantics unchanged.",
+      "18 frozen search terms unchanged.",
+      "Triage semantics unchanged.",
+      "Official target PDF only.",
+      "Page-text extraction and classifier unchanged.",
+      "Issuer identity binding unchanged.",
+      "Three-calendar-day overlap unchanged.",
+      "announcement_id deduplication unchanged.",
+      "Effective-date rule unchanged.",
+      "No price/return/outcome/fold3/fold4/Setup/First60/Episode/live/brokerage expansion."
+    ],
+    "soft_constraint_removed": "A successful GET of https://www.cninfo.com.cn/ must precede direct official PDF retrieval.",
+    "counterfactual": "Removing the homepage preflight does not weaken source validation because each actual official PDF URL is independently fetched, HTTP-checked, PDF-signature validated, hashed, persisted and revalidated before extraction.",
+    "selected_action": "DELETE_UNNECESSARY_HOME_PREFLIGHT"
+  },
+  "allowed_patch": {
+    "file": "scripts/v284_incremental_e_layer_runner.py",
+    "delete_only": [
+      "home=api.get(\"https://www.cninfo.com.cn/\",timeout=30000)",
+      "if home.status!=200: raise RuntimeError(f\"CNINFO_HOME_HTTP_{home.status}\")"
+    ],
+    "retain": [
+      "Playwright request context for target PDF transport",
+      "direct loc['official_url'] fetch",
+      "target HTTP status check",
+      "cm.validate_pdf_bytes",
+      "content-addressed cache and persisted-object revalidation",
+      "per-filing BLOCKED exception capture"
+    ]
+  },
+  "failure_semantics_after_patch": {
+    "candidate_collection_failure": "run fails closed before observation receipt",
+    "individual_target_pdf_failure": "that filing becomes pipeline_status BLOCKED while other materializable filings continue",
+    "classifier_or_identity_failure": "that filing becomes BLOCKED; no eligibility effect",
+    "next_daily_cycle_recovery": "three-calendar-day overlap re-discovers any announcement not appended to the authoritative observation ledger",
+    "duplicate_successful_observation": "announcement_id ledger dedup resolves to no new observation"
+  },
+  "validation_required": [
+    "runner source contains no CNInfo homepage preflight GET",
+    "target official_url PDF GET remains present",
+    "target HTTP/PDF validation remains present",
+    "per-filing exception isolation remains present",
+    "existing V2.8.4 runner self-test passes unchanged",
+    "daily cadence, overlap, dedup and serial concurrency remain unchanged",
+    "no research permission broadening"
+  ],
+  "governance": {
+    "research_semantics_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "effective_date_changed": false,
+    "readiness_thresholds_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false
+  }
+}
