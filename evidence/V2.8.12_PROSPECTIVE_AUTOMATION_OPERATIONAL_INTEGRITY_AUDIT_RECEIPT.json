@@ -1,0 +1,112 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PROSPECTIVE_AUTOMATION_OPERATIONAL_INTEGRITY_AUDIT_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "CORE_OPERATIONAL_INTEGRITY_PASS_PENDING_FIRST_REAL_DAILY_SCHEDULED_RUN",
+  "purpose": "Ratify the active blind prospective E-event automation as statically and synthetically operationally sound while keeping the first actual GitHub daily scheduler execution as a separate empirical confirmation item.",
+  "daily_cadence_authority": {
+    "validation_receipt": "evidence/V2.8.12_DAILY_CADENCE_VALIDATION_RECEIPT.json",
+    "validation_commit": "d7a72b2288ec5dd3041388a6961eab782c22fe8f",
+    "status": "PASS",
+    "cron_utc": "0 1 * * *",
+    "local_interpretation": "09:00 Asia/Shanghai every calendar day",
+    "overlap_calendar_days": 3,
+    "announcement_dedup_authority": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv"
+  },
+  "transport_reliability": {
+    "amendment": "evidence/V2.8.12_TRANSPORT_RELIABILITY_AMENDMENT_1.json",
+    "amendment_commit": "d2597d2cb3492e380f260fd479e9936d3a2cf3f9",
+    "selected_action": "DELETE_UNNECESSARY_HOME_PREFLIGHT",
+    "patched_runner": "scripts/v284_incremental_e_layer_runner.py",
+    "patch_commit": "7db371ced8a7f29e437743cf2c58b562d7d8f89a",
+    "validated_runner_blob_sha": "df07a5d2a5771deff39528c3533a39934e96a68c",
+    "removed_failure_class": "CNInfo homepage transport failure aborting the whole cycle before independently reachable official target PDFs are attempted",
+    "target_pdf_http_validation_preserved": true,
+    "pdf_signature_hash_and_cache_revalidation_preserved": true,
+    "per_filing_blocker_isolation_preserved": true,
+    "research_semantics_changed": false
+  },
+  "operational_audit": {
+    "script": "scripts/v2812_operational_integrity_audit.py",
+    "final_script_blob_sha": "9f7e5a74ddcf8ad36833d95fb58dd237cc1e0f5c",
+    "successful_run_id": 36389507411,
+    "successful_job_id": 108821983109,
+    "workflow_head_sha": "2411115ef8f499817645b3040b31b4e028dbbe2e",
+    "runner_self_test_passed": 11,
+    "runner_self_test_total": 11,
+    "operational_tests_passed": 19,
+    "operational_tests_total": 19,
+    "all_static_and_synthetic_pass": true,
+    "first_real_daily_scheduled_run_observed": false,
+    "audit_did_not_trigger_real_collection": true
+  },
+  "post_binding_validation": {
+    "active_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "binding_commit": "a09e356fcead86a08b53e1f97287f539d38ad062",
+    "workflow_blob_sha": "1bd1b8859733c49d53d3095c0d44aaeaf3c5570c",
+    "binding": [
+      "V2.8.12 shadow accumulator blob 66fe3735c512e09252ee2400e458334a4043536b",
+      "patched V2.8.4 prospective runner blob df07a5d2a5771deff39528c3533a39934e96a68c",
+      "active daily cadence amendment",
+      "transport reliability amendment"
+    ],
+    "post_binding_audit_run_id": 36389643188,
+    "post_binding_audit_job_id": 108822406834,
+    "post_binding_audit_conclusion": "success"
+  },
+  "validated_operational_properties": [
+    "The active workflow is scheduled once every calendar day at 01:00 UTC / 09:00 Asia/Shanghai.",
+    "The three-calendar-day AS_OF-2 through AS_OF overlap is preserved.",
+    "The workflow uses a single non-cancelling concurrency group to serialize manual and scheduled executions.",
+    "The pipeline order remains scan -> authoritative observation commit -> finalization -> finalization commit -> shadow append -> blind readiness audit.",
+    "The authoritative observation commit exists before finalization computes prospective observed time and effective-date consequences.",
+    "A candidate not present in the authoritative observation ledger remains eligible for rediscovery on the next overlapping daily scan.",
+    "A successfully observed announcement is deduplicated by announcement_id on subsequent overlapping scans.",
+    "An exact duplicate V2.8.12 shadow event is a no-op; a same-announcement binding conflict fails closed.",
+    "An individual target-PDF/materialization/classifier failure is isolated as a BLOCKED filing and does not create eligibility effect.",
+    "The unnecessary CNInfo homepage preflight has been removed while direct official target-PDF retrieval and validation remain intact.",
+    "No outcome resolver, D5/D10 forward return, price/return research, broker/order execution, fold3/fold4, Setup, First60, Episode or live path was introduced."
+  ],
+  "failure_and_recovery_semantics": {
+    "candidate_collection_failure_before_receipt": "No authoritative observation commit is produced; the next daily run's three-calendar-day overlap is expected to rediscover still-in-window announcements.",
+    "individual_target_pdf_failure": "The filing is recorded BLOCKED in the observation result for that run and is not appended to the successful observation ledger; while still inside later overlap windows it remains eligible for rediscovery/retry.",
+    "successful_observation_reseen": "announcement_id deduplication prevents a duplicate authoritative observation.",
+    "shadow_exact_duplicate": "NO_ACTION_DUPLICATE",
+    "shadow_same_announcement_conflict": "BLOCK_CONFLICT",
+    "git_write_serialization": "Shared concurrency plus pull --rebase before push reduces concurrent write races; conflicts fail the workflow rather than silently overwrite ledger history."
+  },
+  "scheduler_empirical_confirmation": {
+    "status": "PENDING_FIRST_REAL_DAILY_SCHEDULED_RUN",
+    "reason": "The every-calendar-day cadence was activated after the current day's 09:00 Asia/Shanghai trigger time, so no actual schedule-triggered run under the new cadence had occurred when this audit was frozen.",
+    "what_will_count_as_confirmation": "A future workflow run whose event is schedule, whose workflow path is .github/workflows/v284-controlled-prospective-e-layer.yml, and which passes the bound validation/collection/finalization/shadow sequence.",
+    "manual_run_is_not_equivalent": true,
+    "no_chat_polling_required": true
+  },
+  "current_blind_state": {
+    "status": "ACCUMULATING_PROSPECTIVE_E_EVENTS",
+    "shadow_event_count": 1,
+    "distinct_issuer_count": 1,
+    "price_or_return_data_consumed": false,
+    "outcome_research_authorized": false
+  },
+  "governance": {
+    "core_static_and_synthetic_operational_integrity": "PASS",
+    "automated_blind_accumulation_active": true,
+    "scheduler_empirical_confirmation_complete": false,
+    "manual_intervention_required_for_normal_daily_collection": false,
+    "outcome_research_authorized": false,
+    "outcome_contract_drafting_authorized_now": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "pure_price_entry_search_authorized": false,
+    "real_candidate_packet_generation_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "AUTOMATED_BLIND_ACCUMULATION_ACTIVE_SCHEDULER_CONFIRMATION_PENDING"
+}
