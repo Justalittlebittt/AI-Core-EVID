@@ -41,9 +41,11 @@
       "created_at_utc",
       "frozen_at_utc",
       "frozen_before_current_action",
-      "supersedes_plan_id",
       "plan_sha256"
     ],
+    "conditionally_required_fields": {
+      "supersedes_plan_id": "May be empty for discipline_plan_version=1; must be non-empty and bind the prior plan for version>=2."
+    },
     "discipline_plan_id": "SHA256 canonical JSON of canonical_security_id + strategy_or_setup_spec_id + discipline_plan_version + frozen_at_utc before plan_sha256 is added.",
     "plan_sha256": "SHA256 canonical JSON of the complete plan before plan_sha256 is added.",
     "frozen_before_current_action_required": true,
