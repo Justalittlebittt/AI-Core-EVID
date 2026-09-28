@@ -1,0 +1,21 @@
+name: V2.8.12 Precommitted Discipline Plan Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2812-discipline-plan-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify discipline validator blob
+        run: test "$(git hash-object scripts/v2812_precommitted_discipline_plan.py)" = "7c6aafc8e95d83efce1af6c0c231a73e07b6895c"
+      - name: Run discipline plan self-test only
+        run: python scripts/v2812_precommitted_discipline_plan.py
