@@ -1,0 +1,21 @@
+name: V2.8.12 Daily Cadence Validation
+on:
+  push:
+    paths:
+      - ".github/workflows/v2812-daily-cadence-validation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify cadence validator blob
+        run: test "$(git hash-object scripts/v2812_daily_cadence_validation.py)" = "8baa7f7d16050a5a71972b72d4248f8e5ee508db"
+      - name: Run daily cadence validation only
+        run: python scripts/v2812_daily_cadence_validation.py
