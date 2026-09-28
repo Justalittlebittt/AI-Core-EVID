@@ -1,10 +1,12 @@
 name: V2.8.4 Controlled Prospective E-Layer Observation
 on:
+  schedule:
+    - cron: "0 1 * * 2-6"
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: v284-controlled-prospective-e-layer
+  group: v284-v2812-prospective-e-shadow-serial
   cancel-in-progress: false
 jobs:
   observe:
@@ -18,6 +20,27 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+      - name: Verify V2.8.12 shadow activation binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "66fe3735c512e09252ee2400e458334a4043536b"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("evidence/V2.8.12_SHADOW_ACCUMULATOR_VALIDATION_RECEIPT.json").read_text())
+          c=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json").read_text())
+          assert v["status"]=="PASS"
+          assert v["accumulator"]["blob_sha"]=="66fe3735c512e09252ee2400e458334a4043536b"
+          assert v["authorization"]["activate_prospective_shadow_accumulation_in_separate_commit"] is True
+          assert v["authorization"]["activate_frozen_schedule_in_separate_commit"] is True
+          assert v["authorization"]["outcome_research"] is False
+          assert v["authorization"]["fold3_access"] is False
+          assert v["authorization"]["fold4_access"] is False
+          assert c["cadence"]["cron_utc"]=="0 1 * * 2-6"
+          assert c["integration"]["active_now"] is False
+          print("V2.8.12 shadow activation binding PASS")
+          PY
       - name: Restore content-addressed E-layer cache
         uses: actions/cache@v4
         with:
@@ -95,8 +118,22 @@ jobs:
           git add evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv evidence/v284_prospective_runs/
           if git diff --cached --quiet; then
             echo "No finalization changes"
+          else
+            git commit -m "Finalize V2.8.4 prospective E-layer observation ${RUN_KEY} [skip ci]"
+            git pull --rebase origin main
+            git push
+          fi
+      - name: Append V2.8.12 prospective shadow events and audit blind readiness
+        run: python scripts/v2812_shadow_accumulator.py accumulate
+      - name: Commit V2.8.12 shadow ledger and readiness status
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json
+          if git diff --cached --quiet; then
+            echo "No new V2.8.12 shadow evidence"
             exit 0
           fi
-          git commit -m "Finalize V2.8.4 prospective E-layer observation ${RUN_KEY} [skip ci]"
+          git commit -m "Update V2.8.12 prospective E shadow ledger [skip ci]"
           git pull --rebase origin main
           git push
