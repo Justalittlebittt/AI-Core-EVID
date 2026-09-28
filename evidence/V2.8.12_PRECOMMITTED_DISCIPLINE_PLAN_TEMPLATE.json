@@ -1,0 +1,121 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PRECOMMITTED_DISCIPLINE_PLAN_TEMPLATE_V1",
+  "version": "V2.8.12",
+  "template_only": true,
+  "not_a_real_security_plan": true,
+  "discipline_plan_id": "<computed_sha256>",
+  "discipline_plan_version": "1",
+  "canonical_security_id": "<SSE_or_SZSE_security_id>",
+  "strategy_or_setup_spec_id": "<frozen_strategy_or_setup_spec_id>",
+  "created_at_utc": "<ISO8601_UTC>",
+  "frozen_at_utc": "<ISO8601_UTC>",
+  "frozen_before_current_action": true,
+  "supersedes_plan_id": "",
+  "thesis": {
+    "statement": "<why_this_security_is_research_relevant>",
+    "evidence_required_to_remain_valid": ["<required_evidence_1>"],
+    "time_horizon_or_review_condition": "<time_or_condition_for_thesis_review>"
+  },
+  "thesis_invalidation": {
+    "conditions": [
+      {
+        "condition_id": "INV-001",
+        "condition": "<objective_invalidation_condition>",
+        "evidence_source_or_measure": "<causal_data_source_or_measure>",
+        "on_trigger_state": "THESIS_INVALIDATED_REQUIRES_HUMAN_REVIEW",
+        "unknown_state": "UNKNOWN_INSUFFICIENT_EVIDENCE"
+      }
+    ]
+  },
+  "stop": {
+    "rule_id": "STOP-001",
+    "enabled": true,
+    "trigger_or_condition": "<precommitted_stop_trigger>",
+    "evaluation_basis": "<measurement_and_timestamp_basis>",
+    "when_satisfied_state": "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+    "when_not_satisfied_state": "RESEARCH_MONITORING_STATE_UNCHANGED",
+    "when_unknown_state": "REQUIRES_HUMAN_REVIEW",
+    "rationale": "<why_this_stop_exists>",
+    "switching_or_tightening_rule": "<optional_precommitted_switch_rule_or_NONE>"
+  },
+  "take_profit": {
+    "rule_id": "TP-001",
+    "enabled": true,
+    "trigger_or_condition": "<precommitted_take_profit_trigger>",
+    "evaluation_basis": "<measurement_and_timestamp_basis>",
+    "when_satisfied_state": "EXIT_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+    "when_not_satisfied_state": "RESEARCH_MONITORING_STATE_UNCHANGED",
+    "when_unknown_state": "REQUIRES_HUMAN_REVIEW",
+    "rationale": "<why_this_take_profit_exists>",
+    "switching_rule": "<optional_precommitted_trailing_or_target_switch_or_NONE>"
+  },
+  "add_position": {
+    "rule_id": "ADD-001",
+    "enabled": true,
+    "trigger_or_condition": "ALL eligibility_conditions must be satisfied",
+    "evaluation_basis": "<causal_research_and_risk_state_basis>",
+    "when_satisfied_state": "ADD_POSITION_PRECONDITIONS_SATISFIED_REQUIRES_HUMAN_CONFIRMATION",
+    "when_not_satisfied_state": "ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES",
+    "when_unknown_state": "ADD_POSITION_NOT_SUPPORTED_BY_FROZEN_RULES",
+    "rationale": "<why_additional_exposure_can_be_considered>",
+    "eligibility_conditions": ["<condition_1>"],
+    "maximum_add_events": "<nonnegative_integer>",
+    "maximum_incremental_exposure": "<rule_constrained_limit>",
+    "maximum_total_exposure_after_add": "<rule_constrained_limit>",
+    "disallowed_rationales": [
+      "PRICE_FELL_SO_AVERAGE_COST_ONLY",
+      "HOPE_FOR_REBOUND",
+      "FOMO",
+      "UNRECORDED_SUBJECTIVE_OVERRIDE"
+    ]
+  },
+  "reduce_exposure": {
+    "rule_id": "REDUCE-001",
+    "enabled": true,
+    "trigger_or_condition": "<precommitted_reduce_exposure_condition>",
+    "evaluation_basis": "<risk_or_evidence_basis>",
+    "when_satisfied_state": "REDUCE_EXPOSURE_CONDITION_TRIGGERED_REQUIRES_HUMAN_CONFIRMATION",
+    "when_not_satisfied_state": "RESEARCH_MONITORING_STATE_UNCHANGED",
+    "when_unknown_state": "REQUIRES_HUMAN_REVIEW",
+    "rationale": "<why_exposure_should_be_reduced>"
+  },
+  "risk_budget": {
+    "risk_budget_measure": "<e.g._max_loss_budget_or_portfolio_risk_measure>",
+    "maximum_risk_budget": "<rule_constrained_limit>",
+    "breach_state": "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES",
+    "position_sizing_output_semantics": "HYPOTHETICAL_OR_RULE_CONSTRAINED_SIZE_NOT_ORDER_QUANTITY"
+  },
+  "position_or_exposure_limit": {
+    "exposure_measure": "<portfolio_or_single_security_exposure_measure>",
+    "maximum_exposure": "<rule_constrained_limit>",
+    "breach_state": "ACTION_NOT_SUPPORTED_BY_FROZEN_RULES"
+  },
+  "unknown_data_policy": {
+    "required_input_unknown_behavior": "UNKNOWN_INSUFFICIENT_EVIDENCE",
+    "cannot_default_to_pass": true
+  },
+  "amendment_policy": {
+    "append_only_versions": true,
+    "original_plan_preserved": true,
+    "permitted_bases": [
+      "NEW_EXTERNAL_EVIDENCE",
+      "CORPORATE_ACTION_OR_DATA_NORMALIZATION_CORRECTION",
+      "PRECOMMITTED_SWITCH_RULE_TRIGGERED",
+      "NON_SEMANTIC_MEASUREMENT_CORRECTION"
+    ],
+    "forbidden_bases": [
+      "HOPE_FOR_REBOUND_AFTER_LOSS",
+      "AVERAGE_COST_IMPROVEMENT_ALONE",
+      "FOMO",
+      "GREED_AFTER_GAIN",
+      "AVOID_REALIZING_A_LOSS",
+      "UNRECORDED_SUBJECTIVE_OVERRIDE"
+    ],
+    "amendment_reason": "",
+    "amendment_basis": "",
+    "risk_change_direction": "UNCHANGED"
+  },
+  "order_execution_authorized": false,
+  "brokerage_execution_authorized": false,
+  "plan_sha256": "<computed_sha256>"
+}
