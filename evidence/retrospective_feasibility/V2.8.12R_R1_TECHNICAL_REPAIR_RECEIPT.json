@@ -1,0 +1,45 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_TECHNICAL_REPAIR_RECEIPT_V2",
+  "version": "V2.8.12R",
+  "status": "MISSING_SELECTED_CANDIDATE_MATERIALIZED",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json",
+  "input_gate_status": "R1_TECHNICAL_INCOMPLETE_R2_OUTCOME_ACCESS_BLOCKED",
+  "repair_scope": {
+    "ambiguity_set_missing_selected_id": "1216331011",
+    "target_count": 1,
+    "existing_three_classifier_blocked_rows_preserved_without_retry": [
+      "1218801205",
+      "1219266476",
+      "1220302463"
+    ],
+    "why_existing_blocked_rows_not_retried": "Original gate already passed classifier-ready-rate >= 0.90; retrying them is unnecessary to close the actual failing all-16-windows/source-completeness condition.",
+    "replacement_announcements_used": false,
+    "new_or_shifted_windows_used": false,
+    "classifier_changed": false,
+    "keyword_rule_changed": false
+  },
+  "candidate_result": {
+    "announcement_id": "1216331011",
+    "pipeline_status": "SUCCESS",
+    "blocker": "",
+    "classification_state": "NOT_ESTABLISHED",
+    "temporal_provenance_status": "PASS"
+  },
+  "reconciled_counts_if_gate_is_evaluated": {
+    "selected_filings": 42,
+    "classifier_ready_filings": 39,
+    "classifier_ready_rate": 0.9285714285714286,
+    "classifier_ready_rate_ge_0_90": true,
+    "existing_blocked_rows": 3
+  },
+  "R2_price_or_return_access_authorized": false,
+  "R2_authorization_changed_by_this_repair": false,
+  "price_or_return_data_consumed": false,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_or_live_accessed": false,
+  "original_gate_receipt_remains_immutable": true,
+  "repair_results_file": "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_REPAIR_RESULTS.csv",
+  "receipt_sha256": "30f9f64d0bec8802bb2d2fa8e2477e380186dbc1996e422f65168e59c32e5c0d"
+}
