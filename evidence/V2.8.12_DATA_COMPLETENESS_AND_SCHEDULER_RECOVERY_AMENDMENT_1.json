@@ -1,0 +1,83 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1",
+  "version": "V2.8.12",
+  "status": "ACTIVE_POST_SEAL_OPERATIONAL_SEMANTICS_AMENDMENT",
+  "purpose": "Define the operational objective as prospective data completeness with causal observation integrity, rather than treating every individual scheduler trigger as a research requirement.",
+  "problem_elimination_pass": {
+    "final_goal": "Continuously capture eligible prospective official E-layer disclosures without permanent observation gaps or causal timestamp falsification.",
+    "hard_constraints": [
+      "Preserve genuine prospective collection and actual authoritative observation timestamps.",
+      "Preserve the active three-calendar-day AS_OF-2 through AS_OF scan window.",
+      "Preserve announcement_id deduplication and append-only observation semantics.",
+      "Preserve V2.8.4 classifier, triage, identity and effective-date rules.",
+      "Do not open outcome research, price/return research, fold3/fold4, Setup, First60, Episode, live execution or brokerage execution."
+    ],
+    "soft_constraint_removed": "Every scheduled trigger must succeed for the research system to remain valid.",
+    "replacement": "The scheduler is a trigger mechanism. Data coverage is the operational objective. A missed trigger is recoverable while every missed calendar date remains inside the next successful overlapping scan window; recovery must never backdate the actual observation time."
+  },
+  "operational_model": {
+    "primary_objective": "PROSPECTIVE_DATA_COVERAGE_WITH_CAUSAL_TIMESTAMP_INTEGRITY",
+    "scheduler_role": "AUTOMATION_TRIGGER_NOT_RESEARCH_EVIDENCE",
+    "active_cron_utc": "17 1 * * *",
+    "active_local_interpretation": "09:17 Asia/Shanghai every calendar day",
+    "scan_window_rule": "AS_OF minus 2 calendar days through AS_OF inclusive",
+    "scan_window_calendar_days": 3,
+    "announcement_dedup_authority": "evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv"
+  },
+  "recovery_capacity": {
+    "maximum_consecutive_missed_daily_cycles_automatically_coverable_by_next_successful_run": 2,
+    "single_missed_cycle": "RECOVERABLE_SCHEDULER_MISS",
+    "two_consecutive_missed_cycles": "RECOVERABLE_SCHEDULER_MISS",
+    "three_or_more_consecutive_missed_cycles": "POTENTIAL_DATA_COMPLETENESS_GAP_REQUIRES_EXPLICIT_RECOVERY_AUDIT",
+    "reason": "A successful run on day D scans D-2, D-1 and D. Therefore one or two immediately preceding missed calendar days remain in scope; the earliest day after three consecutive misses does not."
+  },
+  "recovery_semantics": {
+    "missed_schedule_event_is_not_a_positive_schedule_confirmation": true,
+    "manual_run_may_not_be_relabelled_as_schedule": true,
+    "a_later_overlapping_run_may_recover_missed_date_candidates": true,
+    "recovered_record_authoritative_observed_at_must_use_actual_later_observation_time": true,
+    "backdating_observation_time_to_the_missed_schedule_time_forbidden": true,
+    "already_observed_announcement_reseen_in_overlap": "NO_DUPLICATE_BECAUSE_ANNOUNCEMENT_ID_DEDUP_REMAINS_AUTHORITATIVE",
+    "candidate_not_yet_in_authoritative_observation_ledger": "ELIGIBLE_FOR_REDISCOVERY_WHILE_ITS_CALENDAR_DATE_REMAINS_IN_A_LATER_SCAN_WINDOW",
+    "individual_blocked_filing": "MAY_BE_RETRIED_WHILE_STILL_IN_A_LATER_SCAN_WINDOW_AND_MUST_NOT_CREATE_ELIGIBILITY_EFFECT_UNTIL SUCCESSFULLY_FINALIZED"
+  },
+  "2026_09_29_incident_interpretation": {
+    "target_schedule_date": "2026-09-29",
+    "target_schedule_trigger_observed": false,
+    "classification": "RECOVERABLE_SCHEDULER_MISS_PENDING_NEXT_SUCCESSFUL_OVERLAP_RUN",
+    "next_day_window_if_2026_09_30_run_succeeds": {
+      "start": "2026-09-28",
+      "end": "2026-09-30",
+      "contains_missed_date_2026_09_29": true
+    },
+    "today_data_is_declared_already_captured": false,
+    "today_schedule_is_declared_successful": false,
+    "what_future_success_would_prove": "A genuine later run successfully scans a window containing 2026-09-29 and processes observations using their actual later authoritative observation time, demonstrating recovery coverage rather than retroactively converting the missed trigger into a successful schedule event."
+  },
+  "success_metrics": {
+    "scheduler_reliability_metric": "Whether genuine event=schedule runs occur under the active workflow.",
+    "data_coverage_metric": "Whether each prospective calendar date remains covered by at least one successfully completed scan before it exits the overlapping window.",
+    "causal_integrity_metric": "Recovered observations retain the actual observation/commit time and are never backdated.",
+    "dedup_integrity_metric": "Repeated scanning of an already observed announcement produces no duplicate authoritative observation."
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "scheduler_empirical_confirmation_complete": false,
+    "2026_09_29_data_recovery_confirmed": false,
+    "manual_intervention_required_for_one_missed_cycle": false,
+    "manual_intervention_required_for_two_consecutive_missed_cycles": false,
+    "explicit_recovery_audit_required_at_three_or_more_consecutive_missed_cycles": true,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_validation": "SYNTHETIC_RECOVERY_WINDOW_AND_DEDUP_SEMANTICS_SELFTEST_THEN_BIND_ACTIVE_WORKFLOW"
+}
