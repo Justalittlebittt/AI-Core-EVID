@@ -1,0 +1,119 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_GOVERNANCE_KERNEL_V1",
+  "version": "V2.9",
+  "status": "FROZEN_ARCHITECTURE_BASELINE",
+  "purpose": "Consolidate governance into one minimal kernel so the system blocks only errors that can invalidate evidence, inference, or discipline, while non-system problems remain uncertainty or operational issues.",
+  "primary_objective": "Reduce emotion-driven investing errors by deciding whether available evidence is sufficient to permit an action and whether that action violates precommitted discipline. The system is not an oracle and does not optimize maximum return.",
+  "constitutional_invariants": {
+    "NO_LEAKAGE": "Future information, outcome information, or post-decision information may not influence signal formation, cohort construction, parameter choice, or action eligibility for the evaluated decision time.",
+    "NO_SILENT_SAMPLE_MUTATION": "Frozen samples, windows, classifiers, thresholds, labels, and selection rules may not change after observing outcomes without an explicit new version and revalidation.",
+    "NO_UNDOCUMENTED_OVERRIDE": "Risk, position, stop-loss, take-profit, invalidation, and action-eligibility rules may not be overridden silently. Any override must be explicit, versioned, and justified by predeclared admissible evidence.",
+    "NO_UNSUPPORTED_CERTAINTY": "Insufficient or unstable evidence must remain INSufficient/weak/uncertain; uncertainty may not be converted into a forced directional conclusion.",
+    "NO_GOAL_DRIFT": "Primary optimization target is reduction of emotion-driven decision error under evidence and risk constraints, not maximum return, maximum trade frequency, or prediction confidence."
+  },
+  "problem_ownership": {
+    "SYSTEM_CRITICAL": {
+      "default_action": "BLOCK",
+      "criteria": [
+        "Can change sample identity or membership in a way that can affect inference",
+        "Can change decision-time information set or temporal ordering",
+        "Can change model, classifier, label, threshold, feature, or selection rule without authorized version change",
+        "Can contaminate OOS, prospective, or live evaluation with outcome information",
+        "Can invalidate precommitted trading discipline or risk controls",
+        "Can make the evaluated evidence identity materially indeterminate"
+      ]
+    },
+    "RESEARCH_UNCERTAINTY": {
+      "default_action": "DO_NOT_ENGINEER_A_FIX",
+      "allowed_outputs": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"],
+      "examples": [
+        "Small sample",
+        "Wide confidence interval",
+        "Weak effect size",
+        "Regime instability",
+        "Cross-sectional instability",
+        "Poor calibration",
+        "Sensitivity to reasonable parameter perturbation"
+      ]
+    },
+    "EXTERNAL_OPERATIONAL": {
+      "default_action": "RETRY_CACHE_DEGRADE_RECORD",
+      "examples": [
+        "HTTP 5xx",
+        "GitHub Actions queue delay",
+        "Transient network failure",
+        "Temporary PDF fetch failure",
+        "Provider interface outage"
+      ],
+      "escalation_rule": "Escalate to SYSTEM_CRITICAL only if the failure can change sample identity, temporal validity, model rules, or discipline outcome."
+    }
+  },
+  "gate_admission_test": {
+    "questions": [
+      "Can this issue change the sample?",
+      "Can this issue change temporal ordering or the decision-time information set?",
+      "Can this issue change model/classifier/threshold/label/selection rules?",
+      "Can this issue change risk or trading discipline?"
+    ],
+    "rule": "If all answers are NO, the issue is forbidden from becoming a system-level hard gate."
+  },
+  "allowed_hard_gate_families": [
+    "FUTURE_OR_LABEL_LEAKAGE",
+    "SILENT_SAMPLE_MUTATION_OR_SELECTION_BIAS",
+    "TEMPORAL_OR_VINTAGE_INDETERMINACY_MATERIAL_TO_INFERENCE",
+    "OOS_PROSPECTIVE_OR_LIVE_CONTAMINATION",
+    "UNAUTHORIZED_MODEL_CLASSIFIER_THRESHOLD_OR_LABEL_CHANGE",
+    "MATERIAL_EVIDENCE_IDENTITY_FAILURE",
+    "RISK_OR_DISCIPLINE_RULE_FAILURE"
+  ],
+  "governance_object_admission_rule": {
+    "applies_to": ["workflow", "gate", "amendment", "receipt", "validation_layer", "probe"],
+    "required_question": "If this object is not added, which specific system-level failure becomes possible?",
+    "reject_if_answer_is_only": ["more complete", "more rigorous", "might be useful later", "easier to audit", "more documentation"],
+    "admit_only_if_prevents": [
+      "leakage",
+      "silent mutation",
+      "invalid inference",
+      "risk-discipline failure"
+    ]
+  },
+  "architecture": {
+    "GOVERNANCE_KERNEL": "Owns invariants, hard-gate definitions, scope boundaries, version-binding rules, and cross-layer semantic consistency.",
+    "EVIDENCE_ENGINE": "Owns data integrity, point-in-time evidence construction, provenance, signal inputs, and leakage prevention.",
+    "VALIDITY_ENGINE": "Owns effect size, baseline comparison, OOS evaluation, regime robustness, transaction costs, drawdown, calibration, sensitivity, and uncertainty strength.",
+    "DISCIPLINE_ENGINE": "Owns action eligibility, position limits, stop-loss/take-profit locks, anti-FOMO/anti-averaging-down constraints, invalidation conditions, and override logging."
+  },
+  "decision_semantics": {
+    "preferred_action_outputs": [
+      "BUY_ELIGIBLE",
+      "BUY_BLOCKED",
+      "ADD_ELIGIBLE",
+      "ADD_BLOCKED",
+      "HOLD_ELIGIBLE",
+      "REDUCE_ELIGIBLE",
+      "EXIT_ELIGIBLE",
+      "EXIT_REQUIRED",
+      "NO_ACTION_INSUFFICIENT_EVIDENCE"
+    ],
+    "prohibited_default_semantics": [
+      "CERTAIN_BUY",
+      "CERTAIN_SELL",
+      "GUARANTEED_UP",
+      "GUARANTEED_DOWN"
+    ]
+  },
+  "out_of_scope": [
+    "Guaranteed market direction prediction",
+    "Exact future price prediction as a required system capability",
+    "Maximum-return optimization as the primary objective",
+    "High-frequency trading",
+    "Rewriting research rules to compensate for transient provider outages",
+    "Treating external operational reliability as investment evidence"
+  ],
+  "backward_compatibility": {
+    "V2_8_12R_evidence_is_immutable": true,
+    "V2_8_12R_existing_gates_remain_binding_until_explicitly_closed": true,
+    "no_existing_threshold_or_pass_condition_is_changed_by_this_kernel": true,
+    "new_kernel_applies_prospectively_to_new_governance_design": true
+  }
+}
