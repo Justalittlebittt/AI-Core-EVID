@@ -95,6 +95,24 @@ def readiness(x):
   "status":"READY_FOR_V2_8_13_OUTCOME_CONTRACT" if all(checks.values()) else "ACCUMULATING_PROSPECTIVE_E_EVENTS"
  }
 
+def status_document(x):
+ st=readiness(x)
+ return {
+  "schema":"AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V1",
+  "version":"V2.8.12",
+  "status":st["status"],
+  "shadow_event_count":st["shadow_event_count"],
+  "distinct_issuer_count":st["distinct_issuer_count"],
+  "distinct_effective_date_count":st["distinct_effective_date_count"],
+  "distinct_positive_calendar_month_count":st["distinct_positive_calendar_month_count"],
+  "maximum_single_issuer_event_share":st["maximum_single_issuer_event_share"],
+  "provenance_checks":st["provenance_checks"],
+  "price_or_return_data_consumed":False,
+  "outcome_research_authorized":False,
+  "fold3_accessed":False,
+  "fold4_accessed":False
+ }
+
 def genesis_row():
  g=rj(GENESIS); e=g["event"]; ca=g["classification_authority"]; ia=g["issuer_identity_authority"]; tr=g["temporal_ratification"]
  run=ca["observation_run_id"]
@@ -178,9 +196,14 @@ def accumulate(ledger_path=SHADOW,status_path=STATUS):
   if state=="BLOCK_CONFLICT": raise RuntimeError(f"SHADOW_CONFLICT:{ev['announcement_id']}")
   if state=="NO_ACTION_DUPLICATE":dupes+=1;continue
   ev=with_recurrence(working,ev);working.append(ev);appended+=1
- write_rows(ledger_path,working)
- st=readiness(working);status_path.write_text(json.dumps(st,indent=2)+"\n")
- return {"appended":appended,"duplicate_noops":dupes,"rows":len(working),"readiness":st}
+ if appended:
+  write_rows(ledger_path,working)
+ st=status_document(working)
+ status_text=json.dumps(st,indent=2)+"\n"
+ status_changed=(not status_path.exists()) or status_path.read_text(encoding="utf-8")!=status_text
+ if status_changed:
+  status_path.write_text(status_text,encoding="utf-8")
+ return {"appended":appended,"duplicate_noops":dupes,"rows":len(working),"readiness":st,"ledger_changed":bool(appended),"status_changed":status_changed}
 
 def self_test():
  gate_guard();t=[]
@@ -217,6 +240,11 @@ def self_test():
   src=Path(__file__).read_text().split("def self_test():")[0]
   ck("S13_no_price_modules",all(q not in src for q in ["v283_outcome_resolver","v280_scale_invariant_features","fwd10","fwd5"]))
   ck("S14_no_v2811_ingestion","V2.8.11_RECONCILED" not in src and "V2.8.11_TARGETED" not in src)
+  st=status_document(x)
+  ck("S15_status_document_preserves_governance",st.get("schema")=="AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V1" and st.get("version")=="V2.8.12" and st.get("price_or_return_data_consumed") is False and st.get("outcome_research_authorized") is False and st.get("fold3_accessed") is False and st.get("fold4_accessed") is False)
+  sp=Path(td)/"status.json";sp.write_text(json.dumps(st,indent=2)+"\n",encoding="utf-8")
+  before_ledger=p.read_bytes();before_status=sp.read_bytes();ar=accumulate(p,sp)
+  ck("S16_noop_preserves_files",ar["appended"]==0 and ar["ledger_changed"] is False and ar["status_changed"] is False and p.read_bytes()==before_ledger and sp.read_bytes()==before_status)
  out={"schema":"AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_SELFTEST_V1","tests":t,"passed":sum(z["pass"] for z in t),"total":len(t),"all_pass":all(z["pass"] for z in t),"real_shadow_ledger_modified":False,"price_or_return_data_consumed":False,"schedule_activated":False,"fold3_4_accessed":False}
  print(json.dumps(out,ensure_ascii=False,indent=2))
  if not out["all_pass"]:raise SystemExit(2)

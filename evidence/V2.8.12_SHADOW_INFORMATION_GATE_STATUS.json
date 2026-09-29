@@ -1,4 +1,7 @@
 {
+  "schema": "AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V1",
+  "version": "V2.8.12",
+  "status": "ACCUMULATING_PROSPECTIVE_E_EVENTS",
   "shadow_event_count": 1,
   "distinct_issuer_count": 1,
   "distinct_effective_date_count": 1,
@@ -13,5 +16,8 @@
     "provenance_integrity_pass": true,
     "price_or_return_data_consumed_false": true
   },
-  "status": "ACCUMULATING_PROSPECTIVE_E_EVENTS"
+  "price_or_return_data_consumed": false,
+  "outcome_research_authorized": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false
 }
