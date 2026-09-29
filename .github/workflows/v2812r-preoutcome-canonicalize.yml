@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - "evidence/retrospective_feasibility/V2.8.12R_EVENT_COHORT_RECEIPT.json"
+      - "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECONCILED_RECEIPT.json"
+      - ".github/workflows/v2812r-preoutcome-canonicalize.yml"
   workflow_dispatch:
 
 permissions:
@@ -35,10 +37,12 @@ jobs:
           from pathlib import Path
           a=json.loads(Path('evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_3.json').read_text())
           r=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_EVENT_COHORT_RECEIPT.json').read_text())
-          t=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json').read_text())
+          t=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECONCILED_RECEIPT.json').read_text())
           assert a['status']=='ACTIVE_PRE_OUTCOME_PROVENANCE_CANONICALIZATION'
           assert r['status']=='R1_EVENT_COHORT_FROZEN_PRICE_OUTCOMES_NOT_YET_READ'
           assert r['price_or_return_data_consumed'] is False
+          assert t['status']=='R1_COHORT_TECHNICALLY_COMPLETE'
+          assert t['R2_price_or_return_access_authorized'] is True
           assert t['price_or_return_data_consumed_in_R1'] is False
           print('Pre-outcome canonicalization binding PASS')
           PY
