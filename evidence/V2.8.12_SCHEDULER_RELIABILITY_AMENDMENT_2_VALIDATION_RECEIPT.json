@@ -1,0 +1,58 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_SCHEDULER_RELIABILITY_AMENDMENT_2_VALIDATION_RECEIPT",
+  "version": "V2.8.12",
+  "status": "STATIC_BINDING_PASS_EMPIRICAL_TRIGGER_PENDING",
+  "validated_on": "2026-09-29",
+  "scope": "Scheduler registration/reliability only; no research or outcome semantics validated or changed.",
+  "binding": {
+    "default_branch": "main",
+    "workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "workflow_blob_sha": "0d2096645452ca1d6a569981d75b6e92cd817bf1",
+    "workflow_update_commit": "dcfd7568473d3ad567365840605309d0451f718f",
+    "amendment": "evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_2.json",
+    "amendment_blob_sha": "5257dc8775c27f7a9a69de8edfddae187df47eb7",
+    "amendment_commit": "078c2b2aac5986937f443d66a63f2cbff981edce"
+  },
+  "checks": {
+    "workflow_exists_on_default_branch": true,
+    "workflow_cron_matches_amendment": true,
+    "cron_utc": "17 1 * * *",
+    "top_of_hour_removed": true,
+    "daily_frequency_preserved": true,
+    "three_calendar_day_overlap_preserved": true,
+    "serial_concurrency_preserved": true,
+    "announcement_dedup_preserved": true,
+    "v284_classifier_triage_identity_effective_date_rules_preserved": true,
+    "v2812_readiness_thresholds_preserved": true,
+    "research_semantics_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false
+  },
+  "concurrent_repository_activity": {
+    "observed": true,
+    "commit": "d309b16fea303ecf39fed457cef8e00d77abbb21",
+    "message": "Freeze V2.8.3 prospective source pin [skip ci]",
+    "classification": "UNRELATED_CONCURRENT_V2_8_3_WRITE_NOT_PART_OF_SCHEDULER_PATCH"
+  },
+  "empirical_confirmation": {
+    "scheduler_empirical_confirmation_complete": false,
+    "required_event": "schedule",
+    "manual_dispatch_qualifies": false,
+    "required_cron_definition": "17 1 * * *",
+    "confirmation_receipt_authorized_now": false,
+    "reason": "A real post-amendment GitHub Actions schedule event for the target workflow has not yet been observed."
+  },
+  "result": {
+    "scheduler_patch_static_validation": "PASS",
+    "scheduler_real_trigger_validation": "PENDING_REAL_SCHEDULE_EVENT",
+    "shadow_accumulation_research_state": "UNCHANGED"
+  },
+  "next_stage": "OBSERVE_NEXT_REAL_TARGET_SCHEDULE_EVENT_AND_ONLY_THEN_FREEZE_EMPIRICAL_CONFIRMATION"
+}
