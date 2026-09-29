@@ -1,0 +1,119 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PARALLEL_RETROSPECTIVE_FEASIBILITY_ARCHITECTURE_AMENDMENT_V1",
+  "version": "V2.8.12",
+  "status": "ACTIVE_ARCHITECTURE_CORRECTION_CONTRACT_REQUIRED_BEFORE_OUTCOME_ACCESS",
+  "purpose": "Remove unnecessary serialization between long-horizon prospective confirmation and bounded retrospective feasibility research while preserving prospective blindness, frozen readiness thresholds, causal timestamp integrity, and all human-decision safeguards.",
+  "problem_elimination_pass": {
+    "final_user_goal": "Determine whether the evidence-anchored E-event direction is worth continued prospective collection without waiting six positive calendar months before learning whether the direction has any retrospective outcome feasibility.",
+    "hard_constraints": [
+      "Preserve the V2.8.12 prospective shadow information gate unchanged.",
+      "Historical or retrospective rows must never count toward the prospective information gate.",
+      "Do not alter the frozen E classifier, triage, materiality, issuer-identity, deduplication or effective-date rules in response to outcomes.",
+      "Do not inspect any historical price or return outcome until a separate retrospective sampling-and-outcome contract is frozen.",
+      "Do not access fold3 or fold4.",
+      "Do not authorize Setup, First60, Episode, live execution, brokerage execution or autonomous financial decisions.",
+      "Any retrospective result is feasibility evidence only and cannot be represented as prospective validation or a buy/sell instruction."
+    ],
+    "soft_constraint_removed": "No outcome-oriented research of any kind may begin until the six-positive-calendar-month prospective gate is satisfied.",
+    "replacement": "Run two causally isolated lanes in parallel: a blind prospective confirmatory lane and a bounded retrospective feasibility lane. The retrospective lane may answer whether continued prospective waiting is research-efficient, but it has zero authority to satisfy, weaken, bypass or rewrite the prospective gate."
+  },
+  "lane_A_prospective_confirmatory": {
+    "authority": "evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json",
+    "status": "UNCHANGED_BLIND_ACCUMULATION",
+    "readiness_requirements_unchanged": {
+      "prospective_positive_shadow_events_min": 20,
+      "distinct_issuers_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_positive_calendar_months_min": 6,
+      "maximum_single_issuer_event_share": 0.20,
+      "provenance_integrity_pass": true,
+      "price_or_return_data_consumed": false
+    },
+    "historical_rows_count_toward_gate": false,
+    "retrospective_results_may_change_gate": false,
+    "retrospective_results_may_change_classifier": false,
+    "role": "Prospective confirmatory evidence and eventual authorization boundary for a separately frozen prospective outcome-observation study."
+  },
+  "lane_B_retrospective_feasibility": {
+    "status": "ARCHITECTURALLY_AUTHORIZED_CONTRACT_NOT_YET_FROZEN",
+    "role": "Estimate whether the frozen E-event direction has sufficient retrospective outcome signal or useful structure to justify continued prospective accumulation and future confirmatory research.",
+    "starting_evidence": {
+      "authority": "evidence/V2.8.11_FINAL_RECORD.json",
+      "bounded_historical_reconstruction_complete": true,
+      "reconstructed_positive_filings": 3,
+      "distinct_positive_securities": 2,
+      "distinct_positive_quarters": 3,
+      "price_or_return_data_previously_consumed": false
+    },
+    "allowed_before_contract_freeze": [
+      "Draft and freeze a retrospective sampling contract.",
+      "Draft and freeze an outcome definition, benchmark, horizons, missing-data handling, multiplicity policy and interpretation limits.",
+      "Define a one-time bounded historical expansion budget that is calendar/rule based and fixed before outcome inspection.",
+      "Define deterministic inclusion/exclusion rules using the already-frozen E-event semantics."
+    ],
+    "forbidden_before_contract_freeze": [
+      "Inspect D1/D5/D10/D20 or any other post-event return.",
+      "Inspect benchmark-relative or excess returns.",
+      "Inspect win rate, IC, p-values, Sharpe-like metrics or outcome-ranked event subtypes.",
+      "Choose historical windows, issuers, keywords or E-event subtypes because their returns look favorable.",
+      "Use outcome information to relax or tighten the E classifier."
+    ],
+    "post_contract_scope_limits": {
+      "historical_only": true,
+      "all_observations_must_predate_the_prospective_activation_boundary": true,
+      "prospective_shadow_ledger_may_not_be_used_as_outcome_sample": true,
+      "fold3_access": false,
+      "fold4_access": false,
+      "setup_emission_authorized": false,
+      "live_authorized": false,
+      "brokerage_execution_authorized": false,
+      "autonomous_financial_decision_authorized": false
+    },
+    "interpretation_ceiling": "RETROSPECTIVE_FEASIBILITY_ONLY_NOT_PROSPECTIVE_VALIDATION_NOT_STRATEGY_VALIDATION"
+  },
+  "anti_leakage_firewall": {
+    "separate_evidence_namespace_required": true,
+    "recommended_namespace": "evidence/retrospective_feasibility/",
+    "prospective_collection_code_changes_required": false,
+    "prospective_classifier_changes_authorized": false,
+    "prospective_threshold_changes_authorized": false,
+    "retrospective_sample_may_be_appended_to_prospective_shadow_ledger": false,
+    "prospective_shadow_events_may_be_removed_due_to_retrospective_outcomes": false,
+    "event_subtype_selection_after_outcome_observation_for_confirmatory_claims": false,
+    "any_exploratory_subgroup_discovered_after_outcome_observation_requires_future_separate_precommitted_validation": true
+  },
+  "supersession_scope": {
+    "supersedes_only": [
+      "The blanket interpretation that all outcome-oriented research must wait for the V2.8.12 six-month prospective readiness gate.",
+      "The blanket prohibition on drafting any outcome contract before prospective readiness, but only for the isolated retrospective feasibility lane."
+    ],
+    "does_not_supersede": [
+      "V2.8.12 prospective information gate thresholds.",
+      "The prohibition on counting V2.8.11 or other historical rows toward prospective readiness.",
+      "The prohibition on modifying classifier/triage/materiality/identity rules to rescue yield or outcomes.",
+      "The prohibition on fold3/fold4 access.",
+      "The prohibition on live, brokerage or autonomous financial execution.",
+      "The prohibition on representing E events as alpha claims or buy instructions without separate validation."
+    ]
+  },
+  "governance": {
+    "research_semantics_changed": true,
+    "change_type": "ARCHITECTURE_SERIALIZATION_CORRECTION_WITHOUT_PROSPECTIVE_GATE_RELAXATION",
+    "prospective_readiness_thresholds_changed": false,
+    "prospective_blind_accumulation_active": true,
+    "retrospective_sampling_and_outcome_contract_drafting_authorized": true,
+    "retrospective_price_or_return_data_authorized_now": false,
+    "prospective_price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "bounded_precommitted_historical_expansion_may_be_authorized_by_next_contract": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_required_action": "Freeze V2.8.12R retrospective feasibility sampling-and-outcome contract before any historical price or return data are inspected. The contract must precommit the historical sampling budget/windows, event inclusion rules, outcome horizons, benchmark, missing-data policy, concentration/diversity requirements, multiplicity handling, stopping rule and interpretation ceiling."
+}
