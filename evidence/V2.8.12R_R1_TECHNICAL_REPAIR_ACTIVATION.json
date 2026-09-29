@@ -1,0 +1,28 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_TECHNICAL_REPAIR_ACTIVATION_V1",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_ONE_TIME_BOUNDED_REPAIR",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json",
+  "targets": {
+    "original_blocked_selected_ids": [
+      "1216153215",
+      "1217009888",
+      "1217289193"
+    ],
+    "ambiguity_set_missing_selected_id": "1216331011"
+  },
+  "scope": {
+    "same_frozen_windows_only": true,
+    "same_deterministic_selection_only": true,
+    "replacement_announcements_allowed": false,
+    "new_or_shifted_windows_allowed": false,
+    "classifier_change_allowed": false,
+    "keyword_rule_change_allowed": false,
+    "price_or_return_access_allowed": false,
+    "fold3_access_allowed": false,
+    "fold4_access_allowed": false,
+    "setup_or_live_access_allowed": false,
+    "overwrite_original_gate_receipt": false,
+    "overwrite_original_expansion_results": false
+  }
+}
