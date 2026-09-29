@@ -1,0 +1,22 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT_V1",
+  "version": "V2.8.12R",
+  "status": "PASS_FINAL_PRE_OUTCOME_COHORT_FROZEN",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_3.json",
+  "input_R1_cohort": "evidence/retrospective_feasibility/V2.8.12R_FROZEN_EVENT_COHORT.csv",
+  "input_R1_cohort_sha256": "33bc0c09576f6503529f7e3059ea11cbaacd910eca6c7ce9caec0b5917ebba1e",
+  "final_cohort": "evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT.csv",
+  "final_cohort_sha256": "f654b122989cb16becc1bad81cfa2d63d8fcfd5b3b0c79358f29126bbd2c24e3",
+  "event_count": 4,
+  "legacy_events_hydrated": 3,
+  "R1_expansion_events": 1,
+  "all_four_provenance_hashes_complete": true,
+  "membership_and_event_semantics_changed": false,
+  "membership_identity_sha256": "c2bb746bdd1bd850e98e875485b63908f44f11bd0e3edd72f5c176e8970044b0",
+  "price_or_return_data_consumed": false,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "R2_may_use_this_as_final_event_population_only_if_R1_technical_gate_passed": true,
+  "receipt_sha256": "d38d3b9b0dfb863f37e453df257e45d59f32cfdaabf313f1662056505d738646"
+}
