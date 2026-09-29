@@ -33,13 +33,17 @@
   },
   "recovery_semantics": {
     "missed_schedule_event_is_not_a_positive_schedule_confirmation": true,
+    "manual_recovery_dispatch_authorized_if_needed": true,
+    "manual_recovery_dispatch_is_optional_while_dates_remain_inside_a_future_overlap_window": true,
+    "manual_recovery_dispatch_must_use_actual_observation_time": true,
+    "manual_recovery_dispatch_does_not_count_as_scheduler_empirical_confirmation": true,
     "manual_run_may_not_be_relabelled_as_schedule": true,
     "a_later_overlapping_run_may_recover_missed_date_candidates": true,
     "recovered_record_authoritative_observed_at_must_use_actual_later_observation_time": true,
     "backdating_observation_time_to_the_missed_schedule_time_forbidden": true,
     "already_observed_announcement_reseen_in_overlap": "NO_DUPLICATE_BECAUSE_ANNOUNCEMENT_ID_DEDUP_REMAINS_AUTHORITATIVE",
     "candidate_not_yet_in_authoritative_observation_ledger": "ELIGIBLE_FOR_REDISCOVERY_WHILE_ITS_CALENDAR_DATE_REMAINS_IN_A_LATER_SCAN_WINDOW",
-    "individual_blocked_filing": "MAY_BE_RETRIED_WHILE_STILL_IN_A_LATER_SCAN_WINDOW_AND_MUST_NOT_CREATE_ELIGIBILITY_EFFECT_UNTIL SUCCESSFULLY_FINALIZED"
+    "individual_blocked_filing": "MAY_BE_RETRIED_WHILE_STILL_IN_A_LATER_SCAN_WINDOW_AND_MUST_NOT_CREATE_ELIGIBILITY_EFFECT_UNTIL_SUCCESSFULLY_FINALIZED"
   },
   "2026_09_29_incident_interpretation": {
     "target_schedule_date": "2026-09-29",
@@ -52,6 +56,8 @@
     },
     "today_data_is_declared_already_captured": false,
     "today_schedule_is_declared_successful": false,
+    "manual_recovery_today_would_be_valid_data_collection_if_run": true,
+    "manual_recovery_today_would_not_count_as_schedule_success": true,
     "what_future_success_would_prove": "A genuine later run successfully scans a window containing 2026-09-29 and processes observations using their actual later authoritative observation time, demonstrating recovery coverage rather than retroactively converting the missed trigger into a successful schedule event."
   },
   "success_metrics": {
@@ -64,6 +70,7 @@
     "research_semantics_changed": false,
     "scheduler_empirical_confirmation_complete": false,
     "2026_09_29_data_recovery_confirmed": false,
+    "manual_recovery_dispatch_authorized": true,
     "manual_intervention_required_for_one_missed_cycle": false,
     "manual_intervention_required_for_two_consecutive_missed_cycles": false,
     "explicit_recovery_audit_required_at_three_or_more_consecutive_missed_cycles": true,
@@ -79,5 +86,5 @@
     "brokerage_execution_authorized": false,
     "autonomous_financial_decision_authorized": false
   },
-  "next_validation": "SYNTHETIC_RECOVERY_WINDOW_AND_DEDUP_SEMANTICS_SELFTEST_THEN_BIND_ACTIVE_WORKFLOW"
+  "next_validation": "SYNTHETIC_RECOVERY_WINDOW_AND_DEDUP_SEMANTICS_SELFTEST"
 }
