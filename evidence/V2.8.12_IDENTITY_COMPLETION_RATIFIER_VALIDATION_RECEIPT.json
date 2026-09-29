@@ -1,0 +1,81 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_IDENTITY_COMPLETION_RATIFIER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "authority": "evidence/V2.8.12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_AMENDMENT_1.json",
+  "implementation": {
+    "script": "scripts/v2812_identity_completion_ratifier.py",
+    "blob_sha": "226fe586f1325e1753d95303ff021b01481c10ed",
+    "standalone_workflow": ".github/workflows/v2812-identity-completion-ratifier.yml"
+  },
+  "validation_sequence": {
+    "initial_fail_closed_run": {
+      "run_id": 36536337238,
+      "result": "SELFTEST_STATIC_GUARD_SELF_CONTAMINATION_ONLY_REAL_RATIFY_SKIPPED"
+    },
+    "real_validated_ratification_run": {
+      "run_id": 36536455787,
+      "result": "PASS",
+      "ratification_commit_sha": "448f12cf5763859116ae9be6745dba0f7310cc7f",
+      "appended_shadow_events": 2,
+      "announcement_ids": ["1225585268", "1225585270"]
+    },
+    "production_state_independent_selftest_repair_run": {
+      "run_id": 36536771843,
+      "result": "PASS",
+      "script_commit_sha": "d51f3c2fcaa1567e9580e055ca843cf655b0ec93"
+    },
+    "stable_idempotence_run": {
+      "run_id": 36536845919,
+      "result": "PASS",
+      "selftest": "13/13 PASS",
+      "planned_candidates": 2,
+      "appended": 0,
+      "duplicate_noops": 2,
+      "rows_after": 3,
+      "created_receipts": 0,
+      "new_evidence_commit_created": false
+    }
+  },
+  "temporal_validation": {
+    "original_observation_time_utc": "2026-09-29T07:09:47Z",
+    "issuer_identity_binding_time_utc": "2026-09-29T07:19:49Z",
+    "eligibility_completeness_time_utc": "2026-09-29T07:19:49Z",
+    "effective_signal_date": "2026-09-30",
+    "backdating": false,
+    "same_day_activation": false
+  },
+  "shadow_result": {
+    "shadow_event_count": 3,
+    "distinct_issuer_count": 2,
+    "distinct_effective_date_count": 2,
+    "distinct_positive_calendar_month_count": 1,
+    "maximum_single_issuer_event_share": 0.6666666666666666,
+    "readiness_status": "ACCUMULATING_PROSPECTIVE_E_EVENTS"
+  },
+  "validated_invariants": {
+    "original_classification_recomputed": false,
+    "classifier_or_triage_changed": false,
+    "identity_or_effective_date_rule_changed": false,
+    "readiness_thresholds_changed": false,
+    "announcement_id_dedup_preserved": true,
+    "same_issuer_recurrence_preserved": true,
+    "immutable_ratification_receipts": true,
+    "repeat_execution_is_noop": true,
+    "price_or_return_data_consumed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  },
+  "governance": {
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "BIND_RATIFIER_TO_ACTIVE_DAILY_WORKFLOW_AND_VALIDATE_POST_BINDING_STATIC_INTEGRITY"
+}
