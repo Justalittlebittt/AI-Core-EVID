@@ -321,19 +321,32 @@ def self_test():
         lp=td/"shadow.csv"
         sp=td/"status.json"
         rd=td/"rat"
-        lp.write_bytes(SHADOW.read_bytes())
-        sp.write_bytes(STATUS.read_bytes())
+        real_rows=acc.rows(SHADOW)
+        genesis=[r for r in real_rows if r["announcement_id"]=="1225573666"]
+        ck("R07_genesis_fixture_exactly_one",len(genesis)==1)
+        acc.write_rows(lp,genesis)
+        sp.write_text(json.dumps(acc.status_document(genesis),ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         out=ratify(lp,sp,rd)
         rows_after=acc.rows(lp)
         bee=[r for r in rows_after if r["canonical_security_id"]=="SZSE:301382"]
-        ck("R07_two_events_append_once",out["appended"]==2 and len(rows_after)==3 and len(bee)==2)
-        ck("R08_same_issuer_recurrence_preserved",bee[0]["issuer_positive_sequence_number"]=="1" and bee[0]["recurrence_status"]=="FIRST_POSITIVE_FOR_ISSUER" and bee[1]["issuer_positive_sequence_number"]=="2" and bee[1]["prior_positive_announcement_id"]=="1225585268")
-        ck("R09_ratification_receipts_created",len(list(rd.glob("*.json")))==2)
-        before_l=lp.read_bytes();before_s=sp.read_bytes();before_docs={p.name:p.read_bytes() for p in rd.glob("*.json")}
+        ck("R08_two_events_append_once_from_genesis",out["appended"]==2 and len(rows_after)==3 and len(bee)==2)
+        ck("R09_same_issuer_recurrence_preserved",bee[0]["issuer_positive_sequence_number"]=="1" and bee[0]["recurrence_status"]=="FIRST_POSITIVE_FOR_ISSUER" and bee[1]["issuer_positive_sequence_number"]=="2" and bee[1]["prior_positive_announcement_id"]=="1225585268")
+        ck("R10_ratification_receipts_created",len(list(rd.glob("*.json")))==2)
+        before_l=lp.read_bytes();before_s=sp.read_bytes();before_docs={q.name:q.read_bytes() for q in rd.glob("*.json")}
         out2=ratify(lp,sp,rd)
-        after_docs={p.name:p.read_bytes() for p in rd.glob("*.json")}
-        ck("R10_second_run_is_idempotent",out2["appended"]==0 and out2["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and before_docs==after_docs)
-        ck("R11_readiness_updates_without_opening_gate",out["readiness"]["shadow_event_count"]==3 and out["readiness"]["status"]=="ACCUMULATING_PROSPECTIVE_E_EVENTS")
+        after_docs={q.name:q.read_bytes() for q in rd.glob("*.json")}
+        ck("R11_fixture_second_run_is_idempotent",out2["appended"]==0 and out2["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and before_docs==after_docs)
+        ck("R12_readiness_updates_without_opening_gate",out["readiness"]["shadow_event_count"]==3 and out["readiness"]["status"]=="ACCUMULATING_PROSPECTIVE_E_EVENTS")
+    with tempfile.TemporaryDirectory() as td:
+        td=Path(td)
+        lp=td/"current_shadow.csv"
+        sp=td/"current_status.json"
+        rd=td/"current_rat"
+        lp.write_bytes(SHADOW.read_bytes())
+        sp.write_bytes(STATUS.read_bytes())
+        before_l=lp.read_bytes();before_s=sp.read_bytes()
+        out3=ratify(lp,sp,rd)
+        ck("R13_current_production_state_is_duplicate_noop",out3["appended"]==0 and out3["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and not list(rd.glob("*.json")))
     result={
         "schema":"AI_CORE_EVID_V2_8_12_IDENTITY_COMPLETION_RATIFIER_SELFTEST_V1",
         "tests":tests,
