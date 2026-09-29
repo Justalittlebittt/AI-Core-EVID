@@ -1,0 +1,65 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_FINALIZATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "FINALIZED_WITH_BLOCKED_POSITIVE_RECORD",
+  "run_id": "36534929208_1",
+  "observation_receipt": "V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_36534929208_1.json",
+  "observation_commit_sha": "19a00f8a017aad47e7d9f457c1bc0a3206a6abe1",
+  "authoritative_observed_at_utc": "2026-09-29T07:09:47Z",
+  "successful_observation_rows": 3,
+  "ledger_rows_before": 1,
+  "ledger_rows_appended": 3,
+  "ledger_duplicate_noops": 0,
+  "ledger_rows_after": 4,
+  "effective_positive_events": [],
+  "blocked_incomplete_positive_records": [
+    {
+      "canonical_security_id": "SZSE:301382",
+      "issuer_legal_name": "",
+      "issuer_identity_basis": "",
+      "document_type": "CNINFO_ISSUER_DISCLOSURE",
+      "announcement_id": "1225585268",
+      "disclosure_date": "2026-09-29",
+      "source_object_sha256": "8a756fa0fe213ceb5c59e8c9677fc2bb4d9300be068db4a9d2718a9579da204c",
+      "page_number": 12,
+      "evidence_text": "具备与本次合同业务规模相匹配的完整业务资质，C 公司智算中心落地经验丰富，",
+      "matched_ai_role": [
+        "智算"
+      ],
+      "matched_commerciality": [
+        "合同"
+      ],
+      "classification_state": "ELIGIBLE_AI_CORE",
+      "authoritative_observed_at_utc": "2026-09-29T07:09:47Z",
+      "record_complete": false,
+      "eligibility_effect": "BLOCKED_INCOMPLETE_POSITIVE_EVIDENCE_RECORD"
+    },
+    {
+      "canonical_security_id": "SZSE:301382",
+      "issuer_legal_name": "",
+      "issuer_identity_basis": "",
+      "document_type": "CNINFO_ISSUER_DISCLOSURE",
+      "announcement_id": "1225585270",
+      "disclosure_date": "2026-09-29",
+      "source_object_sha256": "11f9750787a13434dea3eca8b65734313d73338df75ed90268a2fcf37307a916",
+      "page_number": 13,
+      "evidence_text": "具备与本次合同业务规模相匹配的完整业务资质，C 公司智算中心落地经验丰富，",
+      "matched_ai_role": [
+        "智算"
+      ],
+      "matched_commerciality": [
+        "合同"
+      ],
+      "classification_state": "ELIGIBLE_AI_CORE",
+      "authoritative_observed_at_utc": "2026-09-29T07:09:47Z",
+      "record_complete": false,
+      "eligibility_effect": "BLOCKED_INCOMPLETE_POSITIVE_EVIDENCE_RECORD"
+    }
+  ],
+  "historical_backfill": false,
+  "same_day_eligibility_activation": false,
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "717c98996b65ba07f3ba346839fbeda800f3cc616bb15f45f0531b4f241238be"
+}
