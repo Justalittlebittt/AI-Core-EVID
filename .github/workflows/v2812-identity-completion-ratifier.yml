@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "4c679e621dd376f119527fd6ff689c8e19365464"
+          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "34428efd7fc64541f17c83b6e6c4b00dd551e9de"
           test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
           python - <<'PY'
           import json
@@ -42,30 +42,21 @@ jobs:
           assert a["governance"]["fold3_access"] is False
           assert a["governance"]["fold4_access"] is False
           PY
-      - name: Repair self-test scanner only
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
-          p=Path("scripts/v2812_identity_completion_ratifier.py")
-          s=p.read_text(encoding="utf-8")
-          old='''    src=Path(__file__).read_text(encoding="utf-8")\n    ck("R05_no_classifier_recompute",all(q not in src for q in ["v284_page_scoped_classifier","classify_pages("]))\n    ck("R06_no_price_or_outcome_modules",all(q not in src for q in ["v283_outcome_resolver","fwd5","fwd10","benchmark_return","price_source"]))\n'''
-          new='''    import ast\n    tree=ast.parse(Path(__file__).read_text(encoding="utf-8"))\n    imported=set()\n    called=set()\n    for node in ast.walk(tree):\n        if isinstance(node,ast.Import):\n            imported.update(a.name for a in node.names)\n        elif isinstance(node,ast.ImportFrom):\n            imported.add(node.module or "")\n        elif isinstance(node,ast.Call):\n            f=node.func\n            if isinstance(f,ast.Name): called.add(f.id)\n            elif isinstance(f,ast.Attribute): called.add(f.attr)\n    ck("R05_no_classifier_recompute","v284_page_scoped_classifier" not in imported and "classify_pages" not in called)\n    ck("R06_no_price_or_outcome_modules","v283_outcome_resolver" not in imported and not ({"fwd5","fwd10","benchmark_return","price_source"} & called))\n'''
-          assert old in s
-          p.write_text(s.replace(old,new,1),encoding="utf-8")
-          PY
       - name: Generic ratifier self-test only
         run: python scripts/v2812_identity_completion_ratifier.py self-test
       - name: Ratify identity-complete prospective positives
         run: python scripts/v2812_identity_completion_ratifier.py ratify
-      - name: Commit ratifier fix, ratifications and shadow readiness
+      - name: Commit ratifications and shadow readiness if changed
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add scripts/v2812_identity_completion_ratifier.py evidence/v2812_identity_ratifications evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json
-          git commit -m "Validate and ratify V2.8.12 prospective identity-complete filing events [skip ci]"
+          git add evidence/v2812_identity_ratifications evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json
+          if git diff --cached --quiet; then
+            echo "No new identity-completion ratification evidence"
+            exit 0
+          fi
+          git commit -m "Ratify V2.8.12 prospective identity-complete filing events [skip ci]"
           git pull --rebase origin main
           git push
