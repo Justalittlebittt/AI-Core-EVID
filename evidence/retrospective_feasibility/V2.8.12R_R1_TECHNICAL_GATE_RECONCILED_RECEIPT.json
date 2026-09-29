@@ -1,0 +1,34 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_TECHNICAL_COMPLETENESS_RECONCILED_RECEIPT_V1",
+  "version": "V2.8.12R",
+  "status": "R1_COHORT_TECHNICALLY_COMPLETE",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json",
+  "reconciliation_basis": {
+    "initial_gate_receipt": "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json",
+    "source_retry_probe": "evidence/retrospective_feasibility/V2.8.12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE.json",
+    "ambiguity_selection_audit": "evidence/retrospective_feasibility/V2.8.12R_R1_AMBIGUITY_SET_SELECTION_AUDIT.json",
+    "technical_repair_receipt": "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_REPAIR_RECEIPT.json",
+    "original_gate_receipt_preserved": true
+  },
+  "checks": {
+    "frozen_windows": 16,
+    "original_completed_windows": 15,
+    "original_source_blocked_windows": 1,
+    "missing_result_window_keys_exactly_equal_two_window_probe_set": true,
+    "both_ambiguous_windows_source_query_completed_on_retry": true,
+    "all_16_windows_complete": true,
+    "selected_filings": 42,
+    "classifier_ready_filings": 39,
+    "classifier_ready_rate": 0.9285714285714286,
+    "classifier_ready_rate_ge_0_90": true,
+    "all_positive_temporal_provenance_pass": true,
+    "announcement_id_dedup_pass": true
+  },
+  "R2_price_or_return_access_authorized": true,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "price_or_return_data_consumed_in_R1": false,
+  "setup_or_live_accessed": false,
+  "receipt_sha256": "cdc5cb09e88b92ae253fe7ae1b04213694f64483ee65b727abfc204a3efe81a3"
+}
