@@ -1,0 +1,32 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_V2",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_BEFORE_R1_REAL_QUERY",
+  "parent_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+  "purpose": "Prevent source or materialization failures from silently redefining the frozen retrospective cohort before any outcome access.",
+  "R1_technical_completeness_gate": {
+    "all_16_frozen_windows_must_complete_candidate_query": true,
+    "classifier_ready_selected_filing_rate_min": 0.90,
+    "every_positive_requires_temporal_provenance_pass": true,
+    "announcement_id_dedup_must_pass": true,
+    "if_gate_passes": "R1_COHORT_TECHNICALLY_COMPLETE",
+    "if_gate_fails": "R1_TECHNICAL_INCOMPLETE_R2_OUTCOME_ACCESS_BLOCKED"
+  },
+  "retry_semantics_if_incomplete": {
+    "same_frozen_windows_only": true,
+    "same_deterministic_selection_only": true,
+    "blocked_selected_announcement_may_be_retried": true,
+    "replacement_with_next_ranked_announcement_forbidden": true,
+    "window_shift_or_expansion_forbidden": true,
+    "keyword_or_classifier_change_forbidden": true,
+    "price_or_return_access_before_technical_pass": false
+  },
+  "governance": {
+    "outcome_data_consumed_before_amendment": false,
+    "prospective_gate_changed": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "live_authorized": false
+  }
+}
