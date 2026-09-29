@@ -1,0 +1,61 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_POST_RECOVERY_OPERATIONAL_STATE_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS_NO_RESEARCH_TRANSITION_AUTHORIZED",
+  "purpose": "Freeze the post-recovery operational state after the 2026-09-29 manual recovery, issuer-identity completion, daily strict identity integration, and no-op staging fix without changing research semantics or readiness thresholds.",
+  "authoritative_inputs": {
+    "manual_recovery_empirical_confirmation": "evidence/V2.8.12_2026_09_29_MANUAL_RECOVERY_EMPIRICAL_CONFIRMATION_RECEIPT.json",
+    "strict_identity_noop_fix_validation": "evidence/V2.8.12_STRICT_IDENTITY_NOOP_STAGING_FIX_VALIDATION_RECEIPT.json",
+    "shadow_information_gate": "evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json",
+    "active_daily_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml"
+  },
+  "operational_state": {
+    "2026_09_29_data_recovery_confirmed": true,
+    "scheduler_empirical_confirmation_complete": false,
+    "active_cron_utc": "17 1 * * *",
+    "manual_recovery_counts_as_schedule_confirmation": false,
+    "strict_identity_prebinding_integrated": true,
+    "identity_completion_ratifier_integrated": true,
+    "normal_no_new_identity_binding_run_is_safe_noop": true,
+    "backdating_path_introduced": false
+  },
+  "shadow_gate_state": {
+    "status": "ACCUMULATING_PROSPECTIVE_E_EVENTS",
+    "shadow_event_count": 3,
+    "distinct_issuer_count": 2,
+    "distinct_effective_date_count": 2,
+    "distinct_positive_calendar_month_count": 1,
+    "maximum_single_issuer_event_share": 0.6666666666666666,
+    "information_gate_ready": false
+  },
+  "frozen_readiness_requirements": {
+    "prospective_positive_shadow_events_min": 20,
+    "distinct_issuers_min": 12,
+    "distinct_effective_dates_min": 12,
+    "distinct_positive_calendar_months_min": 6,
+    "maximum_single_issuer_event_share": 0.20,
+    "provenance_integrity_pass": true,
+    "price_or_return_data_consumed": false
+  },
+  "remaining_empirical_dependency": {
+    "required": "A genuine event=schedule run under the active 01:17 UTC cadence must complete successfully before scheduler empirical confirmation may be marked complete.",
+    "may_be_substituted_by_manual_dispatch": false,
+    "may_trigger_V2_8_13_by_itself": false
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "readiness_thresholds_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_allowed_action": "Observe the next genuine scheduled collection run. If it succeeds, freeze scheduler empirical confirmation only. Continue blind accumulation until the existing information gate itself becomes ready; do not draft V2.8.13 early."
+}
