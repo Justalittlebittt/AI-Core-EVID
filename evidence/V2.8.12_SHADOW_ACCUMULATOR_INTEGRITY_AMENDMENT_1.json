@@ -1,7 +1,7 @@
 {
   "schema": "AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_V1",
   "version": "V2.8.12",
-  "status": "ACTIVE_POST_SEAL_INTEGRITY_CORRECTION_PENDING_WORKFLOW_REBIND_VALIDATION",
+  "status": "ACTIVE_POST_SEAL_INTEGRITY_CORRECTION",
   "incident": {
     "detected_by_manual_recovery_run_id": "36534929208_1",
     "regression_commit": "808f52028ee44b99ef211e582c9ebcccecfa65df",
@@ -23,6 +23,16 @@
     "selftest": "16/16 PASS",
     "readiness_thresholds_changed": false,
     "research_semantics_changed": false
+  },
+  "validation": {
+    "workflow": ".github/workflows/v2812-shadow-accumulator-selftest.yml",
+    "run_id": 36535798323,
+    "job_id": 109299428436,
+    "conclusion": "success",
+    "active_workflow_binding_check": "PASS",
+    "corrected_accumulator_selftest": "16/16 PASS",
+    "status_metadata_restoration": "PASS",
+    "zero_append_ledger_stability": "PASS"
   },
   "governance": {
     "outcome_research_authorized": false,
