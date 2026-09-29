@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE_V1",
+  "version": "V2.8.12R",
+  "purpose": "Outcome-blind source-only replay of the two ambiguous frozen windows; no triage, PDF materialization, classifier, price, return, fold3, fold4, Setup or live access.",
+  "records": [
+    {
+      "quarter": "2023Q1",
+      "anchor_session": 1,
+      "start": "2023-01-03",
+      "end": "2023-01-09",
+      "source_status": "SOURCE_QUERY_COMPLETED",
+      "deduped_announcements": 0,
+      "source_blocker": "",
+      "collector_receipt_sha256": "c195bed6425fc75a77d079b60b1df68ba5431eeee18b309764ac6740a8ca9dd3"
+    },
+    {
+      "quarter": "2023Q2",
+      "anchor_session": 1,
+      "start": "2023-04-03",
+      "end": "2023-04-09",
+      "source_status": "SOURCE_QUERY_COMPLETED",
+      "deduped_announcements": 1,
+      "source_blocker": "",
+      "collector_receipt_sha256": "2187747c4ca247047bcf4bbf504277613293c9d098cd06c4b4ef829efd9ec911"
+    }
+  ],
+  "current_probe_unique_blocked_window": null,
+  "current_probe_blocked_count": 0,
+  "historical_identity_claim_authorized": false,
+  "price_or_return_data_consumed": false,
+  "classifier_executed": false,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_or_live_accessed": false,
+  "receipt_sha256": "03e1cbac2677a6ebd889ce501e7c739e5ad9c5e6a1210519eff9594a0cce12ec"
+}
