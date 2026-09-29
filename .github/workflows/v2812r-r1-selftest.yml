@@ -1,0 +1,48 @@
+name: V2.8.12R R1 Outcome-Blind Expansion Self-Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/v2812r-r1-selftest.yml"
+      - "scripts/v2812r_retrospective_feasibility_r1.py"
+      - "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json"
+      - "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_1.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-r1-selftest
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run R1 outcome-blind self-test and freeze windows
+        run: python scripts/v2812r_retrospective_feasibility_r1.py self-test --write-outputs
+      - name: Commit validation receipt and frozen expansion windows
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_EXPANSION_WINDOWS.json
+          git add evidence/retrospective_feasibility/V2.8.12R_R1_RUNNER_VALIDATION_RECEIPT.json
+          if git diff --cached --quiet; then
+            echo "Validation evidence already frozen"
+          else
+            git commit -m "Freeze V2.8.12R R1 runner validation and windows [skip ci]"
+            git pull --rebase origin main
+            git push
+          fi
