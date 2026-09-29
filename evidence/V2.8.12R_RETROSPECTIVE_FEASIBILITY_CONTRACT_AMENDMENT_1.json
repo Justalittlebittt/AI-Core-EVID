@@ -1,0 +1,28 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_V1",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_PRE_OUTCOME_CLARIFICATION",
+  "parent_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+  "purpose": "Eliminate ambiguity in issuer-level weighting before any additional historical candidate query or price/return access.",
+  "clarification": {
+    "issuer_grouping_key": "canonical_security_id",
+    "security_name": "DISPLAY_ONLY_NOT_A_GROUPING_OR_SELECTION_KEY",
+    "legal_entity_name": "DISPLAY_OR_PROVENANCE_ONLY_NOT_REQUIRED_FOR_RETROSPECTIVE_GROUPING",
+    "reason": "canonical_security_id is already deterministic and frozen in the historical reconstruction path; using later manual legal-name completion would create an unnecessary post hoc grouping dependency."
+  },
+  "analysis_effect": {
+    "primary_analysis_unit": "canonical_security_id",
+    "within_unit_aggregation": "Median D+10 excess return across all frozen cohort events sharing the same canonical_security_id.",
+    "primary_statistic": "Median across canonical_security_id-level D+10 excess-return medians with equal unit weight.",
+    "distinct_issuer_count_for_sample_floor": "Count distinct canonical_security_id values.",
+    "maximum_single_issuer_event_share": "Maximum share of frozen cohort events belonging to one canonical_security_id."
+  },
+  "governance": {
+    "outcome_data_consumed_before_amendment": false,
+    "prospective_gate_changed": false,
+    "classifier_or_triage_changed": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "live_authorized": false
+  }
+}
