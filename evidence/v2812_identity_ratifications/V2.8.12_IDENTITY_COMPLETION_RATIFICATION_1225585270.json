@@ -1,0 +1,82 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_V1",
+  "version": "V2.8.12",
+  "status": "RATIFIED_FOR_PROSPECTIVE_SHADOW_EFFECT",
+  "event": {
+    "announcement_id": "1225585270",
+    "canonical_security_id": "SZSE:301382",
+    "issuer_legal_name": "蜂助手股份有限公司",
+    "classification_state": "ELIGIBLE_AI_CORE",
+    "source_object_sha256": "11f9750787a13434dea3eca8b65734313d73338df75ed90268a2fcf37307a916",
+    "page_text_sha256": "49690534325d92c9ddbf4938a3861224ed4da6e1cb7f7521599fd70d14f716e7",
+    "decision_sha256": "51dd35376d802febe417f655ec5621b12e2a74ba6ac65a076e1939709e84b703",
+    "evidence_page_number": 13,
+    "matched_ai_role": [
+      "智算"
+    ],
+    "matched_commerciality": [
+      "合同"
+    ]
+  },
+  "classification_authority": {
+    "observation_run_id": "36534929208_1",
+    "observation_commit_sha": "19a00f8a017aad47e7d9f457c1bc0a3206a6abe1",
+    "observation_committed_at_utc": "2026-09-29T07:09:47Z",
+    "source_finalization_receipt": "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_FINALIZATION_RECEIPT_36534929208_1.json",
+    "original_record_complete": false,
+    "original_eligibility_effect": "BLOCKED_INCOMPLETE_POSITIVE_EVIDENCE_RECORD",
+    "classifier_semantics_changed": false,
+    "decision_recomputed": false
+  },
+  "issuer_identity_authority": {
+    "contract": "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDING_CONTRACT.json",
+    "binding_ledger": "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv",
+    "binding_commit_sha": "db2ea9a1f5ef6405a4de05e83831af099d04bcce",
+    "binding_committed_at_utc": "2026-09-29T07:19:49Z",
+    "binding_state": "OFFICIAL_CNINFO_IDENTITY_BOUND",
+    "source_announcement_id": "1225585270",
+    "source_adjunct_url": "finalpage/2026-09-29/1225585270.PDF",
+    "identity_only_not_AI_evidence": true
+  },
+  "temporal_ratification": {
+    "eligibility_completeness_time_utc": "2026-09-29T07:19:49Z",
+    "effective_date_rule": "first joint A-share trading date strictly after eligibility completeness time",
+    "effective_signal_date": "2026-09-30",
+    "same_day_activation": false,
+    "historical_backfill": false,
+    "backdating": false
+  },
+  "shadow_event": {
+    "announcement_id": "1225585270",
+    "canonical_security_id": "SZSE:301382",
+    "issuer_legal_name": "蜂助手股份有限公司",
+    "source_object_sha256": "11f9750787a13434dea3eca8b65734313d73338df75ed90268a2fcf37307a916",
+    "page_text_sha256": "49690534325d92c9ddbf4938a3861224ed4da6e1cb7f7521599fd70d14f716e7",
+    "decision_sha256": "51dd35376d802febe417f655ec5621b12e2a74ba6ac65a076e1939709e84b703",
+    "evidence_sentence_sha256": "f51cd8ac35b0769cd1128dfafd754c2a4b72902d1eecda029dce3c5ef3b85927",
+    "matched_ai_role_json": "[\"智算\"]",
+    "matched_commerciality_json": "[\"合同\"]",
+    "evidence_observation_commit_sha": "19a00f8a017aad47e7d9f457c1bc0a3206a6abe1",
+    "issuer_identity_binding_commit_sha": "db2ea9a1f5ef6405a4de05e83831af099d04bcce",
+    "authoritative_observed_at_utc": "2026-09-29T07:09:47Z",
+    "eligibility_completeness_time_utc": "2026-09-29T07:19:49Z",
+    "effective_signal_date": "2026-09-30",
+    "source_finalization_receipt": "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_FINALIZATION_RECEIPT_36534929208_1.json",
+    "source_ratification_file": "evidence/v2812_identity_ratifications/V2.8.12_IDENTITY_COMPLETION_RATIFICATION_1225585270.json",
+    "historical_reconstruction": "false",
+    "price_or_return_data_consumed": "false",
+    "shadow_event_id": "fa57cdf5352e3539f4229393edc0db652a69725ba7745215ad0403f51062fcc1",
+    "issuer_positive_sequence_number": "2",
+    "recurrence_status": "SUBSEQUENT_POSITIVE_FOR_ISSUER",
+    "prior_positive_announcement_id": "1225585268",
+    "prior_positive_effective_signal_date": "2026-09-30"
+  },
+  "governance": {
+    "price_or_return_data_consumed": false,
+    "outcome_research_authorized": false,
+    "setup_or_episode_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false
+  },
+  "receipt_sha256": "da5e11675fe99b9b6b339158f002cdf79b5545eb7196a5b055e8aeb94dbcc470"
+}

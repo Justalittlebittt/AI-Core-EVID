@@ -301,9 +301,21 @@ def self_test():
     ck("R02_binding_commit_is_authoritative",all(x["event"]["issuer_identity_binding_commit_sha"]=="db2ea9a1f5ef6405a4de05e83831af099d04bcce" for x in planned))
     ck("R03_effective_date_is_next_trading_day",all(x["event"]["effective_signal_date"]=="2026-09-30" for x in planned))
     ck("R04_no_backdating",all(x["event"]["eligibility_completeness_time_utc"]=="2026-09-29T07:19:49Z" for x in planned))
-    src=Path(__file__).read_text(encoding="utf-8")
-    ck("R05_no_classifier_recompute",all(q not in src for q in ["v284_page_scoped_classifier","classify_pages("]))
-    ck("R06_no_price_or_outcome_modules",all(q not in src for q in ["v283_outcome_resolver","fwd5","fwd10","benchmark_return","price_source"]))
+    import ast
+    tree=ast.parse(Path(__file__).read_text(encoding="utf-8"))
+    imported=set()
+    called=set()
+    for node in ast.walk(tree):
+        if isinstance(node,ast.Import):
+            imported.update(a.name for a in node.names)
+        elif isinstance(node,ast.ImportFrom):
+            imported.add(node.module or "")
+        elif isinstance(node,ast.Call):
+            f=node.func
+            if isinstance(f,ast.Name): called.add(f.id)
+            elif isinstance(f,ast.Attribute): called.add(f.attr)
+    ck("R05_no_classifier_recompute","v284_page_scoped_classifier" not in imported and "classify_pages" not in called)
+    ck("R06_no_price_or_outcome_modules","v283_outcome_resolver" not in imported and not ({"fwd5","fwd10","benchmark_return","price_source"} & called))
     with tempfile.TemporaryDirectory() as td:
         td=Path(td)
         lp=td/"shadow.csv"
