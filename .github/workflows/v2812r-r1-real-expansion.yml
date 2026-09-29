@@ -1,0 +1,113 @@
+name: V2.8.12R One-Time Outcome-Blind Historical Expansion
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "evidence/V2.8.12R_R1_REAL_EXPANSION_ACTIVATION.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-r1-real-expansion
+  cancel-in-progress: false
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install frozen R1 runtime
+        run: python -m pip install playwright==1.55.0 pymupdf==1.26.4 pandas==2.3.2
+      - name: Verify R1 validation, amendments and price firewall
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          runner=Path('scripts/v2812r_retrospective_feasibility_r1.py')
+          h=hashlib.sha256(runner.read_bytes()).hexdigest()
+          v=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R1_RUNNER_VALIDATION_RECEIPT.json').read_text())
+          c=json.loads(Path('evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json').read_text())
+          a2=json.loads(Path('evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json').read_text())
+          assert v['status']=='PASS'
+          assert v['runner_sha256']==h
+          assert v['authorization']['execute_R1_bounded_expansion'] is True
+          assert v['authorization']['price_or_return_access_during_R1'] is False
+          assert c['stage_R1_outcome_blind_event_expansion']['price_or_return_data_access_during_R1'] is False
+          assert c['governance']['prospective_gate_thresholds_changed'] is False
+          assert a2['status']=='ACTIVE_BEFORE_R1_REAL_QUERY'
+          assert a2['R1_technical_completeness_gate']['all_16_frozen_windows_must_complete_candidate_query'] is True
+          assert a2['R1_technical_completeness_gate']['classifier_ready_selected_filing_rate_min']==0.90
+          assert a2['retry_semantics_if_incomplete']['price_or_return_access_before_technical_pass'] is False
+          print('V2.8.12R R1 binding PASS')
+          PY
+      - name: Run frozen outcome-blind R1 expansion
+        run: python scripts/v2812r_retrospective_feasibility_r1.py run
+      - name: Apply frozen R1 technical completeness gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv,hashlib,json
+          from pathlib import Path
+          base=Path('evidence/retrospective_feasibility')
+          r=json.loads((base/'V2.8.12R_EVENT_COHORT_RECEIPT.json').read_text())
+          rows=list(csv.DictReader((base/'V2.8.12R_EXPANSION_RESULTS.csv').read_text(encoding='utf-8').splitlines()))
+          selected=int(r['new_selected_rows'])
+          successful=int(r['new_successful_classifier_ready_rows'])
+          ready_rate=(successful/selected) if selected else 1.0
+          windows_complete=(r['window_status_counts']['COMPLETED']==16 and r['window_status_counts']['WINDOW_SOURCE_BLOCKED']==0)
+          positives=[x for x in rows if x.get('pipeline_status')=='SUCCESS' and x.get('classification_state')=='ELIGIBLE_AI_CORE']
+          positive_temporal=all(x.get('temporal_provenance_status')=='PASS' for x in positives)
+          aids=[x.get('announcement_id','') for x in rows if x.get('announcement_id')]
+          dedup=(len(aids)==len(set(aids)))
+          passed=windows_complete and ready_rate>=0.90 and positive_temporal and dedup
+          out={
+            'schema':'AI_CORE_EVID_V2_8_12R_R1_TECHNICAL_COMPLETENESS_GATE_RECEIPT_V1',
+            'version':'V2.8.12R',
+            'status':'R1_COHORT_TECHNICALLY_COMPLETE' if passed else 'R1_TECHNICAL_INCOMPLETE_R2_OUTCOME_ACCESS_BLOCKED',
+            'authority':'evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json',
+            'checks':{
+              'all_16_windows_complete':windows_complete,
+              'selected_filings':selected,
+              'classifier_ready_filings':successful,
+              'classifier_ready_rate':ready_rate,
+              'classifier_ready_rate_ge_0_90':ready_rate>=0.90,
+              'all_positive_temporal_provenance_pass':positive_temporal,
+              'announcement_id_dedup_pass':dedup
+            },
+            'R2_price_or_return_access_authorized':passed,
+            'prospective_gate_changed':False,
+            'fold3_accessed':False,
+            'fold4_accessed':False,
+            'price_or_return_data_consumed_in_R1':False
+          }
+          b=json.dumps(out,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+          out['receipt_sha256']=hashlib.sha256(b).hexdigest()
+          (base/'V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Freeze R1 expansion evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_EXPANSION_RESULTS.csv
+          git add evidence/retrospective_feasibility/V2.8.12R_FROZEN_EVENT_COHORT.csv
+          git add evidence/retrospective_feasibility/V2.8.12R_EVENT_COHORT_RECEIPT.json
+          git add evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json
+          git commit -m "Freeze V2.8.12R R1 outcome-blind expansion result [skip ci]"
+          git pull --rebase origin main
+          git push
