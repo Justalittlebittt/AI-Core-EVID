@@ -240,11 +240,11 @@ def self_test(write_outputs: bool = False) -> dict:
         "derived_new_windows": windows,
         "authorization": {
             "execute_R1_bounded_expansion": all(x["pass"] for x in tests),
-            "price_or_return_access_during_R1": false,
-            "fold3_access": false,
-            "fold4_access": false,
-            "setup_emission": false,
-            "live_authorized": false
+            "price_or_return_access_during_R1": False,
+            "fold3_access": False,
+            "fold4_access": False,
+            "setup_emission": False,
+            "live_authorized": False
         },
     }
     result["receipt_sha256"] = stable_sha(result)
@@ -298,8 +298,7 @@ def run() -> dict:
 
     days = base.trading_dates()
     existing = old_positive_rows()
-    seen_aids = {r["announcement_id"] for r in existing}
-    selected_aids = set(seen_aids)
+    selected_aids = {r["announcement_id"] for r in existing}
     all_results: list[dict] = []
     window_records = []
 
@@ -310,7 +309,6 @@ def run() -> dict:
                   "triage_skipped": 0, "materializable_rows": 0, "selected_count": 0}
             try:
                 wd = root / f"window_{wi}"
-                # Candidate collector owns its own Playwright context: never nest it under another context.
                 cc.collect(datetime.fromisoformat(w["start"]).date(), datetime.fromisoformat(w["end"]).date(), wd)
                 dedup = wd / "V2.8.4_CNINFO_CANDIDATE_DEDUPED.csv"
                 rows = list(csv.DictReader(dedup.read_text(encoding="utf-8").splitlines()))
@@ -331,7 +329,6 @@ def run() -> dict:
                 selected_aids.update(str(x["announcement_id"]) for x in selected)
 
                 if selected:
-                    # Direct official PDF access only; no unnecessary CNInfo home preflight.
                     with sync_playwright() as pw:
                         api = pw.request.new_context(extra_http_headers={
                             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
