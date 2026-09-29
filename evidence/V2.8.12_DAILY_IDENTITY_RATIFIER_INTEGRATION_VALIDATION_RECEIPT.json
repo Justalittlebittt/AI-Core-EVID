@@ -1,0 +1,48 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_DAILY_IDENTITY_RATIFIER_INTEGRATION_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "active_daily_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+  "active_daily_workflow_commit_sha": "d325e8071ff7d9e56ec08fff5ac2ebeee0d4a597",
+  "validation_workflow": ".github/workflows/v2812-shadow-accumulator-selftest.yml",
+  "validation_run_id": 36537193979,
+  "validation_job_id": 109303832899,
+  "validated_bindings": {
+    "shadow_accumulator_blob_sha": "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb",
+    "identity_completion_ratifier_blob_sha": "226fe586f1325e1753d95303ff021b01481c10ed",
+    "identity_ratification_amendment_status": "ACTIVE_VALIDATED_GENERIC_IDENTITY_COMPLETION_RATIFICATION",
+    "identity_ratifier_validation_receipt_status": "PASS"
+  },
+  "validated_daily_sequence": [
+    "controlled prospective scan",
+    "authoritative observation commit",
+    "append-only V2.8.4 finalization",
+    "V2.8.12 shadow accumulation",
+    "identity-completion ratification",
+    "single shadow/ratification/readiness commit if changed"
+  ],
+  "selftests": {
+    "shadow_accumulator": "16/16 PASS",
+    "identity_completion_ratifier": "13/13 PASS",
+    "active_workflow_static_binding": "PASS"
+  },
+  "problem_elimination_result": {
+    "repeated_second_workflow_required_for_normal_identity_ratification": false,
+    "ratifier_absorbed_into_existing_daily_collection_workflow": true,
+    "additional_real_cninfo_collection_required_for_binding_validation": false
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "readiness_thresholds_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  }
+}
