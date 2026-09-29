@@ -1,7 +1,7 @@
 {
   "schema": "AI_CORE_EVID_V2_8_12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_AMENDMENT_V1",
   "version": "V2.8.12",
-  "status": "FROZEN_BEFORE_GENERIC_RATIFIER_IMPLEMENTATION",
+  "status": "ACTIVE_VALIDATED_GENERIC_IDENTITY_COMPLETION_RATIFICATION",
   "purpose": "Generalize the already-established V2.8.4 post-observation issuer-identity ratification pattern so genuinely prospective ELIGIBLE_AI_CORE filing observations blocked only by unresolved issuer identity can become complete prospective filing-events after an official identity binding is committed, without reclassification, backdating, or outcome access.",
   "problem_elimination_pass": {
     "final_goal": "Allow prospective shadow accumulation to continue across previously unseen issuers without requiring classification to be rerun or blocked observations to be manually reconstructed one by one.",
@@ -63,7 +63,24 @@
     "official_identity_binding_commit_sha": "db2ea9a1f5ef6405a4de05e83831af099d04bcce",
     "official_identity_binding_committed_at_utc": "2026-09-29T07:19:49Z",
     "issuer_legal_name": "蜂助手股份有限公司",
-    "earliest_effective_signal_date_under_existing_calendar": "2026-09-30"
+    "earliest_effective_signal_date_under_existing_calendar": "2026-09-30",
+    "ratification_commit_sha": "448f12cf5763859116ae9be6745dba0f7310cc7f"
+  },
+  "implementation_validation": {
+    "ratifier": "scripts/v2812_identity_completion_ratifier.py",
+    "ratifier_blob_sha": "226fe586f1325e1753d95303ff021b01481c10ed",
+    "workflow": ".github/workflows/v2812-identity-completion-ratifier.yml",
+    "real_ratification_run_id": 36536455787,
+    "stable_idempotence_run_id": 36536845919,
+    "selftest": "13/13 PASS",
+    "first_real_append_count": 2,
+    "stable_repeat_append_count": 0,
+    "stable_repeat_duplicate_noops": 2,
+    "stable_repeat_rows_after": 3,
+    "stable_repeat_evidence_diff": false,
+    "no_backdating": true,
+    "classifier_recomputed": false,
+    "price_or_return_data_consumed": false
   },
   "governance": {
     "research_semantics_changed": false,
@@ -84,5 +101,5 @@
     "brokerage_execution_authorized": false,
     "autonomous_financial_decision_authorized": false
   },
-  "next_stage": "GENERIC_IDENTITY_COMPLETION_RATIFIER_IMPLEMENTATION_AND_SELFTEST"
+  "next_stage": "INTEGRATE_VALIDATED_RATIFIER_INTO_ACTIVE_DAILY_PROSPECTIVE_COLLECTION_WORKFLOW"
 }
