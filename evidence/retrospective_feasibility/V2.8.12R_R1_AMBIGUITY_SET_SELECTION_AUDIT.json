@@ -1,0 +1,40 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_AMBIGUITY_SET_SELECTION_AUDIT_V1",
+  "version": "V2.8.12R",
+  "purpose": "Resolve whether the sole currently observed candidate in ambiguous frozen 2023Q2 anchor1 would enter the original frozen deterministic R1 selection path. No PDF, classifier, price, return, fold3, fold4, Setup or live access.",
+  "window": {
+    "quarter": "2023Q2",
+    "anchor_session": 1,
+    "start": "2023-04-03",
+    "end": "2023-04-09"
+  },
+  "candidate_query_completed": true,
+  "candidate_count": 1,
+  "materializable_count": 1,
+  "deterministically_selected_count": 1,
+  "records": [
+    {
+      "announcement_id": "1216331011",
+      "canonical_security_id": "SZSE:300956",
+      "security_name": "英<em>力</em>股份",
+      "announcement_title": "2022年度财务决算报告",
+      "announcement_time": "1680624000000",
+      "adjunct_url": "finalpage/2023-04-05/1216331011.PDF",
+      "path_disclosure_date": "2023-04-05",
+      "matched_terms": "算力",
+      "triage_state": "MATERIALIZE_CANDIDATE",
+      "triage_eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY",
+      "deterministically_selected": true,
+      "selection_sha256": "c2e98c58ceabf4e982df6132681464f06a6a9a9b455545b7a1810a1f69c365b1"
+    }
+  ],
+  "requires_downstream_candidate_repair": true,
+  "historical_blocked_window_identity_required_for_next_step": false,
+  "price_or_return_data_consumed": false,
+  "classifier_executed": false,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_or_live_accessed": false,
+  "receipt_sha256": "2865d8d8b69e95ad7c7bd9ed61f78dee6466ad0b4ccc5624d0a6f7c892efe3ba"
+}
