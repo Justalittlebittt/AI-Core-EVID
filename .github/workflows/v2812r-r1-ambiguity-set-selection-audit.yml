@@ -1,0 +1,121 @@
+name: V2.8.12R R1 Ambiguity-Set Selection Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "evidence/V2.8.12R_R1_AMBIGUITY_SET_SELECTION_AUDIT_ACTIVATION.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-r1-ambiguity-set-selection-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install frozen source runtime
+        run: python -m pip install playwright==1.55.0
+      - name: Audit only frozen Q2 anchor1 candidate routing and deterministic selection
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=scripts python - <<'PY'
+          import csv,hashlib,json,tempfile
+          from datetime import date
+          from pathlib import Path
+          import v284_candidate_collector as cc
+          import v284_candidate_triage as ct
+          import v2811_bounded_e_reconstruction_retry1 as base
+
+          ev=Path('evidence/retrospective_feasibility')
+          gate=json.loads((ev/'V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json').read_text(encoding='utf-8'))
+          probe=json.loads((ev/'V2.8.12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE.json').read_text(encoding='utf-8'))
+          windows=json.loads((ev/'V2.8.12R_EXPANSION_WINDOWS.json').read_text(encoding='utf-8'))
+          assert gate['status']=='R1_TECHNICAL_INCOMPLETE_R2_OUTCOME_ACCESS_BLOCKED'
+          assert gate['R2_price_or_return_access_authorized'] is False
+          assert probe['price_or_return_data_consumed'] is False
+          assert probe['classifier_executed'] is False
+          assert probe['current_probe_blocked_count']==0
+          target=('2023Q2',1,'2023-04-03','2023-04-09')
+          frozen={(w['quarter'],int(w['anchor_session']),w['start'],w['end']) for w in windows['windows']}
+          assert target in frozen
+
+          with tempfile.TemporaryDirectory() as td:
+            outdir=Path(td)/'q2'
+            cc.collect(date.fromisoformat(target[2]),date.fromisoformat(target[3]),outdir)
+            receipt=json.loads((outdir/'V2.8.4_CNINFO_CANDIDATE_COLLECTION_RECEIPT.json').read_text(encoding='utf-8'))
+            assert receipt['price_or_return_data_consumed'] is False
+            rows=list(csv.DictReader((outdir/'V2.8.4_CNINFO_CANDIDATE_DEDUPED.csv').read_text(encoding='utf-8').splitlines()))
+            routed=[]
+            materializable=[]
+            for r in rows:
+              q=ct.triage_title(r.get('announcement_title',''),r.get('security_name',''))
+              item={
+                'announcement_id':str(r.get('announcement_id') or ''),
+                'canonical_security_id':str(r.get('canonical_security_id') or ''),
+                'security_name':str(r.get('security_name') or ''),
+                'announcement_title':str(r.get('announcement_title') or ''),
+                'announcement_time':str(r.get('announcement_time') or ''),
+                'adjunct_url':str(r.get('adjunct_url') or ''),
+                'path_disclosure_date':str(r.get('path_disclosure_date') or ''),
+                'matched_terms':str(r.get('matched_terms') or ''),
+                'triage_state':q['triage_state'],
+                'triage_eligibility_effect':q['eligibility_effect'],
+              }
+              routed.append(item)
+              if q['triage_state']=='MATERIALIZE_CANDIDATE':
+                materializable.append(r)
+            selected=base.select_candidates(materializable,6)
+            selected_ids=[str(r['announcement_id']) for r in selected]
+            for x in routed:
+              x['deterministically_selected']=x['announcement_id'] in selected_ids
+              x['selection_sha256']=base.selection_key(x['announcement_id']) if x['deterministically_selected'] else ''
+
+          out={
+            'schema':'AI_CORE_EVID_V2_8_12R_R1_AMBIGUITY_SET_SELECTION_AUDIT_V1',
+            'version':'V2.8.12R',
+            'purpose':'Resolve whether the sole currently observed candidate in ambiguous frozen 2023Q2 anchor1 would enter the original frozen deterministic R1 selection path. No PDF, classifier, price, return, fold3, fold4, Setup or live access.',
+            'window':{'quarter':target[0],'anchor_session':target[1],'start':target[2],'end':target[3]},
+            'candidate_query_completed':True,
+            'candidate_count':len(routed),
+            'materializable_count':len(materializable),
+            'deterministically_selected_count':len(selected),
+            'records':routed,
+            'requires_downstream_candidate_repair':len(selected)>0,
+            'historical_blocked_window_identity_required_for_next_step':False,
+            'price_or_return_data_consumed':False,
+            'classifier_executed':False,
+            'prospective_gate_changed':False,
+            'fold3_accessed':False,
+            'fold4_accessed':False,
+            'setup_or_live_accessed':False,
+          }
+          b=json.dumps(out,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+          out['receipt_sha256']=hashlib.sha256(b).hexdigest()
+          p=ev/'V2.8.12R_R1_AMBIGUITY_SET_SELECTION_AUDIT.json'
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Freeze ambiguity-set selection audit only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_R1_AMBIGUITY_SET_SELECTION_AUDIT.json
+          git commit -m "Freeze V2.8.12R R1 ambiguity-set selection audit [skip ci]"
+          git pull --rebase origin main
+          git push
