@@ -1,5 +1,6 @@
 name: V2.8.12R R2 Outcome-Blind Source Coverage Preflight
 
+# Existing preflight rerun after the final pre-outcome cohort was actually frozen.
 on:
   push:
     branches:
