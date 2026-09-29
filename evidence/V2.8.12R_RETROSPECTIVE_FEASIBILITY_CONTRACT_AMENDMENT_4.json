@@ -1,0 +1,70 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_V4",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_PRE_OUTCOME_SOURCE_COVERAGE_PREFLIGHT",
+  "parent_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+  "purpose": "Authorize an outcome-blind coverage-only preflight after the final event cohort is frozen, so source inadequacy is detected before any price value or return is inspected.",
+  "authorization_boundary": {
+    "requires_R1_technical_gate_pass": true,
+    "requires_final_pre_outcome_cohort_frozen": true,
+    "allowed_columns_from_stock_source": ["symbol", "bar_time", "kline_t"],
+    "allowed_columns_from_benchmark_source": ["symbol", "bar_time", "kline_t"],
+    "forbidden_columns": ["open", "high", "low", "close", "amount", "volume", "return", "adj_close"],
+    "price_values_may_be_read_or_logged": false,
+    "returns_may_be_computed": false,
+    "source_container_bytes_may_be_materialized_for_exact_revision_verification": true,
+    "materializing_source_container_does_not_authorize_numeric_price_column_access": true
+  },
+  "frozen_source_identity": {
+    "source_pin_authority": "evidence/v283_source_pins/20260929T062914Z_9404d4f02ec92a9f.json",
+    "source_identity_sha256": "9404d4f02ec92a9fdecf4bed64ce6bda04958b8736c47ac3c338256679e231ac",
+    "stock": {
+      "repo_id": "AlphaDojo/dojo_stock_kline",
+      "revision_sha": "f0ffd4f6e1f2bc96de7b50f93dc42750585916a1",
+      "target_file": "data.parquet",
+      "target_lfs_sha256": "14ef5fefcc9780ebbb717b8f81e5d6b6f305da2e99875ae3fbb329267ddee88e"
+    },
+    "benchmark": {
+      "repo_id": "AlphaDojo/dojo_benchmark_kline",
+      "revision_sha": "c7efb367c9757d8db10db175cefb230b1144bf7e",
+      "target_file": "data.parquet",
+      "target_lfs_sha256": "410a5b76c43122950cf9bccfc5fbe1aa042617a77b6c7b089bd2c2b5df623959"
+    }
+  },
+  "coverage_contract": {
+    "calendar_authority": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "stock_symbol_mapping": {
+      "SSE": "{security_code}.SS",
+      "SZSE": "{security_code}.SZ"
+    },
+    "benchmark_symbol": "000300.SS",
+    "kline_t": "1D",
+    "required_dates_per_event": ["D", "D+5", "D+10"],
+    "target_shift_if_missing": false,
+    "event_drop_if_missing": false,
+    "required_stock_event_date_coverage_rate_for_primary_source_pass": 1.0,
+    "required_benchmark_date_coverage_rate_for_primary_source_pass": 1.0,
+    "if_primary_source_fails": "FREEZE_COVERAGE_FAILURE_AND_REQUIRE_SEPARATE_FREE_PUBLIC_FALLBACK_SOURCE_AMENDMENT_BEFORE_ANY_FALLBACK_OUTCOME_ACCESS"
+  },
+  "output_constraints": {
+    "may_output_symbol_and_required_date_presence": true,
+    "may_output_source_min_max_dates": true,
+    "may_output_row_counts": true,
+    "may_output_any_price_value": false,
+    "may_output_any_return": false,
+    "may_rank_events_or_securities_by_outcome": false
+  },
+  "governance": {
+    "prospective_gate_changed": false,
+    "retrospective_event_cohort_may_change_after_preflight": false,
+    "price_or_return_values_authorized": false,
+    "outcome_resolution_authorized_by_this_amendment": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  }
+}
