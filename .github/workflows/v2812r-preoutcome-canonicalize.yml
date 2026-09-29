@@ -1,0 +1,57 @@
+name: V2.8.12R Pre-Outcome Cohort Canonicalization
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "evidence/retrospective_feasibility/V2.8.12R_EVENT_COHORT_RECEIPT.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-preoutcome-canonicalize
+  cancel-in-progress: false
+
+jobs:
+  canonicalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify technical gate and amendment before canonicalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_3.json').read_text())
+          r=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_EVENT_COHORT_RECEIPT.json').read_text())
+          t=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json').read_text())
+          assert a['status']=='ACTIVE_PRE_OUTCOME_PROVENANCE_CANONICALIZATION'
+          assert r['status']=='R1_EVENT_COHORT_FROZEN_PRICE_OUTCOMES_NOT_YET_READ'
+          assert r['price_or_return_data_consumed'] is False
+          assert t['price_or_return_data_consumed_in_R1'] is False
+          print('Pre-outcome canonicalization binding PASS')
+          PY
+      - name: Canonicalize frozen R1 cohort provenance
+        run: python scripts/v2812r_preoutcome_cohort_canonicalizer.py
+      - name: Commit final pre-outcome cohort
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT.csv
+          git add evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT.json
+          git commit -m "Freeze V2.8.12R final pre-outcome cohort provenance [skip ci]"
+          git pull --rebase origin main
+          git push
