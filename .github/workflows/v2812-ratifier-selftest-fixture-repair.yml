@@ -1,0 +1,48 @@
+name: V2.8.12 Ratifier Self-Test Fixture Repair
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v2812-ratifier-selftest-fixture-repair.yml"
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Make self-test independent of current production ratification state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/v2812_identity_completion_ratifier.py')
+          s=p.read_text(encoding='utf-8')
+          old='''    with tempfile.TemporaryDirectory() as td:\n        td=Path(td)\n        lp=td/"shadow.csv"\n        sp=td/"status.json"\n        rd=td/"rat"\n        lp.write_bytes(SHADOW.read_bytes())\n        sp.write_bytes(STATUS.read_bytes())\n        out=ratify(lp,sp,rd)\n        rows_after=acc.rows(lp)\n        bee=[r for r in rows_after if r["canonical_security_id"]=="SZSE:301382"]\n        ck("R07_two_events_append_once",out["appended"]==2 and len(rows_after)==3 and len(bee)==2)\n        ck("R08_same_issuer_recurrence_preserved",bee[0]["issuer_positive_sequence_number"]=="1" and bee[0]["recurrence_status"]=="FIRST_POSITIVE_FOR_ISSUER" and bee[1]["issuer_positive_sequence_number"]=="2" and bee[1]["prior_positive_announcement_id"]=="1225585268")\n        ck("R09_ratification_receipts_created",len(list(rd.glob("*.json")))==2)\n        before_l=lp.read_bytes();before_s=sp.read_bytes();before_docs={p.name:p.read_bytes() for p in rd.glob("*.json")}\n        out2=ratify(lp,sp,rd)\n        after_docs={p.name:p.read_bytes() for p in rd.glob("*.json")}\n        ck("R10_second_run_is_idempotent",out2["appended"]==0 and out2["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and before_docs==after_docs)\n        ck("R11_readiness_updates_without_opening_gate",out["readiness"]["shadow_event_count"]==3 and out["readiness"]["status"]=="ACCUMULATING_PROSPECTIVE_E_EVENTS")\n'''
+          new='''    with tempfile.TemporaryDirectory() as td:\n        td=Path(td)\n        lp=td/"shadow.csv"\n        sp=td/"status.json"\n        rd=td/"rat"\n        real_rows=acc.rows(SHADOW)\n        genesis=[r for r in real_rows if r["announcement_id"]=="1225573666"]\n        ck("R07_genesis_fixture_exactly_one",len(genesis)==1)\n        acc.write_rows(lp,genesis)\n        sp.write_text(json.dumps(acc.status_document(genesis),ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")\n        out=ratify(lp,sp,rd)\n        rows_after=acc.rows(lp)\n        bee=[r for r in rows_after if r["canonical_security_id"]=="SZSE:301382"]\n        ck("R08_two_events_append_once_from_genesis",out["appended"]==2 and len(rows_after)==3 and len(bee)==2)\n        ck("R09_same_issuer_recurrence_preserved",bee[0]["issuer_positive_sequence_number"]=="1" and bee[0]["recurrence_status"]=="FIRST_POSITIVE_FOR_ISSUER" and bee[1]["issuer_positive_sequence_number"]=="2" and bee[1]["prior_positive_announcement_id"]=="1225585268")\n        ck("R10_ratification_receipts_created",len(list(rd.glob("*.json")))==2)\n        before_l=lp.read_bytes();before_s=sp.read_bytes();before_docs={q.name:q.read_bytes() for q in rd.glob("*.json")}\n        out2=ratify(lp,sp,rd)\n        after_docs={q.name:q.read_bytes() for q in rd.glob("*.json")}\n        ck("R11_fixture_second_run_is_idempotent",out2["appended"]==0 and out2["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and before_docs==after_docs)\n        ck("R12_readiness_updates_without_opening_gate",out["readiness"]["shadow_event_count"]==3 and out["readiness"]["status"]=="ACCUMULATING_PROSPECTIVE_E_EVENTS")\n    with tempfile.TemporaryDirectory() as td:\n        td=Path(td)\n        lp=td/"current_shadow.csv"\n        sp=td/"current_status.json"\n        rd=td/"current_rat"\n        lp.write_bytes(SHADOW.read_bytes())\n        sp.write_bytes(STATUS.read_bytes())\n        before_l=lp.read_bytes();before_s=sp.read_bytes()\n        out3=ratify(lp,sp,rd)\n        ck("R13_current_production_state_is_duplicate_noop",out3["appended"]==0 and out3["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and not list(rd.glob("*.json")))\n'''
+          assert old in s
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+          python scripts/v2812_identity_completion_ratifier.py self-test
+          git diff --exit-code -- evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json evidence/v2812_identity_ratifications
+          python scripts/v2812_identity_completion_ratifier.py ratify
+          git diff --exit-code -- evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json evidence/v2812_identity_ratifications
+          NEW_BLOB="$(git hash-object scripts/v2812_identity_completion_ratifier.py)"
+          echo "NEW_BLOB=$NEW_BLOB" >> "$GITHUB_ENV"
+      - name: Commit self-test fixture correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add scripts/v2812_identity_completion_ratifier.py
+          git commit -m "Make V2.8.12 ratifier self-test production-state independent [skip ci]"
+          git pull --rebase origin main
+          git push
