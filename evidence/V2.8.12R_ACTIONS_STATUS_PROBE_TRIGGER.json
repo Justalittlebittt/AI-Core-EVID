@@ -1,0 +1,6 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_ACTIONS_STATUS_PROBE_TRIGGER_V1",
+  "version": "V2.8.12R",
+  "purpose": "Read GitHub Actions metadata for the one-time R1 expansion without reading or changing research data.",
+  "research_semantics_changed": false
+}
