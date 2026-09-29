@@ -1,0 +1,88 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_AMENDMENT_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_GENERIC_RATIFIER_IMPLEMENTATION",
+  "purpose": "Generalize the already-established V2.8.4 post-observation issuer-identity ratification pattern so genuinely prospective ELIGIBLE_AI_CORE filing observations blocked only by unresolved issuer identity can become complete prospective filing-events after an official identity binding is committed, without reclassification, backdating, or outcome access.",
+  "problem_elimination_pass": {
+    "final_goal": "Allow prospective shadow accumulation to continue across previously unseen issuers without requiring classification to be rerun or blocked observations to be manually reconstructed one by one.",
+    "hard_constraints": [
+      "The original filing must have been genuinely observed prospectively after V2.8.4 activation.",
+      "The original classification must already be ELIGIBLE_AI_CORE and must not be recomputed or strengthened by identity evidence.",
+      "The original positive record must have been blocked only because issuer_legal_name/issuer_identity_basis were unresolved.",
+      "Issuer identity must be bound under evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDING_CONTRACT.json using official authority.",
+      "Eligibility completeness time must be the later of the original authoritative observation time and the actual identity-binding commit time.",
+      "Effective signal date must use the existing V2.8.4 next-joint-A-share-trading-day rule strictly after eligibility completeness.",
+      "No observation time, identity-binding time, eligibility-completeness time or effective date may be backdated.",
+      "announcement_id remains the filing-event identity and existing shadow dedup/conflict rules remain authoritative.",
+      "No price, return, benchmark, D5/D10, fold3/fold4, Setup, First60, Episode, live or brokerage data/action may be accessed."
+    ],
+    "soft_constraint_removed": "Only effective_positive_events emitted during the first finalization pass can ever enter prospective shadow accumulation.",
+    "replacement": "A blocked prospective positive may be ratified later when its sole missing static issuer identity becomes authoritative; the immutable original observation/finalization remain unchanged and the ratification supplies only the missing provenance plus the later causal completeness time."
+  },
+  "eligibility": {
+    "required_original_finalization_status": "FINALIZED_WITH_BLOCKED_POSITIVE_RECORD",
+    "required_classification_state": "ELIGIBLE_AI_CORE",
+    "required_original_record_complete": false,
+    "required_original_eligibility_effect": "BLOCKED_INCOMPLETE_POSITIVE_EVIDENCE_RECORD",
+    "required_non_identity_fields": [
+      "canonical_security_id",
+      "announcement_id",
+      "source_object_sha256",
+      "page_number",
+      "evidence_text",
+      "matched_ai_role",
+      "matched_commerciality",
+      "authoritative_observed_at_utc"
+    ],
+    "binding_state_required": "OFFICIAL_CNINFO_IDENTITY_BOUND",
+    "classification_recomputed": false,
+    "decision_sha256_must_match_original_observation": true,
+    "source_object_sha256_must_match_original_observation_ledger": true
+  },
+  "temporal_rule": {
+    "eligibility_completeness_time": "max(original_authoritative_observed_at_utc, issuer_identity_binding_commit_time_utc)",
+    "effective_signal_date": "first frozen joint A-share trading day strictly after eligibility_completeness_time in Asia/Shanghai",
+    "same_day_activation": false,
+    "historical_backfill": false,
+    "backdating_forbidden": true
+  },
+  "shadow_integration": {
+    "ratification_directory": "evidence/v2812_identity_ratifications",
+    "source_ratification_file_required": true,
+    "existing_shadow_announcement": "NO_ACTION_DUPLICATE",
+    "conflicting_shadow_announcement": "BLOCK_CONFLICT",
+    "same_issuer_recurrence_policy_unchanged": true,
+    "readiness_thresholds_changed": false,
+    "semantic_project_lineage_added": false
+  },
+  "current_incident": {
+    "source_run_id": "36534929208_1",
+    "source_finalization": "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_FINALIZATION_RECEIPT_36534929208_1.json",
+    "blocked_positive_announcement_ids": ["1225585268", "1225585270"],
+    "canonical_security_id": "SZSE:301382",
+    "official_identity_binding_commit_sha": "db2ea9a1f5ef6405a4de05e83831af099d04bcce",
+    "official_identity_binding_committed_at_utc": "2026-09-29T07:19:49Z",
+    "issuer_legal_name": "蜂助手股份有限公司",
+    "earliest_effective_signal_date_under_existing_calendar": "2026-09-30"
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "identity_rule_changed": false,
+    "effective_date_rule_changed": false,
+    "readiness_thresholds_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "GENERIC_IDENTITY_COMPLETION_RATIFIER_IMPLEMENTATION_AND_SELFTEST"
+}
