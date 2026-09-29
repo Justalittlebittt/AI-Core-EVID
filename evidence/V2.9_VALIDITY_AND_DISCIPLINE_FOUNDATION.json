@@ -1,0 +1,72 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_VALIDITY_AND_DISCIPLINE_FOUNDATION_V1",
+  "version": "V2.9",
+  "status": "FOUNDATION_FROZEN_BEFORE_IMPLEMENTATION",
+  "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+  "validity_engine": {
+    "question": "How strong is the evidence supporting a strategy claim under realistic conditions?",
+    "required_dimensions": [
+      "effect_size",
+      "baseline_comparison",
+      "out_of_sample",
+      "regime_stability",
+      "cross_sectional_stability",
+      "transaction_cost_and_execution_constraints",
+      "drawdown_and_loss_sequences",
+      "probability_calibration_where_applicable",
+      "reasonable_parameter_sensitivity",
+      "failure_region_identification"
+    ],
+    "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"],
+    "anti_p_hacking_rules": [
+      "Metrics and comparison baselines must be defined before outcome evaluation for a frozen experiment version.",
+      "Observed outcomes may not be used to silently remove failing dimensions.",
+      "A failed or unstable dimension is reported as uncertainty; it is not repaired by changing the test after inspection.",
+      "Simple baselines must remain visible even when more complex models outperform them."
+    ],
+    "pass_fail_policy": "Validity is not reduced to a single PASS unless a downstream safety or execution contract explicitly requires a binary gate. Research conclusions use evidence-strength semantics."
+  },
+  "discipline_engine": {
+    "question": "Given the evidence and precommitted risk rules, is a contemplated action permitted?",
+    "principle": "The engine decides action eligibility and required discipline, not certain market direction.",
+    "required_pretrade_fields": [
+      "action_type",
+      "evidence_strength",
+      "position_size_or_limit",
+      "stop_loss_rule",
+      "take_profit_or_exit_rule",
+      "invalidation_condition",
+      "permitted_adjustment_conditions",
+      "risk_budget",
+      "reason_for_action"
+    ],
+    "behavioral_guards": {
+      "anti_fomo": "A contemplated chase may be blocked when price displacement, evidence deterioration, or risk-budget rules exceed predeclared limits.",
+      "anti_averaging_down": "Additional buying after loss is not permitted merely because price is lower; ADD requires independent current eligibility and risk capacity.",
+      "stop_loss_lock": "A hard stop may not be relaxed because of hope, sunk cost, or expected rebound. Any authorized modification must satisfy a predeclared adjustment condition.",
+      "take_profit_lock": "Profit targets may not be raised solely because of greed; trailing or revised exits require predeclared objective conditions.",
+      "override_logging": "Any human override is logged as an override and must not be retroactively relabeled as model-compliant."
+    },
+    "action_output_priority": [
+      "EXIT_REQUIRED",
+      "ACTION_BLOCKED_BY_RISK",
+      "ACTION_BLOCKED_BY_EVIDENCE",
+      "ACTION_ELIGIBLE",
+      "NO_ACTION_INSUFFICIENT_EVIDENCE"
+    ]
+  },
+  "implementation_order": [
+    "Close the already-active V2.8.12R R1 technical gate without weakening or rewriting it.",
+    "Run an Integrity Exit Audit that inventories which existing integrity controls are constitution-level, compatibility-only, redundant, or unresolved.",
+    "Consolidate new governance decisions under V2.9_GOVERNANCE_KERNEL; do not migrate historical evidence destructively.",
+    "Implement a frozen Strategy Validity evaluator using predeclared metrics and baselines.",
+    "Implement Discipline Engine v1 as eligibility/risk-rule logic, not autonomous execution.",
+    "Only after the above, connect signals to action-eligibility outputs."
+  ],
+  "non_goals": [
+    "No automatic brokerage execution",
+    "No guarantee of profitability",
+    "No requirement that every external-source outage be solved inside model governance",
+    "No requirement to convert weak evidence into an action"
+  ]
+}
