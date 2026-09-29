@@ -33,6 +33,7 @@ jobs:
           c=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json").read_text())
           a=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_1.json").read_text())
           a2=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_2.json").read_text())
+          r=json.loads(Path("evidence/V2.8.12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1.json").read_text())
           t=json.loads(Path("evidence/V2.8.12_TRANSPORT_RELIABILITY_AMENDMENT_1.json").read_text())
           assert v["status"]=="PASS"
           assert v["accumulator"]["blob_sha"]=="66fe3735c512e09252ee2400e458334a4043536b"
@@ -60,6 +61,17 @@ jobs:
           assert a2["governance"]["price_or_return_data_authorized"] is False
           assert a2["governance"]["fold3_access"] is False
           assert a2["governance"]["fold4_access"] is False
+          assert r["status"]=="ACTIVE_POST_SEAL_OPERATIONAL_SEMANTICS_AMENDMENT"
+          assert r["operational_model"]["primary_objective"]=="PROSPECTIVE_DATA_COVERAGE_WITH_CAUSAL_TIMESTAMP_INTEGRITY"
+          assert r["operational_model"]["scan_window_calendar_days"]==3
+          assert r["recovery_capacity"]["maximum_consecutive_missed_daily_cycles_automatically_coverable_by_next_successful_run"]==2
+          assert r["recovery_semantics"]["backdating_observation_time_to_the_missed_schedule_time_forbidden"] is True
+          assert r["recovery_semantics"]["manual_recovery_dispatch_does_not_count_as_scheduler_empirical_confirmation"] is True
+          assert r["governance"]["research_semantics_changed"] is False
+          assert r["governance"]["outcome_research_authorized"] is False
+          assert r["governance"]["price_or_return_data_authorized"] is False
+          assert r["governance"]["fold3_access"] is False
+          assert r["governance"]["fold4_access"] is False
           assert t["status"]=="FROZEN_BEFORE_TRANSPORT_PATCH_VALIDATION"
           assert t["problem_elimination_pass"]["selected_action"]=="DELETE_UNNECESSARY_HOME_PREFLIGHT"
           assert t["governance"]["research_semantics_changed"] is False
@@ -67,7 +79,7 @@ jobs:
           assert t["governance"]["price_or_return_data_authorized"] is False
           assert t["governance"]["fold3_access"] is False
           assert t["governance"]["fold4_access"] is False
-          print("V2.8.12 daily off-peak cadence + transport patch binding PASS")
+          print("V2.8.12 data-completeness recovery + daily off-peak cadence + transport patch binding PASS")
           PY
       - name: Restore content-addressed E-layer cache
         uses: actions/cache@v4
