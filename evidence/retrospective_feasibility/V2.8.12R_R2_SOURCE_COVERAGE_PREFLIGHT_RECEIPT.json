@@ -1,0 +1,185 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R2_SOURCE_COVERAGE_PREFLIGHT_RECEIPT_V1",
+  "version": "V2.8.12R",
+  "status": "PRIMARY_SOURCE_COVERAGE_FAIL_FALLBACK_AMENDMENT_REQUIRED",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_4.json",
+  "final_pre_outcome_cohort": "evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT.csv",
+  "final_pre_outcome_cohort_sha256": "f654b122989cb16becc1bad81cfa2d63d8fcfd5b3b0c79358f29126bbd2c24e3",
+  "event_count": 4,
+  "required_dates_per_event": [
+    "D",
+    "D+5",
+    "D+10"
+  ],
+  "stock_required_event_date_rows": 12,
+  "stock_present_event_date_rows": 0,
+  "stock_coverage_rate": 0.0,
+  "benchmark_required_event_date_rows": 12,
+  "benchmark_present_event_date_rows": 0,
+  "benchmark_coverage_rate": 0.0,
+  "missing_stock_event_dates": [
+    {
+      "event_key": "1219028938",
+      "symbol": "600186.SS",
+      "required_label": "D",
+      "required_date": "2024-01-31"
+    },
+    {
+      "event_key": "1219028938",
+      "symbol": "600186.SS",
+      "required_label": "D+10",
+      "required_date": "2024-02-22"
+    },
+    {
+      "event_key": "1219028938",
+      "symbol": "600186.SS",
+      "required_label": "D+5",
+      "required_date": "2024-02-07"
+    },
+    {
+      "event_key": "1219987028",
+      "symbol": "603300.SS",
+      "required_label": "D",
+      "required_date": "2024-05-08"
+    },
+    {
+      "event_key": "1219987028",
+      "symbol": "603300.SS",
+      "required_label": "D+10",
+      "required_date": "2024-05-22"
+    },
+    {
+      "event_key": "1219987028",
+      "symbol": "603300.SS",
+      "required_label": "D+5",
+      "required_date": "2024-05-15"
+    },
+    {
+      "event_key": "1220755485",
+      "symbol": "600186.SS",
+      "required_label": "D",
+      "required_date": "2024-08-01"
+    },
+    {
+      "event_key": "1220755485",
+      "symbol": "600186.SS",
+      "required_label": "D+10",
+      "required_date": "2024-08-15"
+    },
+    {
+      "event_key": "1220755485",
+      "symbol": "600186.SS",
+      "required_label": "D+5",
+      "required_date": "2024-08-08"
+    },
+    {
+      "event_key": "1221088145",
+      "symbol": "600186.SS",
+      "required_label": "D",
+      "required_date": "2024-09-02"
+    },
+    {
+      "event_key": "1221088145",
+      "symbol": "600186.SS",
+      "required_label": "D+10",
+      "required_date": "2024-09-18"
+    },
+    {
+      "event_key": "1221088145",
+      "symbol": "600186.SS",
+      "required_label": "D+5",
+      "required_date": "2024-09-09"
+    }
+  ],
+  "missing_benchmark_event_dates": [
+    {
+      "event_key": "1219028938",
+      "required_label": "D",
+      "required_date": "2024-01-31"
+    },
+    {
+      "event_key": "1219028938",
+      "required_label": "D+10",
+      "required_date": "2024-02-22"
+    },
+    {
+      "event_key": "1219028938",
+      "required_label": "D+5",
+      "required_date": "2024-02-07"
+    },
+    {
+      "event_key": "1219987028",
+      "required_label": "D",
+      "required_date": "2024-05-08"
+    },
+    {
+      "event_key": "1219987028",
+      "required_label": "D+10",
+      "required_date": "2024-05-22"
+    },
+    {
+      "event_key": "1219987028",
+      "required_label": "D+5",
+      "required_date": "2024-05-15"
+    },
+    {
+      "event_key": "1220755485",
+      "required_label": "D",
+      "required_date": "2024-08-01"
+    },
+    {
+      "event_key": "1220755485",
+      "required_label": "D+10",
+      "required_date": "2024-08-15"
+    },
+    {
+      "event_key": "1220755485",
+      "required_label": "D+5",
+      "required_date": "2024-08-08"
+    },
+    {
+      "event_key": "1221088145",
+      "required_label": "D",
+      "required_date": "2024-09-02"
+    },
+    {
+      "event_key": "1221088145",
+      "required_label": "D+10",
+      "required_date": "2024-09-18"
+    },
+    {
+      "event_key": "1221088145",
+      "required_label": "D+5",
+      "required_date": "2024-09-09"
+    }
+  ],
+  "stock_source_date_extent_for_cohort_symbols": {
+    "min_date": "2025-01-02",
+    "max_date": "2026-09-28"
+  },
+  "benchmark_source_date_extent": {
+    "min_date": "2025-01-02",
+    "max_date": "2026-09-28"
+  },
+  "source_identity_sha256": "9404d4f02ec92a9fdecf4bed64ce6bda04958b8736c47ac3c338256679e231ac",
+  "stock_revision_sha": "f0ffd4f6e1f2bc96de7b50f93dc42750585916a1",
+  "stock_lfs_sha256_verified": "14ef5fefcc9780ebbb717b8f81e5d6b6f305da2e99875ae3fbb329267ddee88e",
+  "benchmark_revision_sha": "c7efb367c9757d8db10db175cefb230b1144bf7e",
+  "benchmark_lfs_sha256_verified": "410a5b76c43122950cf9bccfc5fbe1aa042617a77b6c7b089bd2c2b5df623959",
+  "source_container_materialized": true,
+  "projected_source_columns": [
+    "symbol",
+    "bar_time",
+    "kline_t"
+  ],
+  "numeric_price_columns_read": false,
+  "price_values_logged": false,
+  "returns_computed": false,
+  "retrospective_event_cohort_changed": false,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "outcome_resolution_authorized_by_preflight_itself": false,
+  "next_stage": "FREEZE_SEPARATE_FREE_PUBLIC_FALLBACK_SOURCE_AMENDMENT_BEFORE_ANY_OUTCOME_ACCESS",
+  "receipt_sha256": "bf97f1de753c4144509e56a1c3d226ee4ecea74528e1e188351d49ab1cab36c9"
+}
