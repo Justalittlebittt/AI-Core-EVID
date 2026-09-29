@@ -1,0 +1,214 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_RUNNER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12R",
+  "status": "PASS",
+  "runner": "/home/runner/work/AI-Core-EVID/AI-Core-EVID/scripts/v2812r_retrospective_feasibility_r1.py",
+  "runner_sha256": "804d127c6490a04ffa9c055d3de6a40330fa7ed2966008c9fadc380aebd0a85d",
+  "tests": [
+    {
+      "name": "R101_exact_16_windows",
+      "pass": true
+    },
+    {
+      "name": "R102_two_windows_per_quarter",
+      "pass": true
+    },
+    {
+      "name": "R103_anchor_sessions_exact",
+      "pass": true
+    },
+    {
+      "name": "R104_anchor_dates_exact",
+      "pass": true
+    },
+    {
+      "name": "R105_no_overlap_existing_21st_windows",
+      "pass": true
+    },
+    {
+      "name": "R106_unique_new_windows",
+      "pass": true
+    },
+    {
+      "name": "R107_selection_input_order_invariant",
+      "pass": true
+    },
+    {
+      "name": "R108_selection_max_six",
+      "pass": true
+    },
+    {
+      "name": "R109_one_security_per_window",
+      "pass": true
+    },
+    {
+      "name": "R110_cross_cohort_announcement_dedup",
+      "pass": true
+    },
+    {
+      "name": "R111_global_cap_contract_96",
+      "pass": true
+    },
+    {
+      "name": "R112_no_price_or_outcome_module_import",
+      "pass": true
+    },
+    {
+      "name": "R113_R1_contract_price_access_false",
+      "pass": true
+    },
+    {
+      "name": "R114_prospective_gate_not_changed",
+      "pass": true
+    },
+    {
+      "name": "R115_exact_three_existing_positive_events",
+      "pass": true
+    },
+    {
+      "name": "R116_existing_positive_ids_unique",
+      "pass": true
+    }
+  ],
+  "passed": 16,
+  "total": 16,
+  "derived_new_windows": [
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 1,
+      "anchor": "2023-01-03",
+      "start": "2023-01-03",
+      "end": "2023-01-09"
+    },
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 41,
+      "anchor": "2023-03-07",
+      "start": "2023-03-07",
+      "end": "2023-03-13"
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 1,
+      "anchor": "2023-04-03",
+      "start": "2023-04-03",
+      "end": "2023-04-09"
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 41,
+      "anchor": "2023-06-02",
+      "start": "2023-06-02",
+      "end": "2023-06-08"
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 1,
+      "anchor": "2023-07-03",
+      "start": "2023-07-03",
+      "end": "2023-07-09"
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 41,
+      "anchor": "2023-08-28",
+      "start": "2023-08-28",
+      "end": "2023-09-03"
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor_session": 1,
+      "anchor": "2023-10-09",
+      "start": "2023-10-09",
+      "end": "2023-10-15"
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor_session": 41,
+      "anchor": "2023-12-04",
+      "start": "2023-12-04",
+      "end": "2023-12-10"
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor_session": 1,
+      "anchor": "2024-01-02",
+      "start": "2024-01-02",
+      "end": "2024-01-08"
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor_session": 41,
+      "anchor": "2024-03-06",
+      "start": "2024-03-06",
+      "end": "2024-03-12"
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 1,
+      "anchor": "2024-04-01",
+      "start": "2024-04-01",
+      "end": "2024-04-07"
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 41,
+      "anchor": "2024-06-03",
+      "start": "2024-06-03",
+      "end": "2024-06-09"
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 1,
+      "anchor": "2024-07-01",
+      "start": "2024-07-01",
+      "end": "2024-07-07"
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 41,
+      "anchor": "2024-08-26",
+      "start": "2024-08-26",
+      "end": "2024-09-01"
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor_session": 1,
+      "anchor": "2024-10-08",
+      "start": "2024-10-08",
+      "end": "2024-10-14"
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor_session": 41,
+      "anchor": "2024-12-03",
+      "start": "2024-12-03",
+      "end": "2024-12-09"
+    }
+  ],
+  "authorization": {
+    "execute_R1_bounded_expansion": true,
+    "price_or_return_access_during_R1": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission": false,
+    "live_authorized": false
+  },
+  "receipt_sha256": "7b30d273895c0348484bc8317838dde9a8098a8ed6f6d08b372cfb6b2098b504"
+}

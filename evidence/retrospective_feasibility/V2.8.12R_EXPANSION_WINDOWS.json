@@ -1,0 +1,138 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_EXPANSION_WINDOWS_V1",
+  "version": "V2.8.12R",
+  "status": "FROZEN_BEFORE_REAL_CANDIDATE_QUERY",
+  "calendar_authority": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+  "window_rule": "1st and 41st joint A-share trading session of each 2023-2024 quarter, anchor through +6 calendar days inclusive",
+  "windows": [
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 1,
+      "anchor": "2023-01-03",
+      "start": "2023-01-03",
+      "end": "2023-01-09"
+    },
+    {
+      "quarter": "2023Q1",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 41,
+      "anchor": "2023-03-07",
+      "start": "2023-03-07",
+      "end": "2023-03-13"
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 1,
+      "anchor": "2023-04-03",
+      "start": "2023-04-03",
+      "end": "2023-04-09"
+    },
+    {
+      "quarter": "2023Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 41,
+      "anchor": "2023-06-02",
+      "start": "2023-06-02",
+      "end": "2023-06-08"
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 1,
+      "anchor": "2023-07-03",
+      "start": "2023-07-03",
+      "end": "2023-07-09"
+    },
+    {
+      "quarter": "2023Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 41,
+      "anchor": "2023-08-28",
+      "start": "2023-08-28",
+      "end": "2023-09-03"
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor_session": 1,
+      "anchor": "2023-10-09",
+      "start": "2023-10-09",
+      "end": "2023-10-15"
+    },
+    {
+      "quarter": "2023Q4",
+      "quarter_joint_sessions": 60,
+      "anchor_session": 41,
+      "anchor": "2023-12-04",
+      "start": "2023-12-04",
+      "end": "2023-12-10"
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor_session": 1,
+      "anchor": "2024-01-02",
+      "start": "2024-01-02",
+      "end": "2024-01-08"
+    },
+    {
+      "quarter": "2024Q1",
+      "quarter_joint_sessions": 58,
+      "anchor_session": 41,
+      "anchor": "2024-03-06",
+      "start": "2024-03-06",
+      "end": "2024-03-12"
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 1,
+      "anchor": "2024-04-01",
+      "start": "2024-04-01",
+      "end": "2024-04-07"
+    },
+    {
+      "quarter": "2024Q2",
+      "quarter_joint_sessions": 59,
+      "anchor_session": 41,
+      "anchor": "2024-06-03",
+      "start": "2024-06-03",
+      "end": "2024-06-09"
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 1,
+      "anchor": "2024-07-01",
+      "start": "2024-07-01",
+      "end": "2024-07-07"
+    },
+    {
+      "quarter": "2024Q3",
+      "quarter_joint_sessions": 64,
+      "anchor_session": 41,
+      "anchor": "2024-08-26",
+      "start": "2024-08-26",
+      "end": "2024-09-01"
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor_session": 1,
+      "anchor": "2024-10-08",
+      "start": "2024-10-08",
+      "end": "2024-10-14"
+    },
+    {
+      "quarter": "2024Q4",
+      "quarter_joint_sessions": 61,
+      "anchor_session": 41,
+      "anchor": "2024-12-03",
+      "start": "2024-12-03",
+      "end": "2024-12-09"
+    }
+  ],
+  "receipt_sha256": "2211f5f34bda6bd67ea8e86d5f42ad32241341327260700a8ba0b2294b21f5e8"
+}
