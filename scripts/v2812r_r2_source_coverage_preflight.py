@@ -3,7 +3,6 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
-from datetime import date
 from pathlib import Path
 
 import duckdb
@@ -112,13 +111,14 @@ def materialize_exact(source: dict) -> Path:
 def presence_rows(parquet: Path, expected: pd.DataFrame, benchmark: bool = False) -> pd.DataFrame:
     con = duckdb.connect()
     con.register("expected", expected)
-    # Deliberately project only the columns authorized by Amendment 4.
+    # SELECT and WHERE reference only symbol/bar_time/kline_t. DuckDB Parquet projection
+    # pushdown therefore does not scan numeric price columns.
     if benchmark:
         q = f"""
         WITH source_presence AS (
           SELECT DISTINCT cast(symbol as varchar) AS symbol,
                           cast(bar_time as date) AS bar_date
-          FROM read_parquet({sql_lit(parquet)}, columns={{'symbol':'VARCHAR','bar_time':'TIMESTAMP','kline_t':'VARCHAR'}})
+          FROM read_parquet({sql_lit(parquet)})
           WHERE cast(kline_t as varchar)='1D'
             AND cast(symbol as varchar)='000300.SS'
         )
@@ -134,7 +134,7 @@ def presence_rows(parquet: Path, expected: pd.DataFrame, benchmark: bool = False
         WITH source_presence AS (
           SELECT DISTINCT cast(symbol as varchar) AS symbol,
                           cast(bar_time as date) AS bar_date
-          FROM read_parquet({sql_lit(parquet)}, columns={{'symbol':'VARCHAR','bar_time':'TIMESTAMP','kline_t':'VARCHAR'}})
+          FROM read_parquet({sql_lit(parquet)})
           WHERE cast(kline_t as varchar)='1D'
         )
         SELECT e.event_key, e.symbol, e.required_label, e.required_date,
@@ -155,7 +155,7 @@ def minmax_dates(parquet: Path, symbol_filter: list[str]) -> dict[str, str | Non
     q = f"""
       SELECT min(cast(k.bar_time as date)) AS min_date,
              max(cast(k.bar_time as date)) AS max_date
-      FROM read_parquet({sql_lit(parquet)}, columns={{'symbol':'VARCHAR','bar_time':'TIMESTAMP','kline_t':'VARCHAR'}}) k
+      FROM read_parquet({sql_lit(parquet)}) k
       INNER JOIN wanted w ON cast(k.symbol as varchar)=w.symbol
       WHERE cast(k.kline_t as varchar)='1D'
     """
