@@ -1,0 +1,40 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_INTEGRITY_EXIT_AUDIT_CONTRACT_V1",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_AUDIT",
+  "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+  "purpose": "Classify legacy integrity/governance controls before consolidation so useful protections are preserved, redundant governance is removed from the active path, and unresolved risks remain explicit.",
+  "classification_labels": [
+    "CONSTITUTION_KEEP",
+    "ACTIVE_COMPATIBILITY_KEEP",
+    "DIAGNOSTIC_ONLY",
+    "REDUNDANT_RETIRE_FROM_ACTIVE_PATH",
+    "UNRESOLVED_BLOCKER"
+  ],
+  "required_fields_per_control": [
+    "control_name",
+    "source_file_or_module",
+    "failure_prevented",
+    "can_change_sample",
+    "can_change_time_information_set",
+    "can_change_model_or_selection_rule",
+    "can_change_discipline",
+    "historical_evidence_dependency",
+    "classification",
+    "retirement_or_compatibility_plan"
+  ],
+  "classification_rules": {
+    "CONSTITUTION_KEEP": "Control directly prevents leakage, silent sample mutation, invalid temporal inference, OOS/prospective contamination, unauthorized model-rule change, material evidence identity failure, or risk-discipline failure.",
+    "ACTIVE_COMPATIBILITY_KEEP": "Control is not needed for new V2.9 architecture but remains required to interpret or close an already-active frozen historical contract such as V2.8.12R.",
+    "DIAGNOSTIC_ONLY": "Useful for debugging or observability but failure must not block research unless escalation criteria in the kernel are met.",
+    "REDUNDANT_RETIRE_FROM_ACTIVE_PATH": "Another retained control already prevents the same system-critical failure with equal or stronger coverage and no unique historical binding.",
+    "UNRESOLVED_BLOCKER": "A real system-critical failure remains possible and no retained control currently closes it."
+  },
+  "retirement_safety": {
+    "destructive_deletion_of_historical_evidence": false,
+    "silent_relabeling_of_old_pass_fail_states": false,
+    "removal_of_controls_required_by_open_frozen_contracts": false,
+    "retire_means": "Remove from future active decision path or mark diagnostic-only; preserve historical artifacts for provenance."
+  },
+  "exit_condition": "Audit is complete only when every active integrity/governance control is classified and no UNRESOLVED_BLOCKER remains unowned."
+}
