@@ -1,0 +1,106 @@
+name: V2.8.12R R1 Blocked Window Identification Probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "evidence/V2.8.12R_R1_BLOCKED_WINDOW_IDENTIFICATION_ACTIVATION.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-r1-blocked-window-identification
+  cancel-in-progress: false
+
+jobs:
+  identify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source-only runtime
+        run: python -m pip install playwright==1.55.0
+      - name: Probe only the two ambiguous frozen windows
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=scripts python - <<'PY'
+          import hashlib,json,tempfile
+          from datetime import date
+          from pathlib import Path
+          import v284_candidate_collector as cc
+
+          base=Path('evidence/retrospective_feasibility')
+          windows=json.loads((base/'V2.8.12R_EXPANSION_WINDOWS.json').read_text(encoding='utf-8'))
+          gate=json.loads((base/'V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json').read_text(encoding='utf-8'))
+          assert windows['status']=='FROZEN_BEFORE_REAL_CANDIDATE_QUERY'
+          assert gate['status']=='R1_TECHNICAL_INCOMPLETE_R2_OUTCOME_ACCESS_BLOCKED'
+          assert gate['R2_price_or_return_access_authorized'] is False
+          assert gate['price_or_return_data_consumed_in_R1'] is False
+
+          targets=[
+            ('2023Q1',1,'2023-01-03','2023-01-09'),
+            ('2023Q2',1,'2023-04-03','2023-04-09'),
+          ]
+          frozen={(w['quarter'],int(w['anchor_session']),w['start'],w['end']) for w in windows['windows']}
+          assert all(t in frozen for t in targets)
+
+          records=[]
+          with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            for i,(q,a,s,e) in enumerate(targets,1):
+              rec={'quarter':q,'anchor_session':a,'start':s,'end':e,'source_status':'UNKNOWN','deduped_announcements':None,'source_blocker':''}
+              try:
+                out=root/f'probe_{i}'
+                cc.collect(date.fromisoformat(s),date.fromisoformat(e),out)
+                r=json.loads((out/'V2.8.4_CNINFO_CANDIDATE_COLLECTION_RECEIPT.json').read_text(encoding='utf-8'))
+                assert r['price_or_return_data_consumed'] is False
+                assert r['eligibility_effect']=='NONE_CANDIDATE_HINT_ONLY'
+                rec['source_status']='SOURCE_QUERY_COMPLETED'
+                rec['deduped_announcements']=int(r['deduped_announcements'])
+                rec['collector_receipt_sha256']=r['receipt_sha256']
+              except Exception as ex:
+                rec['source_status']='SOURCE_QUERY_BLOCKED'
+                rec['source_blocker']=f'{type(ex).__name__}:{ex}'
+              records.append(rec)
+
+          blocked=[r for r in records if r['source_status']=='SOURCE_QUERY_BLOCKED']
+          out={
+            'schema':'AI_CORE_EVID_V2_8_12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE_V1',
+            'version':'V2.8.12R',
+            'purpose':'Outcome-blind source-only replay of the two ambiguous frozen windows; no triage, PDF materialization, classifier, price, return, fold3, fold4, Setup or live access.',
+            'records':records,
+            'current_probe_unique_blocked_window':blocked[0] if len(blocked)==1 else None,
+            'current_probe_blocked_count':len(blocked),
+            'historical_identity_claim_authorized':False,
+            'price_or_return_data_consumed':False,
+            'classifier_executed':False,
+            'prospective_gate_changed':False,
+            'fold3_accessed':False,
+            'fold4_accessed':False,
+            'setup_or_live_accessed':False,
+          }
+          b=json.dumps(out,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+          out['receipt_sha256']=hashlib.sha256(b).hexdigest()
+          p=base/'V2.8.12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE.json'
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Freeze identification evidence only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE.json
+          git commit -m "Freeze V2.8.12R R1 blocked-window identification probe [skip ci]"
+          git pull --rebase origin main
+          git push
