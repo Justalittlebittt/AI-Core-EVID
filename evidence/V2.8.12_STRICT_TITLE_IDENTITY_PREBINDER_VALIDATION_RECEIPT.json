@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_STRICT_TITLE_IDENTITY_PREBINDER_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "authority": "evidence/V2.8.12_STRICT_TITLE_IDENTITY_PREBINDING_AMENDMENT_1.json",
+  "implementation": {
+    "script": "scripts/v2812_strict_title_identity_prebinder.py",
+    "blob_sha": "0d30473ae007fd9fa6a3818f3add87c4a37bae38",
+    "selftest_workflow": ".github/workflows/v2812-strict-title-identity-prebinder-selftest.yml",
+    "selftest_run_id": 36537730306,
+    "selftest_job_id": 109305557045
+  },
+  "selftest": {
+    "result": "13/13 PASS",
+    "exact_security_name_extension": "PASS",
+    "issuer_authored_title_requirement": "PASS",
+    "real_bee_fixture_unique_legal_name": "PASS",
+    "fixture_first_append": "PASS",
+    "binding_fields_complete": "PASS",
+    "receipt_creation": "PASS",
+    "repeat_noop": "PASS",
+    "conflicting_binding_blocks": "PASS",
+    "current_production_binding_noop": "PASS",
+    "fuzzy_abbreviation_inference": "FORBIDDEN_AND_TESTED",
+    "network_or_price_modules": "NONE",
+    "real_binding_ledger_modified": false
+  },
+  "validated_scope": {
+    "trigger_records": "genuinely prospective ELIGIBLE_AI_CORE records blocked solely by unresolved issuer identity",
+    "source": "immutable official CNInfo observation-result announcement metadata",
+    "unique_legal_name_required": true,
+    "issuer_authored_title_required": true,
+    "third_party_title_alone_sufficient": false,
+    "binding_commit_required_before_ratifier": true,
+    "backdating_forbidden": true
+  },
+  "governance": {
+    "classifier_changed": false,
+    "triage_changed": false,
+    "research_semantics_changed": false,
+    "readiness_thresholds_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "ACTIVE_DAILY_WORKFLOW_INTEGRATION"
+}
