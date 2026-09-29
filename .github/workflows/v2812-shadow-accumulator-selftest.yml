@@ -17,15 +17,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Verify corrected shadow accumulator and active workflow binding
+      - name: Verify corrected shadow accumulator, identity ratifier and active daily workflow binding
         shell: bash
         run: |
           set -euo pipefail
           test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
+          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"
           python - <<'PY'
           import json
           from pathlib import Path
           a=json.loads(Path("evidence/V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json").read_text())
+          ir=json.loads(Path("evidence/V2.8.12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_AMENDMENT_1.json").read_text())
+          irv=json.loads(Path("evidence/V2.8.12_IDENTITY_COMPLETION_RATIFIER_VALIDATION_RECEIPT.json").read_text())
           w=Path(".github/workflows/v284-controlled-prospective-e-layer.yml").read_text()
           assert a["schema"]=="AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_V1"
           assert a["historical_validation"]["historical_validated_blob_sha"]=="66fe3735c512e09252ee2400e458334a4043536b"
@@ -33,9 +36,25 @@ jobs:
           assert a["correction"]["corrected_accumulator_blob_sha"]=="ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
           assert a["correction"]["readiness_thresholds_changed"] is False
           assert a["governance"]["research_semantics_changed"] is False
+          assert ir["status"]=="ACTIVE_VALIDATED_GENERIC_IDENTITY_COMPLETION_RATIFICATION"
+          assert ir["implementation_validation"]["ratifier_blob_sha"]=="226fe586f1325e1753d95303ff021b01481c10ed"
+          assert ir["implementation_validation"]["selftest"]=="13/13 PASS"
+          assert ir["governance"]["research_semantics_changed"] is False
+          assert ir["governance"]["outcome_research_authorized"] is False
+          assert irv["status"]=="PASS"
+          assert irv["implementation"]["blob_sha"]=="226fe586f1325e1753d95303ff021b01481c10ed"
+          assert irv["validation_sequence"]["stable_idempotence_run"]["appended"]==0
+          assert irv["validation_sequence"]["stable_idempotence_run"]["duplicate_noops"]==2
           assert 'test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"' in w
-          assert 'V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json' in w
-          print("V2.8.12 corrected accumulator workflow binding PASS")
+          assert 'test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"' in w
+          assert w.count('python scripts/v2812_shadow_accumulator.py accumulate')==1
+          assert w.count('python scripts/v2812_identity_completion_ratifier.py ratify')==1
+          assert 'evidence/v2812_identity_ratifications' in w
+          assert 'V2.8.12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_AMENDMENT_1.json' in w
+          assert 'V2.8.12_IDENTITY_COMPLETION_RATIFIER_VALIDATION_RECEIPT.json' in w
+          print("V2.8.12 accumulator + identity ratifier active daily workflow binding PASS")
           PY
-      - name: Run V2.8.12 shadow self-test only
+      - name: Run V2.8.12 shadow accumulator self-test
         run: python scripts/v2812_shadow_accumulator.py self-test
+      - name: Run V2.8.12 identity completion ratifier self-test
+        run: python scripts/v2812_identity_completion_ratifier.py self-test
