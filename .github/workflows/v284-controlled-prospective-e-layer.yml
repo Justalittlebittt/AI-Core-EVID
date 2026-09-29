@@ -25,12 +25,15 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
+          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"
           test "$(git hash-object scripts/v284_incremental_e_layer_runner.py)" = "df07a5d2a5771deff39528c3533a39934e96a68c"
           python - <<'PY'
           import json
           from pathlib import Path
           v=json.loads(Path("evidence/V2.8.12_SHADOW_ACCUMULATOR_VALIDATION_RECEIPT.json").read_text())
           si=json.loads(Path("evidence/V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json").read_text())
+          ir=json.loads(Path("evidence/V2.8.12_PROSPECTIVE_IDENTITY_COMPLETION_RATIFICATION_AMENDMENT_1.json").read_text())
+          irv=json.loads(Path("evidence/V2.8.12_IDENTITY_COMPLETION_RATIFIER_VALIDATION_RECEIPT.json").read_text())
           c=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json").read_text())
           a=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_1.json").read_text())
           a2=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_2.json").read_text())
@@ -55,6 +58,22 @@ jobs:
           assert si["governance"]["price_or_return_data_authorized"] is False
           assert si["governance"]["fold3_access"] is False
           assert si["governance"]["fold4_access"] is False
+          assert ir["status"]=="ACTIVE_VALIDATED_GENERIC_IDENTITY_COMPLETION_RATIFICATION"
+          assert ir["implementation_validation"]["ratifier_blob_sha"]=="226fe586f1325e1753d95303ff021b01481c10ed"
+          assert ir["implementation_validation"]["selftest"]=="13/13 PASS"
+          assert ir["implementation_validation"]["stable_repeat_append_count"]==0
+          assert ir["implementation_validation"]["stable_repeat_duplicate_noops"]==2
+          assert ir["governance"]["research_semantics_changed"] is False
+          assert ir["governance"]["outcome_research_authorized"] is False
+          assert ir["governance"]["price_or_return_data_authorized"] is False
+          assert ir["governance"]["fold3_access"] is False
+          assert ir["governance"]["fold4_access"] is False
+          assert irv["status"]=="PASS"
+          assert irv["implementation"]["blob_sha"]=="226fe586f1325e1753d95303ff021b01481c10ed"
+          assert irv["validation_sequence"]["stable_idempotence_run"]["selftest"]=="13/13 PASS"
+          assert irv["validation_sequence"]["stable_idempotence_run"]["appended"]==0
+          assert irv["validation_sequence"]["stable_idempotence_run"]["duplicate_noops"]==2
+          assert irv["validated_invariants"]["price_or_return_data_consumed"] is False
           assert c["cadence"]["cron_utc"]=="0 1 * * 2-6"
           assert c["integration"]["active_now"] is False
           assert a["status"]=="ACTIVE_CADENCE_SUPERSESSION"
@@ -92,7 +111,7 @@ jobs:
           assert t["governance"]["price_or_return_data_authorized"] is False
           assert t["governance"]["fold3_access"] is False
           assert t["governance"]["fold4_access"] is False
-          print("V2.8.12 corrected shadow accumulator + data-completeness recovery + daily off-peak cadence + transport patch binding PASS")
+          print("V2.8.12 corrected shadow accumulator + validated identity ratifier + data-completeness recovery + daily off-peak cadence + transport patch binding PASS")
           PY
       - name: Restore content-addressed E-layer cache
         uses: actions/cache@v4
@@ -178,15 +197,17 @@ jobs:
           fi
       - name: Append V2.8.12 prospective shadow events and audit blind readiness
         run: python scripts/v2812_shadow_accumulator.py accumulate
-      - name: Commit V2.8.12 shadow ledger and readiness status
+      - name: Ratify identity-complete blocked prospective positives
+        run: python scripts/v2812_identity_completion_ratifier.py ratify
+      - name: Commit V2.8.12 shadow ledger, ratifications and readiness status
         shell: bash
         run: |
           set -euo pipefail
-          git add evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json
+          git add evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json evidence/v2812_identity_ratifications
           if git diff --cached --quiet; then
-            echo "No new V2.8.12 shadow evidence"
+            echo "No new V2.8.12 shadow or identity-ratification evidence"
             exit 0
           fi
-          git commit -m "Update V2.8.12 prospective E shadow ledger [skip ci]"
+          git commit -m "Update V2.8.12 prospective E shadow evidence [skip ci]"
           git pull --rebase origin main
           git push
