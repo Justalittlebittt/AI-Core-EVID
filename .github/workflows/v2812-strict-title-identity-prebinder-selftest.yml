@@ -1,0 +1,41 @@
+name: V2.8.12 Strict-Title Identity Prebinder Self-Test
+on:
+  push:
+    paths:
+      - ".github/workflows/v2812-strict-title-identity-prebinder-selftest.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen implementation binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v2812_strict_title_identity_prebinder.py)" = "0d30473ae007fd9fa6a3818f3add87c4a37bae38"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("evidence/V2.8.12_STRICT_TITLE_IDENTITY_PREBINDING_AMENDMENT_1.json").read_text())
+          assert a["status"] in {"FROZEN_BEFORE_IMPLEMENTATION","ACTIVE_VALIDATED_STRICT_TITLE_IDENTITY_PREBINDING"}
+          assert a["strict_derivation_rule"]["unique_derived_legal_name_required"] is True
+          assert a["strict_derivation_rule"]["issuer_authored_title_required"] is True
+          assert a["strict_derivation_rule"]["third_party_title_alone_sufficient"] is False
+          assert a["governance"]["fuzzy_identity_inference_authorized"] is False
+          assert a["governance"]["classifier_changed"] is False
+          assert a["governance"]["outcome_research_authorized"] is False
+          assert a["governance"]["price_or_return_data_authorized"] is False
+          assert a["governance"]["fold3_access"] is False
+          assert a["governance"]["fold4_access"] is False
+          PY
+      - name: Run strict-title prebinder self-test only
+        run: python scripts/v2812_strict_title_identity_prebinder.py self-test
