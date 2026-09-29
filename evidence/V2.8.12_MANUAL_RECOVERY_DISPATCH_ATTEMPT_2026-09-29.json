@@ -1,0 +1,42 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_MANUAL_RECOVERY_DISPATCH_ATTEMPT_V1",
+  "version": "V2.8.12",
+  "target_calendar_date": "2026-09-29",
+  "status": "DISPATCH_REQUEST_BOOTSTRAPPED_EXECUTION_UNCONFIRMED",
+  "authority": "evidence/V2.8.12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1.json",
+  "reason": "The genuine 2026-09-29 event=schedule trigger was not observed. The frozen recovery semantics authorize a manual recovery dispatch using actual later observation time without counting it as scheduler empirical confirmation.",
+  "bootstrap": {
+    "dispatcher_trigger_commit_sha": "d59d3b77e2fda94cccfbfb4524574a08ba0addf7",
+    "dispatcher_cleanup_commit_sha": "7bc41ece8f23a7b96b975cb17c9ba66ed3ae2e1b",
+    "temporary_workflow_path": ".github/workflows/v2812-one-shot-manual-recovery-dispatch.yml",
+    "temporary_workflow_removed_after_trigger_commit": true,
+    "target_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "target_trigger": "workflow_dispatch"
+  },
+  "claims_not_made": {
+    "manual_recovery_execution_succeeded": false,
+    "2026_09_29_data_recovery_confirmed": false,
+    "scheduler_empirical_confirmation_complete": false,
+    "2026_09_29_schedule_declared_successful": false
+  },
+  "required_confirmation": {
+    "new_authoritative_observation_commit_from_target_workflow": true,
+    "scan_window_contains_2026_09_29": true,
+    "actual_observation_time_not_backdated": true,
+    "announcement_id_dedup_preserved": true
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "CONFIRM_TARGET_WORKFLOW_EXECUTION_FROM_AUTHORITATIVE_OBSERVATION_EVIDENCE; IF NO SUCH EVIDENCE APPEARS, TREAT THIS AS A DISPATCH ATTEMPT ONLY AND USE THE NEXT SUCCESSFUL OVERLAP RUN OR AN EXPLICIT RECOVERY AUDIT BEFORE THE DATE EXITS COVERAGE."
+}
