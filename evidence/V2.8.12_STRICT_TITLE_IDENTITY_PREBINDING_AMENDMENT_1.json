@@ -1,7 +1,7 @@
 {
   "schema": "AI_CORE_EVID_V2_8_12_STRICT_TITLE_IDENTITY_PREBINDING_AMENDMENT_V1",
   "version": "V2.8.12",
-  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "status": "ACTIVE_VALIDATED_STRICT_TITLE_IDENTITY_PREBINDING",
   "purpose": "Eliminate repeated manual issuer-identity rescue for genuinely prospective ELIGIBLE_AI_CORE filings by deriving only high-confidence static issuer identity from immutable official CNInfo announcement metadata, while preserving identity-only semantics and fail-closed behavior.",
   "problem_elimination_pass": {
     "final_goal": "Allow unseen issuers with a strictly provable official legal name to obtain one reusable static identity binding before identity-completion ratification, without manual per-issuer intervention.",
@@ -24,15 +24,7 @@
   "source_scope": {
     "allowed_source": "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_<run_id>.csv",
     "allowed_pipeline_status": "SUCCESS",
-    "allowed_metadata_fields": [
-      "announcement_id",
-      "canonical_security_id",
-      "security_name",
-      "announcement_title",
-      "disclosure_date",
-      "adjunct_url",
-      "classification_state"
-    ],
+    "allowed_metadata_fields": ["announcement_id","canonical_security_id","security_name","announcement_title","disclosure_date","adjunct_url","classification_state"],
     "network_fetch_required": false,
     "pdf_reclassification_required": false,
     "historical_full_backfill": false
@@ -56,11 +48,25 @@
     "identity_evidence_text": "exact immutable CNInfo announcement_title selected as issuer-authored authority"
   },
   "temporal_boundary": {
-    "binding_authority_time": "GitHub committed_at of the commit that first adds the binding row",
+    "binding_authority_time": "GitHub committed_at of the commit that first adds the binding ledger row",
     "ratifier_may_run_before_binding_commit": false,
     "backdating_forbidden": true,
     "same_day_effective_activation_for_ratified_event": false,
     "effective_date_rule_changed": false
+  },
+  "implementation_validation": {
+    "script": "scripts/v2812_strict_title_identity_prebinder.py",
+    "blob_sha": "0d30473ae007fd9fa6a3818f3add87c4a37bae38",
+    "selftest_workflow": ".github/workflows/v2812-strict-title-identity-prebinder-selftest.yml",
+    "selftest_run_id": 36537730306,
+    "selftest_job_id": 109305557045,
+    "selftest": "13/13 PASS",
+    "real_binding_ledger_modified_by_test": false,
+    "bee_fixture_first_append": "PASS",
+    "repeat_noop": "PASS",
+    "conflict_block": "PASS",
+    "fuzzy_inference_forbidden": "PASS",
+    "network_or_price_modules": "NONE"
   },
   "governance": {
     "research_semantics_changed": false,
@@ -81,5 +87,5 @@
     "brokerage_execution_authorized": false,
     "autonomous_financial_decision_authorized": false
   },
-  "next_stage": "STRICT_TITLE_IDENTITY_PREBINDER_IMPLEMENTATION_AND_SELFTEST"
+  "next_stage": "INTEGRATE_STRICT_PREBINDER_BEFORE_RATIFIER_IN_ACTIVE_DAILY_WORKFLOW"
 }
