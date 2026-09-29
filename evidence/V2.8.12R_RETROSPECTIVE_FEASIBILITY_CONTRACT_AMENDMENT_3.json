@@ -1,0 +1,43 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_V3",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_PRE_OUTCOME_PROVENANCE_CANONICALIZATION",
+  "parent_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+  "purpose": "Ensure the three reused V2.8.11 positive events retain original content and classifier-decision provenance before the R2 cohort is treated as final for outcome resolution.",
+  "legacy_provenance_authority": "evidence/V2.8.11_BOUNDED_E_RECONSTRUCTION_RETRY1_POSITIVE_EVENTS.csv",
+  "matching_key": "announcement_id",
+  "expected_legacy_positive_rows": 3,
+  "hydration_fields": [
+    "object_sha256",
+    "page_text_sha256",
+    "decision_sha256",
+    "evidence_sentence_sha256"
+  ],
+  "immutable_fields_during_hydration": [
+    "announcement_id",
+    "canonical_security_id",
+    "quarter",
+    "disclosure_date",
+    "retrospective_causal_effective_date",
+    "classification_state"
+  ],
+  "rules": {
+    "exact_one_legacy_match_required_for_each_reused_event": true,
+    "membership_change_forbidden": true,
+    "event_date_change_forbidden": true,
+    "classification_change_forbidden": true,
+    "new_event_addition_forbidden": true,
+    "event_removal_forbidden": true,
+    "outcome_data_access_during_hydration": false,
+    "final_hydrated_cohort_hash_must_be_frozen_before_R2_price_access": true
+  },
+  "governance": {
+    "price_or_return_data_consumed_before_amendment": false,
+    "prospective_gate_changed": false,
+    "classifier_or_triage_changed": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "live_authorized": false
+  }
+}
