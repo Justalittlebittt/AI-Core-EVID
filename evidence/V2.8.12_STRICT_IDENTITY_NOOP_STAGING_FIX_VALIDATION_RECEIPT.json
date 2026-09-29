@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_STRICT_IDENTITY_NOOP_STAGING_FIX_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "PASS",
+  "incident": {
+    "detected_after_daily_strict_identity_pipeline_integration": true,
+    "failure_mode": "UNGUARDED_GIT_ADD_OF_NONEXISTENT_IDENTITY_BINDING_RECEIPT_DIRECTORY_WOULD_FAIL_A_NORMAL_NO_NEW_BINDING_RUN",
+    "directory_confirmed_absent_before_fix": "evidence/v2812_identity_bindings",
+    "research_semantics_affected": false
+  },
+  "fix": {
+    "active_daily_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "workflow_fix_commit_sha": "e1426e426d9c3deaf3fdf8e56da7a8e9e1983e12",
+    "always_stage_binding_ledger": "git add evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv",
+    "receipt_directory_stage_guard": "if test -d evidence/v2812_identity_bindings; then git add evidence/v2812_identity_bindings; fi",
+    "old_unguarded_combined_pathspec_removed": true
+  },
+  "validation": {
+    "validation_workflow": ".github/workflows/v2812-shadow-accumulator-selftest.yml",
+    "validation_workflow_commit_sha": "751cd8f4a98222fbdfcdb9f1c8c61b3274d28608",
+    "run_id": 36538544057,
+    "job_id": 109308182513,
+    "conclusion": "success",
+    "static_causal_order_check": "PASS",
+    "actual_current_empty_staging_shell_execution": "PASS",
+    "staged_diff_after_noop_staging": "EMPTY",
+    "shadow_accumulator_selftest": "16/16 PASS",
+    "strict_title_identity_prebinder_selftest": "13/13 PASS",
+    "identity_completion_ratifier_selftest": "13/13 PASS"
+  },
+  "validated_invariants": {
+    "no_new_binding_is_successful_noop": true,
+    "new_binding_still_commits_before_ratifier": true,
+    "identity_binding_authority_time_unchanged": true,
+    "backdating_path_introduced": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "readiness_thresholds_changed": false,
+    "price_or_return_data_consumed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  }
+}
