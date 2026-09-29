@@ -1,0 +1,85 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_STRICT_TITLE_IDENTITY_PREBINDING_AMENDMENT_V1",
+  "version": "V2.8.12",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "purpose": "Eliminate repeated manual issuer-identity rescue for genuinely prospective ELIGIBLE_AI_CORE filings by deriving only high-confidence static issuer identity from immutable official CNInfo announcement metadata, while preserving identity-only semantics and fail-closed behavior.",
+  "problem_elimination_pass": {
+    "final_goal": "Allow unseen issuers with a strictly provable official legal name to obtain one reusable static identity binding before identity-completion ratification, without manual per-issuer intervention.",
+    "hard_constraints": [
+      "Only genuinely prospective observations may trigger automatic prebinding.",
+      "Only records already classified ELIGIBLE_AI_CORE and blocked solely by unresolved issuer identity may trigger automatic prebinding.",
+      "Identity evidence may never create, strengthen, recompute or alter AI classification.",
+      "Only immutable official CNInfo observation-result metadata already captured by the prospective pipeline may be consumed.",
+      "canonical_security_id and security_name must be internally consistent across the source run.",
+      "The issuer legal name must be uniquely derivable by direct extension of the exact security_name in official announcement_title text to an allowed Chinese corporate legal suffix.",
+      "At least one SUCCESS observation for the same canonical security must have an announcement_title beginning exactly with the derived issuer legal name, providing issuer-authored-title authority rather than relying only on third-party opinion titles.",
+      "If zero, multiple or conflicting legal names are derivable, no binding is written.",
+      "An existing binding with a different legal name blocks the operation.",
+      "Binding must be committed before any downstream ratifier uses it so git commit time remains the authoritative identity-completeness boundary.",
+      "No price, return, benchmark, outcome, fold3/fold4, Setup, First60, Episode, live or brokerage data/action may be accessed."
+    ],
+    "soft_constraint_removed": "Every previously unseen issuer identity must be manually researched and inserted after a positive is blocked.",
+    "selected_action": "PRECOMPUTE_AND_REUSE_STRICT_OFFICIAL_TITLE_IDENTITY_BINDING"
+  },
+  "source_scope": {
+    "allowed_source": "evidence/v284_prospective_runs/V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_<run_id>.csv",
+    "allowed_pipeline_status": "SUCCESS",
+    "allowed_metadata_fields": [
+      "announcement_id",
+      "canonical_security_id",
+      "security_name",
+      "announcement_title",
+      "disclosure_date",
+      "adjunct_url",
+      "classification_state"
+    ],
+    "network_fetch_required": false,
+    "pdf_reclassification_required": false,
+    "historical_full_backfill": false
+  },
+  "strict_derivation_rule": {
+    "security_name_match": "exact literal security_name occurrence; no fuzzy matching, alias expansion or abbreviation inference",
+    "allowed_legal_suffixes": ["股份有限公司", "有限责任公司", "有限公司"],
+    "unique_derived_legal_name_required": true,
+    "issuer_authored_title_required": true,
+    "issuer_authored_title_test": "same canonical_security_id SUCCESS row whose announcement_title starts exactly with derived issuer_legal_name",
+    "third_party_title_alone_sufficient": false,
+    "ambiguous_or_unresolved": "NO_BINDING_FAIL_CLOSED"
+  },
+  "binding_output": {
+    "ledger": "evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv",
+    "binding_state": "OFFICIAL_CNINFO_IDENTITY_BOUND",
+    "receipt_directory": "evidence/v2812_identity_bindings",
+    "one_binding_per_canonical_security_id": true,
+    "existing_same_binding": "NO_ACTION_DUPLICATE",
+    "existing_conflicting_binding": "BLOCK_IDENTITY_BINDING_CONFLICT",
+    "identity_evidence_text": "exact immutable CNInfo announcement_title selected as issuer-authored authority"
+  },
+  "temporal_boundary": {
+    "binding_authority_time": "GitHub committed_at of the commit that first adds the binding row",
+    "ratifier_may_run_before_binding_commit": false,
+    "backdating_forbidden": true,
+    "same_day_effective_activation_for_ratified_event": false,
+    "effective_date_rule_changed": false
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "identity_contract_broadened_beyond_official_cninfo": false,
+    "fuzzy_identity_inference_authorized": false,
+    "readiness_thresholds_changed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "STRICT_TITLE_IDENTITY_PREBINDER_IMPLEMENTATION_AND_SELFTEST"
+}
