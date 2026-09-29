@@ -1,0 +1,157 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT_V1",
+  "version": "V2.8.12R",
+  "status": "FROZEN_BEFORE_ADDITIONAL_HISTORICAL_CANDIDATE_QUERY_OR_PRICE_OUTCOME_ACCESS",
+  "parent_architecture": "evidence/V2.8.12_PARALLEL_RETROSPECTIVE_FEASIBILITY_ARCHITECTURE_AMENDMENT_1.json",
+  "objective": "Produce an outcome-blind expanded historical E-event cohort and then estimate bounded retrospective outcome feasibility without weakening or contaminating the V2.8.12 prospective confirmatory lane.",
+  "stage_R1_outcome_blind_event_expansion": {
+    "calendar_authority": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "existing_cohort_authority": "evidence/V2.8.11_FINAL_RECORD.json",
+    "existing_windows": "Eight already-frozen windows anchored on the 21st joint A-share trading session of each 2023-2024 quarter; do not rerun or modify them except for deterministic cohort reuse.",
+    "new_window_rule": {
+      "years": [2023, 2024],
+      "quarters": [1, 2, 3, 4],
+      "anchors_per_quarter": [1, 41],
+      "anchor_definition": "The Nth joint A-share trading session within the quarter according to the frozen calendar authority.",
+      "window_definition": "Anchor date through anchor plus 6 calendar days inclusive.",
+      "new_window_count": 16,
+      "overlap_with_existing_21st_session_windows_expected": false,
+      "window_dates_must_be_derived_and_frozen_by_self-test_before_any_candidate_query": true,
+      "window_mutation_after_candidate_query": false
+    },
+    "discovery_and_selection": {
+      "collector": "scripts/v284_candidate_collector.py",
+      "collector_semantics": "Exact existing frozen 18-term registry and SSE/SZSE routes; no keyword changes.",
+      "triage": "scripts/v284_candidate_triage.py with existing frozen semantics.",
+      "classifier": "Existing frozen V2.8.4 page-scoped classifier and aggregation semantics.",
+      "identity": "Existing strict issuer-identity rules; no fuzzy identity inference.",
+      "maximum_selected_per_new_window": 6,
+      "maximum_new_selected_total": 96,
+      "selection_order": "SHA256(announcement_id) ascending, then announcement_id ascending as deterministic tie-break.",
+      "security_diversity_within_window": "After deterministic ordering, keep the first row for each canonical_security_id and stop after six selected rows.",
+      "dedup_across_existing_and_new_windows": "announcement_id exact deduplication.",
+      "manual_security_selection": false,
+      "manual_document_selection": false,
+      "positive_yield_resampling": false,
+      "expand_or_shift_sparse_windows": false
+    },
+    "temporal_provenance": {
+      "reuse_V2_8_11_rules": true,
+      "retrospective_effective_date": "First frozen joint A-share trading date strictly after disclosure date.",
+      "same_day_effective_date_forbidden": true,
+      "future_revision_date_backfill_forbidden": true
+    },
+    "price_or_return_data_access_during_R1": false,
+    "R1_output_namespace": "evidence/retrospective_feasibility/",
+    "R1_required_outputs": [
+      "V2.8.12R_EXPANSION_WINDOWS.json",
+      "V2.8.12R_EXPANSION_RESULTS.csv",
+      "V2.8.12R_FROZEN_EVENT_COHORT.csv",
+      "V2.8.12R_EVENT_COHORT_RECEIPT.json"
+    ]
+  },
+  "stage_R2_outcome_resolution": {
+    "authorization_condition": "R1 event cohort and its content hash are committed before any stock or benchmark price endpoint is read.",
+    "event_population": "Exact frozen R1 cohort only; no post-outcome event additions, deletions or subtype exclusions.",
+    "event_date_D": "Frozen retrospective effective date for each event.",
+    "horizons": {
+      "primary": "D+10 joint A-share trading sessions",
+      "secondary": "D+5 joint A-share trading sessions",
+      "target_shift_if_missing": false
+    },
+    "price_source_policy": {
+      "preferred_source_family": "Existing free AlphaDojo stock and benchmark kline sources already used by AI Core EVID.",
+      "same_vintage_rule": "For each resolved horizon, stock D and T endpoints must come from the same exact frozen stock source revision; benchmark D and T endpoints must come from the same exact frozen benchmark source revision.",
+      "adjusted_price_scale_mixing_forbidden": true,
+      "source_identity_must_be_frozen_before_outcome_statistics": true,
+      "fallback_if_historical_coverage_missing": "Fail closed. A separate free-public-source amendment must be frozen before inspecting any fallback-source outcomes; events may not be dropped merely because the preferred source lacks coverage."
+    },
+    "benchmark": {
+      "instrument": "CSI 300",
+      "symbol_in_existing_benchmark_source": "000300.SS",
+      "stock_return_formula": "close_T_same_vintage / close_D_same_vintage - 1",
+      "benchmark_return_formula": "benchmark_close_T_same_vintage / benchmark_close_D_same_vintage - 1",
+      "excess_return_formula": "stock_return - benchmark_return"
+    },
+    "missing_data": {
+      "missing_stock_D_or_T": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+      "missing_benchmark_D_or_T": "OUTCOME_UNAVAILABLE_NO_SHIFT",
+      "security_delisted_or_absent": "OUTCOME_UNAVAILABLE_NO_SURVIVOR_REPLACEMENT",
+      "minimum_resolved_event_share_for_any_aggregate_interpretation": 0.80
+    }
+  },
+  "analysis_contract": {
+    "primary_analysis_unit": "issuer",
+    "within_issuer_aggregation": "For each issuer, median D+10 excess return across all of its frozen cohort events with resolved outcomes.",
+    "primary_statistic": "Median across issuer-level D+10 excess-return medians with equal issuer weight.",
+    "secondary_statistics": [
+      "Median across issuer-level D+5 excess-return medians with equal issuer weight.",
+      "Event-level median D+10 excess return.",
+      "Event-level median D+5 excess return.",
+      "Issuer-level share with positive D+10 median excess return.",
+      "Event-level share with positive D+10 excess return."
+    ],
+    "uncertainty": {
+      "method": "Issuer-cluster bootstrap of the primary statistic.",
+      "resamples": 5000,
+      "random_seed": 2812,
+      "interval": "95% percentile interval",
+      "p_value_hunting": false
+    },
+    "decision_eligibility_sample_floor": {
+      "frozen_positive_events_min": 12,
+      "distinct_issuers_min": 6,
+      "distinct_positive_quarters_min": 6,
+      "maximum_single_issuer_event_share": 0.3333333333333333,
+      "resolved_event_share_min": 0.80
+    },
+    "verdict_rule": {
+      "if_sample_floor_fails": "DESCRIPTIVE_ONLY_SAMPLE_TOO_SMALL_FOR_FEASIBILITY_VERDICT",
+      "PROMISING_RETROSPECTIVE_FEASIBILITY": "Sample floor passes AND primary statistic > 0 AND issuer-cluster-bootstrap 95% lower bound > 0.",
+      "UNPROMISING_RETROSPECTIVE_FEASIBILITY": "Sample floor passes AND primary statistic <= 0 AND issuer-cluster-bootstrap 95% upper bound <= 0.",
+      "otherwise": "INCONCLUSIVE_RETROSPECTIVE_FEASIBILITY"
+    },
+    "multiplicity": {
+      "single_primary_horizon": "D+10",
+      "D+5": "SECONDARY_DESCRIPTIVE_NOT_AN_ALTERNATE_PRIMARY",
+      "subgroup_search_for_confirmatory_claims": false,
+      "exploratory_subgroups_if_reported": "Must be explicitly labeled exploratory and require a future precommitted validation sample before any confirmatory use."
+    }
+  },
+  "interpretation_and_firewall": {
+    "maximum_claim": "RETROSPECTIVE_FEASIBILITY_ONLY",
+    "may_count_toward_V2_8_12_prospective_gate": false,
+    "may_change_prospective_gate_thresholds": false,
+    "may_change_E_classifier_triage_materiality_identity_rules": false,
+    "may_add_or_remove_prospective_shadow_events": false,
+    "may_authorize_V2_8_13_prospective_confirmatory_transition": false,
+    "may_authorize_Setup_or_real_candidate_packet": false,
+    "may_generate_buy_sell_rebalance_instruction": false,
+    "may_inform_human_project_priority_decision": true,
+    "automatic_stop_of_prospective_collection_based_on_retrospective_result": false
+  },
+  "implementation_validation_required_before_R1_real_query": [
+    "Derive all 16 new windows exactly from the frozen calendar and prove each anchor is the 1st or 41st joint trading session of its quarter.",
+    "Prove no new window overlaps its quarter's existing 21st-session window.",
+    "Prove deterministic selection is input-order invariant, max six per window, max 96 new rows, and one filing per security per window.",
+    "Prove announcement_id dedup works across the existing V2.8.11 cohort and all new windows.",
+    "Prove no price, benchmark, fold3 or fold4 module/path is imported or read by the R1 runner.",
+    "Freeze the R1 runner hash and validation receipt before real candidate collection."
+  ],
+  "governance": {
+    "prospective_lane_unchanged": true,
+    "prospective_gate_thresholds_changed": false,
+    "historical_full_backfill_authorized": false,
+    "bounded_R1_expansion_authorized_after_runner_validation": true,
+    "R2_price_access_authorized_only_after_R1_cohort_freeze": true,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "BUILD_AND_VALIDATE_V2_8_12R_R1_OUTCOME_BLIND_EVENT_EXPANSION_RUNNER"
+}
