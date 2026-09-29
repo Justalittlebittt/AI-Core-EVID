@@ -70,6 +70,20 @@ V2.9 is prospective architecture consolidation. It does **not** rewrite frozen h
 
 The already-active V2.8.12R R1 technical gate remains binding until explicitly closed under its existing contract. Existing V2.8.12R thresholds, frozen windows, classifier rules, and R2 authorization conditions are unchanged by V2.9.
 
+## Current transition status
+
+- `V2.8.12R R1 Technical Gate`: **BLOCKED / repair in progress**.
+- The two ambiguous frozen windows have been rechecked source-only without price/return access.
+- `2023Q1 anchor1` currently returns zero candidates.
+- `2023Q2 anchor1` currently returns one materializable candidate and that candidate is selected by the original deterministic R1 selection rule.
+- Required downstream candidate repair: announcement `1216331011` (`SZSE:300956`).
+- Historical blocked-window identity is no longer required for the next repair step.
+- V2.8.12R R2 remains unauthorized until the original technical gate is explicitly satisfied.
+
+Canonical audit:
+
+- `evidence/retrospective_feasibility/V2.8.12R_R1_AMBIGUITY_SET_SELECTION_AUDIT.json`
+
 ## Integrity consolidation
 
 Before retiring any legacy governance control, V2.9 requires an Integrity Exit Audit. Every active control is classified as one of:
@@ -86,7 +100,7 @@ Contract:
 
 - `evidence/V2.9_INTEGRITY_EXIT_AUDIT_CONTRACT.json`
 
-Lightweight structural validator:
+Lightweight structural/semantic validator:
 
 - `scripts/v29_governance_kernel_validator.py`
 
