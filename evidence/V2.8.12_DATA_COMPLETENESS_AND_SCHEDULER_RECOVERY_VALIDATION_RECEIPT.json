@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_VALIDATION_RECEIPT_V1",
+  "version": "V2.8.12",
+  "status": "STATIC_AND_SYNTHETIC_RECOVERY_SEMANTICS_PASS_REAL_SCHEDULE_RECOVERY_PENDING",
+  "authority": "evidence/V2.8.12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1.json",
+  "validated_properties": {
+    "primary_operational_goal_is_data_coverage": true,
+    "scheduler_is_trigger_not_research_evidence": true,
+    "active_daily_cron_utc": "17 1 * * *",
+    "scan_window_calendar_days": 3,
+    "single_missed_daily_cycle_recoverable_by_next_successful_run": true,
+    "two_consecutive_missed_daily_cycles_recoverable_by_next_successful_run": true,
+    "three_consecutive_missed_daily_cycles_not_fully_covered_by_next_three_day_window": true,
+    "manual_recovery_dispatch_authorized_if_needed": true,
+    "manual_recovery_optional_while_missed_dates_remain_in_future_overlap_window": true,
+    "manual_recovery_must_use_actual_observation_time": true,
+    "manual_recovery_does_not_count_as_schedule_confirmation": true,
+    "backdating_forbidden": true,
+    "announcement_id_dedup_preserved": true,
+    "research_semantics_changed": false
+  },
+  "2026_09_29_incident": {
+    "schedule_trigger_observed": false,
+    "classification": "RECOVERABLE_SCHEDULER_MISS",
+    "data_declared_already_captured": false,
+    "schedule_declared_successful": false,
+    "next_successful_2026_09_30_window": "2026-09-28 through 2026-09-30 inclusive",
+    "missed_date_2026_09_29_inside_next_window": true,
+    "recovery_empirically_confirmed_yet": false
+  },
+  "implementation": {
+    "recovery_selftest_script": "scripts/v2812_scheduler_recovery_semantics.py",
+    "recovery_selftest_workflow": ".github/workflows/v2812-scheduler-recovery-selftest.yml",
+    "active_collection_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "active_collection_workflow_binds_recovery_amendment": true,
+    "active_collection_workflow_preserves_as_of_minus_2_window": true,
+    "active_collection_workflow_preserves_actual_observation_commit_before_finalization": true
+  },
+  "remaining_empirical_checks": {
+    "genuine_event_schedule_run_under_active_0117_utc_cadence": "PENDING",
+    "next_successful_run_scans_a_window_containing_2026_09_29": "PENDING",
+    "actual_2026_09_29_candidates_if_any_are_recovered_or_deduplicated_without_backdating": "PENDING"
+  },
+  "governance": {
+    "scheduler_empirical_confirmation_complete": false,
+    "2026_09_29_data_recovery_confirmed": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "historical_full_backfill_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "first60_append_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false
+  },
+  "next_stage": "OBSERVE_NEXT_REAL_RUN_AND_CONFIRM_BOTH_SCHEDULER_TRIGGER_AND_RECOVERY_COVERAGE_WITHOUT_REOPENING_RESEARCH_DESIGN"
+}
