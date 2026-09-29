@@ -1,64 +1,101 @@
-# AI Core EVID — Current State: V2.7.30
+# AI Core EVID
 
-AI Core EVID is an A-share evidence/PIT research pipeline with fail-closed governance.
+AI Core EVID is a personal A-share evidence and decision-discipline research system.
 
-## Frozen current state
+Its primary objective is **not** to predict the market with certainty or maximize return. Its job is to determine whether available evidence is strong enough to permit a contemplated action and whether that action violates precommitted risk and discipline rules.
 
-- Official Mother Pool: **5221 / 5221 — EXACT_PASS**
-- Security → Issuer PIT Map: **5221 / 5221 — EXACT_PASS**
-- Primary Filing Locator Inventory: **5221 / 5221 — EXACT_PASS**
-- Selector ambiguity: **0**
-- Evidence Materialization Contract: **VALIDATED_PASS**
-- Historical 2026-09-17 prospective certification: **BLOCKED_FIRST_OBSERVED_AFTER_PIT**
-- Certified V2 Universe: **BLOCKED**
-- First60: **BLOCKED**
-- S4/S5/S6: **BLOCKED**
-- LIVE: **BLOCKED**
+## Current architecture direction — V2.9
 
-## Current evidence architecture
+V2.9 consolidates governance into a minimal-responsibility architecture:
 
 ```text
-SSE/SZSE Official Mother Pool
-        ↓
-Security → Issuer PIT Map
-        ↓
-CNInfo Unified Official Filing Catalog
-        ↓
-Primary Locator Inventory
-        ↓
-On-demand Evidence Materialization
-        ↓
-raw PDF bytes + SHA256
-        ↓
-content-addressed cache / reuse
+Governance Kernel
+    ├── Evidence Engine
+    ├── Validity Engine
+    └── Discipline Engine
 ```
 
-The full-market inventory does **not** pre-download 5221 PDFs. PDF bytes are materialized only when a downstream Evidence Bundle actually consumes that security.
+### Governance Kernel
 
-## Materialization contract
+Owns only system-level invariants, hard-gate definitions, scope boundaries, version binding, and cross-layer semantic consistency.
 
-V2.7.30 validated four representative securities across SSE Main, STAR, SZSE Main and ChiNext.
+The five constitutional invariants are:
 
-- First pass: 4 official PDFs fetched and validated.
-- Second identical pass: 4 cache hits, **0 network fetches**.
-- Cache objects are keyed by SHA256 of raw PDF bytes.
-- Locator identity, PIT date, PDF header and cache hash are fail-closed.
-- Raw PDF bytes are not required to be committed into Git history.
+1. No leakage.
+2. No silent sample mutation.
+3. No undocumented override.
+4. No unsupported certainty.
+5. No goal drift away from reducing emotion-driven investing errors.
 
-The validated transport uses Playwright APIRequestContext without installing a browser binary.
+Canonical contract:
 
-## Workflow policy
+- `evidence/V2.9_GOVERNANCE_KERNEL.json`
 
-Heavy capture/probe/materialization workflows are **manual-only** after validation. Normal pushes must not automatically launch expensive external-source jobs.
+### Evidence Engine
 
-Workflow completion alone is never authorization. Downstream authorization must come from the corresponding frozen receipt / Final Record.
+Owns point-in-time evidence integrity, provenance, temporal/vintage correctness, signal inputs, and leakage prevention.
 
-## Temporal boundary
+### Validity Engine
 
-The 2026-09-17 universe and filing inventory were reconstructed after that PIT date. They remain valid for diagnostic/backtest architecture verification, but must not be relabeled as evidence prospectively observed on 2026-09-17.
+Evaluates evidence strength rather than forcing every research question into PASS/FAIL. Core dimensions include effect size, simple baselines, OOS, regime stability, cross-sectional stability, transaction costs, drawdown, calibration, sensitivity, and failure regions.
 
-## Next stage
+Research-strength outputs are:
 
-**V2.7.31 — Forward Evidence Epoch + Certified Universe Bootstrap**
+- `STRONG`
+- `MODERATE`
+- `WEAK`
+- `INSUFFICIENT`
 
-The next stage establishes a real forward observation epoch so future evidence can be certified without historical backfill ambiguity.
+### Discipline Engine
+
+Evaluates action eligibility and risk-rule compliance. Preferred semantics are `BUY_ELIGIBLE`, `ADD_BLOCKED`, `EXIT_REQUIRED`, etc.; the system does not claim guaranteed market direction.
+
+Canonical foundation:
+
+- `evidence/V2.9_VALIDITY_AND_DISCIPLINE_FOUNDATION.json`
+
+## Problem ownership
+
+Every newly discovered issue must first be classified:
+
+- **SYSTEM_CRITICAL** — can alter sample identity, time information set, model/selection rules, OOS/prospective integrity, material evidence identity, or trading discipline. These may hard-block.
+- **RESEARCH_UNCERTAINTY** — small samples, weak effects, wide intervals, regime instability, calibration uncertainty. These must remain uncertainty, not become engineering projects.
+- **EXTERNAL_OPERATIONAL** — HTTP 5xx, queue delays, transient network/PDF/provider failures. Retry/cache/degrade/record; escalate only if they can alter a system-critical property.
+
+A new workflow/gate/amendment/receipt/probe is not admitted merely because it is “more complete” or “more rigorous”. It must prevent a concrete system-level failure: leakage, silent mutation, invalid inference, or risk-discipline failure.
+
+## Backward compatibility
+
+V2.9 is prospective architecture consolidation. It does **not** rewrite frozen historical evidence or silently change old pass conditions.
+
+The already-active V2.8.12R R1 technical gate remains binding until explicitly closed under its existing contract. Existing V2.8.12R thresholds, frozen windows, classifier rules, and R2 authorization conditions are unchanged by V2.9.
+
+## Integrity consolidation
+
+Before retiring any legacy governance control, V2.9 requires an Integrity Exit Audit. Every active control is classified as one of:
+
+- `CONSTITUTION_KEEP`
+- `ACTIVE_COMPATIBILITY_KEEP`
+- `DIAGNOSTIC_ONLY`
+- `REDUNDANT_RETIRE_FROM_ACTIVE_PATH`
+- `UNRESOLVED_BLOCKER`
+
+Retirement means removal from the future active decision path, **not deletion of historical evidence**.
+
+Contract:
+
+- `evidence/V2.9_INTEGRITY_EXIT_AUDIT_CONTRACT.json`
+
+Lightweight structural validator:
+
+- `scripts/v29_governance_kernel_validator.py`
+
+## Current transition rule
+
+1. Close the already-active V2.8.12R R1 technical gate without weakening it.
+2. Run the V2.9 Integrity Exit Audit.
+3. Consolidate future governance under the single Governance Kernel.
+4. Build the frozen Strategy Validity evaluator.
+5. Build Discipline Engine v1 as eligibility/risk logic, not autonomous brokerage execution.
+
+The architecture intentionally avoids creating new governance layers unless they prevent a defined system-critical failure.
