@@ -1,16 +1,17 @@
 {
-  "schema": "AI_CORE_EVID_V2_8_12R_R1_TECHNICAL_REPAIR_ACTIVATION_V1",
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_TECHNICAL_REPAIR_ACTIVATION_V2",
   "version": "V2.8.12R",
   "status": "ACTIVE_ONE_TIME_BOUNDED_REPAIR",
   "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json",
-  "targets": {
-    "original_blocked_selected_ids": [
-      "1216153215",
-      "1217009888",
-      "1217289193"
-    ],
+  "target": {
     "ambiguity_set_missing_selected_id": "1216331011"
   },
+  "existing_classifier_blocked_rows_not_retried": [
+    "1218801205",
+    "1219266476",
+    "1220302463"
+  ],
+  "reason_not_retried": "The frozen R1 gate already passes classifier-ready-rate at 38/41 = 0.926829268292683. These rows are therefore not the blocking condition; the blocking condition is incomplete frozen-window source coverage plus the newly recovered deterministic selected candidate.",
   "scope": {
     "same_frozen_windows_only": true,
     "same_deterministic_selection_only": true,
