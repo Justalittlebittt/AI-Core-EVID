@@ -1,0 +1,19 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R1_GATE_RECONCILE_ACTIVATION_V1",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_ONE_TIME_RECONCILIATION",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_2.json",
+  "inputs": [
+    "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECEIPT.json",
+    "evidence/retrospective_feasibility/V2.8.12R_R1_BLOCKED_WINDOW_IDENTIFICATION_PROBE.json",
+    "evidence/retrospective_feasibility/V2.8.12R_R1_AMBIGUITY_SET_SELECTION_AUDIT.json",
+    "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_REPAIR_RECEIPT.json"
+  ],
+  "scope": {
+    "price_or_return_access_allowed": false,
+    "classifier_execution_allowed": false,
+    "sample_rule_change_allowed": false,
+    "window_change_allowed": false,
+    "overwrite_initial_gate_receipt": false
+  }
+}
