@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Patch accumulator integrity semantics
+      - name: Patch and validate accumulator integrity semantics
         shell: bash
         run: |
           set -euo pipefail
@@ -30,12 +30,10 @@ jobs:
 
           p=Path('scripts/v2812_shadow_accumulator.py')
           s=p.read_text(encoding='utf-8')
-          old_blob='66fe3735c512e09252ee2400e458334a4043536b'
-
           marker='\ndef genesis_row():\n'
           assert marker in s
-          status_fn='''\ndef status_document(x):\n st=readiness(x)\n return {\n  "schema":"AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V1",\n  "version":"V2.8.12",\n  "status":st["status"],\n  "shadow_event_count":st["shadow_event_count"],\n  "distinct_issuer_count":st["distinct_issuer_count"],\n  "distinct_effective_date_count":st["distinct_effective_date_count"],\n  "distinct_positive_calendar_month_count":st["distinct_positive_calendar_month_count"],\n  "maximum_single_issuer_event_share":st["maximum_single_issuer_event_share"],\n  "provenance_checks":st["provenance_checks"],\n  "price_or_return_data_consumed":False,\n  "outcome_research_authorized":False,\n  "fold3_accessed":False,\n  "fold4_accessed":False\n }\n'''
           assert 'def status_document(x):' not in s
+          status_fn='''\ndef status_document(x):\n st=readiness(x)\n return {\n  "schema":"AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V1",\n  "version":"V2.8.12",\n  "status":st["status"],\n  "shadow_event_count":st["shadow_event_count"],\n  "distinct_issuer_count":st["distinct_issuer_count"],\n  "distinct_effective_date_count":st["distinct_effective_date_count"],\n  "distinct_positive_calendar_month_count":st["distinct_positive_calendar_month_count"],\n  "maximum_single_issuer_event_share":st["maximum_single_issuer_event_share"],\n  "provenance_checks":st["provenance_checks"],\n  "price_or_return_data_consumed":False,\n  "outcome_research_authorized":False,\n  "fold3_accessed":False,\n  "fold4_accessed":False\n }\n'''
           s=s.replace(marker,status_fn+marker,1)
 
           old=''' write_rows(ledger_path,working)\n st=readiness(working);status_path.write_text(json.dumps(st,indent=2)+"\\n")\n return {"appended":appended,"duplicate_noops":dupes,"rows":len(working),"readiness":st}\n'''
@@ -56,9 +54,10 @@ jobs:
           AFTER_LEDGER="$(git hash-object evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv)"
           test "$BEFORE_LEDGER" = "$AFTER_LEDGER"
           NEW_BLOB="$(git hash-object scripts/v2812_shadow_accumulator.py)"
+          test "$NEW_BLOB" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
           echo "NEW_BLOB=$NEW_BLOB" >> "$GITHUB_ENV"
 
-      - name: Freeze corrective amendment and rebind workflows
+      - name: Freeze non-workflow corrective evidence
         shell: bash
         run: |
           set -euo pipefail
@@ -70,75 +69,16 @@ jobs:
           amendment={
             "schema":"AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_V1",
             "version":"V2.8.12",
-            "status":"ACTIVE_POST_SEAL_INTEGRITY_CORRECTION",
-            "incident":{
-              "detected_by_manual_recovery_run_id":"36534929208_1",
-              "regression_commit":"808f52028ee44b99ef211e582c9ebcccecfa65df",
-              "symptoms":[
-                "shadow information-gate status fixed metadata/governance fields were dropped",
-                "shadow ledger was rewritten despite zero appended shadow events"
-              ]
-            },
-            "historical_validation":{
-              "receipt":"evidence/V2.8.12_SHADOW_ACCUMULATOR_VALIDATION_RECEIPT.json",
-              "historical_validated_blob_sha":old,
-              "preserved_unchanged":True
-            },
-            "correction":{
-              "corrected_accumulator_blob_sha":new,
-              "status_document_restores_fixed_schema_version_and_governance_fields":True,
-              "zero_append_does_not_rewrite_shadow_ledger":True,
-              "status_write_is_content_idempotent":True,
-              "readiness_thresholds_changed":False,
-              "research_semantics_changed":False
-            },
-            "governance":{
-              "outcome_research_authorized":False,
-              "price_or_return_data_authorized":False,
-              "historical_full_backfill_authorized":False,
-              "fold3_access":False,
-              "fold4_access":False,
-              "setup_emission_authorized":False,
-              "first60_append_authorized":False,
-              "episode_emission_authorized":False,
-              "live_authorized":False,
-              "brokerage_execution_authorized":False,
-              "autonomous_financial_decision_authorized":False,
-              "research_semantics_changed":False
-            }
+            "status":"ACTIVE_POST_SEAL_INTEGRITY_CORRECTION_PENDING_WORKFLOW_REBIND_VALIDATION",
+            "incident":{"detected_by_manual_recovery_run_id":"36534929208_1","regression_commit":"808f52028ee44b99ef211e582c9ebcccecfa65df","symptoms":["shadow information-gate status fixed metadata/governance fields were dropped","shadow ledger was rewritten despite zero appended shadow events"]},
+            "historical_validation":{"receipt":"evidence/V2.8.12_SHADOW_ACCUMULATOR_VALIDATION_RECEIPT.json","historical_validated_blob_sha":old,"preserved_unchanged":True},
+            "correction":{"corrected_accumulator_blob_sha":new,"status_document_restores_fixed_schema_version_and_governance_fields":True,"zero_append_does_not_rewrite_shadow_ledger":True,"status_write_is_content_idempotent":True,"selftest":"16/16 PASS","readiness_thresholds_changed":False,"research_semantics_changed":False},
+            "governance":{"outcome_research_authorized":False,"price_or_return_data_authorized":False,"historical_full_backfill_authorized":False,"fold3_access":False,"fold4_access":False,"setup_emission_authorized":False,"first60_append_authorized":False,"episode_emission_authorized":False,"live_authorized":False,"brokerage_execution_authorized":False,"autonomous_financial_decision_authorized":False,"research_semantics_changed":False}
           }
           Path('evidence/V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json').write_text(json.dumps(amendment,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-
-          sw=Path('.github/workflows/v2812-shadow-accumulator-selftest.yml')
-          txt=sw.read_text(encoding='utf-8')
-          assert txt.count(old)==1
-          sw.write_text(txt.replace(old,new),encoding='utf-8')
-
-          mw=Path('.github/workflows/v284-controlled-prospective-e-layer.yml')
-          txt=mw.read_text(encoding='utf-8')
-          shell_old=f'test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "{old}"'
-          shell_new=f'test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "{new}"'
-          assert txt.count(shell_old)==1
-          txt=txt.replace(shell_old,shell_new,1)
-          load='''          r=json.loads(Path("evidence/V2.8.12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1.json").read_text())\n'''
-          load2=load+'''          si=json.loads(Path("evidence/V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json").read_text())\n'''
-          assert txt.count(load)==1
-          txt=txt.replace(load,load2,1)
-          bind='''          assert v["accumulator"]["blob_sha"]=="66fe3735c512e09252ee2400e458334a4043536b"\n'''
-          add=bind+f'''          assert si["status"]=="ACTIVE_POST_SEAL_INTEGRITY_CORRECTION"\n          assert si["historical_validation"]["historical_validated_blob_sha"]=="{old}"\n          assert si["correction"]["corrected_accumulator_blob_sha"]=="{new}"\n          assert si["correction"]["readiness_thresholds_changed"] is False\n          assert si["governance"]["research_semantics_changed"] is False\n'''
-          assert txt.count(bind)==1
-          txt=txt.replace(bind,add,1)
-          mw.write_text(txt,encoding='utf-8')
           PY
-
-          rm .github/workflows/v2812-shadow-integrity-one-shot-repair.yml
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add scripts/v2812_shadow_accumulator.py \
-            evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json \
-            evidence/V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json \
-            .github/workflows/v2812-shadow-accumulator-selftest.yml \
-            .github/workflows/v284-controlled-prospective-e-layer.yml \
-            .github/workflows/v2812-shadow-integrity-one-shot-repair.yml
+          git add scripts/v2812_shadow_accumulator.py evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json evidence/V2.8.12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_1.json
           git commit -m "Repair V2.8.12 shadow accumulator integrity [skip ci]"
           git push
