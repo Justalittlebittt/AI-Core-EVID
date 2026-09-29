@@ -10,6 +10,7 @@ on:
       - "scripts/v2812r_retrospective_feasibility_r1.py"
       - "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json"
       - "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_1.json"
+      - "evidence/V2.8.12R_R1_SELFTEST_TRIGGER.json"
 
 permissions:
   contents: write
