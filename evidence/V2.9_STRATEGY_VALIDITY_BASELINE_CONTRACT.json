@@ -1,11 +1,12 @@
 {
-  "schema": "AI_CORE_EVID_V2_9_STRATEGY_VALIDITY_BASELINE_CONTRACT_V1",
+  "schema": "AI_CORE_EVID_V2_9_STRATEGY_VALIDITY_BASELINE_CONTRACT_V2",
   "version": "V2.9",
-  "status": "FROZEN_BEFORE_STRATEGY_LEVEL_IMPLEMENTATION",
+  "status": "FROZEN_BEFORE_REAL_STRATEGY_SCORING",
   "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
   "foundation": "evidence/V2.9_VALIDITY_AND_DISCIPLINE_FOUNDATION.json",
   "integrity_exit_audit": "evidence/V2.9_INTEGRITY_EXIT_AUDIT_RECEIPT.json",
-  "purpose": "Define the minimum preregistration and result interface required before any strategy-level evidence-strength evaluation, without inventing universal post-hoc thresholds.",
+  "evidence_strength_mapping": "evidence/V2.9_EVIDENCE_STRENGTH_MAPPING_CONTRACT.json",
+  "purpose": "Define the preregistration and result interface required before strategy-level evidence-strength evaluation, while avoiding universal post-hoc thresholds and avoiding an all-dimensions-must-pass design.",
   "experiment_preregistration": {
     "must_be_frozen_before_outcome_evaluation": true,
     "required_identity_fields": [
@@ -40,15 +41,25 @@
     ],
     "per_dimension_required_fields": [
       "dimension",
+      "role",
+      "failure_effect",
       "metric_or_test",
       "predeclared_interpretation_rule",
       "required_data_scope",
       "status_if_data_unavailable"
     ],
+    "allowed_dimension_roles": ["ANCHOR", "SUPPORTING"],
+    "allowed_failure_effects": ["CAP_AT_WEAK", "CAP_AT_MODERATE", "UNCERTAINTY_ONLY"],
+    "required_anchor_dimensions": [
+      "baseline_comparison",
+      "out_of_sample",
+      "transaction_cost_and_execution_constraints"
+    ],
     "post_outcome_dimension_deletion_allowed": false,
     "post_outcome_baseline_replacement_allowed": false,
     "post_outcome_primary_metric_change_allowed": false,
-    "post_outcome_threshold_relaxation_allowed": false
+    "post_outcome_threshold_relaxation_allowed": false,
+    "post_outcome_role_or_failure_effect_change_allowed": false
   },
   "result_interface": {
     "dimension_status_values": [
@@ -67,25 +78,30 @@
       "caveats"
     ],
     "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"],
-    "strength_floor_rules": {
+    "synthesis_v2": {
+      "principle": "Dimension statuses are synthesized according to preregistered role and failure_effect. A single ordinary supporting weakness does not automatically force WEAK.",
       "INSUFFICIENT": [
         "Integrity prerequisite fails or is indeterminate.",
-        "No untouched OOS evaluation exists when OOS is required by the preregistration.",
+        "No untouched OOS evaluation exists when required.",
         "Primary baseline comparison is missing.",
         "A predeclared minimum sample or resolved-data floor fails.",
+        "A required ANCHOR dimension has INSUFFICIENT_DATA.",
         "Any system-critical result identity or temporal binding is unresolved."
       ],
       "WEAK": [
-        "Integrity is valid but one or more predeclared core validity dimensions FAILED.",
-        "Observed support depends materially on one regime, issuer, security, period, or parameter neighborhood.",
-        "Realistic cost/execution treatment removes the apparent advantage."
+        "A preregistered dimension with failure_effect=CAP_AT_WEAK fails.",
+        "This is reserved for weaknesses that materially undermine the core baseline-relative, OOS or post-cost claim."
       ],
       "MODERATE": [
-        "All predeclared core dimensions are assessed with no FAILED status, OOS and baselines are present, but at least one dimension remains MIXED_OR_UNSTABLE or material uncertainty remains."
+        "One or more SUPPORTING dimensions fail or are mixed under CAP_AT_MODERATE/UNCERTAINTY_ONLY semantics.",
+        "An ANCHOR dimension is MIXED_OR_UNSTABLE but not failed.",
+        "Material uncertainty remains while the core baseline-relative/OOS/post-cost claim is not invalidated."
       ],
       "STRONG": [
-        "All applicable preregistered dimensions are assessed; none are FAILED, MIXED_OR_UNSTABLE, or INSUFFICIENT_DATA; the strategy remains supported after realistic costs, OOS evaluation, reasonable parameter perturbation, and regime/cross-sectional checks."
-      ]
+        "All applicable preregistered dimensions are SUPPORTED and all mandatory integrity/sample/OOS/baseline prerequisites pass."
+      ],
+      "no_failure_count_rule": true,
+      "no_all_soft_dimensions_must_pass_rule": true
     },
     "automatic_upgrade_from_point_estimate_only": false,
     "single_metric_can_determine_STRONG": false
@@ -93,7 +109,15 @@
   "baseline_policy": {
     "simple_baseline_must_remain_visible": true,
     "complex_strategy_without_simple_baseline": "INSUFFICIENT",
-    "baseline_may_not_be_replaced_after_results": true
+    "baseline_may_not_be_replaced_after_results": true,
+    "matched_random_baseline_scope": "CONDITIONAL_SELECTION_ONLY"
+  },
+  "coverage_policy": {
+    "coverage_must_be_preregistered": true,
+    "near_zero_action_rate_triggers_usability_review": true,
+    "near_zero_action_rate_automatically_strengthens_claim": false,
+    "no_universal_selection_rate_floor": true,
+    "post_outcome_coverage_relaxation_allowed": false
   },
   "uncertainty_policy": {
     "small_sample": "RESEARCH_UNCERTAINTY_NOT_ENGINEERING_DEFECT",
@@ -107,7 +131,8 @@
     "historical_V2_8_12R_evidence_changed": false,
     "prospective_lane_changed": false,
     "fold3_or_fold4_access_authorized": false,
-    "discipline_engine_action_authorized": false
+    "discipline_engine_action_authorized": false,
+    "real_strategy_scoring_completed": false
   },
-  "next_stage": "IMPLEMENT_LIGHTWEIGHT_PREREGISTRATION_AND_VALIDITY_RESULT_VALIDATOR"
+  "next_stage": "SYNTHETIC_VALIDATE_SYNTHESIS_V2_THEN_WAIT_FOR_ELIGIBLE_REAL_PREREGISTRATION"
 }
