@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Dict
 
 import pandas as pd
 
@@ -68,21 +68,25 @@ def _core_metrics(df: pd.DataFrame) -> Dict[str, Any]:
     }
 
 
+def _group_metrics(df: pd.DataFrame, column: str) -> Dict[str, Any]:
+    return {
+        str(k): _core_metrics(g)
+        for k, g in df.groupby(column, dropna=False, sort=True)
+    }
+
+
 def evaluate_observations(df: pd.DataFrame) -> EvaluationResult:
     x = validate_observations(df)
     metrics: Dict[str, Any] = {"overall": _core_metrics(x)}
 
+    if "sample_partition" in x.columns:
+        metrics["by_sample_partition"] = _group_metrics(x, "sample_partition")
+
     if "regime" in x.columns:
-        metrics["by_regime"] = {
-            str(k): _core_metrics(g)
-            for k, g in x.groupby("regime", dropna=False, sort=True)
-        }
+        metrics["by_regime"] = _group_metrics(x, "regime")
 
     if "parameter_variant" in x.columns:
-        metrics["by_parameter_variant"] = {
-            str(k): _core_metrics(g)
-            for k, g in x.groupby("parameter_variant", dropna=False, sort=True)
-        }
+        metrics["by_parameter_variant"] = _group_metrics(x, "parameter_variant")
 
     if "security_id" in x.columns:
         counts = x["security_id"].astype(str).value_counts(dropna=False)
@@ -96,7 +100,7 @@ def evaluate_observations(df: pd.DataFrame) -> EvaluationResult:
         y = _numeric(x["realized_positive"], "realized_positive")
         if ((p < 0) | (p > 1)).any():
             raise ValueError("predicted_probability must be within [0, 1]")
-        if ~y.isin([0.0, 1.0]).all():
+        if not y.isin([0.0, 1.0]).all():
             raise ValueError("realized_positive must be binary 0/1")
         metrics["calibration"] = {
             "n": int(len(x)),
