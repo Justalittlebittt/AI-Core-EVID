@@ -1,0 +1,73 @@
+name: V2.8.12R R2 Free-Public Fallback Coverage Preflight
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "evidence/V2.8.12R_R2_FALLBACK_COVERAGE_ACTIVATION.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-r2-fallback-coverage-preflight
+  cancel-in-progress: false
+
+jobs:
+  fallback-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile fallback coverage-only probe
+        run: python -m py_compile scripts/v2812r_r2_fallback_coverage_preflight.py
+      - name: Install pinned BaoStock fallback runtime
+        run: python -m pip install baostock==0.9.4
+      - name: Verify fallback authorization boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_5.json').read_text())
+          p=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R2_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json').read_text())
+          g=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECONCILED_RECEIPT.json').read_text())
+          f=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT.json').read_text())
+          act=json.loads(Path('evidence/V2.8.12R_R2_FALLBACK_COVERAGE_ACTIVATION.json').read_text())
+          assert a['status']=='ACTIVE_FREE_PUBLIC_FALLBACK_SOURCE_COVERAGE_PREFLIGHT'
+          assert p['status']=='PRIMARY_SOURCE_COVERAGE_FAIL_FALLBACK_AMENDMENT_REQUIRED'
+          assert p['numeric_price_columns_read'] is False
+          assert p['returns_computed'] is False
+          assert g['status']=='R1_COHORT_TECHNICALLY_COMPLETE'
+          assert g['R2_price_or_return_access_authorized'] is True
+          assert f['status']=='PASS_FINAL_PRE_OUTCOME_COHORT_FROZEN'
+          assert f['price_or_return_data_consumed'] is False
+          assert a['fallback_source_identity']['requested_fields']==['date','code']
+          assert a['authorization_boundary']['price_values_may_be_read_or_logged'] is False
+          assert a['authorization_boundary']['returns_may_be_computed'] is False
+          assert act['scope']['price_value_access_allowed'] is False
+          assert act['scope']['return_computation_allowed'] is False
+          print('V2.8.12R fallback coverage-only authorization PASS')
+          PY
+      - name: Run exact cohort/date BaoStock presence preflight only
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/v2812r_r2_fallback_coverage_preflight.py
+      - name: Freeze fallback coverage receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_R2_FALLBACK_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json
+          git commit -m "Freeze V2.8.12R R2 fallback source coverage preflight [skip ci]"
+          git pull --rebase origin main
+          git push
