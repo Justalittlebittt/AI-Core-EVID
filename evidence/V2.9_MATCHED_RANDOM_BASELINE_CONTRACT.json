@@ -1,0 +1,61 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_MATCHED_RANDOM_BASELINE_CONTRACT_V1",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_REAL_STRATEGY_BASELINE_EVALUATION",
+  "purpose": "Measure whether a frozen strategy selection rule adds post-cost value versus random selection from the same contemporaneous opportunity sets without weakening coverage into a near-zero-trade artifact.",
+  "unit_of_comparison": {
+    "opportunity_set_id": "A predeclared contemporaneous candidate universe sharing the same decision date, holding horizon, execution assumptions and outcome definition.",
+    "security_id": "One security available to selection inside that opportunity set.",
+    "system_selected": "Whether the frozen strategy selected the security before outcome inspection.",
+    "realized_net_return": "Post-cost return under the same frozen horizon and execution convention for both system and random baseline."
+  },
+  "required_fields": [
+    "opportunity_set_id",
+    "security_id",
+    "system_selected",
+    "realized_net_return"
+  ],
+  "optional_fields": [
+    "sample_partition",
+    "regime"
+  ],
+  "matching_rules": [
+    "Random selections are drawn only from the same opportunity_set_id as the system selection.",
+    "For each opportunity_set_id, each random replicate selects exactly the same number of securities as the frozen system selected in that opportunity set.",
+    "Sampling is without replacement inside an opportunity set.",
+    "The baseline may not borrow candidates from another date, holding horizon, execution convention or unavailable universe.",
+    "The system-selected rows remain eligible members of the random opportunity set; random means no use of the strategy score, not forced exclusion of names the system happened to select.",
+    "Randomness uses a preregistered deterministic seed and replicate count."
+  ],
+  "primary_comparisons": [
+    "hit_rate_delta_vs_matched_random_mean",
+    "mean_net_return_delta_vs_matched_random_mean",
+    "geometric_mean_return_delta_vs_matched_random_mean"
+  ],
+  "coverage_metrics": [
+    "evaluated_candidate_count",
+    "eligible_candidate_count",
+    "selection_rate",
+    "opportunity_set_count",
+    "opportunity_sets_with_selection",
+    "opportunity_set_selection_coverage"
+  ],
+  "interpretation": {
+    "50_percent_hit_rate": "A 50% ten-day positive-return rate is a null intuition only. The empirical matched random baseline is authoritative for each experiment.",
+    "positive_delta_not_automatic_proof": "A positive point estimate versus random is evidence, not proof. Uncertainty, OOS replication, regime stability, concentration, costs and portfolio-path behavior remain required validity dimensions.",
+    "coverage_tradeoff": "A higher apparent edge obtained by sharply collapsing selection_rate must be reported as an edge-coverage tradeoff and may not be labeled an unconditional improvement.",
+    "zero_selection": "An experiment with zero system selections cannot claim superiority and returns INSUFFICIENT_BASELINE_COMPARISON."
+  },
+  "integrity_boundaries": [
+    "No use of fold3/fold4 unless separately authorized by the experiment preregistration.",
+    "No outcome-informed change to system_selected, opportunity_set membership, holding horizon, cost assumptions, seed or replicate count.",
+    "No real price/return access is authorized by this contract itself.",
+    "No automatic BUY/ADD/HOLD/REDUCE/EXIT output."
+  ],
+  "foundation_defaults": {
+    "replicate_count": 5000,
+    "seed": 2901,
+    "numeric_threshold_for_superiority": null,
+    "reason_no_superiority_threshold": "The foundation computes matched-random distributions and deltas but does not invent a universal numeric PASS threshold. Experiment-specific interpretation rules must be preregistered before outcomes."
+  }
+}
