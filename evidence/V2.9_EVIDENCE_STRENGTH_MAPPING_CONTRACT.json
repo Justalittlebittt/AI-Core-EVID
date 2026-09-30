@@ -1,0 +1,91 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_EVIDENCE_STRENGTH_MAPPING_CONTRACT_V1",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_REAL_STRATEGY_SCORING",
+  "purpose": "Map predeclared validity evidence to STRONG/MODERATE/WEAK/INSUFFICIENT without over-filtering the candidate universe or converting every imperfect research dimension into a hard block.",
+  "primary_objective": "Prefer strategies that improve matched-baseline post-cost expectancy and long-run growth while retaining usable candidate coverage and opportunity frequency.",
+  "hard_blockers_only": [
+    "future_or_label_leakage",
+    "silent_sample_mutation_or_selection_rule_change",
+    "material_temporal_or_vintage_indeterminacy",
+    "oos_or_prospective_contamination",
+    "unauthorized_model_classifier_threshold_or_label_change",
+    "material_evidence_identity_failure",
+    "risk_or_discipline_rule_failure"
+  ],
+  "hard_block_policy": "Only system-critical integrity or discipline failures may force a hard block. Ordinary research weakness must not be promoted to a hard block.",
+  "soft_validity_dimensions": [
+    "matched_baseline_hit_rate_delta",
+    "matched_baseline_net_expectancy_delta",
+    "matched_baseline_geometric_growth_delta",
+    "effect_size",
+    "oos_stability",
+    "regime_stability",
+    "cross_sectional_stability",
+    "transaction_cost_robustness",
+    "drawdown_and_loss_sequence_quality",
+    "probability_calibration_where_applicable",
+    "parameter_sensitivity",
+    "failure_region_breadth",
+    "candidate_coverage",
+    "opportunity_rate"
+  ],
+  "coverage_guardrail": {
+    "required_metrics": [
+      "evaluated_candidate_count",
+      "eligible_candidate_count",
+      "selection_rate",
+      "opportunity_rate_per_predeclared_time_unit"
+    ],
+    "zero_trade_safety_forbidden": true,
+    "rule": "A strategy may not be labeled stronger merely because tighter filters reduce candidate count. Any increase in apparent edge accompanied by materially lower coverage must be reported as an edge-coverage tradeoff rather than an unconditional improvement.",
+    "low_coverage_semantics": "Low coverage is normally a downgrade or uncertainty flag, not a hard block, unless it makes the experiment statistically uninterpretable under the preregistered sample design.",
+    "no_universal_selection_rate_floor": true
+  },
+  "mapping_principles": {
+    "INSUFFICIENT": [
+      "Required evidence is missing, sample information is too sparse for the preregistered claim, or integrity of the validity assessment cannot be established.",
+      "A strategy with near-zero usable coverage and too few observations to estimate edge may be INSUFFICIENT even if observed hit rate is high."
+    ],
+    "WEAK": [
+      "Some positive baseline-relative evidence exists but is small, unstable, concentrated, cost-sensitive, parameter-sensitive, or coverage-constrained.",
+      "WEAK evidence may still produce candidates; it is not equivalent to a system failure."
+    ],
+    "MODERATE": [
+      "Positive post-cost advantage versus matched baseline is visible across more than one important validity dimension and survives reasonable perturbations, with usable coverage.",
+      "Some weaknesses may remain if they are explicit and do not dominate the claim."
+    ],
+    "STRONG": [
+      "Positive post-cost baseline-relative advantage is replicated out of sample, broadly stable across relevant regimes and securities, robust to reasonable parameter variation and execution costs, and achieved without collapsing candidate coverage.",
+      "STRONG does not mean guaranteed profitability."
+    ]
+  },
+  "anti_and_gate_rule": "STRONG/MODERATE/WEAK are not computed by requiring every soft validity dimension to pass a fixed threshold. Dimensions contribute evidence and uncertainty; only hard blockers are binary.",
+  "threshold_policy": {
+    "universal_numeric_thresholds_defined_here": false,
+    "reason": "Absolute thresholds such as win-rate > 55%, Sharpe > 1, or selection-rate > X% would be arbitrary across strategies and could create permanent no-trade behavior.",
+    "experiment_specific_thresholds": "Any numeric thresholds needed for a concrete experiment must be preregistered before outcome inspection and justified relative to its matched baseline, sample size, horizon, turnover and execution design.",
+    "post_outcome_threshold_tuning": "FORBIDDEN"
+  },
+  "baseline_policy": {
+    "random_baseline": "Random selection must be matched on universe, dates, holding horizon, execution assumptions and transaction costs. A 50% ten-day hit-rate baseline is a null intuition, not a permanently hardcoded empirical fact.",
+    "comparison_priority": [
+      "net_expectancy_delta_vs_matched_random",
+      "geometric_growth_delta_vs_matched_random",
+      "hit_rate_delta_vs_matched_random"
+    ]
+  },
+  "decision_binding": {
+    "STRONG": "Eligible for Discipline Engine consideration subject to risk rules.",
+    "MODERATE": "Eligible for Discipline Engine consideration subject to risk rules and any preregistered position-size limitations.",
+    "WEAK": "Risk-increasing actions are not automatically authorized; experiment-specific decision policy applies. Risk-reducing actions remain permitted subject to Discipline Engine.",
+    "INSUFFICIENT": "Risk-increasing actions map to NO_ACTION_INSUFFICIENT_EVIDENCE. Risk-reducing actions remain permitted subject to Discipline Engine."
+  },
+  "non_goals": [
+    "No guarantee of long-run profit",
+    "No autonomous brokerage execution",
+    "No outcome-informed tightening of filters",
+    "No maximizing hit rate by eliminating almost all trades",
+    "No replacing matched-baseline expectancy with a single headline metric"
+  ]
+}
