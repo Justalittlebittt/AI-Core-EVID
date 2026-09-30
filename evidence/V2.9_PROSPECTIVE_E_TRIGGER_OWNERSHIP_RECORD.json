@@ -1,40 +1,43 @@
 {
   "schema": "AI_CORE_EVID_V2_9_PROSPECTIVE_E_TRIGGER_OWNERSHIP_RECORD_V1",
   "version": "V2.9",
-  "status": "MORNING_ORCHESTRATOR_PRIMARY_TRIGGER_ACTIVE",
+  "status": "DIRECT_V284_SCHEDULER_EMPIRICALLY_CONFIRMED_PRIMARY_TRIGGER",
   "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
   "affected_collection_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
-  "primary_trigger_owner": ".github/workflows/v283-prospective-morning-orchestrator.yml",
-  "problem": {
-    "target_workflow_direct_schedule_empirically_confirmed": false,
-    "latest_successful_target_run_event": "workflow_dispatch",
-    "latest_successful_target_run_id": 36534929208,
-    "repository_scheduler_functioning": true,
-    "morning_orchestrator_schedule_observed_successfully_on_2026_09_30": true
+  "primary_trigger_owner": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+  "empirical_confirmation": {
+    "run_id": 36679934011,
+    "event": "schedule",
+    "conclusion": "success",
+    "created_at_utc": "2026-09-30T06:45:45Z",
+    "head_sha": "03137056b3e55fd51864845b7ff8294ef4038b12",
+    "finalization_commit": "2a5e8ad86ac507191f9bf9e6acd7817910fc3fad",
+    "manual_dispatch_counts_as_scheduler_confirmation": false
+  },
+  "superseded_attempt": {
+    "temporary_action": "ABSORB_TRIGGER_OWNERSHIP_IN_MORNING_ORCHESTRATOR",
+    "orchestrator_commit": "7a322d6382aa0a76583068656043d23c52932fd1",
+    "reason_superseded": "A real schedule-triggered V2.8.4 run completed successfully after the temporary absorption change was recorded, proving the direct target scheduler is functioning and making the extra orchestrator dispatch redundant.",
+    "redundant_dispatch_removed_by_commit": "fc2c7edc6a664b475d6725d5aa365e765442b392"
   },
   "problem_elimination_pass": {
-    "final_goal": "Maintain prospective E evidence accumulation without manual chat-driven polling or a second unreliable scheduler dependency.",
-    "selected_action": "ABSORB_TRIGGER_OWNERSHIP_IN_EXISTING_EMPIRICALLY_FUNCTIONING_MORNING_ORCHESTRATOR",
+    "final_goal": "Maintain exactly one reliable automatic trigger for prospective E evidence accumulation without chat-driven polling or duplicate daily collection.",
+    "selected_action": "KEEP_EMPIRICALLY_CONFIRMED_DIRECT_V284_SCHEDULE_AND_DELETE_REDUNDANT_ORCHESTRATOR_DISPATCH",
     "deleted_or_avoided": [
+      "No second scheduler path",
       "No new watchdog workflow",
       "No hourly polling",
       "No artificial retry loop",
-      "No repeated cron-minute experimentation as the primary reliability strategy"
+      "No further cron-minute experimentation unless a new empirical failure appears"
     ]
   },
-  "implementation": {
-    "orchestrator_commit": "7a322d6382aa0a76583068656043d23c52932fd1",
-    "orchestrator_schedule": "0 1 * * 2-6",
-    "dispatch_target": "v284-controlled-prospective-e-layer.yml",
-    "dispatch_ref": "main",
-    "dispatch_occurs_after_orchestrator_evidence_push": true,
-    "required_permission_added": "actions: write"
-  },
-  "compatibility": {
-    "v284_existing_direct_cron_removed_now": false,
-    "reason_direct_cron_not_removed_in_same_change": "Keep the change minimal until orchestrator-to-v284 dispatch is empirically observed. The target pipeline is append-only/deduplicated and serialized, so temporary compatibility overlap is preferable to a large simultaneous scheduler rewrite.",
-    "future_retirement_condition": "After an orchestrator-scheduled run is observed to dispatch and complete v284 successfully, the redundant direct v284 cron may be removed in a separate minimal operational edit.",
-    "manual_dispatch_counts_as_scheduler_confirmation": false
+  "active_trigger": {
+    "workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "cron_utc": "17 1 * * *",
+    "concurrency_group": "v284-v2812-prospective-e-shadow-serial",
+    "cancel_in_progress": false,
+    "three_calendar_day_overlap": true,
+    "announcement_id_dedup": true
   },
   "research_semantics_unchanged": {
     "collector_classifier_triage_identity_rules": true,
@@ -49,11 +52,6 @@
   "current_research_state": {
     "eligible_v2_9_oos_strategy_candidate_exists": false,
     "prospective_shadow_sample_ready": false,
-    "shadow_events": 3,
-    "distinct_issuers": 2,
-    "distinct_effective_dates": 2,
-    "positive_calendar_months": 1,
-    "maximum_single_issuer_share": 0.6666666667,
     "required": "20 events / 12 issuers / 12 dates / 6 months / max issuer share <= 20%"
   },
   "next_stage": "AUTOMATIC_PROSPECTIVE_ACCUMULATION_UNTIL_INFORMATION_GATE_READY"
