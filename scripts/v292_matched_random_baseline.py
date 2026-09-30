@@ -13,6 +13,7 @@ REQUIRED_COLUMNS = {
     "system_selected",
     "realized_net_return",
 }
+BASELINE_SCOPE = "CONDITIONAL_SELECTION_ONLY"
 
 
 @dataclass(frozen=True)
@@ -100,6 +101,7 @@ def evaluate_matched_random(
         return MatchedRandomResult(
             metrics={
                 "status": "INSUFFICIENT_BASELINE_COMPARISON",
+                "baseline_scope": BASELINE_SCOPE,
                 "reason": "zero system selections",
                 "coverage": {
                     "evaluated_candidate_count": int(len(x)),
@@ -158,11 +160,13 @@ def evaluate_matched_random(
         }
 
     metrics = {
-        "status": "MATCHED_RANDOM_BASELINE_COMPUTED",
+        "status": "CONDITIONAL_MATCHED_RANDOM_BASELINE_COMPUTED",
+        "baseline_scope": BASELINE_SCOPE,
         "replicate_count": replicate_count,
         "seed": seed,
         "coverage": coverage,
         "system": system_metrics,
         "matched_random": random_summary,
+        "interpretation_boundary": "Security-selection edge conditional on system activity; not a test of abstention/timing quality and not portfolio CAGR.",
     }
     return MatchedRandomResult(metrics=metrics, random_replicates=reps)
