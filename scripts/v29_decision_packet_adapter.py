@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 import re
 from typing import Any
 
@@ -41,6 +42,17 @@ def _require_bool(name: str, value: Any) -> bool:
     return value
 
 
+def _require_number(name: str, value: Any) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise DecisionPacketError(f"{name}_MUST_BE_NUMERIC")
+    number = float(value)
+    if not math.isfinite(number):
+        raise DecisionPacketError(f"{name}_MUST_BE_FINITE")
+    if number < 0:
+        raise DecisionPacketError(f"{name}_MUST_BE_NONNEGATIVE")
+    return number
+
+
 def _require_exact_enum(name: str, value: Any, allowed: set[str]) -> str:
     if not isinstance(value, str) or value not in allowed:
         raise DecisionPacketError(f"INVALID_{name}")
@@ -50,6 +62,12 @@ def _require_exact_enum(name: str, value: Any, allowed: set[str]) -> str:
 def _require_nonempty_string(name: str, value: Any) -> str:
     if not isinstance(value, str) or not value.strip():
         raise DecisionPacketError(f"{name}_MUST_BE_NONEMPTY_STRING")
+    return value
+
+
+def _require_string(name: str, value: Any) -> str:
+    if not isinstance(value, str):
+        raise DecisionPacketError(f"{name}_MUST_BE_STRING")
     return value
 
 
@@ -66,23 +84,11 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
     behavior = _section(packet, "behavior_context")
     override = _section(packet, "override_context")
 
-    _require_fields("research_context", research, [
-        "strategy_id", "experiment_version", "evaluation_timestamp", "evidence_artifact_sha256"
-    ])
-    _require_fields("validity", validity, [
-        "evidence_strength", "validity_result_sha256", "pre_registration_sha256",
-        "all_required_dimensions_reported", "post_outcome_rule_change_detected"
-    ])
+    _require_fields("research_context", research, ["strategy_id", "experiment_version", "evaluation_timestamp", "evidence_artifact_sha256"])
+    _require_fields("validity", validity, ["evidence_strength", "validity_result_sha256", "pre_registration_sha256", "all_required_dimensions_reported", "post_outcome_rule_change_detected"])
     _require_fields("action_context", action, ["action_type", "current_exposure_exists"])
-    _require_fields("risk_context", risk, [
-        "projected_post_action_position_size", "position_limit",
-        "projected_post_action_risk_budget_used", "risk_budget_limit",
-        "stop_loss_defined", "stop_loss_breached", "take_profit_defined",
-        "invalidation_triggered", "adjustment_condition_satisfied"
-    ])
-    _require_fields("behavior_context", behavior, [
-        "is_averaging_down", "independent_add_eligibility", "is_chasing", "chase_rule_satisfied"
-    ])
+    _require_fields("risk_context", risk, ["projected_post_action_position_size", "position_limit", "projected_post_action_risk_budget_used", "risk_budget_limit", "stop_loss_defined", "stop_loss_breached", "take_profit_defined", "invalidation_triggered", "adjustment_condition_satisfied"])
+    _require_fields("behavior_context", behavior, ["is_averaging_down", "independent_add_eligibility", "is_chasing", "chase_rule_satisfied"])
     _require_fields("override_context", override, ["override_requested", "override_reason"])
 
     _require_nonempty_string("strategy_id", research["strategy_id"])
@@ -92,16 +98,38 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
     _require_sha("validity_result_sha256", validity["validity_result_sha256"])
     _require_sha("pre_registration_sha256", validity["pre_registration_sha256"])
 
-    reported_strength = _require_exact_enum(
-        "EVIDENCE_STRENGTH", validity["evidence_strength"], VALID_EVIDENCE
-    )
+    reported_strength = _require_exact_enum("EVIDENCE_STRENGTH", validity["evidence_strength"], VALID_EVIDENCE)
     action_type = _require_exact_enum("ACTION_TYPE", action["action_type"], VALID_ACTIONS)
-    all_dims = _require_bool(
-        "all_required_dimensions_reported", validity["all_required_dimensions_reported"]
-    )
-    post_outcome_change = _require_bool(
-        "post_outcome_rule_change_detected", validity["post_outcome_rule_change_detected"]
-    )
+    all_dims = _require_bool("validity.all_required_dimensions_reported", validity["all_required_dimensions_reported"])
+    post_outcome_change = _require_bool("validity.post_outcome_rule_change_detected", validity["post_outcome_rule_change_detected"])
+
+    validated_action = {
+        "action_type": action_type,
+        "current_exposure_exists": _require_bool("action_context.current_exposure_exists", action["current_exposure_exists"]),
+    }
+    validated_risk = {
+        "projected_post_action_position_size": _require_number("risk_context.projected_post_action_position_size", risk["projected_post_action_position_size"]),
+        "position_limit": _require_number("risk_context.position_limit", risk["position_limit"]),
+        "projected_post_action_risk_budget_used": _require_number("risk_context.projected_post_action_risk_budget_used", risk["projected_post_action_risk_budget_used"]),
+        "risk_budget_limit": _require_number("risk_context.risk_budget_limit", risk["risk_budget_limit"]),
+        "stop_loss_defined": _require_bool("risk_context.stop_loss_defined", risk["stop_loss_defined"]),
+        "stop_loss_breached": _require_bool("risk_context.stop_loss_breached", risk["stop_loss_breached"]),
+        "take_profit_defined": _require_bool("risk_context.take_profit_defined", risk["take_profit_defined"]),
+        "invalidation_triggered": _require_bool("risk_context.invalidation_triggered", risk["invalidation_triggered"]),
+        "adjustment_condition_satisfied": _require_bool("risk_context.adjustment_condition_satisfied", risk["adjustment_condition_satisfied"]),
+    }
+    validated_behavior = {
+        "is_averaging_down": _require_bool("behavior_context.is_averaging_down", behavior["is_averaging_down"]),
+        "independent_add_eligibility": _require_bool("behavior_context.independent_add_eligibility", behavior["independent_add_eligibility"]),
+        "is_chasing": _require_bool("behavior_context.is_chasing", behavior["is_chasing"]),
+        "chase_rule_satisfied": _require_bool("behavior_context.chase_rule_satisfied", behavior["chase_rule_satisfied"]),
+    }
+    validated_override = {
+        "override_requested": _require_bool("override_context.override_requested", override["override_requested"]),
+        "override_reason": _require_string("override_context.override_reason", override["override_reason"]),
+    }
+    if validated_override["override_requested"] and not validated_override["override_reason"].strip():
+        raise DecisionPacketError("OVERRIDE_REASON_REQUIRED")
 
     effective_strength = reported_strength
     downgraded = False
@@ -116,31 +144,20 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
         downgrade_reasons.append("POST_OUTCOME_RULE_CHANGE_DETECTED")
 
     discipline_input = {
-        "action_type": action_type,
-        "current_exposure_exists": action["current_exposure_exists"],
+        **validated_action,
         "evidence_strength": effective_strength,
-        "projected_post_action_position_size": risk["projected_post_action_position_size"],
-        "position_limit": risk["position_limit"],
-        "projected_post_action_risk_budget_used": risk["projected_post_action_risk_budget_used"],
-        "risk_budget_limit": risk["risk_budget_limit"],
-        "stop_loss_defined": risk["stop_loss_defined"],
-        "stop_loss_breached": risk["stop_loss_breached"],
-        "take_profit_defined": risk["take_profit_defined"],
-        "invalidation_triggered": risk["invalidation_triggered"],
-        "adjustment_condition_satisfied": risk["adjustment_condition_satisfied"],
-        "is_averaging_down": behavior["is_averaging_down"],
-        "independent_add_eligibility": behavior["independent_add_eligibility"],
-        "is_chasing": behavior["is_chasing"],
-        "chase_rule_satisfied": behavior["chase_rule_satisfied"],
-        "override_requested": override["override_requested"],
-        "override_reason": override["override_reason"],
+        **validated_risk,
+        **validated_behavior,
+        **validated_override,
     }
 
-    decision = evaluate_discipline(discipline_input)
+    try:
+        decision = evaluate_discipline(discipline_input)
+    except ValueError as exc:
+        raise DecisionPacketError(f"DISCIPLINE_INPUT_REJECTED:{exc}") from exc
+
     return {
-        "packet_status": (
-            "PACKET_VALIDITY_DOWNGRADED_TO_INSUFFICIENT" if downgraded else "PACKET_VALID"
-        ),
+        "packet_status": "PACKET_VALIDITY_DOWNGRADED_TO_INSUFFICIENT" if downgraded else "PACKET_VALID",
         "discipline_input": discipline_input,
         "discipline_decision": decision,
         "adapter_metadata": {
