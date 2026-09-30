@@ -1,0 +1,95 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_EXPERIMENT_PREREGISTRATION_TEMPLATE_V1",
+  "version": "V2.9",
+  "status": "TEMPLATE_NOT_FROZEN",
+  "purpose": "Template for freezing a concrete strategy experiment before any outcome inspection. Replace every REQUIRED_BEFORE_FREEZE placeholder before changing status to FROZEN_BEFORE_OUTCOME_EVALUATION.",
+  "identity": {
+    "experiment_id": "REQUIRED_BEFORE_FREEZE",
+    "strategy_version": "REQUIRED_BEFORE_FREEZE",
+    "signal_version": "REQUIRED_BEFORE_FREEZE",
+    "data_vintage_policy": "REQUIRED_BEFORE_FREEZE",
+    "sample_definition": "REQUIRED_BEFORE_FREEZE",
+    "training_or_research_period": "REQUIRED_BEFORE_FREEZE",
+    "untouched_oos_period_or_fold": "REQUIRED_BEFORE_FREEZE",
+    "primary_decision_question": "Does the frozen strategy produce a positive post-cost advantage versus a matched random baseline while retaining usable coverage and acceptable risk behavior?"
+  },
+  "comparison": {
+    "simple_baseline": "Matched contemporaneous random selection from the same opportunity set",
+    "market_or_domain_baseline": "REQUIRED_BEFORE_FREEZE",
+    "primary_metric": "net_expectancy_delta_vs_matched_random",
+    "primary_horizon": "REQUIRED_BEFORE_FREEZE",
+    "transaction_cost_model": "REQUIRED_BEFORE_FREEZE",
+    "execution_constraints": "REQUIRED_BEFORE_FREEZE"
+  },
+  "matched_random_baseline_plan": {
+    "scope": "CONDITIONAL_SELECTION_ONLY",
+    "opportunity_set_definition": "REQUIRED_BEFORE_FREEZE",
+    "sampling_rule": "same opportunity_set_id and same number selected as system, without replacement",
+    "replicate_count": 5000,
+    "seed": 2901,
+    "primary_comparisons": [
+      "mean_net_return_delta_vs_matched_random_mean",
+      "geometric_mean_return_delta_vs_matched_random_mean",
+      "hit_rate_delta_vs_matched_random_mean"
+    ],
+    "post_outcome_change_forbidden": true
+  },
+  "coverage_plan": {
+    "time_unit": "REQUIRED_BEFORE_FREEZE",
+    "required_metrics": [
+      "evaluated_candidate_count",
+      "eligible_candidate_count",
+      "selection_rate",
+      "opportunity_rate_per_predeclared_time_unit",
+      "risk_increasing_action_count",
+      "risk_increasing_action_rate"
+    ],
+    "minimum_information_floor": "REQUIRED_BEFORE_FREEZE",
+    "near_zero_action_review_rule": "REQUIRED_BEFORE_FREEZE",
+    "no_universal_selection_rate_floor": true,
+    "post_outcome_relaxation_forbidden": true
+  },
+  "portfolio_path_plan": {
+    "position_weight_rule": "REQUIRED_BEFORE_FREEZE",
+    "holding_period_rule": "REQUIRED_BEFORE_FREEZE",
+    "overlapping_signal_rule": "REQUIRED_BEFORE_FREEZE",
+    "transaction_cost_application": "REQUIRED_BEFORE_FREEZE",
+    "untradable_entry_rule": "REQUIRED_BEFORE_FREEZE",
+    "untradable_exit_rule": "REQUIRED_BEFORE_FREEZE",
+    "benchmark_return_rule": "REQUIRED_BEFORE_FREEZE",
+    "annualization_periods_per_year": "REQUIRED_BEFORE_FREEZE"
+  },
+  "oos_plan": {
+    "development_scope": "REQUIRED_BEFORE_FREEZE",
+    "untouched_oos_scope": "REQUIRED_BEFORE_FREEZE",
+    "membership_frozen_before_outcomes": true,
+    "reuse_after_failure_for_rule_tuning": false
+  },
+  "interpretation_policy": {
+    "hard_blockers_only": [
+      "future_or_label_leakage",
+      "silent_sample_mutation_or_selection_rule_change",
+      "material_temporal_or_vintage_indeterminacy",
+      "oos_or_prospective_contamination",
+      "unauthorized_model_classifier_threshold_or_label_change",
+      "material_evidence_identity_failure",
+      "risk_or_discipline_rule_failure"
+    ],
+    "ordinary_validity_weakness_is_hard_block": false,
+    "all_soft_dimensions_must_pass": false,
+    "coverage_collapse_cannot_strengthen_claim": true,
+    "post_outcome_threshold_tuning": "FORBIDDEN"
+  },
+  "dimensions": [
+    {"dimension":"effect_size","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"baseline_comparison","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"out_of_sample","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"regime_stability","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"cross_sectional_stability","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"transaction_cost_and_execution_constraints","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"drawdown_and_loss_sequences","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"probability_calibration_where_applicable","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"NOT_APPLICABLE_PREDECLARED"},
+    {"dimension":"reasonable_parameter_sensitivity","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"failure_region_identification","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"}
+  ]
+}
