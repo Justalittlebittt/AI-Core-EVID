@@ -7,6 +7,8 @@ from v29_discipline_engine import evaluate as evaluate_discipline
 
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 VALID_PACKET_VERSION = "V2.9_DECISION_PACKET_V1"
+VALID_ACTIONS = {"BUY", "ADD", "HOLD", "REDUCE", "EXIT"}
+VALID_EVIDENCE = {"STRONG", "MODERATE", "WEAK", "INSUFFICIENT"}
 
 
 class DecisionPacketError(ValueError):
@@ -36,6 +38,18 @@ def _require_sha(name: str, value: Any) -> str:
 def _require_bool(name: str, value: Any) -> bool:
     if not isinstance(value, bool):
         raise DecisionPacketError(f"{name}_MUST_BE_BOOLEAN")
+    return value
+
+
+def _require_exact_enum(name: str, value: Any, allowed: set[str]) -> str:
+    if not isinstance(value, str) or value not in allowed:
+        raise DecisionPacketError(f"INVALID_{name}")
+    return value
+
+
+def _require_nonempty_string(name: str, value: Any) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise DecisionPacketError(f"{name}_MUST_BE_NONEMPTY_STRING")
     return value
 
 
@@ -71,18 +85,22 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
     ])
     _require_fields("override_context", override, ["override_requested", "override_reason"])
 
+    _require_nonempty_string("strategy_id", research["strategy_id"])
+    _require_nonempty_string("experiment_version", research["experiment_version"])
+    _require_nonempty_string("evaluation_timestamp", research["evaluation_timestamp"])
     _require_sha("evidence_artifact_sha256", research["evidence_artifact_sha256"])
     _require_sha("validity_result_sha256", validity["validity_result_sha256"])
     _require_sha("pre_registration_sha256", validity["pre_registration_sha256"])
 
-    reported_strength = str(validity["evidence_strength"]).upper()
+    reported_strength = _require_exact_enum(
+        "EVIDENCE_STRENGTH", validity["evidence_strength"], VALID_EVIDENCE
+    )
+    action_type = _require_exact_enum("ACTION_TYPE", action["action_type"], VALID_ACTIONS)
     all_dims = _require_bool(
-        "validity.all_required_dimensions_reported",
-        validity["all_required_dimensions_reported"],
+        "all_required_dimensions_reported", validity["all_required_dimensions_reported"]
     )
     post_outcome_change = _require_bool(
-        "validity.post_outcome_rule_change_detected",
-        validity["post_outcome_rule_change_detected"],
+        "post_outcome_rule_change_detected", validity["post_outcome_rule_change_detected"]
     )
 
     effective_strength = reported_strength
@@ -98,7 +116,7 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
         downgrade_reasons.append("POST_OUTCOME_RULE_CHANGE_DETECTED")
 
     discipline_input = {
-        "action_type": action["action_type"],
+        "action_type": action_type,
         "current_exposure_exists": action["current_exposure_exists"],
         "evidence_strength": effective_strength,
         "projected_post_action_position_size": risk["projected_post_action_position_size"],
