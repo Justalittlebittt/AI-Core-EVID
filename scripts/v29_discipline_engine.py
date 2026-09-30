@@ -36,11 +36,23 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
     if evidence not in VALID_EVIDENCE:
         raise ValueError("INVALID_EVIDENCE_STRENGTH")
 
-    position_size = _require_number("position_size", payload.get("position_size"))
+    current_exposure_exists = bool(payload.get("current_exposure_exists"))
+    if action == "BUY" and current_exposure_exists:
+        raise ValueError("BUY_REQUIRES_NO_EXISTING_EXPOSURE_USE_ADD_INSTEAD")
+    if action in {"ADD", "HOLD", "REDUCE", "EXIT"} and not current_exposure_exists:
+        raise ValueError(f"{action}_REQUIRES_EXISTING_EXPOSURE")
+
+    projected_position = _require_number(
+        "projected_post_action_position_size",
+        payload.get("projected_post_action_position_size"),
+    )
     position_limit = _require_number("position_limit", payload.get("position_limit"))
-    risk_used = _require_number("risk_budget_used", payload.get("risk_budget_used"))
+    projected_risk = _require_number(
+        "projected_post_action_risk_budget_used",
+        payload.get("projected_post_action_risk_budget_used"),
+    )
     risk_limit = _require_number("risk_budget_limit", payload.get("risk_budget_limit"))
-    if min(position_size, position_limit, risk_used, risk_limit) < 0:
+    if min(projected_position, position_limit, projected_risk, risk_limit) < 0:
         raise ValueError("NEGATIVE_RISK_OR_POSITION_VALUE")
 
     stop_loss_defined = bool(payload.get("stop_loss_defined"))
@@ -55,21 +67,23 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
     override_requested = bool(payload.get("override_requested"))
     override_reason = str(payload.get("override_reason") or "").strip()
 
+    if stop_loss_breached and not current_exposure_exists:
+        raise ValueError("STOP_LOSS_BREACH_REQUIRES_EXISTING_EXPOSURE")
     if override_requested and not override_reason:
         raise ValueError("OVERRIDE_REASON_REQUIRED")
 
     reasons: list[str] = []
 
-    # Highest priority: mandatory exit states.
-    if stop_loss_breached and not adjustment_condition_satisfied:
+    # Highest priority: mandatory exit states for existing exposure.
+    if current_exposure_exists and stop_loss_breached and not adjustment_condition_satisfied:
         reasons.append("STOP_LOSS_BREACHED")
         return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
 
     if invalidation_triggered:
         reasons.append("INVALIDATION_TRIGGERED")
-        if action in {"REDUCE", "EXIT"}:
+        if current_exposure_exists:
             return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
-        return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
+        return DisciplineDecision("ACTION_BLOCKED_BY_EVIDENCE", tuple(reasons), override_requested).as_dict()
 
     # Missing precommitments block risk-increasing actions.
     if action in {"BUY", "ADD"}:
@@ -80,12 +94,12 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
         if reasons:
             return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
 
-    # Hard capacity constraints.
+    # Hard capacity constraints use projected post-action state.
     if action in {"BUY", "ADD"}:
-        if position_size > position_limit:
-            reasons.append("POSITION_LIMIT_EXCEEDED")
-        if risk_used > risk_limit:
-            reasons.append("RISK_BUDGET_EXCEEDED")
+        if projected_position > position_limit:
+            reasons.append("POST_ACTION_POSITION_LIMIT_EXCEEDED")
+        if projected_risk > risk_limit:
+            reasons.append("POST_ACTION_RISK_BUDGET_EXCEEDED")
         if reasons:
             return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
 
