@@ -1,0 +1,19 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R2_FALLBACK_COVERAGE_ACTIVATION_V1",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_ONE_TIME_COVERAGE_ONLY_FALLBACK_PREFLIGHT",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_5.json",
+  "scope": {
+    "provider": "BaoStock",
+    "package_version": "0.9.4",
+    "response_fields_allowed": ["date", "code"],
+    "price_value_access_allowed": false,
+    "return_computation_allowed": false,
+    "event_membership_change_allowed": false,
+    "event_date_substitution_allowed": false,
+    "prospective_gate_change_allowed": false,
+    "fold3_access_allowed": false,
+    "fold4_access_allowed": false,
+    "setup_or_live_access_allowed": false
+  }
+}
