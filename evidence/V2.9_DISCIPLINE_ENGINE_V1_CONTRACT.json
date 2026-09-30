@@ -7,49 +7,32 @@
   "purpose": "Convert precommitted evidence-strength and risk-discipline rules into action-eligibility outputs without generating autonomous trading instructions or certain market-direction claims.",
   "input_contract": {
     "required_fields": [
-      "action_type",
-      "current_exposure_exists",
-      "evidence_strength",
-      "projected_post_action_position_size",
-      "position_limit",
-      "projected_post_action_risk_budget_used",
-      "risk_budget_limit",
-      "stop_loss_defined",
-      "stop_loss_breached",
-      "take_profit_defined",
-      "invalidation_triggered",
-      "adjustment_condition_satisfied",
-      "is_averaging_down",
-      "independent_add_eligibility",
-      "is_chasing",
-      "chase_rule_satisfied",
-      "override_requested",
-      "override_reason"
+      "action_type", "current_exposure_exists", "evidence_strength",
+      "projected_post_action_position_size", "position_limit",
+      "projected_post_action_risk_budget_used", "risk_budget_limit",
+      "stop_loss_defined", "stop_loss_breached", "take_profit_defined",
+      "invalidation_triggered", "adjustment_condition_satisfied",
+      "is_averaging_down", "independent_add_eligibility", "is_chasing",
+      "chase_rule_satisfied", "override_requested", "override_reason"
     ],
     "strict_types": {
       "boolean_fields": [
-        "current_exposure_exists",
-        "stop_loss_defined",
-        "stop_loss_breached",
-        "take_profit_defined",
-        "invalidation_triggered",
-        "adjustment_condition_satisfied",
-        "is_averaging_down",
-        "independent_add_eligibility",
-        "is_chasing",
-        "chase_rule_satisfied",
-        "override_requested"
+        "current_exposure_exists", "stop_loss_defined", "stop_loss_breached",
+        "take_profit_defined", "invalidation_triggered", "adjustment_condition_satisfied",
+        "is_averaging_down", "independent_add_eligibility", "is_chasing",
+        "chase_rule_satisfied", "override_requested"
       ],
-      "boolean_rule": "Values must be native booleans true/false. Strings such as 'true' or 'false', integers 0/1, null, and other truthy/falsy values are invalid and must fail closed.",
+      "boolean_rule": "Values must be native booleans true/false. Strings, integers, null, and other truthy/falsy values are invalid and fail closed.",
       "numeric_fields": [
-        "projected_post_action_position_size",
-        "position_limit",
-        "projected_post_action_risk_budget_used",
-        "risk_budget_limit"
+        "projected_post_action_position_size", "position_limit",
+        "projected_post_action_risk_budget_used", "risk_budget_limit"
       ],
-      "numeric_rule": "Values must be numeric and non-negative; booleans are not accepted as numbers."
+      "numeric_rule": "Values must be finite numeric values and non-negative; booleans, NaN, positive or negative infinity, strings, and null are invalid and fail closed.",
+      "string_fields": ["override_reason"],
+      "string_rule": "override_reason must be a native string. If override_requested=true it must contain a non-whitespace reason."
     },
     "action_types": ["BUY", "ADD", "HOLD", "REDUCE", "EXIT"],
+    "enum_rule": "action_type and evidence_strength are exact case-sensitive enum values; no case normalization or alias conversion is permitted.",
     "action_semantics": {
       "BUY": "Open a new exposure; requires current_exposure_exists=false.",
       "ADD": "Increase an existing exposure; requires current_exposure_exists=true.",
@@ -61,11 +44,8 @@
     "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"]
   },
   "priority_order": [
-    "EXIT_REQUIRED",
-    "ACTION_BLOCKED_BY_RISK",
-    "ACTION_BLOCKED_BY_EVIDENCE",
-    "NO_ACTION_INSUFFICIENT_EVIDENCE",
-    "ACTION_ELIGIBLE"
+    "EXIT_REQUIRED", "ACTION_BLOCKED_BY_RISK", "ACTION_BLOCKED_BY_EVIDENCE",
+    "NO_ACTION_INSUFFICIENT_EVIDENCE", "ACTION_ELIGIBLE"
   ],
   "hard_rules": {
     "stop_loss_lock": "If an existing exposure has stop_loss_breached=true, output EXIT_REQUIRED regardless of evidence strength or override intent unless a predeclared adjustment condition was already satisfied before the breach.",
@@ -80,18 +60,13 @@
   "output_contract": {
     "required_fields": ["decision", "reasons", "override_logged"],
     "decision_values": [
-      "EXIT_REQUIRED",
-      "ACTION_BLOCKED_BY_RISK",
-      "ACTION_BLOCKED_BY_EVIDENCE",
-      "ACTION_ELIGIBLE",
-      "NO_ACTION_INSUFFICIENT_EVIDENCE"
+      "EXIT_REQUIRED", "ACTION_BLOCKED_BY_RISK", "ACTION_BLOCKED_BY_EVIDENCE",
+      "ACTION_ELIGIBLE", "NO_ACTION_INSUFFICIENT_EVIDENCE"
     ]
   },
   "non_goals": [
-    "No autonomous brokerage execution",
-    "No position sizing optimization",
-    "No prediction of guaranteed direction",
-    "No automatic loosening of stop-loss or take-profit rules",
+    "No autonomous brokerage execution", "No position sizing optimization",
+    "No prediction of guaranteed direction", "No automatic loosening of stop-loss or take-profit rules",
     "No conversion of human override into system approval"
   ]
 }
