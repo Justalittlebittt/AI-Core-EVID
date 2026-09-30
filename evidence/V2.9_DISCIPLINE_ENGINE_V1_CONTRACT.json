@@ -26,6 +26,29 @@
       "override_requested",
       "override_reason"
     ],
+    "strict_types": {
+      "boolean_fields": [
+        "current_exposure_exists",
+        "stop_loss_defined",
+        "stop_loss_breached",
+        "take_profit_defined",
+        "invalidation_triggered",
+        "adjustment_condition_satisfied",
+        "is_averaging_down",
+        "independent_add_eligibility",
+        "is_chasing",
+        "chase_rule_satisfied",
+        "override_requested"
+      ],
+      "boolean_rule": "Values must be native booleans true/false. Strings such as 'true' or 'false', integers 0/1, null, and other truthy/falsy values are invalid and must fail closed.",
+      "numeric_fields": [
+        "projected_post_action_position_size",
+        "position_limit",
+        "projected_post_action_risk_budget_used",
+        "risk_budget_limit"
+      ],
+      "numeric_rule": "Values must be numeric and non-negative; booleans are not accepted as numbers."
+    },
     "action_types": ["BUY", "ADD", "HOLD", "REDUCE", "EXIT"],
     "action_semantics": {
       "BUY": "Open a new exposure; requires current_exposure_exists=false.",
