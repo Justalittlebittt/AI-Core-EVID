@@ -51,8 +51,8 @@
       "EXIT_REQUIRED",
       "ACTION_BLOCKED_BY_RISK",
       "ACTION_BLOCKED_BY_EVIDENCE",
-      "ACTION_ELIGIBLE",
-      "NO_ACTION_INSUFFICIENT_EVIDENCE"
+      "NO_ACTION_INSUFFICIENT_EVIDENCE",
+      "ACTION_ELIGIBLE"
     ]
   },
   "implementation_order": [
