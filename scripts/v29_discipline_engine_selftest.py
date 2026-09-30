@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 from v29_discipline_engine import evaluate
 
 
@@ -61,6 +63,12 @@ def main() -> None:
     expect_error(base(action_type="BUY", current_exposure_exists=False, stop_loss_defined="false"), "stop_loss_defined_MUST_BE_BOOLEAN")
     expect_error(base(action_type="BUY", current_exposure_exists=False, is_chasing="false"), "is_chasing_MUST_BE_BOOLEAN")
     expect_error(base(action_type="BUY", current_exposure_exists=False, override_requested="false"), "override_requested_MUST_BE_BOOLEAN")
+
+    expect_error(base(action_type="buy", current_exposure_exists=False), "INVALID_ACTION_TYPE")
+    expect_error(base(action_type="BUY", current_exposure_exists=False, evidence_strength="moderate"), "INVALID_EVIDENCE_STRENGTH")
+    expect_error(base(action_type="BUY", current_exposure_exists=False, projected_post_action_position_size=math.nan), "projected_post_action_position_size_MUST_BE_FINITE")
+    expect_error(base(action_type="BUY", current_exposure_exists=False, risk_budget_limit=math.inf), "risk_budget_limit_MUST_BE_FINITE")
+    expect_error(base(action_type="BUY", current_exposure_exists=False, override_reason=1), "override_reason_MUST_BE_STRING")
 
     print("V2.9 Discipline Engine v1 self-test PASS")
 
