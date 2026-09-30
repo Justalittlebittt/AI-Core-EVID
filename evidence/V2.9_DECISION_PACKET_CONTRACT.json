@@ -8,97 +8,58 @@
   "purpose": "Bind a frozen validity assessment and a contemplated human research action into one fail-closed packet for Discipline Engine eligibility evaluation without generating autonomous trading instructions.",
   "packet": {
     "required_top_level_fields": [
-      "packet_version",
-      "research_context",
-      "validity",
-      "action_context",
-      "risk_context",
-      "behavior_context",
-      "override_context"
+      "packet_version", "research_context", "validity", "action_context",
+      "risk_context", "behavior_context", "override_context"
     ],
     "packet_version": "V2.9_DECISION_PACKET_V1",
     "research_context_required_fields": [
-      "strategy_id",
-      "experiment_version",
-      "evaluation_timestamp",
-      "evidence_artifact_sha256"
+      "strategy_id", "experiment_version", "evaluation_timestamp", "evidence_artifact_sha256"
     ],
     "validity_required_fields": [
-      "evidence_strength",
-      "validity_result_sha256",
-      "pre_registration_sha256",
-      "all_required_dimensions_reported",
-      "post_outcome_rule_change_detected"
+      "evidence_strength", "validity_result_sha256", "pre_registration_sha256",
+      "all_required_dimensions_reported", "post_outcome_rule_change_detected"
     ],
-    "action_context_required_fields": [
-      "action_type",
-      "current_exposure_exists"
-    ],
+    "action_context_required_fields": ["action_type", "current_exposure_exists"],
     "risk_context_required_fields": [
-      "projected_post_action_position_size",
-      "position_limit",
-      "projected_post_action_risk_budget_used",
-      "risk_budget_limit",
-      "stop_loss_defined",
-      "stop_loss_breached",
-      "take_profit_defined",
-      "invalidation_triggered",
-      "adjustment_condition_satisfied"
+      "projected_post_action_position_size", "position_limit",
+      "projected_post_action_risk_budget_used", "risk_budget_limit",
+      "stop_loss_defined", "stop_loss_breached", "take_profit_defined",
+      "invalidation_triggered", "adjustment_condition_satisfied"
     ],
     "behavior_context_required_fields": [
-      "is_averaging_down",
-      "independent_add_eligibility",
-      "is_chasing",
-      "chase_rule_satisfied"
+      "is_averaging_down", "independent_add_eligibility", "is_chasing", "chase_rule_satisfied"
     ],
-    "override_context_required_fields": [
-      "override_requested",
-      "override_reason"
-    ],
+    "override_context_required_fields": ["override_requested", "override_reason"],
     "strict_boolean_fields": [
-      "validity.all_required_dimensions_reported",
-      "validity.post_outcome_rule_change_detected",
-      "action_context.current_exposure_exists",
-      "risk_context.stop_loss_defined",
-      "risk_context.stop_loss_breached",
-      "risk_context.take_profit_defined",
-      "risk_context.invalidation_triggered",
-      "risk_context.adjustment_condition_satisfied",
-      "behavior_context.is_averaging_down",
-      "behavior_context.independent_add_eligibility",
-      "behavior_context.is_chasing",
-      "behavior_context.chase_rule_satisfied",
+      "validity.all_required_dimensions_reported", "validity.post_outcome_rule_change_detected",
+      "action_context.current_exposure_exists", "risk_context.stop_loss_defined",
+      "risk_context.stop_loss_breached", "risk_context.take_profit_defined",
+      "risk_context.invalidation_triggered", "risk_context.adjustment_condition_satisfied",
+      "behavior_context.is_averaging_down", "behavior_context.independent_add_eligibility",
+      "behavior_context.is_chasing", "behavior_context.chase_rule_satisfied",
       "override_context.override_requested"
     ],
-    "strict_boolean_rule": "Boolean fields must be native booleans true/false. Strings, integers, null, and other truthy/falsy values are invalid and fail closed."
+    "strict_boolean_rule": "Boolean fields must be native booleans true/false. Strings, integers, null, and other truthy/falsy values are invalid and fail closed.",
+    "strict_enum_rule": "validity.evidence_strength must be exactly one of STRONG/MODERATE/WEAK/INSUFFICIENT and action_context.action_type exactly one of BUY/ADD/HOLD/REDUCE/EXIT. Case normalization and aliases are forbidden.",
+    "strict_numeric_rule": "Risk numeric fields are passed without inference and must satisfy the Discipline Engine finite, numeric, non-negative contract; NaN and infinity are invalid.",
+    "strict_identity_rule": "strategy_id, experiment_version, and evaluation_timestamp must be non-empty native strings. Required evidence hashes must be lowercase 64-character SHA256 hex strings."
   },
   "binding_rules": {
-    "evidence_strength_passthrough": "The adapter must pass validity.evidence_strength to Discipline Engine unchanged unless validity integrity fails, in which case only a fail-closed downgrade to INSUFFICIENT is allowed.",
+    "evidence_strength_passthrough": "The adapter preserves the reported validity.evidence_strength exactly in audit metadata and passes it unchanged to Discipline Engine unless validity integrity fails, in which case the effective strength may only be downgraded to INSUFFICIENT.",
     "validity_integrity_fail_closed": "If all_required_dimensions_reported is false or post_outcome_rule_change_detected is true, risk-increasing actions must be evaluated with evidence_strength=INSUFFICIENT regardless of the reported strength; the original reported strength must remain auditable in adapter metadata.",
     "hash_presence": "evidence_artifact_sha256, validity_result_sha256 and pre_registration_sha256 must be non-empty lowercase 64-character SHA256 hex strings.",
     "no_risk_field_inference": "The adapter may not invent, default, optimize or estimate missing risk fields. Missing required fields are an error.",
-    "no_action_substitution": "The adapter may not change BUY to ADD, HOLD to EXIT, or otherwise rewrite action_type.",
+    "no_action_substitution": "The adapter may not change BUY to ADD, HOLD to EXIT, normalize case, apply aliases, or otherwise rewrite action_type.",
     "no_position_optimization": "The adapter may not calculate an alternative position size or risk budget to rescue an otherwise blocked action.",
     "override_passthrough": "Override intent and reason are passed unchanged and can never convert a blocked eligibility result into eligible.",
     "fail_closed": "Malformed, incomplete or semantically inconsistent packets do not receive ACTION_ELIGIBLE."
   },
   "output_contract": {
-    "required_fields": [
-      "packet_status",
-      "discipline_input",
-      "discipline_decision",
-      "adapter_metadata"
-    ],
-    "packet_status_values": [
-      "PACKET_VALID",
-      "PACKET_VALIDITY_DOWNGRADED_TO_INSUFFICIENT"
-    ]
+    "required_fields": ["packet_status", "discipline_input", "discipline_decision", "adapter_metadata"],
+    "packet_status_values": ["PACKET_VALID", "PACKET_VALIDITY_DOWNGRADED_TO_INSUFFICIENT"]
   },
   "non_goals": [
-    "No brokerage execution",
-    "No automatic strategy selection",
-    "No automatic position sizing",
-    "No market-direction prediction",
-    "No conversion of research uncertainty into action eligibility"
+    "No brokerage execution", "No automatic strategy selection", "No automatic position sizing",
+    "No market-direction prediction", "No conversion of research uncertainty into action eligibility"
   ]
 }
