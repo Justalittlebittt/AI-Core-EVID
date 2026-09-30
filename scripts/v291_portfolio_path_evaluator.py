@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import isfinite
 from typing import Any, Dict, Optional
 
 import pandas as pd
@@ -25,7 +26,10 @@ def _numeric(series: pd.Series, name: str) -> pd.Series:
     out = pd.to_numeric(series, errors="coerce")
     if out.isna().any():
         raise ValueError(f"{name} contains non-numeric/null values")
-    return out.astype(float)
+    out = out.astype(float)
+    if not out.map(isfinite).all():
+        raise ValueError(f"{name} contains non-finite values")
+    return out
 
 
 def validate_path_rows(df: pd.DataFrame) -> pd.DataFrame:
@@ -51,12 +55,11 @@ def validate_path_rows(df: pd.DataFrame) -> pd.DataFrame:
     if (x["security_return"] <= -1.0).any():
         raise ValueError("security_return must be greater than -1.0")
 
-    for col in ("benchmark_return",):
-        if col in x.columns:
-            x[col] = _numeric(x[col], col)
-            conflicts = x.groupby("date")[col].nunique(dropna=False)
-            if (conflicts > 1).any():
-                raise ValueError(f"{col} conflicts within one date")
+    if "benchmark_return" in x.columns:
+        x["benchmark_return"] = _numeric(x["benchmark_return"], "benchmark_return")
+        conflicts = x.groupby("date")["benchmark_return"].nunique(dropna=False)
+        if (conflicts > 1).any():
+            raise ValueError("benchmark_return conflicts within one date")
     for col in ("sample_partition", "regime"):
         if col in x.columns:
             conflicts = x.groupby("date")[col].nunique(dropna=False)
@@ -92,8 +95,7 @@ def evaluate_portfolio_path(
         raise ValueError("daily net_return must be greater than -1.0")
 
     if "benchmark_return" in x.columns:
-        bench = x.groupby("date")["benchmark_return"].first()
-        daily["benchmark_return"] = bench
+        daily["benchmark_return"] = x.groupby("date")["benchmark_return"].first()
         daily["excess_return"] = daily["net_return"] - daily["benchmark_return"]
     if "sample_partition" in x.columns:
         daily["sample_partition"] = x.groupby("date")["sample_partition"].first()
@@ -126,22 +128,22 @@ def evaluate_portfolio_path(
         )
 
     if periods_per_year is not None:
-        if periods_per_year <= 0:
-            raise ValueError("periods_per_year must be positive")
-        years = len(daily) / float(periods_per_year)
+        periods_per_year = float(periods_per_year)
+        if not isfinite(periods_per_year) or periods_per_year <= 0:
+            raise ValueError("periods_per_year must be finite and positive")
+        years = len(daily) / periods_per_year
         metrics["annualized_return"] = float(daily["equity_curve"].iloc[-1] ** (1.0 / years) - 1.0)
         metrics["annualized_volatility"] = float(metrics["daily_net_return_volatility"] * periods_per_year ** 0.5)
         if risk_free_per_period is None:
-            metrics["sharpe_like"] = {
-                "status": "NOT_COMPUTED_RISK_FREE_NOT_SUPPLIED"
-            }
+            metrics["sharpe_like"] = {"status": "NOT_COMPUTED_RISK_FREE_NOT_SUPPLIED"}
         else:
-            excess = daily["net_return"] - float(risk_free_per_period)
+            risk_free_per_period = float(risk_free_per_period)
+            if not isfinite(risk_free_per_period):
+                raise ValueError("risk_free_per_period must be finite")
+            excess = daily["net_return"] - risk_free_per_period
             std = float(excess.std(ddof=1)) if len(excess) > 1 else 0.0
             metrics["sharpe_like"] = None if std == 0 else float(excess.mean() / std * periods_per_year ** 0.5)
     else:
-        metrics["annualization"] = {
-            "status": "NOT_COMPUTED_PERIODS_PER_YEAR_NOT_SUPPLIED"
-        }
+        metrics["annualization"] = {"status": "NOT_COMPUTED_PERIODS_PER_YEAR_NOT_SUPPLIED"}
 
     return PortfolioPathResult(daily=daily, metrics=metrics)
