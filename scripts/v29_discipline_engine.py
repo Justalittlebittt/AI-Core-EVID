@@ -28,6 +28,12 @@ def _require_number(name: str, value: Any) -> float:
     return float(value)
 
 
+def _require_bool(name: str, value: Any) -> bool:
+    if not isinstance(value, bool):
+        raise ValueError(f"{name}_MUST_BE_BOOLEAN")
+    return value
+
+
 def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
     action = str(payload.get("action_type", "")).upper()
     evidence = str(payload.get("evidence_strength", "")).upper()
@@ -36,7 +42,9 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
     if evidence not in VALID_EVIDENCE:
         raise ValueError("INVALID_EVIDENCE_STRENGTH")
 
-    current_exposure_exists = bool(payload.get("current_exposure_exists"))
+    current_exposure_exists = _require_bool(
+        "current_exposure_exists", payload.get("current_exposure_exists")
+    )
     if action == "BUY" and current_exposure_exists:
         raise ValueError("BUY_REQUIRES_NO_EXISTING_EXPOSURE_USE_ADD_INSTEAD")
     if action in {"ADD", "HOLD", "REDUCE", "EXIT"} and not current_exposure_exists:
@@ -55,16 +63,24 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
     if min(projected_position, position_limit, projected_risk, risk_limit) < 0:
         raise ValueError("NEGATIVE_RISK_OR_POSITION_VALUE")
 
-    stop_loss_defined = bool(payload.get("stop_loss_defined"))
-    stop_loss_breached = bool(payload.get("stop_loss_breached"))
-    take_profit_defined = bool(payload.get("take_profit_defined"))
-    invalidation_triggered = bool(payload.get("invalidation_triggered"))
-    adjustment_condition_satisfied = bool(payload.get("adjustment_condition_satisfied"))
-    is_averaging_down = bool(payload.get("is_averaging_down"))
-    independent_add_eligibility = bool(payload.get("independent_add_eligibility"))
-    is_chasing = bool(payload.get("is_chasing"))
-    chase_rule_satisfied = bool(payload.get("chase_rule_satisfied"))
-    override_requested = bool(payload.get("override_requested"))
+    stop_loss_defined = _require_bool("stop_loss_defined", payload.get("stop_loss_defined"))
+    stop_loss_breached = _require_bool("stop_loss_breached", payload.get("stop_loss_breached"))
+    take_profit_defined = _require_bool("take_profit_defined", payload.get("take_profit_defined"))
+    invalidation_triggered = _require_bool(
+        "invalidation_triggered", payload.get("invalidation_triggered")
+    )
+    adjustment_condition_satisfied = _require_bool(
+        "adjustment_condition_satisfied", payload.get("adjustment_condition_satisfied")
+    )
+    is_averaging_down = _require_bool("is_averaging_down", payload.get("is_averaging_down"))
+    independent_add_eligibility = _require_bool(
+        "independent_add_eligibility", payload.get("independent_add_eligibility")
+    )
+    is_chasing = _require_bool("is_chasing", payload.get("is_chasing"))
+    chase_rule_satisfied = _require_bool(
+        "chase_rule_satisfied", payload.get("chase_rule_satisfied")
+    )
+    override_requested = _require_bool("override_requested", payload.get("override_requested"))
     override_reason = str(payload.get("override_reason") or "").strip()
 
     if stop_loss_breached and not current_exposure_exists:
@@ -74,7 +90,6 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
 
     reasons: list[str] = []
 
-    # Highest priority: mandatory exit states for existing exposure.
     if current_exposure_exists and stop_loss_breached and not adjustment_condition_satisfied:
         reasons.append("STOP_LOSS_BREACHED")
         return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
@@ -85,7 +100,6 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
             return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
         return DisciplineDecision("ACTION_BLOCKED_BY_EVIDENCE", tuple(reasons), override_requested).as_dict()
 
-    # Missing precommitments block risk-increasing actions.
     if action in {"BUY", "ADD"}:
         if not stop_loss_defined:
             reasons.append("STOP_LOSS_NOT_DEFINED")
@@ -94,7 +108,6 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
         if reasons:
             return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
 
-    # Hard capacity constraints use projected post-action state.
     if action in {"BUY", "ADD"}:
         if projected_position > position_limit:
             reasons.append("POST_ACTION_POSITION_LIMIT_EXCEEDED")
@@ -103,7 +116,6 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
         if reasons:
             return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
 
-    # Behavioral guards for risk-increasing actions.
     if action == "ADD" and is_averaging_down and not independent_add_eligibility:
         reasons.append("AVERAGING_DOWN_WITHOUT_INDEPENDENT_ELIGIBILITY")
         return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
@@ -112,7 +124,6 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
         reasons.append("ANTI_FOMO_CHASE_RULE_NOT_SATISFIED")
         return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
 
-    # Evidence rules. Exit/reduce are risk-reducing and remain eligible under weak evidence.
     if action in {"BUY", "ADD"}:
         if evidence == "INSUFFICIENT":
             reasons.append("INSUFFICIENT_EVIDENCE")
