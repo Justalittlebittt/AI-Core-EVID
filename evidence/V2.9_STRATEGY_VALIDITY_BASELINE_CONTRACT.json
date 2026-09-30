@@ -1,0 +1,113 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_STRATEGY_VALIDITY_BASELINE_CONTRACT_V1",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_STRATEGY_LEVEL_IMPLEMENTATION",
+  "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+  "foundation": "evidence/V2.9_VALIDITY_AND_DISCIPLINE_FOUNDATION.json",
+  "integrity_exit_audit": "evidence/V2.9_INTEGRITY_EXIT_AUDIT_RECEIPT.json",
+  "purpose": "Define the minimum preregistration and result interface required before any strategy-level evidence-strength evaluation, without inventing universal post-hoc thresholds.",
+  "experiment_preregistration": {
+    "must_be_frozen_before_outcome_evaluation": true,
+    "required_identity_fields": [
+      "experiment_id",
+      "strategy_version",
+      "signal_version",
+      "data_vintage_policy",
+      "sample_definition",
+      "training_or_research_period",
+      "untouched_oos_period_or_fold",
+      "primary_decision_question"
+    ],
+    "required_comparison_fields": [
+      "simple_baseline",
+      "market_or_domain_baseline",
+      "primary_metric",
+      "primary_horizon",
+      "transaction_cost_model",
+      "execution_constraints"
+    ],
+    "required_dimension_plan": [
+      "effect_size",
+      "baseline_comparison",
+      "out_of_sample",
+      "regime_stability",
+      "cross_sectional_stability",
+      "transaction_cost_and_execution_constraints",
+      "drawdown_and_loss_sequences",
+      "probability_calibration_where_applicable",
+      "reasonable_parameter_sensitivity",
+      "failure_region_identification"
+    ],
+    "per_dimension_required_fields": [
+      "dimension",
+      "metric_or_test",
+      "predeclared_interpretation_rule",
+      "required_data_scope",
+      "status_if_data_unavailable"
+    ],
+    "post_outcome_dimension_deletion_allowed": false,
+    "post_outcome_baseline_replacement_allowed": false,
+    "post_outcome_primary_metric_change_allowed": false,
+    "post_outcome_threshold_relaxation_allowed": false
+  },
+  "result_interface": {
+    "dimension_status_values": [
+      "SUPPORTED",
+      "MIXED_OR_UNSTABLE",
+      "FAILED",
+      "INSUFFICIENT_DATA",
+      "NOT_APPLICABLE_PREDECLARED"
+    ],
+    "required_result_fields_per_dimension": [
+      "dimension",
+      "status",
+      "observed_metric_summary",
+      "predeclared_rule_applied",
+      "data_scope_used",
+      "caveats"
+    ],
+    "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"],
+    "strength_floor_rules": {
+      "INSUFFICIENT": [
+        "Integrity prerequisite fails or is indeterminate.",
+        "No untouched OOS evaluation exists when OOS is required by the preregistration.",
+        "Primary baseline comparison is missing.",
+        "A predeclared minimum sample or resolved-data floor fails.",
+        "Any system-critical result identity or temporal binding is unresolved."
+      ],
+      "WEAK": [
+        "Integrity is valid but one or more predeclared core validity dimensions FAILED.",
+        "Observed support depends materially on one regime, issuer, security, period, or parameter neighborhood.",
+        "Realistic cost/execution treatment removes the apparent advantage."
+      ],
+      "MODERATE": [
+        "All predeclared core dimensions are assessed with no FAILED status, OOS and baselines are present, but at least one dimension remains MIXED_OR_UNSTABLE or material uncertainty remains."
+      ],
+      "STRONG": [
+        "All applicable preregistered dimensions are assessed; none are FAILED, MIXED_OR_UNSTABLE, or INSUFFICIENT_DATA; the strategy remains supported after realistic costs, OOS evaluation, reasonable parameter perturbation, and regime/cross-sectional checks."
+      ]
+    },
+    "automatic_upgrade_from_point_estimate_only": false,
+    "single_metric_can_determine_STRONG": false
+  },
+  "baseline_policy": {
+    "simple_baseline_must_remain_visible": true,
+    "complex_strategy_without_simple_baseline": "INSUFFICIENT",
+    "baseline_may_not_be_replaced_after_results": true
+  },
+  "uncertainty_policy": {
+    "small_sample": "RESEARCH_UNCERTAINTY_NOT_ENGINEERING_DEFECT",
+    "wide_interval": "RESEARCH_UNCERTAINTY_NOT_ENGINEERING_DEFECT",
+    "regime_instability": "REPORT_AS_VALIDITY_WEAKNESS",
+    "parameter_sensitivity": "REPORT_AS_VALIDITY_WEAKNESS",
+    "external_provider_failure": "EXTERNAL_OPERATIONAL_UNLESS_IT_CHANGES_SAMPLE_TIME_RULES_OR_DISCIPLINE"
+  },
+  "governance": {
+    "no_new_hard_gate_created_by_this_contract": true,
+    "historical_V2_8_12R_evidence_changed": false,
+    "prospective_lane_changed": false,
+    "fold3_or_fold4_access_authorized": false,
+    "discipline_engine_action_authorized": false
+  },
+  "next_stage": "IMPLEMENT_LIGHTWEIGHT_PREREGISTRATION_AND_VALIDITY_RESULT_VALIDATOR"
+}
