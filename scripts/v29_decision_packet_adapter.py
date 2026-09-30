@@ -33,6 +33,12 @@ def _require_sha(name: str, value: Any) -> str:
     return s
 
 
+def _require_bool(name: str, value: Any) -> bool:
+    if not isinstance(value, bool):
+        raise DecisionPacketError(f"{name}_MUST_BE_BOOLEAN")
+    return value
+
+
 def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(packet, dict):
         raise DecisionPacketError("PACKET_MUST_BE_OBJECT")
@@ -70,8 +76,14 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
     _require_sha("pre_registration_sha256", validity["pre_registration_sha256"])
 
     reported_strength = str(validity["evidence_strength"]).upper()
-    all_dims = validity["all_required_dimensions_reported"] is True
-    post_outcome_change = validity["post_outcome_rule_change_detected"] is True
+    all_dims = _require_bool(
+        "validity.all_required_dimensions_reported",
+        validity["all_required_dimensions_reported"],
+    )
+    post_outcome_change = _require_bool(
+        "validity.post_outcome_rule_change_detected",
+        validity["post_outcome_rule_change_detected"],
+    )
 
     effective_strength = reported_strength
     downgraded = False
