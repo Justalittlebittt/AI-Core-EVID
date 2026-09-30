@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Any
 
@@ -25,7 +26,10 @@ class DisciplineDecision:
 def _require_number(name: str, value: Any) -> float:
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         raise ValueError(f"{name}_MUST_BE_NUMERIC")
-    return float(value)
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError(f"{name}_MUST_BE_FINITE")
+    return number
 
 
 def _require_bool(name: str, value: Any) -> bool:
@@ -34,13 +38,17 @@ def _require_bool(name: str, value: Any) -> bool:
     return value
 
 
+def _require_exact_enum(name: str, value: Any, allowed: set[str]) -> str:
+    if not isinstance(value, str) or value not in allowed:
+        raise ValueError(f"INVALID_{name}")
+    return value
+
+
 def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
-    action = str(payload.get("action_type", "")).upper()
-    evidence = str(payload.get("evidence_strength", "")).upper()
-    if action not in VALID_ACTIONS:
-        raise ValueError("INVALID_ACTION_TYPE")
-    if evidence not in VALID_EVIDENCE:
-        raise ValueError("INVALID_EVIDENCE_STRENGTH")
+    action = _require_exact_enum("ACTION_TYPE", payload.get("action_type"), VALID_ACTIONS)
+    evidence = _require_exact_enum(
+        "EVIDENCE_STRENGTH", payload.get("evidence_strength"), VALID_EVIDENCE
+    )
 
     current_exposure_exists = _require_bool(
         "current_exposure_exists", payload.get("current_exposure_exists")
@@ -81,7 +89,10 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
         "chase_rule_satisfied", payload.get("chase_rule_satisfied")
     )
     override_requested = _require_bool("override_requested", payload.get("override_requested"))
-    override_reason = str(payload.get("override_reason") or "").strip()
+    override_reason_raw = payload.get("override_reason")
+    if not isinstance(override_reason_raw, str):
+        raise ValueError("override_reason_MUST_BE_STRING")
+    override_reason = override_reason_raw.strip()
 
     if stop_loss_breached and not current_exposure_exists:
         raise ValueError("STOP_LOSS_BREACH_REQUIRES_EXISTING_EXPOSURE")
