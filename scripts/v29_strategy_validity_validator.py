@@ -4,8 +4,10 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from typing import Any
 
 CONTRACT = Path("evidence/V2.9_STRATEGY_VALIDITY_BASELINE_CONTRACT.json")
+PLACEHOLDER = "REQUIRED_BEFORE_FREEZE"
 
 
 def read_json(path: Path) -> dict:
@@ -22,6 +24,29 @@ def require_keys(obj: dict, keys: list[str], where: str) -> None:
         raise RuntimeError(f"MISSING_REQUIRED_FIELDS:{where}:{','.join(missing)}")
 
 
+def require_nonempty(obj: dict, keys: list[str], where: str) -> None:
+    require_keys(obj, keys, where)
+    for k in keys:
+        if obj.get(k) in (None, "", [], {}):
+            raise RuntimeError(f"EMPTY_REQUIRED_FIELD:{where}:{k}")
+
+
+def find_placeholder(obj: Any, path: str = "root") -> str | None:
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            found = find_placeholder(v, f"{path}.{k}")
+            if found:
+                return found
+    elif isinstance(obj, list):
+        for i, v in enumerate(obj):
+            found = find_placeholder(v, f"{path}[{i}]")
+            if found:
+                return found
+    elif obj == PLACEHOLDER:
+        return path
+    return None
+
+
 def contract() -> dict:
     c = read_json(CONTRACT)
     if c.get("status") != "FROZEN_BEFORE_STRATEGY_LEVEL_IMPLEMENTATION":
@@ -32,7 +57,25 @@ def contract() -> dict:
 def validate_prereg(prereg: dict, c: dict) -> dict:
     if prereg.get("status") != "FROZEN_BEFORE_OUTCOME_EVALUATION":
         raise RuntimeError("PREREG_NOT_FROZEN_BEFORE_OUTCOME")
-    require_keys(prereg, ["identity", "comparison", "dimensions"], "prereg")
+
+    placeholder_path = find_placeholder(prereg)
+    if placeholder_path:
+        raise RuntimeError(f"UNRESOLVED_PREREG_PLACEHOLDER:{placeholder_path}")
+
+    require_keys(
+        prereg,
+        [
+            "identity",
+            "comparison",
+            "matched_random_baseline_plan",
+            "coverage_plan",
+            "portfolio_path_plan",
+            "oos_plan",
+            "interpretation_policy",
+            "dimensions",
+        ],
+        "prereg",
+    )
     require_keys(prereg["identity"], c["experiment_preregistration"]["required_identity_fields"], "identity")
     require_keys(prereg["comparison"], c["experiment_preregistration"]["required_comparison_fields"], "comparison")
 
@@ -44,6 +87,9 @@ def validate_prereg(prereg: dict, c: dict) -> dict:
     seen = []
     for d in dims:
         require_keys(d, dim_required, f"dimension:{d.get('dimension','?')}")
+        for k in dim_required:
+            if d.get(k) in (None, "", [], {}):
+                raise RuntimeError(f"EMPTY_PREREG_DIMENSION_FIELD:{d.get('dimension','?')}:{k}")
         seen.append(d["dimension"])
     if len(seen) != len(set(seen)):
         raise RuntimeError("DUPLICATE_PREREG_DIMENSION")
@@ -51,14 +97,94 @@ def validate_prereg(prereg: dict, c: dict) -> dict:
         raise RuntimeError(f"PREREG_DIMENSION_SET_DRIFT:expected={sorted(required_dims)}:actual={sorted(seen)}")
 
     comparison = prereg["comparison"]
-    for k in ["simple_baseline", "market_or_domain_baseline", "primary_metric", "primary_horizon", "transaction_cost_model", "execution_constraints"]:
-        if comparison.get(k) in (None, "", [], {}):
-            raise RuntimeError(f"EMPTY_PREREG_COMPARISON_FIELD:{k}")
+    require_nonempty(
+        comparison,
+        ["simple_baseline", "market_or_domain_baseline", "primary_metric", "primary_horizon", "transaction_cost_model", "execution_constraints"],
+        "comparison",
+    )
+
+    baseline = prereg["matched_random_baseline_plan"]
+    require_nonempty(
+        baseline,
+        ["scope", "opportunity_set_definition", "sampling_rule", "replicate_count", "seed", "primary_comparisons", "post_outcome_change_forbidden"],
+        "matched_random_baseline_plan",
+    )
+    if baseline["scope"] != "CONDITIONAL_SELECTION_ONLY":
+        raise RuntimeError("INVALID_MATCHED_RANDOM_SCOPE")
+    if type(baseline["replicate_count"]) is not int or baseline["replicate_count"] <= 0:
+        raise RuntimeError("INVALID_MATCHED_RANDOM_REPLICATE_COUNT")
+    if type(baseline["seed"]) is not int:
+        raise RuntimeError("INVALID_MATCHED_RANDOM_SEED")
+    if baseline["post_outcome_change_forbidden"] is not True:
+        raise RuntimeError("MATCHED_RANDOM_POST_OUTCOME_CHANGE_NOT_FORBIDDEN")
+
+    coverage = prereg["coverage_plan"]
+    require_nonempty(
+        coverage,
+        ["time_unit", "required_metrics", "minimum_information_floor", "near_zero_action_review_rule", "no_universal_selection_rate_floor", "post_outcome_relaxation_forbidden"],
+        "coverage_plan",
+    )
+    expected_coverage = {
+        "evaluated_candidate_count",
+        "eligible_candidate_count",
+        "selection_rate",
+        "opportunity_rate_per_predeclared_time_unit",
+        "risk_increasing_action_count",
+        "risk_increasing_action_rate",
+    }
+    if set(coverage["required_metrics"]) != expected_coverage:
+        raise RuntimeError("COVERAGE_METRIC_SET_DRIFT")
+    if coverage["no_universal_selection_rate_floor"] is not True:
+        raise RuntimeError("UNIVERSAL_SELECTION_RATE_FLOOR_FORBIDDEN")
+    if coverage["post_outcome_relaxation_forbidden"] is not True:
+        raise RuntimeError("POST_OUTCOME_COVERAGE_RELAXATION_NOT_FORBIDDEN")
+
+    portfolio = prereg["portfolio_path_plan"]
+    require_nonempty(
+        portfolio,
+        [
+            "position_weight_rule",
+            "holding_period_rule",
+            "overlapping_signal_rule",
+            "transaction_cost_application",
+            "untradable_entry_rule",
+            "untradable_exit_rule",
+            "benchmark_return_rule",
+            "annualization_periods_per_year",
+        ],
+        "portfolio_path_plan",
+    )
+
+    oos = prereg["oos_plan"]
+    require_nonempty(oos, ["development_scope", "untouched_oos_scope", "membership_frozen_before_outcomes", "reuse_after_failure_for_rule_tuning"], "oos_plan")
+    if oos["membership_frozen_before_outcomes"] is not True:
+        raise RuntimeError("OOS_MEMBERSHIP_NOT_FROZEN")
+    if oos["reuse_after_failure_for_rule_tuning"] is not False:
+        raise RuntimeError("OOS_REUSE_FOR_TUNING_FORBIDDEN")
+
+    interpretation = prereg["interpretation_policy"]
+    require_nonempty(
+        interpretation,
+        ["hard_blockers_only", "ordinary_validity_weakness_is_hard_block", "all_soft_dimensions_must_pass", "coverage_collapse_cannot_strengthen_claim", "post_outcome_threshold_tuning"],
+        "interpretation_policy",
+    )
+    if interpretation["ordinary_validity_weakness_is_hard_block"] is not False:
+        raise RuntimeError("ORDINARY_VALIDITY_WEAKNESS_CANNOT_BE_HARD_BLOCK")
+    if interpretation["all_soft_dimensions_must_pass"] is not False:
+        raise RuntimeError("SOFT_DIMENSION_AND_GATE_FORBIDDEN")
+    if interpretation["coverage_collapse_cannot_strengthen_claim"] is not True:
+        raise RuntimeError("COVERAGE_COLLAPSE_GUARD_MISSING")
+    if interpretation["post_outcome_threshold_tuning"] != "FORBIDDEN":
+        raise RuntimeError("POST_OUTCOME_THRESHOLD_TUNING_NOT_FORBIDDEN")
 
     return {
         "status": "PASS_PREREGISTRATION_INTERFACE",
         "experiment_id": prereg["identity"]["experiment_id"],
         "dimension_count": len(dims),
+        "matched_random_scope": baseline["scope"],
+        "coverage_metric_count": len(coverage["required_metrics"]),
+        "portfolio_path_plan_bound": True,
+        "oos_plan_bound": True,
         "preregistration_sha256": stable_sha(prereg),
     }
 
