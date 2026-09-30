@@ -14,6 +14,7 @@ def main() -> None:
             "strategy_return": [0.10, -0.04, 0.06, 0.02],
             "benchmark_return": [0.03, -0.01, 0.02, 0.01],
             "transaction_cost": [0.01, 0.01, 0.01, 0.01],
+            "sample_partition": ["train", "train", "oos", "oos"],
             "regime": ["bull", "bear", "bull", "range"],
             "security_id": ["S1", "S1", "S2", "S3"],
             "predicted_probability": [0.8, 0.3, 0.7, 0.6],
@@ -31,6 +32,8 @@ def main() -> None:
     assert abs(result.metrics["cross_sectional_concentration"]["maximum_single_security_observation_share"] - 0.5) < 1e-12
     assert result.metrics["calibration"]["n"] == 4
     assert result.metrics["drawdown"]["status"] == "NOT_COMPUTED_FROM_UNORDERED_EVENT_OBSERVATIONS"
+    assert set(result.metrics["by_sample_partition"]) == {"oos", "train"}
+    assert result.metrics["by_sample_partition"]["oos"]["n"] == 2
     assert set(result.metrics["by_regime"]) == {"bear", "bull", "range"}
     assert set(result.metrics["by_parameter_variant"]) == {"alt", "base"}
 
@@ -45,6 +48,12 @@ def main() -> None:
         raise AssertionError("invalid probability should fail")
     except ValueError as exc:
         assert "[0, 1]" in str(exc)
+
+    try:
+        evaluate_observations(df.assign(realized_positive=[1, 2, 1, 1]))
+        raise AssertionError("non-binary realized_positive should fail")
+    except ValueError as exc:
+        assert "binary 0/1" in str(exc)
 
     try:
         evaluate_observations(df.assign(transaction_cost=[0.01, -0.01, 0.01, 0.01]))
