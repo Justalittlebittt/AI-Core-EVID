@@ -1,0 +1,63 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_V5",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_FREE_PUBLIC_FALLBACK_SOURCE_COVERAGE_PREFLIGHT",
+  "parent_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+  "parent_source_amendment": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_4.json",
+  "triggering_failure_receipt": "evidence/retrospective_feasibility/V2.8.12R_R2_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json",
+  "purpose": "Authorize a coverage-only fallback preflight after the frozen AlphaDojo primary source proved to start at 2025-01-02 and therefore cannot cover the frozen 2024 retrospective event dates. This amendment does not authorize reading price values or computing returns.",
+  "fallback_source_identity": {
+    "provider": "BaoStock",
+    "access_mode": "public Python API",
+    "package": "baostock",
+    "package_version": "0.9.4",
+    "pypi_wheel_sha256": "0bf71c6069ab5890ff3596632f9c3f8f1fbc6bfcac582c2f9d6a5c11ab2cfaf8",
+    "stock_query_function": "query_history_k_data_plus",
+    "benchmark_query_function": "query_history_k_data_plus",
+    "frequency": "d",
+    "adjustflag": "3",
+    "requested_fields": ["date", "code"]
+  },
+  "authorization_boundary": {
+    "requires_reconciled_R1_technical_gate_pass": true,
+    "requires_final_pre_outcome_cohort_frozen": true,
+    "requires_primary_source_coverage_failure": true,
+    "allowed_response_fields": ["date", "code"],
+    "forbidden_response_fields": ["open", "high", "low", "close", "preclose", "volume", "amount", "pctChg", "turn", "peTTM", "psTTM", "pcfNcfTTM", "pbMRQ"],
+    "price_values_may_be_read_or_logged": false,
+    "returns_may_be_computed": false,
+    "fallback_outcome_values_authorized": false
+  },
+  "coverage_contract": {
+    "calendar_authority": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "final_cohort_authority": "evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT.json",
+    "stock_symbol_mapping": {
+      "SSE": "sh.{security_code}",
+      "SZSE": "sz.{security_code}"
+    },
+    "benchmark_symbol": "sh.000300",
+    "required_dates_per_event": ["D", "D+5", "D+10"],
+    "required_stock_event_date_coverage_rate": 1.0,
+    "required_benchmark_date_coverage_rate": 1.0,
+    "target_shift_if_missing": false,
+    "event_drop_if_missing": false
+  },
+  "output_constraints": {
+    "may_output_symbol_and_required_date_presence": true,
+    "may_output_source_min_max_dates": true,
+    "may_output_row_counts": true,
+    "may_output_any_price_value": false,
+    "may_output_any_return": false
+  },
+  "governance": {
+    "retrospective_event_cohort_changed": false,
+    "prospective_gate_changed": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "live_authorized": false,
+    "outcome_resolution_authorized_by_this_amendment": false,
+    "if_fallback_coverage_passes": "FREEZE_SEPARATE_R2_OUTCOME_RESOLUTION_AUTHORIZATION_BEFORE_ANY_PRICE_VALUE_ACCESS",
+    "if_fallback_coverage_fails": "R2_REMAINS_BLOCKED_AND_NO_EVENT_OR_DATE_SUBSTITUTION_IS_ALLOWED"
+  }
+}
