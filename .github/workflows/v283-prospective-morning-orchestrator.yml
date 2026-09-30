@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: v283-prospective-morning-orchestrator
@@ -125,10 +124,3 @@ jobs:
             git pull --rebase origin main
             git push
           fi
-
-      - name: Dispatch controlled prospective E-layer collection
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run v284-controlled-prospective-e-layer.yml --ref main
-          echo "Dispatched V2.8.4 controlled prospective E-layer from the empirically functioning morning orchestrator."
