@@ -1,0 +1,64 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_V6",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_R2_OUTCOME_RESOLUTION_AUTHORIZATION",
+  "parent_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+  "parent_fallback_amendment": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_5.json",
+  "authorization_evidence": [
+    "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECONCILED_RECEIPT.json",
+    "evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT.json",
+    "evidence/retrospective_feasibility/V2.8.12R_R2_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json",
+    "evidence/retrospective_feasibility/V2.8.12R_R2_FALLBACK_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json"
+  ],
+  "purpose": "Authorize the first and only bounded R2 price-value access for the exact frozen four-event retrospective cohort after BaoStock presence-only fallback coverage passed 100% for stock and CSI300 D/D+5/D+10 dates.",
+  "source_and_vintage_contract": {
+    "provider": "BaoStock",
+    "package": "baostock",
+    "package_version": "0.9.4",
+    "query_function": "query_history_k_data_plus",
+    "frequency": "d",
+    "stock_adjustflag": "2",
+    "stock_adjustment_semantics": "forward-adjusted close; D, D+5 and D+10 for a security must be taken from the same single query response",
+    "benchmark_symbol": "sh.000300",
+    "benchmark_adjustflag": "3",
+    "benchmark_semantics": "CSI300 index close; D, D+5 and D+10 must be taken from the same single query response",
+    "requested_fields": ["date", "code", "close"],
+    "query_response_rows_must_be_hashed_before_statistics": true,
+    "cross_response_D_T_mixing_forbidden": true,
+    "cross_adjustment_scale_mixing_forbidden": true
+  },
+  "authorized_outcomes": {
+    "event_population": "exact V2.8.12R final pre-outcome cohort only",
+    "required_dates": ["D", "D+5", "D+10"],
+    "stock_return_formula": "close_T_same_response / close_D_same_response - 1",
+    "benchmark_return_formula": "benchmark_close_T_same_response / benchmark_close_D_same_response - 1",
+    "excess_return_formula": "stock_return - benchmark_return",
+    "primary_horizon": "D+10",
+    "secondary_horizon": "D+5",
+    "target_shift_if_missing": false,
+    "event_drop_if_missing": false,
+    "survivor_replacement": false
+  },
+  "analysis_binding": {
+    "analysis_contract": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_SAMPLING_AND_OUTCOME_CONTRACT.json",
+    "primary_analysis_unit": "issuer",
+    "within_issuer_aggregation": "median D+10 excess return",
+    "primary_statistic": "median across issuer-level D+10 excess-return medians with equal issuer weight",
+    "bootstrap_resamples": 5000,
+    "bootstrap_seed": 2812,
+    "decision_eligibility_floor_must_be_applied_before_any_feasibility_verdict": true,
+    "no_post_outcome_metric_or_subgroup_addition": true
+  },
+  "governance": {
+    "retrospective_event_cohort_changed": false,
+    "prospective_gate_changed": false,
+    "classifier_changed": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "live_authorized": false,
+    "brokerage_execution_authorized": false,
+    "autonomous_financial_decision_authorized": false,
+    "maximum_claim": "RETROSPECTIVE_FEASIBILITY_ONLY"
+  }
+}
