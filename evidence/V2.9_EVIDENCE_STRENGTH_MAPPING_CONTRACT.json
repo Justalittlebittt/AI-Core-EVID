@@ -35,11 +35,14 @@
       "evaluated_candidate_count",
       "eligible_candidate_count",
       "selection_rate",
-      "opportunity_rate_per_predeclared_time_unit"
+      "opportunity_rate_per_predeclared_time_unit",
+      "risk_increasing_action_count",
+      "risk_increasing_action_rate"
     ],
     "zero_trade_safety_forbidden": true,
     "rule": "A strategy may not be labeled stronger merely because tighter filters reduce candidate count. Any increase in apparent edge accompanied by materially lower coverage must be reported as an edge-coverage tradeoff rather than an unconditional improvement.",
     "low_coverage_semantics": "Low coverage is normally a downgrade or uncertainty flag, not a hard block, unless it makes the experiment statistically uninterpretable under the preregistered sample design.",
+    "zero_or_near_zero_action_review": "If the deployed research policy produces zero or near-zero risk-increasing actions over the preregistered evaluation window, flag POLICY_TOO_RESTRICTIVE_FOR_USABILITY_REVIEW. The review may only change future experiment versions prospectively; it may not retroactively relax the current version after inspecting outcomes.",
     "no_universal_selection_rate_floor": true
   },
   "mapping_principles": {
@@ -49,7 +52,7 @@
     ],
     "WEAK": [
       "Some positive baseline-relative evidence exists but is small, unstable, concentrated, cost-sensitive, parameter-sensitive, or coverage-constrained.",
-      "WEAK evidence may still produce candidates; it is not equivalent to a system failure."
+      "WEAK evidence may still produce research candidates and contributes information, but under Discipline Engine v1 it does not authorize BUY/ADD."
     ],
     "MODERATE": [
       "Positive post-cost advantage versus matched baseline is visible across more than one important validity dimension and survives reasonable perturbations, with usable coverage.",
@@ -78,13 +81,13 @@
   "decision_binding": {
     "STRONG": "Eligible for Discipline Engine consideration subject to risk rules.",
     "MODERATE": "Eligible for Discipline Engine consideration subject to risk rules and any preregistered position-size limitations.",
-    "WEAK": "Risk-increasing actions are not automatically authorized; experiment-specific decision policy applies. Risk-reducing actions remain permitted subject to Discipline Engine.",
+    "WEAK": "Under Discipline Engine v1, BUY/ADD are blocked by evidence. Risk-reducing actions remain permitted. Persistent near-zero action rate triggers a prospective usability review rather than an outcome-informed relaxation.",
     "INSUFFICIENT": "Risk-increasing actions map to NO_ACTION_INSUFFICIENT_EVIDENCE. Risk-reducing actions remain permitted subject to Discipline Engine."
   },
   "non_goals": [
     "No guarantee of long-run profit",
     "No autonomous brokerage execution",
-    "No outcome-informed tightening of filters",
+    "No outcome-informed tightening or loosening of filters",
     "No maximizing hit rate by eliminating almost all trades",
     "No replacing matched-baseline expectancy with a single headline metric"
   ]
