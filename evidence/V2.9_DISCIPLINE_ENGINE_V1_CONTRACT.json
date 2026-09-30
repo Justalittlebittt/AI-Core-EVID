@@ -8,10 +8,11 @@
   "input_contract": {
     "required_fields": [
       "action_type",
+      "current_exposure_exists",
       "evidence_strength",
-      "position_size",
+      "projected_post_action_position_size",
       "position_limit",
-      "risk_budget_used",
+      "projected_post_action_risk_budget_used",
       "risk_budget_limit",
       "stop_loss_defined",
       "stop_loss_breached",
@@ -26,23 +27,31 @@
       "override_reason"
     ],
     "action_types": ["BUY", "ADD", "HOLD", "REDUCE", "EXIT"],
+    "action_semantics": {
+      "BUY": "Open a new exposure; requires current_exposure_exists=false.",
+      "ADD": "Increase an existing exposure; requires current_exposure_exists=true.",
+      "HOLD": "Maintain an existing exposure; requires current_exposure_exists=true.",
+      "REDUCE": "Reduce an existing exposure; requires current_exposure_exists=true.",
+      "EXIT": "Close an existing exposure; requires current_exposure_exists=true."
+    },
+    "risk_field_semantics": "projected_post_action_position_size and projected_post_action_risk_budget_used are the states that would exist after the contemplated action, so BUY/ADD are evaluated against post-action capacity rather than current capacity.",
     "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"]
   },
   "priority_order": [
     "EXIT_REQUIRED",
     "ACTION_BLOCKED_BY_RISK",
     "ACTION_BLOCKED_BY_EVIDENCE",
-    "ACTION_ELIGIBLE",
-    "NO_ACTION_INSUFFICIENT_EVIDENCE"
+    "NO_ACTION_INSUFFICIENT_EVIDENCE",
+    "ACTION_ELIGIBLE"
   ],
   "hard_rules": {
-    "stop_loss_lock": "If stop_loss_breached is true, output EXIT_REQUIRED regardless of evidence strength or override intent unless a predeclared adjustment condition was already satisfied before the breach.",
-    "invalidation_lock": "If invalidation_triggered is true, BUY/ADD/HOLD are not eligible; existing exposure must resolve to EXIT_REQUIRED unless the contemplated action is REDUCE or EXIT.",
-    "risk_budget": "If position_size exceeds position_limit or risk_budget_used exceeds risk_budget_limit, BUY/ADD are blocked by risk.",
+    "stop_loss_lock": "If an existing exposure has stop_loss_breached=true, output EXIT_REQUIRED regardless of evidence strength or override intent unless a predeclared adjustment condition was already satisfied before the breach.",
+    "invalidation_lock": "If invalidation_triggered=true and exposure exists, output EXIT_REQUIRED. If no exposure exists, BUY is blocked by evidence rather than converted into a fictitious exit.",
+    "risk_budget": "If projected_post_action_position_size exceeds position_limit or projected_post_action_risk_budget_used exceeds risk_budget_limit, BUY/ADD are blocked by risk.",
     "anti_averaging_down": "ADD while is_averaging_down=true requires independent_add_eligibility=true. A lower price by itself is never sufficient.",
     "anti_fomo": "BUY/ADD while is_chasing=true requires chase_rule_satisfied=true.",
     "evidence_floor": "BUY/ADD require STRONG or MODERATE evidence. WEAK blocks risk-increasing actions. INSUFFICIENT returns NO_ACTION_INSUFFICIENT_EVIDENCE unless EXIT_REQUIRED already has priority.",
-    "exit_permission": "EXIT and REDUCE are never blocked merely because evidence is weak; risk-reducing actions remain eligible unless a higher-priority EXIT_REQUIRED state already applies.",
+    "exit_permission": "EXIT and REDUCE are never blocked merely because evidence is weak; risk-reducing actions remain eligible unless a higher-priority EXIT_REQUIRED state applies.",
     "override_logging": "override_requested never converts a blocked state into ACTION_ELIGIBLE. It is logged separately and must not be relabeled as model-compliant."
   },
   "output_contract": {
