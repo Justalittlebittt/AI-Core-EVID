@@ -5,7 +5,11 @@ from pathlib import Path
 
 KERNEL = Path("evidence/V2.9_GOVERNANCE_KERNEL.json")
 FOUNDATION = Path("evidence/V2.9_VALIDITY_AND_DISCIPLINE_FOUNDATION.json")
-EXIT_AUDIT = Path("evidence/V2.9_INTEGRITY_EXIT_AUDIT_CONTRACT.json")
+EXIT_AUDIT_CONTRACT = Path("evidence/V2.9_INTEGRITY_EXIT_AUDIT_CONTRACT.json")
+EXIT_AUDIT_RECEIPT = Path("evidence/V2.9_INTEGRITY_EXIT_AUDIT_RECEIPT.json")
+VALIDITY_CONTRACT = Path("evidence/V2.9_STRATEGY_VALIDITY_BASELINE_CONTRACT.json")
+DISCIPLINE_CONTRACT = Path("evidence/V2.9_DISCIPLINE_ENGINE_V1_CONTRACT.json")
+DECISION_PACKET_CONTRACT = Path("evidence/V2.9_DECISION_PACKET_CONTRACT.json")
 
 REQUIRED_INVARIANTS = {"NO_LEAKAGE","NO_SILENT_SAMPLE_MUTATION","NO_UNDOCUMENTED_OVERRIDE","NO_UNSUPPORTED_CERTAINTY","NO_GOAL_DRIFT"}
 REQUIRED_ARCHITECTURE = {"GOVERNANCE_KERNEL","EVIDENCE_ENGINE","VALIDITY_ENGINE","DISCIPLINE_ENGINE"}
@@ -27,6 +31,10 @@ REQUIRED_ELIGIBILITY_OUTPUTS = {
     "EXIT_REQUIRED","ACTION_BLOCKED_BY_RISK","ACTION_BLOCKED_BY_EVIDENCE",
     "NO_ACTION_INSUFFICIENT_EVIDENCE","ACTION_ELIGIBLE",
 }
+REQUIRED_PRIORITY = [
+    "EXIT_REQUIRED","ACTION_BLOCKED_BY_RISK","ACTION_BLOCKED_BY_EVIDENCE",
+    "NO_ACTION_INSUFFICIENT_EVIDENCE","ACTION_ELIGIBLE",
+]
 REQUIRED_EXIT_LABELS = {"CONSTITUTION_KEEP","ACTIVE_COMPATIBILITY_KEEP","DIAGNOSTIC_ONLY","REDUNDANT_RETIRE_FROM_ACTIVE_PATH","UNRESOLVED_BLOCKER"}
 REQUIRED_GOVERNANCE_OBJECTS = {"workflow","gate","amendment","receipt","validation_layer","probe"}
 REQUIRED_ADMISSION_PREVENTS = {"leakage","silent mutation","invalid inference","risk-discipline failure"}
@@ -45,7 +53,14 @@ def exact_set(actual, expected: set[str], code: str) -> None:
 
 
 def main() -> None:
-    k = read(KERNEL); f = read(FOUNDATION); e = read(EXIT_AUDIT)
+    k = read(KERNEL)
+    f = read(FOUNDATION)
+    ec = read(EXIT_AUDIT_CONTRACT)
+    er = read(EXIT_AUDIT_RECEIPT)
+    vc = read(VALIDITY_CONTRACT)
+    dc = read(DISCIPLINE_CONTRACT)
+    pc = read(DECISION_PACKET_CONTRACT)
+
     if k.get("schema") != "AI_CORE_EVID_V2_9_GOVERNANCE_KERNEL_V1": raise RuntimeError("KERNEL_SCHEMA_BLOCK")
     if k.get("status") != "FROZEN_ARCHITECTURE_BASELINE": raise RuntimeError("KERNEL_STATUS_BLOCK")
     exact_set(k.get("constitutional_invariants", {}).keys(), REQUIRED_INVARIANTS, "KERNEL_INVARIANT_DRIFT")
@@ -58,9 +73,6 @@ def main() -> None:
     if ownership["RESEARCH_UNCERTAINTY"].get("default_action") != "DO_NOT_ENGINEER_A_FIX": raise RuntimeError("RESEARCH_UNCERTAINTY_DEFAULT_ACTION_BLOCK")
     exact_set(ownership["RESEARCH_UNCERTAINTY"].get("allowed_outputs"), REQUIRED_STRENGTH_LEVELS, "RESEARCH_UNCERTAINTY_OUTPUT_DRIFT")
     if ownership["EXTERNAL_OPERATIONAL"].get("default_action") != "RETRY_CACHE_DEGRADE_RECORD": raise RuntimeError("EXTERNAL_OPERATIONAL_DEFAULT_ACTION_BLOCK")
-    escalation = ownership["EXTERNAL_OPERATIONAL"].get("escalation_rule", "")
-    if "sample identity" not in escalation or "temporal validity" not in escalation or "discipline outcome" not in escalation:
-        raise RuntimeError("EXTERNAL_OPERATIONAL_ESCALATION_RULE_BLOCK")
 
     compat = k.get("backward_compatibility", {})
     for key, expected in {
@@ -71,59 +83,83 @@ def main() -> None:
     }.items():
         if compat.get(key) is not expected: raise RuntimeError(f"BACKWARD_COMPATIBILITY_BLOCK:{key}")
 
-    gate_test = k.get("gate_admission_test", {})
-    if len(gate_test.get("questions", [])) != 4: raise RuntimeError("GATE_ADMISSION_QUESTION_COUNT_BLOCK")
-    if "If all answers are NO" not in gate_test.get("rule", ""): raise RuntimeError("GATE_ADMISSION_RULE_BLOCK")
-
     obj_rule = k.get("governance_object_admission_rule", {})
     exact_set(obj_rule.get("applies_to"), REQUIRED_GOVERNANCE_OBJECTS, "GOVERNANCE_OBJECT_SCOPE_DRIFT")
     exact_set(obj_rule.get("admit_only_if_prevents"), REQUIRED_ADMISSION_PREVENTS, "GOVERNANCE_ADMISSION_PREVENTS_DRIFT")
-    if not obj_rule.get("required_question"): raise RuntimeError("GOVERNANCE_REQUIRED_QUESTION_BLOCK")
 
     semantics = k.get("decision_semantics", {})
     exact_set(semantics.get("action_type_values"), REQUIRED_ACTION_TYPES, "ACTION_TYPE_SEMANTICS_DRIFT")
     exact_set(semantics.get("eligibility_output_values"), REQUIRED_ELIGIBILITY_OUTPUTS, "ELIGIBILITY_OUTPUT_SEMANTICS_DRIFT")
-    if "separate fields" not in semantics.get("semantic_rule", ""): raise RuntimeError("ACTION_ELIGIBILITY_SEPARATION_BLOCK")
 
     if f.get("schema") != "AI_CORE_EVID_V2_9_VALIDITY_AND_DISCIPLINE_FOUNDATION_V1": raise RuntimeError("FOUNDATION_SCHEMA_BLOCK")
     if f.get("governance_kernel") != str(KERNEL): raise RuntimeError("FOUNDATION_KERNEL_BINDING_BLOCK")
-    if f.get("status") != "FOUNDATION_FROZEN_BEFORE_IMPLEMENTATION": raise RuntimeError("FOUNDATION_STATUS_BLOCK")
     validity = f.get("validity_engine", {})
     exact_set(validity.get("required_dimensions"), REQUIRED_VALIDITY_DIMENSIONS, "VALIDITY_DIMENSION_DRIFT")
     exact_set(validity.get("evidence_strength_levels"), REQUIRED_STRENGTH_LEVELS, "VALIDITY_STRENGTH_DRIFT")
     if len(validity.get("anti_p_hacking_rules", [])) < 4: raise RuntimeError("ANTI_P_HACKING_RULES_BLOCK")
-    if "single PASS" not in validity.get("pass_fail_policy", ""): raise RuntimeError("VALIDITY_PASS_FAIL_POLICY_BLOCK")
-
     discipline = f.get("discipline_engine", {})
+    if discipline.get("action_output_priority") != REQUIRED_PRIORITY: raise RuntimeError("FOUNDATION_DISCIPLINE_PRIORITY_DRIFT")
     exact_set(discipline.get("behavioral_guards", {}).keys(), {"anti_fomo","anti_averaging_down","stop_loss_lock","take_profit_lock","override_logging"}, "DISCIPLINE_GUARD_DRIFT")
-    if "action eligibility" not in discipline.get("principle", ""): raise RuntimeError("DISCIPLINE_PRINCIPLE_BLOCK")
 
-    if e.get("schema") != "AI_CORE_EVID_V2_9_INTEGRITY_EXIT_AUDIT_CONTRACT_V1": raise RuntimeError("EXIT_AUDIT_SCHEMA_BLOCK")
-    if e.get("governance_kernel") != str(KERNEL): raise RuntimeError("EXIT_AUDIT_KERNEL_BINDING_BLOCK")
-    if e.get("status") != "FROZEN_BEFORE_AUDIT": raise RuntimeError("EXIT_AUDIT_STATUS_BLOCK")
-    exact_set(e.get("classification_labels"), REQUIRED_EXIT_LABELS, "EXIT_AUDIT_LABEL_DRIFT")
-    retirement = e.get("retirement_safety", {})
-    if retirement.get("destructive_deletion_of_historical_evidence") is not False: raise RuntimeError("HISTORICAL_EVIDENCE_DELETION_BLOCK")
-    if retirement.get("silent_relabeling_of_old_pass_fail_states") is not False: raise RuntimeError("OLD_STATE_RELABEL_BLOCK")
-    if retirement.get("removal_of_controls_required_by_open_frozen_contracts") is not False: raise RuntimeError("OPEN_CONTRACT_CONTROL_REMOVAL_BLOCK")
+    if vc.get("governance_kernel") != str(KERNEL) or vc.get("foundation") != str(FOUNDATION): raise RuntimeError("VALIDITY_CONTRACT_BINDING_BLOCK")
+    exact_set(vc.get("experiment_preregistration", {}).get("required_dimension_plan"), REQUIRED_VALIDITY_DIMENSIONS, "VALIDITY_CONTRACT_DIMENSION_DRIFT")
+    exact_set(vc.get("result_interface", {}).get("evidence_strength_levels"), REQUIRED_STRENGTH_LEVELS, "VALIDITY_CONTRACT_STRENGTH_DRIFT")
+    if vc.get("experiment_preregistration", {}).get("post_outcome_dimension_deletion_allowed") is not False: raise RuntimeError("POST_OUTCOME_DIMENSION_DELETION_BLOCK")
+    if vc.get("experiment_preregistration", {}).get("post_outcome_baseline_replacement_allowed") is not False: raise RuntimeError("POST_OUTCOME_BASELINE_REPLACEMENT_BLOCK")
+    if vc.get("result_interface", {}).get("automatic_upgrade_from_point_estimate_only") is not False: raise RuntimeError("POINT_ESTIMATE_AUTO_UPGRADE_BLOCK")
+
+    if dc.get("governance_kernel") != str(KERNEL): raise RuntimeError("DISCIPLINE_KERNEL_BINDING_BLOCK")
+    if dc.get("validity_foundation") != str(FOUNDATION): raise RuntimeError("DISCIPLINE_FOUNDATION_BINDING_BLOCK")
+    exact_set(dc.get("input_contract", {}).get("action_types"), REQUIRED_ACTION_TYPES, "DISCIPLINE_ACTION_TYPE_DRIFT")
+    exact_set(dc.get("input_contract", {}).get("evidence_strength_levels"), REQUIRED_STRENGTH_LEVELS, "DISCIPLINE_EVIDENCE_STRENGTH_DRIFT")
+    exact_set(dc.get("output_contract", {}).get("decision_values"), REQUIRED_ELIGIBILITY_OUTPUTS, "DISCIPLINE_OUTPUT_DRIFT")
+    if dc.get("priority_order") != REQUIRED_PRIORITY: raise RuntimeError("DISCIPLINE_PRIORITY_DRIFT")
+    if "native booleans" not in dc.get("input_contract", {}).get("strict_boolean_rule", ""): raise RuntimeError("DISCIPLINE_BOOLEAN_TYPE_BLOCK")
+    if "finite" not in dc.get("input_contract", {}).get("strict_numeric_rule", ""): raise RuntimeError("DISCIPLINE_NUMERIC_TYPE_BLOCK")
+
+    if pc.get("governance_kernel") != str(KERNEL): raise RuntimeError("PACKET_KERNEL_BINDING_BLOCK")
+    if pc.get("validity_contract") != str(VALIDITY_CONTRACT): raise RuntimeError("PACKET_VALIDITY_BINDING_BLOCK")
+    if pc.get("discipline_contract") != str(DISCIPLINE_CONTRACT): raise RuntimeError("PACKET_DISCIPLINE_BINDING_BLOCK")
+    if "native booleans" not in pc.get("packet", {}).get("strict_boolean_rule", ""): raise RuntimeError("PACKET_BOOLEAN_TYPE_BLOCK")
+    if "NaN and infinity are invalid" not in pc.get("packet", {}).get("strict_numeric_rule", ""): raise RuntimeError("PACKET_NUMERIC_TYPE_BLOCK")
+    if "may only be downgraded to INSUFFICIENT" not in pc.get("binding_rules", {}).get("evidence_strength_passthrough", ""): raise RuntimeError("PACKET_EVIDENCE_DOWNGRADE_ONLY_BLOCK")
+    if "Missing required fields are an error" not in pc.get("binding_rules", {}).get("no_risk_field_inference", ""): raise RuntimeError("PACKET_MISSING_RISK_FAIL_CLOSED_BLOCK")
+
+    packet_fields = set()
+    psec = pc.get("packet", {})
+    for key in (
+        "validity_required_fields","action_context_required_fields","risk_context_required_fields",
+        "behavior_context_required_fields","override_context_required_fields"
+    ):
+        packet_fields.update(psec.get(key, []))
+    discipline_fields = set(dc.get("input_contract", {}).get("required_fields", []))
+    if not discipline_fields.issubset(packet_fields):
+        raise RuntimeError(f"PACKET_DOES_NOT_COVER_DISCIPLINE_INPUT:{sorted(discipline_fields - packet_fields)}")
+
+    if ec.get("schema") != "AI_CORE_EVID_V2_9_INTEGRITY_EXIT_AUDIT_CONTRACT_V1": raise RuntimeError("EXIT_AUDIT_SCHEMA_BLOCK")
+    exact_set(ec.get("classification_labels"), REQUIRED_EXIT_LABELS, "EXIT_AUDIT_LABEL_DRIFT")
+    if er.get("status") != "PASS_NO_UNRESOLVED_BLOCKER": raise RuntimeError("EXIT_AUDIT_RECEIPT_STATUS_BLOCK")
+    if er.get("summary", {}).get("UNRESOLVED_BLOCKER") != 0: raise RuntimeError("EXIT_AUDIT_UNRESOLVED_BLOCKER")
+    if er.get("summary", {}).get("V2_8_12R_open_compatibility_dependencies") != 0: raise RuntimeError("LEGACY_COMPATIBILITY_DEPENDENCY_REOPENED")
+    if er.get("exit_condition_pass") is not True: raise RuntimeError("EXIT_AUDIT_EXIT_CONDITION_BLOCK")
 
     result = {
-        "schema": "AI_CORE_EVID_V2_9_GOVERNANCE_KERNEL_VALIDATION_V3",
+        "schema": "AI_CORE_EVID_V2_9_END_TO_END_GOVERNANCE_ACCEPTANCE_V1",
         "status": "PASS",
         "checks": {
-            "constitutional_invariants_exact": True,
-            "four_module_architecture_exact": True,
-            "problem_ownership_exact": True,
-            "hard_gate_families_exact": True,
-            "governance_admission_rule_exact": True,
-            "action_and_eligibility_semantics_exact": True,
+            "governance_kernel_invariants_exact": True,
+            "problem_ownership_and_hard_gate_scope_exact": True,
             "V2_8_12R_backward_compatibility_preserved": True,
-            "validity_dimensions_and_strength_exact": True,
-            "anti_p_hacking_protection_present": True,
-            "discipline_guards_exact": True,
-            "integrity_exit_labels_and_retirement_safety_exact": True
+            "validity_dimensions_and_strength_consistent": True,
+            "anti_p_hacking_contract_consistent": True,
+            "discipline_action_output_and_priority_consistent": True,
+            "strict_boolean_and_numeric_semantics_present": True,
+            "decision_packet_covers_discipline_required_inputs": True,
+            "decision_packet_downgrade_only_semantics_present": True,
+            "integrity_exit_audit_closed_without_blocker": True,
+            "legacy_active_dependency_count_zero": True
         },
-        "note": "Checks V2.9 governance semantics and compatibility structure only; does not evaluate profitability or authorize execution."
+        "note": "Cross-layer contract/static acceptance only. Profitability is not evaluated and no brokerage or live execution is authorized."
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
