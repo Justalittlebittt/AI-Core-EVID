@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from copy import deepcopy
-
 from v29_decision_packet_adapter import DecisionPacketError, adapt_and_evaluate
 
 SHA = "a" * 64
@@ -51,6 +49,14 @@ def packet() -> dict:
     }
 
 
+def expect_packet_error(p: dict, marker: str) -> None:
+    try:
+        adapt_and_evaluate(p)
+        raise AssertionError(f"expected packet error: {marker}")
+    except DecisionPacketError as exc:
+        assert marker in str(exc), (exc, marker)
+
+
 def main() -> None:
     base = adapt_and_evaluate(packet())
     assert base["packet_status"] == "PACKET_VALID"
@@ -73,19 +79,19 @@ def main() -> None:
 
     p = packet()
     p["risk_context"].pop("position_limit")
-    try:
-        adapt_and_evaluate(p)
-        raise AssertionError("missing risk field did not fail closed")
-    except DecisionPacketError as exc:
-        assert "MISSING_FIELDS:risk_context:position_limit" in str(exc)
+    expect_packet_error(p, "MISSING_FIELDS:risk_context:position_limit")
 
     p = packet()
     p["research_context"]["evidence_artifact_sha256"] = "bad"
-    try:
-        adapt_and_evaluate(p)
-        raise AssertionError("bad SHA did not fail closed")
-    except DecisionPacketError as exc:
-        assert "INVALID_SHA256:evidence_artifact_sha256" in str(exc)
+    expect_packet_error(p, "INVALID_SHA256:evidence_artifact_sha256")
+
+    p = packet()
+    p["validity"]["post_outcome_rule_change_detected"] = "false"
+    expect_packet_error(p, "validity.post_outcome_rule_change_detected_MUST_BE_BOOLEAN")
+
+    p = packet()
+    p["validity"]["all_required_dimensions_reported"] = 1
+    expect_packet_error(p, "validity.all_required_dimensions_reported_MUST_BE_BOOLEAN")
 
     p = packet()
     p["action_context"]["action_type"] = "ADD"
