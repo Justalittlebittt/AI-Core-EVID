@@ -1,0 +1,77 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R2_OUTCOME_RESOLUTION_RECEIPT_V1",
+  "version": "V2.8.12R",
+  "status": "R2_OUTCOMES_RESOLVED",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_6.json",
+  "final_pre_outcome_cohort_sha256": "f654b122989cb16becc1bad81cfa2d63d8fcfd5b3b0c79358f29126bbd2c24e3",
+  "source": {
+    "provider": "BaoStock",
+    "package_version": "0.9.4",
+    "stock_adjustflag": "2",
+    "benchmark_adjustflag": "3",
+    "query_range": {
+      "start": "2024-01-31",
+      "end": "2024-09-18"
+    },
+    "stock_response_sha256_by_symbol": {
+      "sh.600186": "2bdede4b8a241d3e2661a3f0dde783c3fb235a58790d9a040bb26e80a8d30ca2",
+      "sh.603300": "9b9a86ef545395b9565729ca3e5269be1d7a2376dc39939706c8bf7659a10292"
+    },
+    "benchmark_response_sha256": "3f6729873c97d1ca93a4c3373dbacb234280dbc4e922f4da8723a86adc03fb1b",
+    "D_T_from_same_response": true
+  },
+  "resolution": {
+    "event_count": 4,
+    "resolved_events": 4,
+    "resolved_event_share": 1.0,
+    "unavailable": [],
+    "target_shift_used": false,
+    "event_drop_used": false
+  },
+  "analysis": {
+    "primary_statistic_issuer_equal_weight_median_D10_excess": 0.021523269210499997,
+    "issuer_cluster_bootstrap_95pct_interval": [
+      -0.026951517588,
+      0.069998056009
+    ],
+    "bootstrap_resamples": 5000,
+    "bootstrap_seed": 2812,
+    "secondary_issuer_equal_weight_median_D5_excess": 0.0012419352184999998,
+    "event_level_median_D10_excess": -0.0104352756015,
+    "event_level_median_D5_excess": 0.0012419352184999998,
+    "issuer_level_positive_D10_share": 0.5,
+    "event_level_positive_D10_share": 0.5,
+    "issuer_D10_medians": {
+      "SSE:600186": -0.026951517588,
+      "SSE:603300": 0.069998056009
+    },
+    "issuer_D5_medians": {
+      "SSE:600186": 0.007746153388,
+      "SSE:603300": -0.005262282951
+    }
+  },
+  "sample_floor": {
+    "frozen_positive_events": 4,
+    "distinct_issuers": 2,
+    "distinct_positive_quarters": 3,
+    "maximum_single_issuer_event_share": 0.75,
+    "resolved_event_share": 1.0,
+    "checks": {
+      "frozen_positive_events_min_12": false,
+      "distinct_issuers_min_6": false,
+      "distinct_positive_quarters_min_6": false,
+      "maximum_single_issuer_event_share_le_one_third": false,
+      "resolved_event_share_min_0_80": true
+    },
+    "pass": false
+  },
+  "verdict": "DESCRIPTIVE_ONLY_SAMPLE_TOO_SMALL_FOR_FEASIBILITY_VERDICT",
+  "maximum_claim": "RETROSPECTIVE_FEASIBILITY_ONLY",
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_or_live_accessed": false,
+  "buy_sell_or_rebalance_instruction_generated": false,
+  "results_file": "evidence/retrospective_feasibility/V2.8.12R_R2_OUTCOME_RESULTS.csv",
+  "receipt_sha256": "3436d3bf92b55f1a779926f3d243360a85edfe6bd22bb47af89bef636e284aa9"
+}
