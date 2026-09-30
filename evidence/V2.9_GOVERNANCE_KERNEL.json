@@ -8,7 +8,7 @@
     "NO_LEAKAGE": "Future information, outcome information, or post-decision information may not influence signal formation, cohort construction, parameter choice, or action eligibility for the evaluated decision time.",
     "NO_SILENT_SAMPLE_MUTATION": "Frozen samples, windows, classifiers, thresholds, labels, and selection rules may not change after observing outcomes without an explicit new version and revalidation.",
     "NO_UNDOCUMENTED_OVERRIDE": "Risk, position, stop-loss, take-profit, invalidation, and action-eligibility rules may not be overridden silently. Any override must be explicit, versioned, and justified by predeclared admissible evidence.",
-    "NO_UNSUPPORTED_CERTAINTY": "Insufficient or unstable evidence must remain INSufficient/weak/uncertain; uncertainty may not be converted into a forced directional conclusion.",
+    "NO_UNSUPPORTED_CERTAINTY": "Insufficient or unstable evidence must remain insufficient, weak, or uncertain; uncertainty may not be converted into a forced directional conclusion.",
     "NO_GOAL_DRIFT": "Primary optimization target is reduction of emotion-driven decision error under evidence and risk constraints, not maximum return, maximum trade frequency, or prediction confidence."
   },
   "problem_ownership": {
@@ -70,12 +70,7 @@
     "applies_to": ["workflow", "gate", "amendment", "receipt", "validation_layer", "probe"],
     "required_question": "If this object is not added, which specific system-level failure becomes possible?",
     "reject_if_answer_is_only": ["more complete", "more rigorous", "might be useful later", "easier to audit", "more documentation"],
-    "admit_only_if_prevents": [
-      "leakage",
-      "silent mutation",
-      "invalid inference",
-      "risk-discipline failure"
-    ]
+    "admit_only_if_prevents": ["leakage", "silent mutation", "invalid inference", "risk-discipline failure"]
   },
   "architecture": {
     "GOVERNANCE_KERNEL": "Owns invariants, hard-gate definitions, scope boundaries, version-binding rules, and cross-layer semantic consistency.",
@@ -84,23 +79,16 @@
     "DISCIPLINE_ENGINE": "Owns action eligibility, position limits, stop-loss/take-profit locks, anti-FOMO/anti-averaging-down constraints, invalidation conditions, and override logging."
   },
   "decision_semantics": {
-    "preferred_action_outputs": [
-      "BUY_ELIGIBLE",
-      "BUY_BLOCKED",
-      "ADD_ELIGIBLE",
-      "ADD_BLOCKED",
-      "HOLD_ELIGIBLE",
-      "REDUCE_ELIGIBLE",
-      "EXIT_ELIGIBLE",
+    "action_type_values": ["BUY", "ADD", "HOLD", "REDUCE", "EXIT"],
+    "eligibility_output_values": [
       "EXIT_REQUIRED",
-      "NO_ACTION_INSUFFICIENT_EVIDENCE"
+      "ACTION_BLOCKED_BY_RISK",
+      "ACTION_BLOCKED_BY_EVIDENCE",
+      "NO_ACTION_INSUFFICIENT_EVIDENCE",
+      "ACTION_ELIGIBLE"
     ],
-    "prohibited_default_semantics": [
-      "CERTAIN_BUY",
-      "CERTAIN_SELL",
-      "GUARANTEED_UP",
-      "GUARANTEED_DOWN"
-    ]
+    "semantic_rule": "action_type and eligibility decision are separate fields. The system evaluates whether a contemplated human action is eligible; it does not rewrite the contemplated action or emit a directional trading command.",
+    "prohibited_default_semantics": ["CERTAIN_BUY", "CERTAIN_SELL", "GUARANTEED_UP", "GUARANTEED_DOWN"]
   },
   "out_of_scope": [
     "Guaranteed market direction prediction",
