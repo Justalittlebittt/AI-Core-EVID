@@ -1,0 +1,65 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_DISCIPLINE_ENGINE_V1_CONTRACT",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+  "validity_foundation": "evidence/V2.9_VALIDITY_AND_DISCIPLINE_FOUNDATION.json",
+  "purpose": "Convert precommitted evidence-strength and risk-discipline rules into action-eligibility outputs without generating autonomous trading instructions or certain market-direction claims.",
+  "input_contract": {
+    "required_fields": [
+      "action_type",
+      "evidence_strength",
+      "position_size",
+      "position_limit",
+      "risk_budget_used",
+      "risk_budget_limit",
+      "stop_loss_defined",
+      "stop_loss_breached",
+      "take_profit_defined",
+      "invalidation_triggered",
+      "adjustment_condition_satisfied",
+      "is_averaging_down",
+      "independent_add_eligibility",
+      "is_chasing",
+      "chase_rule_satisfied",
+      "override_requested",
+      "override_reason"
+    ],
+    "action_types": ["BUY", "ADD", "HOLD", "REDUCE", "EXIT"],
+    "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"]
+  },
+  "priority_order": [
+    "EXIT_REQUIRED",
+    "ACTION_BLOCKED_BY_RISK",
+    "ACTION_BLOCKED_BY_EVIDENCE",
+    "ACTION_ELIGIBLE",
+    "NO_ACTION_INSUFFICIENT_EVIDENCE"
+  ],
+  "hard_rules": {
+    "stop_loss_lock": "If stop_loss_breached is true, output EXIT_REQUIRED regardless of evidence strength or override intent unless a predeclared adjustment condition was already satisfied before the breach.",
+    "invalidation_lock": "If invalidation_triggered is true, BUY/ADD/HOLD are not eligible; existing exposure must resolve to EXIT_REQUIRED unless the contemplated action is REDUCE or EXIT.",
+    "risk_budget": "If position_size exceeds position_limit or risk_budget_used exceeds risk_budget_limit, BUY/ADD are blocked by risk.",
+    "anti_averaging_down": "ADD while is_averaging_down=true requires independent_add_eligibility=true. A lower price by itself is never sufficient.",
+    "anti_fomo": "BUY/ADD while is_chasing=true requires chase_rule_satisfied=true.",
+    "evidence_floor": "BUY/ADD require STRONG or MODERATE evidence. WEAK blocks risk-increasing actions. INSUFFICIENT returns NO_ACTION_INSUFFICIENT_EVIDENCE unless EXIT_REQUIRED already has priority.",
+    "exit_permission": "EXIT and REDUCE are never blocked merely because evidence is weak; risk-reducing actions remain eligible unless a higher-priority EXIT_REQUIRED state already applies.",
+    "override_logging": "override_requested never converts a blocked state into ACTION_ELIGIBLE. It is logged separately and must not be relabeled as model-compliant."
+  },
+  "output_contract": {
+    "required_fields": ["decision", "reasons", "override_logged"],
+    "decision_values": [
+      "EXIT_REQUIRED",
+      "ACTION_BLOCKED_BY_RISK",
+      "ACTION_BLOCKED_BY_EVIDENCE",
+      "ACTION_ELIGIBLE",
+      "NO_ACTION_INSUFFICIENT_EVIDENCE"
+    ]
+  },
+  "non_goals": [
+    "No autonomous brokerage execution",
+    "No position sizing optimization",
+    "No prediction of guaranteed direction",
+    "No automatic loosening of stop-loss or take-profit rules",
+    "No conversion of human override into system approval"
+  ]
+}
