@@ -1,0 +1,81 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_BASELINE_SNAPSHOT_V1",
+  "version": "V2.9",
+  "status": "STATIC_CROSS_LAYER_ACCEPTED_RUNTIME_SELFTESTS_NOT_CENTRALLY_EXECUTED",
+  "architecture": [
+    "GOVERNANCE_KERNEL",
+    "EVIDENCE_ENGINE",
+    "VALIDITY_ENGINE",
+    "DECISION_PACKET",
+    "DISCIPLINE_ENGINE"
+  ],
+  "frozen_bindings": {
+    "governance_kernel": {
+      "path": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+      "blob_sha": "378826c06c5c11045f417ca17b6fca44c6a70e39"
+    },
+    "validity_and_discipline_foundation": {
+      "path": "evidence/V2.9_VALIDITY_AND_DISCIPLINE_FOUNDATION.json",
+      "blob_sha": "1e80dce51665ce9f75776f16f7906de392ab4263"
+    },
+    "integrity_exit_audit_receipt": {
+      "path": "evidence/V2.9_INTEGRITY_EXIT_AUDIT_RECEIPT.json",
+      "blob_sha": "37babf9d0cee40e01217af461d44e858d5ca6db2"
+    },
+    "strategy_validity_contract": {
+      "path": "evidence/V2.9_STRATEGY_VALIDITY_BASELINE_CONTRACT.json",
+      "blob_sha": "6631dd98eea127bc60f51387ee5ac13b1a510053"
+    },
+    "discipline_contract": {
+      "path": "evidence/V2.9_DISCIPLINE_ENGINE_V1_CONTRACT.json",
+      "blob_sha": "40e0e839bccc447cb93f1c66c510bddf939a58b3"
+    },
+    "decision_packet_contract": {
+      "path": "evidence/V2.9_DECISION_PACKET_CONTRACT.json",
+      "blob_sha": "0f66087fa50ef04911e1cc1ec8fa91d656a06f3a"
+    },
+    "governance_end_to_end_validator": {
+      "path": "scripts/v29_governance_kernel_validator.py",
+      "blob_sha": "50b3b18387124ec62edeb107f231dcd7cba91d75"
+    },
+    "strategy_validity_validator": {
+      "path": "scripts/v29_strategy_validity_validator.py",
+      "blob_sha": "0078579d4ecc72de821e6bfab35544f41776b76d"
+    },
+    "discipline_engine": {
+      "path": "scripts/v29_discipline_engine.py",
+      "blob_sha": "ba06905b8afb95e964fec87bb0be615b05d2e07c"
+    },
+    "decision_packet_adapter": {
+      "path": "scripts/v29_decision_packet_adapter.py",
+      "blob_sha": "88dc644a233e40bdc474e8875fb182300fb251ec"
+    }
+  },
+  "acceptance_findings": {
+    "foundation_priority_semantic_drift_found_and_fixed": true,
+    "validator_strict_type_path_bug_found_and_fixed": true,
+    "decision_packet_illegal_enum_fail_closed": true,
+    "decision_packet_boolean_fields_fail_closed": true,
+    "decision_packet_numeric_fields_fail_closed": true,
+    "decision_packet_missing_risk_fields_fail_closed": true,
+    "validity_evidence_strength_can_only_be_preserved_or_downgraded": true,
+    "discipline_action_type_not_rewritten": true,
+    "override_cannot_rescue_blocked_action": true,
+    "integrity_exit_unresolved_blocker_count": 0,
+    "legacy_V2_8_12R_active_compatibility_dependencies": 0
+  },
+  "runtime_validation_state": {
+    "dedicated_new_CI_workflow_created": false,
+    "existing_CI_binding_found": false,
+    "centralized_runtime_execution_claimed": false,
+    "reason": "Do not add a new governance workflow solely to prove the lightweight validator. Runtime self-test scripts remain available for future execution through an existing execution surface when one is naturally available."
+  },
+  "scope_boundary": {
+    "profitability_validated": false,
+    "live_trading_authorized": false,
+    "brokerage_execution_authorized": false,
+    "automatic_position_sizing_authorized": false,
+    "market_direction_guarantee_authorized": false
+  },
+  "next_stage": "REGISTER_FIRST_REAL_V2_9_STRATEGY_VALIDITY_EXPERIMENT_BEFORE_OUTCOME_EVALUATION"
+}
