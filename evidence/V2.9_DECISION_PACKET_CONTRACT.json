@@ -54,10 +54,26 @@
     "override_context_required_fields": [
       "override_requested",
       "override_reason"
-    ]
+    ],
+    "strict_boolean_fields": [
+      "validity.all_required_dimensions_reported",
+      "validity.post_outcome_rule_change_detected",
+      "action_context.current_exposure_exists",
+      "risk_context.stop_loss_defined",
+      "risk_context.stop_loss_breached",
+      "risk_context.take_profit_defined",
+      "risk_context.invalidation_triggered",
+      "risk_context.adjustment_condition_satisfied",
+      "behavior_context.is_averaging_down",
+      "behavior_context.independent_add_eligibility",
+      "behavior_context.is_chasing",
+      "behavior_context.chase_rule_satisfied",
+      "override_context.override_requested"
+    ],
+    "strict_boolean_rule": "Boolean fields must be native booleans true/false. Strings, integers, null, and other truthy/falsy values are invalid and fail closed."
   },
   "binding_rules": {
-    "evidence_strength_passthrough": "The adapter must pass validity.evidence_strength to Discipline Engine unchanged.",
+    "evidence_strength_passthrough": "The adapter must pass validity.evidence_strength to Discipline Engine unchanged unless validity integrity fails, in which case only a fail-closed downgrade to INSUFFICIENT is allowed.",
     "validity_integrity_fail_closed": "If all_required_dimensions_reported is false or post_outcome_rule_change_detected is true, risk-increasing actions must be evaluated with evidence_strength=INSUFFICIENT regardless of the reported strength; the original reported strength must remain auditable in adapter metadata.",
     "hash_presence": "evidence_artifact_sha256, validity_result_sha256 and pre_registration_sha256 must be non-empty lowercase 64-character SHA256 hex strings.",
     "no_risk_field_inference": "The adapter may not invent, default, optimize or estimate missing risk fields. Missing required fields are an error.",
