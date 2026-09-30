@@ -1,0 +1,100 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_STRATEGY_VALIDITY_FRAMEWORK_CONTRACT_V1",
+  "version": "V2.9",
+  "status": "FOUNDATION_ONLY_NO_RESEARCH_AUTHORIZATION",
+  "purpose": "Shift AI Core EVID from governance-heavy evidence plumbing toward explicit measurement of whether a strategy produces decision-relevant, robust, executable value.",
+  "problem_elimination": {
+    "goal": "Measure strategy validity without creating another chain of gates before the research inputs are authorized.",
+    "delete": [
+      "No new receipt-on-receipt governance chain for ordinary evaluator outputs.",
+      "No arbitrary PASS thresholds in the foundation layer.",
+      "No duplicate outcome access path around existing authorization gates."
+    ],
+    "reuse": [
+      "Existing timestamp/vintage/provenance/dedup/OOS isolation remain hard integrity constraints.",
+      "Existing V2.8.12 prospective E-layer accumulation remains independent and unchanged."
+    ]
+  },
+  "architecture": {
+    "L0_data_integrity": "FROZEN_MAINTENANCE_MODE_P0_FIXES_ONLY",
+    "L1_signal_research": "EXISTING_RESEARCH_BRANCHES",
+    "L2_strategy_validity": "THIS_FRAMEWORK",
+    "L3_decision_engine": "DEFERRED",
+    "L4_discipline_guard": "DEFERRED"
+  },
+  "validity_dimensions": [
+    "effect_size",
+    "baseline_relative_performance",
+    "out_of_sample_separation",
+    "regime_stability",
+    "transaction_cost_impact",
+    "downside_and_drawdown",
+    "probability_calibration",
+    "parameter_sensitivity",
+    "cross_sectional_concentration"
+  ],
+  "foundation_policy": {
+    "metric_computation_authorized": true,
+    "real_research_dataset_access_authorized_by_this_contract": false,
+    "price_or_return_access_authorized_by_this_contract": false,
+    "fold3_access_authorized": false,
+    "fold4_access_authorized": false,
+    "setup_emission_authorized": false,
+    "live_authorized": false,
+    "evidence_strength_thresholds_frozen": false,
+    "evidence_strength_value_until_threshold_contract": "UNSCORED_PENDING_THRESHOLD_CONTRACT"
+  },
+  "metric_contract": {
+    "required_observation_fields": [
+      "observation_id",
+      "strategy_return",
+      "benchmark_return"
+    ],
+    "optional_fields": [
+      "transaction_cost",
+      "regime",
+      "security_id",
+      "predicted_probability",
+      "realized_positive",
+      "parameter_variant"
+    ],
+    "effect_size": [
+      "n",
+      "mean_strategy_return",
+      "median_strategy_return",
+      "mean_net_return",
+      "median_net_return",
+      "mean_benchmark_return",
+      "mean_excess_return",
+      "median_excess_return",
+      "positive_net_return_share",
+      "p10_net_return"
+    ],
+    "transaction_cost": [
+      "mean_transaction_cost",
+      "mean_gross_to_net_drag"
+    ],
+    "regime": "Report the same core return statistics per supplied regime label; do not infer market regimes in this layer.",
+    "calibration": "When predicted_probability and realized_positive are present, report count, mean predicted probability, realized positive rate and Brier score. No calibration binning or pass threshold is imposed in V2.9 foundation.",
+    "sensitivity": "When parameter_variant is present, report metrics by variant. Foundation does not rank or select a winning parameter set.",
+    "concentration": "When security_id is present, report unique security count and maximum observation share from one security.",
+    "drawdown": "Not computed from unordered event observations. A later portfolio-path evaluator must require an explicitly defined chronological portfolio return series rather than silently assume equal weighting."
+  },
+  "hard_integrity_boundary": [
+    "No future leakage or outcome contamination.",
+    "No silent sample-selection rule change.",
+    "No silent classifier or threshold change.",
+    "No timestamp ambiguity that can alter inference.",
+    "No sample identity ambiguity that can alter inference.",
+    "No unauthorized price/return access.",
+    "No OOS contamination."
+  ],
+  "explicit_non_goals": [
+    "Does not claim alpha.",
+    "Does not authorize current V2.8.12 E-event outcome resolution.",
+    "Does not choose trading thresholds.",
+    "Does not emit BUY/ADD/HOLD/REDUCE/EXIT decisions.",
+    "Does not convert diagnostic metrics into a hard gate without a separately reviewed threshold contract."
+  ],
+  "next_stage": "V2.9_SYNTHETIC_VALIDITY_EVALUATOR_SELFTEST_THEN_THRESHOLD_CONTRACT_DESIGN"
+}
