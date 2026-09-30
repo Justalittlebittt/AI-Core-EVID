@@ -23,7 +23,7 @@ def main() -> None:
     assert abs(daily.iloc[0]["gross_return"] - 0.005) < 1e-12
     assert abs(daily.iloc[0]["net_return"] - 0.003) < 1e-12
     assert result.metrics["maximum_drawdown"] <= 0.0
-    assert result.metrics["total_transaction_cost"] == 0.003
+    assert abs(result.metrics["total_transaction_cost"] - 0.003) < 1e-12
     assert result.metrics["annualization"]["status"] == "NOT_COMPUTED_PERIODS_PER_YEAR_NOT_SUPPLIED"
     assert set(daily["sample_partition"]) == {"train", "oos"}
 
@@ -57,6 +57,12 @@ def main() -> None:
         raise AssertionError("return <= -100% should fail")
     except ValueError as exc:
         assert "greater than -1.0" in str(exc)
+
+    try:
+        evaluate_portfolio_path(df.assign(exposure_weight=[0.5, float("inf"), 0.5, 0.5, 1.0]))
+        raise AssertionError("non-finite exposure should fail")
+    except ValueError as exc:
+        assert "non-finite" in str(exc)
 
     print("V2.9 portfolio path synthetic selftest: PASS")
 
