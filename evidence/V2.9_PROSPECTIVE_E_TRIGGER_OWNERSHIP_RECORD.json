@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_PROSPECTIVE_E_TRIGGER_OWNERSHIP_RECORD_V1",
+  "version": "V2.9",
+  "status": "MORNING_ORCHESTRATOR_PRIMARY_TRIGGER_ACTIVE",
+  "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+  "affected_collection_workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+  "primary_trigger_owner": ".github/workflows/v283-prospective-morning-orchestrator.yml",
+  "problem": {
+    "target_workflow_direct_schedule_empirically_confirmed": false,
+    "latest_successful_target_run_event": "workflow_dispatch",
+    "latest_successful_target_run_id": 36534929208,
+    "repository_scheduler_functioning": true,
+    "morning_orchestrator_schedule_observed_successfully_on_2026_09_30": true
+  },
+  "problem_elimination_pass": {
+    "final_goal": "Maintain prospective E evidence accumulation without manual chat-driven polling or a second unreliable scheduler dependency.",
+    "selected_action": "ABSORB_TRIGGER_OWNERSHIP_IN_EXISTING_EMPIRICALLY_FUNCTIONING_MORNING_ORCHESTRATOR",
+    "deleted_or_avoided": [
+      "No new watchdog workflow",
+      "No hourly polling",
+      "No artificial retry loop",
+      "No repeated cron-minute experimentation as the primary reliability strategy"
+    ]
+  },
+  "implementation": {
+    "orchestrator_commit": "7a322d6382aa0a76583068656043d23c52932fd1",
+    "orchestrator_schedule": "0 1 * * 2-6",
+    "dispatch_target": "v284-controlled-prospective-e-layer.yml",
+    "dispatch_ref": "main",
+    "dispatch_occurs_after_orchestrator_evidence_push": true,
+    "required_permission_added": "actions: write"
+  },
+  "compatibility": {
+    "v284_existing_direct_cron_removed_now": false,
+    "reason_direct_cron_not_removed_in_same_change": "Keep the change minimal until orchestrator-to-v284 dispatch is empirically observed. The target pipeline is append-only/deduplicated and serialized, so temporary compatibility overlap is preferable to a large simultaneous scheduler rewrite.",
+    "future_retirement_condition": "After an orchestrator-scheduled run is observed to dispatch and complete v284 successfully, the redundant direct v284 cron may be removed in a separate minimal operational edit.",
+    "manual_dispatch_counts_as_scheduler_confirmation": false
+  },
+  "research_semantics_unchanged": {
+    "collector_classifier_triage_identity_rules": true,
+    "three_calendar_day_overlap": true,
+    "announcement_id_dedup": true,
+    "shadow_readiness_thresholds_20_12_12_6_max20pct": true,
+    "price_or_return_access": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_or_live_authorization": false
+  },
+  "current_research_state": {
+    "eligible_v2_9_oos_strategy_candidate_exists": false,
+    "prospective_shadow_sample_ready": false,
+    "shadow_events": 3,
+    "distinct_issuers": 2,
+    "distinct_effective_dates": 2,
+    "positive_calendar_months": 1,
+    "maximum_single_issuer_share": 0.6666666667,
+    "required": "20 events / 12 issuers / 12 dates / 6 months / max issuer share <= 20%"
+  },
+  "next_stage": "AUTOMATIC_PROSPECTIVE_ACCUMULATION_UNTIL_INFORMATION_GATE_READY"
+}
