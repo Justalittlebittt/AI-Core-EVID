@@ -1,0 +1,21 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R2_OUTCOME_RESOLUTION_ACTIVATION_V1",
+  "version": "V2.8.12R",
+  "status": "ACTIVE_ONE_TIME_BOUNDED_R2_OUTCOME_RESOLUTION",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_6.json",
+  "scope": {
+    "exact_frozen_cohort_only": true,
+    "event_count": 4,
+    "required_horizons": ["D+5", "D+10"],
+    "target_shift_allowed": false,
+    "event_drop_allowed": false,
+    "survivor_replacement_allowed": false,
+    "post_outcome_metric_addition_allowed": false,
+    "prospective_gate_change_allowed": false,
+    "classifier_change_allowed": false,
+    "fold3_access_allowed": false,
+    "fold4_access_allowed": false,
+    "setup_or_live_access_allowed": false,
+    "historical_research_only": true
+  }
+}
