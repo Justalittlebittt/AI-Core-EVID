@@ -80,16 +80,27 @@
     "coverage_collapse_cannot_strengthen_claim": true,
     "post_outcome_threshold_tuning": "FORBIDDEN"
   },
+  "synthesis_policy": {
+    "allowed_dimension_roles": ["ANCHOR", "SUPPORTING"],
+    "allowed_failure_effects": ["CAP_AT_WEAK", "CAP_AT_MODERATE", "UNCERTAINTY_ONLY"],
+    "required_anchor_dimensions": [
+      "baseline_comparison",
+      "out_of_sample",
+      "transaction_cost_and_execution_constraints"
+    ],
+    "rule": "Evidence strength is synthesized from preregistered dimension roles and failure effects; ordinary supporting weaknesses do not automatically force WEAK. Anchor dimensions protect the core claim that advantage is baseline-relative, out-of-sample and post-cost.",
+    "post_outcome_role_or_failure_effect_change_forbidden": true
+  },
   "dimensions": [
-    {"dimension":"effect_size","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"baseline_comparison","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"out_of_sample","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"regime_stability","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"cross_sectional_stability","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"transaction_cost_and_execution_constraints","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"drawdown_and_loss_sequences","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"probability_calibration_where_applicable","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"NOT_APPLICABLE_PREDECLARED"},
-    {"dimension":"reasonable_parameter_sensitivity","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
-    {"dimension":"failure_region_identification","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"}
+    {"dimension":"effect_size","role":"SUPPORTING","failure_effect":"CAP_AT_MODERATE","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"baseline_comparison","role":"ANCHOR","failure_effect":"CAP_AT_WEAK","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"out_of_sample","role":"ANCHOR","failure_effect":"CAP_AT_WEAK","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"regime_stability","role":"SUPPORTING","failure_effect":"CAP_AT_MODERATE","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"cross_sectional_stability","role":"SUPPORTING","failure_effect":"CAP_AT_MODERATE","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"transaction_cost_and_execution_constraints","role":"ANCHOR","failure_effect":"CAP_AT_WEAK","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"drawdown_and_loss_sequences","role":"SUPPORTING","failure_effect":"CAP_AT_MODERATE","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"probability_calibration_where_applicable","role":"SUPPORTING","failure_effect":"UNCERTAINTY_ONLY","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"NOT_APPLICABLE_PREDECLARED"},
+    {"dimension":"reasonable_parameter_sensitivity","role":"SUPPORTING","failure_effect":"CAP_AT_MODERATE","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"},
+    {"dimension":"failure_region_identification","role":"SUPPORTING","failure_effect":"UNCERTAINTY_ONLY","metric_or_test":"REQUIRED_BEFORE_FREEZE","predeclared_interpretation_rule":"REQUIRED_BEFORE_FREEZE","required_data_scope":"REQUIRED_BEFORE_FREEZE","status_if_data_unavailable":"INSUFFICIENT_DATA"}
   ]
 }
