@@ -1,0 +1,88 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_PORTFOLIO_PATH_EXECUTION_CONTRACT_V1",
+  "version": "V2.9",
+  "status": "FOUNDATION_ONLY_NO_RESEARCH_AUTHORIZATION",
+  "purpose": "Define the minimum execution-resolved chronological portfolio representation required before drawdown, volatility, turnover or annualized performance metrics may be treated as meaningful.",
+  "design_principle": "The evaluator measures a supplied executed portfolio path. It does not invent holding periods, fill prices, position sizing, overlapping-signal allocation, leverage, shorting, slippage, limit-up/limit-down behavior or transaction-cost assumptions.",
+  "problem_elimination": {
+    "delete": [
+      "No event-row-to-portfolio conversion inside the validity evaluator.",
+      "No hidden equal-weight assumption.",
+      "No implicit fill at close/open/VWAP.",
+      "No implicit annualization convention.",
+      "No inferred treatment of untradable orders."
+    ],
+    "reuse": [
+      "Existing temporal/vintage, OOS and authorization boundaries remain binding.",
+      "Existing Strategy Validity foundation consumes portfolio-path outputs only after an upstream research design explicitly authorizes the required return data."
+    ]
+  },
+  "required_row_fields": [
+    "date",
+    "security_id",
+    "exposure_weight",
+    "security_return",
+    "transaction_cost"
+  ],
+  "optional_row_fields": [
+    "benchmark_return",
+    "sample_partition",
+    "regime",
+    "execution_status"
+  ],
+  "field_semantics": {
+    "date": "Chronological portfolio-return interval label. Dates must be unique at the daily aggregation layer after security rows are grouped.",
+    "security_id": "Canonical security identifier.",
+    "exposure_weight": "Executed exposure applied to security_return for this exact interval. It is not a target weight and not an order request.",
+    "security_return": "Authorized realized return for the same interval and price/vintage convention as the executed exposure.",
+    "transaction_cost": "Non-negative portfolio-fraction cost attributable to this security/date interval, already incorporating the upstream frozen commission/slippage/tax model.",
+    "benchmark_return": "Optional daily benchmark return. If supplied on multiple security rows for one date it must be identical within that date.",
+    "sample_partition": "Optional upstream-frozen train/OOS label. The evaluator does not assign partitions.",
+    "regime": "Optional upstream-supplied regime label. The evaluator does not infer regimes.",
+    "execution_status": "Optional descriptive upstream execution label; no fill logic is inferred from it."
+  },
+  "path_metrics": [
+    "daily_gross_return",
+    "daily_transaction_cost",
+    "daily_net_return",
+    "daily_benchmark_return_when_supplied",
+    "daily_excess_return_when_benchmark_supplied",
+    "equity_curve",
+    "running_peak",
+    "drawdown",
+    "maximum_drawdown",
+    "mean_daily_net_return",
+    "daily_net_return_volatility",
+    "positive_day_share",
+    "worst_day_return",
+    "best_day_return",
+    "mean_daily_gross_exposure",
+    "maximum_daily_gross_exposure",
+    "total_transaction_cost"
+  ],
+  "annualization": {
+    "default_periods_per_year": null,
+    "rule": "CAGR, annualized volatility and Sharpe-like metrics are forbidden unless periods_per_year is explicitly supplied by the frozen experiment registration.",
+    "risk_free_rate_default": null,
+    "rule_risk_free": "No zero-risk-free assumption is implicit. Any annualized Sharpe-like metric requires an explicit per-period risk-free input or an explicit registered choice of zero."
+  },
+  "integrity_rules": [
+    "Required fields may not be null or non-numeric where numeric semantics apply.",
+    "transaction_cost must be >= 0.",
+    "security_return must be > -1.0 for multiplicative equity computation.",
+    "A date/security pair must be unique.",
+    "benchmark_return, sample_partition and regime must not conflict within one date when supplied.",
+    "No price or return access is authorized by this contract itself.",
+    "No fold3/fold4 access is authorized by this contract itself.",
+    "No setup/live/trade execution is authorized by this contract itself."
+  ],
+  "explicit_non_goals": [
+    "Does not generate orders.",
+    "Does not decide whether an unfilled order should be carried forward.",
+    "Does not determine target weights.",
+    "Does not choose transaction-cost or slippage parameters.",
+    "Does not choose a benchmark.",
+    "Does not classify strategy evidence strength."
+  ],
+  "next_stage": "V2.9_SYNTHETIC_PORTFOLIO_PATH_EVALUATOR_SELFTEST"
+}
