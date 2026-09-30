@@ -53,13 +53,8 @@ def exact_set(actual, expected: set[str], code: str) -> None:
 
 
 def main() -> None:
-    k = read(KERNEL)
-    f = read(FOUNDATION)
-    ec = read(EXIT_AUDIT_CONTRACT)
-    er = read(EXIT_AUDIT_RECEIPT)
-    vc = read(VALIDITY_CONTRACT)
-    dc = read(DISCIPLINE_CONTRACT)
-    pc = read(DECISION_PACKET_CONTRACT)
+    k = read(KERNEL); f = read(FOUNDATION); ec = read(EXIT_AUDIT_CONTRACT); er = read(EXIT_AUDIT_RECEIPT)
+    vc = read(VALIDITY_CONTRACT); dc = read(DISCIPLINE_CONTRACT); pc = read(DECISION_PACKET_CONTRACT)
 
     if k.get("schema") != "AI_CORE_EVID_V2_9_GOVERNANCE_KERNEL_V1": raise RuntimeError("KERNEL_SCHEMA_BLOCK")
     if k.get("status") != "FROZEN_ARCHITECTURE_BASELINE": raise RuntimeError("KERNEL_STATUS_BLOCK")
@@ -114,8 +109,10 @@ def main() -> None:
     exact_set(dc.get("input_contract", {}).get("evidence_strength_levels"), REQUIRED_STRENGTH_LEVELS, "DISCIPLINE_EVIDENCE_STRENGTH_DRIFT")
     exact_set(dc.get("output_contract", {}).get("decision_values"), REQUIRED_ELIGIBILITY_OUTPUTS, "DISCIPLINE_OUTPUT_DRIFT")
     if dc.get("priority_order") != REQUIRED_PRIORITY: raise RuntimeError("DISCIPLINE_PRIORITY_DRIFT")
-    if "native booleans" not in dc.get("input_contract", {}).get("strict_boolean_rule", ""): raise RuntimeError("DISCIPLINE_BOOLEAN_TYPE_BLOCK")
-    if "finite" not in dc.get("input_contract", {}).get("strict_numeric_rule", ""): raise RuntimeError("DISCIPLINE_NUMERIC_TYPE_BLOCK")
+    strict_types = dc.get("input_contract", {}).get("strict_types", {})
+    if "native booleans" not in strict_types.get("boolean_rule", ""): raise RuntimeError("DISCIPLINE_BOOLEAN_TYPE_BLOCK")
+    if "finite numeric values" not in strict_types.get("numeric_rule", ""): raise RuntimeError("DISCIPLINE_NUMERIC_TYPE_BLOCK")
+    if "fail closed" not in strict_types.get("numeric_rule", ""): raise RuntimeError("DISCIPLINE_NUMERIC_FAIL_CLOSED_BLOCK")
 
     if pc.get("governance_kernel") != str(KERNEL): raise RuntimeError("PACKET_KERNEL_BINDING_BLOCK")
     if pc.get("validity_contract") != str(VALIDITY_CONTRACT): raise RuntimeError("PACKET_VALIDITY_BINDING_BLOCK")
@@ -127,10 +124,7 @@ def main() -> None:
 
     packet_fields = set()
     psec = pc.get("packet", {})
-    for key in (
-        "validity_required_fields","action_context_required_fields","risk_context_required_fields",
-        "behavior_context_required_fields","override_context_required_fields"
-    ):
+    for key in ("validity_required_fields","action_context_required_fields","risk_context_required_fields","behavior_context_required_fields","override_context_required_fields"):
         packet_fields.update(psec.get(key, []))
     discipline_fields = set(dc.get("input_contract", {}).get("required_fields", []))
     if not discipline_fields.issubset(packet_fields):
