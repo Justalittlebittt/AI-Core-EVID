@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 from v29_decision_packet_adapter import DecisionPacketError, adapt_and_evaluate
 
 SHA = "a" * 64
@@ -21,10 +23,7 @@ def packet() -> dict:
             "all_required_dimensions_reported": True,
             "post_outcome_rule_change_detected": False,
         },
-        "action_context": {
-            "action_type": "BUY",
-            "current_exposure_exists": False,
-        },
+        "action_context": {"action_type": "BUY", "current_exposure_exists": False},
         "risk_context": {
             "projected_post_action_position_size": 0.10,
             "position_limit": 0.20,
@@ -42,10 +41,7 @@ def packet() -> dict:
             "is_chasing": False,
             "chase_rule_satisfied": False,
         },
-        "override_context": {
-            "override_requested": False,
-            "override_reason": "",
-        },
+        "override_context": {"override_requested": False, "override_reason": ""},
     }
 
 
@@ -63,35 +59,44 @@ def main() -> None:
     assert base["discipline_input"]["evidence_strength"] == "MODERATE"
     assert base["discipline_decision"]["decision"] == "ACTION_ELIGIBLE"
 
-    p = packet()
-    p["validity"]["all_required_dimensions_reported"] = False
+    p = packet(); p["validity"]["all_required_dimensions_reported"] = False
     r = adapt_and_evaluate(p)
     assert r["packet_status"] == "PACKET_VALIDITY_DOWNGRADED_TO_INSUFFICIENT"
     assert r["adapter_metadata"]["reported_evidence_strength"] == "MODERATE"
     assert r["adapter_metadata"]["effective_evidence_strength"] == "INSUFFICIENT"
     assert r["discipline_decision"]["decision"] == "NO_ACTION_INSUFFICIENT_EVIDENCE"
 
-    p = packet()
-    p["validity"]["post_outcome_rule_change_detected"] = True
+    p = packet(); p["validity"]["post_outcome_rule_change_detected"] = True
     r = adapt_and_evaluate(p)
     assert "POST_OUTCOME_RULE_CHANGE_DETECTED" in r["adapter_metadata"]["validity_downgrade_reasons"]
     assert r["discipline_decision"]["decision"] == "NO_ACTION_INSUFFICIENT_EVIDENCE"
 
-    p = packet()
-    p["risk_context"].pop("position_limit")
+    p = packet(); p["risk_context"].pop("position_limit")
     expect_packet_error(p, "MISSING_FIELDS:risk_context:position_limit")
 
-    p = packet()
-    p["research_context"]["evidence_artifact_sha256"] = "bad"
+    p = packet(); p["research_context"]["evidence_artifact_sha256"] = "bad"
     expect_packet_error(p, "INVALID_SHA256:evidence_artifact_sha256")
 
-    p = packet()
-    p["validity"]["post_outcome_rule_change_detected"] = "false"
+    p = packet(); p["validity"]["post_outcome_rule_change_detected"] = "false"
     expect_packet_error(p, "validity.post_outcome_rule_change_detected_MUST_BE_BOOLEAN")
 
-    p = packet()
-    p["validity"]["all_required_dimensions_reported"] = 1
+    p = packet(); p["validity"]["all_required_dimensions_reported"] = 1
     expect_packet_error(p, "validity.all_required_dimensions_reported_MUST_BE_BOOLEAN")
+
+    p = packet(); p["action_context"]["action_type"] = "buy"
+    expect_packet_error(p, "INVALID_ACTION_TYPE")
+
+    p = packet(); p["validity"]["evidence_strength"] = "moderate"
+    expect_packet_error(p, "INVALID_EVIDENCE_STRENGTH")
+
+    p = packet(); p["risk_context"]["projected_post_action_position_size"] = math.nan
+    expect_packet_error(p, "risk_context.projected_post_action_position_size_MUST_BE_FINITE")
+
+    p = packet(); p["risk_context"]["risk_budget_limit"] = math.inf
+    expect_packet_error(p, "risk_context.risk_budget_limit_MUST_BE_FINITE")
+
+    p = packet(); p["override_context"]["override_reason"] = 123
+    expect_packet_error(p, "override_context.override_reason_MUST_BE_STRING")
 
     p = packet()
     p["action_context"]["action_type"] = "ADD"
@@ -114,5 +119,4 @@ def main() -> None:
     print("V2.9 decision packet self-test PASS")
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
