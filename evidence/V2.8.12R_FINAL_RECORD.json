@@ -1,0 +1,74 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_FINAL_RECORD_V1",
+  "version": "V2.8.12R",
+  "status": "RETROSPECTIVE_OUTCOMES_RESOLVED_BUT_SAMPLE_TOO_SMALL_FOR_FEASIBILITY_VERDICT",
+  "technical_gate_receipt": "evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECONCILED_RECEIPT.json",
+  "final_pre_outcome_cohort_receipt": "evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT.json",
+  "primary_source_coverage_receipt": "evidence/retrospective_feasibility/V2.8.12R_R2_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json",
+  "fallback_source_coverage_receipt": "evidence/retrospective_feasibility/V2.8.12R_R2_FALLBACK_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json",
+  "outcome_resolution_receipt": "evidence/retrospective_feasibility/V2.8.12R_R2_OUTCOME_RESOLUTION_RECEIPT.json",
+  "frozen_facts": {
+    "R1_windows_complete": 16,
+    "R1_selected_filings": 42,
+    "R1_classifier_ready_filings": 39,
+    "R1_classifier_ready_rate": 0.9285714285714286,
+    "R1_technical_gate_pass": true,
+    "final_positive_events": 4,
+    "distinct_issuers": 2,
+    "distinct_positive_quarters": 3,
+    "resolved_events": 4,
+    "resolved_event_share": 1.0,
+    "maximum_single_issuer_event_share": 0.75
+  },
+  "outcome_summary": {
+    "primary_statistic_issuer_equal_weight_median_D10_excess": 0.021523269210499997,
+    "issuer_cluster_bootstrap_95pct_interval": [-0.026951517588, 0.069998056009],
+    "secondary_issuer_equal_weight_median_D5_excess": 0.0012419352184999998,
+    "event_level_median_D10_excess": -0.0104352756015,
+    "event_level_median_D5_excess": 0.0012419352184999998,
+    "issuer_level_positive_D10_share": 0.5,
+    "event_level_positive_D10_share": 0.5
+  },
+  "sample_floor": {
+    "frozen_positive_events_min_12": false,
+    "distinct_issuers_min_6": false,
+    "distinct_positive_quarters_min_6": false,
+    "maximum_single_issuer_event_share_le_one_third": false,
+    "resolved_event_share_min_0_80": true,
+    "pass": false
+  },
+  "verdict": "DESCRIPTIVE_ONLY_SAMPLE_TOO_SMALL_FOR_FEASIBILITY_VERDICT",
+  "interpretation": [
+    "All four frozen positive events were resolved at the precommitted D+5 and D+10 horizons with no target shifting or event dropping.",
+    "The issuer-equal-weight D+10 excess-return median is positive, but the issuer-cluster bootstrap interval crosses zero widely and therefore does not support a directional feasibility conclusion.",
+    "The event-level D+10 excess-return median is negative while issuer-level D+10 medians disagree across the two issuers, demonstrating instability in this tiny cohort.",
+    "The frozen sample floor fails four of five eligibility conditions: event count, issuer count, positive-quarter count, and issuer concentration.",
+    "Because the sample floor fails, no PROMISING or UNPROMISING feasibility verdict is authorized regardless of the observed return signs.",
+    "The result must not change the prospective gate, classifier, fold3/fold4 isolation, Setup state, or live state."
+  ],
+  "problem_elimination_pass": {
+    "hard_constraints": [
+      "Do not expand or hand-pick retrospective events after seeing outcomes.",
+      "Do not change the classifier, keyword registry, event dates, horizons, or sample-floor thresholds to rescue the result.",
+      "Do not reinterpret descriptive statistics as confirmatory evidence.",
+      "Keep prospective Lane A and fold3/fold4 isolated."
+    ],
+    "deleted_soft_assumptions": [
+      "More retrospective governance objects are needed after the descriptive-only verdict is already determined.",
+      "The sample-floor failure should be repaired by further historical search within V2.8.12R.",
+      "A positive primary point estimate alone is enough to justify strategy validity."
+    ],
+    "decision": "STOP_RETROSPECTIVE_EXPANSION_AND_RETURN_TO_V2_9_ARCHITECTURE"
+  },
+  "governance": {
+    "historical_evidence_immutable": true,
+    "additional_V2_8_12R_retrospective_expansion_authorized": false,
+    "prospective_gate_changed": false,
+    "classifier_changed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "setup_or_live_accessed": false,
+    "maximum_claim": "RETROSPECTIVE_DESCRIPTIVE_ONLY"
+  },
+  "next_stage": "V2.9_INTEGRITY_EXIT_AUDIT_THEN_STRATEGY_VALIDITY_FOUNDATION"
+}
