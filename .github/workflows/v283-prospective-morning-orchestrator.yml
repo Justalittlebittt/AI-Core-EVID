@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: v283-prospective-morning-orchestrator
@@ -109,7 +110,7 @@ jobs:
       - name: Commit final confirmatory result locally if produced
         if: steps.ready.outputs.ready == 'true'
         run: |
-          git add evidence/V2.8.3_CONFIRMATORY_DAILY_METRICS.csv                   evidence/V2.8.3_CONFIRMATORY_HYPOTHESIS_LEDGER.csv                   evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json || true
+          git add evidence/V2.8.3_CONFIRMATORY_DAILY_METRICS.csv evidence/V2.8.3_CONFIRMATORY_HYPOTHESIS_LEDGER.csv evidence/V2.8.3_CONFIRMATORY_FINAL_RECEIPT.json || true
           if ! git diff --cached --quiet; then
             git commit -m "Freeze V2.8.3 confirmatory final result [skip ci]"
           else
@@ -120,7 +121,14 @@ jobs:
         run: |
           if git diff --quiet origin/main..HEAD; then
             echo "No new evidence commits."
-            exit 0
+          else
+            git pull --rebase origin main
+            git push
           fi
-          git pull --rebase origin main
-          git push
+
+      - name: Dispatch controlled prospective E-layer collection
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run v284-controlled-prospective-e-layer.yml --ref main
+          echo "Dispatched V2.8.4 controlled prospective E-layer from the empirically functioning morning orchestrator."
