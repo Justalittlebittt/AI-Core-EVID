@@ -52,6 +52,7 @@
     ],
     "optional_fields": [
       "transaction_cost",
+      "sample_partition",
       "regime",
       "security_id",
       "predicted_probability",
@@ -74,6 +75,7 @@
       "mean_transaction_cost",
       "mean_gross_to_net_drag"
     ],
+    "out_of_sample": "When sample_partition is supplied by an already-authorized upstream research design, report metrics by that partition. V2.9 foundation does not assign, reshuffle, or infer train/OOS membership.",
     "regime": "Report the same core return statistics per supplied regime label; do not infer market regimes in this layer.",
     "calibration": "When predicted_probability and realized_positive are present, report count, mean predicted probability, realized positive rate and Brier score. No calibration binning or pass threshold is imposed in V2.9 foundation.",
     "sensitivity": "When parameter_variant is present, report metrics by variant. Foundation does not rank or select a winning parameter set.",
