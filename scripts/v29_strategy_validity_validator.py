@@ -40,7 +40,9 @@ def _contains_placeholder(obj) -> bool:
 
 def contract() -> dict:
     c = read_json(CONTRACT)
-    if c.get("status") != "FROZEN_BEFORE_STRATEGY_LEVEL_IMPLEMENTATION":
+    if c.get("schema") != "AI_CORE_EVID_V2_9_STRATEGY_VALIDITY_BASELINE_CONTRACT_V2":
+        raise RuntimeError("VALIDITY_BASELINE_CONTRACT_SCHEMA_MISMATCH")
+    if c.get("status") != "FROZEN_BEFORE_REAL_STRATEGY_SCORING":
         raise RuntimeError("VALIDITY_BASELINE_CONTRACT_NOT_FROZEN")
     return c
 
@@ -71,7 +73,7 @@ def validate_prereg(prereg: dict, c: dict) -> dict:
     seen = []
     anchors = set()
     for d in dims:
-        require_keys(d, dim_required + ["role", "failure_effect"], f"dimension:{d.get('dimension','?')}")
+        require_keys(d, dim_required, f"dimension:{d.get('dimension','?')}")
         name = d["dimension"]
         seen.append(name)
         if d["role"] not in VALID_ROLES:
