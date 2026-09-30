@@ -1,0 +1,72 @@
+name: V2.8.12R R2 Outcome Resolution
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "evidence/V2.8.12R_R2_OUTCOME_RESOLUTION_ACTIVATION.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v2812r-r2-outcome-resolution
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile bounded R2 outcome runner
+        run: python -m py_compile scripts/v2812r_r2_outcome_resolution.py
+      - name: Install pinned BaoStock runtime
+        run: python -m pip install baostock==0.9.4
+      - name: Verify outcome authorization boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_6.json').read_text())
+          c=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R2_FALLBACK_SOURCE_COVERAGE_PREFLIGHT_RECEIPT.json').read_text())
+          g=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_R1_TECHNICAL_GATE_RECONCILED_RECEIPT.json').read_text())
+          f=json.loads(Path('evidence/retrospective_feasibility/V2.8.12R_FINAL_PRE_OUTCOME_COHORT_RECEIPT.json').read_text())
+          act=json.loads(Path('evidence/V2.8.12R_R2_OUTCOME_RESOLUTION_ACTIVATION.json').read_text())
+          assert a['status']=='ACTIVE_R2_OUTCOME_RESOLUTION_AUTHORIZATION'
+          assert c['status']=='FALLBACK_SOURCE_COVERAGE_PASS_R2_OUTCOME_AUTHORIZATION_MAY_BE_FROZEN'
+          assert c['stock_coverage_rate']==1.0 and c['benchmark_coverage_rate']==1.0
+          assert c['numeric_price_values_read_or_logged'] is False and c['returns_computed'] is False
+          assert g['status']=='R1_COHORT_TECHNICALLY_COMPLETE' and g['R2_price_or_return_access_authorized'] is True
+          assert f['status']=='PASS_FINAL_PRE_OUTCOME_COHORT_FROZEN'
+          assert act['scope']['exact_frozen_cohort_only'] is True
+          assert act['scope']['target_shift_allowed'] is False
+          assert act['scope']['event_drop_allowed'] is False
+          assert act['scope']['fold3_access_allowed'] is False
+          assert act['scope']['fold4_access_allowed'] is False
+          print('V2.8.12R bounded R2 outcome authorization PASS')
+          PY
+      - name: Resolve exact frozen R2 outcomes
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/v2812r_r2_outcome_resolution.py
+      - name: Freeze R2 outcome evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/retrospective_feasibility/V2.8.12R_R2_OUTCOME_RESULTS.csv
+          git add evidence/retrospective_feasibility/V2.8.12R_R2_OUTCOME_RESOLUTION_RECEIPT.json
+          git commit -m "Freeze V2.8.12R R2 bounded outcome resolution [skip ci]"
+          git pull --rebase origin main
+          git push
