@@ -1,0 +1,56 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12R_R2_FALLBACK_SOURCE_COVERAGE_PREFLIGHT_RECEIPT_V1",
+  "version": "V2.8.12R",
+  "status": "FALLBACK_SOURCE_COVERAGE_PASS_R2_OUTCOME_AUTHORIZATION_MAY_BE_FROZEN",
+  "authority": "evidence/V2.8.12R_RETROSPECTIVE_FEASIBILITY_CONTRACT_AMENDMENT_5.json",
+  "provider": "BaoStock",
+  "package_version": "0.9.4",
+  "requested_response_fields": [
+    "date",
+    "code"
+  ],
+  "final_pre_outcome_cohort_sha256": "f654b122989cb16becc1bad81cfa2d63d8fcfd5b3b0c79358f29126bbd2c24e3",
+  "event_count": 4,
+  "required_dates_per_event": [
+    "D",
+    "D+5",
+    "D+10"
+  ],
+  "query_range": {
+    "start": "2024-01-31",
+    "end": "2024-09-18"
+  },
+  "stock_required_event_date_rows": 12,
+  "stock_present_event_date_rows": 12,
+  "stock_coverage_rate": 1.0,
+  "benchmark_required_event_date_rows": 12,
+  "benchmark_present_event_date_rows": 12,
+  "benchmark_coverage_rate": 1.0,
+  "missing_stock_event_dates": [],
+  "missing_benchmark_event_dates": [],
+  "stock_source_date_extent_for_cohort_symbols": {
+    "sh.600186": {
+      "min_date": "2024-01-31",
+      "max_date": "2024-09-18"
+    },
+    "sh.603300": {
+      "min_date": "2024-01-31",
+      "max_date": "2024-09-18"
+    }
+  },
+  "benchmark_source_date_extent": {
+    "min_date": "2024-01-31",
+    "max_date": "2024-09-18"
+  },
+  "numeric_price_fields_requested": false,
+  "numeric_price_values_read_or_logged": false,
+  "returns_computed": false,
+  "retrospective_event_cohort_changed": false,
+  "prospective_gate_changed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "setup_or_live_accessed": false,
+  "outcome_resolution_authorized_by_preflight_itself": false,
+  "next_stage": "FREEZE_SEPARATE_R2_OUTCOME_RESOLUTION_AUTHORIZATION",
+  "receipt_sha256": "c7b62f030a398245f31b44134da5cc75be4f594e4f0d49d0a4c3b473483bce56"
+}
