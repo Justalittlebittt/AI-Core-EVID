@@ -3,6 +3,16 @@
   "version": "V2.9",
   "status": "FOUNDATION_FROZEN_BEFORE_IMPLEMENTATION",
   "governance_kernel": "evidence/V2.9_GOVERNANCE_KERNEL.json",
+  "system_objective": {
+    "primary_goal": "Increase long-run net positive expectancy relative to a matched random-selection baseline while preserving enough candidate coverage and trading frequency for the advantage to be usable and testable.",
+    "baseline_rule": "A 50% ten-day profit probability may be used as an intuition or null hypothesis, but the actual random baseline must be empirically estimated under the same universe, dates, holding horizon, execution rules and transaction-cost assumptions as the system strategy.",
+    "not_primary_goal": [
+      "Maximize single-trade hit rate",
+      "Maximize selectivity until almost no candidates remain",
+      "Guarantee profitability on every trade or finite sample"
+    ],
+    "long_run_condition": "A strategy is economically useful only if its post-cost expectancy and/or geometric growth advantage over the matched baseline is positive with sufficient stability and usable coverage."
+  },
   "validity_engine": {
     "question": "How strong is the evidence supporting a strategy claim under realistic conditions?",
     "required_dimensions": [
@@ -15,15 +25,24 @@
       "drawdown_and_loss_sequences",
       "probability_calibration_where_applicable",
       "reasonable_parameter_sensitivity",
-      "failure_region_identification"
+      "failure_region_identification",
+      "candidate_coverage_and_opportunity_rate"
     ],
     "evidence_strength_levels": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"],
     "anti_p_hacking_rules": [
       "Metrics and comparison baselines must be defined before outcome evaluation for a frozen experiment version.",
       "Observed outcomes may not be used to silently remove failing dimensions.",
       "A failed or unstable dimension is reported as uncertainty; it is not repaired by changing the test after inspection.",
-      "Simple baselines must remain visible even when more complex models outperform them."
+      "Simple baselines must remain visible even when more complex models outperform them.",
+      "Coverage may not be increased by relaxing rules after inspecting outcomes, and edge may not be inflated by tightening filters after inspecting outcomes."
     ],
+    "coverage_policy": {
+      "selection_rate": "eligible_candidates / evaluated_candidates",
+      "opportunity_rate": "eligible_candidates per predeclared time unit",
+      "purpose": "Detect over-filtering and zero-trade safety. Low coverage is a research-quality and usability concern, not automatically a system-critical blocker.",
+      "no_universal_minimum_frozen_here": true,
+      "tradeoff_rule": "Prefer Pareto improvements in baseline-relative net expectancy and usable coverage. Do not optimize one by collapsing the other."
+    },
     "pass_fail_policy": "Validity is not reduced to a single PASS unless a downstream safety or execution contract explicitly requires a binary gate. Research conclusions use evidence-strength semantics."
   },
   "discipline_engine": {
