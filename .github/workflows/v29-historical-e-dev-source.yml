@@ -41,17 +41,30 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 90
-    if: ${{ hashFiles('evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json') != '' }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - id: authorization
+        name: Check for frozen collection authorization
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json ]; then
+            echo "authorized=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "authorized=false" >> "$GITHUB_OUTPUT"
+            echo "Validation receipt not frozen yet; collection remains disabled."
+          fi
       - uses: actions/setup-python@v5
+        if: steps.authorization.outputs.authorized == 'true'
         with:
           python-version: "3.12"
       - name: Install source-only dependencies
+        if: steps.authorization.outputs.authorized == 'true'
         run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
       - name: Verify frozen authorization and runner binding
+        if: steps.authorization.outputs.authorized == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -71,8 +84,10 @@ jobs:
           assert a['fold3_access'] is False and a['fold4_access'] is False
           PY
       - name: Execute deterministic source-only collection
+        if: steps.authorization.outputs.authorized == 'true'
         run: python scripts/v29_historical_e_dev_source_runner.py run
       - name: Commit frozen source outputs
+        if: steps.authorization.outputs.authorized == 'true'
         shell: bash
         run: |
           set -euo pipefail
