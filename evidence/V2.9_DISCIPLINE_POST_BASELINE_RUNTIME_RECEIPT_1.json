@@ -1,0 +1,54 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_DISCIPLINE_POST_BASELINE_RUNTIME_RECEIPT_1",
+  "version": "V2.9",
+  "status": "LOCAL_CRITICAL_REGRESSION_PASS_NOT_CENTRAL_CI",
+  "repair_record": "evidence/V2.9_DISCIPLINE_POST_BASELINE_REPAIR_1.json",
+  "active_sources": {
+    "discipline_engine": {
+      "path": "scripts/v29_discipline_engine.py",
+      "blob_sha": "4ce28e4e75275d4332909d930b2d74986b6d7f09",
+      "implementation_commit": "f6bebd9427fbdf646323c3c6e32ad489b0edf81a"
+    },
+    "decision_packet_adapter": {
+      "path": "scripts/v29_decision_packet_adapter.py",
+      "blob_sha": "c215ee5e2e940b396d93fbfb7cfc9e68ab30a8d4",
+      "implementation_commit": "b3696134c729fce0ab3a44aa453a71ecbbc42a7c"
+    }
+  },
+  "execution_scope": "Isolated local critical-regression subsets reconstructed from the current main-branch source returned by the authorized GitHub connector. This is runtime evidence for the repaired semantics, not a claim that the repository's complete selftest files or GitHub Actions CI were centrally executed.",
+  "results": {
+    "discipline_critical_regression_subset": {
+      "result": "PASS",
+      "exit_code": 0,
+      "assertions": [
+        "stop_loss_breached=true remains EXIT_REQUIRED even when legacy adjustment_condition_satisfied=true",
+        "exit_rule_triggered=true is EXIT_REQUIRED even with RELAX and pre-trigger condition=true",
+        "RELAX without pre-trigger authorization is ACTION_BLOCKED_BY_RISK",
+        "preauthorized pre-trigger RELAX is ACTION_ELIGIBLE when all other discipline requirements are satisfied",
+        "TIGHTEN is ACTION_ELIGIBLE when all other discipline requirements are satisfied",
+        "BUY with INSUFFICIENT evidence returns NO_ACTION_INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    "decision_packet_critical_regression_subset": {
+      "result": "PASS",
+      "exit_code": 0,
+      "assertions": [
+        "Decision Packet preserves unconditional EXIT_REQUIRED after stop breach",
+        "Decision Packet blocks unauthorized RELAX",
+        "Decision Packet permits preauthorized pre-trigger RELAX when otherwise eligible",
+        "Decision Packet preserves EXIT_REQUIRED when exit_rule_triggered=true",
+        "validity integrity downgrade still produces INSUFFICIENT semantics",
+        "missing exit_rule_revision_type fails closed"
+      ]
+    }
+  },
+  "environment_note": "The visible Python runtime emitted an unrelated spreadsheet-runtime warmup exception before/around execution; both regression subprocesses themselves completed with exit_code=0. A prior attempt to fetch raw.githubusercontent.com from the local container was blocked by DNS/network restrictions and is not classified as a test failure.",
+  "central_ci_executed": false,
+  "full_repository_selftests_executed": false,
+  "authorization": {
+    "brokerage_execution": false,
+    "live_trading": false,
+    "fold3_access": false,
+    "fold4_access": false
+  }
+}
