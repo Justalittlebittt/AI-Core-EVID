@@ -10,6 +10,9 @@ EXIT_AUDIT_RECEIPT = Path("evidence/V2.9_INTEGRITY_EXIT_AUDIT_RECEIPT.json")
 VALIDITY_CONTRACT = Path("evidence/V2.9_STRATEGY_VALIDITY_BASELINE_CONTRACT.json")
 DISCIPLINE_CONTRACT = Path("evidence/V2.9_DISCIPLINE_ENGINE_V1_CONTRACT.json")
 DECISION_PACKET_CONTRACT = Path("evidence/V2.9_DECISION_PACKET_CONTRACT.json")
+DISCIPLINE_REPAIR_1 = Path("evidence/V2.9_DISCIPLINE_POST_BASELINE_REPAIR_1.json")
+DISCIPLINE_ENGINE = Path("scripts/v29_discipline_engine.py")
+DECISION_PACKET_ADAPTER = Path("scripts/v29_decision_packet_adapter.py")
 
 REQUIRED_INVARIANTS = {"NO_LEAKAGE","NO_SILENT_SAMPLE_MUTATION","NO_UNDOCUMENTED_OVERRIDE","NO_UNSUPPORTED_CERTAINTY","NO_GOAL_DRIFT"}
 REQUIRED_ARCHITECTURE = {"GOVERNANCE_KERNEL","EVIDENCE_ENGINE","VALIDITY_ENGINE","DISCIPLINE_ENGINE"}
@@ -38,6 +41,11 @@ REQUIRED_PRIORITY = [
 REQUIRED_EXIT_LABELS = {"CONSTITUTION_KEEP","ACTIVE_COMPATIBILITY_KEEP","DIAGNOSTIC_ONLY","REDUNDANT_RETIRE_FROM_ACTIVE_PATH","UNRESOLVED_BLOCKER"}
 REQUIRED_GOVERNANCE_OBJECTS = {"workflow","gate","amendment","receipt","validation_layer","probe"}
 REQUIRED_ADMISSION_PREVENTS = {"leakage","silent mutation","invalid inference","risk-discipline failure"}
+REQUIRED_REPAIR_RISK_FIELDS = {
+    "exit_rule_revision_type",
+    "exit_rule_triggered",
+    "exit_rule_relaxation_condition_satisfied_before_trigger",
+}
 
 
 def read(path: Path) -> dict:
@@ -55,6 +63,7 @@ def exact_set(actual, expected: set[str], code: str) -> None:
 def main() -> None:
     k = read(KERNEL); f = read(FOUNDATION); ec = read(EXIT_AUDIT_CONTRACT); er = read(EXIT_AUDIT_RECEIPT)
     vc = read(VALIDITY_CONTRACT); dc = read(DISCIPLINE_CONTRACT); pc = read(DECISION_PACKET_CONTRACT)
+    repair = read(DISCIPLINE_REPAIR_1)
 
     if k.get("schema") != "AI_CORE_EVID_V2_9_GOVERNANCE_KERNEL_V1": raise RuntimeError("KERNEL_SCHEMA_BLOCK")
     if k.get("status") != "FROZEN_ARCHITECTURE_BASELINE": raise RuntimeError("KERNEL_STATUS_BLOCK")
@@ -130,6 +139,41 @@ def main() -> None:
     if not discipline_fields.issubset(packet_fields):
         raise RuntimeError(f"PACKET_DOES_NOT_COVER_DISCIPLINE_INPUT:{sorted(discipline_fields - packet_fields)}")
 
+    # Post-baseline repair is additive and immutable-history preserving. The active validator must
+    # not report PASS from the frozen V1 contracts alone after active code has stricter semantics.
+    if repair.get("schema") != "AI_CORE_EVID_V2_9_DISCIPLINE_POST_BASELINE_REPAIR_1":
+        raise RuntimeError("DISCIPLINE_REPAIR_SCHEMA_BLOCK")
+    if repair.get("status") != "IMPLEMENTATION_AND_REGRESSION_TESTS_UPDATED_NOT_CENTRALLY_EXECUTED":
+        raise RuntimeError("DISCIPLINE_REPAIR_STATUS_BLOCK")
+    exact_set(
+        repair.get("new_required_active_fields", {}).get("risk_context"),
+        REQUIRED_REPAIR_RISK_FIELDS,
+        "DISCIPLINE_REPAIR_RISK_FIELD_DRIFT",
+    )
+    exact_set(
+        repair.get("new_required_active_fields", {}).get("exit_rule_revision_type_enum"),
+        {"NONE", "TIGHTEN", "RELAX"},
+        "DISCIPLINE_REPAIR_REVISION_ENUM_DRIFT",
+    )
+    validation_state = repair.get("validation_state", {})
+    if validation_state.get("implementation_updated") is not True: raise RuntimeError("DISCIPLINE_REPAIR_IMPLEMENTATION_BLOCK")
+    if validation_state.get("regression_tests_updated") is not True: raise RuntimeError("DISCIPLINE_REPAIR_REGRESSION_TEST_BLOCK")
+    if validation_state.get("central_runtime_execution_observed") is not False: raise RuntimeError("DISCIPLINE_REPAIR_RUNTIME_CLAIM_DRIFT")
+
+    if not DISCIPLINE_ENGINE.exists() or not DECISION_PACKET_ADAPTER.exists():
+        raise RuntimeError("DISCIPLINE_REPAIR_ACTIVE_CODE_MISSING")
+    engine_text = DISCIPLINE_ENGINE.read_text(encoding="utf-8")
+    adapter_text = DECISION_PACKET_ADAPTER.read_text(encoding="utf-8")
+    for field in REQUIRED_REPAIR_RISK_FIELDS:
+        if field not in engine_text: raise RuntimeError(f"DISCIPLINE_REPAIR_ENGINE_FIELD_MISSING:{field}")
+        if field not in adapter_text: raise RuntimeError(f"DISCIPLINE_REPAIR_ADAPTER_FIELD_MISSING:{field}")
+    if "if current_exposure_exists and stop_loss_breached:" not in engine_text:
+        raise RuntimeError("DISCIPLINE_REPAIR_UNCONDITIONAL_STOP_LOCK_MISSING")
+    if "if current_exposure_exists and exit_rule_triggered:" not in engine_text:
+        raise RuntimeError("DISCIPLINE_REPAIR_EXIT_TRIGGER_LOCK_MISSING")
+    if 'exit_rule_revision_type == "RELAX"' not in engine_text:
+        raise RuntimeError("DISCIPLINE_REPAIR_RELAXATION_LOCK_MISSING")
+
     if ec.get("schema") != "AI_CORE_EVID_V2_9_INTEGRITY_EXIT_AUDIT_CONTRACT_V1": raise RuntimeError("EXIT_AUDIT_SCHEMA_BLOCK")
     exact_set(ec.get("classification_labels"), REQUIRED_EXIT_LABELS, "EXIT_AUDIT_LABEL_DRIFT")
     if er.get("status") != "PASS_NO_UNRESOLVED_BLOCKER": raise RuntimeError("EXIT_AUDIT_RECEIPT_STATUS_BLOCK")
@@ -148,12 +192,14 @@ def main() -> None:
             "anti_p_hacking_contract_consistent": True,
             "discipline_action_output_and_priority_consistent": True,
             "strict_boolean_and_numeric_semantics_present": True,
-            "decision_packet_covers_discipline_required_inputs": True,
+            "decision_packet_covers_frozen_v1_discipline_inputs": True,
             "decision_packet_downgrade_only_semantics_present": True,
+            "post_baseline_discipline_repair_bound_to_active_code": True,
+            "post_baseline_stop_and_exit_rule_locks_statically_present": True,
             "integrity_exit_audit_closed_without_blocker": True,
             "legacy_active_dependency_count_zero": True
         },
-        "note": "Cross-layer contract/static acceptance only. Profitability is not evaluated and no brokerage or live execution is authorized."
+        "note": "Cross-layer contract/static acceptance including post-baseline discipline repair 1. Runtime self-tests are not claimed as centrally executed. Profitability is not evaluated and no brokerage or live execution is authorized."
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
