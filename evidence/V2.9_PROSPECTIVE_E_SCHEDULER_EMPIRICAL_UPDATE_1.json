@@ -1,0 +1,57 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_PROSPECTIVE_E_SCHEDULER_EMPIRICAL_UPDATE_1",
+  "version": "V2.9",
+  "status": "DIRECT_CRON_CONFIRMED_ORCHESTRATOR_DISPATCH_PENDING",
+  "supersedes_factual_claim_only": {
+    "record": "evidence/V2.9_PROSPECTIVE_E_TRIGGER_OWNERSHIP_RECORD.json",
+    "field": "target_v284_direct_schedule_empirically_confirmed",
+    "old_value": false,
+    "new_value": true,
+    "reason": "A later real schedule event occurred after that record was frozen. The historical record remains immutable."
+  },
+  "direct_v284_empirical_confirmation": {
+    "workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "run_id": 36679934011,
+    "event": "schedule",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-30T06:45:45Z",
+    "updated_at": "2026-09-30T06:46:39Z",
+    "head_sha": "03137056b3e55fd51864845b7ff8294ef4038b12",
+    "interpretation": "The v284 direct cron is empirically capable of firing and completing successfully."
+  },
+  "orchestrator_dispatch_chain": {
+    "ownership_implementation_commit": "7a322d6382aa0a76583068656043d23c52932fd1",
+    "qualifying_chain_confirmed": false,
+    "latest_observed_v283_schedule_run_before_ownership_change": {
+      "run_id": 36677112637,
+      "event": "schedule",
+      "conclusion": "success",
+      "created_at": "2026-09-30T06:13:08Z",
+      "head_sha": "ce963b1c40d7f1dc6acbf2bfe27dfeae90d5b879",
+      "qualifies": false,
+      "reason": "The run head predates the orchestrator trigger-ownership implementation commit and therefore cannot prove the new dispatch step."
+    }
+  },
+  "current_day_observation": {
+    "checked_date_utc": "2026-10-01",
+    "scheduled_runs_created_since_2026_10_01_00_00_00Z_at_check": 0,
+    "failure_declared": false,
+    "reason": "Recent scheduled workflows have shown multi-hour GitHub scheduler delay: the 2026-09-30 v283 run was created at 06:13Z despite a 01:00Z cron, and the v284 run at 06:45Z despite a 01:17Z cron. The current observation was made before those historically observed delayed creation times, so absence was not sufficient to classify a scheduler failure."
+  },
+  "operational_decision": {
+    "remove_v284_direct_cron_now": false,
+    "manual_dispatch_counts_as_confirmation": false,
+    "add_watchdog": false,
+    "add_retry_loop": false,
+    "change_research_thresholds": false,
+    "next_retirement_condition": "Observe a real v283 event=schedule run on a head containing commit 7a322d6382aa0a76583068656043d23c52932fd1, verify its 'Dispatch controlled prospective E-layer collection' step succeeds, and observe the resulting v284 event=workflow_dispatch run complete successfully. Only then retire the redundant v284 direct cron in a separate minimal edit."
+  },
+  "research_semantics_unchanged": {
+    "shadow_gate": "20 events / 12 issuers / 12 dates / 6 months / max issuer share <=20%",
+    "price_or_return_access_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_live_or_brokerage_authorized": false
+  }
+}
