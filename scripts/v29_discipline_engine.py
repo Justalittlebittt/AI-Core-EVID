@@ -7,6 +7,7 @@ from typing import Any
 
 VALID_ACTIONS = {"BUY", "ADD", "HOLD", "REDUCE", "EXIT"}
 VALID_EVIDENCE = {"STRONG", "MODERATE", "WEAK", "INSUFFICIENT"}
+VALID_EXIT_RULE_REVISIONS = {"NONE", "TIGHTEN", "RELAX"}
 
 
 @dataclass(frozen=True)
@@ -77,8 +78,21 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
     invalidation_triggered = _require_bool(
         "invalidation_triggered", payload.get("invalidation_triggered")
     )
+    # Retained for V1 packet compatibility/audit. It can no longer exempt an already-breached active stop.
     adjustment_condition_satisfied = _require_bool(
         "adjustment_condition_satisfied", payload.get("adjustment_condition_satisfied")
+    )
+    exit_rule_revision_type = _require_exact_enum(
+        "EXIT_RULE_REVISION_TYPE",
+        payload.get("exit_rule_revision_type"),
+        VALID_EXIT_RULE_REVISIONS,
+    )
+    exit_rule_triggered = _require_bool(
+        "exit_rule_triggered", payload.get("exit_rule_triggered")
+    )
+    exit_rule_relaxation_condition_satisfied_before_trigger = _require_bool(
+        "exit_rule_relaxation_condition_satisfied_before_trigger",
+        payload.get("exit_rule_relaxation_condition_satisfied_before_trigger"),
     )
     is_averaging_down = _require_bool("is_averaging_down", payload.get("is_averaging_down"))
     independent_add_eligibility = _require_bool(
@@ -96,13 +110,24 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
 
     if stop_loss_breached and not current_exposure_exists:
         raise ValueError("STOP_LOSS_BREACH_REQUIRES_EXISTING_EXPOSURE")
+    if exit_rule_triggered and not current_exposure_exists:
+        raise ValueError("EXIT_RULE_TRIGGER_REQUIRES_EXISTING_EXPOSURE")
+    if exit_rule_revision_type != "NONE" and not current_exposure_exists:
+        raise ValueError("EXIT_RULE_REVISION_REQUIRES_EXISTING_EXPOSURE")
     if override_requested and not override_reason:
         raise ValueError("OVERRIDE_REASON_REQUIRED")
 
     reasons: list[str] = []
 
-    if current_exposure_exists and stop_loss_breached and not adjustment_condition_satisfied:
+    # The active stop is authoritative. A legitimate pre-breach transition must update the active
+    # stop before this packet is evaluated; once that active stop is breached there is no exception.
+    if current_exposure_exists and stop_loss_breached:
         reasons.append("STOP_LOSS_BREACHED")
+        return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
+
+    # A precommitted exit/take-profit rule that has already triggered cannot be relaxed afterward.
+    if current_exposure_exists and exit_rule_triggered:
+        reasons.append("EXIT_RULE_TRIGGERED")
         return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
 
     if invalidation_triggered:
@@ -110,6 +135,13 @@ def evaluate(payload: dict[str, Any]) -> dict[str, Any]:
         if current_exposure_exists:
             return DisciplineDecision("EXIT_REQUIRED", tuple(reasons), override_requested).as_dict()
         return DisciplineDecision("ACTION_BLOCKED_BY_EVIDENCE", tuple(reasons), override_requested).as_dict()
+
+    # Tightening is risk-reducing. Relaxation is allowed only when its predeclared condition is
+    # explicitly recorded as having been satisfied before any exit-rule trigger.
+    if current_exposure_exists and exit_rule_revision_type == "RELAX":
+        if not exit_rule_relaxation_condition_satisfied_before_trigger:
+            reasons.append("EXIT_RULE_RELAXATION_NOT_PREAUTHORIZED")
+            return DisciplineDecision("ACTION_BLOCKED_BY_RISK", tuple(reasons), override_requested).as_dict()
 
     if action in {"BUY", "ADD"}:
         if not stop_loss_defined:
