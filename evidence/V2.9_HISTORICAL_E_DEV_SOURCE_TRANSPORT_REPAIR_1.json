@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_DEV_SOURCE_TRANSPORT_REPAIR_1",
+  "version": "V2.9",
+  "status": "FROZEN_TECHNICAL_RETRY_AUTHORIZATION",
+  "failed_attempt": {
+    "actions_run_id": 36825984651,
+    "collect_job_id": 110251724968,
+    "output_commit": "4594b775c6aa0b7aa53fc82a050dfc410b6a3939",
+    "final_status": "V2_9_HISTORICAL_E_DEV_SOURCE_TECHNICALLY_BLOCKED",
+    "final_receipt_sha256": "01e4a53a0c7b5ca0d6ad19c5f8f2ffbab0cf77622ee56379049b67849ce2d379",
+    "windows_sha256": "5907353df4e35699655ca812519ae7e33493bb8b64bb5cc82801cbe0dfbe2469",
+    "results_sha256": "07cbe04c7fa2aa8f4aae16e66b3ede2500d3b51d67493742d138ef660ab1b65c",
+    "positive_events_sha256": "07cbe04c7fa2aa8f4aae16e66b3ede2500d3b51d67493742d138ef660ab1b65c",
+    "selected_filings": 0,
+    "successful_classifier_ready_filings": 0,
+    "root_cause": "NESTED_PLAYWRIGHT_SYNC_CONTEXT",
+    "observed_blocker": "Error:It looks like you are using Playwright Sync API inside the asyncio loop. Please use the Async API instead.",
+    "failure_stage": "Before CNINFO candidate queries could execute inside each frozen window"
+  },
+  "repair": {
+    "strategy": "PROCESS_ISOLATION_TRANSPORT_ADAPTER",
+    "runner_blob_unchanged": "9fc6d07c92571db45845271175fced261f0226ab",
+    "collector_blob_unchanged": "9fd2885518aaa5eefc382c068019a0c86ac5f3ce",
+    "adapter_path": "scripts/v29_historical_e_dev_source_transport_repair.py",
+    "adapter_blob_sha": "0914c5f6e61a5063b60e4c1b1c0dd618a71b6121",
+    "mechanism": "Replace only the in-process collector call at runtime with an invocation of the exact frozen collector in a separate Python process. The validated V2.9 runner remains byte-identical and retains the same windows, universe filter, selection, temporal logic, PDF materialization, classifier, outputs and gates.",
+    "failed_outputs_preserved_by_git_history": true,
+    "failed_output_commit_is_evidence_authority": true
+  },
+  "authorization": {
+    "one_in_place_source_only_technical_retry": true,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "window_mutation": false,
+    "classifier_mutation": false,
+    "triage_mutation": false,
+    "registry_mutation": false,
+    "selection_cap_mutation": false,
+    "information_gate_mutation": false,
+    "v2_8_12r_reopen": false
+  },
+  "retry_scope": {
+    "same_56_windows": true,
+    "same_development_folds": [0, 1, 2],
+    "same_frozen_runner": true,
+    "same_frozen_collector": true,
+    "same_frozen_triage": true,
+    "same_frozen_classifier": true,
+    "retry_reason_is_technical_only": true,
+    "sparse_result_rescue": false
+  },
+  "next_stage": "TRANSPORT_REPAIR_SELFTEST_THEN_SOURCE_ONLY_TECHNICAL_RETRY"
+}
