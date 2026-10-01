@@ -10,6 +10,7 @@ SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 VALID_PACKET_VERSION = "V2.9_DECISION_PACKET_V1"
 VALID_ACTIONS = {"BUY", "ADD", "HOLD", "REDUCE", "EXIT"}
 VALID_EVIDENCE = {"STRONG", "MODERATE", "WEAK", "INSUFFICIENT"}
+VALID_EXIT_RULE_REVISIONS = {"NONE", "TIGHTEN", "RELAX"}
 
 
 class DecisionPacketError(ValueError):
@@ -87,7 +88,14 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
     _require_fields("research_context", research, ["strategy_id", "experiment_version", "evaluation_timestamp", "evidence_artifact_sha256"])
     _require_fields("validity", validity, ["evidence_strength", "validity_result_sha256", "pre_registration_sha256", "all_required_dimensions_reported", "post_outcome_rule_change_detected"])
     _require_fields("action_context", action, ["action_type", "current_exposure_exists"])
-    _require_fields("risk_context", risk, ["projected_post_action_position_size", "position_limit", "projected_post_action_risk_budget_used", "risk_budget_limit", "stop_loss_defined", "stop_loss_breached", "take_profit_defined", "invalidation_triggered", "adjustment_condition_satisfied"])
+    _require_fields("risk_context", risk, [
+        "projected_post_action_position_size", "position_limit",
+        "projected_post_action_risk_budget_used", "risk_budget_limit",
+        "stop_loss_defined", "stop_loss_breached", "take_profit_defined",
+        "invalidation_triggered", "adjustment_condition_satisfied",
+        "exit_rule_revision_type", "exit_rule_triggered",
+        "exit_rule_relaxation_condition_satisfied_before_trigger",
+    ])
     _require_fields("behavior_context", behavior, ["is_averaging_down", "independent_add_eligibility", "is_chasing", "chase_rule_satisfied"])
     _require_fields("override_context", override, ["override_requested", "override_reason"])
 
@@ -117,6 +125,12 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
         "take_profit_defined": _require_bool("risk_context.take_profit_defined", risk["take_profit_defined"]),
         "invalidation_triggered": _require_bool("risk_context.invalidation_triggered", risk["invalidation_triggered"]),
         "adjustment_condition_satisfied": _require_bool("risk_context.adjustment_condition_satisfied", risk["adjustment_condition_satisfied"]),
+        "exit_rule_revision_type": _require_exact_enum("EXIT_RULE_REVISION_TYPE", risk["exit_rule_revision_type"], VALID_EXIT_RULE_REVISIONS),
+        "exit_rule_triggered": _require_bool("risk_context.exit_rule_triggered", risk["exit_rule_triggered"]),
+        "exit_rule_relaxation_condition_satisfied_before_trigger": _require_bool(
+            "risk_context.exit_rule_relaxation_condition_satisfied_before_trigger",
+            risk["exit_rule_relaxation_condition_satisfied_before_trigger"],
+        ),
     }
     validated_behavior = {
         "is_averaging_down": _require_bool("behavior_context.is_averaging_down", behavior["is_averaging_down"]),
@@ -170,5 +184,6 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
             "action_type_preserved": True,
             "risk_fields_inferred_or_optimized": False,
             "override_passthrough": True,
+            "discipline_post_baseline_repair_1_applied": True,
         },
     }
