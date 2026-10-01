@@ -6,8 +6,10 @@ on:
     paths:
       - "scripts/v29_historical_e_dev_source_runner.py"
       - "scripts/v29_historical_e_dev_source_validator.py"
+      - "scripts/v29_historical_e_dev_source_transport_repair.py"
       - "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_DATASET_CONTRACT_1.json"
       - "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json"
+      - "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_TRANSPORT_REPAIR_1.json"
       - ".github/workflows/v29-historical-e-dev-source.yml"
   workflow_dispatch:
 
@@ -29,13 +31,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Verify runner blob binding
+      - name: Verify frozen implementation bindings
         shell: bash
         run: |
           set -euo pipefail
           test "$(git hash-object scripts/v29_historical_e_dev_source_runner.py)" = "9fc6d07c92571db45845271175fced261f0226ab"
+          test "$(git hash-object scripts/v284_candidate_collector.py)" = "9fd2885518aaa5eefc382c068019a0c86ac5f3ce"
+          test "$(git hash-object scripts/v29_historical_e_dev_source_transport_repair.py)" = "fd355a3cd1847df891f73ebcd867aa9e4a36bcff"
       - name: Run source-only validator
         run: python scripts/v29_historical_e_dev_source_validator.py
+      - name: Run transport repair self-test
+        run: python scripts/v29_historical_e_dev_source_transport_repair.py self-test
 
   collect:
     needs: validate
@@ -46,15 +52,16 @@ jobs:
         with:
           fetch-depth: 0
       - id: authorization
-        name: Check for frozen collection authorization
+        name: Check frozen validation and technical retry authorization
         shell: bash
         run: |
           set -euo pipefail
-          if [ -f evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json ]; then
+          if [ -f evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json ] && \
+             [ -f evidence/V2.9_HISTORICAL_E_DEV_SOURCE_TRANSPORT_REPAIR_1.json ]; then
             echo "authorized=true" >> "$GITHUB_OUTPUT"
           else
             echo "authorized=false" >> "$GITHUB_OUTPUT"
-            echo "Validation receipt not frozen yet; collection remains disabled."
+            echo "Frozen validation or transport-repair authorization missing; collection remains disabled."
           fi
       - uses: actions/setup-python@v5
         if: steps.authorization.outputs.authorized == 'true'
@@ -63,29 +70,48 @@ jobs:
       - name: Install source-only dependencies
         if: steps.authorization.outputs.authorized == 'true'
         run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
-      - name: Verify frozen authorization and runner binding
+      - name: Verify frozen authorization and implementation bindings
         if: steps.authorization.outputs.authorized == 'true'
         shell: bash
         run: |
           set -euo pipefail
           test "$(git hash-object scripts/v29_historical_e_dev_source_runner.py)" = "9fc6d07c92571db45845271175fced261f0226ab"
+          test "$(git hash-object scripts/v284_candidate_collector.py)" = "9fd2885518aaa5eefc382c068019a0c86ac5f3ce"
+          test "$(git hash-object scripts/v29_historical_e_dev_source_transport_repair.py)" = "fd355a3cd1847df891f73ebcd867aa9e4a36bcff"
           python - <<'PY'
           import json
           from pathlib import Path
-          p=Path('evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json')
-          v=json.loads(p.read_text(encoding='utf-8'))
-          assert v['schema']=='AI_CORE_EVID_V2_9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1'
-          assert v['status']=='PASS'
-          assert v['runner']['blob_sha']=='9fc6d07c92571db45845271175fced261f0226ab'
-          a=v['authorization']
+
+          v = json.loads(Path('evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1.json').read_text(encoding='utf-8'))
+          assert v['schema'] == 'AI_CORE_EVID_V2_9_HISTORICAL_E_DEV_SOURCE_RUNNER_VALIDATION_1'
+          assert v['status'] == 'PASS'
+          assert v['runner']['blob_sha'] == '9fc6d07c92571db45845271175fced261f0226ab'
+          a = v['authorization']
           assert a['execute_source_only_collection'] is True
           assert a['price_or_return_access'] is False
           assert a['candidate_outcome_research'] is False
           assert a['fold3_access'] is False and a['fold4_access'] is False
+
+          r = json.loads(Path('evidence/V2.9_HISTORICAL_E_DEV_SOURCE_TRANSPORT_REPAIR_1.json').read_text(encoding='utf-8'))
+          assert r['schema'] == 'AI_CORE_EVID_V2_9_HISTORICAL_E_DEV_SOURCE_TRANSPORT_REPAIR_1'
+          assert r['status'] == 'FROZEN_TECHNICAL_RETRY_AUTHORIZATION'
+          assert r['failed_attempt']['output_commit'] == '4594b775c6aa0b7aa53fc82a050dfc410b6a3939'
+          assert r['failed_attempt']['final_receipt_sha256'] == '01e4a53a0c7b5ca0d6ad19c5f8f2ffbab0cf77622ee56379049b67849ce2d379'
+          assert r['repair']['runner_blob_unchanged'] == '9fc6d07c92571db45845271175fced261f0226ab'
+          assert r['repair']['collector_blob_unchanged'] == '9fd2885518aaa5eefc382c068019a0c86ac5f3ce'
+          assert r['repair']['adapter_blob_sha'] == 'fd355a3cd1847df891f73ebcd867aa9e4a36bcff'
+          ra = r['authorization']
+          assert ra['one_in_place_source_only_technical_retry'] is True
+          for key in (
+              'price_or_return_access', 'candidate_outcome_research', 'fold3_access', 'fold4_access',
+              'window_mutation', 'classifier_mutation', 'triage_mutation', 'registry_mutation',
+              'selection_cap_mutation', 'information_gate_mutation', 'v2_8_12r_reopen'
+          ):
+              assert ra[key] is False
           PY
-      - name: Execute deterministic source-only collection
+      - name: Execute deterministic source-only technical retry
         if: steps.authorization.outputs.authorized == 'true'
-        run: python scripts/v29_historical_e_dev_source_runner.py run
+        run: python scripts/v29_historical_e_dev_source_transport_repair.py run
       - name: Commit frozen source outputs
         if: steps.authorization.outputs.authorized == 'true'
         shell: bash
@@ -102,5 +128,5 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Freeze V2.9 historical E development source dataset"
+          git commit -m "Freeze V2.9 historical E development source dataset technical retry"
           git push
