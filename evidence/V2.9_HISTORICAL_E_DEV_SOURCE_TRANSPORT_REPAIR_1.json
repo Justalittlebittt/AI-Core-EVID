@@ -22,7 +22,7 @@
     "runner_blob_unchanged": "9fc6d07c92571db45845271175fced261f0226ab",
     "collector_blob_unchanged": "9fd2885518aaa5eefc382c068019a0c86ac5f3ce",
     "adapter_path": "scripts/v29_historical_e_dev_source_transport_repair.py",
-    "adapter_blob_sha": "0914c5f6e61a5063b60e4c1b1c0dd618a71b6121",
+    "adapter_blob_sha": "fd355a3cd1847df891f73ebcd867aa9e4a36bcff",
     "mechanism": "Replace only the in-process collector call at runtime with an invocation of the exact frozen collector in a separate Python process. The validated V2.9 runner remains byte-identical and retains the same windows, universe filter, selection, temporal logic, PDF materialization, classifier, outputs and gates.",
     "failed_outputs_preserved_by_git_history": true,
     "failed_output_commit_is_evidence_authority": true
