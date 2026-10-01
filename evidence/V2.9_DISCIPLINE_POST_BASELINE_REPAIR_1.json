@@ -1,0 +1,71 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_DISCIPLINE_POST_BASELINE_REPAIR_1",
+  "version": "V2.9",
+  "status": "IMPLEMENTATION_AND_REGRESSION_TESTS_UPDATED_NOT_CENTRALLY_EXECUTED",
+  "baseline_snapshot": "evidence/V2.9_BASELINE_SNAPSHOT.json",
+  "historical_contracts_immutable": [
+    "evidence/V2.9_DISCIPLINE_ENGINE_V1_CONTRACT.json",
+    "evidence/V2.9_DECISION_PACKET_CONTRACT.json"
+  ],
+  "repair_reason": "Post-baseline semantic audit found two concrete P1 discipline loopholes that static cross-layer acceptance did not prove closed.",
+  "findings": [
+    {
+      "id": "P1_STOP_BREACH_ADJUSTMENT_BYPASS",
+      "severity": "P1",
+      "pre_repair_behavior": "An existing exposure with stop_loss_breached=true could avoid EXIT_REQUIRED when adjustment_condition_satisfied=true, because the evaluator could not prove that the condition had been satisfied before the active stop was breached.",
+      "repair": "The active stop is authoritative. For an existing exposure, stop_loss_breached=true now always returns EXIT_REQUIRED before evidence, override, or rule-revision logic. Legitimate pre-breach stop transitions must update the active stop before evaluation; the legacy adjustment flag cannot exempt an already-breached active stop."
+    },
+    {
+      "id": "P1_EXIT_RULE_POST_ENTRY_RELAXATION_GAP",
+      "severity": "P1",
+      "pre_repair_behavior": "The V1 packet carried only take_profit_defined and had no representation of exit-rule revision direction, exit-rule trigger state, or whether a relaxation condition was satisfied before the trigger. The engine therefore could not enforce the frozen anti-greed intent against target raising or exit-rule relaxation.",
+      "repair": "The active implementation now requires exit_rule_revision_type in NONE/TIGHTEN/RELAX, exit_rule_triggered, and exit_rule_relaxation_condition_satisfied_before_trigger. A triggered exit rule returns EXIT_REQUIRED. RELAX without a satisfied pre-trigger condition returns ACTION_BLOCKED_BY_RISK. TIGHTEN is risk-reducing and may remain eligible when no higher-priority rule fires."
+    }
+  ],
+  "active_semantic_supersession": {
+    "stop_loss_lock": "For an existing exposure, stop_loss_breached=true unconditionally means EXIT_REQUIRED. No current adjustment boolean or override can rescue the position after the active stop is breached.",
+    "exit_rule_trigger_lock": "For an existing exposure, exit_rule_triggered=true means EXIT_REQUIRED before any requested relaxation is considered.",
+    "exit_rule_revision_lock": "RELAX is eligible only if exit_rule_relaxation_condition_satisfied_before_trigger=true and exit_rule_triggered=false. Otherwise it is blocked by risk. TIGHTEN is treated as risk-reducing.",
+    "override_rule": "Override remains audit-only and cannot convert any blocked or EXIT_REQUIRED state into ACTION_ELIGIBLE."
+  },
+  "new_required_active_fields": {
+    "risk_context": [
+      "exit_rule_revision_type",
+      "exit_rule_triggered",
+      "exit_rule_relaxation_condition_satisfied_before_trigger"
+    ],
+    "exit_rule_revision_type_enum": ["NONE", "TIGHTEN", "RELAX"],
+    "strict_type_rule": "The two new trigger/condition fields are native booleans; aliases, strings, integers and null fail closed."
+  },
+  "implementation_commits": {
+    "discipline_engine": "f6bebd9427fbdf646323c3c6e32ad489b0edf81a",
+    "decision_packet_adapter": "b3696134c729fce0ab3a44aa453a71ecbbc42a7c",
+    "discipline_selftest": "25c54a145930622a4fd3d1b386dd4ada7f8050af",
+    "decision_packet_selftest": "7ed868fa56dd5dda25b1e45b3b9e337e4ce4e9cb"
+  },
+  "regression_cases_added": [
+    "stop_loss_breached=true plus legacy adjustment_condition_satisfied=true still returns EXIT_REQUIRED",
+    "exit_rule_triggered=true plus RELAX request returns EXIT_REQUIRED",
+    "RELAX without pre-trigger satisfied condition returns ACTION_BLOCKED_BY_RISK",
+    "TIGHTEN with no higher-priority trigger remains ACTION_ELIGIBLE",
+    "new enum and boolean fields fail closed on malformed values",
+    "full Decision Packet path exercises the same semantics"
+  ],
+  "validation_state": {
+    "source_and_contract_audit": "PASS_FINDINGS_CONFIRMED",
+    "implementation_updated": true,
+    "regression_tests_updated": true,
+    "central_runtime_execution_observed": false,
+    "ci_claim": "NOT_CLAIMED"
+  },
+  "unchanged_guardrails": [
+    "No autonomous brokerage execution",
+    "No position sizing optimization",
+    "No guaranteed market-direction claims",
+    "No fold3 or fold4 access",
+    "No prospective E outcome authorization",
+    "No V2.8.12R reopening",
+    "No validity threshold, sample floor, baseline or PASS-rule relaxation"
+  ],
+  "next_state": "DISCIPLINE_P1_SEMANTICS_CLOSED_IN_ACTIVE_CODE_PENDING_RUNTIME_SELFTEST_EXECUTION"
+}
