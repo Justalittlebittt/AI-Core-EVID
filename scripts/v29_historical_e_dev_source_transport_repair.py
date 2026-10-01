@@ -7,7 +7,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import v284_candidate_collector as collector
 import v29_historical_e_dev_source_runner as runner
 
 RUNNER_PATH = Path("scripts/v29_historical_e_dev_source_runner.py")
@@ -160,6 +159,7 @@ def run() -> None:
     if mode == "TERMINAL_ALREADY_FROZEN":
         print(json.dumps({"status": mode}, ensure_ascii=False))
         return
+    import v284_candidate_collector as collector
     collector.collect = isolated_collect
     print(json.dumps({"transport_repair_mode": mode}, ensure_ascii=False))
     runner.run()
