@@ -1,0 +1,129 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_DEV_SOURCE_DATASET_CONTRACT_1",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_SOURCE_ONLY_RUNNER_IMPLEMENTATION",
+  "parent_audit": "evidence/V2.9_HISTORICAL_E_SOURCE_ADMISSION_AUDIT_1.json",
+  "objective": "Construct one deterministic, outcome-blind historical E-event development dataset inside the already-consumed fold0/fold1/fold2 security universe, sufficient for later evidence-anchored candidate development if and only if the source information gate passes.",
+  "time_scope": {
+    "calendar_authority": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "calendar_receipt_sha256": "1f6e44915ec0a6f3db0396a491c83118b6ce57448f7f08b2d35a7d8ee7cf4ed8",
+    "years": [2023, 2024],
+    "quarter_anchor_joint_session_ordinals": [4, 12, 20, 28, 36, 44, 52],
+    "window_rule": "For each of the eight 2023-2024 calendar quarters, anchor on each listed joint-session ordinal and query anchor through anchor+6 calendar days inclusive.",
+    "expected_window_count": 56,
+    "window_mutation_after_source_results": false,
+    "window_expansion_if_sparse": false,
+    "window_shift_if_blocked_or_sparse": false
+  },
+  "development_universe": {
+    "admitted_manifests": [
+      {
+        "fold": 0,
+        "path": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv",
+        "sha256": "199864ece6c02f3257647d59ba63fe261a7b478a2525b7ed8042bbf475a9fe48",
+        "count": 1031
+      },
+      {
+        "fold": 1,
+        "path": "evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv",
+        "sha256": "fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a",
+        "count": 1058
+      },
+      {
+        "fold": 2,
+        "path": "evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv",
+        "sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+        "count": 1048
+      }
+    ],
+    "admission_rule": "A candidate filing may be selected only when canonical_security_id exists in exactly one admitted manifest.",
+    "pairwise_manifest_overlap_allowed": false,
+    "fold3_or_fold4_identity_allowed": false,
+    "unknown_identity_allowed": false,
+    "known_fold2_source_invalid_security": "SSE:600767",
+    "known_source_invalid_semantics": "Identity may remain in the source-only dataset if its filing evidence is valid, but later price/outcome attachment must preserve the pre-existing source-invalid condition and fail closed rather than substitute another security or provider merely to rescue coverage."
+  },
+  "discovery_selection_and_classification": {
+    "collector": "scripts/v284_candidate_collector.py",
+    "collector_registry": "Frozen V2.8.4 18-term registry and existing SSE/SZSE public announcement routes; no term changes.",
+    "triage": "scripts/v284_candidate_triage.py with frozen V2.8.4 semantics.",
+    "universe_filter_position": "After collector deduplication and frozen triage, before deterministic selection and before PDF materialization.",
+    "selection_order": "SHA256(announcement_id) ascending, then announcement_id ascending.",
+    "maximum_selected_per_window": 6,
+    "security_diversity": "At most one selected filing per canonical_security_id within a window.",
+    "manual_security_selection": false,
+    "manual_document_selection": false,
+    "positive_yield_resampling": false,
+    "classifier": "Frozen V2.8.4 official-PDF page-scoped AI-Core classifier and aggregation semantics without changes.",
+    "positive_state": "ELIGIBLE_AI_CORE",
+    "search_title_or_snippet_as_classifier_input": false,
+    "raw_pdf_git_storage": false
+  },
+  "temporal_provenance": {
+    "required_fields": ["announcement_id", "canonical_security_id", "announcement_time", "adjunct_url", "path_disclosure_date"],
+    "date_consistency": "Asia/Shanghai date derived from announcement_time must equal path_disclosure_date and official finalpage path date.",
+    "effective_date": "First frozen joint A-share trading date strictly after disclosure date.",
+    "same_day_effective_date_forbidden": true,
+    "future_revision_backfill_forbidden": true,
+    "metadata_date_fallback_forbidden": true
+  },
+  "source_information_gate": {
+    "technical_requirements": {
+      "all_56_windows_accounted_for": true,
+      "successful_classifier_ready_materialization_rate_min": 0.90,
+      "all_positive_identities_bound_to_admitted_development_universe": true,
+      "all_positive_temporal_provenance_pass": true,
+      "classifier_triage_registry_windows_caps_unchanged_after_execution": true
+    },
+    "information_floor": {
+      "eligible_events_min": 20,
+      "distinct_securities_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_calendar_months_min": 6,
+      "max_single_security_share_max": 0.20
+    },
+    "threshold_origin": "Reuse the already-frozen V2.8.12 prospective E information-floor geometry rather than inventing a new post-source sufficiency threshold.",
+    "if_all_pass": "V2_9_HISTORICAL_E_DEV_SOURCE_READY",
+    "if_technical_fail": "V2_9_HISTORICAL_E_DEV_SOURCE_TECHNICALLY_BLOCKED",
+    "if_technical_pass_information_floor_fail": "V2_9_HISTORICAL_E_DEV_SOURCE_TOO_SPARSE",
+    "sparse_result_rescue_by_extra_windows": false
+  },
+  "required_runner_validation_before_real_collection": [
+    "Recompute exactly 56 windows from the frozen joint calendar using ordinals 4/12/20/28/36/44/52.",
+    "Verify all three admitted manifest file SHA256 values before use.",
+    "Verify canonical_security_id sets are pairwise disjoint; any overlap fails closed.",
+    "Verify every selected row belongs to exactly one admitted development manifest.",
+    "Verify no fold3/fold4 manifest, source path or module is referenced by the runner.",
+    "Verify input-order invariant SHA256 selection and at most one security per window.",
+    "Verify maximum six selected filings per window.",
+    "Verify temporal path/date/announcement consistency and strictly-next-joint-session effective date.",
+    "Verify source collection/classification imports no security price, benchmark, return, fold outcome or strategy-evaluator module.",
+    "Freeze runner blob SHA and a PASS validation receipt before any real historical announcement query."
+  ],
+  "outputs": {
+    "window_plan": "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_WINDOWS_1.json",
+    "selected_results": "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RESULTS_1.csv",
+    "positive_events": "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_POSITIVE_EVENTS_1.csv",
+    "final_receipt": "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_FINAL_RECEIPT_1.json"
+  },
+  "forbidden": [
+    "No security price, return, benchmark or transaction-cost data during source construction.",
+    "No fold3 or fold4 manifest/source access.",
+    "No reopening, mutation, expansion or relabeling of V2.8.12R.",
+    "No modification of collector terms, triage, classifier, selection caps, windows or information-floor thresholds after source results are observed.",
+    "No manual addition, replacement or removal of securities/documents to improve positive density.",
+    "No Setup, First60, Episode, live or brokerage output.",
+    "Passing this source gate does not itself authorize outcome research; one materially new candidate hypothesis, baseline, cost model, primary metric/horizon and development PASS rule must be preregistered first."
+  ],
+  "authorization": {
+    "implement_source_only_runner": true,
+    "validate_runner": true,
+    "execute_real_source_collection_before_validation_pass": false,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_live_or_brokerage": false
+  },
+  "next_stage": "V2.9_HISTORICAL_E_DEV_SOURCE_RUNNER_IMPLEMENTATION_AND_VALIDATION"
+}
