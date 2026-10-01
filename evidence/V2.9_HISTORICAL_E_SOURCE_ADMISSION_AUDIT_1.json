@@ -1,0 +1,78 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_ADMISSION_AUDIT_1",
+  "version": "V2.9",
+  "status": "V2811_METHOD_ADMISSIBLE_SAMPLE_INSUFFICIENT_NEW_DEV_SOURCE_CONTRACT_REQUIRED",
+  "purpose": "Determine whether existing historical E reconstruction can support a materially new V2.9 development-only evidence-anchored candidate path without reopening V2.8.12R or consuming fold3/fold4.",
+  "v2811_method_audit": {
+    "contract": "evidence/V2.8.11_BOUNDED_HISTORICAL_E_RECONSTRUCTION_PILOT_CONTRACT.json",
+    "reconciled_receipt": "evidence/V2.8.11_RECONCILED_FINAL_RECEIPT.json",
+    "method_admissible_as_source_only_reference": true,
+    "reasons": [
+      "Eight historical windows were frozen before real candidate query.",
+      "Discovery used the frozen V2.8.4 18-term registry, frozen triage and page-scoped classifier.",
+      "Selection was deterministic by SHA256(announcement_id), capped per window, security-diverse, and manual security/document selection was forbidden.",
+      "Positive-yield resampling and window shifting were forbidden.",
+      "No security price, return, fold3 or fold4 data were consumed.",
+      "Retry2 was a bounded in-place repair of a source-orchestration/receipt defect in the already-frozen 2023Q3 window; it did not change keywords, classifier, triage, windows, density thresholds or candidate rules."
+    ],
+    "sample_admissible_for_strategy_outcome_research_now": false,
+    "sample_insufficiency": {
+      "selected_filings": 21,
+      "classifier_ready_filings": 20,
+      "positive_filings": 3,
+      "distinct_positive_securities": 2,
+      "distinct_positive_quarters": 3,
+      "terminal_status": "V2_8_11_E_EVENT_RECONSTRUCTION_TOO_SPARSE"
+    },
+    "decision": "Reuse the deterministic source-construction method, not the sparse V2.8.11 sample as a strategy-development dataset."
+  },
+  "development_universe_boundary": {
+    "principle": "New historical E discovery may scan public announcements broadly, but a filing may enter the V2.9 development dataset only if its canonical_security_id belongs to one of the already-consumed frozen development manifests fold0, fold1 or fold2.",
+    "fold0_manifest": {
+      "path": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv",
+      "sha256": "199864ece6c02f3257647d59ba63fe261a7b478a2525b7ed8042bbf475a9fe48",
+      "count": 1031,
+      "identity_fold": 0
+    },
+    "fold1_manifest": {
+      "path": "evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv",
+      "sha256": "fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a",
+      "count": 1058,
+      "identity_fold": 1
+    },
+    "fold2_manifest": {
+      "path": "evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv",
+      "sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a",
+      "count": 1048,
+      "identity_fold": 2
+    },
+    "fold3_allowed": false,
+    "fold4_allowed": false,
+    "unknown_or_unbound_security_allowed": false,
+    "manifest_overlap_rule": "Implementation validation must prove the three admitted manifests are pairwise disjoint by canonical_security_id before any real source query; otherwise fail closed."
+  },
+  "price_source_boundary": {
+    "common_retrieval_range": "2022-09-01 through 2024-12-31",
+    "outcome_access_authorized_now": false,
+    "fold2_known_source_invalid_security": "SSE:600767",
+    "source_invalid_handling": "If outcome research is authorized later, preserve source-invalid status and fail closed for that security; no replacement or alternate-security substitution."
+  },
+  "v2812r_boundary": {
+    "closed_record": "evidence/V2.8.12R_FINAL_RECORD.json",
+    "reopen_allowed": false,
+    "expand_closed_sample_allowed": false,
+    "reuse_closed_result_as_new_experiment_result": false,
+    "new_v29_dataset_must_have_independently_predeclared_identity_before_outcomes": true
+  },
+  "next_stage": "V2.9_HISTORICAL_E_DEV_SOURCE_DATASET_CONTRACT_1",
+  "authorization": {
+    "freeze_new_source_only_contract": true,
+    "build_and_validate_source_only_runner": true,
+    "execute_real_source_only_collection_before_runner_validation": false,
+    "price_or_return_access": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_or_live": false,
+    "brokerage_execution": false
+  }
+}
