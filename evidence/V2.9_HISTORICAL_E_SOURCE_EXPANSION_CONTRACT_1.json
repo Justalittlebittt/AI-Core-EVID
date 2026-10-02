@@ -1,0 +1,139 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_EXPANSION_CONTRACT_1",
+  "version": "V2.9",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "parent_diagnosis": "evidence/V2.9_HISTORICAL_E_SOURCE_COVERAGE_DIAGNOSIS_1.json",
+  "parent_diagnosis_commit": "0ddffe3fcdf37eda7d80ccf69ea201f3cd5cafca",
+  "objective": "Test whether source coverage and the frozen six-per-window selection cap explain the V2.9 historical E development source sparsity, while keeping the AI-Core semantic definition, development universe, source registry, triage semantics, temporal provenance, and information floor unchanged.",
+  "problem_elimination_decision": {
+    "do_not_repeat": "Do not rerun the same 56-window capped experiment.",
+    "single_change_family": "Change source coverage and selection censoring only; do not redesign the 18-term discovery registry or classifier in this experiment.",
+    "reason": "Coverage/censoring can be measured by exhaustive source census plus deterministic replay of the old design; changing discovery terms simultaneously would confound attribution."
+  },
+  "invariants": {
+    "development_universe": {
+      "folds": [0, 1, 2],
+      "manifests": [
+        {"fold": 0, "path": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv", "sha256": "199864ece6c02f3257647d59ba63fe261a7b478a2525b7ed8042bbf475a9fe48", "count": 1031},
+        {"fold": 1, "path": "evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv", "sha256": "fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a", "count": 1058},
+        {"fold": 2, "path": "evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv", "sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a", "count": 1048}
+      ],
+      "fold3_or_fold4_forbidden": true
+    },
+    "collector": "scripts/v284_candidate_collector.py",
+    "collector_registry": "Frozen V2.8.4 18-term registry; no term additions, removals, stemming, synonym expansion, or result-guided filters.",
+    "triage": "scripts/v284_candidate_triage.py frozen semantics unchanged.",
+    "classifier": "scripts/v284_ai_core_evidence_classifier.py frozen semantics unchanged.",
+    "positive_state": "ELIGIBLE_AI_CORE",
+    "calendar": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json",
+    "calendar_receipt_sha256": "1f6e44915ec0a6f3db0396a491c83118b6ce57448f7f08b2d35a7d8ee7cf4ed8",
+    "temporal_rule": "Effective date is the first frozen joint A-share trading date strictly after disclosure date; same-day is forbidden.",
+    "information_floor": {"eligible_events_min": 20, "distinct_securities_min": 12, "distinct_effective_dates_min": 12, "distinct_calendar_months_min": 6, "max_single_security_share_max": 0.20}
+  },
+  "source_census": {
+    "disclosure_date_start": "2023-01-01",
+    "disclosure_date_end": "2024-12-30",
+    "coverage": "Every calendar date in the inclusive range exactly once.",
+    "transport_partition": "Deterministic contiguous non-overlapping partitions of at most 7 calendar days, used only for transport/retry control and not as a selection gate.",
+    "expected_calendar_days": 730,
+    "expected_transport_partitions": 105,
+    "candidate_dedupe_key": "announcement_id",
+    "universe_filter_position": "After collector deduplication and frozen triage, before PDF materialization/classification.",
+    "selection_cap": null,
+    "security_diversity_cap": null,
+    "manual_security_selection": false,
+    "manual_document_selection": false,
+    "positive_yield_resampling": false,
+    "materialize_and_classify": "All unique frozen-triage-materializable candidate filings whose canonical_security_id belongs to exactly one admitted development manifest."
+  },
+  "preregistered_hypotheses": {
+    "H1_TIME_COVERAGE": {
+      "question": "How many eligible AI-Core events occur outside the original frozen 56 source windows?",
+      "measure": "Count and identity of census-positive filings whose disclosure date is outside all original 56 windows.",
+      "interpretation": "Positive count >0 demonstrates recall loss from temporal sampling. It does not by itself prove the information floor would pass."
+    },
+    "H3_SELECTION_CENSORING": {
+      "question": "Within the original 56 windows, how many eligible AI-Core events were excluded only by the old deterministic six-per-window / one-security-per-window selection rule?",
+      "measure": "Replay the original frozen selection algorithm against the census candidate pool for each original window, then compare all classified positives inside those windows with the replay-selected subset.",
+      "interpretation": "Any positive present inside an original window but absent from the replay-selected subset demonstrates selection censoring. Zero demonstrates no observed positive loss from that cap in the census."
+    },
+    "H2_DISCOVERY_NOISE_DIAGNOSTIC_ONLY": {
+      "question": "Which frozen discovery terms generate low-precision candidate traffic?",
+      "measure": "For each frozen term, report deduped candidate count, admitted-universe count, classifier-ready count, positive count, and positive yield. Multi-term filings are counted once globally and may contribute to multiple term diagnostics.",
+      "interpretation": "Descriptive only. No term may be removed, reweighted, expanded, or filtered in this experiment."
+    }
+  },
+  "old_design_replay": {
+    "window_authority": "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_WINDOWS_1.json at frozen source-result commit 89b7652bb5daad7e9d1ff28ace9a1f0136a746e6",
+    "selection_order": "SHA256(announcement_id) ascending, then announcement_id ascending.",
+    "maximum_selected_per_window": 6,
+    "security_diversity": "At most one selected filing per canonical_security_id within a window.",
+    "required_replay_check": "The replay must exactly reproduce the original 88 selected announcement_ids before H1/H3 attribution is accepted.",
+    "replay_mismatch_effect": "TECHNICALLY_BLOCKED"
+  },
+  "technical_gate": {
+    "all_730_calendar_days_accounted_for": true,
+    "all_105_transport_partitions_accounted_for": true,
+    "successful_classifier_ready_materialization_rate_min": 0.90,
+    "all_positive_identities_bound_to_admitted_development_universe": true,
+    "all_positive_temporal_provenance_pass": true,
+    "old_design_replay_exact_88_selected_ids": true,
+    "collector_triage_classifier_registry_unchanged": true,
+    "price_or_return_data_consumed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  },
+  "terminal_status": {
+    "if_technical_fail": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TECHNICALLY_BLOCKED",
+    "if_technical_pass_information_floor_pass": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_READY",
+    "if_technical_pass_information_floor_fail": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TOO_SPARSE"
+  },
+  "outputs": {
+    "census_plan": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_CENSUS_PLAN_1.json",
+    "census_results": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_RESULTS_1.csv",
+    "positive_events": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv",
+    "old_design_replay": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_OLD_DESIGN_REPLAY_1.json",
+    "term_diagnostics": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_TERM_DIAGNOSTICS_1.csv",
+    "final_receipt": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json"
+  },
+  "required_runner_validation_before_real_collection": [
+    "Verify parent diagnosis exists at the frozen parent commit and status is DIAGNOSIS_COMPLETE_EXPANSION_NOT_AUTHORIZED.",
+    "Verify the three admitted development manifests and SHA256/count bindings exactly match this contract and are pairwise disjoint.",
+    "Verify collector, triage, classifier and 18-term registry blobs are unchanged from the frozen source-result implementation used by commit 89b7652bb5daad7e9d1ff28ace9a1f0136a746e6.",
+    "Construct exactly 730 inclusive calendar dates from 2023-01-01 through 2024-12-30 and exactly 105 non-overlapping transport partitions of at most seven days.",
+    "Verify every transport date belongs to exactly one partition and no date outside the frozen range is queried.",
+    "Verify no source selection cap or per-security diversity cap exists in the census materialization path.",
+    "Verify the old-design replay implementation is isolated from census inclusion and exactly reproduces the original 88 selected announcement_ids on a dry replay fixture before real collection.",
+    "Verify temporal provenance uses only the frozen 2023-2024 joint calendar and therefore the disclosure range ends on 2024-12-30 so a strictly later frozen session is always available.",
+    "Verify source collection/classification imports no security price, benchmark, return, fold outcome, transaction-cost, strategy-evaluator, live, or brokerage module.",
+    "Freeze runner blob SHA and a PASS validation receipt before any real CNINFO query."
+  ],
+  "forbidden": [
+    "No mutation or reinterpretation of the frozen V2.9 Historical E Development Source contract or TOO_SPARSE terminal result.",
+    "No security price, return, benchmark, transaction-cost, candidate outcome, strategy, live, or brokerage data.",
+    "No fold3 or fold4 manifest/source access.",
+    "No reopening, mutation, expansion or relabeling of V2.8.12R.",
+    "No change to the frozen 18-term registry, frozen triage, frozen AI-Core classifier, positive definition, temporal provenance rule, or information-floor thresholds.",
+    "No manual addition, removal, prioritization or replacement of securities or filings based on observed source results.",
+    "No positive-yield-driven rerun, date extension beyond 2024-12-30, or post-result change to census inclusion.",
+    "No term filtering or discovery redesign based on H2 diagnostics inside this experiment.",
+    "Passing this source expansion gate does not authorize outcome research. A separate candidate hypothesis, baseline, cost model, primary metric/horizon and development PASS rule must be preregistered first."
+  ],
+  "authorization": {
+    "implement_expansion_runner": true,
+    "validate_expansion_runner": true,
+    "execute_real_source_collection_before_validation_pass": false,
+    "execute_real_source_collection_after_validation_pass": true,
+    "change_discovery_terms": false,
+    "change_triage": false,
+    "change_classifier": false,
+    "change_information_floor": false,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_live_or_brokerage": false
+  },
+  "next_stage": "V2.9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_IMPLEMENTATION_AND_VALIDATION",
+  "contract_sha256_excluding_this_field": "eb9eff562593232721ad70213c7494ca68afbd961039f206322b049b40e279d3"
+}
