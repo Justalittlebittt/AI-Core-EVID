@@ -1,0 +1,43 @@
+name: V2.9 Historical E Source Expansion Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v29_historical_e_source_expansion_runner.py"
+      - "scripts/v29_historical_e_source_expansion_validator.py"
+      - "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_VALIDATION_ORDER_CLARIFICATION_1.json"
+      - ".github/workflows/v29-historical-e-source-expansion-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen implementation bindings
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v29_historical_e_source_expansion_runner.py)" = "ce919649b93a40919862a1fe7608e5710f7bc81b"
+          test "$(git hash-object scripts/v29_historical_e_source_expansion_validator.py)" = "ce237d7a8239ff6f84e36eb0ccaab9fc2b9d3127"
+          test "$(git hash-object scripts/v284_candidate_collector.py)" = "9fd2885518aaa5eefc382c068019a0c86ac5f3ce"
+          test "$(git hash-object scripts/v284_candidate_triage.py)" = "60394f1ca9cf0be237de7c0deab790ec4923cd1a"
+          test "$(git hash-object scripts/v284_ai_core_evidence_classifier.py)" = "fca1a9220423aeae8c0e77990b76b2c142003663"
+          test "$(git hash-object scripts/v284_page_scoped_classifier.py)" = "53621d4692821bb503c62f70adcc91765aa3985d"
+          test "$(git hash-object scripts/v284_pdf_text_extractor.py)" = "2022c8cf2d7664309dfdaded1018418d5808b7a5"
+          test "$(git hash-object evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_CONTRACT_1.json)" = "cf4073081e75ce4bf0f5644353573e57c810d171"
+          test "$(git hash-object evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_VALIDATION_ORDER_CLARIFICATION_1.json)" = "83e349544b7f4f079cc80c54a186e682a91351fe"
+      - name: Run expansion runner self-test
+        run: python scripts/v29_historical_e_source_expansion_runner.py self-test
+      - name: Run Phase-A validator
+        run: python scripts/v29_historical_e_source_expansion_validator.py
