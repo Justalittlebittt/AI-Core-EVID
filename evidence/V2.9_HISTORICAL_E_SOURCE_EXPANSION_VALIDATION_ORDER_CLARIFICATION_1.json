@@ -1,0 +1,87 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_EXPANSION_VALIDATION_ORDER_CLARIFICATION_1",
+  "version": "V2.9",
+  "status": "FROZEN_VALIDATION_ORDER_CLARIFICATION",
+  "parent_contract": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_CONTRACT_1.json",
+  "parent_contract_commit": "5b4b85200d899289b1536451bf598386c9fcd369",
+  "preimplementation_audit": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_PREIMPLEMENTATION_AUDIT_1.json",
+  "preimplementation_audit_commit": "2d294b68e40d28d9a292db4ad9020a598d6e9932",
+  "clarification_type": "VALIDATION_ORDER_ONLY",
+  "research_semantics_changed": false,
+  "reason": "The original pre-cap candidate identities were not frozen, so exact reproduction of the original 88 selected announcement_ids cannot be independently tested before any real CNINFO query. The exact replay requirement remains mandatory but moves to the first point at which the census candidate pool exists.",
+  "phase_a_before_any_real_cninfo_query": {
+    "must_pass": [
+      "Parent contract and preimplementation audit bindings are exact.",
+      "The three admitted development manifests match frozen SHA256/count bindings and are pairwise disjoint.",
+      "Collector, triage, classifier and 18-term registry bindings are frozen.",
+      "Exactly 730 inclusive dates from 2023-01-01 through 2024-12-30 and exactly 105 deterministic contiguous non-overlapping transport partitions of at most seven days are constructed.",
+      "Every transport date is covered exactly once and no date outside the frozen range is queried.",
+      "The census inclusion/materialization path contains no six-per-window cap and no per-security diversity cap.",
+      "The old-design replay algorithm passes synthetic order-invariance, six-per-window cap, one-security-per-window diversity, deduplication and deterministic SHA256 ordering tests.",
+      "Temporal provenance uses only the frozen 2023-2024 joint calendar and a strictly later joint session exists for every allowed disclosure date.",
+      "Production source collection/classification imports no price, return, benchmark, transaction-cost, candidate-outcome, fold3, fold4, strategy-evaluator, live or brokerage source.",
+      "Runner blob SHA and Phase-A PASS validation receipt are frozen before any real query."
+    ],
+    "exact_88_replay_required_here": false,
+    "real_source_queries_executed": false
+  },
+  "phase_b_after_census_candidate_pool_before_scientific_attribution": {
+    "required_replay_input": "The complete deduped, frozen-triaged, admitted-development-universe census candidate pool, restricted to each of the original 56 frozen windows.",
+    "selection_order": "SHA256(announcement_id) ascending, then announcement_id ascending.",
+    "maximum_selected_per_window": 6,
+    "security_diversity": "At most one selected filing per canonical_security_id within each original window.",
+    "required_exact_result": "Exactly reproduce the original frozen set of 88 selected announcement_ids.",
+    "mismatch_effect": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TECHNICALLY_BLOCKED",
+    "mismatch_scientific_effect": "H1/H3 attribution and terminal READY/TOO_SPARSE classification are inadmissible.",
+    "must_complete_before": [
+      "H1_TIME_COVERAGE attribution",
+      "H3_SELECTION_CENSORING attribution",
+      "information-floor scientific classification",
+      "terminal READY or TOO_SPARSE receipt"
+    ]
+  },
+  "unchanged": {
+    "census_range": "2023-01-01 through 2024-12-30 inclusive",
+    "calendar_days": 730,
+    "transport_partitions": 105,
+    "development_folds": [0, 1, 2],
+    "discovery_registry_terms": 18,
+    "triage_semantics": "frozen",
+    "classifier_semantics": "frozen",
+    "positive_state": "ELIGIBLE_AI_CORE",
+    "census_selection_cap": null,
+    "census_security_diversity_cap": null,
+    "old_replay_maximum_selected_per_window": 6,
+    "old_replay_one_security_per_window": true,
+    "information_floor": {
+      "eligible_events_min": 20,
+      "distinct_securities_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_calendar_months_min": 6,
+      "max_single_security_share_max": 0.20
+    }
+  },
+  "forbidden": [
+    "No mutation of the original V2.9 Historical E Development Source TOO_SPARSE result.",
+    "No change to source windows, census range, 18-term registry, triage, classifier, positive definition, temporal rule or information floor to rescue sample size.",
+    "No price, return, benchmark, transaction-cost, candidate-outcome, strategy, live or brokerage data.",
+    "No fold3 or fold4 access.",
+    "No V2.8.12R reopen.",
+    "No use of the frozen 88 selected rows as their own replay input.",
+    "No claim that synthetic replay tests satisfy the Phase-B exact-88 requirement."
+  ],
+  "authorization": {
+    "implement_expansion_runner": true,
+    "implement_phase_a_validator": true,
+    "freeze_phase_a_validation_receipt_if_pass": true,
+    "execute_real_source_collection_before_phase_a_pass": false,
+    "execute_real_source_collection_after_phase_a_pass": true,
+    "require_phase_b_exact_88_before_scientific_classification": true,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "precedence": "For validation timing only, this clarification supersedes the parent contract sentence requiring exact-88 dry replay before real collection. All other parent-contract requirements remain in force.",
+  "next_stage": "V2.9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_IMPLEMENTATION_AND_PHASE_A_VALIDATION"
+}
