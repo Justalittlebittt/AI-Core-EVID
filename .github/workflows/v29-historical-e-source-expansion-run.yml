@@ -1,0 +1,63 @@
+name: V2.9 Historical E Source Expansion Run
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_VALIDATION_1.json"
+      - ".github/workflows/v29-historical-e-source-expansion-run.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen Phase-A authorization and implementation bindings
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v29_historical_e_source_expansion_runner.py)" = "ce919649b93a40919862a1fe7608e5710f7bc81b"
+          test "$(git hash-object scripts/v29_historical_e_source_expansion_validator.py)" = "ce237d7a8239ff6f84e36eb0ccaab9fc2b9d3127"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path('evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_VALIDATION_1.json').read_text())
+          assert v['schema']=='AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_VALIDATION_1'
+          assert v['status']=='PASS' and v['all_pass'] is True and v['passed']==v['total']==25
+          assert v['runner']['blob_sha']=='ce919649b93a40919862a1fe7608e5710f7bc81b'
+          assert v['validator']['blob_sha']=='ce237d7a8239ff6f84e36eb0ccaab9fc2b9d3127'
+          assert v['phase_b_exact_88_required_before_scientific_classification'] is True
+          assert v['real_source_queries_executed'] is False
+          a=v['authorization']
+          assert a['execute_real_source_collection'] is True
+          assert a['price_or_return_access'] is False and a['candidate_outcome_research'] is False
+          assert a['fold3_access'] is False and a['fold4_access'] is False
+          PY
+      - name: Install source-only dependencies
+        run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+      - name: Execute exhaustive census, Phase-B replay, and source-only classification
+        run: python scripts/v29_historical_e_source_expansion_runner.py run
+      - name: Archive expansion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-historical-e-source-expansion-evidence
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_CENSUS_PLAN_1.json
+            evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_RESULTS_1.csv
+            evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv
+            evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_OLD_DESIGN_REPLAY_1.json
+            evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_TERM_DIAGNOSTICS_1.csv
+            evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json
