@@ -1,0 +1,93 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_COVERAGE_DIAGNOSIS_1",
+  "version": "V2.9",
+  "status": "DIAGNOSIS_COMPLETE_EXPANSION_NOT_AUTHORIZED",
+  "frozen_source_result_commit": "89b7652bb5daad7e9d1ff28ace9a1f0136a746e6",
+  "frozen_source_terminal_status": "V2_9_HISTORICAL_E_DEV_SOURCE_TOO_SPARSE",
+  "observed_source_stage": {
+    "selected_filings": 88,
+    "successful_classifier_ready_filings": 83,
+    "materialization_rate": 0.9431818181818182,
+    "eligible_ai_core_events": 8,
+    "eligible_yield_among_classifier_ready": 0.0963855421686747,
+    "distinct_positive_securities": 3,
+    "distinct_positive_effective_dates": 8,
+    "distinct_positive_calendar_months": 7,
+    "max_single_security_share": 0.75,
+    "positive_events_2023": 0,
+    "positive_events_2024": 8
+  },
+  "diagnostic_findings": [
+    {
+      "id": "D01_TECHNICAL_MATERIALIZATION_NOT_PRIMARY",
+      "evidence": "83 of 88 selected filings reached classifier-ready SUCCESS; 94.318% exceeds the frozen 90% technical floor.",
+      "inference": "The terminal sparsity is not explained by the repaired Playwright transport or aggregate PDF materialization failure."
+    },
+    {
+      "id": "D02_DISCOVERY_NOISE_OBSERVED",
+      "evidence": "Selected results include keyword hits unrelated to direct AI commercialization, including names/titles containing 智/算/力 in cash-management, liquidation and 财务决算 contexts.",
+      "inference": "The CNINFO full-text searchkey candidate layer has materially lower semantic precision than the frozen AI-Core classifier."
+    },
+    {
+      "id": "D03_TRIAGE_NOT_PRIMARY_RECALL_BOTTLENECK",
+      "evidence": "Frozen triage skips only two narrowly defined 业绩说明会 administrative title patterns; otherwise it routes filings to materialization.",
+      "inference": "Low positive yield cannot reasonably be attributed to broad pre-classifier triage exclusion under the frozen implementation."
+    },
+    {
+      "id": "D04_SELECTION_CAP_CAN_CENSOR_DENSE_WINDOWS",
+      "evidence": "Selection is deterministic SHA256 order, maximum six per window, at most one filing per security. At least one observed window (2023Q2_J12) had 20 development-universe rows but only six selected.",
+      "inference": "The frozen cap creates a demonstrable source-stage censoring mechanism in dense windows. Existing evidence does not establish that censored rows would have been positive."
+    },
+    {
+      "id": "D05_TEMPORAL_SAMPLING_IS_NONEXHAUSTIVE",
+      "evidence": "The frozen design samples seven anchor windows per quarter, each anchor through anchor+6 calendar days, for 56 windows across 2023-2024; sparse-result window expansion is explicitly forbidden.",
+      "inference": "The experiment is a sampled source-coverage design rather than exhaustive historical announcement coverage. Whether denser coverage yields enough additional positives remains untested."
+    },
+    {
+      "id": "D06_CLASSIFIER_SEMANTIC_BAR_IS_STRICT_BY_DESIGN",
+      "evidence": "ELIGIBLE_AI_CORE requires issuer subject, a direct AI-role token and a commercial-operation token in the same sentence; third-party context, internal adoption and R&D/future-only evidence do not qualify.",
+      "inference": "Many apparently AI-related filings can correctly remain NOT_ESTABLISHED or excluded; this is frozen semantic discipline, not a post-result defect."
+    },
+    {
+      "id": "D07_REAL_POSITIVE_SET_IS_HIGHLY_CONCENTRATED",
+      "evidence": "Six of eight positives are SSE:600186; all eight positives occur in 2024.",
+      "inference": "The information-floor failure is structural in both cross-sectional diversity and observed historical density, not merely a one-event threshold miss."
+    }
+  ],
+  "problem_elimination_pass": {
+    "delete": "Do not repeat the same 56-window run; it has a valid terminal result.",
+    "avoid": "Do not rescue the frozen experiment by weakening gates, relabeling, manual document insertion or outcome-guided source changes.",
+    "absorb": "Reuse the existing frozen collector, temporal provenance logic and classifier as invariants in any later source-coverage experiment where applicable.",
+    "substitute": "If further source development is approved, test source coverage as a new preregistered experiment rather than modifying the failed frozen contract.",
+    "precompute_reuse": "Reuse the 88 selected rows, 83 classifier-ready decisions, window receipts and hashes as immutable diagnostic evidence.",
+    "optimize": "Only after a new contract is frozen may implementation optimize retrieval efficiency without changing preregistered research semantics."
+  },
+  "next_experiment_hypotheses_not_yet_authorized": [
+    "Denser or exhaustive time coverage may increase recall without changing the AI-Core positive definition.",
+    "A preregistered discovery design that reduces CNINFO keyword-collision noise may improve candidate precision without changing positive labels.",
+    "A preregistered selection design may test whether the six-per-window cap materially suppresses valid positives in dense windows."
+  ],
+  "epistemic_limits": [
+    "This diagnosis does not claim that any proposed source expansion would satisfy the frozen 20/12/12/6/20% information floor.",
+    "No counterfactual source expansion has been executed.",
+    "No price, return, benchmark, transaction-cost or candidate outcome data were accessed.",
+    "No fold3 or fold4 source was accessed.",
+    "The frozen V2.9 source contract, classifier, triage, 18-term registry, windows, selection cap and terminal receipt remain unchanged."
+  ],
+  "authorization": {
+    "modify_frozen_v2_9_source_contract": false,
+    "execute_source_expansion": false,
+    "change_terms": false,
+    "change_classifier": false,
+    "change_triage": false,
+    "change_windows": false,
+    "change_selection_cap": false,
+    "change_information_floor": false,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "next_stage": "PREREGISTER_SEPARATE_SOURCE_EXPANSION_CONTRACT_IF_EXPLICITLY_AUTHORIZED",
+  "receipt_sha256": "05dee80d503ccf030d0328144b709c0d6f1ab69a841123912729b22a941fc64e"
+}
