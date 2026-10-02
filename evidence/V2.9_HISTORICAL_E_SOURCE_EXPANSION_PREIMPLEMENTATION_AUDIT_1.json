@@ -1,0 +1,67 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_EXPANSION_PREIMPLEMENTATION_AUDIT_1",
+  "version": "V2.9",
+  "status": "TECHNICALLY_BLOCKED_CONTRACT_VALIDATION_ORDER",
+  "contract": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_CONTRACT_1.json",
+  "contract_commit": "5b4b85200d899289b1536451bf598386c9fcd369",
+  "blocking_requirement": "Verify the old-design replay implementation is isolated from census inclusion and exactly reproduces the original 88 selected announcement_ids on a dry replay fixture before real collection.",
+  "finding": {
+    "old_frozen_repository_outputs": [
+      "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_WINDOWS_1.json",
+      "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_RESULTS_1.csv",
+      "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_POSITIVE_EVENTS_1.csv",
+      "evidence/V2.9_HISTORICAL_E_DEV_SOURCE_FINAL_RECEIPT_1.json"
+    ],
+    "old_selected_result_count": 88,
+    "pre_cap_candidate_pool_frozen_in_repository": false,
+    "workflow_artifact_available_for_run_36826934826": false,
+    "old_workflow_committed_pre_cap_candidate_pool": false
+  },
+  "why_exact_prequery_replay_is_impossible": "The original selection algorithm consumes the full per-window deduped/triaged/development-universe candidate pool and then applies SHA256(announcement_id) ordering, at-most-one-security diversity, and a six-row cap. The frozen 88 selected rows are only the output of that operation. Without the omitted pre-cap rows, the selection input cannot be reconstructed, so exact reproduction of the 88 selected IDs is not independently testable offline.",
+  "invalid_shortcuts_rejected": [
+    "Treating the original 88 selected rows as the replay input, because that makes the replay tautological and cannot test censoring semantics.",
+    "Using the window-level candidate/development-universe counts without candidate identities, because counts cannot determine SHA256 ordering or per-security diversity.",
+    "Issuing CNINFO queries during validator execution while claiming real_source_queries_executed=false.",
+    "Weakening exact-88 replay to a synthetic-only algorithm self-test without a frozen contract clarification."
+  ],
+  "nonblocking_validation_that_remains_possible_offline": [
+    "730-day inclusive date geometry and 105 deterministic transport partitions.",
+    "Frozen development-manifest SHA/count/disjointness checks.",
+    "Frozen collector/triage/classifier blob checks and 18-term registry check.",
+    "Static prohibition of price/return/outcome/fold3/fold4 imports.",
+    "Synthetic old-selection algorithm invariance and cap/diversity tests.",
+    "Temporal provenance boundary check through 2024-12-30 with 2024-12-31 available as a later frozen joint session."
+  ],
+  "minimal_resolution": {
+    "type": "VALIDATION_ORDER_CLARIFICATION_ONLY",
+    "research_semantics_changed": false,
+    "proposed_two_phase_gate": [
+      "Phase A, before any real query: static/offline validator must PASS all geometry, frozen-blob, authorization, safety, temporal, census-no-cap, and synthetic old-selection semantics checks.",
+      "Phase B, after source discovery has produced the census candidate pool but before H1/H3 attribution or terminal scientific classification: exact old-design replay must reproduce all 88 frozen selected announcement_ids; any mismatch makes the expansion TECHNICALLY_BLOCKED and H1/H3 results inadmissible."
+    ],
+    "unchanged": [
+      "2023-01-01 through 2024-12-30 census range",
+      "730 calendar days and 105 transport partitions",
+      "fold0/1/2 development universe only",
+      "frozen 18-term registry",
+      "frozen triage",
+      "frozen AI-Core classifier",
+      "no census selection cap",
+      "old replay six-per-window and one-security-per-window semantics",
+      "20/12/12/6/max-20-percent information floor",
+      "no price/return/outcome data",
+      "no fold3/fold4",
+      "no V2.8.12R reopen"
+    ]
+  },
+  "authorization": {
+    "execute_real_source_collection": false,
+    "claim_validator_pass": false,
+    "modify_frozen_contract_without_explicit_authorization": false,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "next_stage": "AUTHORIZE_VALIDATION_ORDER_CLARIFICATION_OR_REMAIN_BLOCKED"
+}
