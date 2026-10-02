@@ -1,0 +1,69 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_VALIDATION_1",
+  "version": "V2.9",
+  "status": "PASS",
+  "phase": "PHASE_A_BEFORE_ANY_REAL_CNINFO_QUERY",
+  "workflow_run_id": 36973769667,
+  "workflow_job_id": 110733086136,
+  "runner": {
+    "path": "scripts/v29_historical_e_source_expansion_runner.py",
+    "blob_sha": "ce919649b93a40919862a1fe7608e5710f7bc81b"
+  },
+  "validator": {
+    "path": "scripts/v29_historical_e_source_expansion_validator.py",
+    "blob_sha": "ce237d7a8239ff6f84e36eb0ccaab9fc2b9d3127"
+  },
+  "contract": {
+    "path": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_CONTRACT_1.json",
+    "blob_sha": "cf4073081e75ce4bf0f5644353573e57c810d171"
+  },
+  "clarification": {
+    "path": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_VALIDATION_ORDER_CLARIFICATION_1.json",
+    "blob_sha": "83e349544b7f4f079cc80c54a186e682a91351fe"
+  },
+  "tests": [
+    {"name": "A01_parent_contract_frozen", "pass": true},
+    {"name": "A02_validation_order_clarification_frozen", "pass": true},
+    {"name": "A03_contract_binding", "pass": true},
+    {"name": "A04_preimplementation_audit_binding", "pass": true},
+    {"name": "A05_exact_730_dates", "pass": true},
+    {"name": "A06_exact_105_partitions", "pass": true},
+    {"name": "A07_partition_bounds", "pass": true},
+    {"name": "A08_each_date_exactly_once", "pass": true},
+    {"name": "A09_dev_fold_set_exact", "pass": true},
+    {"name": "A10_manifest_counts_exact", "pass": true},
+    {"name": "A11_manifests_pairwise_disjoint", "pass": true},
+    {"name": "A12_all_frozen_blobs_exact", "pass": true},
+    {"name": "A13_exact_18_term_registry", "pass": true},
+    {"name": "A14_census_no_selection_cap", "pass": true},
+    {"name": "A15_census_no_security_diversity_cap", "pass": true},
+    {"name": "A16_no_outcome_or_fold34_module_import", "pass": true},
+    {"name": "A17_old_88_frozen_binding", "pass": true},
+    {"name": "A18_old_selection_deterministic", "pass": true},
+    {"name": "A19_old_selection_max_six", "pass": true},
+    {"name": "A20_old_selection_security_diversity", "pass": true},
+    {"name": "A21_later_joint_session_exists_after_end", "pass": true},
+    {"name": "A22_contract_no_price_outcome", "pass": true},
+    {"name": "A23_contract_no_fold34", "pass": true},
+    {"name": "A24_clarification_requires_phase_b_exact88", "pass": true},
+    {"name": "A25_no_real_query_during_validator", "pass": true}
+  ],
+  "passed": 25,
+  "total": 25,
+  "all_pass": true,
+  "runner_self_test": {"passed": 9, "total": 9, "all_pass": true},
+  "phase_b_exact_88_required_before_scientific_classification": true,
+  "real_source_queries_executed": false,
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "authorization": {
+    "execute_real_source_collection": true,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "receipt_sha256": "fca02330465e65576b4e90c55833a9aa453743880929981a69ab2583fc4dda46"
+}
