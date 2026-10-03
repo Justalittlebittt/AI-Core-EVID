@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-import csv, hashlib, json, re
+import csv, hashlib, json
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlparse
 from zoneinfo import ZoneInfo
 
 from playwright.sync_api import sync_playwright
@@ -62,6 +62,21 @@ def resolve_org(page,code):
     if len(u)!=1: raise RuntimeError(f'ORG_ID_UNRESOLVED:{code}:{u}')
     return u[0]
 
+def validate_official_locator(raw):
+    """Validate provenance/safety, not one historical CNINFO path layout."""
+    locator=str(raw or '').strip()
+    if not locator: return None
+    if any(ch in locator for ch in ('\r','\n','\x00')): raise RuntimeError('OFFICIAL_LOCATOR_CONTROL_CHAR_BLOCK')
+    p=urlparse(locator)
+    if p.scheme or p.netloc:
+        if p.scheme != 'https' or (p.hostname or '').lower() not in {'www.cninfo.com.cn','static.cninfo.com.cn'}:
+            raise RuntimeError(f'OFFICIAL_LOCATOR_ORIGIN_BLOCK:{locator[:160]}')
+    elif not p.path:
+        raise RuntimeError(f'OFFICIAL_LOCATOR_EMPTY_PATH:{locator[:160]}')
+    if p.path.startswith('//') or '..' in Path(p.path).parts:
+        raise RuntimeError(f'OFFICIAL_LOCATOR_PATH_BLOCK:{locator[:160]}')
+    return {'locator':locator,'shape':'absolute' if (p.scheme and p.netloc) else 'relative','path':p.path}
+
 def query_blank(page,code,org,exchange):
     base={'column':'sse' if exchange=='SSE' else 'szse','tabName':'fulltext','plate':'sh' if exchange=='SSE' else 'sz',
           'stock':f'{code},{org}','searchkey':'','secid':'','category':'','trade':'','seDate':f'{START}~{END}',
@@ -78,14 +93,17 @@ def query_blank(page,code,org,exchange):
         page_no+=1
         if page_no>1000: raise RuntimeError('PAGINATION_RUNAWAY')
     if len(got)!=total: raise RuntimeError(f'PAGINATION_MISMATCH:{len(got)}/{total}')
+    locator_samples=[]; locator_shapes=set()
     for a in got:
         ms=a.get('announcementTime')
         if ms is not None:
             d=datetime.fromtimestamp(int(ms)/1000,tz=timezone.utc).astimezone(BEIJING).date().isoformat()
             if not (START<=d<=END): raise RuntimeError(f'DATE_BOUND_ESCAPE:{d}')
-        url=str(a.get('adjunctUrl') or '')
-        if url and not re.search(r'/finalpage/\d{4}-\d{2}-\d{2}/',url): raise RuntimeError('OFFICIAL_LOCATOR_SHAPE_BLOCK')
-    return {'official_total':total,'deduped_count':len(got),'pages_fetched':page_no-1,'sample_ids':[str(x.get('announcementId') or '') for x in got[:5]]}
+        ev=validate_official_locator(a.get('adjunctUrl'))
+        if ev:
+            locator_shapes.add(ev['shape'])
+            if len(locator_samples)<5: locator_samples.append(ev['locator'])
+    return {'official_total':total,'deduped_count':len(got),'pages_fetched':page_no-1,'sample_ids':[str(x.get('announcementId') or '') for x in got[:5]],'locator_shapes':sorted(locator_shapes),'locator_samples':locator_samples}
 
 def main():
     c=json.loads(CONTRACT.read_text(encoding='utf-8'))
