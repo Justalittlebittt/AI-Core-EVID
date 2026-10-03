@@ -1,0 +1,35 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_PROBE_TECHNICAL_BLOCKER_1",
+  "version": "V2.9.1",
+  "status": "V2_9_1_NEGATIVE_SPACE_PROBE_TECHNICALLY_BLOCKED",
+  "stage": "PRE_BATCH_1_COMPARISON_AUTHORITY_CHECK",
+  "blocker": "PARENT_COMPLETE_DEDUPED_CANDIDATE_ID_UNIVERSE_NOT_ARCHIVED",
+  "parent_run_id": 36973902329,
+  "parent_artifact_id": 11213851477,
+  "parent_artifact_name": "v29-historical-e-source-expansion-evidence",
+  "parent_artifact_declared_digest": "sha256:17a7ee9d287b809165744a8966633f13ec0bf6d0094c09b35d2f335f46a82a72",
+  "artifact_members_observed": [
+    "V2.9_HISTORICAL_E_SOURCE_EXPANSION_CENSUS_PLAN_1.json",
+    "V2.9_HISTORICAL_E_SOURCE_EXPANSION_RESULTS_1.csv",
+    "V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv",
+    "V2.9_HISTORICAL_E_SOURCE_EXPANSION_OLD_DESIGN_REPLAY_1.json",
+    "V2.9_HISTORICAL_E_SOURCE_EXPANSION_TERM_DIAGNOSTICS_1.csv",
+    "V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json"
+  ],
+  "missing_required_authority": "Complete deduped announcement_id universe emitted by the parent 730-day 18-term retrieval census before title triage and development-universe admission.",
+  "why_results_csv_is_not_equivalent": "The archived RESULTS file contains only title-triaged candidates that also belong to the frozen fold0/fold1/fold2 development universe and therefore cannot prove absence from the complete parent lexical candidate-id universe.",
+  "contract_binding": {
+    "negative_space_definition": "A filing may be claimed as negative-space only if its announcement_id is absent from the complete deduped candidate-id universe produced by the parent V2.9 18-term census artifact.",
+    "technical_gate": "all_negative_space_claims_prove_parent_candidate_id_absence",
+    "forbidden_repair": "Do not silently substitute admitted/results IDs for the complete parent candidate universe, and do not rerun the 730-day 18-term census inside the frozen V2.9.1 probe."
+  },
+  "scientific_probe_executed": false,
+  "batch_1_executed": false,
+  "negative_space_positive_claimed": false,
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "scientific_interpretation_authorized": false,
+  "required_next_action": "Preregister a separate comparison-authority recovery stage before any Batch-1 scientific classification. That stage must either recover the exact immutable parent candidate-ID authority from existing run evidence, or explicitly define and validate a non-outcome-informed recovery replay before use."
+}
