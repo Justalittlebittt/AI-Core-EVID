@@ -1,0 +1,84 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_PARENT_COVERAGE_CONCENTRATION_DIAGNOSIS_1",
+  "version": "V2.9.1",
+  "status": "DIAGNOSTIC_ONLY_NOT_NEGATIVE_SPACE_PROBE",
+  "source_authority": {
+    "parent_run_id": 36973902329,
+    "parent_artifact_id": 11213851477,
+    "parent_artifact_name": "v29-historical-e-source-expansion-evidence",
+    "parent_head_sha": "c9bcda18ad9f39a79d20322183143e751121ae74",
+    "parent_final_status": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TOO_SPARSE"
+  },
+  "scope_guard": {
+    "this_is_parent_18_term_census_diagnosis": true,
+    "this_is_not_v291_negative_space_batch1": true,
+    "negative_space_batch1_executed_by_this_receipt": false,
+    "scientific_gate_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "price_or_return_data_consumed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  },
+  "parent_runtime_observations": {
+    "admitted_candidates": 277,
+    "classifier_ready": 265,
+    "materialization_rate": 0.9566787003610108,
+    "eligible_ai_core_events": 21,
+    "distinct_securities": 7,
+    "distinct_effective_dates": 21,
+    "distinct_calendar_months": 12,
+    "max_single_security_share": 0.5714285714285714,
+    "dominant_security": {
+      "canonical_security_id": "SSE:600186",
+      "positive_events": 12,
+      "share": 0.5714285714285714
+    }
+  },
+  "term_concentration": {
+    "算力": {
+      "deduped_candidate_count": 118,
+      "classifier_ready_count": 117,
+      "positive_count": 17,
+      "positive_yield": 0.1452991452991453
+    },
+    "智算": {
+      "deduped_candidate_count": 150,
+      "classifier_ready_count": 139,
+      "positive_count": 3,
+      "positive_yield": 0.02158273381294964
+    },
+    "人工智能": {
+      "deduped_candidate_count": 16,
+      "classifier_ready_count": 16,
+      "positive_count": 1,
+      "positive_yield": 0.0625
+    },
+    "all_other_frozen_terms_combined_positive_count": 0,
+    "positive_event_term_concentration": {
+      "算力_positive_share": 0.8095238095238095,
+      "算力_plus_智算_positive_share": 0.9523809523809523
+    }
+  },
+  "diagnosis": {
+    "observed": "The parent V2.9 18-term lexical census is highly concentrated: 20 of 21 positives are retrieved through 算力 or 智算, and 12 of 21 positives belong to SSE:600186.",
+    "supported_inference": "The parent TOO_SPARSE result is strongly shaped by lexical/channel concentration inside the frozen 18-term retrieval universe.",
+    "not_supported": [
+      "This receipt does not prove that issuer-scoped blank-searchkey retrieval contains false-negative ELIGIBLE_AI_CORE events.",
+      "This receipt does not prove REAL_SCARCITY.",
+      "This receipt does not authorize changing the 18-term registry or any information gate.",
+      "The 21 parent positives must not be represented as V2.9.1 negative-space Batch-1 results."
+    ]
+  },
+  "next_authorized_step": {
+    "step": "V2.9.1 negative-space scientific probe Batch 1",
+    "security_count": 64,
+    "ordering": "frozen sha256_order",
+    "retrieval": "issuer-scoped blank searchkey",
+    "exclude": "all announcement IDs present in the parent V2.9 deduped candidate universe",
+    "classifier": "reuse frozen parent V2.9 PDF extraction and classify_pages chain",
+    "early_stop": "first classifier-ready negative-space ELIGIBLE_AI_CORE witness",
+    "decision_if_witness": "V2_9_1_DISCOVERY_SELECTION_BIAS_CONFIRMED",
+    "decision_if_no_witness": "continue next frozen batch; do not change gates"
+  }
+}
