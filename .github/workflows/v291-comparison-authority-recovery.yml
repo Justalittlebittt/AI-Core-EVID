@@ -1,0 +1,46 @@
+name: V2.9.1 Comparison Authority Recovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/v291_comparison_authority_recovery.py"
+      - ".github/workflows/v291-comparison-authority-recovery.yml"
+      - "evidence/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_CONTRACT_1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source-only dependency
+        run: pip install "playwright>=1.55"
+      - name: Download immutable parent run artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p parent_artifact
+          gh run download 36973902329 -n v29-historical-e-source-expansion-evidence -D parent_artifact
+      - name: Execute outcome-blind parent collector replay
+        run: python scripts/v291_comparison_authority_recovery.py --parent-artifact parent_artifact
+      - name: Archive recovered comparison authority
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v291-comparison-authority-recovery
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            evidence/v291_recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv
+            evidence/v291_recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json
