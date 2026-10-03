@@ -1,0 +1,51 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_COMPARISON_AUTHORITY_RECOVERY_CONTRACT_1",
+  "version": "V2.9.1",
+  "status": "FROZEN_BEFORE_RECOVERY_REPLAY",
+  "objective": "Recover a conservative, outcome-blind comparison authority for the parent V2.9 lexical candidate-id universe before any V2.9.1 Batch-1 classification, because the exact pre-triage deduped candidate CSV was not archived.",
+  "parent": {
+    "run_id": 36973902329,
+    "head_sha": "c9bcda18ad9f39a79d20322183143e751121ae74",
+    "artifact_id": 11213851477,
+    "artifact_name": "v29-historical-e-source-expansion-evidence",
+    "collector_path": "scripts/v284_candidate_collector.py",
+    "range": ["2023-01-01", "2024-12-30"],
+    "terms_count": 18,
+    "routes": ["SSE", "SZSE"]
+  },
+  "problem": "The parent artifact archived downstream results but not the complete pre-triage V2.8.4_CNINFO_CANDIDATE_DEDUPED.csv. Therefore exact historical parent candidate absence cannot be proven from archived bytes alone.",
+  "recovery_method": {
+    "type": "OUTCOME_BLIND_PARENT_COLLECTOR_REPLAY",
+    "code_authority": "Execute the collector file as stored at the exact parent head_sha, not the current branch implementation.",
+    "source_scope": "CNINFO historical announcement query only, same frozen range, same 18 lexical terms, same SSE/SZSE routes, same 7-day partitions and same dedupe semantics.",
+    "classification_forbidden": true,
+    "triage_forbidden": true,
+    "pdf_materialization_forbidden": true,
+    "price_or_return_forbidden": true,
+    "candidate_outcome_forbidden": true,
+    "fold3_forbidden": true,
+    "fold4_forbidden": true
+  },
+  "validation_gate": {
+    "parent_artifact_results_count_expected": 277,
+    "parent_downstream_ids_must_all_be_subset_of_recovered_candidate_ids": true,
+    "parent_exact_88_ids_must_all_be_subset_of_recovered_candidate_ids": true,
+    "recovered_ids_must_be_unique": true,
+    "collector_receipt_must_show_no_classification": true,
+    "recovery_authority_is_conservative": "Any replay-only extra IDs are retained in the comparison authority. This can only shrink negative space and therefore cannot create a false discovery-selection-bias positive from an extra replay ID.",
+    "missing_parent_anchor_effect": "V2_9_1_COMPARISON_AUTHORITY_RECOVERY_TECHNICALLY_BLOCKED"
+  },
+  "admissibility": {
+    "success_status": "V2_9_1_COMPARISON_AUTHORITY_RECOVERED_CONSERVATIVE",
+    "use": "Recovered candidate IDs may be used only as the absence-comparison authority for V2.9.1 negative-space claims.",
+    "does_not_change_parent_v29_result": true,
+    "does_not_authorize_ready": true,
+    "does_not_change_18_terms": true,
+    "does_not_change_classifier": true,
+    "does_not_change_information_floor": true
+  },
+  "sequencing": {
+    "batch_1_classification_before_recovery_pass": false,
+    "batch_1_classification_after_recovery_pass": true
+  }
+}
