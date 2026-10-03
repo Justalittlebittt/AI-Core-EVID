@@ -1,0 +1,128 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_PROBE_CONTRACT_1",
+  "version": "V2.9.1",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "objective": "Test whether the frozen V2.8.4 18-term lexical discovery gate misses historical filings that satisfy the unchanged AI-Core E classifier, without modifying the completed V2.9 source-expansion result or consuming outcome data.",
+  "parent_evidence": {
+    "source_expansion_run_id": 36973902329,
+    "source_expansion_head_sha": "c9bcda18ad9f39a79d20322183143e751121ae74",
+    "source_expansion_artifact_id": 11213851477,
+    "source_expansion_artifact_sha256": "17a7ee9d287b809165744a8966633f13ec0bf6d0094c09b35d2f335f46a82a72",
+    "phase_a_validation": "evidence/V2.9_HISTORICAL_E_SOURCE_EXPANSION_RUNNER_VALIDATION_1.json",
+    "phase_a_receipt_sha256": "fca02330465e65576b4e90c55833a9aa453743880929981a69ab2583fc4dda46",
+    "phase_b_exact_88_observed_pass_required_as_parent_fact": true,
+    "parent_terminal_status": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TOO_SPARSE",
+    "parent_observed_information_floor": {
+      "eligible_events": 21,
+      "distinct_securities": 7,
+      "distinct_effective_dates": 21,
+      "distinct_calendar_months": 12,
+      "max_single_security_share": 0.5714285714285714
+    }
+  },
+  "problem_elimination_pass": {
+    "delete": "Do not rerun the 730-day 18-term census and do not add synonyms merely to chase the 12-security floor.",
+    "avoid": "Use an issuer-scoped announcement path with blank lexical searchkey so candidate visibility does not depend on any AI keyword registry.",
+    "absorb": "Reuse the already-frozen fold0/fold1/fold2 identities, temporal provenance, PDF extraction and page-scoped AI-Core classifier.",
+    "substitute": "Test existence of lexical false negatives directly instead of optimizing keyword precision or recall first.",
+    "precompute_reuse": "Reuse the frozen 2023-2024 calendar, manifest bindings and the parent run artifact as immutable comparison authority.",
+    "optimize": "Only after the probe establishes whether lexical false negatives exist may a separate discovery redesign be preregistered."
+  },
+  "invariants": {
+    "development_folds": [0, 1, 2],
+    "manifests": [
+      {"fold": 0, "path": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv", "sha256": "199864ece6c02f3257647d59ba63fe261a7b478a2525b7ed8042bbf475a9fe48", "count": 1031},
+      {"fold": 1, "path": "evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv", "sha256": "fe15777a0a3a131b58288454a0e3023503bd80ac6a22f20a2e50c45a4deed38a", "count": 1058},
+      {"fold": 2, "path": "evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv", "sha256": "79b6a4c752a22a16f6ec7167dfb1e6b007473229d7ec6729fb03a15b3ba0fa9a", "count": 1048}
+    ],
+    "issuer_identity_map": {"path": "evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv", "sha256": "769960860eaeb97f34780eca3b8cdb2618a4e3afd580e97f59fe6435da8b25a8"},
+    "calendar": {"path": "evidence/V2.8.5_JOINT_A_SHARE_TRADING_CALENDAR_2023_2024.json", "receipt_sha256": "1f6e44915ec0a6f3db0396a491c83118b6ce57448f7f08b2d35a7d8ee7cf4ed8"},
+    "disclosure_range": ["2023-01-01", "2024-12-30"],
+    "triage_semantics": "scripts/v284_candidate_triage.py unchanged",
+    "pdf_text_semantics": "scripts/v284_pdf_text_extractor.py unchanged; OCR remains forbidden",
+    "classifier_semantics": "scripts/v284_page_scoped_classifier.py plus scripts/v284_ai_core_evidence_classifier.py unchanged",
+    "positive_state": "ELIGIBLE_AI_CORE",
+    "temporal_rule": "Asia/Shanghai announcement date must equal official finalpage path date; effective date is first frozen joint A-share session strictly after disclosure date.",
+    "information_floor_reference_only": {"eligible_events_min": 20, "distinct_securities_min": 12, "distinct_effective_dates_min": 12, "distinct_calendar_months_min": 6, "max_single_security_share_max": 0.20}
+  },
+  "probe_design": {
+    "transport_hypothesis": "CNINFO issuer-scoped historical announcement queries can enumerate an issuer's 2023-2024 filings with searchkey blank, so visibility is independent of the frozen 18-term lexical registry.",
+    "transport_precedent": "scripts/v2729_primary_locator_inventory.py already uses issuer-scoped CNINFO queries with searchkey blank for periodic filing retrieval; V2.9.1 must independently validate the exact transport before production use.",
+    "phase_a_transport_validation": {
+      "real_ai_classification_allowed": false,
+      "purpose": "Validate blank-searchkey issuer-scoped pagination, identity binding, date bounds and official locator integrity on deterministic fixtures before the scientific probe.",
+      "failure_effect": "V2_9_1_NEGATIVE_SPACE_PROBE_TECHNICALLY_BLOCKED"
+    },
+    "security_order": "All fold0/fold1/fold2 canonical_security_id values sorted by SHA256(canonical_security_id), then canonical_security_id; no manual or sector ordering.",
+    "document_order_within_security": "Official disclosure date ascending, then announcement_id ascending.",
+    "candidate_scope": "Issuer-scoped official CNINFO filings inside the frozen disclosure range, retrieved with blank searchkey and no AI lexical term. Apply frozen title triage; dedupe by announcement_id.",
+    "lexical_negative_space_definition": "A probe filing is negative-space only when its announcement_id is absent from the complete deduped candidate-id universe produced by the parent V2.9 18-term census artifact.",
+    "classification_input": "Official PDF page text only; search result title/snippet is never classifier evidence.",
+    "bounded_execution": {
+      "batch_size_securities": 64,
+      "maximum_batches": 4,
+      "maximum_securities": 256,
+      "batch_membership_fixed_before_any_batch_classification": true,
+      "continue_rule": "Execute batches in frozen order until the first batch containing at least one classifier-ready negative-space ELIGIBLE_AI_CORE filing is completed, or all four batches are completed.",
+      "reason": "This is an existence/root-cause probe, not an information-floor rescue run; bounded sequential execution avoids a second full-market historical census."
+    },
+    "comparison": "For every negative-space positive, record canonical_security_id, development_fold, announcement_id, disclosure date, effective date, official locator, PDF hash, evidence page, evidence-sentence hash, classifier decision hash, and proof of absence from the parent 18-term candidate-id universe."
+  },
+  "preregistered_hypotheses": {
+    "H2_DISCOVERY_SELECTION_BIAS": {
+      "support_condition": "At least one classifier-ready ELIGIBLE_AI_CORE filing is found in lexical negative space with valid identity and temporal provenance.",
+      "interpretation": "Directly proves the frozen 18-term lexical retrieval gate has false-negative recall for the unchanged AI-Core E definition. It does not prove that a redesigned discovery system would satisfy the 20/12/12/6/max20% information floor."
+    },
+    "H1_REAL_SCARCITY": {
+      "support_condition": "No negative-space ELIGIBLE_AI_CORE filing is found after all four preregistered 64-security batches complete with adequate technical coverage.",
+      "interpretation": "Increases evidence for real scarcity within this deterministic 256-security probe only; it does not establish full-universe scarcity."
+    }
+  },
+  "technical_gate": {
+    "parent_artifact_digest_exact": true,
+    "manifest_sha_counts_and_pairwise_disjointness_exact": true,
+    "probe_security_membership_fold0_1_2_only": true,
+    "blank_searchkey_transport_validated_before_scientific_probe": true,
+    "all_queried_issuer_identities_exact": true,
+    "pagination_closed_against_official_total": true,
+    "all_negative_space_claims_prove_parent_candidate_id_absence": true,
+    "successful_classifier_ready_materialization_rate_min": 0.90,
+    "all_positive_temporal_provenance_pass": true,
+    "price_or_return_data_consumed": false,
+    "candidate_outcome_research_executed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  },
+  "terminal_status": {
+    "technical_fail": "V2_9_1_NEGATIVE_SPACE_PROBE_TECHNICALLY_BLOCKED",
+    "negative_space_positive_found": "V2_9_1_DISCOVERY_SELECTION_BIAS_CONFIRMED",
+    "four_batches_complete_no_negative_space_positive": "V2_9_1_NO_FALSE_NEGATIVE_OBSERVED_IN_BOUNDED_PROBE"
+  },
+  "forbidden": [
+    "No modification of the completed V2.9 source-expansion evidence or terminal TOO_SPARSE result.",
+    "No addition, removal, stemming, synonym expansion or reweighting of the frozen 18 discovery terms inside this probe.",
+    "No classifier, triage, temporal-rule or information-floor change.",
+    "No security or document selection based on observed AI evidence, positive yield, sector intuition or desired information-floor outcome.",
+    "No price, return, benchmark, transaction-cost, strategy, candidate-outcome, live or brokerage data.",
+    "No fold3 or fold4 access.",
+    "No reopening or expansion of V2.8.12R.",
+    "No claim of V2.9 READY from this diagnostic probe even if false negatives are found."
+  ],
+  "authorization": {
+    "implement_probe_runner": true,
+    "implement_probe_validator": true,
+    "validate_transport_before_scientific_probe": true,
+    "execute_scientific_probe_before_validation_pass": false,
+    "execute_scientific_probe_after_validation_pass": true,
+    "change_discovery_terms": false,
+    "change_classifier": false,
+    "change_triage": false,
+    "change_information_floor": false,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_live_or_brokerage": false
+  },
+  "next_stage": "V2.9.1_NEGATIVE_SPACE_PROBE_RUNNER_IMPLEMENTATION_AND_PHASE_A_VALIDATION"
+}
