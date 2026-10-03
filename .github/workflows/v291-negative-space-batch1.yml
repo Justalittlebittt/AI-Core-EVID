@@ -1,0 +1,58 @@
+name: V2.9.1 Negative Space Batch 1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v291-negative-space-batch1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  batch1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source-only dependencies
+        run: |
+          pip install "playwright>=1.55" "PyMuPDF>=1.24,<2"
+          playwright install --with-deps chromium
+      - name: Download frozen prerequisite artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .v291/recovery .v291/phase_a
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11269201486/zip" -o .v291/recovery.zip
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11266397712/zip" -o .v291/phase_a.zip
+          unzip -q .v291/recovery.zip -d .v291/recovery
+          unzip -q .v291/phase_a.zip -d .v291/phase_a
+          test "$(sha256sum .v291/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+      - name: Execute frozen negative-space Batch 1
+        run: |
+          python scripts/v291_negative_space_batch1.py \
+            --authority .v291/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv \
+            --recovery-receipt .v291/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json \
+            --phase-a-receipt .v291/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+      - name: Archive Batch-1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v291-negative-space-batch1
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv
+            evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv
+            evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json
