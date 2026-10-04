@@ -1,0 +1,22 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_FINALIZATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "FINALIZED",
+  "run_id": "37184374617_1",
+  "observation_receipt": "V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_37184374617_1.json",
+  "observation_commit_sha": "96fb8eb7e091ff052fccc9d9cc4aa77724808ad1",
+  "authoritative_observed_at_utc": "2026-10-04T06:59:14Z",
+  "successful_observation_rows": 0,
+  "ledger_rows_before": 5,
+  "ledger_rows_appended": 0,
+  "ledger_duplicate_noops": 0,
+  "ledger_rows_after": 5,
+  "effective_positive_events": [],
+  "blocked_incomplete_positive_records": [],
+  "historical_backfill": false,
+  "same_day_eligibility_activation": false,
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "c72aa1d239ea178c25495a61c8f85b9547126874876db1408f6387d5dac9dce2"
+}
