@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   actions: read
 
 jobs:
@@ -56,8 +56,30 @@ jobs:
             --authority .v291/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv \
             --recovery-receipt .v291/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json \
             --phase-a-receipt .v291/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+      - name: Persist Batch-1 evidence to repository
+        if: always()
+        run: |
+          set -euo pipefail
+          files=()
+          for f in             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json; do
+            if [ -f "$f" ]; then files+=("$f"); fi
+          done
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No Batch-1 evidence files to persist"
+            exit 0
+          fi
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          if git diff --cached --quiet; then
+            echo "No evidence delta"
+            exit 0
+          fi
+          git commit -m "Persist V2.9.1 negative-space Batch-1 evidence [skip ci]"
+          git push
       - name: Archive Batch-1 evidence
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: v291-negative-space-batch1
@@ -67,5 +89,4 @@ jobs:
             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv
             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv
             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json
-# rerun-after-authority-id-hash-fix
-# rerun-identity-coverage-diagnostic
+# rerun-after-validated-identity-fallback
