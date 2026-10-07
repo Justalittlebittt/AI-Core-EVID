@@ -1,0 +1,39 @@
+name: V2.9.1 Identity Authority Fallback Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v291-identity-authority-fallback-validation.yml"
+      - "scripts/v291_identity_authority_fallback_validator.py"
+      - "evidence/V2.9.1_IDENTITY_AUTHORITY_FALLBACK_ADDENDUM_1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install transport dependency
+        run: |
+          pip install "playwright>=1.55"
+          playwright install --with-deps chromium
+      - name: Validate bounded identity fallback
+        run: python scripts/v291_identity_authority_fallback_validator.py
+      - name: Archive identity fallback validation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v291-identity-authority-fallback-validation
+          if-no-files-found: warn
+          retention-days: 30
+          path: evidence/V2.9.1_IDENTITY_AUTHORITY_FALLBACK_VALIDATION_1.json
