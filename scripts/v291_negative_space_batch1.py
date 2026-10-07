@@ -20,6 +20,7 @@ POSITIVE='ELIGIBLE_AI_CORE'; SH=ZoneInfo('Asia/Shanghai')
 OUT_RESULTS=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv')
 OUT_POS=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv')
 OUT_RECEIPT=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json')
+FALLBACK_RECEIPT=Path('evidence/V2.9.1_IDENTITY_AUTHORITY_FALLBACK_VALIDATION_1.json')
 
 FIELDS=['canonical_security_id','development_fold','security_code','security_name','org_id','announcement_id','announcement_title','announcement_time','adjunct_url','path_disclosure_date','parent_candidate_absent','triage_state','announcement_local_date_asia_shanghai','temporal_provenance_status','retrospective_causal_effective_date','pipeline_status','blocker','object_sha256','bytes','pdf_page_count','pages_with_text','total_nonwhitespace_characters','page_text_sha256','classification_state','evidence_page_number','evidence_sentence_sha256','matched_ai_role','matched_commerciality','classification_reason','decision_sha256']
 
@@ -120,16 +121,34 @@ def main():
     owner,by_fold=old.load_development_universe(); order=sorted(owner,key=lambda x:(hashlib.sha256(x.encode()).hexdigest(),x)); batch=order[:BATCH_SIZE]
     if len(batch)!=64 or any(owner[x] not in (0,1,2) for x in batch): raise RuntimeError('BATCH_MEMBERSHIP_BLOCK')
     m={r['canonical_security_id']:r for r in read_rows(MAP)}
-    missing_identity=[x for x in batch if x not in m]
+    fb=read_json(FALLBACK_RECEIPT)
+    if fb.get('status')!='V2_9_1_IDENTITY_AUTHORITY_FALLBACK_VALIDATED' or fb.get('all_pass') is not True or fb.get('authorization',{}).get('batch1_identity_fallback_allowed') is not True:
+        raise RuntimeError('IDENTITY_FALLBACK_RECEIPT_BLOCK')
+    fallback={}
+    for x in fb.get('identity_evidence') or []:
+        cid=str(x.get('canonical_security_id') or '').strip()
+        if cid in {'SZSE:300344','SSE:600599'} and x.get('status')=='PASS' and str(x.get('resolved_org_id') or '').strip():
+            fallback[cid]={
+                'canonical_security_id':cid,
+                'security_code':str(x.get('security_code') or cid.split(':')[1]).strip(),
+                'exchange':str(x.get('exchange') or cid.split(':')[0]).strip(),
+                'validated_org_id':str(x.get('resolved_org_id')).strip(),
+                'identity_source':'V2.9.1_IDENTITY_AUTHORITY_FALLBACK_VALIDATION_1'
+            }
+    if set(fallback)!={'SZSE:300344','SSE:600599'}:
+        raise RuntimeError('IDENTITY_FALLBACK_SET_BLOCK:'+','.join(sorted(fallback)))
+    missing_identity=[x for x in batch if x not in m and x not in fallback]
     if missing_identity: raise RuntimeError('IDENTITY_MAP_COVERAGE_BLOCK:'+','.join(missing_identity))
     days=old.trading_dates(); results=[]; transport=[]
     with tempfile.TemporaryDirectory() as td, sync_playwright() as pw:
         root=Path(td); browser=pw.chromium.launch(headless=True); page=browser.new_page(locale='zh-CN'); page.goto('https://www.cninfo.com.cn/',wait_until='domcontentloaded',timeout=90000); page.wait_for_timeout(1000)
         api=pw.request.new_context(extra_http_headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36'})
         for rank,cid in enumerate(batch,1):
-            ir=m[cid]; code=str(ir.get('security_code') or cid.split(':')[1]); exchange=cid.split(':')[0]
+            ir=m.get(cid) or fallback[cid]; code=str(ir.get('security_code') or cid.split(':')[1]); exchange=cid.split(':')[0]
             try:
-                org=resolve_org(page,code); rr,ev=query_rows(page,cid,code,org,exchange); transport.append({'batch_rank':rank,'canonical_security_id':cid,'org_id':org,**ev,'status':'PASS'})
+                org=ir.get('validated_org_id') or resolve_org(page,code)
+                rr,ev=query_rows(page,cid,code,org,exchange)
+                transport.append({'batch_rank':rank,'canonical_security_id':cid,'org_id':org,'identity_source':ir.get('identity_source','FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT'),**ev,'status':'PASS'})
             except Exception as exc:
                 transport.append({'batch_rank':rank,'canonical_security_id':cid,'status':'BLOCKED','blocker':f'{type(exc).__name__}:{exc}'}); continue
             for row in rr:
