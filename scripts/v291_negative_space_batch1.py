@@ -101,7 +101,7 @@ def query_rows(page, cid, code, org, exchange):
 def load_authority(path):
     rr=read_rows(path); ids=[str(r.get('announcement_id') or '').strip() for r in rr]
     if len(ids)!=583 or len(set(ids))!=583 or not all(ids): raise RuntimeError(f'RECOVERY_AUTHORITY_COUNT_BLOCK:{len(ids)}')
-    if hashlib.sha256(('\n'.join(sorted(ids))+'\n').encode()).hexdigest()!='4a620188902b38f12fcc1e45431cf2ea5ced55f32aab8844299cec3776c59a9c': raise RuntimeError('RECOVERY_AUTHORITY_ID_HASH_BLOCK')
+    if hashlib.sha256(('\n'.join(sorted(ids))+'\n').encode()).hexdigest()!='dad6e67763cc92c1c7c1b3f2527dc241499c6cb9ef59ce4175892209fe397e72': raise RuntimeError('RECOVERY_AUTHORITY_ID_HASH_BLOCK')
     return set(ids)
 
 def validate_inputs(authority, recovery_receipt, phase_a_receipt):
