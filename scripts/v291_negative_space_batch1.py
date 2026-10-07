@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import argparse, csv, hashlib, json, re, tempfile
+import argparse, csv, hashlib, json, re, tempfile, time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -20,6 +20,7 @@ POSITIVE='ELIGIBLE_AI_CORE'; SH=ZoneInfo('Asia/Shanghai')
 OUT_RESULTS=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv')
 OUT_POS=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv')
 OUT_RECEIPT=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json')
+OUT_PROGRESS=Path('evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_PROGRESS_1.json')
 FALLBACK_RECEIPT=Path('evidence/V2.9.1_IDENTITY_AUTHORITY_FALLBACK_VALIDATION_1.json')
 
 FIELDS=['canonical_security_id','development_fold','security_code','security_name','org_id','announcement_id','announcement_title','announcement_time','adjunct_url','path_disclosure_date','parent_candidate_absent','triage_state','announcement_local_date_asia_shanghai','temporal_provenance_status','retrospective_causal_effective_date','pipeline_status','blocker','object_sha256','bytes','pdf_page_count','pages_with_text','total_nonwhitespace_characters','page_text_sha256','classification_state','evidence_page_number','evidence_sentence_sha256','matched_ai_role','matched_commerciality','classification_reason','decision_sha256']
@@ -32,8 +33,25 @@ def write_csv(p, rr):
     with Path(p).open('w',encoding='utf-8',newline='') as f:
         w=csv.DictWriter(f,fieldnames=FIELDS,extrasaction='ignore',lineterminator='\n'); w.writeheader(); w.writerows(rr)
 
+def heartbeat(rank, cid, stage, **extra):
+    rec={'schema':'AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_BATCH1_PROGRESS_1','batch_index':1,'batch_size':64,
+         'rank':rank,'canonical_security_id':cid,'stage':stage,'unix_time':time.time(),**extra}
+    OUT_PROGRESS.write_text(json.dumps(rec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print(f"[BATCH1] rank={rank}/64 security={cid} stage={stage} "+' '.join(f"{k}={v}" for k,v in extra.items()), flush=True)
+
 def post(page,payload):
-    q=page.evaluate("""async (payload)=>{const body=new URLSearchParams(payload).toString();const r=await fetch('/new/hisAnnouncement/query',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest'},body});return {status:r.status,text:await r.text()};}""",payload)
+    q=page.evaluate("""async (payload)=>{
+      const ctl=new AbortController();
+      const timer=setTimeout(()=>ctl.abort(),45000);
+      try{
+        const body=new URLSearchParams(payload).toString();
+        const r=await fetch('/new/hisAnnouncement/query',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest'},body,signal:ctl.signal});
+        return {status:r.status,text:await r.text()};
+      }catch(e){
+        return {status:0,text:'',error:String(e && e.name ? e.name+':'+e.message : e)};
+      }finally{clearTimeout(timer);}
+    }""",payload)
+    if q.get('status')==0: raise RuntimeError(f'CNINFO_POST_TIMEOUT_OR_FETCH_BLOCK:{q.get("error","")}')
     if q['status']!=200: raise RuntimeError(f'CNINFO_HTTP_{q["status"]}')
     return q['text']
 
@@ -144,24 +162,44 @@ def main():
         root=Path(td); browser=pw.chromium.launch(headless=True); page=browser.new_page(locale='zh-CN'); page.goto('https://www.cninfo.com.cn/',wait_until='domcontentloaded',timeout=90000); page.wait_for_timeout(1000)
         api=pw.request.new_context(extra_http_headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36'})
         for rank,cid in enumerate(batch,1):
+            sec_t0=time.monotonic()
             ir=m.get(cid) or fallback[cid]; code=str(ir.get('security_code') or cid.split(':')[1]); exchange=cid.split(':')[0]
+            heartbeat(rank,cid,'SECURITY_START',exchange=exchange,code=code)
             try:
+                heartbeat(rank,cid,'ORG_RESOLVE_START')
                 org=ir.get('validated_org_id') or resolve_org(page,code)
+                heartbeat(rank,cid,'ORG_RESOLVE_DONE',org_id=org)
+                heartbeat(rank,cid,'PAGINATION_START')
                 rr,ev=query_rows(page,cid,code,org,exchange)
+                heartbeat(rank,cid,'PAGINATION_DONE',official_total=ev.get('official_total'),pages_fetched=ev.get('pages_fetched'))
                 transport.append({'batch_rank':rank,'canonical_security_id':cid,'org_id':org,'identity_source':ir.get('identity_source','FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT'),**ev,'status':'PASS'})
             except Exception as exc:
+                heartbeat(rank,cid,'TRANSPORT_BLOCKED',blocker=f'{type(exc).__name__}:{exc}',elapsed_seconds=round(time.monotonic()-sec_t0,3))
                 transport.append({'batch_rank':rank,'canonical_security_id':cid,'status':'BLOCKED','blocker':f'{type(exc).__name__}:{exc}'}); continue
+            admitted=0
             for row in rr:
                 aid=row['announcement_id']
                 if aid in parent_ids: continue
                 q=ct.triage_title(row['announcement_title'],row.get('security_name',''))
                 if q['triage_state']!='MATERIALIZE_CANDIDATE': continue
+                admitted+=1
                 base={**row,'development_fold':owner[cid],'parent_candidate_absent':True,'triage_state':q['triage_state']}
                 try:
-                    temporal=old.resolve_temporal(row,days); pdf=root/f'{rank:03d}_{aid}.pdf'; obj_sha,nbytes=old.fetch_pdf(api,row,pdf); pages,ex=te.extract_pdf(pdf,obj_sha); dec=pc.classify_pages(pages); e=dec['evidence']
+                    heartbeat(rank,cid,'CANDIDATE_START',announcement_id=aid,candidate_index=admitted)
+                    temporal=old.resolve_temporal(row,days)
+                    heartbeat(rank,cid,'PDF_FETCH_START',announcement_id=aid,candidate_index=admitted)
+                    pdf=root/f'{rank:03d}_{aid}.pdf'; obj_sha,nbytes=old.fetch_pdf(api,row,pdf)
+                    heartbeat(rank,cid,'PDF_FETCH_DONE',announcement_id=aid,bytes=nbytes)
+                    pages,ex=te.extract_pdf(pdf,obj_sha)
+                    heartbeat(rank,cid,'CLASSIFIER_START',announcement_id=aid,pdf_pages=ex.get('pdf_page_count'))
+                    dec=pc.classify_pages(pages); e=dec['evidence']
+                    heartbeat(rank,cid,'CLASSIFIER_DONE',announcement_id=aid,classification_state=dec.get('classification_state'))
                     results.append({**base,**temporal,'pipeline_status':'SUCCESS','blocker':'','object_sha256':obj_sha,'bytes':nbytes,'pdf_page_count':ex['pdf_page_count'],'pages_with_text':ex['pages_with_text'],'total_nonwhitespace_characters':ex['total_nonwhitespace_characters'],'page_text_sha256':ex['page_text_sha256'],'classification_state':dec['classification_state'],'evidence_page_number':e['page_number'],'evidence_sentence_sha256':hashlib.sha256(str(e.get('evidence_sentence') or '').encode()).hexdigest(),'matched_ai_role':'|'.join(e.get('matched_ai_role') or []),'matched_commerciality':'|'.join(e.get('matched_commerciality') or []),'classification_reason':e.get('reason',''),'decision_sha256':dec['decision_sha256']})
                 except Exception as exc:
+                    heartbeat(rank,cid,'CANDIDATE_BLOCKED',announcement_id=aid,blocker=f'{type(exc).__name__}:{exc}')
                     results.append({**base,'pipeline_status':'BLOCKED','blocker':f'{type(exc).__name__}:{exc}'})
+            heartbeat(rank,cid,'SECURITY_DONE',triage_admitted=admitted,elapsed_seconds=round(time.monotonic()-sec_t0,3))
+        heartbeat(64,batch[-1],'BATCH_EXECUTION_DONE',transport_records=len(transport),result_records=len(results))
         api.dispose(); browser.close()
     write_csv(OUT_RESULTS,results); positives=[r for r in results if r.get('pipeline_status')=='SUCCESS' and r.get('classification_state')==POSITIVE]; write_csv(OUT_POS,positives)
     queried=sum(x.get('status')=='PASS' for x in transport); ready=sum(r.get('pipeline_status')=='SUCCESS' for r in results); mat_rate=ready/len(results) if results else 1.0
