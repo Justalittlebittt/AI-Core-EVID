@@ -1,0 +1,57 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_IDENTITY_AUTHORITY_FALLBACK_ADDENDUM_1",
+  "version": "V2.9.1",
+  "status": "FROZEN_BEFORE_VALIDATION",
+  "parent_contract": "evidence/V2.9.1_NEGATIVE_SPACE_PROBE_CONTRACT_1.json",
+  "parent_blocker": "evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_IDENTITY_AUTHORITY_BLOCKER_1.json",
+  "objective": "Permit a narrowly bounded, source-only identity-authority repair for exactly two preregistered Batch-1 securities missing from the frozen PIT map, without modifying the frozen PIT map or changing scientific selection/classification semantics.",
+  "affected_securities": [
+    {
+      "canonical_security_id": "SZSE:300344",
+      "exchange": "SZSE",
+      "security_code": "300344",
+      "development_fold": 0
+    },
+    {
+      "canonical_security_id": "SSE:600599",
+      "exchange": "SSE",
+      "security_code": "600599",
+      "development_fold": 2
+    }
+  ],
+  "invariants": {
+    "original_pit_map_path": "evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv",
+    "original_pit_map_sha256": "769960860eaeb97f34780eca3b8cdb2618a4e3afd580e97f59fe6435da8b25a8",
+    "original_pit_map_must_remain_unchanged": true,
+    "batch_1_membership_and_order_unchanged": true,
+    "affected_security_set_exact": true,
+    "no_other_security_may_use_fallback": true,
+    "no_price_or_return_data": true,
+    "no_candidate_outcomes": true,
+    "no_fold3_or_fold4": true,
+    "triage_classifier_temporal_rules_unchanged": true
+  },
+  "fallback_identity_rule": {
+    "source": "Official CNINFO transport only",
+    "procedure": [
+      "Start from the preregistered canonical_security_id, exchange and 6-digit security_code; never search by AI evidence, issuer name, sector or outcome.",
+      "Use the already Phase-A-validated CNINFO UI transport to resolve the stock parameter emitted for the exact 6-digit security_code.",
+      "Resolution PASS requires exactly one distinct non-empty org_id for that code.",
+      "Use blank-searchkey issuer-scoped historical query for 2023-01-01..2024-12-30 with that exact code, org_id and exchange route.",
+      "Pagination must close exactly against official total and at least one filing must be returned.",
+      "Every returned filing with an explicit security code field, when present, must agree with the preregistered 6-digit code; any contradiction blocks.",
+      "Persist the resolved org_id and transport evidence in an additive repair receipt; do not write into or replace the frozen PIT map."
+    ]
+  },
+  "admissibility": {
+    "validation_must_complete_before_batch1_classification": true,
+    "validation_success_status": "V2_9_1_IDENTITY_AUTHORITY_FALLBACK_VALIDATED",
+    "validation_failure_status": "V2_9_1_NEGATIVE_SPACE_PROBE_TECHNICALLY_BLOCKED",
+    "batch1_may_use_fallback_only_after_validation_pass": true
+  },
+  "interpretation_limits": [
+    "This addendum repairs missing issuer identity authority only.",
+    "It does not alter the parent comparison authority, negative-space definition, Batch-1 membership/order, title triage, PDF extraction, classifier, temporal rule, or information floor.",
+    "It does not authorize a V2.9 READY claim."
+  ]
+}
