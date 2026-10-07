@@ -120,7 +120,8 @@ def main():
     owner,by_fold=old.load_development_universe(); order=sorted(owner,key=lambda x:(hashlib.sha256(x.encode()).hexdigest(),x)); batch=order[:BATCH_SIZE]
     if len(batch)!=64 or any(owner[x] not in (0,1,2) for x in batch): raise RuntimeError('BATCH_MEMBERSHIP_BLOCK')
     m={r['canonical_security_id']:r for r in read_rows(MAP)}
-    if any(x not in m for x in batch): raise RuntimeError('IDENTITY_MAP_COVERAGE_BLOCK')
+    missing_identity=[x for x in batch if x not in m]
+    if missing_identity: raise RuntimeError('IDENTITY_MAP_COVERAGE_BLOCK:'+','.join(missing_identity))
     days=old.trading_dates(); results=[]; transport=[]
     with tempfile.TemporaryDirectory() as td, sync_playwright() as pw:
         root=Path(td); browser=pw.chromium.launch(headless=True); page=browser.new_page(locale='zh-CN'); page.goto('https://www.cninfo.com.cn/',wait_until='domcontentloaded',timeout=90000); page.wait_for_timeout(1000)
