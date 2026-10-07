@@ -1,0 +1,56 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_BATCH1_IDENTITY_AUTHORITY_BLOCKER_1",
+  "version": "V2.9.1",
+  "status": "V2_9_1_NEGATIVE_SPACE_PROBE_TECHNICALLY_BLOCKED",
+  "stage": "BATCH_1_PRE_CLASSIFICATION_IDENTITY_AUTHORITY_CHECK",
+  "blocker": "FROZEN_PIT_IDENTITY_MAP_MISSING_BATCH_1_SECURITIES",
+  "scientific_probe_executed": false,
+  "batch_1_classification_executed": false,
+  "negative_space_positive_claimed": false,
+  "affected_securities": [
+    {
+      "canonical_security_id": "SZSE:300344",
+      "manifest": "evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv",
+      "manifest_line": 825,
+      "fold": 0,
+      "security_code": "300344",
+      "frozen_manifest_presence": true,
+      "frozen_identity_map_presence": false
+    },
+    {
+      "canonical_security_id": "SSE:600599",
+      "manifest": "evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv",
+      "manifest_line": 100,
+      "fold": 2,
+      "security_code": "600599",
+      "frozen_manifest_presence": true,
+      "frozen_identity_map_presence": false
+    }
+  ],
+  "contract_binding": {
+    "contract": "evidence/V2.9.1_NEGATIVE_SPACE_PROBE_CONTRACT_1.json",
+    "issuer_identity_map": "evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv",
+    "issuer_identity_map_sha256": "769960860eaeb97f34780eca3b8cdb2618a4e3afd580e97f59fe6435da8b25a8",
+    "technical_gate_all_queried_issuer_identities_exact": true,
+    "batch_membership_fixed_before_any_batch_classification": true
+  },
+  "execution_history": {
+    "run_1": 37110234271,
+    "run_2": 37576381407,
+    "run_3": 37576658107,
+    "diagnostic_run_4": 37577603838,
+    "manifest_vs_map_diagnostic_run_5": 37578089224
+  },
+  "forbidden_resolution_paths": [
+    "Do not skip either missing security from the frozen 64-security batch.",
+    "Do not substitute a live CNINFO-resolved org_id for the frozen identity authority without change control.",
+    "Do not modify the frozen PIT identity-map file or its hash in place.",
+    "Do not reorder or replace Batch-1 securities.",
+    "Do not claim H1 or H2 while this blocker is unresolved."
+  ],
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "required_resolution": "Separate preregistered change-control/addendum is required to define an admissible identity-authority fallback or to repair the frozen identity authority before Batch-1 classification can execute."
+}
