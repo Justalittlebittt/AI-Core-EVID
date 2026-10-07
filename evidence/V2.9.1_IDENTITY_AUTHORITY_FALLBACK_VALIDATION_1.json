@@ -1,0 +1,95 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_IDENTITY_AUTHORITY_FALLBACK_VALIDATION_1",
+  "version": "V2.9.1",
+  "status": "V2_9_1_IDENTITY_AUTHORITY_FALLBACK_VALIDATED",
+  "tests": [
+    {
+      "name": "I01_addendum_frozen",
+      "pass": true
+    },
+    {
+      "name": "I02_original_map_hash_exact",
+      "pass": true
+    },
+    {
+      "name": "I03_affected_set_exact",
+      "pass": true
+    },
+    {
+      "name": "I04_both_org_ids_unique_nonempty",
+      "pass": true
+    },
+    {
+      "name": "I05_blank_transport_nonempty",
+      "pass": true
+    },
+    {
+      "name": "I06_pagination_closed",
+      "pass": true
+    },
+    {
+      "name": "I07_no_scientific_classification",
+      "pass": true
+    },
+    {
+      "name": "I08_no_price_outcome_fold34",
+      "pass": true
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "all_pass": true,
+  "identity_evidence": [
+    {
+      "canonical_security_id": "SZSE:300344",
+      "exchange": "SZSE",
+      "security_code": "300344",
+      "development_fold": 0,
+      "resolved_org_id": "9900022237",
+      "official_total": 198,
+      "deduped_count": 198,
+      "pages_fetched": 7,
+      "sample_ids": [
+        "1222113632",
+        "1222019195",
+        "1222019194",
+        "1222019193",
+        "1222019192"
+      ],
+      "status": "PASS"
+    },
+    {
+      "canonical_security_id": "SSE:600599",
+      "exchange": "SSE",
+      "security_code": "600599",
+      "development_fold": 2,
+      "resolved_org_id": "gssh0600599",
+      "official_total": 215,
+      "deduped_count": 215,
+      "pages_fetched": 8,
+      "sample_ids": [
+        "1222145032",
+        "1222077573",
+        "1222038080",
+        "1222038079",
+        "1222016731"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "scientific_classification_executed": false,
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "authorization": {
+    "batch1_identity_fallback_allowed": true
+  },
+  "receipt_sha256": "8d5b72fe1d7f14750b96f96b136767e6013bf1bca0b749be8c1f3c6aab503b64",
+  "provenance": {
+    "workflow_run_id": 37579458871,
+    "workflow_job_id": 112655569985,
+    "upload_artifact_failed_only_due_to_storage_quota": true,
+    "validation_step_conclusion": "success"
+  }
+}
