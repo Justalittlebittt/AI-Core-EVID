@@ -39,6 +39,17 @@ jobs:
           unzip -q .v291/recovery.zip -d .v291/recovery
           unzip -q .v291/phase_a.zip -d .v291/phase_a
           test "$(sha256sum .v291/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+      - name: Diagnose frozen identity coverage
+        run: |
+          set -euo pipefail
+          echo "=== 300344 in manifests ==="
+          grep -n "300344" evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv || true
+          echo "=== 300344 in PIT map ==="
+          grep -n "300344" evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv || true
+          echo "=== 600599 in manifests ==="
+          grep -n "600599" evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv || true
+          echo "=== 600599 in PIT map ==="
+          grep -n "600599" evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv || true
       - name: Execute frozen negative-space Batch 1
         run: |
           python scripts/v291_negative_space_batch1.py \
