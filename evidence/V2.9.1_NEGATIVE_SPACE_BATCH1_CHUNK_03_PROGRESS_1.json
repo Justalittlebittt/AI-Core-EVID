@@ -1,0 +1,10 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_BATCH1_CHUNK_PROGRESS_1",
+  "chunk_index": 3,
+  "rank": 24,
+  "canonical_security_id": "SZSE:300384",
+  "stage": "CHUNK_DONE",
+  "unix_time": 1791447260.989039,
+  "execution_integrity_pass": true,
+  "result_count": 1839
+}
