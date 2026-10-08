@@ -1,0 +1,106 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_HYBRID_DISCOVERY_REDESIGN_CONTRACT_1",
+  "version": "V2.9.2",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "objective": "Repair the proven V2.9 lexical discovery selection bias with a deterministic issuer-scoped negative-space supplement while reusing the frozen V2.9 lexical census as the base layer and preserving all downstream E-layer semantics.",
+  "parent_findings": {
+    "v29_terminal": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TOO_SPARSE",
+    "v291_terminal": "V2_9_1_DISCOVERY_SELECTION_BIAS_CONFIRMED",
+    "v291_batch1_receipt": "evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json",
+    "v291_batch1_positive_count": 29,
+    "interpretation": "The 18-term base layer is retained as admissible evidence but is not sufficient as the sole discovery mechanism."
+  },
+  "problem_elimination_pass": {
+    "delete": "Do not perform a blank-searchkey census over all development securities.",
+    "avoid": "Do not add or tune lexical synonyms using observed positive titles.",
+    "absorb": "Reuse the completed V2.9 lexical census and V2.9.1 ranks 1-64 negative-space classifications.",
+    "substitute": "Use deterministic issuer batches to supplement only the lexical negative space.",
+    "precompute_reuse": "V2.9 base positives and V2.9.1 Batch-1 positives are immutable reusable inputs.",
+    "optimize": "Only execute additional 64-security supplement batches until the unchanged information floor passes or the preregistered 256-security supplement bound is exhausted."
+  },
+  "invariants": {
+    "development_folds": [
+      0,
+      1,
+      2
+    ],
+    "fold3_forbidden": true,
+    "fold4_forbidden": true,
+    "price_or_return_forbidden": true,
+    "candidate_outcome_research_forbidden": true,
+    "disclosure_range": [
+      "2023-01-01",
+      "2024-12-30"
+    ],
+    "triage_semantics": "scripts/v284_candidate_triage.py unchanged",
+    "pdf_text_semantics": "scripts/v284_pdf_text_extractor.py unchanged; OCR forbidden",
+    "classifier_semantics": "scripts/v284_page_scoped_classifier.py plus scripts/v284_ai_core_evidence_classifier.py unchanged",
+    "positive_state": "ELIGIBLE_AI_CORE",
+    "temporal_rule": "Asia/Shanghai announcement date must equal official finalpage path date; effective date is first frozen joint A-share session strictly after disclosure date.",
+    "information_floor": {
+      "eligible_events_min": 20,
+      "distinct_securities_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_calendar_months_min": 6,
+      "max_single_security_share_max": 0.2
+    }
+  },
+  "discovery_design": {
+    "base_layer": {
+      "source": "Frozen V2.9 18-term historical source-expansion output",
+      "immutable": true,
+      "positive_count_observed": 21,
+      "rerun": false
+    },
+    "supplement_layer": {
+      "transport": "CNINFO issuer-scoped historical announcement query with blank searchkey",
+      "security_order": "All fold0/fold1/fold2 canonical_security_id values sorted by SHA256(canonical_security_id), then canonical_security_id.",
+      "candidate_scope": "Frozen disclosure range; frozen title triage; only announcement_ids absent from the conservative recovered parent lexical candidate authority are supplement candidates.",
+      "scientific_batch_size_securities": 64,
+      "maximum_supplement_securities": 256,
+      "maximum_scientific_batches": 4,
+      "execution_chunk_size": 8,
+      "batch1_reuse": {
+        "ranks": "1-64",
+        "source": "V2.9.1 Batch-1",
+        "rerun": false
+      },
+      "next_batch": {
+        "batch_index": 2,
+        "ranks": "65-128"
+      }
+    }
+  },
+  "sequential_rule": {
+    "evaluation_unit": "complete 64-security scientific supplement batch",
+    "stop_rule": "After each complete supplement batch, union immutable V2.9 base positives with all completed supplement positives, dedupe by announcement_id, and evaluate the unchanged information floor. Stop at the first complete batch that passes every floor condition.",
+    "no_mid_batch_stop": true,
+    "if_batch2_fail": "Batch-3 ranks 129-192 may be authorized only by the persisted Batch-2 aggregate receipt.",
+    "if_batch3_fail": "Batch-4 ranks 193-256 may be authorized only by the persisted Batch-3 aggregate receipt.",
+    "if_batch4_fail": "Terminate V2_9_2_HYBRID_DISCOVERY_TOO_SPARSE."
+  },
+  "technical_gate": {
+    "exact_batch_membership": true,
+    "all_issuer_transport_complete": true,
+    "pagination_closed": true,
+    "all_supplement_candidates_parent_absent": true,
+    "classifier_ready_materialization_rate_min": 0.9,
+    "all_positive_temporal_provenance_pass": true,
+    "all_execution_chunks_complete": true,
+    "no_prohibited_data": true
+  },
+  "terminal_status": {
+    "if_technical_fail": "V2_9_2_HYBRID_DISCOVERY_TECHNICALLY_BLOCKED",
+    "if_information_floor_pass": "V2_9_2_HYBRID_DISCOVERY_READY",
+    "if_after_batch4_floor_fail": "V2_9_2_HYBRID_DISCOVERY_TOO_SPARSE"
+  },
+  "overnight_execution_policy": {
+    "preflight_required": true,
+    "bounded": true,
+    "observable": true,
+    "checkpointed": true,
+    "resumable": true,
+    "deterministic": true,
+    "batch2_execution": "8 sequential chunks x 8 securities; each chunk has a hard workflow timeout and persists independent evidence."
+  }
+}
