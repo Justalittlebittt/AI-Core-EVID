@@ -1,0 +1,54 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_BATCH1_CHUNK_EXECUTION_ADDENDUM_1",
+  "version": "V2.9.1",
+  "status": "FROZEN_BEFORE_CHUNK_IMPLEMENTATION",
+  "purpose": "Replace the invalidated monolithic 64-security execution transaction with deterministic resumable execution chunks without changing the frozen scientific Batch-1 design.",
+  "parent_contract": "evidence/V2.9.1_NEGATIVE_SPACE_PROBE_CONTRACT_1.json",
+  "parent_batch": {
+    "scientific_batch_index": 1,
+    "scientific_batch_size": 64,
+    "membership_rule": "first 64 securities in the frozen SHA256(canonical_security_id), canonical_security_id order",
+    "unchanged": true
+  },
+  "execution_chunking": {
+    "chunk_size": 8,
+    "chunk_count": 8,
+    "chunk_membership": "contiguous rank ranges 1-8,9-16,...,57-64 of the unchanged frozen Batch-1 order",
+    "chunk_is_scientific_batch": false,
+    "chunk_can_emit_h1_h2_terminal_conclusion": false,
+    "chunk_can_authorize_next_scientific_batch": false,
+    "each_chunk_persists_independent_results_and_receipt": true,
+    "failed_chunk_reexecuted_without_reprocessing_completed_chunks": true,
+    "max_parallel": 1
+  },
+  "aggregation": {
+    "required_before_batch1_terminal_status": true,
+    "require_all_64_ranks_exactly_once": true,
+    "require_all_8_chunk_receipts_pass_execution_integrity": true,
+    "preserve_original_rank_order": true,
+    "terminal_rules": "Use the unchanged frozen V2.9.1 Batch-1 technical checks and positive-state rule only after complete 64-security aggregation.",
+    "early_stop_within_batch": false,
+    "reason": "Frozen continue_rule requires the first batch containing a valid positive to be completed before stopping."
+  },
+  "unchanged_scientific_semantics": [
+    "security membership and order",
+    "parent comparison authority",
+    "negative-space definition",
+    "title triage",
+    "official PDF-only evidence",
+    "OCR prohibition",
+    "temporal resolver",
+    "page-scoped classifier",
+    "positive state ELIGIBLE_AI_CORE",
+    "development folds 0/1/2 only",
+    "no price/return/outcome data",
+    "no fold3/fold4 access"
+  ],
+  "execution_governance": {
+    "chunk_runtime_target_minutes": 30,
+    "workflow_chunk_timeout_minutes": 45,
+    "external_observability": "GitHub matrix job status exposes chunk completion independently.",
+    "persistence": "Each completed chunk commits its evidence to the repository before another chunk is scientifically necessary.",
+    "invalidated_monolithic_run": 37734501391
+  }
+}
