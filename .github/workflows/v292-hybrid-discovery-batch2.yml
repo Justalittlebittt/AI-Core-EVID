@@ -1,0 +1,127 @@
+name: V2.9.2 Hybrid Discovery Batch 2 Overnight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/v292-hybrid-discovery-batch2.trigger"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v292-hybrid-discovery-batch2
+  cancel-in-progress: false
+
+jobs:
+  chunks:
+    name: batch2-chunk-${{ matrix.chunk }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        chunk: [1,2,3,4,5,6,7,8]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source-only dependencies
+        run: |
+          pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+          playwright install --with-deps chromium
+      - name: Download frozen V2.9.1 prerequisite artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .v292/recovery .v292/phase_a
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11269201486/zip" -o .v292/recovery.zip
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11266397712/zip" -o .v292/phase_a.zip
+          test "$(sha256sum .v292/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+          unzip -q .v292/recovery.zip -d .v292/recovery
+          unzip -q .v292/phase_a.zip -d .v292/phase_a
+      - name: Preflight chunk runner
+        run: |
+          python -m py_compile scripts/v291_negative_space_batch1.py
+          python -m py_compile scripts/v292_hybrid_discovery_batch2_chunk.py
+          test -f evidence/V2.9.2_BATCH2_IDENTITY_FALLBACK_VALIDATION_1.json
+      - name: Execute deterministic Batch-2 chunk
+        run: |
+          python scripts/v292_hybrid_discovery_batch2_chunk.py             --chunk-index "${{ matrix.chunk }}"             --authority .v292/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv             --recovery-receipt .v292/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json             --phase-a-receipt .v292/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+      - name: Persist chunk evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          p=$(printf "%02d" "${{ matrix.chunk }}")
+          files=()
+          for f in             "evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_CHUNK_${p}_RESULTS_1.csv"             "evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_CHUNK_${p}_RECEIPT_1.json"             "evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_CHUNK_${p}_PROGRESS_1.json"; do
+            [ -f "$f" ] && files+=("$f")
+          done
+          [ "${#files[@]}" -gt 0 ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.9.2 Batch-2 chunk ${{ matrix.chunk }} evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+  aggregate:
+    name: aggregate-batch2-hybrid
+    needs: chunks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install aggregation dependencies
+        run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+      - name: Download frozen V2.9 parent source-expansion artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .v292/parent
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11213851477/zip" -o .v292/parent.zip
+          test "$(sha256sum .v292/parent.zip | awk '{print $1}')" = "17a7ee9d287b809165744a8966633f13ec0bf6d0094c09b35d2f335f46a82a72"
+          unzip -q .v292/parent.zip -d .v292/parent
+          mapfile -t POS < <(find .v292/parent -type f -name 'V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv')
+          mapfile -t REC < <(find .v292/parent -type f -name 'V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json')
+          test "${#POS[@]}" -eq 1
+          test "${#REC[@]}" -eq 1
+          echo "PARENT_POS=${POS[0]}" >> "$GITHUB_ENV"
+          echo "PARENT_REC=${REC[0]}" >> "$GITHUB_ENV"
+      - name: Preflight aggregator
+        run: python -m py_compile scripts/v292_hybrid_discovery_batch2_aggregate.py
+      - name: Aggregate hybrid discovery after Batch-2
+        run: |
+          python scripts/v292_hybrid_discovery_batch2_aggregate.py             --parent-positive-events "$PARENT_POS"             --parent-final-receipt "$PARENT_REC"
+      - name: Persist Batch-2 terminal evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          files=()
+          for f in             evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_RESULTS_1.csv             evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_POSITIVE_EVENTS_1.csv             evidence/V2.9.2_HYBRID_DISCOVERY_UNION_POSITIVE_EVENTS_AFTER_BATCH2_1.csv             evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_RECEIPT_1.json; do
+            [ -f "$f" ] && files+=("$f")
+          done
+          [ "${#files[@]}" -gt 0 ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.9.2 hybrid discovery Batch-2 evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
