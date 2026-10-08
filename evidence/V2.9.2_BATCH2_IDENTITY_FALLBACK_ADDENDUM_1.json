@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_BATCH2_IDENTITY_FALLBACK_ADDENDUM_1",
+  "version": "V2.9.2",
+  "status": "FROZEN_BEFORE_VALIDATION",
+  "purpose": "Validate issuer identity authority only for Batch-2 securities missing from the frozen PIT map before any V2.9.2 scientific collection.",
+  "parent_preflight": "evidence/V2.9.2_BATCH2_IDENTITY_PREFLIGHT_1.json",
+  "affected_securities": [
+    {
+      "canonical_security_id": "SSE:600608",
+      "security_code": "600608",
+      "exchange": "SSE"
+    },
+    {
+      "canonical_security_id": "SZSE:300280",
+      "security_code": "300280",
+      "exchange": "SZSE"
+    }
+  ],
+  "invariants": {
+    "original_pit_map_unchanged": true,
+    "no_scientific_classification": true,
+    "no_price_or_return_data": true,
+    "no_candidate_outcome_research": true,
+    "fold3_forbidden": true,
+    "fold4_forbidden": true
+  },
+  "validation_rule": "Resolve exactly one CNINFO org id per affected security and verify blank-searchkey 2023-01-01..2024-12-30 issuer-scoped pagination is nonempty, closed, and contains no explicit security-code contradiction.",
+  "authorization_effect": "Only a PASS receipt may authorize Batch-2 runner fallback use for exactly these two securities."
+}
