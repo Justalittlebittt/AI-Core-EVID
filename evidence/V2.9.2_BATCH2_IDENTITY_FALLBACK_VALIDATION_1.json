@@ -1,0 +1,73 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_BATCH2_IDENTITY_FALLBACK_VALIDATION_1",
+  "version": "V2.9.2",
+  "status": "V2_9_2_BATCH2_IDENTITY_FALLBACK_VALIDATED",
+  "tests": [
+    {
+      "name": "I01_addendum_frozen",
+      "pass": true
+    },
+    {
+      "name": "I02_original_map_hash_exact",
+      "pass": true
+    },
+    {
+      "name": "I03_affected_set_exact",
+      "pass": true
+    },
+    {
+      "name": "I04_org_ids_unique_nonempty",
+      "pass": true
+    },
+    {
+      "name": "I05_blank_transport_nonempty",
+      "pass": true
+    },
+    {
+      "name": "I06_pagination_closed",
+      "pass": true
+    },
+    {
+      "name": "I07_no_scientific_classification",
+      "pass": true
+    },
+    {
+      "name": "I08_no_price_outcome_fold34",
+      "pass": true
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "all_pass": true,
+  "identity_evidence": [
+    {
+      "canonical_security_id": "SSE:600608",
+      "security_code": "600608",
+      "exchange": "SSE",
+      "resolved_org_id": "gssh0600608",
+      "official_total": 206,
+      "deduped_count": 206,
+      "pages_fetched": 7,
+      "status": "PASS"
+    },
+    {
+      "canonical_security_id": "SZSE:300280",
+      "security_code": "300280",
+      "exchange": "SZSE",
+      "resolved_org_id": "9900021506",
+      "official_total": 284,
+      "deduped_count": 284,
+      "pages_fetched": 10,
+      "status": "PASS"
+    }
+  ],
+  "scientific_classification_executed": false,
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "authorization": {
+    "batch2_identity_fallback_allowed": true
+  },
+  "receipt_sha256": "334734a528c647c4209c2c8ede0b1a629d93a961e0e695a4fb5812e3d2f09212"
+}
