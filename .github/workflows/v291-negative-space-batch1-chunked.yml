@@ -1,0 +1,121 @@
+name: V2.9.1 Negative Space Batch 1 Chunked
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v291-negative-space-batch1-chunked.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  chunks:
+    name: chunk-${{ matrix.chunk }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        chunk: [1, 2, 3, 4, 5, 6, 7, 8]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source-only dependencies
+        run: |
+          pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+          playwright install --with-deps chromium
+      - name: Download frozen prerequisite artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .v291/recovery .v291/phase_a
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11269201486/zip" -o .v291/recovery.zip
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11266397712/zip" -o .v291/phase_a.zip
+          unzip -q .v291/recovery.zip -d .v291/recovery
+          unzip -q .v291/phase_a.zip -d .v291/phase_a
+          test "$(sha256sum .v291/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+      - name: Preflight chunk runner
+        run: |
+          python -m py_compile scripts/v291_negative_space_batch1.py
+          python -m py_compile scripts/v291_negative_space_batch1_chunk.py
+      - name: Execute deterministic Batch-1 chunk
+        run: |
+          python scripts/v291_negative_space_batch1_chunk.py             --chunk-index "${{ matrix.chunk }}"             --authority .v291/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv             --recovery-receipt .v291/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json             --phase-a-receipt .v291/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+      - name: Persist chunk evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          p=$(printf "%02d" "${{ matrix.chunk }}")
+          files=()
+          for f in             "evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_CHUNK_${p}_RESULTS_1.csv"             "evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_CHUNK_${p}_RECEIPT_1.json"             "evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_CHUNK_${p}_PROGRESS_1.json"; do
+            if [ -f "$f" ]; then files+=("$f"); fi
+          done
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No chunk evidence files to persist"
+            exit 0
+          fi
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          if git diff --cached --quiet; then
+            echo "No chunk evidence delta"
+            exit 0
+          fi
+          git commit -m "Persist V2.9.1 Batch-1 chunk ${{ matrix.chunk }} evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+  aggregate:
+    name: aggregate-batch1
+    needs: chunks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install aggregation dependencies
+        run: |
+          pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+      - name: Preflight aggregator
+        run: |
+          python -m py_compile scripts/v291_negative_space_batch1.py
+          python -m py_compile scripts/v291_negative_space_batch1_aggregate.py
+      - name: Aggregate frozen scientific Batch-1
+        run: python scripts/v291_negative_space_batch1_aggregate.py
+      - name: Persist Batch-1 terminal evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          files=()
+          for f in             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json; do
+            if [ -f "$f" ]; then files+=("$f"); fi
+          done
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No terminal Batch-1 evidence files to persist"
+            exit 0
+          fi
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          if git diff --cached --quiet; then
+            echo "No terminal evidence delta"
+            exit 0
+          fi
+          git commit -m "Persist chunk-aggregated V2.9.1 Batch-1 evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
