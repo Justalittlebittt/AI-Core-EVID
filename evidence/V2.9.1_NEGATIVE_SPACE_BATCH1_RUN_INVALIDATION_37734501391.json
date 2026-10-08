@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_BATCH1_RUN_INVALIDATION_1",
+  "version": "V2.9.1",
+  "run_id": 37734501391,
+  "status": "INVALIDATED_BY_EXECUTION_GOVERNANCE",
+  "reason": [
+    "MONOLITHIC_64_SECURITY_EXECUTION_NOT_EXTERNALLY_REALTIME_OBSERVABLE",
+    "NO_RELIABLE_EFFECTIVE_COMPLETION_BOUND",
+    "RUN_PROGRESS_NOT_ACTIONABLE_DURING_EXECUTION",
+    "RUN_DOES_NOT_MEET_BOUNDED_OBSERVABLE_CHECKPOINTED_RESUMABLE_EXECUTION_STANDARD"
+  ],
+  "scientific_effect": {
+    "usable_for_h1_h2": false,
+    "usable_for_batch1_terminal_status": false,
+    "usable_as_formal_evidence": false,
+    "may_be_inspected_for_diagnostic_only": true
+  },
+  "frozen_scientific_design_changed": false,
+  "replacement_execution_requirement": {
+    "deterministic_original_order": true,
+    "chunked_execution": true,
+    "bounded_chunk_runtime": true,
+    "external_progress_visibility": true,
+    "persistent_per_chunk_evidence": true,
+    "resumable_without_reprocessing_completed_chunks": true,
+    "early_stop_on_valid_negative_space_positive": true,
+    "final_aggregation_required_for_no_positive_batch_conclusion": true
+  }
+}
