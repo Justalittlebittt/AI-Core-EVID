@@ -1,0 +1,204 @@
+from __future__ import annotations
+
+import argparse, csv, hashlib, json, tempfile, time
+from pathlib import Path
+
+import v291_negative_space_batch1 as base
+
+ADDENDUM=Path('evidence/V2.9.1_BATCH1_CHUNK_EXECUTION_ADDENDUM_1.json')
+CHUNK_SIZE=8
+CHUNK_COUNT=8
+POSITIVE=base.POSITIVE
+
+def out_paths(chunk_index:int):
+    p=f'{chunk_index:02d}'
+    return (
+        Path(f'evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_CHUNK_{p}_RESULTS_1.csv'),
+        Path(f'evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_CHUNK_{p}_RECEIPT_1.json'),
+        Path(f'evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_CHUNK_{p}_PROGRESS_1.json'),
+    )
+
+def heartbeat(progress:Path, chunk:int, rank:int, cid:str, stage:str, **extra):
+    rec={
+        'schema':'AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_BATCH1_CHUNK_PROGRESS_1',
+        'chunk_index':chunk,'rank':rank,'canonical_security_id':cid,
+        'stage':stage,'unix_time':time.time(),**extra
+    }
+    progress.write_text(json.dumps(rec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print(f"[BATCH1-CHUNK{chunk:02d}] rank={rank}/64 security={cid} stage={stage} "+
+          ' '.join(f"{k}={v}" for k,v in extra.items()), flush=True)
+
+def write_results(path:Path, rows:list[dict]):
+    base.write_csv(path, rows)
+
+def load_batch_and_identity(authority, recovery_receipt, phase_a_receipt):
+    contract,parent_ids=base.validate_inputs(authority,recovery_receipt,phase_a_receipt)
+    add=base.read_json(ADDENDUM)
+    if add.get('schema')!='AI_CORE_EVID_V2_9_1_BATCH1_CHUNK_EXECUTION_ADDENDUM_1' or add.get('status')!='FROZEN_BEFORE_CHUNK_IMPLEMENTATION':
+        raise RuntimeError('CHUNK_ADDENDUM_BLOCK')
+    owner,_=base.old.load_development_universe()
+    order=sorted(owner,key=lambda x:(hashlib.sha256(x.encode()).hexdigest(),x))
+    batch=order[:64]
+    if len(batch)!=64 or any(owner[x] not in (0,1,2) for x in batch):
+        raise RuntimeError('BATCH_MEMBERSHIP_BLOCK')
+    m={r['canonical_security_id']:r for r in base.read_rows(base.MAP)}
+    fb=base.read_json(base.FALLBACK_RECEIPT)
+    if fb.get('status')!='V2_9_1_IDENTITY_AUTHORITY_FALLBACK_VALIDATED' or fb.get('all_pass') is not True or fb.get('authorization',{}).get('batch1_identity_fallback_allowed') is not True:
+        raise RuntimeError('IDENTITY_FALLBACK_RECEIPT_BLOCK')
+    fallback={}
+    for x in fb.get('identity_evidence') or []:
+        cid=str(x.get('canonical_security_id') or '').strip()
+        if cid in {'SZSE:300344','SSE:600599'} and x.get('status')=='PASS' and str(x.get('resolved_org_id') or '').strip():
+            fallback[cid]={
+                'canonical_security_id':cid,
+                'security_code':str(x.get('security_code') or cid.split(':')[1]).strip(),
+                'exchange':str(x.get('exchange') or cid.split(':')[0]).strip(),
+                'validated_org_id':str(x.get('resolved_org_id')).strip(),
+                'identity_source':'V2.9.1_IDENTITY_AUTHORITY_FALLBACK_VALIDATION_1'
+            }
+    if set(fallback)!={'SZSE:300344','SSE:600599'}:
+        raise RuntimeError('IDENTITY_FALLBACK_SET_BLOCK:'+','.join(sorted(fallback)))
+    missing=[x for x in batch if x not in m and x not in fallback]
+    if missing:
+        raise RuntimeError('IDENTITY_MAP_COVERAGE_BLOCK:'+','.join(missing))
+    return contract,parent_ids,owner,batch,m,fallback
+
+def main():
+    ap=argparse.ArgumentParser()
+    ap.add_argument('--chunk-index',type=int,required=True)
+    ap.add_argument('--authority',required=True)
+    ap.add_argument('--recovery-receipt',required=True)
+    ap.add_argument('--phase-a-receipt',required=True)
+    a=ap.parse_args()
+    if not 1<=a.chunk_index<=CHUNK_COUNT:
+        raise RuntimeError('CHUNK_INDEX_BLOCK')
+    results_path,receipt_path,progress_path=out_paths(a.chunk_index)
+    contract,parent_ids,owner,batch,m,fallback=load_batch_and_identity(a.authority,a.recovery_receipt,a.phase_a_receipt)
+    start=(a.chunk_index-1)*CHUNK_SIZE
+    chunk=batch[start:start+CHUNK_SIZE]
+    ranks=list(range(start+1,start+CHUNK_SIZE+1))
+    if len(chunk)!=CHUNK_SIZE:
+        raise RuntimeError('CHUNK_MEMBERSHIP_BLOCK')
+
+    if receipt_path.exists():
+        prior=base.read_json(receipt_path)
+        if (prior.get('status')=='V2_9_1_BATCH1_EXECUTION_CHUNK_COMPLETE'
+            and prior.get('chunk_index')==a.chunk_index
+            and prior.get('batch_ranks')==ranks
+            and prior.get('security_ids')==chunk
+            and prior.get('execution_integrity_pass') is True):
+            print(json.dumps({'status':'CHUNK_ALREADY_COMPLETE_REUSED','chunk_index':a.chunk_index,'receipt_sha256':prior.get('receipt_sha256')},ensure_ascii=False))
+            return
+
+    days=base.old.trading_dates()
+    results=[]
+    transport=[]
+    with tempfile.TemporaryDirectory() as td, base.sync_playwright() as pw:
+        root=Path(td)
+        browser=pw.chromium.launch(headless=True)
+        page=browser.new_page(locale='zh-CN')
+        page.goto('https://www.cninfo.com.cn/',wait_until='domcontentloaded',timeout=90000)
+        page.wait_for_timeout(1000)
+        api=pw.request.new_context(extra_http_headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36'})
+        for local_i,cid in enumerate(chunk):
+            rank=ranks[local_i]
+            sec_t0=time.monotonic()
+            ir=m.get(cid) or fallback[cid]
+            code=str(ir.get('security_code') or cid.split(':')[1])
+            exchange=cid.split(':')[0]
+            heartbeat(progress_path,a.chunk_index,rank,cid,'SECURITY_START',exchange=exchange,code=code)
+            try:
+                heartbeat(progress_path,a.chunk_index,rank,cid,'ORG_RESOLVE_START')
+                org=ir.get('validated_org_id') or base.resolve_org(page,code)
+                heartbeat(progress_path,a.chunk_index,rank,cid,'ORG_RESOLVE_DONE',org_id=org)
+                heartbeat(progress_path,a.chunk_index,rank,cid,'PAGINATION_START')
+                rr,ev=base.query_rows(page,cid,code,org,exchange)
+                heartbeat(progress_path,a.chunk_index,rank,cid,'PAGINATION_DONE',official_total=ev.get('official_total'),pages_fetched=ev.get('pages_fetched'))
+                transport.append({'batch_rank':rank,'canonical_security_id':cid,'org_id':org,
+                    'identity_source':ir.get('identity_source','FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT'),
+                    **ev,'status':'PASS'})
+            except Exception as exc:
+                blocker=f'{type(exc).__name__}:{exc}'
+                transport.append({'batch_rank':rank,'canonical_security_id':cid,'status':'BLOCKED','blocker':blocker})
+                heartbeat(progress_path,a.chunk_index,rank,cid,'TRANSPORT_BLOCKED',blocker=blocker,elapsed_seconds=round(time.monotonic()-sec_t0,3))
+                continue
+
+            admitted=0
+            for row in rr:
+                aid=row['announcement_id']
+                if aid in parent_ids:
+                    continue
+                q=base.ct.triage_title(row['announcement_title'],row.get('security_name',''))
+                if q['triage_state']!='MATERIALIZE_CANDIDATE':
+                    continue
+                admitted+=1
+                base_row={**row,'development_fold':owner[cid],'parent_candidate_absent':True,'triage_state':q['triage_state']}
+                try:
+                    heartbeat(progress_path,a.chunk_index,rank,cid,'CANDIDATE_START',announcement_id=aid,candidate_index=admitted)
+                    temporal=base.old.resolve_temporal(row,days)
+                    heartbeat(progress_path,a.chunk_index,rank,cid,'PDF_FETCH_START',announcement_id=aid,candidate_index=admitted)
+                    pdf=root/f'{rank:03d}_{aid}.pdf'
+                    obj_sha,nbytes=base.old.fetch_pdf(api,row,pdf)
+                    heartbeat(progress_path,a.chunk_index,rank,cid,'PDF_FETCH_DONE',announcement_id=aid,bytes=nbytes)
+                    pages,ex=base.run_with_timeout(120,'PDF_EXTRACT',base.te.extract_pdf,pdf,obj_sha)
+                    heartbeat(progress_path,a.chunk_index,rank,cid,'CLASSIFIER_START',announcement_id=aid,pdf_pages=ex.get('pdf_page_count'))
+                    dec=base.run_with_timeout(120,'CLASSIFIER',base.pc.classify_pages,pages)
+                    e=dec['evidence']
+                    heartbeat(progress_path,a.chunk_index,rank,cid,'CLASSIFIER_DONE',announcement_id=aid,classification_state=dec.get('classification_state'))
+                    results.append({**base_row,**temporal,'pipeline_status':'SUCCESS','blocker':'',
+                        'object_sha256':obj_sha,'bytes':nbytes,'pdf_page_count':ex['pdf_page_count'],
+                        'pages_with_text':ex['pages_with_text'],'total_nonwhitespace_characters':ex['total_nonwhitespace_characters'],
+                        'page_text_sha256':ex['page_text_sha256'],'classification_state':dec['classification_state'],
+                        'evidence_page_number':e['page_number'],
+                        'evidence_sentence_sha256':hashlib.sha256(str(e.get('evidence_sentence') or '').encode()).hexdigest(),
+                        'matched_ai_role':'|'.join(e.get('matched_ai_role') or []),
+                        'matched_commerciality':'|'.join(e.get('matched_commerciality') or []),
+                        'classification_reason':e.get('reason',''),'decision_sha256':dec['decision_sha256']})
+                except Exception as exc:
+                    blocker=f'{type(exc).__name__}:{exc}'
+                    heartbeat(progress_path,a.chunk_index,rank,cid,'CANDIDATE_BLOCKED',announcement_id=aid,blocker=blocker)
+                    results.append({**base_row,'pipeline_status':'BLOCKED','blocker':blocker})
+                write_results(results_path,results)
+            heartbeat(progress_path,a.chunk_index,rank,cid,'SECURITY_DONE',triage_admitted=admitted,elapsed_seconds=round(time.monotonic()-sec_t0,3))
+            write_results(results_path,results)
+        api.dispose()
+        browser.close()
+
+    write_results(results_path,results)
+    queried=sum(x.get('status')=='PASS' for x in transport)
+    positives=[r for r in results if r.get('pipeline_status')=='SUCCESS' and r.get('classification_state')==POSITIVE]
+    execution_checks={
+        'chunk_membership_exact_8':len(chunk)==8,
+        'all_8_issuers_transport_complete':queried==8,
+        'pagination_closed':all(x.get('official_total')==x.get('deduped_count') for x in transport if x.get('status')=='PASS'),
+        'all_negative_space_claims_parent_absent':all(r['announcement_id'] not in parent_ids for r in results),
+        'all_positive_temporal_provenance_pass':all(r.get('temporal_provenance_status')=='PASS' for r in positives)
+    }
+    execution_pass=all(execution_checks.values())
+    receipt={
+        'schema':'AI_CORE_EVID_V2_9_1_NEGATIVE_SPACE_BATCH1_EXECUTION_CHUNK_RECEIPT_1',
+        'version':'V2.9.1','status':'V2_9_1_BATCH1_EXECUTION_CHUNK_COMPLETE' if execution_pass else 'V2_9_1_BATCH1_EXECUTION_CHUNK_BLOCKED',
+        'chunk_index':a.chunk_index,'batch_ranks':ranks,'security_ids':chunk,
+        'execution_integrity_pass':execution_pass,'execution_checks':execution_checks,
+        'summary':{
+            'issuers_transport_complete':queried,
+            'negative_space_triage_admitted':len(results),
+            'classifier_ready':sum(r.get('pipeline_status')=='SUCCESS' for r in results),
+            'negative_space_positive_count_diagnostic_only':len(positives)
+        },
+        'transport_evidence':transport,
+        'results_sha256':base.sha_file(results_path),
+        'scientific_terminal_status_emitted':False,
+        'next_scientific_batch_authorized':False,
+        'price_or_return_data_consumed':False,'candidate_outcome_research_executed':False,
+        'fold3_accessed':False,'fold4_accessed':False
+    }
+    receipt['receipt_sha256']=base.stable_sha(receipt)
+    receipt_path.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    heartbeat(progress_path,a.chunk_index,ranks[-1],chunk[-1],'CHUNK_DONE',execution_integrity_pass=execution_pass,result_count=len(results))
+    print(json.dumps(receipt,ensure_ascii=False,indent=2))
+    if not execution_pass:
+        raise SystemExit(2)
+
+if __name__=='__main__':
+    main()
