@@ -1,0 +1,30 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SOURCE_PIN_RECEIPT_V1",
+  "version": "V2.8.3",
+  "runner_observed_at_utc_descriptive": "2026-10-08T06:55:17.160850+00:00",
+  "authoritative_observation_time_rule": "GitHub committed_at timestamp of this capture-file creation commit",
+  "sources": [
+    {
+      "repo_id": "AlphaDojo/dojo_stock_kline",
+      "repo_type": "dataset",
+      "revision_sha": "b2042e840f2f893060ae70b5c2b0a9f2675c977e",
+      "repo_last_modified": "2026-10-07 22:37:15+00:00",
+      "target_file": "data.parquet",
+      "target_size": 317417845,
+      "target_lfs_sha256": "29c3eacb51d1d7688735f39f3ad2a7563712ae42623a109a69fc8696a4452db7"
+    },
+    {
+      "repo_id": "AlphaDojo/dojo_benchmark_kline",
+      "repo_type": "dataset",
+      "revision_sha": "80053d661605284998d5a06462782f07ae6b4db3",
+      "repo_last_modified": "2026-10-07 22:36:58+00:00",
+      "target_file": "data.parquet",
+      "target_size": 298276,
+      "target_lfs_sha256": "4dc449d804c8fd8a15ff78793241ad14895c68d788196f7ae6145ffb8e454404"
+    }
+  ],
+  "no_full_parquet_download": true,
+  "confirmatory_result_effect": "NONE",
+  "source_identity_sha256": "0f151661b88383b5563f133115edfa93dc4b9cd18f495aeeb5253a55e7928577",
+  "receipt_sha256": "afefbb0d99841ebb0f26b223c171050bf1953147ec1a0300b1c963896af3b133"
+}
