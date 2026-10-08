@@ -50,6 +50,10 @@ jobs:
           grep -n "600599" evidence/V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv evidence/V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv evidence/V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv || true
           echo "=== 600599 in PIT map ==="
           grep -n "600599" evidence/V2.7.27_SECURITY_ISSUER_PIT_MAP.csv || true
+      - name: Preflight Batch-1 runner
+        run: |
+          python -m py_compile scripts/v291_negative_space_batch1.py
+
       - name: Execute frozen negative-space Batch 1
         run: |
           python scripts/v291_negative_space_batch1.py \
@@ -61,7 +65,7 @@ jobs:
         run: |
           set -euo pipefail
           files=()
-          for f in             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_PROGRESS_1.json; do
+          for f in             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RESULTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_PROGRESS_1.json             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RUNTIME_CHECKPOINT_1.json; do
             if [ -f "$f" ]; then files+=("$f"); fi
           done
           if [ "${#files[@]}" -eq 0 ]; then
@@ -90,4 +94,5 @@ jobs:
             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_POSITIVE_EVENTS_1.csv
             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json
             evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_PROGRESS_1.json
+            evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RUNTIME_CHECKPOINT_1.json
 # rerun-after-validated-identity-fallback
