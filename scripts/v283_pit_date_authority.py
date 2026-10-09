@@ -109,7 +109,7 @@ def fetch_sse(d: date, raw: Path) -> tuple[pd.DataFrame, list[dict]]:
     retry = Retry(
         total=3, connect=3, read=3, status=2,
         backoff_factor=1.0,
-        status_forcelist=(429, 500, 502, 503, 504),
+        status_forcelist=(403, 429, 500, 502, 503, 504),
         allowed_methods=frozenset({"GET"}),
         raise_on_status=False,
     )
