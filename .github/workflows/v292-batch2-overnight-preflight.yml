@@ -24,10 +24,14 @@ jobs:
           python-version: "3.12"
       - name: Install preflight dependencies
         run: pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
-      - name: Syntax gate
+      - name: Syntax and execution-hardening gate
         run: |
+          python -m py_compile scripts/v291_negative_space_batch1.py
           python -m py_compile scripts/v292_hybrid_discovery_batch2_chunk.py
           python -m py_compile scripts/v292_hybrid_discovery_batch2_aggregate.py
+          grep -q "transient={0,429,500,502,503,504}" scripts/v291_negative_space_batch1.py
+          grep -q "range(1,5)" scripts/v291_negative_space_batch1.py
+          grep -q "fail-fast: false" .github/workflows/v292-hybrid-discovery-batch2.yml
       - name: Download prerequisite artifacts
         env:
           GH_TOKEN: ${{ github.token }}
