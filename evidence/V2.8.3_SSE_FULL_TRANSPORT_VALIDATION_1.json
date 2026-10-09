@@ -1,0 +1,13 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SSE_FULL_TRANSPORT_VALIDATION_1",
+  "status": "PASS",
+  "signal_date_probe": "2026-10-09",
+  "normalized_security_count": 2320,
+  "capture_file_count": 25,
+  "distinct_security_count": 2320,
+  "all_codes_shape_valid": true,
+  "scientific_output_generated": false,
+  "price_or_return_data_consumed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false
+}
