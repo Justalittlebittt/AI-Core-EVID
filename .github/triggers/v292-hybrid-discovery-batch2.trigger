@@ -6,3 +6,6 @@ implementation_preflight_status=PASS
 batch_index=2
 ranks=65-128
 execution=8x8 sequential chunks
+resume_attempt=2
+hardening_preflight_run=37884453797
+hardening_preflight_status=PASS
