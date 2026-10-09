@@ -1,0 +1,238 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_STOCK_SCHEMA_PROBE_1",
+  "status": "PASS",
+  "revision": "ae09e2103d224050c90b6bdbf77f8fcf5805d6cf",
+  "target_file": "data.parquet",
+  "columns": [
+    {
+      "name": "symbol",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "kline_t",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "bar_time",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "name": "open",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "high",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "low",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "close",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "vol",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "amount",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change_p",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "tr",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "adj_factor_cum",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "dividends",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "splits",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "exchange",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "last_price",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "pre_close",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change_percent",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "volume",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "avg_price",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "market_cap",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "float_market_cap",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "upper_limit",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "lower_limit",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "turn_rate",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "pe",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "pb",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "dividend_yield",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "lot_size",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "float_shares",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "total_shares",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "quote_time",
+      "type": "TIMESTAMP WITH TIME ZONE"
+    },
+    {
+      "name": "high_52_week",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "low_52_week",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change_percent_5d",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change_percent_30d",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change_percent_1year",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "change_percent_year_to_date",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "ask_prices",
+      "type": "INTEGER"
+    },
+    {
+      "name": "ask_qtys",
+      "type": "INTEGER"
+    },
+    {
+      "name": "bid_prices",
+      "type": "INTEGER"
+    },
+    {
+      "name": "bid_qtys",
+      "type": "INTEGER"
+    }
+  ],
+  "column_names": [
+    "symbol",
+    "kline_t",
+    "bar_time",
+    "open",
+    "high",
+    "low",
+    "close",
+    "vol",
+    "amount",
+    "change_p",
+    "tr",
+    "adj_factor_cum",
+    "dividends",
+    "splits",
+    "exchange",
+    "name",
+    "last_price",
+    "pre_close",
+    "change",
+    "change_percent",
+    "volume",
+    "avg_price",
+    "market_cap",
+    "float_market_cap",
+    "upper_limit",
+    "lower_limit",
+    "turn_rate",
+    "pe",
+    "pb",
+    "dividend_yield",
+    "lot_size",
+    "float_shares",
+    "total_shares",
+    "quote_time",
+    "high_52_week",
+    "low_52_week",
+    "change_percent_5d",
+    "change_percent_30d",
+    "change_percent_1year",
+    "change_percent_year_to_date",
+    "ask_prices",
+    "ask_qtys",
+    "bid_prices",
+    "bid_qtys"
+  ],
+  "has_bar_time": true,
+  "has_kline_t": true,
+  "has_market": false,
+  "has_quote_type": false,
+  "scientific_output_generated": false,
+  "price_or_return_statistics_computed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false
+}
