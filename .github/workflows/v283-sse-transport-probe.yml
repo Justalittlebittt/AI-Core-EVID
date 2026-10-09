@@ -1,0 +1,45 @@
+name: V2.8.3 SSE Transport Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v283-sse-transport-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install probe dependencies
+        run: |
+          pip install "requests>=2.32,<3" "playwright>=1.55"
+          playwright install --with-deps chromium
+      - name: Syntax
+        run: python -m py_compile scripts/v283_sse_transport_probe.py
+      - name: Probe official SSE transport
+        run: python scripts/v283_sse_transport_probe.py
+      - name: Persist diagnostic receipt
+        if: always()
+        run: |
+          set -euo pipefail
+          f=evidence/V2.8.3_SSE_TRANSPORT_PROBE_1.json
+          [ -f "$f" ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$f"
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.8.3 SSE transport diagnostic [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
