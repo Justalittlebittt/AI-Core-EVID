@@ -1,0 +1,62 @@
+{
+  "schema": "AI_CORE_EVID_PARALLEL_WORK_DAG_V1",
+  "status": "ACTIVE",
+  "operating_model": "PARALLEL_LONG_SHORT_LANES",
+  "rules": {
+    "hard_dependency_only": true,
+    "long_tasks_do_not_block_independent_short_tasks": true,
+    "scientific_gate_changes_require_approval": true,
+    "implementation_and_operational_repairs_may_proceed_within_frozen_scope": true
+  },
+  "lanes": {
+    "RUNNING_L": [],
+    "READY_L": [
+      {
+        "id": "L-V292-B3",
+        "task": "V2.9.2 Hybrid Discovery Batch-3",
+        "ranks": [
+          129,
+          192
+        ],
+        "readiness_receipt": "evidence/V2.9.2_BATCH3_OVERNIGHT_READINESS_1.json",
+        "status": "READY_FOR_OVERNIGHT_EXECUTION"
+      }
+    ],
+    "ACTIVE_S": [
+      {
+        "id": "S-PIT-RECOVERY",
+        "task": "Diagnose and recover V2.8.3 PIT authority transport after SSE HTTP 403",
+        "dependency_on_batch3": false,
+        "status": "ACTIVE"
+      }
+    ],
+    "COMPLETED_S": [
+      {
+        "id": "S-SCHEDULER-NOISE",
+        "task": "Audit scheduled workflows and remove nonproductive automatic runs",
+        "result": "PIT authority cron paused earlier; V2.8.3 Morning Orchestrator cron paused after structural no-output diagnosis",
+        "status": "COMPLETE"
+      }
+    ],
+    "BLOCKED": [
+      {
+        "id": "V292-B4",
+        "task": "V2.9.2 Batch-4 ranks 193-256",
+        "blocked_by": "L-V292-B3 terminal receipt",
+        "reason": "Frozen sequential rule requires Batch-3 TOO_SPARSE + next_batch_authorized=true"
+      },
+      {
+        "id": "V283-MORNING-REACTIVATE",
+        "task": "Re-enable V2.8.3 Prospective Morning Orchestrator schedule",
+        "blocked_by": "S-PIT-RECOVERY",
+        "reason": "No productive path while PIT authority stops at 2026-09-30"
+      }
+    ]
+  },
+  "governance": {
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "price_or_return_research_added": false,
+    "classifier_or_information_floor_changed": false
+  }
+}
