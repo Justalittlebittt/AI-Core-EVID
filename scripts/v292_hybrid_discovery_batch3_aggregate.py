@@ -135,7 +135,7 @@ def main():
     out={
       "schema":"AI_CORE_EVID_V2_9_2_HYBRID_DISCOVERY_BATCH3_RECEIPT_1",
       "version":"V2.9.2","status":status,
-      "batch_index":2,"batch_ranks":[65,128],"batch_size":64,
+      "batch_index":3,"batch_ranks":[129,192],"batch_size":64,
       "execution_chunks":prov,
       "summary":{
         "batch3_negative_space_triage_admitted":len(results),
