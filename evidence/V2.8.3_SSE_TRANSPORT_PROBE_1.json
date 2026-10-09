@@ -1,0 +1,20 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_SSE_TRANSPORT_PROBE_1",
+  "status": "PROBE_COMPLETE",
+  "official_endpoint": "https://query.sse.com.cn/sseQuery/commonQuery.do",
+  "requests_warmup_status": 200,
+  "requests": {
+    "status": 200,
+    "bytes": 114847,
+    "content_type": "application/json;charset=UTF-8"
+  },
+  "browser_same_origin": {
+    "status": 0,
+    "error": "TypeError: Failed to fetch",
+    "referer_navigation_status": 200
+  },
+  "scientific_output_generated": false,
+  "price_or_return_data_consumed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false
+}
