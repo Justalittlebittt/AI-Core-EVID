@@ -1,0 +1,119 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_HYBRID_DISCOVERY_BATCH2_RECEIPT_1",
+  "version": "V2.9.2",
+  "status": "V2_9_2_HYBRID_DISCOVERY_BATCH2_COMPLETE_TOO_SPARSE",
+  "batch_index": 2,
+  "batch_ranks": [
+    65,
+    128
+  ],
+  "batch_size": 64,
+  "execution_chunks": [
+    {
+      "chunk_index": 1,
+      "receipt_sha256": "09fdb32d2b390245a14c721c68cdb9de4c429746111c0ef9b21b8598d58e325e",
+      "results_sha256": "acb97bf339b20fa8346991a71e8b5544c86bce2235e67f08e6dc78345f84dc25",
+      "result_count": 2076
+    },
+    {
+      "chunk_index": 2,
+      "receipt_sha256": "b1c1c3984e25302f1163cbfcafa792496da9d25fb112cfb4408d92b5a2823a2b",
+      "results_sha256": "5213a0a50b919854ea2927288a063990e54ab0d9d9e1f7334ef06556d315bca2",
+      "result_count": 1695
+    },
+    {
+      "chunk_index": 3,
+      "receipt_sha256": "8000aa89a0d4a2cc9bde87e53cdfc5a1585951d62a829625d56f95c814a5280f",
+      "results_sha256": "e26be36c8c07db84275c3789e7284964c426fd5a8b51e2007aa3385ce48f567a",
+      "result_count": 2449
+    },
+    {
+      "chunk_index": 4,
+      "receipt_sha256": "afcce5fcfdf1fd73d2b44437e34b0b57c9a4052647c44197ecc2a74178585fac",
+      "results_sha256": "90020df384672bdf4bd6803619c116db7b9fbc0148dd06a2929c50f5fe186ef7",
+      "result_count": 2175
+    },
+    {
+      "chunk_index": 5,
+      "receipt_sha256": "ac4439344865c6f41470c21e8015e15b1c9bf1f46fce562481834241fbed0e3a",
+      "results_sha256": "c45b04c39574aea2cd13b24e55b9cb9ed29ce4ef191baf50f549794160becddd",
+      "result_count": 2275
+    },
+    {
+      "chunk_index": 6,
+      "receipt_sha256": "c39c99d1ddd06a341a9885e9bc471810b7575ee59a8f49095030b3662ba53dad",
+      "results_sha256": "92c3fa76ef8efdb04955e632eafd5e628337880992fa24f67560bce2e278c5c6",
+      "result_count": 1838
+    },
+    {
+      "chunk_index": 7,
+      "receipt_sha256": "dafcd8cd10c29e5e3f29a69079ba480cfafce26f12f2e6a6ae01f006d1806b5d",
+      "results_sha256": "69452dc4be5cc78db6af708f59bc32dfbf00a4d09e82c0e9c977f07f28d65f7b",
+      "result_count": 1805
+    },
+    {
+      "chunk_index": 8,
+      "receipt_sha256": "a4b425c2e36cf567b90a6cf0ffa0bdd835b435992012c1970ca9602d02bbdaa9",
+      "results_sha256": "67763d06247f867ab58e7c67a0356182ed8013dbd2520755b12b53e1efb4b00a",
+      "result_count": 1738
+    }
+  ],
+  "summary": {
+    "batch2_negative_space_triage_admitted": 16051,
+    "batch2_classifier_ready": 15456,
+    "batch2_materialization_rate": 0.9629306585259485,
+    "batch2_supplement_positive_count": 15,
+    "base_positive_count": 21,
+    "batch1_supplement_positive_count": 29,
+    "union_unique_positive_events": 65,
+    "union_distinct_securities": 17,
+    "union_distinct_effective_dates": 41,
+    "union_distinct_calendar_months": 18,
+    "union_max_single_security_share": 0.24615384615384617
+  },
+  "information_floor": {
+    "eligible_events": {
+      "value": 65,
+      "threshold": 20,
+      "pass": true
+    },
+    "distinct_securities": {
+      "value": 17,
+      "threshold": 12,
+      "pass": true
+    },
+    "distinct_effective_dates": {
+      "value": 41,
+      "threshold": 12,
+      "pass": true
+    },
+    "distinct_calendar_months": {
+      "value": 18,
+      "threshold": 6,
+      "pass": true
+    },
+    "max_single_security_share": {
+      "value": 0.24615384615384617,
+      "threshold": 0.2,
+      "pass": false
+    }
+  },
+  "technical_checks": {
+    "batch2_membership_exact_64": true,
+    "all_64_issuers_transport_complete": true,
+    "pagination_closed": true,
+    "all_supplement_candidates_parent_absent": true,
+    "classifier_ready_materialization_rate_ge_0_90": true,
+    "all_positive_temporal_provenance_pass": true,
+    "all_8_execution_chunks_complete": true
+  },
+  "batch2_results_sha256": "6913d367908255d1825f19b32ff6e7df81e4da49b5acfca96788f23b44b071c5",
+  "batch2_positive_events_sha256": "9e2f9c401d760620d0262f972aad8b306a4dcb90ed6daef41c276f6c3ef0b251",
+  "union_positive_events_sha256": "09636166dc195295c9c0418e071835173582811dfd3bf35fe741a7dd632cef47",
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "next_batch_authorized": true,
+  "receipt_sha256": "64e76d4f0bc4b3d902647c3e11f9b183e4b051913b9fb5cd8af8c5a5b7f27ddc"
+}
