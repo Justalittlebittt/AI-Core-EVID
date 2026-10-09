@@ -66,20 +66,34 @@ def run_with_timeout(seconds, label, fn, *args, **kwargs):
         signal.signal(signal.SIGALRM, previous)
 
 def post(page,payload):
-    q=page.evaluate("""async (payload)=>{
-      const ctl=new AbortController();
-      const timer=setTimeout(()=>ctl.abort(),45000);
-      try{
-        const body=new URLSearchParams(payload).toString();
-        const r=await fetch('/new/hisAnnouncement/query',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest'},body,signal:ctl.signal});
-        return {status:r.status,text:await r.text()};
-      }catch(e){
-        return {status:0,text:'',error:String(e && e.name ? e.name+':'+e.message : e)};
-      }finally{clearTimeout(timer);}
-    }""",payload)
-    if q.get('status')==0: raise RuntimeError(f'CNINFO_POST_TIMEOUT_OR_FETCH_BLOCK:{q.get("error","")}')
-    if q['status']!=200: raise RuntimeError(f'CNINFO_HTTP_{q["status"]}')
-    return q['text']
+    transient={0,429,500,502,503,504}
+    last=None
+    for attempt in range(1,5):
+        q=page.evaluate("""async (payload)=>{
+          const ctl=new AbortController();
+          const timer=setTimeout(()=>ctl.abort(),45000);
+          try{
+            const body=new URLSearchParams(payload).toString();
+            const r=await fetch('/new/hisAnnouncement/query',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest'},body,signal:ctl.signal});
+            return {status:r.status,text:await r.text()};
+          }catch(e){
+            return {status:0,text:'',error:String(e && e.name ? e.name+':'+e.message : e)};
+          }finally{clearTimeout(timer);}
+        }""",payload)
+        status=int(q.get('status') or 0)
+        if status==200:
+            return q['text']
+        last=q
+        if status not in transient:
+            raise RuntimeError(f'CNINFO_HTTP_{status}')
+        if attempt<4:
+            delay=2.0*(2**(attempt-1))
+            print(f'[CNINFO_RETRY] attempt={attempt}/4 status={status} delay_seconds={delay}',flush=True)
+            time.sleep(delay)
+    status=int((last or {}).get('status') or 0)
+    if status==0:
+        raise RuntimeError(f'CNINFO_POST_TIMEOUT_OR_FETCH_BLOCK_AFTER_RETRIES:{(last or {}).get("error","")}')
+    raise RuntimeError(f'CNINFO_HTTP_{status}_AFTER_RETRIES')
 
 def resolve_org(page,code):
     matches=[]
