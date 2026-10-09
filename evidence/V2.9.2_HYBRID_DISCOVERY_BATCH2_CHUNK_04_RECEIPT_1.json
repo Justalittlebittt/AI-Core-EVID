@@ -1,7 +1,7 @@
 {
   "schema": "AI_CORE_EVID_V2_9_2_HYBRID_DISCOVERY_BATCH2_EXECUTION_CHUNK_RECEIPT_1",
   "version": "V2.9.2",
-  "status": "V2_9_2_BATCH2_EXECUTION_CHUNK_BLOCKED",
+  "status": "V2_9_2_BATCH2_EXECUTION_CHUNK_COMPLETE",
   "chunk_index": 4,
   "batch_ranks": [
     89,
@@ -23,18 +23,18 @@
     "SSE:603815",
     "SSE:600993"
   ],
-  "execution_integrity_pass": false,
+  "execution_integrity_pass": true,
   "execution_checks": {
     "chunk_membership_exact_8": true,
-    "all_8_issuers_transport_complete": false,
+    "all_8_issuers_transport_complete": true,
     "pagination_closed": true,
     "all_negative_space_claims_parent_absent": true,
     "all_positive_temporal_provenance_pass": true
   },
   "summary": {
-    "issuers_transport_complete": 7,
-    "negative_space_triage_admitted": 1853,
-    "classifier_ready": 1783,
+    "issuers_transport_complete": 8,
+    "negative_space_triage_admitted": 2175,
+    "classifier_ready": 2105,
     "supplement_positive_count_diagnostic_only": 0
   },
   "transport_evidence": [
@@ -61,8 +61,12 @@
     {
       "batch_rank": 91,
       "canonical_security_id": "SZSE:000921",
-      "status": "BLOCKED",
-      "blocker": "RuntimeError:CNINFO_HTTP_504"
+      "org_id": "gssz0000921",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 324,
+      "deduped_count": 324,
+      "pages_fetched": 11,
+      "status": "PASS"
     },
     {
       "batch_rank": 92,
@@ -115,7 +119,7 @@
       "status": "PASS"
     }
   ],
-  "results_sha256": "3867a089da603050710d1ac19e744e00facbcf23ffa025d724b647e0911ee261",
+  "results_sha256": "90020df384672bdf4bd6803619c116db7b9fbc0148dd06a2929c50f5fe186ef7",
   "scientific_terminal_status_emitted": false,
   "scientific_batch_index": 2,
   "next_scientific_batch_authorized": false,
@@ -123,5 +127,5 @@
   "candidate_outcome_research_executed": false,
   "fold3_accessed": false,
   "fold4_accessed": false,
-  "receipt_sha256": "665a4bf65381309324d5ebddf6831af0df7c8997cd088027900c232435b42963"
+  "receipt_sha256": "afcce5fcfdf1fd73d2b44437e34b0b57c9a4052647c44197ecc2a74178585fac"
 }

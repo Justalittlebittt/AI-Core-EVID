@@ -4,7 +4,7 @@
   "rank": 96,
   "canonical_security_id": "SSE:600993",
   "stage": "CHUNK_DONE",
-  "unix_time": 1791460219.6985657,
-  "execution_integrity_pass": false,
-  "result_count": 1853
+  "unix_time": 1791522648.998435,
+  "execution_integrity_pass": true,
+  "result_count": 2175
 }
