@@ -1,6 +1,10 @@
 name: V2.8.3 Prospective PIT Date Authority
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/v283-pit-date-authority.trigger"
 
 permissions:
   contents: write
