@@ -1,0 +1,75 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_STOCK_SCHEMA_DOMAIN_PROBE_1",
+  "status": "PASS",
+  "revision": "ae09e2103d224050c90b6bdbf77f8fcf5805d6cf",
+  "exchange_counts": [
+    [
+      null,
+      8887724
+    ]
+  ],
+  "kline_t_counts": [
+    [
+      "1D",
+      8887724
+    ]
+  ],
+  "symbol_suffix_counts": [
+    [
+      "OTHER",
+      5960906
+    ],
+    [
+      ".SZ",
+      1578802
+    ],
+    [
+      ".SS",
+      1348016
+    ]
+  ],
+  "exchange_symbol_cross_counts": [
+    [
+      null,
+      ".SS",
+      1348016
+    ],
+    [
+      null,
+      ".SZ",
+      1578802
+    ],
+    [
+      null,
+      "OTHER",
+      5960906
+    ]
+  ],
+  "distinct_symbols": 25014,
+  "other_symbol_examples": [
+    "8229.HK",
+    "1065.HK",
+    "8283.HK",
+    "1068.HK",
+    "8286.HK",
+    "1060.HK",
+    "1069.HK",
+    "1066.HK",
+    "1075.HK",
+    "8347.HK",
+    "8417.HK",
+    "8471.HK",
+    "8480.HK",
+    "8490.HK",
+    "1085.HK",
+    "1072.HK",
+    "8635.HK",
+    "1090.HK",
+    "1094.HK",
+    "9606.HK"
+  ],
+  "scientific_output_generated": false,
+  "price_or_return_statistics_computed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false
+}
