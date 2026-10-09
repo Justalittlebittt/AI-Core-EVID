@@ -1,0 +1,45 @@
+name: V2.8.3 SSE Full Transport Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v283-sse-full-transport-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install "pandas>=2,<4" "requests>=2.32,<3" "openpyxl>=3.1,<4"
+      - name: Syntax
+        run: |
+          python -m py_compile scripts/v283_pit_date_authority.py
+          python -m py_compile scripts/v283_sse_full_transport_validation.py
+      - name: Validate full SSE official transport
+        run: python scripts/v283_sse_full_transport_validation.py
+      - name: Persist validation receipt
+        if: always()
+        run: |
+          set -euo pipefail
+          f=evidence/V2.8.3_SSE_FULL_TRANSPORT_VALIDATION_1.json
+          [ -f "$f" ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$f"
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.8.3 SSE full transport validation [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
