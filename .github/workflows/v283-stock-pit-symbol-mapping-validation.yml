@@ -1,0 +1,40 @@
+name: V2.8.3 Stock PIT Symbol Mapping Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/v283-stock-pit-symbol-mapping-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install "duckdb>=1.1,<2" "pandas>=2.2,<4"
+      - name: Validate PIT-to-symbol mapping
+        run: python scripts/v283_stock_pit_symbol_mapping_validation.py
+      - name: Persist mapping receipt
+        if: always()
+        run: |
+          set -euo pipefail
+          f=evidence/V2.8.3_STOCK_PIT_SYMBOL_MAPPING_VALIDATION_1.json
+          [ -f "$f" ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$f"
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.8.3 PIT symbol mapping validation [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
