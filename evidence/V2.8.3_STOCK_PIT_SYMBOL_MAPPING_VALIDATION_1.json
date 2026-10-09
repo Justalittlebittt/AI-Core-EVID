@@ -1,0 +1,15 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_STOCK_PIT_SYMBOL_MAPPING_VALIDATION_1",
+  "status": "PASS",
+  "pit_security_count": 5224,
+  "mapped_security_count": 5224,
+  "missing_security_count": 0,
+  "ambiguous_security_count": 0,
+  "missing_examples": [],
+  "ambiguous_examples": [],
+  "mapping_rule": "SSE:<code> -> <code>.SS; SZSE:<code> -> <code>.SZ; kline_t=1D; membership authority is PIT universe",
+  "scientific_output_generated": false,
+  "price_or_return_statistics_computed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false
+}
