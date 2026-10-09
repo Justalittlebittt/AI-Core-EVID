@@ -1,0 +1,57 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_BATCH3_OVERNIGHT_READINESS_1",
+  "version": "V2.9.2",
+  "status": "READY_FOR_OVERNIGHT_EXECUTION",
+  "scientific_batch": 3,
+  "batch_ranks": [
+    129,
+    192
+  ],
+  "security_count": 64,
+  "authorization": {
+    "source": "V2.9.2_HYBRID_DISCOVERY_BATCH2_RECEIPT_1",
+    "batch2_status": "V2_9_2_HYBRID_DISCOVERY_BATCH2_COMPLETE_TOO_SPARSE",
+    "next_batch_authorized": true
+  },
+  "preflight": {
+    "identity_run_id": 37896531640,
+    "identity_status": "PASS",
+    "missing_identity_count": 0,
+    "implementation_run_id": 37896870011,
+    "implementation_status": "PASS"
+  },
+  "implementation": {
+    "chunk_runner_blob_sha": "2493da29312cbba31eb563c967dbf43cf994e1cb",
+    "aggregator_blob_sha": "06d870720aa8569d358d2ac0fd69745cd71f3b5d",
+    "workflow_blob_sha": "8df08e34fa7ec2d0dae7b48b078c532c661ead1b",
+    "execution_chunk_size": 8,
+    "execution_chunk_count": 8,
+    "fail_fast": false,
+    "max_parallel": 1,
+    "chunk_timeout_minutes": 45,
+    "aggregator_timeout_minutes": 15,
+    "transient_cninfo_retry_inherited": true,
+    "resumable_by_complete_chunk_receipt": true
+  },
+  "invariants": {
+    "development_folds": [
+      0,
+      1,
+      2
+    ],
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "price_or_return_data_consumed": false,
+    "candidate_outcome_research_executed": false,
+    "triage_classifier_information_floor_changed": false
+  },
+  "conflict_check": {
+    "in_progress_workflows_at_readiness_freeze": 0
+  },
+  "execution_policy": {
+    "class": "L",
+    "daytime_action": "PREPARE_ONLY",
+    "overnight_action": "TRIGGER_DEDICATED_WORKFLOW",
+    "one_primary_scientific_long_run": true
+  }
+}
