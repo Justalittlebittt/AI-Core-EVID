@@ -1,6 +1,10 @@
 name: V2.8.3 Prospective Morning Orchestrator
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/v283-prospective-morning-orchestrator.trigger"
 
 permissions:
   contents: write
