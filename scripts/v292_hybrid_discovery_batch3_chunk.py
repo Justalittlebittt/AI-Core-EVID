@@ -35,9 +35,19 @@ def load_batch_and_identity(authority, recovery_receipt, phase_a_receipt):
     c=base.read_json(Path('evidence/V2.9.2_HYBRID_DISCOVERY_REDESIGN_CONTRACT_1.json'))
     if c.get('schema')!='AI_CORE_EVID_V2_9_2_HYBRID_DISCOVERY_REDESIGN_CONTRACT_1' or c.get('status')!='FROZEN_BEFORE_IMPLEMENTATION':
         raise RuntimeError('V292_CONTRACT_BLOCK')
+    b2=base.read_json(Path('evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_RECEIPT_1.json'))
+    if b2.get('status')!='V2_9_2_HYBRID_DISCOVERY_BATCH2_COMPLETE_TOO_SPARSE' or b2.get('next_batch_authorized') is not True:
+        raise RuntimeError('BATCH3_NOT_AUTHORIZED_BY_BATCH2_RECEIPT')
     pre=base.read_json(Path('evidence/V2.9.2_BATCH3_IDENTITY_PREFLIGHT_1.json'))
     if pre.get('schema')!='AI_CORE_EVID_V2_9_2_BATCH3_IDENTITY_PREFLIGHT_1' or pre.get('status')!='PASS':
         raise RuntimeError('BATCH3_IDENTITY_PREFLIGHT_BLOCK')
+    owner,_=base.old.load_development_universe()
+    order=sorted(owner,key=lambda x:(hashlib.sha256(x.encode()).hexdigest(),x))
+    batch=order[128:192]
+    if len(batch)!=64 or any(owner[x] not in (0,1,2) for x in batch):
+        raise RuntimeError('BATCH3_MEMBERSHIP_BLOCK')
+    if pre.get('security_ids')!=batch or pre.get('batch_ranks')!=[129,192]:
+        raise RuntimeError('BATCH3_PREFLIGHT_MEMBERSHIP_MISMATCH')
     m={r['canonical_security_id']:r for r in base.read_rows(base.MAP)}
     missing=[x for x in batch if x not in m]
     if missing:
