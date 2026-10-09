@@ -1,0 +1,10 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_HYBRID_DISCOVERY_BATCH3_CHUNK_PROGRESS_1",
+  "chunk_index": 4,
+  "rank": 160,
+  "canonical_security_id": "SZSE:001207",
+  "stage": "CHUNK_DONE",
+  "unix_time": 1791540636.3947372,
+  "execution_integrity_pass": true,
+  "result_count": 2453
+}
