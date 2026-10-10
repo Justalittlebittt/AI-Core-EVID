@@ -11,14 +11,7 @@
   "lanes": {
     "RUNNING_L": [],
     "READY_L": [],
-    "ACTIVE_S": [
-      {
-        "id": "S-V284-COVERAGE-GAP-GOVERNANCE",
-        "task": "Resolve governance for confirmed V2.8.4 post-activation coverage gap on 2026-09-23 through 2026-09-26",
-        "dependency_on_batch3": false,
-        "status": "BLOCKED_PENDING_GOVERNANCE_DECISION"
-      }
-    ],
+    "ACTIVE_S": [],
     "COMPLETED_S": [
       {
         "id": "S-SCHEDULER-NOISE",
@@ -37,6 +30,12 @@
         "task": "Audit V2.8.4 prospective evidence consistency, identity backlog, provenance chain and scheduler recovery semantics",
         "result": "Consistency PASS; no identity backlog; provenance PASS; current outage recoverable, but continuity audit found uncovered 2026-09-23..2026-09-26",
         "status": "COMPLETE_WITH_COVERAGE_GAP_FOUND"
+      },
+      {
+        "id": "S-V284-COVERAGE-GAP-GOVERNANCE",
+        "task": "Resolve governance for confirmed V2.8.4 post-activation coverage gap on 2026-09-23 through 2026-09-26",
+        "result": "User approved continuous prospective epoch restart. Epoch 2 starts 2026-09-27; old shadow evidence retained immutably; readiness now uses only epoch-qualified events; numeric thresholds unchanged.",
+        "status": "COMPLETE"
       }
     ],
     "BLOCKED": [
@@ -65,10 +64,10 @@
         "reason": "Do not restore cron until at least one productive eligible signal snapshot is proven after repair."
       },
       {
-        "id": "V284-CONTINUOUS-INFORMATION-GATE-RELIANCE",
-        "task": "Rely on V2.8.12 shadow information gate as a complete continuous post-activation census",
-        "blocked_by": "Confirmed uncovered dates 2026-09-23 through 2026-09-26",
-        "reason": "Existing shadow events remain provenance-valid, but full post-activation census completeness is not established. Historical full backfill is not currently authorized."
+        "id": "V284-RUNTIME-VERIFY-EPOCH2",
+        "task": "Runtime-verify epoch-2-aware shadow accumulator and controlled prospective workflow",
+        "blocked_by": "GitHub Hosted Runner unavailable",
+        "reason": "Source, governance amendment, status reset and workflow blob binding are committed; no post-change runtime execution has yet occurred."
       }
     ]
   },
