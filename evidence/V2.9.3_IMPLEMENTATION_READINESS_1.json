@@ -1,0 +1,73 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_IMPLEMENTATION_READINESS_1",
+  "version": "V2.9.3",
+  "status": "READY_FOR_MANUAL_EXECUTION_WHEN_RUNNER_AVAILABLE",
+  "contract": "evidence/V2.9.3_BATCH3_MINIMAL_RECONSTRUCTION_CONTRACT_1.json",
+  "implementation": {
+    "chunk3_runner": "scripts/v293_batch3_chunk3_reconstruct.py",
+    "chunk3_runner_blob_sha": "dd655bffa989075cec5aa490344d7797c124156a",
+    "aggregator": "scripts/v293_batch3_reconstruct_aggregate.py",
+    "aggregator_blob_sha": "7bee071203302dd07136c737e733c70491e7a07f",
+    "workflow": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
+    "workflow_trigger": "workflow_dispatch_only",
+    "automatic_trigger": false
+  },
+  "reconstruction_scope": {
+    "rerun_chunks": [
+      3
+    ],
+    "reused_chunks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "rerun_security_count": 8,
+    "original_batch_security_count": 64,
+    "execution_surface_reduction_fraction": 0.875
+  },
+  "prerequisite_artifacts": [
+    {
+      "artifact_id": 11213851477,
+      "purpose": "V2.9 parent source-expansion positive events/final receipt",
+      "expired": false,
+      "expires_at": "2026-11-01T07:04:06Z"
+    },
+    {
+      "artifact_id": 11269201486,
+      "purpose": "V2.9.1 recovered parent comparison authority",
+      "expired": false,
+      "expires_at": "2026-11-02T08:21:55Z"
+    },
+    {
+      "artifact_id": 11266397712,
+      "purpose": "V2.9.1 Phase-A validation",
+      "expired": false,
+      "expires_at": "2026-11-02T06:07:56Z"
+    }
+  ],
+  "static_checks": {
+    "only_chunk3_reexecution": true,
+    "seven_complete_chunks_reused": true,
+    "reused_chunk_result_payloads_exist": true,
+    "chunk3_reconstruction_requires_scientific_batch_index_3": true,
+    "batch4_auto_authorization": false,
+    "old_v292_terminal_status_not_reused": true,
+    "numeric_information_floor_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "sample_scope_changed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "price_or_return_data_consumed": false
+  },
+  "execution_state": {
+    "triggered": false,
+    "runner_validation_attempted": false,
+    "reason": "User previously directed that the runner incident be marked failed and not pursued. V2.9.3 remains prepared but unexecuted."
+  },
+  "next_action": "When a legitimate execution environment is available, manually dispatch V2.9.3 Minimal Batch-3 Reconstruction before prerequisite artifacts expire; otherwise perform a separate prerequisite recovery step."
+}
