@@ -1,5 +1,6 @@
 from __future__ import annotations
 import argparse,csv,hashlib,json,re,subprocess,tempfile
+from datetime import datetime,timezone,timedelta
 from pathlib import Path
 from collections import Counter
 
@@ -7,6 +8,7 @@ GATE=Path("evidence/V2.8.12_PROSPECTIVE_E_EVENT_SHADOW_ACCUMULATION_GATE.json")
 CADENCE=Path("evidence/V2.8.12_SHADOW_CADENCE_CONTRACT.json")
 SHADOW=Path("evidence/V2.8.12_PROSPECTIVE_E_SHADOW_LEDGER.csv")
 STATUS=Path("evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json")
+EPOCH_AMEND=Path("evidence/V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_AMENDMENT_1.json")
 GENESIS=Path("evidence/V2.8.4_FIRST_PROSPECTIVE_POSITIVE_EVENT_RATIFICATION.json")
 OBS_LEDGER=Path("evidence/V2.8.4_E_LAYER_OBSERVATION_LEDGER.csv")
 BINDINGS=Path("evidence/V2.8.4_E_LAYER_ISSUER_IDENTITY_BINDINGS.csv")
@@ -66,17 +68,34 @@ def with_recurrence(existing,event):
   out["prior_positive_effective_signal_date"]=prev["effective_signal_date"]
  return out
 
+def epoch_config():
+ e=rj(EPOCH_AMEND)
+ if e.get("status")!="ACTIVE_CONTINUOUS_PROSPECTIVE_EPOCH_2":
+  raise RuntimeError("CONTINUOUS_EPOCH_AMENDMENT_NOT_ACTIVE")
+ start=e["epoch_2"]["continuous_coverage_start_date_asia_shanghai"]
+ return e,start
+
+def observed_date_asia_shanghai(row):
+ dt=datetime.fromisoformat(str(row["authoritative_observed_at_utc"]).replace("Z","+00:00"))
+ return dt.astimezone(timezone(timedelta(hours=8))).date().isoformat()
+
+def epoch_qualified_rows(x):
+ _e,start=epoch_config()
+ return [r for r in x if observed_date_asia_shanghai(r)>=start]
+
 def readiness(x):
- n=len(x); issuers=Counter(r["canonical_security_id"] for r in x)
- eff={r["effective_signal_date"] for r in x}
- months={r["effective_signal_date"][:7] for r in x if r["effective_signal_date"]}
+ full_n=len(x)
+ q=epoch_qualified_rows(x)
+ n=len(q); issuers=Counter(r["canonical_security_id"] for r in q)
+ eff={r["effective_signal_date"] for r in q}
+ months={r["effective_signal_date"][:7] for r in q if r["effective_signal_date"]}
  maxshare=(max(issuers.values())/n) if n else 0.0
  prov=all(
   r["historical_reconstruction"]=="false" and
   r["price_or_return_data_consumed"]=="false" and
   CANON.fullmatch(r["canonical_security_id"] or "") and
   int(r["issuer_positive_sequence_number"])>=1
-  for r in x)
+  for r in q)
  checks={
   "event_count_ge_20":n>=20,
   "distinct_issuer_count_ge_12":len(issuers)>=12,
@@ -84,10 +103,12 @@ def readiness(x):
   "distinct_positive_calendar_month_count_ge_6":len(months)>=6,
   "maximum_single_issuer_event_share_le_0_20":maxshare<=.20 if n else False,
   "provenance_integrity_pass":prov,
-  "price_or_return_data_consumed_false":all(r["price_or_return_data_consumed"]=="false" for r in x)
+  "price_or_return_data_consumed_false":all(r["price_or_return_data_consumed"]=="false" for r in q)
  }
  return {
-  "shadow_event_count":n,"distinct_issuer_count":len(issuers),
+  "full_shadow_event_count":full_n,
+  "shadow_event_count":n,
+  "distinct_issuer_count":len(issuers),
   "distinct_effective_date_count":len(eff),
   "distinct_positive_calendar_month_count":len(months),
   "maximum_single_issuer_event_share":maxshare,
@@ -96,11 +117,15 @@ def readiness(x):
  }
 
 def status_document(x):
+ _e,start=epoch_config()
  st=readiness(x)
  return {
-  "schema":"AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V1",
+  "schema":"AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V2",
   "version":"V2.8.12",
   "status":st["status"],
+  "readiness_epoch":"V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_2",
+  "readiness_epoch_start_asia_shanghai":start,
+  "full_shadow_event_count":st["full_shadow_event_count"],
   "shadow_event_count":st["shadow_event_count"],
   "distinct_issuer_count":st["distinct_issuer_count"],
   "distinct_effective_date_count":st["distinct_effective_date_count"],
@@ -216,6 +241,12 @@ def self_test():
   ck("S02_genesis_sequence1",x[0]["issuer_positive_sequence_number"]=="1" and x[0]["recurrence_status"]=="FIRST_POSITIVE_FOR_ISSUER")
   ck("S03_no_historical_seed",x[0]["historical_reconstruction"]=="false")
   ck("S04_duplicate_noop",assess(x,dict(x[0]))=="NO_ACTION_DUPLICATE")
+  epoch_sample=[
+   {**x[0],"authoritative_observed_at_utc":"2026-09-22T06:43:07Z"},
+   {**x[0],"announcement_id":"epoch2","authoritative_observed_at_utc":"2026-09-29T07:09:47Z"},
+  ]
+  q=epoch_qualified_rows(epoch_sample)
+  ck("S04A_epoch_excludes_pre_gap_event",len(q)==1 and q[0]["announcement_id"]=="epoch2")
   bad=dict(x[0]);bad["source_object_sha256"]="f"*64
   ck("S05_conflict_blocks",assess(x,bad)=="BLOCK_CONFLICT")
   nxt={k:x[0][k] for k in FIELDS if k in x[0]};nxt.update({"announcement_id":"999","shadow_event_id":"z"*64,"effective_signal_date":"2026-10-08"})
