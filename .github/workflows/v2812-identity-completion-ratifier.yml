@@ -25,8 +25,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"
-          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
+          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "28f51dd80d5fda161ac68c74b9175d949cda6fe3"
+          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "62721f5dfac52899ccae19c3fc06f983df7dd5f7"
           python - <<'PY'
           import json
           from pathlib import Path
