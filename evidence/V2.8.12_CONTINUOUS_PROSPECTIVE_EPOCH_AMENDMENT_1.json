@@ -1,0 +1,60 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_CONTINUOUS_PROSPECTIVE_EPOCH_AMENDMENT_1",
+  "version": "V2.8.12",
+  "status": "ACTIVE_CONTINUOUS_PROSPECTIVE_EPOCH_2",
+  "approved_basis": {
+    "proposal": "evidence/V2.8.4_PROSPECTIVE_COVERAGE_GAP_GOVERNANCE_PROPOSAL_1.json",
+    "coverage_audit": "evidence/V2.8.4_PROSPECTIVE_COVERAGE_CONTINUITY_AUDIT_1.json",
+    "user_approval": "Approved in project conversation on 2026-10-10 by instruction to continue after epoch-restart proposal."
+  },
+  "confirmed_gap": {
+    "dates": [
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26"
+    ],
+    "consequence": "Original post-activation period cannot be represented as one continuous prospective census."
+  },
+  "epoch_2": {
+    "name": "V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_2",
+    "continuous_coverage_start_date_asia_shanghai": "2026-09-27",
+    "qualification_rule": "Count a shadow event for readiness only when authoritative_observed_at_utc converted to Asia/Shanghai falls on or after 2026-09-27.",
+    "existing_qualified_announcement_ids": [
+      "1225585268",
+      "1225585270"
+    ],
+    "retained_pre_epoch_announcement_ids": [
+      "1225573666"
+    ]
+  },
+  "ledger_semantics": {
+    "shadow_ledger_is_append_only": true,
+    "delete_old_events": false,
+    "rewrite_old_events": false,
+    "recurrence_sequence_remains_full_ledger_history": true,
+    "readiness_statistics_use_epoch_qualified_subset_only": true,
+    "historical_backfill": false,
+    "backdating": false
+  },
+  "frozen_information_floor": {
+    "event_count_ge": 20,
+    "distinct_issuer_count_ge": 12,
+    "distinct_effective_date_count_ge": 12,
+    "distinct_positive_calendar_month_count_ge": 6,
+    "maximum_single_issuer_event_share_le": 0.2,
+    "thresholds_changed": false
+  },
+  "governance": {
+    "classifier_changed": false,
+    "triage_changed": false,
+    "historical_backfill_authorized": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "setup_emission_authorized": false,
+    "episode_emission_authorized": false,
+    "live_authorized": false
+  }
+}
