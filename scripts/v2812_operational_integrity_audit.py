@@ -11,6 +11,7 @@ RUNNER = Path('scripts/v284_incremental_e_layer_runner.py')
 SHADOW = Path('scripts/v2812_shadow_accumulator.py')
 TRANSPORT = Path('evidence/V2.8.12_TRANSPORT_RELIABILITY_AMENDMENT_1.json')
 DAILY_RECEIPT = Path('evidence/V2.8.12_DAILY_CADENCE_VALIDATION_RECEIPT.json')
+CADENCE2 = Path('evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_2.json')
 SHADOW_STATUS = Path('evidence/V2.8.12_SHADOW_INFORMATION_GATE_STATUS.json')
 
 
@@ -29,10 +30,11 @@ def main() -> None:
     shsrc = SHADOW.read_text(encoding='utf-8')
     ta = rj(TRANSPORT)
     daily = rj(DAILY_RECEIPT)
+    cadence2 = rj(CADENCE2)
     status = rj(SHADOW_STATUS)
 
     ck('O01_daily_cadence_validation_pass', daily.get('status') == 'PASS')
-    ck('O02_workflow_daily_0100_utc', 'cron: "0 1 * * *"' in wf)
+    ck('O02_workflow_daily_0117_utc', cadence2.get('status') == 'ACTIVE_SCHEDULER_RELIABILITY_SUPERSESSION' and cadence2['active_cadence']['cron_utc'] == '17 1 * * *' and 'cron: "17 1 * * *"' in wf)
     ck('O03_serial_concurrency_preserved', 'group: v284-v2812-prospective-e-shadow-serial' in wf and 'cancel-in-progress: false' in wf)
     ck('O04_three_calendar_day_overlap_preserved', 'timedelta(days=2)' in wf and daily['current_operational_cadence']['overlap_calendar_days'] == 3)
 
@@ -63,7 +65,7 @@ def main() -> None:
         'Finalize append-only ledger from authoritative commit',
         'Commit prospective ledger finalization',
         'Append V2.8.12 prospective shadow events and audit blind readiness',
-        'Commit V2.8.12 shadow ledger and readiness status',
+        'Commit V2.8.12 shadow ledger, ratifications and readiness status',
     ]
     positions = [wf.find(x) for x in ordered]
     ck('O14_pipeline_stage_order_preserved', all(p >= 0 for p in positions) and positions == sorted(positions))
@@ -76,7 +78,7 @@ def main() -> None:
     shadow_prod = shsrc.split('def self_test():', 1)[0]
     combined = (wf + '\n' + runner_prod + '\n' + shadow_prod).lower()
     ck('O17_no_outcome_or_broker_execution_path', all(x.lower() not in combined for x in prohibited))
-    ck('O18_shadow_status_still_blind', status.get('price_or_return_data_consumed') is False and status.get('outcome_research_authorized') is False)
+    ck('O18_shadow_status_still_blind', status.get('schema') == 'AI_CORE_EVID_V2_8_12_SHADOW_INFORMATION_GATE_STATUS_V2' and status.get('readiness_epoch') == 'V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_2' and status.get('readiness_epoch_start_asia_shanghai') == '2026-09-27' and status.get('price_or_return_data_consumed') is False and status.get('outcome_research_authorized') is False)
     ck('O19_fold3_fold4_remain_closed', status.get('fold3_accessed') is False and status.get('fold4_accessed') is False)
 
     # A scheduler cannot be proven by source inspection. This audit deliberately
