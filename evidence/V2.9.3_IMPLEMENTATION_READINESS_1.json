@@ -11,7 +11,7 @@
     "workflow": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
     "workflow_trigger": "workflow_dispatch_only",
     "automatic_trigger": false,
-    "workflow_blob_sha": "457381c42a18ac8a34a86c885c50668ba26e8c1f"
+    "workflow_blob_sha": "e1aed4524a6ce6cf742463d659640ef65eb2ad04"
   },
   "reconstruction_scope": {
     "rerun_chunks": [
@@ -30,26 +30,6 @@
     "original_batch_security_count": 64,
     "execution_surface_reduction_fraction": 0.875
   },
-  "prerequisite_artifacts": [
-    {
-      "artifact_id": 11213851477,
-      "purpose": "V2.9 parent source-expansion positive events/final receipt",
-      "expired": false,
-      "expires_at": "2026-11-01T07:04:06Z"
-    },
-    {
-      "artifact_id": 11269201486,
-      "purpose": "V2.9.1 recovered parent comparison authority",
-      "expired": false,
-      "expires_at": "2026-11-02T08:21:55Z"
-    },
-    {
-      "artifact_id": 11266397712,
-      "purpose": "V2.9.1 Phase-A validation",
-      "expired": false,
-      "expires_at": "2026-11-02T06:07:56Z"
-    }
-  ],
   "static_checks": {
     "only_chunk3_reexecution": true,
     "seven_complete_chunks_reused": true,
@@ -72,11 +52,18 @@
     "runner_validation_attempted": false,
     "reason": "User previously directed that the runner incident be marked failed and not pursued. V2.9.3 remains prepared but unexecuted."
   },
-  "next_action": "When a legitimate execution environment is available, manually dispatch V2.9.3 Minimal Batch-3 Reconstruction before prerequisite artifacts expire; otherwise perform a separate prerequisite recovery step.",
+  "next_action": "When a legitimate execution environment is available, manually dispatch V2.9.3 Minimal Batch-3 Reconstruction. No prerequisite artifact-expiry deadline remains.",
   "static_reuse_audit": {
     "path": "evidence/V2.9.3_REUSED_CHUNK_STATIC_AUDIT_1.json",
     "status": "PASS",
     "commit": "c91ba9f7147d1d032025008b57c288baae53dc4e",
     "workflow_preflight_bound": true
+  },
+  "prerequisite_authority": {
+    "source": "REPOSITORY_PERSISTED",
+    "manifest": "evidence/V2.9.3_PERSISTED_PREREQUISITE_AUTHORITY_1.json",
+    "artifact_download_required": false,
+    "artifact_expiry_risk": false,
+    "runtime_sha256_fail_closed": true
   }
 }
