@@ -2,6 +2,11 @@ name: V2.9.3 Minimal Batch-3 Reconstruction
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - fix/v293-batch3-failure-terminal-evidence
+    paths:
+      - .github/v293-batch3-launch/one-shot.txt
 
 permissions:
   contents: write
