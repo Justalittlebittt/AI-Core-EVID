@@ -21,9 +21,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
+          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "62721f5dfac52899ccae19c3fc06f983df7dd5f7"
           test "$(git hash-object scripts/v2812_strict_title_identity_prebinder.py)" = "0d30473ae007fd9fa6a3818f3add87c4a37bae38"
-          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"
+          test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "28f51dd80d5fda161ac68c74b9175d949cda6fe3"
           python - <<'PY'
           import json
           from pathlib import Path
@@ -37,7 +37,7 @@ jobs:
           assert a["schema"]=="AI_CORE_EVID_V2_8_12_SHADOW_ACCUMULATOR_INTEGRITY_AMENDMENT_V1"
           assert a["historical_validation"]["historical_validated_blob_sha"]=="66fe3735c512e09252ee2400e458334a4043536b"
           assert a["historical_validation"]["preserved_unchanged"] is True
-          assert a["correction"]["corrected_accumulator_blob_sha"]=="ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
+          assert a["correction"]["corrected_accumulator_blob_sha"]=="62721f5dfac52899ccae19c3fc06f983df7dd5f7"
           assert a["correction"]["readiness_thresholds_changed"] is False
           assert a["governance"]["research_semantics_changed"] is False
 
@@ -55,18 +55,18 @@ jobs:
           assert pbv["validated_scope"]["binding_commit_required_before_ratifier"] is True
 
           assert ir["status"]=="ACTIVE_VALIDATED_GENERIC_IDENTITY_COMPLETION_RATIFICATION"
-          assert ir["implementation_validation"]["ratifier_blob_sha"]=="226fe586f1325e1753d95303ff021b01481c10ed"
+          assert ir["implementation_validation"]["ratifier_blob_sha"]=="28f51dd80d5fda161ac68c74b9175d949cda6fe3"
           assert ir["implementation_validation"]["selftest"]=="13/13 PASS"
           assert ir["governance"]["research_semantics_changed"] is False
           assert ir["governance"]["outcome_research_authorized"] is False
           assert irv["status"]=="PASS"
-          assert irv["implementation"]["blob_sha"]=="226fe586f1325e1753d95303ff021b01481c10ed"
+          assert irv["implementation"]["blob_sha"]=="28f51dd80d5fda161ac68c74b9175d949cda6fe3"
           assert irv["validation_sequence"]["stable_idempotence_run"]["appended"]==0
           assert irv["validation_sequence"]["stable_idempotence_run"]["duplicate_noops"]==2
 
-          accumulator_pin='test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"'
+          accumulator_pin='test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "62721f5dfac52899ccae19c3fc06f983df7dd5f7"'
           prebinder_pin='test "$(git hash-object scripts/v2812_strict_title_identity_prebinder.py)" = "0d30473ae007fd9fa6a3818f3add87c4a37bae38"'
-          ratifier_pin='test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"'
+          ratifier_pin='test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "28f51dd80d5fda161ac68c74b9175d949cda6fe3"'
           prebinder_call='python scripts/v2812_strict_title_identity_prebinder.py bind'
           accumulator_call='python scripts/v2812_shadow_accumulator.py accumulate'
           ratifier_call='python scripts/v2812_identity_completion_ratifier.py ratify'
