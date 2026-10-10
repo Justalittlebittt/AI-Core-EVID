@@ -1,10 +1,5 @@
 name: V2.8.3 SSE Full Transport Validation
-
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/v283-sse-full-transport-validation.yml"
   workflow_dispatch:
 
 permissions:
