@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: write
-  actions: read
 
 concurrency:
   group: v293-minimal-batch3-reconstruction
@@ -60,27 +59,33 @@ jobs:
           assert a["checks"]["all_prohibited_data_checks_clean"] is True
           PY
 
-      - name: Download frozen V2.9.1 prerequisite artifacts
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Verify repository-persisted prerequisite authority
+        shell: bash
         run: |
           set -euo pipefail
-          mkdir -p .v293/recovery .v293/phase_a
-          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11269201486/zip" -o .v293/recovery.zip
-          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11266397712/zip" -o .v293/phase_a.zip
-          test "$(sha256sum .v293/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
-          test "$(sha256sum .v293/phase_a.zip | awk '{print $1}')" = "a811d1e7edf70db7b52080224a2ad7a4514f833e9b9491ffdbfd6f671813527c"
-          unzip -q .v293/recovery.zip -d .v293/recovery
-          unzip -q .v293/phase_a.zip -d .v293/phase_a
+          test "$(sha256sum evidence/v293_prerequisites/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json | awk '{print $1}')" = "e4874bff18bdc9524687376714ea51132074265df8623b1d6f7bd91639f4e81f"
+          test "$(sha256sum evidence/v293_prerequisites/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv | awk '{print $1}')" = "4a620188902b38f12fcc1e45431cf2ea5ced55f32aab8844299cec3776c59a9c"
+          test "$(sha256sum evidence/v293_prerequisites/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json | awk '{print $1}')" = "737612813f5358c3050a37a43b1592d3d48cbb11d4d752db3c00720e781580e7"
+          test "$(sha256sum evidence/v293_prerequisites/V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json | awk '{print $1}')" = "ce27e03c93562508c93d24621637944670dcc0db3adb931046b7bff7e3780119"
+          test "$(sha256sum evidence/v293_prerequisites/V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv | awk '{print $1}')" = "ea0631371002e3c29e61c04e39e8ce9d246a2fa3df9b135229f64653e23adc5b"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("evidence/V2.9.3_PERSISTED_PREREQUISITE_AUTHORITY_1.json").read_text())
+          assert m["status"]=="FROZEN_REPOSITORY_PERSISTED_AUTHORITY"
+          assert len(m["persisted_files"])==5
+          assert m["governance"]["scientific_semantics_changed"] is False
+          assert m["governance"]["classifier_changed"] is False
+          assert m["governance"]["triage_changed"] is False
+          assert m["governance"]["information_floor_changed"] is False
+          PY
 
       - name: Reconstruct only Batch-3 chunk 3
         run: |
           python scripts/v293_batch3_chunk3_reconstruct.py \
-            --authority .v293/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv \
-            --recovery-receipt .v293/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json \
-            --phase-a-receipt .v293/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+            --authority evidence/v293_prerequisites/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv \
+            --recovery-receipt evidence/v293_prerequisites/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json \
+            --phase-a-receipt evidence/v293_prerequisites/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
 
       - name: Persist reconstructed chunk-3 evidence
         if: always()
@@ -103,31 +108,12 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-      - name: Download frozen V2.9 parent source-expansion artifact
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p .v293/parent
-          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11213851477/zip" -o .v293/parent.zip
-          test "$(sha256sum .v293/parent.zip | awk '{print $1}')" = "17a7ee9d287b809165744a8966633f13ec0bf6d0094c09b35d2f335f46a82a72"
-          unzip -q .v293/parent.zip -d .v293/parent
-          mapfile -t POS < <(find .v293/parent -type f -name 'V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv')
-          mapfile -t REC < <(find .v293/parent -type f -name 'V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json')
-          test "${#POS[@]}" -eq 1
-          test "${#REC[@]}" -eq 1
-          echo "PARENT_POS=${POS[0]}" >> "$GITHUB_ENV"
-          echo "PARENT_REC=${REC[0]}" >> "$GITHUB_ENV"
-
       - name: Aggregate reconstructed complete Batch-3
         if: success()
         run: |
           python scripts/v293_batch3_reconstruct_aggregate.py \
-            --parent-positive-events "$PARENT_POS" \
-            --parent-final-receipt "$PARENT_REC"
+            --parent-positive-events evidence/v293_prerequisites/V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv \
+            --parent-final-receipt evidence/v293_prerequisites/V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json
 
       - name: Persist V2.9.3 reconstructed Batch-3 terminal evidence
         if: success()
