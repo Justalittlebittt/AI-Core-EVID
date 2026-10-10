@@ -1,0 +1,50 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_REUSED_CHUNK_STATIC_AUDIT_1",
+  "version": "V2.9.3",
+  "status": "PASS",
+  "authority": {
+    "batch3_identity_preflight": "evidence/V2.9.2_BATCH3_IDENTITY_PREFLIGHT_1.json",
+    "batch3_identity_preflight_status": "PASS",
+    "batch_ranks": [
+      129,
+      192
+    ],
+    "security_count": 64
+  },
+  "reused_chunks": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "checks": {
+    "all_receipts_complete": true,
+    "all_execution_integrity_pass": true,
+    "all_exact_rank_membership_match": true,
+    "all_exact_security_membership_match": true,
+    "all_result_payloads_present": true,
+    "all_receipt_result_hashes_present": true,
+    "all_transport_complete": true,
+    "all_pagination_closed": true,
+    "all_parent_absence_checks_pass": true,
+    "all_positive_temporal_provenance_pass": true,
+    "all_prohibited_data_checks_clean": true
+  },
+  "historical_metadata_note": {
+    "old_scientific_batch_index_value": 2,
+    "actual_scientific_batch": 3,
+    "treatment": "Do not mutate historical receipts. V2.9.3 reuse authority is exact frozen ranks/security membership + complete receipt status + result hash binding."
+  },
+  "scientific_semantics": {
+    "classifier_changed": false,
+    "triage_changed": false,
+    "information_floor_changed": false,
+    "sample_scope_changed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "price_or_return_data_consumed": false
+  }
+}
