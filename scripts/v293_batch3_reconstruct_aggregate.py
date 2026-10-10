@@ -106,7 +106,7 @@ def main():
             if not aid: raise RuntimeError(f"MISSING_ANNOUNCEMENT_ID:{source}")
             if aid in union:
                 raise RuntimeError(f"UNEXPECTED_CROSS_LAYER_DUPLICATE:{aid}")
-            x=dict(r); x["v292_discovery_layer"]=source; union[aid]=x
+            x=dict(r); x["v293_discovery_layer"]=source; union[aid]=x
     u=list(union.values())
     write_csv_union(OUT_UNION_POS,u)
 
