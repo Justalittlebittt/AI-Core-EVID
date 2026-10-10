@@ -367,7 +367,30 @@ def self_test():
     ck("F10_pin_window_strict_after_close",not (close_t < close_t <= mg.latest_allowed_pin_time(d)))
     simulated=[{"signal_date":"2026-09-22"}]
     ck("F11_signal_date_no_replacement",any(r["signal_date"]=="2026-09-22" for r in simulated))
-    result={"schema":"AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_SELFTEST_V2",
+
+    pit_test=pd.DataFrame([
+        {"canonical_security_id":"SSE:600000","exchange":"SSE","security_code":"600000"},
+        {"canonical_security_id":"SZSE:000001","exchange":"SZSE","security_code":"000001"},
+    ])
+    mapped=_pit_symbol_map(pit_test)
+    ck(
+        "F12_pit_exchange_symbol_mapping_exact",
+        mapped.sort_values("canonical_security_id")["expected_symbol"].tolist()==["600000.SS","000001.SZ"]
+    )
+    try:
+        _pit_symbol_map(pd.DataFrame([
+            {"canonical_security_id":"X:1","exchange":"UNKNOWN","security_code":"1"}
+        ]))
+        unsupported_blocked=False
+    except RuntimeError as e:
+        unsupported_blocked=str(e).startswith("UNSUPPORTED_PIT_EXCHANGE:")
+    ck("F13_unsupported_exchange_fail_closed",unsupported_blocked)
+    ck(
+        "F14_pit_mapping_count_identity",
+        len(mapped)==len(pit_test) and mapped["expected_symbol"].nunique()==len(pit_test)
+    )
+
+    result={"schema":"AI_CORE_EVID_V2_8_3_SIGNAL_FEATURE_SNAPSHOT_SELFTEST_V3",
             "passed":sum(x["pass"] for x in tests),"total":len(tests),
             "all_pass":all(x["pass"] for x in tests),"tests":tests}
     print(json.dumps(result,ensure_ascii=False,indent=2))
