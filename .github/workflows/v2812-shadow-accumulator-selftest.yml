@@ -1,8 +1,5 @@
 name: V2.8.12 Shadow Accumulator Self-Test
 on:
-  push:
-    paths:
-      - ".github/workflows/v2812-shadow-accumulator-selftest.yml"
   workflow_dispatch:
 permissions:
   contents: read
