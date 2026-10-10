@@ -103,7 +103,7 @@ def load_pit_authority(d:date)->tuple[dict,Path,pd.DataFrame]:
     if not u.exists() or sha_file(u)!=obj["universe_snapshot_sha256"]:
         raise RuntimeError("PIT_UNIVERSE_SNAPSHOT_HASH_MISMATCH")
     df=pd.read_csv(u,dtype=str).fillna("")
-    req={"canonical_security_id","security_code"}
+    req={"canonical_security_id","exchange","security_code"}
     if not req.issubset(df.columns):
         raise RuntimeError(f"PIT_UNIVERSE_COLUMNS_MISSING:{sorted(req-set(df.columns))}")
     if df["canonical_security_id"].duplicated().any():
@@ -212,6 +212,10 @@ def build_for_pin(d:date,pin_path:Path,write:bool=True)->dict:
     stock=mg.materialize_source(sources["AlphaDojo/dojo_stock_kline"])
     bench=mg.materialize_source(sources["AlphaDojo/dojo_benchmark_kline"])
     sd=inspect_stock_for_pit(stock,universe)
+    if sd["mapped_security_count"]!=sd["pit_security_count"]:
+        raise RuntimeError(
+            f"PIT_STOCK_MAPPING_INCOMPLETE:{sd['mapped_security_count']}/{sd['pit_security_count']}"
+        )
     bd=mg.inspect_benchmark(bench,d)
     gate=mg.evaluate_metadata(d,pin_path,pin_commit_time,sd["max_date"],bd["max_date"],bd["history_closes_through_d"])
     if gate!="ELIGIBLE_FEATURE_SOURCE":
