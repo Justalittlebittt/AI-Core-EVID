@@ -14,12 +14,14 @@
       {
         "id": "L-V293-B3-MINIMAL-RECON",
         "task": "V2.9.3 reconstruct only Batch-3 chunk3 ranks 145-152, then aggregate full 64-security Batch-3 using seven frozen complete V2.9.2 chunks",
-        "status": "READY_FOR_MANUAL_EXECUTION_WHEN_RUNNER_AVAILABLE_ARTIFACT_INDEPENDENT",
+        "status": "STATIC_EXECUTION_READY_MANUAL_RUNTIME_PENDING",
         "workflow": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
         "automatic_trigger": false,
         "reuse_audit": "evidence/V2.9.3_REUSED_CHUNK_STATIC_AUDIT_1.json",
         "workflow_blob_sha": "e1aed4524a6ce6cf742463d659640ef65eb2ad04",
-        "prerequisite_authority": "evidence/V2.9.3_PERSISTED_PREREQUISITE_AUTHORITY_1.json"
+        "prerequisite_authority": "evidence/V2.9.3_PERSISTED_PREREQUISITE_AUTHORITY_1.json",
+        "static_execution_preflight": "evidence/V2.9.3_STATIC_EXECUTION_PREFLIGHT_1.json",
+        "artifact_expiry_risk": false
       }
     ],
     "ACTIVE_S": [],
