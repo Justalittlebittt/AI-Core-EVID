@@ -1,8 +1,5 @@
 name: V2.8.12 Human Decision Boundary Self-Test
 on:
-  push:
-    paths:
-      - ".github/workflows/v2812-human-decision-boundary-selftest.yml"
   workflow_dispatch:
 permissions:
   contents: read
