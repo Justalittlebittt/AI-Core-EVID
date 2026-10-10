@@ -1,0 +1,139 @@
+name: V2.9.3 Minimal Batch-3 Reconstruction
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v293-minimal-batch3-reconstruction
+  cancel-in-progress: false
+
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install source-only dependencies
+        run: |
+          pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+          playwright install --with-deps chromium
+
+      - name: Verify frozen V2.9.3 implementation binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/v293_batch3_chunk3_reconstruct.py)" = "dd655bffa989075cec5aa490344d7797c124156a"
+          test "$(git hash-object scripts/v293_batch3_reconstruct_aggregate.py)" = "7bee071203302dd07136c737e733c70491e7a07f"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path("evidence/V2.9.3_BATCH3_MINIMAL_RECONSTRUCTION_CONTRACT_1.json").read_text())
+          assert c["status"]=="FROZEN_BEFORE_IMPLEMENTATION"
+          assert c["exact_reconstruction_scope"]["scientific_batch_index"]==3
+          assert c["exact_reconstruction_scope"]["batch_ranks"]==[145,146,147,148,149,150,151,152]
+          assert c["immutable_reuse_chunks"]==[1,2,4,5,6,7,8]
+          assert c["unchanged_science"]["fold3_forbidden"] is True
+          assert c["unchanged_science"]["fold4_forbidden"] is True
+          assert c["unchanged_science"]["price_or_return_forbidden"] is True
+          assert c["governance"]["numeric_thresholds_changed"] is False
+          assert c["governance"]["classifier_changed"] is False
+          assert c["governance"]["triage_changed"] is False
+          PY
+
+      - name: Download frozen V2.9.1 prerequisite artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .v293/recovery .v293/phase_a
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11269201486/zip" -o .v293/recovery.zip
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11266397712/zip" -o .v293/phase_a.zip
+          test "$(sha256sum .v293/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+          test "$(sha256sum .v293/phase_a.zip | awk '{print $1}')" = "a811d1e7edf70db7b52080224a2ad7a4514f833e9b9491ffdbfd6f671813527c"
+          unzip -q .v293/recovery.zip -d .v293/recovery
+          unzip -q .v293/phase_a.zip -d .v293/phase_a
+
+      - name: Reconstruct only Batch-3 chunk 3
+        run: |
+          python scripts/v293_batch3_chunk3_reconstruct.py \
+            --authority .v293/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv \
+            --recovery-receipt .v293/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json \
+            --phase-a-receipt .v293/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+
+      - name: Persist reconstructed chunk-3 evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=()
+          for f in \
+            evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RESULTS_1.csv \
+            evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RECEIPT_1.json \
+            evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_PROGRESS_1.json; do
+            [ -f "$f" ] && files+=("$f")
+          done
+          [ "${#files[@]}" -gt 0 ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.9.3 reconstructed Batch-3 chunk 3 evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Download frozen V2.9 parent source-expansion artifact
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .v293/parent
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11213851477/zip" -o .v293/parent.zip
+          test "$(sha256sum .v293/parent.zip | awk '{print $1}')" = "17a7ee9d287b809165744a8966633f13ec0bf6d0094c09b35d2f335f46a82a72"
+          unzip -q .v293/parent.zip -d .v293/parent
+          mapfile -t POS < <(find .v293/parent -type f -name 'V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv')
+          mapfile -t REC < <(find .v293/parent -type f -name 'V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json')
+          test "${#POS[@]}" -eq 1
+          test "${#REC[@]}" -eq 1
+          echo "PARENT_POS=${POS[0]}" >> "$GITHUB_ENV"
+          echo "PARENT_REC=${REC[0]}" >> "$GITHUB_ENV"
+
+      - name: Aggregate reconstructed complete Batch-3
+        if: success()
+        run: |
+          python scripts/v293_batch3_reconstruct_aggregate.py \
+            --parent-positive-events "$PARENT_POS" \
+            --parent-final-receipt "$PARENT_REC"
+
+      - name: Persist V2.9.3 reconstructed Batch-3 terminal evidence
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            evidence/V2.9.3_RECONSTRUCTED_BATCH3_RESULTS_1.csv \
+            evidence/V2.9.3_RECONSTRUCTED_BATCH3_POSITIVE_EVENTS_1.csv \
+            evidence/V2.9.3_HYBRID_DISCOVERY_UNION_POSITIVE_EVENTS_AFTER_RECONSTRUCTED_BATCH3_1.csv \
+            evidence/V2.9.3_RECONSTRUCTED_BATCH3_RECEIPT_1.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist V2.9.3 reconstructed Batch-3 terminal evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
