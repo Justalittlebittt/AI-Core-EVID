@@ -10,7 +10,16 @@
   },
   "lanes": {
     "RUNNING_L": [],
-    "READY_L": [],
+    "READY_L": [
+      {
+        "id": "L-V293-B3-MINIMAL-RECON",
+        "task": "V2.9.3 reconstruct only Batch-3 chunk3 ranks 145-152, then aggregate full 64-security Batch-3 using seven frozen complete V2.9.2 chunks",
+        "status": "READY_FOR_MANUAL_EXECUTION_WHEN_RUNNER_AVAILABLE",
+        "workflow": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
+        "automatic_trigger": false,
+        "prerequisite_artifact_expiry_risk": "2026-11-01/02"
+      }
+    ],
     "ACTIVE_S": [],
     "COMPLETED_S": [
       {
@@ -36,21 +45,21 @@
         "task": "Resolve governance for confirmed V2.8.4 post-activation coverage gap on 2026-09-23 through 2026-09-26",
         "result": "User approved continuous prospective epoch restart. Epoch 2 starts 2026-09-27; old shadow evidence retained immutably; readiness now uses only epoch-qualified events; numeric thresholds unchanged.",
         "status": "COMPLETE"
+      },
+      {
+        "id": "S-V292-CLOSURE",
+        "task": "Close V2.9.2 after user-directed Batch-3 technical failure",
+        "result": "Formal final record created; no scientific conclusion from incomplete Batch-3; Batch-4 not authorized; V2.9.2 will not be silently reopened.",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "S-V293-IMPLEMENTATION-PREP",
+        "task": "Prepare V2.9.3 minimal Batch-3 reconstruction",
+        "result": "Frozen contract; chunk3-only runner; mixed old/new 8-chunk aggregator; manual-only workflow; implementation readiness recorded.",
+        "status": "COMPLETE"
       }
     ],
     "BLOCKED": [
-      {
-        "id": "L-V292-B3",
-        "task": "V2.9.2 Hybrid Discovery Batch-3",
-        "blocked_by": "TECHNICAL_EXECUTION_FAILURE",
-        "reason": "7/8 chunks completed; chunk-3 transport mismatch repaired, but recovery could not execute because GitHub Hosted Runner was not allocated. Formal technical failure recorded; no scientific terminal status."
-      },
-      {
-        "id": "V292-B4",
-        "task": "V2.9.2 Batch-4 ranks 193-256",
-        "blocked_by": "L-V292-B3 terminal receipt absent",
-        "reason": "Frozen sequential rule requires Batch-3 TOO_SPARSE + next_batch_authorized=true; Batch-3 ended technically blocked, so Batch-4 remains NOT_AUTHORIZED."
-      },
       {
         "id": "V283-RUNTIME-VALIDATE",
         "task": "Runtime-validate repaired V2.8.3 signal snapshot path",
