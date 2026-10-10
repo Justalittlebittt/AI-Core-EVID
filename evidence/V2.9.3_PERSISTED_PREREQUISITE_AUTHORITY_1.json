@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_PERSISTED_PREREQUISITE_AUTHORITY_1",
+  "version": "V2.9.3",
+  "status": "FROZEN_REPOSITORY_PERSISTED_AUTHORITY",
+  "source_artifacts": [
+    {
+      "artifact_id": 11269201486,
+      "name": "v291-comparison-authority-recovery",
+      "zip_sha256": "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+    },
+    {
+      "artifact_id": 11266397712,
+      "name": "v291-negative-space-phase-a",
+      "zip_sha256": "a811d1e7edf70db7b52080224a2ad7a4514f833e9b9491ffdbfd6f671813527c"
+    },
+    {
+      "artifact_id": 11213851477,
+      "name": "v29-historical-e-source-expansion-evidence",
+      "zip_sha256": "17a7ee9d287b809165744a8966633f13ec0bf6d0094c09b35d2f335f46a82a72"
+    }
+  ],
+  "persisted_files": [
+    {
+      "path": "evidence/v293_prerequisites/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json",
+      "sha256": "e4874bff18bdc9524687376714ea51132074265df8623b1d6f7bd91639f4e81f"
+    },
+    {
+      "path": "evidence/v293_prerequisites/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv",
+      "sha256": "4a620188902b38f12fcc1e45431cf2ea5ced55f32aab8844299cec3776c59a9c"
+    },
+    {
+      "path": "evidence/v293_prerequisites/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json",
+      "sha256": "737612813f5358c3050a37a43b1592d3d48cbb11d4d752db3c00720e781580e7"
+    },
+    {
+      "path": "evidence/v293_prerequisites/V2.9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1.json",
+      "sha256": "ce27e03c93562508c93d24621637944670dcc0db3adb931046b7bff7e3780119"
+    },
+    {
+      "path": "evidence/v293_prerequisites/V2.9_HISTORICAL_E_SOURCE_EXPANSION_POSITIVE_EVENTS_1.csv",
+      "sha256": "ea0631371002e3c29e61c04e39e8ce9d246a2fa3df9b135229f64653e23adc5b"
+    }
+  ],
+  "purpose": "Eliminate V2.9.3 execution dependence on expiring GitHub Actions artifacts while preserving byte-exact frozen prerequisite authority.",
+  "governance": {
+    "scientific_semantics_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "information_floor_changed": false,
+    "historical_data_scope_changed": false,
+    "fold3_access": false,
+    "fold4_access": false,
+    "price_or_return_data_added": false
+  }
+}
