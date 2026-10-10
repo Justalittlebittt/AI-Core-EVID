@@ -1,0 +1,102 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_FINAL_RECORD_1",
+  "version": "V2.9.2",
+  "status": "V2_9_2_HYBRID_DISCOVERY_TECHNICALLY_BLOCKED_FINAL",
+  "objective": "Repair the proven V2.9 lexical discovery selection bias with deterministic issuer-scoped negative-space supplementation while preserving frozen downstream semantics.",
+  "terminal_class": "TECHNICAL_TERMINAL_NO_SCIENTIFIC_CONCLUSION",
+  "parent_state": {
+    "v29_status": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TOO_SPARSE",
+    "v291_status": "V2_9_1_DISCOVERY_SELECTION_BIAS_CONFIRMED",
+    "parent_v29_status_changed": false
+  },
+  "frozen_design": {
+    "contract": "evidence/V2.9.2_HYBRID_DISCOVERY_REDESIGN_CONTRACT_1.json",
+    "information_floor": {
+      "eligible_events_min": 20,
+      "distinct_securities_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_calendar_months_min": 6,
+      "max_single_security_share_max": 0.2
+    },
+    "maximum_supplement_securities": 256,
+    "complete_batch_size": 64,
+    "no_mid_batch_stop": true,
+    "batch4_requires_completed_batch3_terminal_receipt": true
+  },
+  "completed_scientific_batches": [
+    {
+      "batch_index": 1,
+      "ranks": "1-64",
+      "source": "evidence/V2.9.1_NEGATIVE_SPACE_BATCH1_RECEIPT_1.json",
+      "supplement_positive_count": 29,
+      "scientific_role": "REUSED_FROZEN_BATCH"
+    },
+    {
+      "batch_index": 2,
+      "ranks": "65-128",
+      "source": "evidence/V2.9.2_HYBRID_DISCOVERY_BATCH2_RECEIPT_1.json",
+      "supplement_positive_count": 15,
+      "union_positive_count": 65,
+      "information_gate": {
+        "eligible_events": true,
+        "distinct_securities": true,
+        "distinct_effective_dates": true,
+        "distinct_calendar_months": true,
+        "max_single_security_share": false
+      },
+      "terminal": "V2_9_2_HYBRID_DISCOVERY_BATCH2_COMPLETE_TOO_SPARSE",
+      "next_batch_authorized": true
+    }
+  ],
+  "batch3": {
+    "ranks": "129-192",
+    "execution_state": "INCOMPLETE",
+    "original_run_id": 37907281812,
+    "completed_chunks": 7,
+    "failed_chunk": 3,
+    "direct_observed_blockers": [
+      "PAGINATION_DEDUPE_MISMATCH:SSE:600637:137/138",
+      "PAGINATION_DEDUPE_MISMATCH:SZSE:002667:483/485"
+    ],
+    "repair_commit": "acbb62b4aa61e6ea75f249f07e1896fe3184281c",
+    "repair_runtime_executed": false,
+    "formal_failure_receipt": "evidence/V2.9.2_BATCH3_TECHNICAL_FAILURE_RECEIPT_1.json",
+    "scientific_terminal_status_emitted": false,
+    "information_gate_evaluated": false
+  },
+  "batch4": {
+    "ranks": "193-256",
+    "status": "NOT_AUTHORIZED",
+    "reason": "Frozen sequential rule requires a completed Batch-3 scientific terminal receipt with TOO_SPARSE and next_batch_authorized=true."
+  },
+  "preserved_evidence": {
+    "batch1_valid": true,
+    "batch2_valid": true,
+    "successful_batch3_chunk_evidence_retained": true,
+    "successful_batch3_chunks_do_not_constitute_complete_scientific_batch": true
+  },
+  "scientific_interpretation": [
+    "V2.9.2 does not establish READY.",
+    "V2.9.2 does not establish TOO_SPARSE after Batch-3.",
+    "No scientific conclusion may be drawn from incomplete Batch-3.",
+    "The V2.9 lexical-only parent remains TOO_SPARSE.",
+    "The V2.9.1 selection-bias finding remains valid.",
+    "The hybrid redesign remains methodologically defined, but its preregistered execution did not reach a scientific terminal state."
+  ],
+  "governance": {
+    "classifier_changed": false,
+    "triage_changed": false,
+    "information_floor_changed": false,
+    "sample_scope_changed": false,
+    "price_or_return_data_consumed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "batch4_authorized": false
+  },
+  "closure": {
+    "reopen_v292_execution": false,
+    "runner_issue_investigation": false,
+    "user_directive": "Batch-3 event was explicitly marked failed and runner investigation was stopped.",
+    "next_mainline_action": "Start a new version only through a separately frozen contract; do not silently continue Batch-3 or Batch-4 under V2.9.2."
+  }
+}
