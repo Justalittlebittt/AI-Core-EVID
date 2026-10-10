@@ -1,8 +1,5 @@
 name: V2.8.3 Prospective Pipeline Synthetic Validation
 on:
-  push:
-    paths:
-      - ".github/workflows/v283-prospective-pipeline-validation.yml"
   workflow_dispatch:
 
 permissions:
