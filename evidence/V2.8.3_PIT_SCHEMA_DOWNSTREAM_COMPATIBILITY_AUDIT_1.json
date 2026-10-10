@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_3_PIT_SCHEMA_DOWNSTREAM_COMPATIBILITY_AUDIT_1",
+  "version": "V2.8.3",
+  "status": "PASS_STATIC_COMPATIBILITY_RUNTIME_PENDING",
+  "repaired_primary_path": {
+    "script": "scripts/v283_signal_feature_snapshot.py",
+    "pit_mapping_rule": "SSE:<code> -> <code>.SS; SZSE:<code> -> <code>.SZ",
+    "market_quote_type_dependency_removed": true,
+    "pit_mapping_completeness_fail_closed": true
+  },
+  "downstream_checked": [
+    ".github/workflows/v283-signal-feature-snapshot.yml",
+    ".github/workflows/v283-prospective-morning-orchestrator.yml",
+    ".github/workflows/v283-prospective-pipeline-validation.yml",
+    "scripts/v283_exact_vintage_materialization.py"
+  ],
+  "checks": {
+    "downstream_market_field_dependency_found": false,
+    "downstream_quote_type_dependency_found": false,
+    "stale_signal_snapshot_blob_pin_found": false,
+    "exact_vintage_uses_pit_exchange_security_code_mapping": true,
+    "exact_vintage_kline_t_1d_filter_preserved": true,
+    "benchmark_symbol_rule_preserved": true
+  },
+  "note": "Exact-vintage materialization retains its pre-existing stable-vendor overlap constraint. This audit does not alter that scientific/sample-selection rule.",
+  "runtime_validation": {
+    "completed": false,
+    "blocker": "GitHub Hosted Runner unavailable"
+  },
+  "governance": {
+    "scientific_scope_changed": false,
+    "thresholds_changed": false,
+    "outcome_rule_changed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  }
+}
