@@ -1,0 +1,137 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_BATCH3_MINIMAL_RECONSTRUCTION_CONTRACT_1",
+  "version": "V2.9.3",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "objective": "Recover the scientifically incomplete V2.9.2 Batch-3 with the minimum auditable re-execution surface, without reopening V2.9.2 or rerunning already-complete chunks.",
+  "parent_closure": "evidence/V2.9.2_FINAL_RECORD_1.json",
+  "problem_elimination_pass": {
+    "final_goal": "Obtain one complete, technically valid 64-security scientific Batch-3 aggregate under unchanged V2.9.2 science.",
+    "hard_constraints": [
+      "Do not reopen or mutate V2.9.2 final record.",
+      "Preserve exact Batch-3 ranks 129-192 and frozen security ordering.",
+      "Preserve frozen triage, classifier, temporal rule and information floor.",
+      "No fold3/fold4, price/return, or outcome data.",
+      "Scientific evaluation only after a complete 64-security batch is reconstructable."
+    ],
+    "delete": [
+      "Do not rerun chunks 1,2,4,5,6,7,8.",
+      "Do not rerun Batch1 or Batch2.",
+      "Do not investigate or depend on the prior Hosted Runner allocation incident."
+    ],
+    "avoid": [
+      "Do not reuse partial chunk3 scientific results without their original complete result payload.",
+      "Do not infer missing rows from receipt summaries."
+    ],
+    "absorb": [
+      "Reuse the seven repository-persisted complete Batch-3 chunk receipts and their exact result hashes as immutable authorities."
+    ],
+    "substitute": [
+      "Re-execute only chunk3 ranks 145-152 as the reconstruction unit."
+    ],
+    "precompute_reuse": [
+      "Reuse V2.9 base positives, Batch1, Batch2, and complete Batch3 chunks 1,2,4,5,6,7,8."
+    ],
+    "optimize": [
+      "Only after exact chunk3 reconstruction succeeds, aggregate the full 64-security Batch-3 once."
+    ]
+  },
+  "exact_reconstruction_scope": {
+    "scientific_batch_index": 3,
+    "batch_ranks": [
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152
+    ],
+    "security_ids": [
+      "SZSE:300785",
+      "SSE:600637",
+      "SSE:600570",
+      "SSE:601990",
+      "SZSE:001201",
+      "SZSE:002138",
+      "SZSE:002667",
+      "SSE:603337"
+    ],
+    "prior_failed_receipt": "evidence/V2.9.2_HYBRID_DISCOVERY_BATCH3_CHUNK_03_RECEIPT_1.json",
+    "prior_partial_payload_reuse": false,
+    "reason": "Original Actions artifact is unavailable; receipt summary alone is insufficient to reconstruct full candidate/result rows."
+  },
+  "immutable_reuse_chunks": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "unchanged_science": {
+    "development_folds": [
+      0,
+      1,
+      2
+    ],
+    "fold3_forbidden": true,
+    "fold4_forbidden": true,
+    "price_or_return_forbidden": true,
+    "candidate_outcome_research_forbidden": true,
+    "disclosure_range": [
+      "2023-01-01",
+      "2024-12-30"
+    ],
+    "triage_semantics_unchanged": true,
+    "classifier_semantics_unchanged": true,
+    "pdf_text_semantics_unchanged": true,
+    "ocr_forbidden": true,
+    "information_floor": {
+      "eligible_events_min": 20,
+      "distinct_securities_min": 12,
+      "distinct_effective_dates_min": 12,
+      "distinct_calendar_months_min": 6,
+      "max_single_security_share_max": 0.2
+    }
+  },
+  "technical_requirements": {
+    "exact_chunk_membership": true,
+    "all_8_issuers_transport_complete": true,
+    "pagination_closed": true,
+    "all_negative_space_claims_parent_absent": true,
+    "classifier_ready_materialization_rate_min": 0.9,
+    "all_positive_temporal_provenance_pass": true,
+    "no_prohibited_data": true,
+    "reconstructed_chunk_result_payload_must_be_persisted": true,
+    "reconstructed_chunk_receipt_must_use_scientific_batch_index_3": true
+  },
+  "full_batch_reconstruction_rule": {
+    "reuse_complete_chunks_only": true,
+    "chunk3_must_be_new_complete_reconstruction": true,
+    "aggregate_only_after_all_8_chunks_have_complete_auditable_payloads": true,
+    "information_gate_evaluated_once_after_full_batch_reconstruction": true
+  },
+  "terminal_states": {
+    "technical_fail": "V2_9_3_BATCH3_RECONSTRUCTION_TECHNICALLY_BLOCKED",
+    "information_floor_pass": "V2_9_3_HYBRID_DISCOVERY_READY",
+    "information_floor_fail": "V2_9_3_BATCH3_COMPLETE_TOO_SPARSE"
+  },
+  "governance": {
+    "active": false,
+    "scientific_design_change": true,
+    "numeric_thresholds_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "sample_scope_changed": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
+  "proposal_source": "evidence/V2.9.3_BATCH3_MINIMAL_RECONSTRUCTION_PROPOSAL_1.json",
+  "approval": {
+    "approved": true,
+    "authority": "USER",
+    "approved_at_project_conversation_date": "2026-10-10"
+  }
+}
