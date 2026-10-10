@@ -1,0 +1,38 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_2_BATCH3_TECHNICAL_FAILURE_RECEIPT_1",
+  "version": "V2.9.2",
+  "status": "V2_9_2_HYBRID_DISCOVERY_TECHNICALLY_BLOCKED",
+  "scientific_batch_index": 3,
+  "batch_ranks": [
+    129,
+    192
+  ],
+  "scientific_terminal_status_emitted": false,
+  "information_gate_evaluated": false,
+  "next_scientific_batch_authorized": false,
+  "failure_class": "EXECUTION_INFRASTRUCTURE_FAILURE",
+  "failure_summary": "Batch-3 scientific execution did not complete. Initial run completed 7/8 chunks; chunk-3 was blocked by CNINFO pagination dedupe mismatches. A bounded pagination-stability retry and receipt metadata fix were implemented, but subsequent recovery attempts could not execute because GitHub Hosted Runner allocation failed before any workflow step started.",
+  "evidence": {
+    "original_run_id": 37907281812,
+    "original_chunk3_job_id": 113743682034,
+    "original_chunk3_status": "V2_9_2_BATCH3_EXECUTION_CHUNK_BLOCKED",
+    "original_chunk3_blockers": [
+      "PAGINATION_DEDUPE_MISMATCH:SSE:600637:137/138",
+      "PAGINATION_DEDUPE_MISMATCH:SZSE:002667:483/485"
+    ],
+    "repair_commit": "acbb62b4aa61e6ea75f249f07e1896fe3184281c",
+    "failed_recovery_run_id": 38026857343,
+    "isolated_recovery_run_id": 38027445372,
+    "ubuntu_runner_probe_run_id": 38027466041,
+    "windows_runner_probe_run_id": 38028873775,
+    "runner_allocation_evidence": "Fresh Ubuntu and Windows minimal workflows both failed with runner_id=0 and steps=[] before execution."
+  },
+  "scientific_interpretation": "NO_SCIENTIFIC_CONCLUSION_FROM_BATCH3",
+  "parent_v29_status_unchanged": true,
+  "batch4_authorization": "NOT_AUTHORIZED",
+  "no_threshold_change": true,
+  "no_classifier_change": true,
+  "no_triage_change": true,
+  "no_fold3_access": true,
+  "no_fold4_access": true
+}
