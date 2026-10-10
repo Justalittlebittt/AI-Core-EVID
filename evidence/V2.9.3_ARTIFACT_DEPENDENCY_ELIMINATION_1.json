@@ -1,0 +1,30 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_ARTIFACT_DEPENDENCY_ELIMINATION_1",
+  "version": "V2.9.3",
+  "status": "PASS_ARTIFACT_EXPIRY_DEPENDENCY_ELIMINATED",
+  "problem_elimination": {
+    "deleted": "Runtime download dependency on three expiring GitHub Actions artifacts.",
+    "substituted_with": "Repository-persisted byte-locked prerequisite authority under evidence/v293_prerequisites/.",
+    "runtime_hash_checks": 5
+  },
+  "workflow": {
+    "path": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
+    "blob_sha": "e1aed4524a6ce6cf742463d659640ef65eb2ad04",
+    "artifact_api_dependency": false,
+    "gh_token_dependency": false,
+    "curl_artifact_download": false,
+    "actions_read_permission": false,
+    "manual_only": true
+  },
+  "authority_manifest": "evidence/V2.9.3_PERSISTED_PREREQUISITE_AUTHORITY_1.json",
+  "governance": {
+    "scientific_semantics_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "information_floor_changed": false,
+    "sample_scope_changed": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false,
+    "price_or_return_data_added": false
+  }
+}
