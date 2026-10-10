@@ -13,10 +13,10 @@
     "READY_L": [],
     "ACTIVE_S": [
       {
-        "id": "S-V284-PROSPECTIVE-AUDIT",
-        "task": "Audit V2.8.4 Controlled Prospective E-Layer evidence state and remaining non-runner blockers",
+        "id": "S-V284-COVERAGE-GAP-GOVERNANCE",
+        "task": "Resolve governance for confirmed V2.8.4 post-activation coverage gap on 2026-09-23 through 2026-09-26",
         "dependency_on_batch3": false,
-        "status": "ACTIVE"
+        "status": "BLOCKED_PENDING_GOVERNANCE_DECISION"
       }
     ],
     "COMPLETED_S": [
@@ -31,6 +31,12 @@
         "task": "Repair V2.8.3 PIT/source schema compatibility using PIT authority + exchange-aware symbol mapping",
         "result": "PIT mapping 5224/5224 PASS; implementation repaired; fail-closed checks and self-tests hardened",
         "status": "IMPLEMENTATION_COMPLETE_RUNTIME_VALIDATION_PENDING"
+      },
+      {
+        "id": "S-V284-PROSPECTIVE-AUDIT",
+        "task": "Audit V2.8.4 prospective evidence consistency, identity backlog, provenance chain and scheduler recovery semantics",
+        "result": "Consistency PASS; no identity backlog; provenance PASS; current outage recoverable, but continuity audit found uncovered 2026-09-23..2026-09-26",
+        "status": "COMPLETE_WITH_COVERAGE_GAP_FOUND"
       }
     ],
     "BLOCKED": [
@@ -57,6 +63,12 @@
         "task": "Re-enable V2.8.3 Prospective Morning Orchestrator schedule",
         "blocked_by": "V283-RUNTIME-VALIDATE",
         "reason": "Do not restore cron until at least one productive eligible signal snapshot is proven after repair."
+      },
+      {
+        "id": "V284-CONTINUOUS-INFORMATION-GATE-RELIANCE",
+        "task": "Rely on V2.8.12 shadow information gate as a complete continuous post-activation census",
+        "blocked_by": "Confirmed uncovered dates 2026-09-23 through 2026-09-26",
+        "reason": "Existing shadow events remain provenance-valid, but full post-activation census completeness is not established. Historical full backfill is not currently authorized."
       }
     ]
   },
