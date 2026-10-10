@@ -112,10 +112,45 @@ def load_pit_authority(d:date)->tuple[dict,Path,pd.DataFrame]:
         raise RuntimeError("PIT_AMBIGUOUS_SECURITY_CODE_MAPPING")
     return obj,p,df
 
-def load_stock_history(stock_path:Path,d:date,universe:pd.DataFrame)->pd.DataFrame:
+def _pit_symbol_map(universe:pd.DataFrame)->pd.DataFrame:
+    u=universe[["canonical_security_id","exchange","security_code"]].copy()
+    def expected_symbol(r):
+        if r["exchange"]=="SSE":
+            return f"{r['security_code']}.SS"
+        if r["exchange"]=="SZSE":
+            return f"{r['security_code']}.SZ"
+        raise RuntimeError(f"UNSUPPORTED_PIT_EXCHANGE:{r['exchange']}")
+    u["expected_symbol"]=u.apply(expected_symbol,axis=1)
+    if u["expected_symbol"].duplicated().any():
+        raise RuntimeError("DUPLICATE_PIT_EXPECTED_SYMBOL")
+    return u
+
+def inspect_stock_for_pit(stock_path:Path,universe:pd.DataFrame)->dict:
+    u=_pit_symbol_map(universe)
     con=duckdb.connect()
     try:
-        con.register("u",universe[["canonical_security_id","security_code"]])
+        con.register("u",u[["canonical_security_id","expected_symbol"]])
+        esc=str(stock_path).replace("'","''")
+        row=con.execute(f"""
+          SELECT max(cast(k.bar_time as date)) max_date,
+                 count(DISTINCT u.canonical_security_id) mapped_security_count
+          FROM read_parquet('{esc}') k
+          INNER JOIN u ON cast(k.symbol as varchar)=u.expected_symbol
+          WHERE cast(k.kline_t as varchar)='1D'
+        """).fetchone()
+        return {
+            "max_date":str(row[0]) if row and row[0] else "",
+            "mapped_security_count":int(row[1] or 0),
+            "pit_security_count":int(len(u)),
+        }
+    finally:
+        con.close()
+
+def load_stock_history(stock_path:Path,d:date,universe:pd.DataFrame)->pd.DataFrame:
+    u=_pit_symbol_map(universe)
+    con=duckdb.connect()
+    try:
+        con.register("u",u[["canonical_security_id","expected_symbol"]])
         esc=str(stock_path).replace("'","''")
         q=f"""
           SELECT u.canonical_security_id,
@@ -125,10 +160,8 @@ def load_stock_history(stock_path:Path,d:date,universe:pd.DataFrame)->pd.DataFra
                  cast(k.low as double) low,
                  cast(k.close as double) close
           FROM read_parquet('{esc}') k
-          INNER JOIN u ON cast(k.symbol as varchar)=u.security_code
+          INNER JOIN u ON cast(k.symbol as varchar)=u.expected_symbol
           WHERE cast(k.kline_t as varchar)='1D'
-            AND cast(k.market as varchar)='cn'
-            AND cast(k.quote_type as varchar)='EQUITY'
             AND cast(k.bar_time as date) <= DATE '{d.isoformat()}'
           ORDER BY canonical_security_id, bar_date
         """
@@ -178,7 +211,7 @@ def build_for_pin(d:date,pin_path:Path,write:bool=True)->dict:
     pin_commit_sha,pin_commit_time=mg.git_creation_identity(pin_path)
     stock=mg.materialize_source(sources["AlphaDojo/dojo_stock_kline"])
     bench=mg.materialize_source(sources["AlphaDojo/dojo_benchmark_kline"])
-    sd=mg.inspect_stock(stock)
+    sd=inspect_stock_for_pit(stock,universe)
     bd=mg.inspect_benchmark(bench,d)
     gate=mg.evaluate_metadata(d,pin_path,pin_commit_time,sd["max_date"],bd["max_date"],bd["history_closes_through_d"])
     if gate!="ELIGIBLE_FEATURE_SOURCE":
