@@ -1,0 +1,29 @@
+{
+  "schema": "AI_CORE_EVID_VALIDATION_TRIGGER_NOISE_REDUCTION_2026_10_10",
+  "status": "ACTIVE",
+  "purpose": "Prevent automatic validation/self-test failures and notification noise while GitHub Hosted Runner is unavailable, without disabling the production prospective collection schedule.",
+  "main_prospective_collection": {
+    "workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    "daily_schedule_preserved": true,
+    "workflow_dispatch_preserved": true,
+    "disabled": false
+  },
+  "manual_only_validation_workflows": [
+    ".github/workflows/v2812-identity-completion-ratifier.yml",
+    ".github/workflows/v2812-operational-integrity-audit.yml",
+    ".github/workflows/v2812-shadow-accumulator-selftest.yml",
+    ".github/workflows/v2812-scheduler-recovery-selftest.yml",
+    ".github/workflows/v2812-daily-cadence-validation.yml",
+    ".github/workflows/v2812-human-decision-boundary-selftest.yml",
+    ".github/workflows/v2812-human-review-packet-selftest.yml",
+    ".github/workflows/v2812-strict-title-identity-prebinder-selftest.yml"
+  ],
+  "semantics": {
+    "research_logic_changed": false,
+    "readiness_thresholds_changed": false,
+    "classifier_changed": false,
+    "triage_changed": false,
+    "production_collection_schedule_changed": false
+  },
+  "reactivation_rule": "Restore automatic validation triggers only after hosted runner execution is demonstrably available again; manual workflow_dispatch remains available."
+}
