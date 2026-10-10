@@ -1,8 +1,5 @@
 name: V2.8.12 Daily Cadence Validation
 on:
-  push:
-    paths:
-      - ".github/workflows/v2812-daily-cadence-validation.yml"
   workflow_dispatch:
 permissions:
   contents: read
