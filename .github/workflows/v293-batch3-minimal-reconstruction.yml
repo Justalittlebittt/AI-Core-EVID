@@ -131,3 +131,33 @@ jobs:
           git commit -m "Persist V2.9.3 reconstructed Batch-3 terminal evidence [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
+
+      # Best-effort terminal evidence when any earlier step fails or the job is cancelled.
+      # This is an operational failure receipt, never a scientific PASS.
+      - name: Record failed execution terminal
+        if: ${{ always() && job.status != 'success' }}
+        shell: bash
+        env:
+          V293_JOB_STATUS: ${{ job.status }}
+          V293_RUN_ID: ${{ github.run_id }}
+          V293_RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          python scripts/v293_batch3_failure_terminal.py \
+            --job-status "$V293_JOB_STATUS" \
+            --run-id "$V293_RUN_ID" \
+            --run-attempt "$V293_RUN_ATTEMPT"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/V2.9.3_BATCH3_EXECUTION_FAILURE_TERMINAL_1.json
+          for f in \
+            evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RESULTS_1.csv \
+            evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RECEIPT_1.json \
+            evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_PROGRESS_1.json; do
+            [ ! -f "$f" ] || git add "$f"
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "Persist V2.9.3 Batch-3 execution failure terminal [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
