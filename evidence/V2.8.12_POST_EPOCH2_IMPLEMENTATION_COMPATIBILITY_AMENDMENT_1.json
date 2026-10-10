@@ -1,0 +1,34 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_POST_EPOCH2_IMPLEMENTATION_COMPATIBILITY_AMENDMENT_1",
+  "version": "V2.8.12",
+  "status": "ACTIVE_POST_EPOCH2_COMPATIBILITY_BINDING",
+  "parent_epoch_amendment": "evidence/V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_AMENDMENT_1.json",
+  "historical_validation_preserved": {
+    "original_accumulator_blob_sha": "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb",
+    "original_ratifier_blob_sha": "226fe586f1325e1753d95303ff021b01481c10ed",
+    "original_validation_receipts_immutable": true
+  },
+  "active_implementation": {
+    "accumulator_blob_sha": "62721f5dfac52899ccae19c3fc06f983df7dd5f7",
+    "readiness_change_only": "Epoch-qualified subset is used for information-gate statistics; append-only ledger and recurrence history remain full-history."
+  },
+  "required_compatibility_repairs": [
+    "Update active workflow accumulator blob pins to the epoch-2 accumulator blob.",
+    "Update identity-ratifier self-test expectation from full-ledger event count 3 to epoch-qualified readiness count 2.",
+    "Update operational-integrity cadence assertion from superseded 01:00 UTC to active 01:17 UTC.",
+    "Update operational-integrity pipeline-stage label to the current workflow step name.",
+    "Require current shadow status schema V2 and epoch-2 start 2026-09-27."
+  ],
+  "governance": {
+    "classifier_changed": false,
+    "triage_changed": false,
+    "identity_rule_changed": false,
+    "effective_date_rule_changed": false,
+    "numeric_readiness_thresholds_changed": false,
+    "historical_backfill_authorized": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_access": false,
+    "fold4_access": false
+  }
+}
