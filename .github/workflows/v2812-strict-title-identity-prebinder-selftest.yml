@@ -1,8 +1,5 @@
 name: V2.8.12 Strict-Title Identity Prebinder Self-Test
 on:
-  push:
-    paths:
-      - ".github/workflows/v2812-strict-title-identity-prebinder-selftest.yml"
   workflow_dispatch:
 permissions:
   contents: read
