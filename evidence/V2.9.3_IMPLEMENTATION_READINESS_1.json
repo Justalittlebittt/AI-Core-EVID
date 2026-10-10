@@ -1,7 +1,7 @@
 {
   "schema": "AI_CORE_EVID_V2_9_3_IMPLEMENTATION_READINESS_1",
   "version": "V2.9.3",
-  "status": "READY_FOR_MANUAL_EXECUTION_WHEN_RUNNER_AVAILABLE",
+  "status": "STATIC_EXECUTION_READY_MANUAL_RUNTIME_PENDING",
   "contract": "evidence/V2.9.3_BATCH3_MINIMAL_RECONSTRUCTION_CONTRACT_1.json",
   "implementation": {
     "chunk3_runner": "scripts/v293_batch3_chunk3_reconstruct.py",
@@ -52,7 +52,7 @@
     "runner_validation_attempted": false,
     "reason": "User previously directed that the runner incident be marked failed and not pursued. V2.9.3 remains prepared but unexecuted."
   },
-  "next_action": "When a legitimate execution environment is available, manually dispatch V2.9.3 Minimal Batch-3 Reconstruction. No prerequisite artifact-expiry deadline remains.",
+  "next_action": "Manual execution only when a legitimate execution environment is available; no artifact-expiry dependency remains.",
   "static_reuse_audit": {
     "path": "evidence/V2.9.3_REUSED_CHUNK_STATIC_AUDIT_1.json",
     "status": "PASS",
@@ -65,5 +65,10 @@
     "artifact_download_required": false,
     "artifact_expiry_risk": false,
     "runtime_sha256_fail_closed": true
+  },
+  "static_execution_preflight": {
+    "path": "evidence/V2.9.3_STATIC_EXECUTION_PREFLIGHT_1.json",
+    "status": "PASS_STATIC_EXECUTION_READY",
+    "commit": "c496f937185367646bb499d45e517bad1e8d1102"
   }
 }
