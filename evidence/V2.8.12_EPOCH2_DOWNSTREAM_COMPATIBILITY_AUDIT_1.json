@@ -1,0 +1,45 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_12_EPOCH2_DOWNSTREAM_COMPATIBILITY_AUDIT_1",
+  "version": "V2.8.12",
+  "status": "PASS_STATIC_COMPATIBILITY_RUNTIME_PENDING",
+  "active_bindings": {
+    "accumulator_blob_sha": "62721f5dfac52899ccae19c3fc06f983df7dd5f7",
+    "ratifier_blob_sha": "28f51dd80d5fda161ac68c74b9175d949cda6fe3",
+    "operational_audit_blob_sha": "445a3a7c8b524998b7d8fe9eaa7b93e7875202d2",
+    "active_cron_utc": "17 1 * * *",
+    "readiness_epoch": "V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_2",
+    "readiness_epoch_start_asia_shanghai": "2026-09-27"
+  },
+  "repaired_consumers": [
+    ".github/workflows/v284-controlled-prospective-e-layer.yml",
+    ".github/workflows/v2812-identity-completion-ratifier.yml",
+    ".github/workflows/v2812-shadow-accumulator-selftest.yml",
+    ".github/workflows/v2812-operational-integrity-audit.yml",
+    "scripts/v2812_identity_completion_ratifier.py",
+    "scripts/v2812_operational_integrity_audit.py"
+  ],
+  "checks": {
+    "main_workflow_active_accumulator_pin_updated": true,
+    "main_workflow_active_ratifier_pin_updated": true,
+    "ratifier_selftest_epoch2_count_semantics_updated": true,
+    "identity_ratifier_workflow_pins_updated": true,
+    "shadow_selftest_workflow_pins_updated": true,
+    "operational_audit_active_cadence_updated": true,
+    "operational_audit_current_pipeline_label_updated": true,
+    "operational_audit_requires_status_schema_v2_and_epoch2": true,
+    "historical_validation_blob_references_preserved_immutably": true,
+    "numeric_readiness_thresholds_changed": false,
+    "classifier_or_triage_changed": false
+  },
+  "runtime_validation": {
+    "completed": false,
+    "blocker": "GitHub Hosted Runner unavailable"
+  },
+  "governance": {
+    "historical_backfill_authorized": false,
+    "outcome_research_authorized": false,
+    "price_or_return_data_authorized": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  }
+}
