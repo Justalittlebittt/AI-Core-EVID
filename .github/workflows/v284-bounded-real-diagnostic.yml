@@ -1,9 +1,5 @@
 name: V2.8.4 Bounded Real Evidence Diagnostic
 on:
-  push:
-    paths:
-      - "scripts/v284_bounded_real_diagnostic.py"
-      - ".github/workflows/v284-bounded-real-diagnostic.yml"
   workflow_dispatch:
 permissions:
   contents: write
