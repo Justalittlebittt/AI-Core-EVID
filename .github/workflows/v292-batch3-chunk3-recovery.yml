@@ -1,0 +1,69 @@
+name: V2.9.2 Batch 3 Chunk 3 Recovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/triggers/v292-batch3-chunk3-recovery.trigger"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v292-batch3-chunk3-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover-chunk3:
+    name: recover-batch3-chunk-3
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install source-only dependencies
+        run: |
+          pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
+          playwright install --with-deps chromium
+      - name: Download frozen V2.9.1 prerequisite artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .v292/recovery .v292/phase_a
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11269201486/zip" -o .v292/recovery.zip
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/11266397712/zip" -o .v292/phase_a.zip
+          test "$(sha256sum .v292/recovery.zip | awk '{print $1}')" = "653399dd8c4b428db583fad2bac9d1a943f446fafe6e29b8028f6a6fb53030e8"
+          unzip -q .v292/recovery.zip -d .v292/recovery
+          unzip -q .v292/phase_a.zip -d .v292/phase_a
+      - name: Preflight recovered chunk runner
+        run: |
+          python -m py_compile scripts/v291_negative_space_batch1.py
+          python -m py_compile scripts/v292_hybrid_discovery_batch3_chunk.py
+          test -f evidence/V2.9.2_BATCH3_IDENTITY_PREFLIGHT_1.json
+      - name: Execute deterministic Batch-3 chunk 3
+        run: |
+          python scripts/v292_hybrid_discovery_batch3_chunk.py             --chunk-index 3             --authority .v292/recovery/V2.9.1_RECOVERED_PARENT_CANDIDATE_IDS_1.csv             --recovery-receipt .v292/recovery/V2.9.1_COMPARISON_AUTHORITY_RECOVERY_RECEIPT_1.json             --phase-a-receipt .v292/phase_a/V2.9.1_NEGATIVE_SPACE_PROBE_PHASE_A_VALIDATION_1.json
+      - name: Persist recovered chunk-3 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          files=()
+          for f in             evidence/V2.9.2_HYBRID_DISCOVERY_BATCH3_CHUNK_03_RESULTS_1.csv             evidence/V2.9.2_HYBRID_DISCOVERY_BATCH3_CHUNK_03_RECEIPT_1.json             evidence/V2.9.2_HYBRID_DISCOVERY_BATCH3_CHUNK_03_PROGRESS_1.json; do
+            [ -f "$f" ] && files+=("$f")
+          done
+          [ "${#files[@]}" -gt 0 ] || exit 0
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "${files[@]}"
+          git diff --cached --quiet && exit 0
+          git commit -m "Recover V2.9.2 Batch-3 chunk 3 evidence [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
