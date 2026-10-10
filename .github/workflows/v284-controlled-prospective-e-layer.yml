@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "ccd2286013b0e4a8da5ff0ccbe09710a38658ebb"
+          test "$(git hash-object scripts/v2812_shadow_accumulator.py)" = "62721f5dfac52899ccae19c3fc06f983df7dd5f7"
           test "$(git hash-object scripts/v2812_identity_completion_ratifier.py)" = "226fe586f1325e1753d95303ff021b01481c10ed"
           test "$(git hash-object scripts/v2812_strict_title_identity_prebinder.py)" = "0d30473ae007fd9fa6a3818f3add87c4a37bae38"
           test "$(git hash-object scripts/v284_incremental_e_layer_runner.py)" = "df07a5d2a5771deff39528c3533a39934e96a68c"
@@ -42,6 +42,7 @@ jobs:
           a2=json.loads(Path("evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_2.json").read_text())
           r=json.loads(Path("evidence/V2.8.12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1.json").read_text())
           t=json.loads(Path("evidence/V2.8.12_TRANSPORT_RELIABILITY_AMENDMENT_1.json").read_text())
+          ep=json.loads(Path("evidence/V2.8.12_CONTINUOUS_PROSPECTIVE_EPOCH_AMENDMENT_1.json").read_text())
           assert v["status"]=="PASS"
           assert v["accumulator"]["blob_sha"]=="66fe3735c512e09252ee2400e458334a4043536b"
           assert v["authorization"]["activate_prospective_shadow_accumulation_in_separate_commit"] is True
@@ -126,6 +127,16 @@ jobs:
           assert t["governance"]["price_or_return_data_authorized"] is False
           assert t["governance"]["fold3_access"] is False
           assert t["governance"]["fold4_access"] is False
+          assert ep["status"]=="ACTIVE_CONTINUOUS_PROSPECTIVE_EPOCH_2"
+          assert ep["epoch_2"]["continuous_coverage_start_date_asia_shanghai"]=="2026-09-27"
+          assert ep["ledger_semantics"]["shadow_ledger_is_append_only"] is True
+          assert ep["ledger_semantics"]["readiness_statistics_use_epoch_qualified_subset_only"] is True
+          assert ep["ledger_semantics"]["historical_backfill"] is False
+          assert ep["frozen_information_floor"]["thresholds_changed"] is False
+          assert ep["governance"]["outcome_research_authorized"] is False
+          assert ep["governance"]["price_or_return_data_authorized"] is False
+          assert ep["governance"]["fold3_access"] is False
+          assert ep["governance"]["fold4_access"] is False
           print("V2.8.12 strict identity prebinding + corrected shadow accumulator + validated identity ratifier + data-completeness recovery + daily off-peak cadence + transport patch binding PASS")
           PY
       - name: Restore content-addressed E-layer cache
