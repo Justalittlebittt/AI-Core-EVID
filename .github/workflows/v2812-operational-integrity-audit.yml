@@ -25,7 +25,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git hash-object scripts/v284_incremental_e_layer_runner.py)" = "df07a5d2a5771deff39528c3533a39934e96a68c"
-          test "$(git hash-object scripts/v2812_operational_integrity_audit.py)" = "9f7e5a74ddcf8ad36833d95fb58dd237cc1e0f5c"
+          test "$(git hash-object scripts/v2812_operational_integrity_audit.py)" = "445a3a7c8b524998b7d8fe9eaa7b93e7875202d2"
       - name: Run unchanged V2.8.4 runner self-test
         run: python scripts/v284_incremental_e_layer_runner.py self-test
       - name: Run V2.8.12 operational integrity audit
