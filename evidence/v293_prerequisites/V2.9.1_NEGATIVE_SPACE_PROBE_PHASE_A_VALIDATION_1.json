@@ -3,33 +3,154 @@
   "version": "V2.9.1",
   "status": "PASS",
   "tests": [
-    {"name":"A01_contract_frozen","pass":true},
-    {"name":"A02_no_scientific_classification_phase_a","pass":true},
-    {"name":"A03_manifest_hashes_exact","pass":true},
-    {"name":"A_manifest_count_V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv","pass":true},
-    {"name":"A_manifest_count_V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv","pass":true},
-    {"name":"A_manifest_count_V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv","pass":true},
-    {"name":"A04_manifests_pairwise_disjoint","pass":true},
-    {"name":"A05_identity_map_exact","pass":true},
-    {"name":"A06_fixture_membership_exact","pass":true},
-    {"name":"A07_blank_searchkey_transport_real","pass":true},
-    {"name":"A08_pagination_closed","pass":true},
-    {"name":"A09_no_price_outcome_fold34","pass":true}
+    {
+      "name": "A01_contract_frozen",
+      "pass": true
+    },
+    {
+      "name": "A02_no_scientific_classification_phase_a",
+      "pass": true
+    },
+    {
+      "name": "A03_manifest_hashes_exact",
+      "pass": true
+    },
+    {
+      "name": "A_manifest_count_V2.8.5_BACKWARD_HOLDOUT_SAMPLE_MANIFEST.csv",
+      "pass": true
+    },
+    {
+      "name": "A_manifest_count_V2.8.6_FOLD1_MECHANISM_REPLICATION_MANIFEST.csv",
+      "pass": true
+    },
+    {
+      "name": "A_manifest_count_V2.8.7_FOLD2_SETUP_SHAPE_MANIFEST.csv",
+      "pass": true
+    },
+    {
+      "name": "A04_manifests_pairwise_disjoint",
+      "pass": true
+    },
+    {
+      "name": "A05_identity_map_exact",
+      "pass": true
+    },
+    {
+      "name": "A06_fixture_membership_exact",
+      "pass": true
+    },
+    {
+      "name": "A07_blank_searchkey_transport_real",
+      "pass": true
+    },
+    {
+      "name": "A08_pagination_closed",
+      "pass": true
+    },
+    {
+      "name": "A09_no_price_outcome_fold34",
+      "pass": true
+    }
   ],
   "passed": 12,
   "total": 12,
   "all_pass": true,
-  "fixture_security_ids": ["SSE:688106","SZSE:301389","SSE:600119"],
+  "fixture_security_ids": [
+    "SSE:688106",
+    "SZSE:301389",
+    "SSE:600119"
+  ],
   "transport_evidence": [
-    {"canonical_security_id":"SSE:688106","exchange":"SSE","security_code":"688106","org_id":"9900023702","official_total":384,"deduped_count":384,"pages_fetched":13,"sample_ids":["1222113119","1222076277","1222028136","1221965371","1221907241"],"locator_shapes":["relative"],"locator_samples":["finalpage/2024-12-24/1222113119.PDF","finalpage/2024-12-20/1222076277.PDF","finalpage/2024-12-16/1222028136.PDF","finalpage/2024-12-10/1221965371.PDF","finalpage/2024-12-03/1221907241.PDF"]},
-    {"canonical_security_id":"SZSE:301389","exchange":"SZSE","security_code":"301389","org_id":"9900048381","official_total":283,"deduped_count":283,"pages_fetched":10,"sample_ids":["1222163525","1221908669","1221602416","1221553353","1221553352"],"locator_shapes":["relative"],"locator_samples":["finalpage/2024-12-27/1222163525.PDF","finalpage/2024-12-02/1221908669.PDF","finalpage/2024-11-01/1221602416.PDF","finalpage/2024-10-30/1221553353.PDF","finalpage/2024-10-30/1221553352.PDF"]},
-    {"canonical_security_id":"SSE:600119","exchange":"SSE","security_code":"600119","org_id":"gssh0600119","official_total":131,"deduped_count":131,"pages_fetched":5,"sample_ids":["1222164141","1221864203","1221777394","1221777393","1221648021"],"locator_shapes":["relative"],"locator_samples":["finalpage/2024-12-28/1222164141.PDF","finalpage/2024-11-28/1221864203.PDF","finalpage/2024-11-20/1221777394.PDF","finalpage/2024-11-20/1221777393.PDF","finalpage/2024-11-08/1221648021.PDF"]}
+    {
+      "canonical_security_id": "SSE:688106",
+      "exchange": "SSE",
+      "security_code": "688106",
+      "org_id": "9900023702",
+      "official_total": 384,
+      "deduped_count": 384,
+      "pages_fetched": 13,
+      "sample_ids": [
+        "1222113119",
+        "1222076277",
+        "1222028136",
+        "1221965371",
+        "1221907241"
+      ],
+      "locator_shapes": [
+        "relative"
+      ],
+      "locator_samples": [
+        "finalpage/2024-12-24/1222113119.PDF",
+        "finalpage/2024-12-20/1222076277.PDF",
+        "finalpage/2024-12-16/1222028136.PDF",
+        "finalpage/2024-12-10/1221965371.PDF",
+        "finalpage/2024-12-03/1221907241.PDF"
+      ]
+    },
+    {
+      "canonical_security_id": "SZSE:301389",
+      "exchange": "SZSE",
+      "security_code": "301389",
+      "org_id": "9900048381",
+      "official_total": 283,
+      "deduped_count": 283,
+      "pages_fetched": 10,
+      "sample_ids": [
+        "1222163525",
+        "1221908669",
+        "1221602416",
+        "1221553353",
+        "1221553352"
+      ],
+      "locator_shapes": [
+        "relative"
+      ],
+      "locator_samples": [
+        "finalpage/2024-12-27/1222163525.PDF",
+        "finalpage/2024-12-02/1221908669.PDF",
+        "finalpage/2024-11-01/1221602416.PDF",
+        "finalpage/2024-10-30/1221553353.PDF",
+        "finalpage/2024-10-30/1221553352.PDF"
+      ]
+    },
+    {
+      "canonical_security_id": "SSE:600119",
+      "exchange": "SSE",
+      "security_code": "600119",
+      "org_id": "gssh0600119",
+      "official_total": 131,
+      "deduped_count": 131,
+      "pages_fetched": 5,
+      "sample_ids": [
+        "1222164141",
+        "1221864203",
+        "1221777394",
+        "1221777393",
+        "1221648021"
+      ],
+      "locator_shapes": [
+        "relative"
+      ],
+      "locator_samples": [
+        "finalpage/2024-12-28/1222164141.PDF",
+        "finalpage/2024-11-28/1221864203.PDF",
+        "finalpage/2024-11-20/1221777394.PDF",
+        "finalpage/2024-11-20/1221777393.PDF",
+        "finalpage/2024-11-08/1221648021.PDF"
+      ]
+    }
   ],
   "real_ai_classification_executed": false,
   "price_or_return_data_consumed": false,
   "candidate_outcome_research_executed": false,
   "fold3_accessed": false,
   "fold4_accessed": false,
-  "authorization": {"execute_scientific_probe":true,"price_or_return_access":false,"candidate_outcome_research":false,"fold3_access":false,"fold4_access":false},
+  "authorization": {
+    "execute_scientific_probe": true,
+    "price_or_return_access": false,
+    "candidate_outcome_research": false,
+    "fold3_access": false,
+    "fold4_access": false
+  },
   "receipt_sha256": "79de122a5e9b252c1f4bc038e323e4b58c766e9449a51a4e2e961eb223eb65bf"
 }
