@@ -1,10 +1,5 @@
 name: V2.8.3 Stock Schema Domain Probe
-
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/v283-stock-schema-domain-probe.yml"
   workflow_dispatch:
 
 permissions:
