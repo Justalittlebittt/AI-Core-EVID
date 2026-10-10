@@ -10,7 +10,8 @@
     "aggregator_blob_sha": "7bee071203302dd07136c737e733c70491e7a07f",
     "workflow": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
     "workflow_trigger": "workflow_dispatch_only",
-    "automatic_trigger": false
+    "automatic_trigger": false,
+    "workflow_blob_sha": "457381c42a18ac8a34a86c885c50668ba26e8c1f"
   },
   "reconstruction_scope": {
     "rerun_chunks": [
@@ -62,12 +63,20 @@
     "sample_scope_changed": false,
     "fold3_accessed": false,
     "fold4_accessed": false,
-    "price_or_return_data_consumed": false
+    "price_or_return_data_consumed": false,
+    "reused_chunk_exact_membership_audited": true,
+    "reused_chunk_result_payloads_present": true
   },
   "execution_state": {
     "triggered": false,
     "runner_validation_attempted": false,
     "reason": "User previously directed that the runner incident be marked failed and not pursued. V2.9.3 remains prepared but unexecuted."
   },
-  "next_action": "When a legitimate execution environment is available, manually dispatch V2.9.3 Minimal Batch-3 Reconstruction before prerequisite artifacts expire; otherwise perform a separate prerequisite recovery step."
+  "next_action": "When a legitimate execution environment is available, manually dispatch V2.9.3 Minimal Batch-3 Reconstruction before prerequisite artifacts expire; otherwise perform a separate prerequisite recovery step.",
+  "static_reuse_audit": {
+    "path": "evidence/V2.9.3_REUSED_CHUNK_STATIC_AUDIT_1.json",
+    "status": "PASS",
+    "commit": "c91ba9f7147d1d032025008b57c288baae53dc4e",
+    "workflow_preflight_bound": true
+  }
 }
