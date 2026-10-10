@@ -1,8 +1,5 @@
 name: V2.8.12 Human Review Packet Self-Test
 on:
-  push:
-    paths:
-      - ".github/workflows/v2812-human-review-packet-selftest.yml"
   workflow_dispatch:
 permissions:
   contents: read
