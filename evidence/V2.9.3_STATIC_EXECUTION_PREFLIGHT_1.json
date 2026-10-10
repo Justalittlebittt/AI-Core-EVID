@@ -1,0 +1,66 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_STATIC_EXECUTION_PREFLIGHT_1",
+  "version": "V2.9.3",
+  "status": "PASS_STATIC_EXECUTION_READY",
+  "implementation": {
+    "chunk3_runner": {
+      "path": "scripts/v293_batch3_chunk3_reconstruct.py",
+      "blob_sha": "dd655bffa989075cec5aa490344d7797c124156a"
+    },
+    "aggregator": {
+      "path": "scripts/v293_batch3_reconstruct_aggregate.py",
+      "blob_sha": "7bee071203302dd07136c737e733c70491e7a07f"
+    },
+    "workflow": {
+      "path": ".github/workflows/v293-batch3-minimal-reconstruction.yml",
+      "blob_sha": "e1aed4524a6ce6cf742463d659640ef65eb2ad04",
+      "trigger": "workflow_dispatch_only"
+    }
+  },
+  "prerequisite_authority": {
+    "manifest": "evidence/V2.9.3_PERSISTED_PREREQUISITE_AUTHORITY_1.json",
+    "status": "FROZEN_REPOSITORY_PERSISTED_AUTHORITY",
+    "byte_exact_to_original_artifacts": true,
+    "runtime_artifact_download_required": false,
+    "artifact_expiry_risk": false
+  },
+  "reused_evidence": {
+    "audit": "evidence/V2.9.3_REUSED_CHUNK_STATIC_AUDIT_1.json",
+    "status": "PASS",
+    "reused_chunks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "reconstructed_chunk": [
+      3
+    ]
+  },
+  "checks": {
+    "no_actions_artifact_download_reference": true,
+    "no_old_v292_terminal_status_reference": true,
+    "no_batch4_auto_authorization": true,
+    "no_push_trigger": true,
+    "no_schedule_trigger": true,
+    "workflow_dispatch_only": true,
+    "exact_chunk3_reconstruction_scope": true,
+    "seven_complete_chunks_reused": true,
+    "frozen_information_floor_unchanged": true,
+    "classifier_unchanged": true,
+    "triage_unchanged": true,
+    "sample_scope_unchanged": true,
+    "fold3_closed": true,
+    "fold4_closed": true,
+    "price_or_return_forbidden": true
+  },
+  "execution": {
+    "triggered": false,
+    "runtime_validated": false,
+    "reason": "Static preparation is complete. No GitHub Hosted Runner execution is being attempted."
+  },
+  "next_action": "Manual execution only when a legitimate execution environment is available."
+}
