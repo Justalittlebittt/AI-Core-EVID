@@ -2,9 +2,29 @@
   "schema": "AI_CORE_EVID_V2_9_HISTORICAL_E_SOURCE_EXPANSION_FINAL_RECEIPT_1",
   "version": "V2.9",
   "status": "V2_9_HISTORICAL_E_SOURCE_EXPANSION_TOO_SPARSE",
-  "summary": {"admitted_candidates":277,"successful_classifier_ready":265,"materialization_rate":0.9566787003610109,"eligible_events":21,"distinct_securities":7,"distinct_effective_dates":21,"distinct_calendar_months":12,"max_single_security_share":0.5714285714285714},
-  "technical_checks": {"all_730_calendar_days_accounted_for":true,"all_105_transport_partitions_accounted_for":true,"successful_classifier_ready_materialization_rate_ge_0_90":true,"old_design_replay_exact_88_selected_ids":true},
-  "information_floor_checks": {"eligible_events_ge_20":true,"distinct_securities_ge_12":false,"distinct_effective_dates_ge_12":true,"distinct_calendar_months_ge_6":true,"max_single_security_share_le_0_20":false},
+  "summary": {
+    "admitted_candidates": 277,
+    "successful_classifier_ready": 265,
+    "materialization_rate": 0.9566787003610109,
+    "eligible_events": 21,
+    "distinct_securities": 7,
+    "distinct_effective_dates": 21,
+    "distinct_calendar_months": 12,
+    "max_single_security_share": 0.5714285714285714
+  },
+  "technical_checks": {
+    "all_730_calendar_days_accounted_for": true,
+    "all_105_transport_partitions_accounted_for": true,
+    "successful_classifier_ready_materialization_rate_ge_0_90": true,
+    "old_design_replay_exact_88_selected_ids": true
+  },
+  "information_floor_checks": {
+    "eligible_events_ge_20": true,
+    "distinct_securities_ge_12": false,
+    "distinct_effective_dates_ge_12": true,
+    "distinct_calendar_months_ge_6": true,
+    "max_single_security_share_le_0_20": false
+  },
   "h1_h3_admissible": true,
   "census_plan_sha256": "d311fba7b5a7ff7ebf3875bc531be1e9a9d1597db1e1601981ea67aa59e364db",
   "results_sha256": "f059677108c4b85b686c4f376d173e3e9b27fda578c6ed940545ff035be9f720",
