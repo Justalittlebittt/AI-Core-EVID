@@ -1,0 +1,4 @@
+V2.9.3 Batch-3 one-shot execution request
+scope=chunk3 ranks 145-152; aggregate frozen 64 securities
+science=unchanged; batch4=forbidden
+requested=2026-10-10
