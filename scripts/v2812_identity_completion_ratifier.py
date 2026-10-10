@@ -336,7 +336,7 @@ def self_test():
         out2=ratify(lp,sp,rd)
         after_docs={q.name:q.read_bytes() for q in rd.glob("*.json")}
         ck("R11_fixture_second_run_is_idempotent",out2["appended"]==0 and out2["duplicate_noops"]==2 and lp.read_bytes()==before_l and sp.read_bytes()==before_s and before_docs==after_docs)
-        ck("R12_readiness_updates_without_opening_gate",out["readiness"]["shadow_event_count"]==3 and out["readiness"]["status"]=="ACCUMULATING_PROSPECTIVE_E_EVENTS")
+        ck("R12_readiness_updates_without_opening_gate",out["rows_after"]==3 and out["readiness"]["full_shadow_event_count"]==3 and out["readiness"]["shadow_event_count"]==2 and out["readiness"]["status"]=="ACCUMULATING_PROSPECTIVE_E_EVENTS")
     with tempfile.TemporaryDirectory() as td:
         td=Path(td)
         lp=td/"current_shadow.csv"
