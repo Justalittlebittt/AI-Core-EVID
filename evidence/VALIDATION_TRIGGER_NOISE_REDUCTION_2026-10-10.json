@@ -1,6 +1,6 @@
 {
   "schema": "AI_CORE_EVID_VALIDATION_TRIGGER_NOISE_REDUCTION_2026_10_10",
-  "status": "ACTIVE",
+  "status": "ACTIVE_EXPANDED_REPOSITORY_VALIDATION_TRIGGER_REDUCTION",
   "purpose": "Prevent automatic validation/self-test failures and notification noise while GitHub Hosted Runner is unavailable, without disabling the production prospective collection schedule.",
   "main_prospective_collection": {
     "workflow": ".github/workflows/v284-controlled-prospective-e-layer.yml",
@@ -9,6 +9,13 @@
     "disabled": false
   },
   "manual_only_validation_workflows": [
+    ".github/workflows/v283-prospective-pipeline-validation.yml",
+    ".github/workflows/v283-sse-full-transport-validation.yml",
+    ".github/workflows/v283-sse-transport-probe.yml",
+    ".github/workflows/v283-stock-pit-symbol-mapping-validation.yml",
+    ".github/workflows/v283-stock-schema-domain-probe.yml",
+    ".github/workflows/v283-stock-schema-probe.yml",
+    ".github/workflows/v284-bounded-real-diagnostic.yml",
     ".github/workflows/v2812-identity-completion-ratifier.yml",
     ".github/workflows/v2812-operational-integrity-audit.yml",
     ".github/workflows/v2812-shadow-accumulator-selftest.yml",
@@ -25,5 +32,17 @@
     "triage_changed": false,
     "production_collection_schedule_changed": false
   },
-  "reactivation_rule": "Restore automatic validation triggers only after hosted runner execution is demonstrably available again; manual workflow_dispatch remains available."
+  "reactivation_rule": "Restore automatic validation triggers only after hosted runner execution is demonstrably available again; manual workflow_dispatch remains available.",
+  "audit": {
+    "manual_only_count": 15,
+    "all_manual_only_have_workflow_dispatch": true,
+    "all_manual_only_push_disabled": true,
+    "all_manual_only_schedule_disabled": true,
+    "production_v284_daily_schedule_preserved": true,
+    "production_v284_cron_utc": "17 1 * * *",
+    "v283_trigger_file_operational_workflows_preserved": [
+      ".github/workflows/v283-pit-date-authority.yml",
+      ".github/workflows/v283-prospective-morning-orchestrator.yml"
+    ]
+  }
 }
