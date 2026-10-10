@@ -108,19 +108,19 @@ def main():
             exchange=cid.split(':')[0]
             heartbeat(progress_path,chunk_index,rank,cid,'SECURITY_START',exchange=exchange,code=code)
             try:
-                heartbeat(progress_path,a.chunk_index,rank,cid,'ORG_RESOLVE_START')
+                heartbeat(progress_path,chunk_index,rank,cid,'ORG_RESOLVE_START')
                 org=ir.get('validated_org_id') or base.resolve_org(page,code)
-                heartbeat(progress_path,a.chunk_index,rank,cid,'ORG_RESOLVE_DONE',org_id=org)
-                heartbeat(progress_path,a.chunk_index,rank,cid,'PAGINATION_START')
+                heartbeat(progress_path,chunk_index,rank,cid,'ORG_RESOLVE_DONE',org_id=org)
+                heartbeat(progress_path,chunk_index,rank,cid,'PAGINATION_START')
                 rr,ev=query_rows_stable(page,cid,code,org,exchange)
-                heartbeat(progress_path,a.chunk_index,rank,cid,'PAGINATION_DONE',official_total=ev.get('official_total'),pages_fetched=ev.get('pages_fetched'))
+                heartbeat(progress_path,chunk_index,rank,cid,'PAGINATION_DONE',official_total=ev.get('official_total'),pages_fetched=ev.get('pages_fetched'))
                 transport.append({'batch_rank':rank,'canonical_security_id':cid,'org_id':org,
                     'identity_source':'FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT',
                     **ev,'status':'PASS'})
             except Exception as exc:
                 blocker=f'{type(exc).__name__}:{exc}'
                 transport.append({'batch_rank':rank,'canonical_security_id':cid,'status':'BLOCKED','blocker':blocker})
-                heartbeat(progress_path,a.chunk_index,rank,cid,'TRANSPORT_BLOCKED',blocker=blocker,elapsed_seconds=round(time.monotonic()-sec_t0,3))
+                heartbeat(progress_path,chunk_index,rank,cid,'TRANSPORT_BLOCKED',blocker=blocker,elapsed_seconds=round(time.monotonic()-sec_t0,3))
                 continue
 
             admitted=0
@@ -134,17 +134,17 @@ def main():
                 admitted+=1
                 base_row={**row,'development_fold':owner[cid],'parent_candidate_absent':True,'triage_state':q['triage_state']}
                 try:
-                    heartbeat(progress_path,a.chunk_index,rank,cid,'CANDIDATE_START',announcement_id=aid,candidate_index=admitted)
+                    heartbeat(progress_path,chunk_index,rank,cid,'CANDIDATE_START',announcement_id=aid,candidate_index=admitted)
                     temporal=base.old.resolve_temporal(row,days)
-                    heartbeat(progress_path,a.chunk_index,rank,cid,'PDF_FETCH_START',announcement_id=aid,candidate_index=admitted)
+                    heartbeat(progress_path,chunk_index,rank,cid,'PDF_FETCH_START',announcement_id=aid,candidate_index=admitted)
                     pdf=root/f'{rank:03d}_{aid}.pdf'
                     obj_sha,nbytes=base.old.fetch_pdf(api,row,pdf)
-                    heartbeat(progress_path,a.chunk_index,rank,cid,'PDF_FETCH_DONE',announcement_id=aid,bytes=nbytes)
+                    heartbeat(progress_path,chunk_index,rank,cid,'PDF_FETCH_DONE',announcement_id=aid,bytes=nbytes)
                     pages,ex=base.run_with_timeout(120,'PDF_EXTRACT',base.te.extract_pdf,pdf,obj_sha)
-                    heartbeat(progress_path,a.chunk_index,rank,cid,'CLASSIFIER_START',announcement_id=aid,pdf_pages=ex.get('pdf_page_count'))
+                    heartbeat(progress_path,chunk_index,rank,cid,'CLASSIFIER_START',announcement_id=aid,pdf_pages=ex.get('pdf_page_count'))
                     dec=base.run_with_timeout(120,'CLASSIFIER',base.pc.classify_pages,pages)
                     e=dec['evidence']
-                    heartbeat(progress_path,a.chunk_index,rank,cid,'CLASSIFIER_DONE',announcement_id=aid,classification_state=dec.get('classification_state'))
+                    heartbeat(progress_path,chunk_index,rank,cid,'CLASSIFIER_DONE',announcement_id=aid,classification_state=dec.get('classification_state'))
                     results.append({**base_row,**temporal,'pipeline_status':'SUCCESS','blocker':'',
                         'object_sha256':obj_sha,'bytes':nbytes,'pdf_page_count':ex['pdf_page_count'],
                         'pages_with_text':ex['pages_with_text'],'total_nonwhitespace_characters':ex['total_nonwhitespace_characters'],
@@ -156,10 +156,10 @@ def main():
                         'classification_reason':e.get('reason',''),'decision_sha256':dec['decision_sha256']})
                 except Exception as exc:
                     blocker=f'{type(exc).__name__}:{exc}'
-                    heartbeat(progress_path,a.chunk_index,rank,cid,'CANDIDATE_BLOCKED',announcement_id=aid,blocker=blocker)
+                    heartbeat(progress_path,chunk_index,rank,cid,'CANDIDATE_BLOCKED',announcement_id=aid,blocker=blocker)
                     results.append({**base_row,'pipeline_status':'BLOCKED','blocker':blocker})
                 write_results(results_path,results)
-            heartbeat(progress_path,a.chunk_index,rank,cid,'SECURITY_DONE',triage_admitted=admitted,elapsed_seconds=round(time.monotonic()-sec_t0,3))
+            heartbeat(progress_path,chunk_index,rank,cid,'SECURITY_DONE',triage_admitted=admitted,elapsed_seconds=round(time.monotonic()-sec_t0,3))
             write_results(results_path,results)
         api.dispose()
         browser.close()
@@ -178,7 +178,7 @@ def main():
     receipt={
         'schema':'AI_CORE_EVID_V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_RECEIPT_1',
         'version':'V2.9.3','status':'V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_COMPLETE' if execution_pass else 'V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_BLOCKED',
-        'chunk_index':a.chunk_index,'batch_ranks':ranks,'security_ids':chunk,
+        'chunk_index':chunk_index,'batch_ranks':ranks,'security_ids':chunk,
         'execution_integrity_pass':execution_pass,'execution_checks':execution_checks,
         'summary':{
             'issuers_transport_complete':queried,
@@ -195,7 +195,7 @@ def main():
     }
     receipt['receipt_sha256']=base.stable_sha(receipt)
     receipt_path.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    heartbeat(progress_path,a.chunk_index,ranks[-1],chunk[-1],'CHUNK_DONE',execution_integrity_pass=execution_pass,result_count=len(results))
+    heartbeat(progress_path,chunk_index,ranks[-1],chunk[-1],'CHUNK_DONE',execution_integrity_pass=execution_pass,result_count=len(results))
     print(json.dumps(receipt,ensure_ascii=False,indent=2))
     if not execution_pass:
         raise SystemExit(2)
