@@ -54,6 +54,16 @@ def load_batch_and_identity(authority, recovery_receipt, phase_a_receipt):
         raise RuntimeError('BATCH3_IDENTITY_MAP_COVERAGE_BLOCK:'+','.join(missing))
     return c,parent_ids,owner,batch,m
 
+def query_rows_stable(page, cid, code, org, exchange):
+    try:
+        return base.query_rows(page,cid,code,org,exchange)
+    except RuntimeError as exc:
+        msg=str(exc)
+        if not msg.startswith('PAGINATION_DEDUPE_MISMATCH:'):
+            raise
+        time.sleep(3)
+        return base.query_rows(page,cid,code,org,exchange)
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--chunk-index',type=int,required=True)
@@ -104,7 +114,7 @@ def main():
                 org=ir.get('validated_org_id') or base.resolve_org(page,code)
                 heartbeat(progress_path,a.chunk_index,rank,cid,'ORG_RESOLVE_DONE',org_id=org)
                 heartbeat(progress_path,a.chunk_index,rank,cid,'PAGINATION_START')
-                rr,ev=base.query_rows(page,cid,code,org,exchange)
+                rr,ev=query_rows_stable(page,cid,code,org,exchange)
                 heartbeat(progress_path,a.chunk_index,rank,cid,'PAGINATION_DONE',official_total=ev.get('official_total'),pages_fetched=ev.get('pages_fetched'))
                 transport.append({'batch_rank':rank,'canonical_security_id':cid,'org_id':org,
                     'identity_source':'FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT',
@@ -180,7 +190,7 @@ def main():
         },
         'transport_evidence':transport,
         'results_sha256':base.sha_file(results_path),
-        'scientific_terminal_status_emitted':False,'scientific_batch_index':2,
+        'scientific_terminal_status_emitted':False,'scientific_batch_index':3,
         'next_scientific_batch_authorized':False,
         'price_or_return_data_consumed':False,'candidate_outcome_research_executed':False,
         'fold3_accessed':False,'fold4_accessed':False
