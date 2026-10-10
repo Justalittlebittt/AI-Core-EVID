@@ -50,6 +50,14 @@ jobs:
           assert c["governance"]["numeric_thresholds_changed"] is False
           assert c["governance"]["classifier_changed"] is False
           assert c["governance"]["triage_changed"] is False
+          a=json.loads(Path("evidence/V2.9.3_REUSED_CHUNK_STATIC_AUDIT_1.json").read_text())
+          assert a["status"]=="PASS"
+          assert a["reused_chunks"]==[1,2,4,5,6,7,8]
+          assert a["checks"]["all_receipts_complete"] is True
+          assert a["checks"]["all_exact_rank_membership_match"] is True
+          assert a["checks"]["all_exact_security_membership_match"] is True
+          assert a["checks"]["all_result_payloads_present"] is True
+          assert a["checks"]["all_prohibited_data_checks_clean"] is True
           PY
 
       - name: Download frozen V2.9.1 prerequisite artifacts
