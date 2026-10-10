@@ -1,12 +1,5 @@
 name: V2.8.12 Prospective Automation Operational Integrity Audit
 on:
-  push:
-    paths:
-      - ".github/workflows/v2812-operational-integrity-audit.yml"
-      - ".github/workflows/v284-controlled-prospective-e-layer.yml"
-      - "scripts/v2812_operational_integrity_audit.py"
-      - "scripts/v284_incremental_e_layer_runner.py"
-      - "evidence/V2.8.12_TRANSPORT_RELIABILITY_AMENDMENT_1.json"
   workflow_dispatch:
 permissions:
   contents: read
