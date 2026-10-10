@@ -1,0 +1,55 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_PROVENANCE_CHAIN_AUDIT_1",
+  "version": "V2.8.4/V2.8.12",
+  "status": "PASS",
+  "audited_positive_events": [
+    {
+      "announcement_id": "1225573666",
+      "canonical_security_id": "SZSE:300634",
+      "observation_commit_sha": "490e6ea039abfe64ac99172cea4b3bcc186164c7",
+      "observation_committed_at_utc": "2026-09-22T06:43:07Z",
+      "identity_binding_commit_sha": "68ddf78d5c4eb142502149446222f9795f0f95d8",
+      "identity_binding_committed_at_utc": "2026-09-22T06:47:46Z",
+      "eligibility_completeness_time_utc": "2026-09-22T06:47:46Z",
+      "effective_signal_date": "2026-09-23"
+    },
+    {
+      "announcement_id": "1225585268",
+      "canonical_security_id": "SZSE:301382",
+      "observation_commit_sha": "19a00f8a017aad47e7d9f457c1bc0a3206a6abe1",
+      "observation_committed_at_utc": "2026-09-29T07:09:47Z",
+      "identity_binding_commit_sha": "db2ea9a1f5ef6405a4de05e83831af099d04bcce",
+      "identity_binding_committed_at_utc": "2026-09-29T07:19:49Z",
+      "eligibility_completeness_time_utc": "2026-09-29T07:19:49Z",
+      "effective_signal_date": "2026-09-30"
+    },
+    {
+      "announcement_id": "1225585270",
+      "canonical_security_id": "SZSE:301382",
+      "observation_commit_sha": "19a00f8a017aad47e7d9f457c1bc0a3206a6abe1",
+      "observation_committed_at_utc": "2026-09-29T07:09:47Z",
+      "identity_binding_commit_sha": "db2ea9a1f5ef6405a4de05e83831af099d04bcce",
+      "identity_binding_committed_at_utc": "2026-09-29T07:19:49Z",
+      "eligibility_completeness_time_utc": "2026-09-29T07:19:49Z",
+      "effective_signal_date": "2026-09-30"
+    }
+  ],
+  "checks": {
+    "observation_commit_times_match_github": true,
+    "identity_binding_commit_times_match_github": true,
+    "authoritative_observed_at_not_backdated": true,
+    "eligibility_completeness_not_before_required_authorities": true,
+    "effective_signal_date_strictly_after_completeness_date": true,
+    "same_day_activation": false,
+    "historical_backfill": false,
+    "classifier_decision_recomputed": false,
+    "price_or_return_data_consumed": false
+  },
+  "governance": {
+    "research_semantics_changed": false,
+    "information_floor_changed": false,
+    "outcome_research_authorized": false,
+    "fold3_accessed": false,
+    "fold4_accessed": false
+  }
+}
