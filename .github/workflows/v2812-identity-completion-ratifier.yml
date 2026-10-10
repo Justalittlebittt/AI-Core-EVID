@@ -1,9 +1,5 @@
 name: V2.8.12 Identity Completion Ratifier
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/v2812-identity-completion-ratifier.yml"
   workflow_dispatch:
 permissions:
   contents: write
