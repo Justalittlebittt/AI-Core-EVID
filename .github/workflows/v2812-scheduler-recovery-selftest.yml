@@ -1,13 +1,6 @@
 name: V2.8.12 Scheduler Recovery Semantics Self-Test
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "scripts/v2812_scheduler_recovery_semantics.py"
-      - "evidence/V2.8.12_DATA_COMPLETENESS_AND_SCHEDULER_RECOVERY_AMENDMENT_1.json"
-      - "evidence/V2.8.12_SHADOW_CADENCE_AMENDMENT_2.json"
-      - ".github/workflows/v284-controlled-prospective-e-layer.yml"
-      - ".github/workflows/v2812-scheduler-recovery-selftest.yml"
 permissions:
   contents: read
 jobs:
