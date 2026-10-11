@@ -13,7 +13,7 @@ import hashlib
 import json
 import math
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from statistics import stdev
 
@@ -28,6 +28,8 @@ def parse_timestamp(raw: str) -> datetime:
     value = datetime.fromisoformat(raw.replace("Z", "+00:00"))
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError("retrieved_at_utc must include timezone")
+    if value.utcoffset() != timedelta(0):
+        raise ValueError("retrieved_at_utc must have UTC offset")
     return value
 
 
