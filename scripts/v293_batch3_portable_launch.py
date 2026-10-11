@@ -30,7 +30,7 @@ def sha(path):
 
 def git_blob(path):
     data=path.read_bytes()
-    return hashlib.sha1(b"blob "+str(len(data)).encode()+b"\\0"+data).hexdigest()
+    return hashlib.sha1(b"blob "+str(len(data)).encode()+bytes([0])+data).hexdigest()
 
 def preflight():
     for rel, expected in EXPECTED.items():
@@ -96,7 +96,7 @@ def main():
                     "aggregate_receipt_sha256":sha(AGG_RECEIPT) if AGG_RECEIPT.exists() else None,
                     "next_batch_authorized":False,
                     "scientific_conclusion_from_this_receipt":False}
-            LOCAL_RECEIPT.write_text(json.dumps(record,indent=2)+"\\n",encoding="utf-8")
+            LOCAL_RECEIPT.write_text(json.dumps(record,indent=2)+chr(10),encoding="utf-8")
             print(json.dumps(record,ensure_ascii=False),flush=True)
     return code
 
