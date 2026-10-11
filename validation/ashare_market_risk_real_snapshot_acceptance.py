@@ -15,7 +15,7 @@ from pathlib import Path
 from ashare_market_risk_descriptive import evaluate, load_rows, parse_timestamp
 
 ALLOWED_PROVIDER = "AKSHARE_INDEX_ZH_A_HIST_EASTMONEY"
-MIN_CLOSES_FOR_RV20_252 = 1 + 20 + 252 - 1  # 272 consecutive log returns + first close = 273
+MIN_CLOSES_FOR_RV20_252 = 20 + 252  # 272 closes = 271 log returns = 252 rolling RV20 values
 REQUIRED_INDEXES = {"000300.SH", "000688.SH"}
 
 
