@@ -104,7 +104,7 @@ def main():
 
         changed=[dict(x) for x in base]
         # Same count, both pass official close, but one calendar differs.
-        changed[-2]["date"]=(date.fromisoformat(changed[-2]["date"])-timedelta(days=1)).isoformat()
+        changed[-3]["date"]="2026-10-03"  # weekend only in second index, not a duplicate
         write(p,changed)
         blocked(p,ref,"INDEX_TRADING_DATES_DISAGREE")
     print("ASHARE_PUBLIC_CLOSE_ACCEPTANCE_SYNTHETIC: PASS (NOT REAL DATA)")
