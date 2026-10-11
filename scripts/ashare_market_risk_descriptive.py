@@ -117,7 +117,7 @@ def risk_for_index(rows: list[tuple[date, float, str, str]], as_of: date) -> dic
 
 def evaluate(path: Path, as_of: date) -> dict:
     groups, digest = load_rows(path)
-    reports = {idx: risk_for_index(groups[idx], as_of) for idx in INDEXES}
+    reports = {idx: risk_for_index(groups[idx], as_of) for idx in INDEXES if idx in groups}
     for idx in INDEXES:
         if idx not in groups:
             reports[idx] = {"status": "MISSING_INDEX_INPUT", "sessions": 0}
