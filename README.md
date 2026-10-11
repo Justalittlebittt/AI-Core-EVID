@@ -39,7 +39,7 @@ Canonical governance contract:
 
 ### Prospective E-layer
 
-The active prospective E-layer remains outcome-blind and scheduled.
+The prospective E-layer remains outcome-blind by contract. Its post-Epoch-2 runtime and scheduler operation are **not currently verified**; see the project DAG for operational blockers.
 
 Current readiness status remains `ACCUMULATING_PROSPECTIVE_E_EVENTS` unless its frozen information gate later passes. The readiness gate requires all of:
 
@@ -81,7 +81,7 @@ This layer computes chronological portfolio metrics only from an **upstream exec
 
 Drawdown and portfolio-path statistics therefore have actual path semantics rather than being reconstructed from unordered event rows.
 
-Evidence strength remains unscored until a separately frozen, pre-outcome threshold contract is defined.
+A qualitative evidence-strength mapping and synthetic synthesizer now exist, but **real strategy scoring remains unperformed**. Any experiment-specific numeric thresholds must be preregistered before outcome inspection.
 
 ## Decision Packet and Discipline Engine
 
