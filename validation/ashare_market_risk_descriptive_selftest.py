@@ -81,6 +81,23 @@ def main():
         write(path, [x for x in generate() if x["index_id"] == "000300.SH"])
         one = evaluate(path, cutoff)
         assert one["indices"]["000688.SH"]["status"] == "MISSING_INDEX_INPUT"
+        # A genuinely constant series has zero realized volatility, not NaN.
+        constant = generate()
+        for row in constant:
+            row["close"] = "1000"
+        write(path, constant)
+        flat = evaluate(path, cutoff)
+        assert all(v["rv20_annualized"] == 0 for v in flat["indices"].values())
+        assert all(v["rv20_percentile_252"] == 1.0 for v in flat["indices"].values())
+        # The timestamp contract must reject local time masquerading as UTC.
+        bad_timestamp = generate()
+        bad_timestamp[0]["retrieved_at_utc"] = "2026-10-10T08:00:00+08:00"
+        write(path, bad_timestamp)
+        try:
+            evaluate(path, cutoff)
+            raise AssertionError("non-UTC provenance must fail")
+        except ValueError as ex:
+            assert "retrieved_at_utc must have UTC offset" in str(ex)
     print("ASHARE_MARKET_RISK_SYNTHETIC_MECHANICS: PASS")
 
 
