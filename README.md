@@ -141,6 +141,28 @@ Optional AKShare acquisition (requires its external installation/network availab
 python scripts/ashare_market_risk_akshare_fetch.py --start-date 2024-01-01 --end-date YYYY-MM-DD --output-csv path/to/immutable_snapshot.csv
 ```
 
+### Independently anchored real-data acceptance (2026-10-09 snapshot)
+
+Official CSI close reference for the last completed A-share session on Sunday 2026-10-11:
+- CSI300 000300.SH: 4317.25 points (2026-10-09)
+- STAR50 000688.SH: 1457.27 points (2026-10-09)
+- Source: [CSI homepage](https://www.csindex.com.cn/), both marked 2026-10-09 15:00 China Standard Time.
+- Immutable audit anchor: `validation/references/ashare_index_close_20261009_csi.json`.
+
+After a **real**, complete, free-public-data snapshot is acquired, run:
+
+```bash
+python validation/ashare_market_risk_real_snapshot_acceptance.py \
+  --input-csv path/to/immutable_snapshot.csv \
+  --reference-json validation/references/ashare_index_close_20261009_csi.json \
+  --as-of 2026-10-09 \
+  --output-json path/to/acceptance_receipt.json
+```
+
+This gate requires exactly two expected indexes, at least 272 closes per index, matching trading dates, independent close agreement within 0.02 index points, and an acquisition timestamp no earlier than the official market close. It **does not** certify independent holiday/session completeness, authentic vendor transport, historical PIT reconstruction, forecasting skill, selection validity or permission to trade. Synthetic test fixtures MUST NOT be submitted as real market evidence. On another session a new independent dated reference is required; do not silently reuse the 2026-10-09 anchor.
+
+Runtime status: this environment could independently verify the official published closing levels but could **not** reach the AKShare/Eastmoney live data provider. The real market history acquisition and acceptance remain unverified. The reference is not an actual fetched CSV. No numeric realized-volatility output from actual public daily history is claimed.
+
 ### Active next decisions
 
 1. Validate the free index snapshot against market dates and independent index closes, then publish a dated **descriptive** risk report; add no arbitrary buy/sell thresholds.
