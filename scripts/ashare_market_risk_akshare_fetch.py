@@ -49,7 +49,7 @@ def main() -> int:
                 "index_id": index_id, "date": trading_day.isoformat(),
                 "close": str(row["收盘"]),
                 "source_id": "AKSHARE_INDEX_ZH_A_HIST_EASTMONEY",
-                "retrieved_at_utc": collected_at
+                "retrieved_at_utc": ""  # Set only after both requests complete.
             })
             count += 1
         counts[index_id] = count
