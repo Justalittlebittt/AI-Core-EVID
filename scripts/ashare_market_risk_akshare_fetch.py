@@ -58,36 +58,47 @@ def main() -> int:
     for record in records:
         record["retrieved_at_utc"] = collected_at
     args.output_csv.parent.mkdir(parents=True, exist_ok=True)
-    # Write atomically after BOTH index requests complete.
+    # Keep both outputs in temporary files until validation and hashing finish.
     tmp = args.output_csv.with_name(args.output_csv.name + ".tmp")
-    if tmp.exists():
+    manifest_tmp = manifest.with_name(manifest.name + ".tmp")
+    if tmp.exists() or manifest_tmp.exists():
         raise FileExistsError("STALE_TEMPORARY_SNAPSHOT")
     try:
-        with tmp.open("w", encoding="utf-8", newline="") as f:
+        with tmp.open("x", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=["index_id","date","close","source_id","retrieved_at_utc"],
                                     lineterminator="\n")
             writer.writeheader()
             writer.writerows(records)
         from ashare_market_risk_descriptive import load_rows
         load_rows(tmp)
-        tmp.replace(args.output_csv)
+        sha = hashlib.sha256(tmp.read_bytes()).hexdigest()
+        receipt = {
+            "schema": "AI_CORE_EVID_ASHARE_INDEX_SOURCE_SNAPSHOT_V1",
+            "source": "AKShare.index_zh_a_hist/Eastmoney",
+            "akshare_version": version("akshare"),
+            "captured_at_utc": collected_at,
+            "query_start_date": start.isoformat(),
+            "query_end_date": end.isoformat(),
+            "rows_per_index": counts,
+            "snapshot_sha256": sha,
+            "historical_PIT_verified": False,
+            "notes": "Free public data; source availability, trading-session coverage and provider revisions require independent validation"
+        }
+        with manifest_tmp.open("x", encoding="utf-8") as f:
+            f.write(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n")
+        # Both validated files now exist; never replace prior published output.
+        if args.output_csv.exists() or manifest.exists():
+            raise FileExistsError("IMMUTABLE_SNAPSHOT_OUTPUT_ALREADY_EXISTS")
+        tmp.rename(args.output_csv)
+        try:
+            manifest_tmp.rename(manifest)
+        except BaseException:
+            # Roll back CSV if manifest cannot be published.
+            args.output_csv.unlink(missing_ok=True)
+            raise
     finally:
-        if tmp.exists():
-            tmp.unlink()
-    sha = hashlib.sha256(args.output_csv.read_bytes()).hexdigest()
-    receipt = {
-        "schema": "AI_CORE_EVID_ASHARE_INDEX_SOURCE_SNAPSHOT_V1",
-        "source": "AKShare.index_zh_a_hist/Eastmoney",
-        "akshare_version": version("akshare"),
-        "captured_at_utc": collected_at,
-        "query_start_date": start.isoformat(),
-        "query_end_date": end.isoformat(),
-        "rows_per_index": counts,
-        "snapshot_sha256": sha,
-        "historical_PIT_verified": False,
-        "notes": "Free public data; source availability, trading-session coverage and provider revisions require independent validation"
-    }
-    manifest.write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        tmp.unlink(missing_ok=True)
+        manifest_tmp.unlink(missing_ok=True)
     print(json.dumps(receipt, ensure_ascii=False))
     return 0
 
