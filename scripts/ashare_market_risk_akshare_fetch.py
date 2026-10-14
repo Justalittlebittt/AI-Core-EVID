@@ -27,9 +27,11 @@ def main() -> int:
         raise ValueError("START_DATE_AFTER_END_DATE")
     if args.output_csv.exists():
         raise FileExistsError("IMMUTABLE_SNAPSHOT_OUTPUT_ALREADY_EXISTS")
+    manifest = args.output_csv.with_name(args.output_csv.name + ".manifest.json")
+    if manifest.exists():
+        raise FileExistsError("IMMUTABLE_SNAPSHOT_MANIFEST_ALREADY_EXISTS")
     import akshare as ak
     from importlib.metadata import version
-    collected_at = datetime.now(timezone.utc).isoformat()
     records = []
     counts = {}
     for symbol, index_id in INDEXES.items():
@@ -51,6 +53,10 @@ def main() -> int:
             })
             count += 1
         counts[index_id] = count
+    # Capture timestamp represents completed retrieval, not pre-request invocation.
+    collected_at = datetime.now(timezone.utc).isoformat()
+    for record in records:
+        record["retrieved_at_utc"] = collected_at
     args.output_csv.parent.mkdir(parents=True, exist_ok=True)
     # Write atomically after BOTH index requests complete.
     tmp = args.output_csv.with_name(args.output_csv.name + ".tmp")
@@ -81,7 +87,6 @@ def main() -> int:
         "historical_PIT_verified": False,
         "notes": "Free public data; source availability, trading-session coverage and provider revisions require independent validation"
     }
-    manifest = args.output_csv.with_name(args.output_csv.name + ".manifest.json")
     manifest.write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(receipt, ensure_ascii=False))
     return 0
