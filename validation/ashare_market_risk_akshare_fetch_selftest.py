@@ -1,5 +1,6 @@
 """No-network source-adapter regression: mock both index feeds and verify no partial snapshot."""
 import csv
+import json
 import importlib.metadata
 import sys
 import tempfile
@@ -34,7 +35,23 @@ def main():
             rows = list(csv.DictReader(target.open(encoding="utf-8")))
             assert len(rows) == 6
             assert {r["index_id"] for r in rows} == {"000300.SH", "000688.SH"}
-            assert target.with_name(target.name + ".manifest.json").exists()
+            manifest = target.with_name(target.name + ".manifest.json")
+            assert manifest.exists()
+            meta = json.loads(manifest.read_text(encoding="utf-8"))
+            assert meta["captured_at_utc"]
+            assert all(r["retrieved_at_utc"] == meta["captured_at_utc"] for r in rows)
+            assert all(r["retrieved_at_utc"] for r in rows)
+
+            # An existing manifest must never be overwritten, even if the CSV is absent.
+            target.unlink()
+            before = manifest.read_bytes()
+            try:
+                adapter.main()
+                raise AssertionError("existing manifest must reject acquisition")
+            except FileExistsError as ex:
+                assert "IMMUTABLE_SNAPSHOT_MANIFEST_ALREADY_EXISTS" in str(ex)
+            assert manifest.read_bytes() == before
+            assert not target.exists()
 
             def failure(**kw):
                 return None if kw["symbol"] == "000688" else Frame()
