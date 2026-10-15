@@ -1,0 +1,20 @@
+name: Infrastructure Smoke Diagnostic
+on:
+  push:
+    branches:
+      - feature/a-share-mainline-recovery-20261011
+    paths:
+      - '.github/workflows/infrastructure-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  shell-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Print hosted runner identity
+        run: |
+          echo "RUNNER_OS=$RUNNER_OS"
+          echo "GITHUB_SHA=$GITHUB_SHA"
+          echo "SHELL_SMOKE_PASS"
