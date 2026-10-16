@@ -4,6 +4,8 @@ on:
     paths:
       - 'scripts/ashare_market_risk_*.py'
       - 'validation/ashare_market_risk_*.py'
+      - 'validation/ashare_snapshot_provenance_audit.py'
+      - 'validation/test_ashare_snapshot_provenance_audit.py'
       - '.github/workflows/ashare-risk-regression.yml'
   push:
     branches:
@@ -11,6 +13,8 @@ on:
     paths:
       - 'scripts/ashare_market_risk_*.py'
       - 'validation/ashare_market_risk_*.py'
+      - 'validation/ashare_snapshot_provenance_audit.py'
+      - 'validation/test_ashare_snapshot_provenance_audit.py'
       - '.github/workflows/ashare-risk-regression.yml'
 permissions:
   contents: read
@@ -25,7 +29,7 @@ jobs:
           python-version: '3.11'
       - name: Python syntax checks
         run: |
-          python -m py_compile scripts/ashare_market_risk_akshare_fetch.py scripts/ashare_market_risk_descriptive.py validation/ashare_market_risk_akshare_fetch_selftest.py validation/ashare_market_risk_descriptive_selftest.py validation/ashare_market_risk_real_snapshot_acceptance.py validation/ashare_market_risk_real_snapshot_acceptance_selftest.py
+          python -m py_compile scripts/ashare_market_risk_akshare_fetch.py scripts/ashare_market_risk_descriptive.py validation/ashare_market_risk_akshare_fetch_selftest.py validation/ashare_market_risk_descriptive_selftest.py validation/ashare_market_risk_real_snapshot_acceptance.py validation/ashare_market_risk_real_snapshot_acceptance_selftest.py validation/ashare_snapshot_provenance_audit.py validation/test_ashare_snapshot_provenance_audit.py
       - name: Adapter mocked source regression
         run: python validation/ashare_market_risk_akshare_fetch_selftest.py
       - name: Historical descriptive synthetic mechanics
@@ -34,3 +38,7 @@ jobs:
         env:
           PYTHONPATH: scripts:validation
         run: python validation/ashare_market_risk_real_snapshot_acceptance_selftest.py
+      - name: Snapshot manifest provenance regression
+        env:
+          PYTHONPATH: validation
+        run: python -m unittest -v test_ashare_snapshot_provenance_audit
