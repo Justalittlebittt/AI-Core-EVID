@@ -30,4 +30,21 @@ class ProvenanceTests(unittest.TestCase):
         x=json.loads(self.man.read_text());x['historical_PIT_verified']=True;self.man.write_text(json.dumps(x))
         with self.assertRaisesRegex(ValueError,'PIT_CLAIM'):audit(self.csv,self.man)
 
+
+    def test_malformed_date(self):
+        self.rows[0]['date']='2026-02-30';self.save()
+        with self.assertRaises(ValueError):audit(self.csv,self.man)
+    def test_invalid_close(self):
+        self.rows[0]['close']='nan';self.save()
+        with self.assertRaisesRegex(ValueError,'SNAPSHOT_CLOSE_INVALID'):audit(self.csv,self.man)
+    def test_naive_timestamp(self):
+        self.rows[0]['retrieved_at_utc']='2026-10-11T06:00:00';self.save()
+        with self.assertRaisesRegex(ValueError,'ROW_CAPTURE_NOT_UTC'):audit(self.csv,self.man)
+    def test_duplicate_rows(self):
+        self.rows.append(dict(self.rows[0]));self.save()
+        with self.assertRaisesRegex(ValueError,'DUPLICATE_INDEX_DATE'):audit(self.csv,self.man)
+    def test_bad_query_range(self):
+        x=json.loads(self.man.read_text());x['query_start_date']='2027-01-01';self.man.write_text(json.dumps(x))
+        with self.assertRaisesRegex(ValueError,'INVALID_QUERY_RANGE'):audit(self.csv,self.man)
+
 if __name__=='__main__':unittest.main()
