@@ -3,8 +3,9 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 REQUIRED = {'index_id','date','close','source_id','retrieved_at_utc'}
@@ -27,7 +28,12 @@ def audit(snapshot: Path, manifest: Path) -> dict:
     ts = datetime.fromisoformat(str(m['captured_at_utc']).replace('Z','+00:00'))
     if ts.utcoffset() != timezone.utc.utcoffset(ts):
         raise ValueError('MANIFEST_CAPTURE_NOT_UTC')
+    start = date.fromisoformat(m['query_start_date'])
+    end = date.fromisoformat(m['query_end_date'])
+    if start > end:
+        raise ValueError('MANIFEST_INVALID_QUERY_RANGE')
     counts = Counter()
+    seen = set()
     with snapshot.open(encoding='utf-8-sig',newline='') as f:
         reader = csv.DictReader(f)
         if set(reader.fieldnames or []) != REQUIRED:
@@ -37,10 +43,21 @@ def audit(snapshot: Path, manifest: Path) -> dict:
                 raise ValueError('SNAPSHOT_INDEX_BLOCK')
             if r['source_id'] != PROVIDER:
                 raise ValueError('SNAPSHOT_SOURCE_BLOCK')
-            if r['retrieved_at_utc'] != m['captured_at_utc']:
+            row_timestamp = datetime.fromisoformat(r['retrieved_at_utc'].replace('Z', '+00:00'))
+            if row_timestamp.utcoffset() != timezone.utc.utcoffset(row_timestamp):
+                raise ValueError('ROW_CAPTURE_NOT_UTC')
+            if row_timestamp != ts:
                 raise ValueError('CAPTURE_TIMESTAMP_MISMATCH')
-            if not (m['query_start_date'] <= r['date'] <= m['query_end_date']):
+            trading_day = date.fromisoformat(r['date'])
+            if not (start <= trading_day <= end):
                 raise ValueError('SNAPSHOT_DATE_OUT_OF_QUERY')
+            close = float(r['close'])
+            if not math.isfinite(close) or close <= 0:
+                raise ValueError('SNAPSHOT_CLOSE_INVALID')
+            key = (r['index_id'], trading_day)
+            if key in seen:
+                raise ValueError('SNAPSHOT_DUPLICATE_INDEX_DATE')
+            seen.add(key)
             counts[r['index_id']] += 1
     if set(counts) != INDEXES or dict(counts) != m.get('rows_per_index'):
         raise ValueError('MANIFEST_ROW_COUNTS_MISMATCH')
