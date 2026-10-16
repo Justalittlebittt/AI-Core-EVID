@@ -1,5 +1,8 @@
 name: Infrastructure Smoke Diagnostic
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/infrastructure-smoke.yml'
   push:
     branches:
       - feature/a-share-mainline-recovery-20261011
