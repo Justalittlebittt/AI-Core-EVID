@@ -34,9 +34,12 @@ class OutcomeStudyTests(unittest.TestCase):
         y=self.run_study(q,q)
         a=x["indices"]["000300.SH"]["windows"]
         b=y["indices"]["000300.SH"]["windows"]
+        checked=0
         for u,v in zip(a,b):
-            if u["outcome_end"]<"2026-03-01":
+            if u["outcome_end"]<"2026-04-01":
                 self.assertEqual(u["rv20_at_asof"],v["rv20_at_asof"])
+                checked+=1
+        self.assertGreater(checked,0,"Leakage test must inspect at least one historical window")
     def test_mixed_source_rejected(self):
         with self.assertRaisesRegex(ValueError,"MIXED_SOURCE"):
             self.run_study(self.prices,self.prices,source_b="other")
