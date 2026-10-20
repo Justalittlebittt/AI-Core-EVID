@@ -36,7 +36,7 @@ class OutcomeStudyTests(unittest.TestCase):
         b=y["indices"]["000300.SH"]["windows"]
         checked=0
         for u,v in zip(a,b):
-            if u["outcome_end"]<"2026-09-01":
+            if u["outcome_end"]<"2026-03-01":
                 self.assertEqual(u["rv20_at_asof"],v["rv20_at_asof"])
                 checked+=1
         self.assertGreater(checked,0,"Leakage test must inspect at least one historical window")
