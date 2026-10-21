@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_BATCH3_EXECUTION_FAILURE_TERMINAL_1",
+  "version": "V2.9.3",
+  "status": "EXECUTION_FAILED_NO_SCIENTIFIC_CONCLUSION",
+  "job_status": "failure",
+  "run_id": "38040492016",
+  "run_attempt": "2",
+  "recorded_utc": "2026-10-21T07:32:32.432941+00:00",
+  "scientific_batch_index": 3,
+  "batch_ranks": [
+    129,
+    192
+  ],
+  "reconstructed_chunk_ranks": [
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152
+  ],
+  "chunk_receipt_status": "V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_BLOCKED",
+  "aggregate_receipt_status": "ABSENT",
+  "observed_files_sha256": {
+    "evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RECEIPT_1.json": "5e9b8ca320d097b063f0fa8577c04cabbb3539cb0d32a6a4917ea73bfc284d8d",
+    "evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_PROGRESS_1.json": "6a21bb76894c0a1425d203680c07fb871d32c15355b4a52f3aedd536d6df3285",
+    "evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RESULTS_1.csv": "701d20a9949fbd7b8cb573cb8a84c0da66614266f0b08ca26e8fe3d39fb57089",
+    "evidence/V2.9.3_RECONSTRUCTED_BATCH3_RECEIPT_1.json": null
+  },
+  "next_scientific_batch_authorized": false,
+  "scientific_terminal_status_emitted": false,
+  "no_scientific_conclusion": true,
+  "failure_source": "GITHUB_ACTIONS_JOB_TERMINAL_STATE",
+  "limitations": "Not evidence of an atomic commit or survival of runner loss before this handler executes."
+}
