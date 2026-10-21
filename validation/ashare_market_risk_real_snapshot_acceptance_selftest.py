@@ -30,7 +30,7 @@ def rows(n=272):
         for i,day in enumerate(sessions):
             items.append({
               "index_id":idx,"date":day.isoformat(),
-              "close":f"{close*math.exp((i-n+1)*0.0001+0.00001*math.sin(i)):.8f}",
+              "close":f"{(close if i == n-1 else close*math.exp((i-n+1)*0.0001+0.00001*math.sin(i))):.8f}",
               "source_id":"AKSHARE_INDEX_ZH_A_HIST_EASTMONEY",
               "retrieved_at_utc":"2026-10-11T06:00:00+00:00"})
     return items
