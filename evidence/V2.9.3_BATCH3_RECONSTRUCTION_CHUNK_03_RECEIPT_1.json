@@ -1,0 +1,123 @@
+{
+  "schema": "AI_CORE_EVID_V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_RECEIPT_1",
+  "version": "V2.9.3",
+  "status": "V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_BLOCKED",
+  "chunk_index": 3,
+  "batch_ranks": [
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152
+  ],
+  "security_ids": [
+    "SZSE:300785",
+    "SSE:600637",
+    "SSE:600570",
+    "SSE:601990",
+    "SZSE:001201",
+    "SZSE:002138",
+    "SZSE:002667",
+    "SSE:603337"
+  ],
+  "execution_integrity_pass": false,
+  "execution_checks": {
+    "chunk_membership_exact_8": true,
+    "all_8_issuers_transport_complete": false,
+    "pagination_closed": true,
+    "all_negative_space_claims_parent_absent": true,
+    "all_positive_temporal_provenance_pass": true
+  },
+  "summary": {
+    "issuers_transport_complete": 6,
+    "negative_space_triage_admitted": 1653,
+    "classifier_ready": 1587,
+    "supplement_positive_count_diagnostic_only": 0
+  },
+  "transport_evidence": [
+    {
+      "batch_rank": 145,
+      "canonical_security_id": "SZSE:300785",
+      "org_id": "9900035077",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 257,
+      "deduped_count": 257,
+      "pages_fetched": 9,
+      "status": "PASS"
+    },
+    {
+      "batch_rank": 146,
+      "canonical_security_id": "SSE:600637",
+      "status": "BLOCKED",
+      "blocker": "RuntimeError:PAGINATION_EARLY:SSE:600637:138/139"
+    },
+    {
+      "batch_rank": 147,
+      "canonical_security_id": "SSE:600570",
+      "org_id": "gssh0600570",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 279,
+      "deduped_count": 279,
+      "pages_fetched": 10,
+      "status": "PASS"
+    },
+    {
+      "batch_rank": 148,
+      "canonical_security_id": "SSE:601990",
+      "org_id": "qsgn0000240",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 152,
+      "deduped_count": 152,
+      "pages_fetched": 6,
+      "status": "PASS"
+    },
+    {
+      "batch_rank": 149,
+      "canonical_security_id": "SZSE:001201",
+      "org_id": "9900036405",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 373,
+      "deduped_count": 373,
+      "pages_fetched": 13,
+      "status": "PASS"
+    },
+    {
+      "batch_rank": 150,
+      "canonical_security_id": "SZSE:002138",
+      "org_id": "9900003163",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 287,
+      "deduped_count": 287,
+      "pages_fetched": 10,
+      "status": "PASS"
+    },
+    {
+      "batch_rank": 151,
+      "canonical_security_id": "SZSE:002667",
+      "status": "BLOCKED",
+      "blocker": "RuntimeError:PAGINATION_EARLY:SZSE:002667:485/486"
+    },
+    {
+      "batch_rank": 152,
+      "canonical_security_id": "SSE:603337",
+      "org_id": "9900030371",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 305,
+      "deduped_count": 305,
+      "pages_fetched": 11,
+      "status": "PASS"
+    }
+  ],
+  "results_sha256": "701d20a9949fbd7b8cb573cb8a84c0da66614266f0b08ca26e8fe3d39fb57089",
+  "scientific_terminal_status_emitted": false,
+  "scientific_batch_index": 3,
+  "next_scientific_batch_authorized": false,
+  "price_or_return_data_consumed": false,
+  "candidate_outcome_research_executed": false,
+  "fold3_accessed": false,
+  "fold4_accessed": false,
+  "receipt_sha256": "783bc33ec7aa1df21e4b4708b1f95ee4876b7df5117b2eeffb0955cbe4ceb9c5"
+}
