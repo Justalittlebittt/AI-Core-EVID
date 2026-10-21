@@ -9,7 +9,7 @@
   "distinct_issuer_count": 1,
   "distinct_effective_date_count": 1,
   "distinct_positive_calendar_month_count": 1,
-  "maximum_single_issuer_event_share": 1,
+  "maximum_single_issuer_event_share": 1.0,
   "provenance_checks": {
     "event_count_ge_20": false,
     "distinct_issuer_count_ge_12": false,
