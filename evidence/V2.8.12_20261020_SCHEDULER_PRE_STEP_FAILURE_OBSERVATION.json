@@ -1,0 +1,37 @@
+{
+  "schema": "AI_CORE_EVID_V2812_SCHEDULER_PRE_STEP_FAILURE_OBSERVATION_V1",
+  "observed_date": "2026-10-20",
+  "workflow": "V2.8.4 Controlled Prospective E-Layer Observation",
+  "workflow_path": ".github/workflows/v284-controlled-prospective-e-layer.yml",
+  "run_id": 39378258259,
+  "event": "schedule",
+  "head_branch": "main",
+  "head_sha": "04746de4e3666af427286b4adf3dc6565881b51f",
+  "original_attempt": {
+    "conclusion": "failure",
+    "job_id": 118481183961,
+    "steps": null
+  },
+  "diagnostic_rerun": {
+    "attempt": 2,
+    "conclusion": "failure",
+    "job_id": 118537774450,
+    "steps": null
+  },
+  "interpretation": "Failed before any observable checkout/setup-python/user script step; GitHub hosted-runner assignment or platform/job initialization is suspected but not proved. Do not classify as application exception without logs.",
+  "log_fetch": "original log endpoint unavailable; no traceback available",
+  "confirmed_schedule_success": false,
+  "shadow_ledger_advanced_by_this_run": false,
+  "immutable_gate_unchanged": true,
+  "readiness_snapshot": {
+    "qualified_events": 2,
+    "distinct_issuers": 1,
+    "distinct_effective_dates": 1,
+    "distinct_positive_months": 1
+  },
+  "recovery_decision": "Stop identical retries. Preserve frozen E accumulation gate. Resolve GitHub job initialization or runner availability using independent infrastructure evidence; do not change E classifier or research semantics.",
+  "research_authorized": false,
+  "fold3_access": false,
+  "fold4_access": false,
+  "trading_authorized": false
+}

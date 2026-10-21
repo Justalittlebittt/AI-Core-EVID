@@ -1,0 +1,47 @@
+{
+  "schema": "AI_CORE_EVID_V2812_PRIVATE_ACTIONS_PRESTEP_DIAGNOSTIC_V1",
+  "date": "2026-10-20",
+  "last_successful_schedule": {
+    "run_id": 37898896738,
+    "date": "2026-10-09",
+    "head_sha": "1db6a304a7a1d3a16f6566aea16c878f46f59557",
+    "step_count": 21
+  },
+  "first_failed_schedule": {
+    "run_id": 38033569177,
+    "date": "2026-10-10",
+    "head_sha": "6fffc1e1eae39081db38f362feb874d2ae41f9c4",
+    "steps": null
+  },
+  "latest_failed_schedule": {
+    "run_id": 39378258259,
+    "attempt": 2,
+    "conclusion": "failure",
+    "steps": null
+  },
+  "recent_run_sample": {
+    "count": 39,
+    "status": "all_failed",
+    "event_breakdown": {
+      "schedule": 10,
+      "pull_request": 12,
+      "push": 17
+    }
+  },
+  "workflow_diff": {
+    "changed": "source hash-binding values and V2.8.12 epoch assertions",
+    "runner_change_observed": false
+  },
+  "classification": "REPOSITORY_WIDE_PRE_STEP_EXECUTION_FAILURE_SUSPECTED",
+  "limitations": [
+    "Not proof of billing, quota, runner provisioning, or GitHub platform root cause",
+    "Account Actions permissions, billing and hosted runner admin diagnostics not exposed through current GitHub connector",
+    "No job traceback due to missing job steps or log blob"
+  ],
+  "blocked_operational_effect": "Prospective E filings may be missed; 3-day overlapping scan cannot be asserted to recover an unlimited outage; do not backdate observations",
+  "research_mutation": false,
+  "repair_policy": "Do not alter frozen E gates or move private issuer/event data into public worker. Require privileged GitHub Actions settings/billing/runner diagnosis or a properly authorized private execution runtime before claiming restoration.",
+  "fold3_access": false,
+  "fold4_access": false,
+  "trading_authorized": false
+}

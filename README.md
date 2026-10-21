@@ -39,7 +39,7 @@ Canonical governance contract:
 
 ### Prospective E-layer
 
-The active prospective E-layer remains outcome-blind and scheduled.
+The prospective E-layer remains outcome-blind by contract. Its post-Epoch-2 runtime and scheduler operation are **not currently verified**; see the project DAG for operational blockers.
 
 Current readiness status remains `ACCUMULATING_PROSPECTIVE_E_EVENTS` unless its frozen information gate later passes. The readiness gate requires all of:
 
@@ -81,7 +81,7 @@ This layer computes chronological portfolio metrics only from an **upstream exec
 
 Drawdown and portfolio-path statistics therefore have actual path semantics rather than being reconstructed from unordered event rows.
 
-Evidence strength remains unscored until a separately frozen, pre-outcome threshold contract is defined.
+A qualitative evidence-strength mapping and synthetic synthesizer now exist, but **real strategy scoring remains unperformed**. Any experiment-specific numeric thresholds must be preregistered before outcome inspection.
 
 ## Decision Packet and Discipline Engine
 
@@ -112,12 +112,62 @@ Every new issue must first be classified:
 
 A new workflow/gate/amendment/receipt/probe is not justified merely because it is “more rigorous” or “more complete”. It must prevent a specific system-level failure.
 
-## Current next stage
+## Current mainline priorities (as of 2026-10-11)
 
-The architecture and metric foundations are now sufficient to define the next research-layer contract:
+### Verified foundations versus research claims
 
-**V2.9 Evidence Strength Threshold Contract**
+- Governance, event-level/portfolio-path validity calculations, Decision Packet, and Discipline Engine have implemented foundations. Local critical Discipline/Packet regression is recorded in `evidence/V2.9_DISCIPLINE_POST_BASELINE_RUNTIME_RECEIPT_1.json`; **central end-to-end runtime is not claimed**.
+- The evidence-strength **mapping contract already exists** at `evidence/V2.9_EVIDENCE_STRENGTH_MAPPING_CONTRACT.json`, with synthesis code at `scripts/v294_evidence_strength_synthesizer.py`. A new blanket threshold contract is not the next task. Specific numeric criteria for a future real experiment require pre-outcome registration, and **real strategy strength has not been scored**.
+- V2.8.8 selected no setup; V2.8.10 rejected pure-price AC entry expansion. V2.8.12R finished **descriptive-only** due insufficient samples. None of these results authorizes a BUY/ADD strategy.
+- V2.9.2 Batch-3 remained incomplete; V2.9.3 is static-ready only, with Chunk 3 outstanding and Batch-4 prohibited. GitHub-hosted execution provisioning remains unverified.
+- V2.8.4 prospective Epoch 2 was restarted at 2026-09-27 following a coverage gap; post-change runtime validation is outstanding. No historical data can be relabeled prospective.
 
-That contract must be frozen before seeing the results of a qualifying future experiment. It must map predeclared validity dimensions into `STRONG / MODERATE / WEAK / INSUFFICIENT` without tuning thresholds to rescue observed outcomes.
+### Independent A-share market risk research (descriptive MVP, not live trading)
 
-No current V2.8.12 prospective E outcome data, fold3, or fold4 should be opened merely to design those thresholds.
+- `scripts/ashare_market_risk_descriptive.py` calculates 20/60-session realized volatility and the trailing 252-observation RV20 empirical percentile for CSI300 (000300.SH) and STAR50 (000688.SH) from caller-supplied, provenance-labeled daily close snapshots.
+- `scripts/ashare_market_risk_akshare_fetch.py` is an **optional**, free AKShare/Eastmoney snapshot adapter. Source availability and real-market data retrieval are not yet runtime-validated. Use a separately saved immutable snapshot, never silent live data substitution.
+- `validation/ashare_market_risk_descriptive_selftest.py` covers synthetic mechanics, as-of exclusion, source-mixing rejection, missing series, constant series, and UTC timestamp validity. Unit tests do **not** prove forecasting skill or real-data quality.
+- No implied-volatility series, calibrated risk probability, actual return advantage, setup admission or brokerage actions are claimed by this descriptive MVP.
+
+Run after obtaining a vetted snapshot:
+
+```bash
+python scripts/ashare_market_risk_descriptive.py --input-csv path/to/prices.csv --as-of YYYY-MM-DD
+```
+
+Optional AKShare acquisition (requires its external installation/network availability):
+
+```bash
+python scripts/ashare_market_risk_akshare_fetch.py --start-date 2024-01-01 --end-date YYYY-MM-DD --output-csv path/to/immutable_snapshot.csv
+```
+
+### Independently anchored real-data acceptance (2026-10-09 snapshot)
+
+Official CSI close reference for the last completed A-share session on Sunday 2026-10-11:
+- CSI300 000300.SH: 4317.25 points (2026-10-09)
+- STAR50 000688.SH: 1457.27 points (2026-10-09)
+- Source: [CSI homepage](https://www.csindex.com.cn/), both marked 2026-10-09 15:00 China Standard Time.
+- Immutable audit anchor: `validation/references/ashare_index_close_20261009_csi.json`.
+
+After a **real**, complete, free-public-data snapshot is acquired, run:
+
+```bash
+python validation/ashare_market_risk_real_snapshot_acceptance.py \
+  --input-csv path/to/immutable_snapshot.csv \
+  --reference-json validation/references/ashare_index_close_20261009_csi.json \
+  --as-of 2026-10-09 \
+  --output-json path/to/acceptance_receipt.json
+```
+
+This gate requires exactly two expected indexes, at least 272 closes per index, matching trading dates, independent close agreement within 0.02 index points, and an acquisition timestamp no earlier than the official market close. It **does not** certify independent holiday/session completeness, authentic vendor transport, historical PIT reconstruction, forecasting skill, selection validity or permission to trade. Synthetic test fixtures MUST NOT be submitted as real market evidence. On another session a new independent dated reference is required; do not silently reuse the 2026-10-09 anchor.
+
+Runtime status: this environment could independently verify the official published closing levels but could **not** reach the AKShare/Eastmoney live data provider. The real market history acquisition and acceptance remain unverified. The reference is not an actual fetched CSV. No numeric realized-volatility output from actual public daily history is claimed.
+
+### Active next decisions
+
+1. Validate the free index snapshot against market dates and independent index closes, then publish a dated **descriptive** risk report; add no arbitrary buy/sell thresholds.
+2. Reuse the existing fail-closed Discipline Engine for user-provided risk/exit-rule inputs. Do not promote missing or synthetic strategy evidence to STRONG/MODERATE.
+3. Preregister a distinct, economically justified selection experiment before inspecting outcomes; previously rejected setups remain rejected.
+4. Keep Batch-3 and prospective Epoch 2 as independent, explicitly blocked/awaiting-runtime branches, not a global blocker for market-risk research.
+
+The primary goal remains reducing emotion-driven investing errors, not guaranteeing market prediction.

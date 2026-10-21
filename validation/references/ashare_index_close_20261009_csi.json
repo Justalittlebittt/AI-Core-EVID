@@ -1,0 +1,16 @@
+{
+  "schema": "AI_CORE_EVID_ASHARE_INDEX_CLOSE_REFERENCE_V1",
+  "reference_date": "2026-10-09",
+  "reference_market_close_time": "15:00:00+08:00",
+  "source_name": "中证指数有限公司 (CSI official homepage)",
+  "source_url": "https://www.csindex.com.cn/",
+  "reference_type": "PUBLISHED_INDEX_CLOSE_IN_POINTS",
+  "close_points": {
+    "000300.SH": 4317.25,
+    "000688.SH": 1457.27
+  },
+  "published_precision_decimal_places": 2,
+  "allowed_absolute_difference_points": 0.02,
+  "source_discovery_note": "Official CSI homepage shows both levels dated 2026-10-09 15:00 China time. This is a date-specific independent audit anchor, not real-data acquisition or historical PIT proof.",
+  "no_trading_authorization": true
+}
