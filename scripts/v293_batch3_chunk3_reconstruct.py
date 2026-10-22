@@ -59,7 +59,9 @@ def query_rows_stable(page, cid, code, org, exchange):
         return base.query_rows(page,cid,code,org,exchange)
     except RuntimeError as exc:
         msg=str(exc)
-        if not msg.startswith('PAGINATION_DEDUPE_MISMATCH:'):
+        # Each call restarts the *whole* fixed-range official query at page 1.
+        # A short/empty last page is not accepted as a complete record set.
+        if not msg.startswith(('PAGINATION_DEDUPE_MISMATCH:', 'PAGINATION_EARLY:')):
             raise
         time.sleep(3)
         return base.query_rows(page,cid,code,org,exchange)
