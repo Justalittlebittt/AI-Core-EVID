@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object scripts/v293_batch3_chunk3_reconstruct.py)" = "dd655bffa989075cec5aa490344d7797c124156a"
+          test "$(git hash-object scripts/v293_batch3_chunk3_reconstruct.py)" = "1b0c8479b78bd296ee34ba672e90d6d01e94a3ad"
           test "$(git hash-object scripts/v293_batch3_reconstruct_aggregate.py)" = "7bee071203302dd07136c737e733c70491e7a07f"
           python - <<'PY'
           import json
