@@ -1,1 +1,3 @@
 One-shot scoped CNINFO 002667 page ID diagnostic; no experiment gate change.
+
+rerun=fix missing PyMuPDF transitive import dependency
