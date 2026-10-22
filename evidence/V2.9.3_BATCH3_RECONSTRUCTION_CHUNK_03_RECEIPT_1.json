@@ -32,9 +32,9 @@
     "all_positive_temporal_provenance_pass": true
   },
   "summary": {
-    "issuers_transport_complete": 6,
-    "negative_space_triage_admitted": 1653,
-    "classifier_ready": 1587,
+    "issuers_transport_complete": 7,
+    "negative_space_triage_admitted": 1788,
+    "classifier_ready": 1717,
     "supplement_positive_count_diagnostic_only": 0
   },
   "transport_evidence": [
@@ -51,8 +51,12 @@
     {
       "batch_rank": 146,
       "canonical_security_id": "SSE:600637",
-      "status": "BLOCKED",
-      "blocker": "RuntimeError:PAGINATION_EARLY:SSE:600637:138/139"
+      "org_id": "gssh0600637",
+      "identity_source": "FROZEN_PIT_MAP_PLUS_CNINFO_PHASE_A_TRANSPORT",
+      "official_total": 138,
+      "deduped_count": 138,
+      "pages_fetched": 5,
+      "status": "PASS"
     },
     {
       "batch_rank": 147,
@@ -98,7 +102,7 @@
       "batch_rank": 151,
       "canonical_security_id": "SZSE:002667",
       "status": "BLOCKED",
-      "blocker": "RuntimeError:PAGINATION_EARLY:SZSE:002667:485/486"
+      "blocker": "RuntimeError:PAGINATION_DEDUPE_MISMATCH:SZSE:002667:482/485"
     },
     {
       "batch_rank": 152,
@@ -111,7 +115,7 @@
       "status": "PASS"
     }
   ],
-  "results_sha256": "701d20a9949fbd7b8cb573cb8a84c0da66614266f0b08ca26e8fe3d39fb57089",
+  "results_sha256": "30242d562d1006f4c27383d9f5ce6f0f467be5b3f6fced34b06456faa300c649",
   "scientific_terminal_status_emitted": false,
   "scientific_batch_index": 3,
   "next_scientific_batch_authorized": false,
@@ -119,5 +123,5 @@
   "candidate_outcome_research_executed": false,
   "fold3_accessed": false,
   "fold4_accessed": false,
-  "receipt_sha256": "783bc33ec7aa1df21e4b4708b1f95ee4876b7df5117b2eeffb0955cbe4ceb9c5"
+  "receipt_sha256": "aca2ae0c68d5dc8484d34204129dfb7cab745a31eee7de4b3a1a8b7e6a2cde3d"
 }
