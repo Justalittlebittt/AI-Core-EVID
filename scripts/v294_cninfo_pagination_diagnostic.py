@@ -10,7 +10,10 @@ def run(page, size):
     payload={"column":"szse","tabName":"fulltext","plate":"sz","stock":"002667,9900036460","searchkey":"","secid":"","category":"","trade":"","seDate":f"{base.START}~{base.END}","sortName":"","sortType":"","isHLtitle":"true","pageNum":"1","pageSize":str(size)}
     # Identity is anchored to V2.9.3's frozen validated PIT issuer map, never inferred from an external snippet.
     mapping={x["canonical_security_id"]:x for x in base.read_rows(base.MAP)}
-    payload["stock"]="002667,"+mapping["SZSE:002667"]["validated_org_id"]
+    entry=mapping["SZSE:002667"]
+    org=entry.get("validated_org_id") or base.resolve_org(page,"002667")
+    if not org: raise RuntimeError("OFFICIAL_ORG_ID_UNRESOLVED")
+    payload["stock"]="002667,"+org
     pages=[]; ids=[]; total=None
     for num in range(1,40):
         obj=json.loads(base.post(page,{**payload,"pageNum":str(num)}))
