@@ -2,3 +2,7 @@ V2.9.3 Batch-3 one-shot execution request
 scope=chunk3 ranks 145-152; aggregate frozen 64 securities
 science=unchanged; batch4=forbidden
 requested=2026-10-10
+
+retry_reason=Issue-4 pagination-early complete-query bounded retry
+repair_commit=f8a2d2996c7cac13265396b5de917a3fc9f49e6f
+science=unchanged; no-short-page-acceptance
