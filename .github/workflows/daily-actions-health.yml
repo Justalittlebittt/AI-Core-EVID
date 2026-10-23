@@ -1,0 +1,35 @@
+name: Daily Read-only Actions Health Monitor
+
+on:
+  schedule:
+    - cron: '37 8 * * *'
+  pull_request:
+    paths:
+      - '.github/workflows/daily-actions-health.yml'
+      - 'tools/diagnostics/actions_run_visibility.py'
+      - 'tools/diagnostics/assess_recent_actions.py'
+      - 'tools/diagnostics/test_assess_recent_actions.py'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: daily-actions-health-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Offline classifier tests
+        run: python -m unittest discover -s tools/diagnostics -p 'test_assess_recent_actions.py' -v
+      - name: Read-only recent workflow inspection
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          SINCE=$(python -c 'import datetime as d; print((d.datetime.now(d.timezone.utc)-d.timedelta(days=2)).date().isoformat())')
+          python tools/diagnostics/actions_run_visibility.py --since "$SINCE" --pages 20 > /tmp/recent-actions.json
+          python tools/diagnostics/assess_recent_actions.py /tmp/recent-actions.json ${{ github.event_name == 'schedule' && '--strict' || '' }}
