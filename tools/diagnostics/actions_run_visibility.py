@@ -62,11 +62,15 @@ def main():
                 run_id = run["id"]
                 attempts = run.get("run_attempt") or 1
                 counts = []
+                attempt_conclusions = []
                 for attempt in range(1, attempts + 1):
                     # Per-attempt endpoint preserves failures hidden by a successful rerun.
                     jobs = get(base + "/actions/runs/" + str(run_id) + "/attempts/" + str(attempt) + "/jobs?per_page=1", token)
                     counts.append(jobs["total_count"])
+                    details = get(base + "/actions/runs/" + str(run_id) + "/attempts/" + str(attempt), token)
+                    attempt_conclusions.append(details.get("conclusion"))
                 count = counts[-1]
+                zero_job_failed_attempts = [i + 1 for i, value in enumerate(counts) if value == 0 and attempt_conclusions[i] == "failure"]
                 results.append({
                     "id": run_id,
                     "name": name,
@@ -76,8 +80,9 @@ def main():
                     "run_attempt": run.get("run_attempt"),
                     "jobs_total": count,
                     "jobs_per_attempt": counts,
-                    "earlier_zero_job_attempts": [i + 1 for i, value in enumerate(counts[:-1]) if value == 0],
-                    "pre_job_failure_candidate": run["status"] == "completed" and run.get("conclusion") == "failure" and count == 0,
+                    "attempt_conclusions": attempt_conclusions,
+                    "zero_job_failed_attempts": zero_job_failed_attempts,
+                    "pre_job_failure_candidate": bool(zero_job_failed_attempts),
                     "url": run["html_url"],
                 })
             if complete or len(runs) < 100:
