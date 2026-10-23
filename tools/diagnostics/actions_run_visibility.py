@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Read-only GitHub Actions run visibility check. No workflow dispatch or writes."""
 import argparse
-import datetime as dt
 import json
 import os
 import sys
@@ -31,6 +30,12 @@ def main():
     p.add_argument("--since", help="UTC inclusive date, e.g. 2026-10-21")
     p.add_argument("--pages", type=int, default=3)
     args = p.parse_args()
+    if args.since:
+        try:
+            import datetime as datetime_module
+            datetime_module.date.fromisoformat(args.since)
+        except ValueError:
+            p.error("--since must be YYYY-MM-DD")
     if args.pages < 1 or args.pages > 20:
         p.error("--pages must be 1..20")
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -55,8 +60,13 @@ def main():
                 if "V2.8.4 Controlled Prospective E-Layer Observation" not in name and "Infrastructure Smoke Diagnostic" not in name:
                     continue
                 run_id = run["id"]
-                jobs = get(base + "/actions/runs/" + str(run_id) + "/jobs?per_page=1", token)
-                count = jobs["total_count"]
+                attempts = run.get("run_attempt") or 1
+                counts = []
+                for attempt in range(1, attempts + 1):
+                    # Per-attempt endpoint preserves failures hidden by a successful rerun.
+                    jobs = get(base + "/actions/runs/" + str(run_id) + "/attempts/" + str(attempt) + "/jobs?per_page=1", token)
+                    counts.append(jobs["total_count"])
+                count = counts[-1]
                 results.append({
                     "id": run_id,
                     "name": name,
@@ -65,6 +75,8 @@ def main():
                     "conclusion": run.get("conclusion"),
                     "run_attempt": run.get("run_attempt"),
                     "jobs_total": count,
+                    "jobs_per_attempt": counts,
+                    "earlier_zero_job_attempts": [i + 1 for i, value in enumerate(counts[:-1]) if value == 0],
                     "pre_job_failure_candidate": run["status"] == "completed" and run.get("conclusion") == "failure" and count == 0,
                     "url": run["html_url"],
                 })
