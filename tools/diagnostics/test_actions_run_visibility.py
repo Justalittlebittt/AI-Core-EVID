@@ -23,7 +23,9 @@ class RunVisibilityTests(unittest.TestCase):
             parts = path.split("/actions/runs/")[1].split("/")
             run_id = parts[0]
             attempt = parts[2]
-            return {"total_count": responses["jobs"].get(run_id + ":" + attempt, responses["jobs"].get(run_id))}
+            if path.endswith("/jobs?per_page=1"):
+                return {"total_count": responses["jobs"].get(run_id + ":" + attempt, responses["jobs"].get(run_id))}
+            return {"conclusion": responses.get("conclusions", {}).get(run_id + ":" + attempt, responses["pages"][1][0].get("conclusion"))}
         out, err = io.StringIO(), io.StringIO()
         args = ["diagnostic", "--since", "2026-10-21", "--pages", str(pages)]
         with patch.object(sys, "argv", args), patch.dict(os.environ, {"GH_TOKEN": "test-token"}), patch.object(diagnostic, "get", fake_get), contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
@@ -48,12 +50,19 @@ class RunVisibilityTests(unittest.TestCase):
     def test_old_attempt_checked_after_successful_rerun(self):
         run = self.run_data(14, "success")
         run["run_attempt"] = 2
-        responses = {"pages": {1: [run]}, "jobs": {"14:1": 0, "14:2": 1}}
+        responses = {"pages": {1: [run]}, "jobs": {"14:1": 0, "14:2": 1}, "conclusions": {"14:1": "failure", "14:2": "success"}}
         code, out, _ = self.invoke(responses)
         self.assertEqual(code, 0)
         item = json.loads(out)["runs"][0]
         self.assertEqual(item["jobs_per_attempt"], [0, 1])
-        self.assertEqual(item["earlier_zero_job_attempts"], [1])
+        self.assertEqual(item["zero_job_failed_attempts"], [1])
+
+    def test_cancelled_zero_job_attempt_not_failure(self):
+        run = self.run_data(15, "cancelled")
+        responses = {"pages": {1: [run]}, "jobs": {"15": 0}}
+        code, out, _ = self.invoke(responses)
+        self.assertEqual(code, 0)
+        self.assertFalse(json.loads(out)["runs"][0]["pre_job_failure_candidate"])
 
     def test_unknown_workflow_not_reported(self):
         responses = {"pages": {1: [self.run_data(13, "failure", "Other workflow")]}, "jobs": {}}
