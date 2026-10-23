@@ -1,0 +1,35 @@
+name: Read-only Actions Visibility Diagnostic Validation
+
+on:
+  pull_request:
+    paths:
+      - 'tools/diagnostics/actions_run_visibility.py'
+      - 'tools/diagnostics/test_actions_run_visibility.py'
+      - '.github/workflows/actions-visibility-validation.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Offline diagnostic unit tests
+        run: python -m unittest discover -s tools/diagnostics -p 'test_actions_run_visibility.py' -v
+      - name: Read-only live Actions API diagnostic
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python tools/diagnostics/actions_run_visibility.py --since 2026-10-21 --pages 20 > /tmp/actions-visibility.json
+          python - <<'PY'
+          import json
+          with open("/tmp/actions-visibility.json", encoding="utf-8") as f:
+              result = json.load(f)
+          assert result["coverage_complete"], "Run enumeration incomplete"
+          assert any(x["id"] == 39732094854 for x in result["runs"]), "Known successful reference run missing"
+          for run in result["runs"]:
+              print(f'{run["name"]}: {run["id"]}, {run["conclusion"]}, attempts={run["run_attempt"]}, failures={run["zero_job_failed_attempts"]}')
+          PY
