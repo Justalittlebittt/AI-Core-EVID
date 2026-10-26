@@ -30,9 +30,8 @@ class AsOfRankTests(unittest.TestCase):
             from datetime import timedelta
             for i in range(21):
                 d = self.asof - timedelta(days=20-i)
-                if missing and i == 20:
-                    continue
-                w.writerow(["SZSE:000001", d.isoformat(), 100 + i])
+                if not (missing and i == 20):
+                    w.writerow(["SZSE:000001", d.isoformat(), 100 + i])
                 w.writerow(["SSE:600000", d.isoformat(), 100 + i/2])
             if future:
                 w.writerow(["SZSE:000001", "2020-02-04", "150"])
