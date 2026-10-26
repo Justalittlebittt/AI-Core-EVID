@@ -65,18 +65,18 @@ def review(position: dict) -> dict:
         raise ValueError("STOP_MUST_BE_BELOW_TAKE_PROFIT")
 
     # Explicit unknown quote: do not hallucinate stop/target breach states.
-    if current is None:
+    if current is None and not invalidated:
         status = "PRICE_MISSING"
         decision = None
         breached = None
         triggered = None
         unrealized = None
     else:
-        current_value = number(position, "current_price", positive=True)
-        breached = current_value <= stop
-        triggered = current_value >= target
-        # Exit review is deliberately risk-reducing (EXIT). A known active stop
-        # or target forces EXIT_REQUIRED via the existing engine.
+        current_value = number(position, "current_price", positive=True) if current is not None else None
+        breached = current_value <= stop if current_value is not None else False
+        triggered = current_value >= target if current_value is not None else False
+        # An independent invalidation forces EXIT_REQUIRED even without price.
+        # Unknown stop/target flags are neutral inputs, not evidence of safety.
         discipline_input = {
             "action_type": "EXIT", "current_exposure_exists": True,
             "evidence_strength": "INSUFFICIENT",
@@ -96,7 +96,10 @@ def review(position: dict) -> dict:
         }
         decision = evaluate_discipline(discipline_input)
         status = "EXIT_TRIGGERED" if decision["decision"] == "EXIT_REQUIRED" else "NO_PRECOMMITTED_EXIT_TRIGGER"
-        unrealized = current_value / entry - 1.0
+        unrealized = current_value / entry - 1.0 if current_value is not None else None
+        if current_value is None:
+            breached = None
+            triggered = None
     identity = hashlib.sha256(json.dumps(position, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     return {
         "schema": "AI_CORE_EVID_POSITION_EXIT_REVIEW_V1",
