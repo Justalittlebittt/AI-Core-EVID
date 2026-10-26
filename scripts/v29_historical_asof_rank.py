@@ -74,11 +74,11 @@ def rank_historical_closes(prices_path, universe_path, as_of):
     excluded = []
     for cid in sorted(universe):
         bars = sorted(data[cid])
+        if not bars or bars[-1][0] != as_of:
+            excluded.append({"canonical_security_id": cid, "reason": "NO_AS_OF_BAR"})
+            continue
         if len(bars) < 21:
             excluded.append({"canonical_security_id": cid, "reason": "INSUFFICIENT_21_BARS"})
-            continue
-        if bars[-1][0] != as_of:
-            excluded.append({"canonical_security_id": cid, "reason": "NO_AS_OF_BAR"})
             continue
         factor = bars[-1][1] / bars[-21][1] - 1.0
         eligible.append({"canonical_security_id": cid, "signal_date": as_of.isoformat(),
