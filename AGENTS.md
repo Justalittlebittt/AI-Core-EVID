@@ -2,6 +2,10 @@
 
 These rules apply to assistants, coding agents, and human operators performing repository tasks.
 
+## Priority override for new development
+
+Use [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md) to prioritize new work: candidate → evidence → action eligibility → monitor/exit. Frozen prospective E-layer remains independent. Do not expand CI monitoring, contracts, receipts, or probes unless a concrete mainline or scientific-integrity failure would otherwise persist. For a request to "continue", inspect which of the four delivery checkpoints is the nearest incomplete, executable user-facing milestone before choosing any operational housekeeping. This priority rule does not override frozen governance or the mandatory accurate incident-check procedure.
+
 ## GitHub Actions status and incident checks (mandatory)
 
 Before reporting whether V2.8.4 Controlled Prospective E-Layer Observation, Infrastructure Smoke Diagnostic, or the daily monitor has run successfully, follow [the evidence-first status procedure](docs/operations/ACTIONS_STATUS_EVIDENCE_RULES.md).
