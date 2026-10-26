@@ -125,7 +125,7 @@ def main():
         con.close()
     if b.duplicated("bar_date").any():
         raise RuntimeError("DUPLICATE_CSI300_DATES")
-    benchmark = {d: float(c) for d, c in zip(b["bar_date"], b["close"])}
+    benchmark = {pd.Timestamp(d).date(): float(c) for d, c in zip(b["bar_date"], b["close"])}
     result = evaluate_panel(panel, calendar, benchmark, contract)
     result["contract_sha256"] = hashlib.sha256(CONTRACT_PATH.read_bytes()).hexdigest()
     result["dataset_identity"] = {
