@@ -70,6 +70,17 @@ class DailyReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"EVALUATION_REQUIRES_TIMEZONE"):
             run_daily([pos()],"2026-10-26T15:30:00","2026-10-26",[quote()])
 
+    def test_wrong_session_duplicate_quote_rejected(self):
+        with self.assertRaisesRegex(ValueError,"QUOTES_DUPLICATE"):
+            run_daily([pos()],AT,"2026-10-26",
+                      [quote(as_of="2026-10-23T15:00:00+08:00"),
+                       quote(as_of="2026-10-23T15:00:00+08:00")])
+
+    def test_wrong_session_quote_missing_timezone_rejected(self):
+        with self.assertRaisesRegex(ValueError,"TIMESTAMP_REQUIRES_UTC_OFFSET"):
+            run_daily([pos()],AT,"2026-10-26",
+                      [quote(as_of="2026-10-23T15:00:00")])
+
     def test_same_input_deterministic(self):
         a=run_daily([pos()],AT,"2026-10-26",[quote()])
         b=run_daily([pos()],AT,"2026-10-26",[quote()])
