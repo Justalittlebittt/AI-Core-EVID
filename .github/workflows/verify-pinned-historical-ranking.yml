@@ -1,0 +1,38 @@
+name: Verify Pinned Historical Ranking
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/verify-pinned-historical-ranking.yml'
+      - 'scripts/v29_pinned_historical_rank.py'
+      - 'scripts/v29_historical_asof_rank.py'
+permissions:
+  contents: read
+jobs:
+  historical-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install existing pinned research dependencies
+        run: python -m pip install "huggingface_hub==1.32.0" "duckdb==1.5.5" "pandas==2.2.3"
+      - name: Extract real historical point-in-time bounded sample
+        run: |
+          python scripts/v29_pinned_historical_rank.py \
+            --as-of 2026-09-09 \
+            --security SZSE:000001 \
+            --security SSE:600000 \
+            --output /tmp/pinned-historical-rank.json > /tmp/pinned-historical-output.txt
+          python - <<'PY'
+          import json
+          with open('/tmp/pinned-historical-rank.json', encoding='utf-8') as f:
+              x=json.load(f)
+          assert x['active_universe_size']==2
+          assert x['ranked_count']>0
+          assert x['live_buy_eligibility']=='NOT_AUTHORIZED'
+          assert x['decision_case_admission']=='BLOCKED_UNVALIDATED_FACTOR'
+          assert x['real_historical_source']['candidate_strategy_validated'] is False
+          print('REAL_HISTORICAL_DESCRIPTIVE_SAMPLE_VERIFIED', x['ranked_count'])
+          PY
