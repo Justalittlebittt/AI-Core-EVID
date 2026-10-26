@@ -31,6 +31,7 @@ jobs:
           assert r['no_trade_authorization'] is True
           assert r['evidence_strength']=='UNSCORED_PENDING_THRESHOLD_CONTRACT'
           assert r['days_evaluated']>0
+          assert r['mean_excess_vs_CSI300'] is not None, 'CSI300 benchmark join missing'
           assert r['contract_sha256'] and len(r['contract_sha256'])==64
           print('EXPLORATORY_REAL_DATA_EXECUTED days=',r['days_evaluated'],
                 'mean_excess=',r['overall']['mean_excess_return'],
