@@ -4,6 +4,14 @@ AI Core EVID is a personal A-share evidence and decision-discipline research sys
 
 Its primary objective is **not** to predict the market with certainty or maximize return. Its job is to determine whether available evidence is strong enough to permit a contemplated action and whether that action violates precommitted risk and discipline rules.
 
+## Active product mainline — decision first
+
+**Primary delivery:** A-share candidate selection → historical/PIT evidence validation → fail-closed buy/add/hold/reduce/exit eligibility → position monitoring and disciplined exit. The minimum end-to-end artifact is a reproducible **Decision Case** for a security at a known timestamp, including a valid no-action result.
+
+Execution and four delivery checkpoints: [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md).
+
+Infrastructure monitoring is a support lane, **not** the product. V2.8.4/V2.8.12 prospective E-layer remains frozen, isolated, outcome-blind and independently scheduled; its accumulation must not hold unrelated decision-product engineering hostage.
+
 ## Current architecture — V2.9
 
 ```text
@@ -112,9 +120,9 @@ Every new issue must first be classified:
 
 A new workflow/gate/amendment/receipt/probe is not justified merely because it is “more rigorous” or “more complete”. It must prevent a specific system-level failure.
 
-## Current next stage
+## Research-layer next stage (parallel, not product blocker)
 
-The architecture and metric foundations are now sufficient to define the next research-layer contract:
+The architecture and metric foundations are sufficient to define the next research-layer contract:
 
 **V2.9 Evidence Strength Threshold Contract**
 
