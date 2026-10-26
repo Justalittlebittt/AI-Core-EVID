@@ -13,7 +13,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from v29_public_quote_watchlist import fetch_watchlist
-from v29_position_watchlist import evaluate_watchlist
+from v29_position_watchlist import evaluate_watchlist, timestamp, unique, QUOTE_KEYS
 from v29_exit_execution_readiness import apply_execution_constraints
 
 
@@ -33,10 +33,11 @@ def run_daily(positions, at, expected_session, quotes=None, broker_status=None,
     else:
         # Filter wrong-session snapshots BEFORE evaluating stops or targets.
         # Otherwise an old quote could masquerade as a current exit event.
+        checked = unique(quotes, "QUOTES", QUOTE_KEYS)
         accepted = []
         rejected = []
-        for item in quotes:
-            if datetime.fromisoformat(item["as_of"]).astimezone(
+        for item in checked.values():
+            if timestamp(item["as_of"]).astimezone(
                 ZoneInfo("Asia/Shanghai")
             ).date().isoformat() != expected_session:
                 rejected.append(item["security_id"])
