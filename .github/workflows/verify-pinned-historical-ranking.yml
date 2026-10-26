@@ -5,6 +5,8 @@ on:
       - '.github/workflows/verify-pinned-historical-ranking.yml'
       - 'scripts/v29_pinned_historical_rank.py'
       - 'scripts/v29_historical_asof_rank.py'
+      - 'scripts/v29_real_history_decision_case.py'
+      - 'scripts/test_v29_real_history_decision_case.py'
 permissions:
   contents: read
 jobs:
@@ -35,4 +37,17 @@ jobs:
           assert x['decision_case_admission']=='BLOCKED_UNVALIDATED_FACTOR'
           assert x['real_historical_source']['candidate_strategy_validated'] is False
           print('REAL_HISTORICAL_DESCRIPTIVE_SAMPLE_VERIFIED', x['ranked_count'])
+          PY
+      - name: Verify historical ranking feeds decision engine without BUY eligibility
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_real_history_decision_case.py' -v
+          python scripts/v29_real_history_decision_case.py --ranking-json /tmp/pinned-historical-rank.json --security SZSE:000001 > /tmp/real-history-case.json
+          python - <<'PY'
+          import json
+          with open('/tmp/real-history-case.json') as stream:
+              case=json.load(stream)
+          assert case['case_type']=='REAL_HISTORICAL_INPUT_UNVALIDATED_RESEARCH_NOT_TRADING_ADVICE'
+          assert case['risk_input_status']=='SYNTHETIC_DEMO_ONLY'
+          assert case['decision']['discipline_decision']['decision']=='NO_ACTION_INSUFFICIENT_EVIDENCE'
+          print('REAL_HISTORY_DECISION_CASE_FAIL_CLOSED_VERIFIED')
           PY
