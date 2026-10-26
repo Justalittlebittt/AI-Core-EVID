@@ -15,3 +15,7 @@ In particular:
 - Notify the user only under the declared incident/update thresholds; never invent a new event.
 
 The monitoring procedure does not change scientific governance. Do not rerun a failed frozen task, modify frozen thresholds, inspect Fold3/Fold4, or assume V2.8.13 permission.
+
+## No-passive-wait execution contract (P0, mandatory)
+
+Follow [Operations No Passive Wait V1.0](docs/contracts/OPERATIONS_NO_PASSIVE_WAIT_V1.md) for every status, monitoring, recovery, or "continue" task. If work is executable now, a response ending merely in "waiting for the next schedule/data" is an `OPERATIONAL_PROCESS_FAILURE`. Time gates apply only to external future observations, not independent diagnostics. Complete the evidence gate, available-work scan, permitted execution, validation, and termination gate before concluding. Do not change frozen research contracts to satisfy this operational rule.
