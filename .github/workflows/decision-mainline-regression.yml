@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_historical_asof_rank.py'
+      - 'scripts/test_v29_historical_asof_rank.py'
       - 'scripts/v29_decision_case_demo.py'
       - 'scripts/test_v29_decision_case_demo.py'
       - 'scripts/v29_historical_factor_admission.py'
@@ -23,6 +25,7 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
