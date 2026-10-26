@@ -31,24 +31,20 @@ def run_daily(positions, at, expected_session, quotes=None, broker_status=None,
                         max_quote_age_hours=max_quote_age_hours)
         mode = "PUBLIC_UNOFFICIAL_QUOTE"
     else:
-        watch = evaluate_watchlist(positions, quotes, at, max_quote_age_hours)
-        mode = "USER_SUPPLIED_QUOTE_SNAPSHOT"
-        for p in watch["positions"]:
-            ts = p["quote_timestamp"]
-            if ts is not None and datetime.fromisoformat(ts).astimezone(
+        # Filter wrong-session snapshots BEFORE evaluating stops or targets.
+        # Otherwise an old quote could masquerade as a current exit event.
+        accepted = []
+        rejected = []
+        for item in quotes:
+            if datetime.fromisoformat(item["as_of"]).astimezone(
                 ZoneInfo("Asia/Shanghai")
             ).date().isoformat() != expected_session:
-                # Never treat a previous day's price as usable even if hours are few.
-                p["quote_status"] = "WRONG_SESSION"
-                if not p["invalidation_triggered"]:
-                    # Re-evaluate without that quote to remove any false price trigger.
-                    filtered = [q for q in quotes if q["security_id"] != p["security_id"]]
-                    return run_daily(positions, at, expected_session, filtered,
-                                     broker_status, max_quote_age_hours, live_fetcher)
-                # Invalidation is independent and must still force exit.
-        watch["unassessable_quote_count"] = sum(
-            p["quote_status"] in {"MISSING", "STALE", "WRONG_SESSION"}
-            for p in watch["positions"])
+                rejected.append(item["security_id"])
+            else:
+                accepted.append(item)
+        watch = evaluate_watchlist(positions, accepted, at, max_quote_age_hours)
+        mode = "USER_SUPPLIED_QUOTE_SNAPSHOT"
+        watch["wrong_session_securities"] = sorted(rejected)
     readiness = apply_execution_constraints(watch, broker_status if broker_status is not None else [], at)
     lookup = {x["security_id"]: x for x in readiness["positions"]}
     rows = []
