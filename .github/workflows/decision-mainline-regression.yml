@@ -1,0 +1,38 @@
+name: Decision Mainline Regression
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_decision_case_demo.py'
+      - 'scripts/test_v29_decision_case_demo.py'
+      - 'scripts/v29_historical_factor_admission.py'
+      - 'scripts/test_v29_historical_factor_admission.py'
+      - 'scripts/v29_decision_packet_adapter.py'
+      - 'scripts/v29_discipline_engine.py'
+      - 'evidence/V2.8.1_FINAL_RECORD.json'
+      - 'evidence/V2.8.1_STAGE1_FACTOR_SCREEN_RECEIPT.json'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Execute decision mainline regressions
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
+      - name: Execute demo and historical admission
+        run: |
+          python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
+          python scripts/v29_historical_factor_admission.py > /tmp/admission.json
+          python - <<'PY'
+          import json
+          with open("/tmp/decision-demo.json") as f: d=json.load(f)
+          with open("/tmp/admission.json") as f: a=json.load(f)
+          assert d["evaluation"]["discipline_decision"]["decision"] == "NO_ACTION_INSUFFICIENT_EVIDENCE"
+          assert a["factors_tested"] == 9 and a["factors_promoted"] == 0
+          assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
+          print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
+          PY
