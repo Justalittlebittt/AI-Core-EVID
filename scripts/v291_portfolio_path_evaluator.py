@@ -97,10 +97,9 @@ def evaluate_portfolio_path(
     if "benchmark_return" in x.columns:
         daily["benchmark_return"] = x.groupby("date")["benchmark_return"].first()
         daily["excess_return"] = daily["net_return"] - daily["benchmark_return"]
-    if "sample_partition" in x.columns:
-        daily["sample_partition"] = x.groupby("date")["sample_partition"].first()
-    if "regime" in x.columns:
-        daily["regime"] = x.groupby("date")["regime"].first()
+    for col in ("sample_partition", "regime"):
+        if col in x.columns:
+            daily[col] = x.groupby("date")[col].first()
 
     daily["equity_curve"] = (1.0 + daily["net_return"]).cumprod()
     daily["running_peak"] = daily["equity_curve"].cummax()
