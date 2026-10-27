@@ -42,7 +42,49 @@ def main() -> None:
     ck('O06_cninfo_home_preflight_removed', 'api.get("https://www.cninfo.com.cn/"' not in src and 'CNINFO_HOME_HTTP_' not in src)
     ck('O07_direct_target_pdf_fetch_preserved', 'loc["official_url"]' in src and 'PDF_FETCH_HTTP_' in src)
     ck('O08_pdf_signature_and_hash_validation_preserved', 'cm.validate_pdf_bytes' in src and 'te.validate_pdf(cp' in src)
-    ck('O09_per_filing_blocker_isolation_preserved', 'except Exception as e:' in src and '"pipeline_status":"BLOCKED"' in src)
+    # Exercise the filing isolation behavior with synthetic inputs, not source spelling.
+    # Every outside-data path is mocked: no network, evidence, or Git write is used.
+    import csv
+    from contextlib import nullcontext, redirect_stdout
+    from datetime import date
+    from io import StringIO
+    from tempfile import TemporaryDirectory
+    from types import SimpleNamespace
+    from unittest.mock import patch
+
+    fake_row = {
+        'announcement_id': 'SYNTHETIC', 'canonical_security_id': 'SSE:600001',
+        'security_name': 'synthetic', 'announcement_title': 'synthetic',
+        'path_disclosure_date': '2026-10-27', 'announcement_time': '',
+        'adjunct_url': 'synthetic.pdf', 'matched_terms': 'synthetic',
+    }
+    fake_api = SimpleNamespace(dispose=lambda: None)
+    fake_pw = SimpleNamespace(request=SimpleNamespace(new_context=lambda **kw: fake_api))
+    with (
+        TemporaryDirectory() as td,
+        patch.object(runner, 'activation_guard'),
+        patch.object(runner.ledger, 'load_rows', return_value=[]),
+        patch.object(runner, 'load_inventory', return_value=[]),
+        patch.object(runner, 'load_identity_bindings', return_value=[]),
+        patch.object(runner.cc, 'collect'),
+        patch.object(runner, 'load_csv', return_value=[fake_row]),
+        patch.object(runner.ct, 'triage_title', return_value={'triage_state': 'MATERIALIZE_CANDIDATE'}),
+        patch.object(runner, 'sync_playwright', return_value=nullcontext(fake_pw)),
+        patch.object(runner, 'materialize', side_effect=RuntimeError('PDF_FETCH_HTTP_503')),
+        redirect_stdout(StringIO()),
+    ):
+        out = Path(td)
+        runner.scan(date(2026, 10, 27), date(2026, 10, 27), out,
+                    'SYNTHETIC', '0' * 40, '2026-10-27T01:00:00+00:00')
+        with (out / 'V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_SYNTHETIC.csv').open(
+            newline='', encoding='utf-8'
+        ) as stream:
+            rows = list(csv.DictReader(stream))
+        receipt = rj(out / 'V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_SYNTHETIC.json')
+    ck('O09_per_filing_blocker_isolation_preserved',
+       len(rows) == 1 and rows[0]['pipeline_status'] == 'BLOCKED'
+       and rows[0]['blocker'] == 'RuntimeError:PDF_FETCH_HTTP_503'
+       and receipt['blocked_filings'] == 1 and receipt['successful_filings'] == 0)
 
     candidate = {'announcement_id': 'retry-me'}
     ck('O10_blocked_or_uncommitted_candidate_retries_next_overlap', runner.unseen_rows([candidate], []) == [candidate])
