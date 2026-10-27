@@ -1,8 +1,5 @@
 name: V2.8.11 One-Time Targeted 2023Q3 Retry2
 on:
-  push:
-    paths:
-      - ".github/workflows/v2811-real-targeted-retry2.yml"
   workflow_dispatch:
 permissions:
   contents: write
