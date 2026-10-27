@@ -8,6 +8,9 @@ on:
       - 'scripts/v29_real_history_decision_case.py'
       - 'scripts/test_v29_real_history_decision_case.py'
       - 'scripts/test_v29_pinned_historical_rank.py'
+      - 'research/EXPLORATORY_CLOSE_LOCATION_V1.json'
+      - 'scripts/v29_exploratory_close_location.py'
+      - 'scripts/test_v29_exploratory_close_location.py'
 permissions:
   contents: read
 jobs:
@@ -95,3 +98,38 @@ jobs:
             /tmp/full-pit-historical-rank.json
             /tmp/full-pit-first-case.json
           retention-days: 14
+      - name: Test precommitted close-location hypothesis against pinned research source
+        run: |
+          test "$(git hash-object research/EXPLORATORY_CLOSE_LOCATION_V1.json)" = "1efdccdc9327f39e3e2887620a2821bf1f5338b5"
+          python -m unittest discover -s scripts -p 'test_v29_exploratory_close_location.py' -v
+          python scripts/v29_exploratory_close_location.py > /tmp/close-location-summary.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("research_results/exploratory_close_location_v1.json").read_text())
+          assert result["trade_authorized"] is False
+          assert result["strength"] == "UNSCORED_NO_PRISTINE_OOS"
+          assert result["evaluated_signal_days"] > 0
+          assert len(result["contract_sha256"]) == 64
+          assert result["source_sha256"]["official_PIT"] == "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1"
+          print("CLOSE_LOCATION_EXPLORATORY_RESULT", json.dumps({
+              "status": result["research_status"],
+              "evaluated_signal_days": result["evaluated_signal_days"],
+              "selected_events": result["selected_events"],
+              "outcome_coverage": result["selected_outcome_coverage"],
+              "primary_mean_excess": result["primary_mean_excess_vs_market"],
+              "mean_excess_vs_CSI300": result["mean_excess_vs_CSI300"],
+              "nonpristine_periods": result["period_summaries"],
+              "block_bootstrap": result["daily_block_bootstrap_mean_excess"],
+              "quarter_excess": result["quarter_mean_excess"],
+              "trade_authorized": False
+          }, ensure_ascii=False))
+          PY
+      - name: Preserve independent closing-location research output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exploratory-close-location-v1
+          path: research_results/exploratory_close_location_v1.json
+          if-no-files-found: warn
+          retention-days: 30
