@@ -5,6 +5,7 @@ import csv
 import hashlib
 import json
 import re
+import sys
 import tempfile
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -100,8 +101,12 @@ def load_cache_map()->dict:
         return {}
     try:
         obj=json.loads(p.read_text(encoding="utf-8"))
-        return obj if isinstance(obj,dict) else {}
-    except Exception:
+        if not isinstance(obj,dict):
+            raise ValueError("CACHE_MAP_NOT_OBJECT")
+        return obj
+    except (OSError,UnicodeError,ValueError) as e:
+        # Cache is optional; retain the network fetch, but make corruption observable.
+        print(f"CACHE_MAP_IGNORED:{type(e).__name__}:{e}",file=sys.stderr)
         return {}
 
 def save_cache_map(obj:dict):
@@ -205,6 +210,14 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                     decision=pc.classify_pages(pages)
                     ev=decision["evidence"]
                     issuer_name,identity_basis=resolve_issuer_identity(pages,row,identity_bindings)
+                except Exception as e:
+                    results.append({
+                        **base,
+                        "pipeline_status":"BLOCKED",
+                        "classification_state":"",
+                        "blocker":f"{type(e).__name__}:{e}",
+                    })
+                    continue
                     results.append({
                         **base,
                         "pipeline_status":"SUCCESS",
@@ -224,13 +237,6 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                         "issuer_identity_basis":identity_basis,
                         "decision_sha256":decision["decision_sha256"],
                         "blocker":"",
-                    })
-                except Exception as e:
-                    results.append({
-                        **base,
-                        "pipeline_status":"BLOCKED",
-                        "classification_state":"",
-                        "blocker":f"{type(e).__name__}:{e}",
                     })
             api.dispose()
 
