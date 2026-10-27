@@ -1,0 +1,68 @@
+{
+  "schema": "AI_CORE_EVID_EXPLORATORY_CLOSE_LOCATION_V1",
+  "status": "FROZEN_BEFORE_THIS_EXPERIMENT_OUTCOME_EVALUATION",
+  "research_class": "NEW_EXPLORATORY_RETROSPECTIVE_ONLY_NONPRISTINE_OOS",
+  "prior_findings": [
+    "V2.8.1 stage-1: 0/9 factors promoted; do not reuse failed rules as a positive claim",
+    "EXPLORATORY_OPENING_GAP_V1: lowest opening gaps did not outperform; do not reverse or retune that hypothesis"
+  ],
+  "question": "Does high daily closing-location strength at a predeclared as-of close outperform the same-day eligible equal-weight A-share universe over the next five joint trading sessions, after a fixed cost haircut?",
+  "signal": {
+    "observable_at": "D-close after final D high, low, close are known",
+    "formula": "CLV_D=(close_D-low_D)/(high_D-low_D)",
+    "price_integrity": "Only finite positive high, low and close; require high>low, low<=close<=high; duplicate security/date must fail",
+    "membership": "Official V2.8.1 PIT intervals and vendor-stable stock symbols; no ex-post sample substitution",
+    "selection": "Select top ceil(10%*N) CLV values per joint trading session D; descending CLV; ascending canonical ID deterministic tie-break",
+    "minimum_signal_universe_size": 100,
+    "zero_range_and_missing": "Exclude from signal-eligible universe, account explicitly; no substitute security",
+    "strength_direction": "higher close location preferred; no alternative directions tested",
+    "parameter_grid": "None; one hypothesis, one 10% fraction, one five-session outcome"
+  },
+  "population": {
+    "source": "V2.8.1 pinned AlphaDojo daily stock and CSI300 parquet hashes plus official PIT ledger and fixed joint calendars",
+    "first_signal_date": "2025-01-02",
+    "last_signal_date": "2026-09-09",
+    "development_period": [
+      "2025-01-02",
+      "2025-12-31"
+    ],
+    "chronological_nonpristine_check": [
+      "2026-01-01",
+      "2026-09-09"
+    ],
+    "source_max_bar_date": "2026-09-18",
+    "no_Fold3_Fold4_or_prospective_E_outcomes": true,
+    "no_post_outcome_eligibility_changes": true
+  },
+  "outcome": {
+    "entry_reference": "close_D, idealized mark not certified executable because selection needs full D close/high/low",
+    "target": "close_Dplus5 on the exact fifth subsequent joint A-share trading session, no next-observed-date substitution",
+    "primary_horizon_joint_sessions": 5,
+    "cost_round_trip_fraction": 0.003,
+    "primary_comparison": "Equal-weight average selected realized D-to-Dplus5 return minus 0.003, minus equal-weight mean of all same-day signal-eligible resolved outcomes (gross). Aggregate by signal date with equal date weights",
+    "secondary_comparison": "CSI300 D-close to Dplus5-close when both pinned benchmark closes exist; diagnostic only",
+    "missing_target": "Missing selected Dplus5 close is unresolved; selected vs broad outcome coverage reported, never set missing returns to zero or shift dates",
+    "no_fills_or_price_adjustment_certification": true,
+    "correlated_events_note": "Overlapping five-session event returns are NOT independent trades and are NOT a portfolio-path backtest"
+  },
+  "test_plan": {
+    "unit": "signal day, not pooled independent security-date events",
+    "primary_statistic": "mean daily selected-net minus all-eligible gross five-session return",
+    "minimum_evaluated_days": 200,
+    "minimum_selected_outcome_coverage": 0.9,
+    "block_bootstrap": {
+      "seed": 20261027,
+      "replicates": 2000,
+      "consecutive_day_block_length": 20,
+      "reported": "5th and 95th percentiles of mean daily excess; descriptive serial-correlation-aware uncertainty"
+    },
+    "exploratory_positive_only_if": ">=200 evaluated days; selected return coverage >=0.90; 2025 and 2026 nonpristine period mean excess both >0; overall mean excess >0; 20-date-block bootstrap p05 >0",
+    "otherwise": "EXPLORATORY_NOT_SUPPORTED_OR_INSUFFICIENT",
+    "no_alpha_or_trading_promotion": true,
+    "no_STRONG_or_MODERATE_mapping": true,
+    "interpretation": "A positive exploratory result still needs a genuinely uninspected independently defined future OOS period, realistic execution and predeclared strength criteria; historical 2026 cannot be relabeled pristine OOS"
+  },
+  "frozen_commit_policy": "Commit this prereg before running any outcome-processing code for this experiment; do not revise its selection, horizon, window, metrics, cost or decision criteria in response to observed outcomes",
+  "allowed_repairs": "Only implementation errors preserving this exact contract; record every attempt and prohibit alternate selection rules",
+  "no_live_trading_authorization": true
+}
