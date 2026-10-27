@@ -41,6 +41,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_exit_execution_readiness.py' -v
           python -m unittest discover -s scripts -p 'test_v29_public_quote_watchlist.py' -v
           python -m unittest discover -s scripts -p 'test_v29_daily_review.py' -v
+      # Network provider availability is not part of deterministic mainline PR gating.
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
@@ -53,26 +54,4 @@ jobs:
           assert a["factors_tested"] == 9 and a["factors_promoted"] == 0
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
-          PY
-      - name: Read-only public provider smoke (non-gating)
-        run: |
-          python - <<'PY'
-          from datetime import datetime
-          from zoneinfo import ZoneInfo
-          import sys
-          sys.path.insert(0, "scripts")
-          from v29_public_quote_watchlist import fetch_watchlist
-          d = datetime.now(ZoneInfo("Asia/Shanghai"))
-          pos = [{"security_id":"SSE:600000","quantity":100,"entry_price":10.0,
-                  "stop_price":9.0,"take_profit_price":12.0,"position_fraction":0.01,
-                  "position_limit":0.1,"risk_budget_used":0.001,
-                  "risk_budget_limit":0.02,"invalidation_triggered":False}]
-          try:
-              r=fetch_watchlist(pos, d.isoformat(), d.date().isoformat())
-              feed=r["market_feed"]
-              print("PUBLIC_QUOTE_SMOKE", feed["accepted_quote_count"],
-                    "errors=", feed["unavailable_or_rejected"])
-              print("WATCHLIST_QUOTE_STATUS", r["positions"][0]["quote_status"])
-          except Exception as e:
-              print("PUBLIC_QUOTE_SMOKE_BLOCKED", type(e).__name__, str(e)[:200])
           PY
