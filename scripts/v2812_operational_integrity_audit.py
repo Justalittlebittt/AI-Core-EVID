@@ -81,10 +81,48 @@ def main() -> None:
         ) as stream:
             rows = list(csv.DictReader(stream))
         receipt = rj(out / 'V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_SYNTHETIC.json')
+
+        fake_extract = {
+            'page_text_sha256': 'b' * 64, 'pdf_page_count': 1,
+            'pages_with_text': 1, 'total_nonwhitespace_characters': 100,
+        }
+        fake_decision = {
+            'classification_state': 'NOT_ESTABLISHED', 'decision_sha256': 'c' * 64,
+            'evidence': {
+                'page_number': 1, 'evidence_sentence': 'synthetic only',
+                'matched_ai_role': [], 'matched_commerciality': [], 'reason': 'NO_MATCH',
+            },
+        }
+        with (
+            patch.object(runner, 'materialize', return_value=(out / 'fake.pdf', {'object_sha256': 'a' * 64, 'bytes': 2048})),
+            patch.object(runner.te, 'extract_pdf', return_value=([{'text': 'synthetic only'}], fake_extract)),
+            patch.object(runner.pc, 'classify_pages', return_value=fake_decision),
+            patch.object(runner, 'resolve_issuer_identity', return_value=('', '')),
+        ):
+            success_dir = out / 'success'
+            runner.scan(date(2026, 10, 27), date(2026, 10, 27), success_dir,
+                        'SYNTHETIC_SUCCESS', '0' * 40, '2026-10-27T01:00:00+00:00')
+            with (success_dir / 'V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_SYNTHETIC_SUCCESS.csv').open(
+                newline='', encoding='utf-8'
+            ) as stream:
+                successful_rows = list(csv.DictReader(stream))
+            success_receipt = rj(success_dir / 'V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_SYNTHETIC_SUCCESS.json')
+
+        corrupted_cache = out / 'cache'
+        corrupted_cache.mkdir()
+        (corrupted_cache / 'locator_map.json').write_text('[bad', encoding='utf-8')
+        from contextlib import redirect_stderr
+        with patch.object(runner, 'CACHE_ROOT', corrupted_cache), redirect_stderr(StringIO()) as cache_stderr:
+            fallback_cache = runner.load_cache_map()
+
     ck('O09_per_filing_blocker_isolation_preserved',
        len(rows) == 1 and rows[0]['pipeline_status'] == 'BLOCKED'
        and rows[0]['blocker'] == 'RuntimeError:PDF_FETCH_HTTP_503'
-       and receipt['blocked_filings'] == 1 and receipt['successful_filings'] == 0)
+       and receipt['blocked_filings'] == 1 and receipt['successful_filings'] == 0
+       and len(successful_rows) == 1 and successful_rows[0]['pipeline_status'] == 'SUCCESS'
+       and success_receipt['successful_filings'] == 1 and success_receipt['blocked_filings'] == 0)
+    ck('O20_corrupt_cache_fallback_observable',
+       fallback_cache == {} and 'CACHE_MAP_IGNORED:JSONDecodeError:' in cache_stderr.getvalue())
 
     candidate = {'announcement_id': 'retry-me'}
     ck('O10_blocked_or_uncommitted_candidate_retries_next_overlap', runner.unseen_rows([candidate], []) == [candidate])
