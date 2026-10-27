@@ -1,10 +1,5 @@
 name: V2.8.1 Stage-1 Factor Screen
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/v281_stage1_factor_screen.py"
-      - ".github/workflows/v281-stage1-factor-screen.yml"
   workflow_dispatch:
 permissions:
   contents: write
