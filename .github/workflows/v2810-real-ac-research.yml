@@ -1,8 +1,5 @@
 name: V2.8.10 One-Time Real AC Pullback-Reclaim Research
 on:
-  push:
-    paths:
-      - ".github/workflows/v2810-real-ac-research.yml"
   workflow_dispatch:
 permissions:
   contents: write
