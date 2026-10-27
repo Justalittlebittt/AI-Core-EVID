@@ -1,8 +1,5 @@
 name: V2.8.11 One-Time Bounded Historical E Reconstruction Retry1
 on:
-  push:
-    paths:
-      - ".github/workflows/v2811-real-bounded-e-retry1.yml"
   workflow_dispatch:
 permissions:
   contents: write
