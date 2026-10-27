@@ -208,7 +208,6 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                     pdf,mat=materialize(api,row,inventory,tmp)
                     pages,extract=te.extract_pdf(pdf,mat["object_sha256"])
                     decision=pc.classify_pages(pages)
-                    ev=decision["evidence"]
                     issuer_name,identity_basis=resolve_issuer_identity(pages,row,identity_bindings)
                 except Exception as e:
                     results.append({
@@ -218,26 +217,26 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                         "blocker":f"{type(e).__name__}:{e}",
                     })
                     continue
-                    results.append({
-                        **base,
-                        "pipeline_status":"SUCCESS",
-                        "object_sha256":mat["object_sha256"],
-                        "bytes":mat["bytes"],
-                        "page_text_sha256":extract["page_text_sha256"],
-                        "pdf_page_count":extract["pdf_page_count"],
-                        "pages_with_text":extract["pages_with_text"],
-                        "total_nonwhitespace_characters":extract["total_nonwhitespace_characters"],
-                        "classification_state":decision["classification_state"],
-                        "evidence_page_number":ev["page_number"],
-                        "evidence_sentence":ev["evidence_sentence"],
-                        "matched_ai_role":json.dumps(ev.get("matched_ai_role") or [],ensure_ascii=False,separators=(",",":")),
-                        "matched_commerciality":json.dumps(ev.get("matched_commerciality") or [],ensure_ascii=False,separators=(",",":")),
-                        "classification_reason":ev["reason"],
-                        "issuer_legal_name":issuer_name,
-                        "issuer_identity_basis":identity_basis,
-                        "decision_sha256":decision["decision_sha256"],
-                        "blocker":"",
-                    })
+                results.append({
+                    **base,
+                    "pipeline_status":"SUCCESS",
+                    "object_sha256":mat["object_sha256"],
+                    "bytes":mat["bytes"],
+                    "page_text_sha256":extract["page_text_sha256"],
+                    "pdf_page_count":extract["pdf_page_count"],
+                    "pages_with_text":extract["pages_with_text"],
+                    "total_nonwhitespace_characters":extract["total_nonwhitespace_characters"],
+                    "classification_state":decision["classification_state"],
+                    "evidence_page_number":ev["page_number"],
+                    "evidence_sentence":ev["evidence_sentence"],
+                    "matched_ai_role":json.dumps(ev.get("matched_ai_role") or [],ensure_ascii=False,separators=(",",":")),
+                    "matched_commerciality":json.dumps(ev.get("matched_commerciality") or [],ensure_ascii=False,separators=(",",":")),
+                    "classification_reason":ev["reason"],
+                    "issuer_legal_name":issuer_name,
+                    "issuer_identity_basis":identity_basis,
+                    "decision_sha256":decision["decision_sha256"],
+                    "blocker":"",
+                })
             api.dispose()
 
     result_path=out_dir/f"V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_{run_id}.csv"
