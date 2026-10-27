@@ -1,6 +1,13 @@
 name: V2.8.12 Prospective Automation Operational Integrity Audit
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/v2812-operational-integrity-audit.yml'
+      - '.github/workflows/v284-controlled-prospective-e-layer.yml'
+      - 'scripts/v284_incremental_e_layer_runner.py'
+      - 'scripts/v2812_operational_integrity_audit.py'
+      - 'scripts/v2812_shadow_accumulator.py'
 permissions:
   contents: read
 jobs:
