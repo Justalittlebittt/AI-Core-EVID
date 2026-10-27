@@ -44,7 +44,7 @@ def dataset(missing_selected_target=False):
                          "low": 90.0, "high": 110.0,
                          "close": 108.0 if strong else 100.0})
         for d in calendar[5:7]:
-            if missing_selected_target and i == 0:
+            if missing_selected_target and i == 0 and d == calendar[5]:
                 continue
             rows.append({"canonical_security_id": sid, "bar_date": d,
                          "low": 90.0, "high": 120.0,
@@ -94,7 +94,9 @@ class CloseLocationTests(unittest.TestCase):
     def test_zero_range_excluded_without_invented_price(self):
         panel, calendar = dataset()
         panel.loc[panel["canonical_security_id"] == "SSE:600001", "high"] = 90.0
-        got = evaluate_panel(panel, calendar, {}, contract())
+        c = contract()
+        c["signal"]["minimum_signal_universe_size"] = 9
+        got = evaluate_panel(panel, calendar, {}, c)
         self.assertGreater(got["invalid_signal_bars_excluded"], 0)
         self.assertFalse(got["trade_authorized"])
 
