@@ -217,6 +217,7 @@ def scan(start:date,end:date,out_dir:Path,run_id:str,activation_sha:str,activati
                         "blocker":f"{type(e).__name__}:{e}",
                     })
                     continue
+                ev=decision["evidence"]
                 results.append({
                     **base,
                     "pipeline_status":"SUCCESS",
