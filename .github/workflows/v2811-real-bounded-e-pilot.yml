@@ -1,8 +1,5 @@
 name: V2.8.11 One-Time Bounded Historical E Reconstruction Pilot
 on:
-  push:
-    paths:
-      - ".github/workflows/v2811-real-bounded-e-pilot.yml"
   workflow_dispatch:
 permissions:
   contents: write
