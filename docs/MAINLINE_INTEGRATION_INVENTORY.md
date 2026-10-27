@@ -34,3 +34,13 @@ GitHub Actions [#40484949348](https://github.com/Justalittlebittt/AI-Core-EVID/a
 - Actual completion: full historical descriptive candidate pool and fail-closed case. Not completed: scientifically admissible current candidate-selection rule, current data feed, real human-specified risk/position inputs and any authorized BUY decision.
 
 No frozen prospective evidence, Fold3/Fold4, scientific threshold, sample or authorization was altered.
+
+## 2026-10-27 follow-up: independent close-location exploratory test
+
+- Original preregistration: `research/EXPLORATORY_CLOSE_LOCATION_V1.json`, committed first at `a89632c1f0af3e55aabf50bcff8620396ad628f1`.
+- Full offline and pinned-data Actions result: [#40492636735](https://github.com/Justalittlebittt/AI-Core-EVID/actions/runs/40492636735), after correcting a synthetic-only coverage assertion.
+- 410 evaluated signal dates, 210,901 selected security-date events, 210,408 resolved outcomes (99.7662%).
+- Mean selected-net minus same-day eligible A-share equal-weight gross five-session return: **-0.52237 percentage points**; 2025 = -0.59084 pp, 2026 nonpristine chronological = -0.42274 pp. All seven quarters negative; preregistered 20-day block-bootstrap fifth percentile = -0.61196 pp.
+- Terminal decision: **NOT SUPPORTED**. Permanent record: `research/CLOSE_LOCATION_V1_RESULT.md`; Actions artifact `exploratory-close-location-v1` contains complete daily results.
+- This does not validate a stock predictor. Do not reverse the signal, retune deciles or revisit the pre-registered 2025–2026 sample as untouched OOS.
+- Priority: avoid serial retrospective factor roulette on previously viewed windows. Preserve present no-action and user-supplied-position monitoring capabilities, and design any future predictive study around an independently frozen, genuinely unobserved prospective sample and economically realistic execution assumptions. Do not add additional monitoring scaffolding merely to record failed retrospective hypotheses.
