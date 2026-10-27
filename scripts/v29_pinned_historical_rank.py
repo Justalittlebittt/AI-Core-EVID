@@ -38,31 +38,46 @@ def file_sha(path):
 
 
 def membership(selected, as_of):
+    """Resolve as-of securities from a hash-pinned historical listing ledger.
+
+    None selects every active security; an explicit list preserves the
+    original bounded, fail-on-ineligible behavior.
+    """
     if file_sha(PIT) != PIT_SHA:
         raise ValueError("PIT_LEDGER_HASH_MISMATCH")
     source = pd.read_csv(PIT, dtype=str, keep_default_na=False)
     required = {"canonical_security_id", "exchange", "security_code", "official_list_date", "official_delist_date"}
     if not required.issubset(source.columns):
         raise ValueError("PIT_LEDGER_SCHEMA_INVALID")
+    by_id = {}
+    for row in source.to_dict("records"):
+        by_id.setdefault(row["canonical_security_id"], []).append(row)
+    full_universe = selected is None
+    ids = sorted(by_id) if full_universe else selected
     result = []
-    for cid in selected:
-        rows = source[source["canonical_security_id"] == cid]
-        if len(rows) != 1:
+    for cid in ids:
+        records = by_id.get(cid, [])
+        if len(records) != 1:
             raise ValueError("SECURITY_PIT_IDENTITY_NOT_UNIQUE:" + cid)
-        row = rows.iloc[0]
+        row = records[0]
         since = date.fromisoformat(row["official_list_date"])
         until = date.fromisoformat(row["official_delist_date"]) if row["official_delist_date"] else None
         if as_of < since or (until and as_of > until):
+            if full_universe:
+                continue
             raise ValueError("SECURITY_NOT_IN_PIT_UNIVERSE:" + cid)
         suffix = {"SSE": "SS", "SZSE": "SZ"}.get(row["exchange"])
         if suffix is None:
             raise ValueError("UNSUPPORTED_EXCHANGE:" + cid)
         result.append((cid, row["security_code"] + "." + suffix, since, until))
+    if not result:
+        raise ValueError("EMPTY_AS_OF_PIT_UNIVERSE")
     return result
 
 
-def build(as_of, securities):
-    if len(securities) != len(set(securities)) or not 1 <= len(securities) <= 10:
+def build(as_of, securities=None):
+    full_universe = securities is None
+    if not full_universe and (len(securities) != len(set(securities)) or not 1 <= len(securities) <= 10):
         raise ValueError("REQUIRE_1_TO_10_UNIQUE_SECURITIES")
     if as_of > date(2026, 9, 9):
         raise ValueError("AS_OF_EXCEEDS_FROZEN_HISTORICAL_RESEARCH_WINDOW")
@@ -72,17 +87,42 @@ def build(as_of, securities):
         raise ValueError("FROZEN_STOCK_PARQUET_HASH_MISMATCH")
     con = duckdb.connect(database=":memory:")
     try:
-        # Parameterized symbol/date filters prevent SQL injection and future bars.
-        rows = []
-        for cid, symbol, _, _ in members:
-            df = con.execute("""
-                SELECT CAST(bar_time AS DATE) AS bar_date, CAST(close AS DOUBLE) AS close
-                FROM read_parquet(?) WHERE CAST(symbol AS VARCHAR) = ?
-                  AND CAST(kline_t AS VARCHAR) = '1D'
-                  AND CAST(bar_time AS DATE) <= ?
-                ORDER BY bar_date DESC LIMIT 21
-            """, [str(source), symbol, as_of]).fetchall()
-            rows.extend((cid, d.isoformat(), value) for d, value in df)
+        if full_universe:
+            # One as-of-bounded query for the entire independently defined PIT
+            # membership: do not choose stocks after seeing factor values.
+            con.register("pit_members", pd.DataFrame(
+                [(cid, symbol) for cid, symbol, _, _ in members],
+                columns=["canonical_security_id", "symbol"],
+            ))
+            bars = con.execute("""
+                SELECT canonical_security_id, bar_date, close FROM (
+                    SELECT p.canonical_security_id,
+                           CAST(k.bar_time AS DATE) AS bar_date,
+                           CAST(k.close AS DOUBLE) AS close,
+                           ROW_NUMBER() OVER (
+                               PARTITION BY p.canonical_security_id
+                               ORDER BY CAST(k.bar_time AS DATE) DESC
+                           ) AS most_recent
+                    FROM read_parquet(?) k
+                    JOIN pit_members p ON CAST(k.symbol AS VARCHAR) = p.symbol
+                    WHERE CAST(k.kline_t AS VARCHAR) = '1D'
+                      AND CAST(k.bar_time AS DATE) <= ?
+                ) WHERE most_recent <= 21
+                ORDER BY canonical_security_id, bar_date
+            """, [str(source), as_of]).fetchall()
+            rows = [(cid, d.isoformat(), close) for cid, d, close in bars]
+        else:
+            # Retain the previously tested 1-10-security execution path.
+            rows = []
+            for cid, symbol, _, _ in members:
+                bars = con.execute("""
+                    SELECT CAST(bar_time AS DATE) AS bar_date, CAST(close AS DOUBLE) AS close
+                    FROM read_parquet(?) WHERE CAST(symbol AS VARCHAR) = ?
+                      AND CAST(kline_t AS VARCHAR) = '1D'
+                      AND CAST(bar_time AS DATE) <= ?
+                    ORDER BY bar_date DESC LIMIT 21
+                """, [str(source), symbol, as_of]).fetchall()
+                rows.extend((cid, d.isoformat(), close) for d, close in bars)
     finally:
         con.close()
     with tempfile.TemporaryDirectory() as tmp:
@@ -102,7 +142,9 @@ def build(as_of, securities):
         "dataset": DATASET, "revision": REVISION,
         "parquet_sha256": PARQUET_SHA, "pit_sha256": PIT_SHA,
         "historical_window_max_date": "2026-09-09",
-        "sampled_security_ids": list(securities),
+        "selection_mode": "FULL_PIT_ASOF" if full_universe else "BOUNDED_EXPLICIT_SECURITIES",
+        "sampled_security_ids": None if full_universe else list(securities),
+        "pit_asof_members_count": len(members),
         "frozen_research_asof_eligibility_verified": True,
         "candidate_strategy_validated": False,
         "data_adjustment_semantics_independently_certified": False,
@@ -113,15 +155,29 @@ def build(as_of, securities):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--as-of", type=date.fromisoformat, required=True)
-    p.add_argument("--security", action="append", required=True)
+    mode = p.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--security", action="append", help="Bounded explicit security (1-10)")
+    mode.add_argument("--full-pit-universe", action="store_true",
+                      help="Rank every independently PIT-eligible security as-of this date")
     p.add_argument("--output", type=Path, help="Optional JSON output destination")
     a = p.parse_args()
-    result = build(a.as_of, a.security)
+    result = build(a.as_of, None if a.full_pit_universe else a.security)
     output = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if a.output:
         a.output.parent.mkdir(parents=True, exist_ok=True)
         a.output.write_text(output, encoding="utf-8")
-    print(output)
+    if a.full_pit_universe:
+        print(json.dumps({
+            "schema": result["schema"], "as_of": result["as_of"],
+            "active_universe_size": result["active_universe_size"],
+            "ranked_count": result["ranked_count"],
+            "excluded_count": len(result["excluded"]),
+            "top_ten_descriptive_only": result["ranking"][:10],
+            "real_historical_source": result["real_historical_source"],
+            "live_buy_eligibility": result["live_buy_eligibility"],
+        }, ensure_ascii=False, indent=2))
+    else:
+        print(output)
 
 
 if __name__ == "__main__":
