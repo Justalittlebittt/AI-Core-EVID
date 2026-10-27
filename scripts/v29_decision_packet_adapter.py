@@ -4,13 +4,15 @@ import math
 import re
 from typing import Any
 
-from v29_discipline_engine import evaluate as evaluate_discipline
+from v29_discipline_engine import (
+    VALID_ACTIONS,
+    VALID_EVIDENCE,
+    VALID_EXIT_RULE_REVISIONS,
+    evaluate as evaluate_discipline,
+)
 
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 VALID_PACKET_VERSION = "V2.9_DECISION_PACKET_V1"
-VALID_ACTIONS = {"BUY", "ADD", "HOLD", "REDUCE", "EXIT"}
-VALID_EVIDENCE = {"STRONG", "MODERATE", "WEAK", "INSUFFICIENT"}
-VALID_EXIT_RULE_REVISIONS = {"NONE", "TIGHTEN", "RELAX"}
 
 
 class DecisionPacketError(ValueError):
