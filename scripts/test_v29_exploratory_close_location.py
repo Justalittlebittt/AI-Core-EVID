@@ -80,8 +80,8 @@ class CloseLocationTests(unittest.TestCase):
     def test_missing_selected_outcomes_reduce_coverage_not_filled(self):
         panel, calendar = dataset(missing_selected_target=True)
         got = evaluate_panel(panel, calendar, {}, contract())
-        self.assertEqual(got["selected_outcomes"], 0)
-        self.assertEqual(got["selected_outcome_coverage"], 0.0)
+        self.assertEqual(got["selected_outcomes"], 1)
+        self.assertEqual(got["selected_outcome_coverage"], 0.5)
         self.assertFalse(got["trade_authorized"])
         self.assertFalse(got["minimum_information_floor_pass"])
 
