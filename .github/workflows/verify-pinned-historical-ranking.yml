@@ -7,6 +7,7 @@ on:
       - 'scripts/v29_historical_asof_rank.py'
       - 'scripts/v29_real_history_decision_case.py'
       - 'scripts/test_v29_real_history_decision_case.py'
+      - 'scripts/test_v29_pinned_historical_rank.py'
 permissions:
   contents: read
 jobs:
@@ -51,3 +52,46 @@ jobs:
           assert case['decision']['discipline_decision']['decision']=='NO_ACTION_INSUFFICIENT_EVIDENCE'
           print('REAL_HISTORY_DECISION_CASE_FAIL_CLOSED_VERIFIED')
           PY
+      - name: Evaluate full PIT as-of cross-section without research promotion
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_pinned_historical_rank.py' -v
+          python scripts/v29_pinned_historical_rank.py \
+            --as-of 2026-09-09 --full-pit-universe \
+            --output /tmp/full-pit-historical-rank.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from sys import path
+          path.insert(0, 'scripts')
+          from v29_real_history_decision_case import build_historical_case
+          rank = json.loads(Path('/tmp/full-pit-historical-rank.json').read_text())
+          assert rank['real_historical_source']['selection_mode'] == 'FULL_PIT_ASOF'
+          assert rank['active_universe_size'] > 1000
+          assert rank['ranked_count'] > 1000
+          assert rank['decision_case_admission'] == 'BLOCKED_UNVALIDATED_FACTOR'
+          assert rank['live_buy_eligibility'] == 'NOT_AUTHORIZED'
+          first = rank['ranking'][0]['canonical_security_id']
+          case = build_historical_case(rank, first)
+          assert case['decision']['discipline_decision']['decision'] == 'NO_ACTION_INSUFFICIENT_EVIDENCE'
+          assert case['risk_input_status'] == 'SYNTHETIC_DEMO_ONLY'
+          Path('/tmp/full-pit-first-case.json').write_text(
+              json.dumps(case, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print('FULL_PIT_DESCRIPTIVE_CROSS_SECTION', json.dumps({
+              'as_of': rank['as_of'],
+              'active': rank['active_universe_size'],
+              'ranked': rank['ranked_count'],
+              'excluded': len(rank['excluded']),
+              'top_five_descriptive_only': rank['ranking'][:5],
+              'example_case_security': first,
+              'decision': case['decision']['discipline_decision']['decision'],
+              'live_buy_eligibility': rank['live_buy_eligibility'],
+          }, ensure_ascii=False))
+          PY
+      - name: Share reproducible historical descriptive case
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-historical-descriptive-full-pit-2026-09-09
+          path: |
+            /tmp/full-pit-historical-rank.json
+            /tmp/full-pit-first-case.json
+          retention-days: 14
