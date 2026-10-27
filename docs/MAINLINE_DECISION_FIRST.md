@@ -57,6 +57,18 @@ Any proposed engineering task must answer:
 
 If none of (1)–(4) yields a concrete mainline benefit or frozen-evidence integrity need, **defer**.
 
+## Minimal necessary defensive programming (active engineering rule)
+
+These rules govern new and changed code; they do not amend frozen research contracts or justify blanket removal of existing protections.
+
+1. **Validate once per trust boundary.** Validate incoming data at the boundary that owns its contract. Do not repeatedly check an invariant inside downstream pure logic when the validated value has not changed. Validate again only after a new external input, a transformation that can invalidate the invariant, or a distinct high-consequence boundary.
+2. **Do not stack no-op checks or exception wrappers.** Reject duplicate null checks and broad `try/except` chains that merely log-and-rethrow, silently return `None`, or disguise the original failure. Catch exceptions only to perform a defined recovery, translate an error at a genuine boundary, add necessary diagnosis, or guarantee cleanup.
+3. **Prefer local, readable code to gratuitous abstractions.** Keep one-off simple logic inline. Extract a function when it materially clarifies a complex responsibility, isolates side effects, enables meaningful tests, or removes substantive duplication. Call count alone is not the criterion.
+4. **Require approval for speculative low-impact defenses.** Before adding complicated handling for an unobserved, low-impact edge case, explain the concrete failure mode, expected impact, implementation and maintenance cost, and simpler alternative. Do not quietly add the mechanism. This approval requirement does **not** waive non-negotiable protections for point-in-time leakage, sample identity/integrity, frozen rules, outcome blindness, or trading-risk discipline.
+5. **Make new complexity earn its place.** New locks, retries, state machines, compatibility shims, validation gates, and recovery frameworks must name a credible failure mode, the boundary responsible for it, and why a simpler approach is insufficient. Prefer delete, avoid, reuse, or local handling before adding infrastructure.
+
+**Review standard:** classify each proposed removal as redundant, necessary, or unverified; do not remove unverified guards. Tests should focus on observable behavior and scientific invariants rather than counting checks, catches, or lines of code. Do not alter archived/frozen historical modules merely to enforce style.
+
 ## Protected boundaries
 
 - No revision of frozen research thresholds, sample definitions, sample windows, or unblinding.
