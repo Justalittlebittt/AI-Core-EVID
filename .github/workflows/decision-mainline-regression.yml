@@ -41,6 +41,8 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_exit_execution_readiness.py' -v
           python -m unittest discover -s scripts -p 'test_v29_public_quote_watchlist.py' -v
           python -m unittest discover -s scripts -p 'test_v29_daily_review.py' -v
+          python scripts/v29_discipline_engine_selftest.py
+          python scripts/v29_decision_packet_selftest.py
       # Network provider availability is not part of deterministic mainline PR gating.
       - name: Execute demo and historical admission
         run: |
