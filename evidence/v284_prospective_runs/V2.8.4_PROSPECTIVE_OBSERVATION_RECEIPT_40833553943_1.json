@@ -1,0 +1,32 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_OBSERVATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "OBSERVATION_COMPLETE",
+  "run_id": "40833553943_1",
+  "scan_window_start": "2026-10-27",
+  "scan_window_end": "2026-10-29",
+  "overlap_calendar_days": 3,
+  "activation_commit_sha": "b43a3e8333ab1fbe943f40e781c8b2cc33960fcb",
+  "activation_committed_at_utc": "2026-09-22T06:34:38Z",
+  "authoritative_observation_time": "GitHub committed_at of the commit that first adds this receipt",
+  "existing_ledger_rows_before_scan": 10,
+  "candidate_rows": 5,
+  "already_observed_candidate_rows": 3,
+  "unseen_candidate_rows": 2,
+  "triage_skipped_count": 0,
+  "materialization_attempted_count": 2,
+  "successful_filings": 2,
+  "blocked_filings": 0,
+  "classification_states": {
+    "NOT_ESTABLISHED": 2
+  },
+  "results_file": "V2.8.4_PROSPECTIVE_OBSERVATION_RESULTS_40833553943_1.csv",
+  "results_file_sha256": "ea4d5adc79ea2248a44109ef6f14e01f540884d28a1e4fe6190190cf5a9763b6",
+  "historical_diagnostic_rows_promoted": 0,
+  "prospective_backfill": false,
+  "same_day_eligibility_activation": false,
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "d489cfa3ee8b8fd38c04cade9211a37545f4e117265c013de0c55dc5e159e6ad"
+}
