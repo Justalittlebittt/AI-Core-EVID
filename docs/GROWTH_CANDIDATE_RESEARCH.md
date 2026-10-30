@@ -71,7 +71,7 @@ After capturing a complete two-period financial review, attach unofficial *captu
       --max-age-minutes 90 \
       --queue-limit 20
 
-Quote source: free, undocumented Eastmoney push2 ulist.np/get JSON endpoint, captured in 30-security batches. Public, third-party, non-certified market observations only. Raw quote JSON and per-batch SHA256 hashes are locally persisted; stock IDs must match financial screening. Unmatched/duplicated symbols are rejected; missing/stale/future quotes are marked unknown.
+Quote source: free, undocumented Eastmoney push2 ulist.np/get JSON endpoint, captured in 16-security batches. Public, third-party, non-certified market observations only. Raw quote JSON and per-batch SHA256 hashes are locally persisted; stock IDs must match financial screening. Unmatched/duplicated symbols are rejected; missing/stale/future quotes are marked unknown.
 
 Reported PE field f9 is explicitly labeled vendor ratio, with basis not independently certified: it is NOT assumed to be TTM or a justified valuation. f23 is labeled vendor PB; f6 is cumulative session-to-observation traded amount, not full-session liquidity. Field f124 is the provider Unix quote timestamp, not a broker fill or verified official close. Sector, price and market-cap context are also unverified observations.
 
@@ -82,3 +82,5 @@ Offline tests:
     python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
 
 Completing a purchase-decision product still requires original filing reconciliation, correct historical PIT data-vintage semantics, appropriately comparable valuation metrics, balance-sheet and nonrecurring income quality, preregistered OOS net-of-cost evaluation, user risk inputs and V2.9 discipline review. A green ingestion result does not prove those research conditions.
+
+Live batch-capability probe 2026-10-30: Eastmoney accepted requests of 2, 8, and 16 securities, while a 30-security request returned HTTP 502. Use the empirically supported 16-security maximum; any future vendor failure remains a transport failure, not inferred missing stock data.

@@ -105,7 +105,7 @@ class MarketContextTests(unittest.TestCase):
         rows = research(31)
         ids = sorted(x["security_id"] for x in rows["full_research_list"])
         raw = [page(*[quote(sid) for sid in ids[:BATCH_SIZE]]),
-               page(quote(ids[-1]))]
+               page(*[quote(sid) for sid in ids[BATCH_SIZE:]])]
         outcome = enrich(rows, raw, AT)
         self.assertEqual(outcome["counts"]["fresh_quote_context"], 31)
         self.assertEqual(len(outcome["raw_quote_batch_provenance"]), 2)

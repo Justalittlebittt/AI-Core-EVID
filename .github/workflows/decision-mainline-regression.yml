@@ -32,6 +32,7 @@ on:
 permissions:
   contents: read
   actions: read
+  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -70,20 +71,30 @@ jobs:
 
 
 
-      - name: Temporary diagnose batch size of public quote endpoint
-        timeout-minutes: 3
-        continue-on-error: true
+
+      - name: Temporary download previous financial capture
+        uses: actions/download-artifact@v4
+        with:
+          name: growth-cutoff-20261029-observed-20261030
+          repository: Justalittlebittt/AI-Core-EVID
+          run-id: 41010835022
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/v29-financial
+      - name: Temporary real A-tier market valuation context
+        timeout-minutes: 4
         run: |
-          python - <<'PY'
-          import json,sys
-          sys.path.insert(0,'scripts')
-          from v29_growth_market_context import fetch_market_batch
-          for n in (2,8,16,30):
-              secids=['SZSE:'+str(i).zfill(6) for i in range(1,n+1)]
-              try:
-                  raw=fetch_market_batch(secids)
-                  obj=json.loads(raw)
-                  print(json.dumps({'batch':n,'rc':obj.get('rc'),'returned':obj.get('data',{}).get('total') if isinstance(obj.get('data'),dict) else None,'bytes':len(raw)}))
-              except Exception as e:
-                  print(json.dumps({'batch':n,'error':type(e).__name__+':'+str(e)[:140]}))
-          PY
+          python scripts/v29_growth_market_context.py \
+            --review-json "$RUNNER_TEMP/v29-financial/growth-cutoff-report.json" \
+            --raw-dir "$RUNNER_TEMP/market-raw" \
+            --output "$RUNNER_TEMP/market-output.json" \
+            --queue-limit 12
+      - name: Temporary preserve real market snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-growth-market-context-20261030
+          path: |
+            ${{ runner.temp }}/market-raw
+            ${{ runner.temp }}/market-output.json
+          if-no-files-found: ignore
+          retention-days: 14

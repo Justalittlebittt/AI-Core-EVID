@@ -21,7 +21,7 @@ ENDPOINT = "https://push2.eastmoney.com/api/qt/ulist.np/get"
 FIELDS = "f12,f13,f14,f2,f6,f9,f23,f124,f20,f21,f100"
 SID = re.compile(r"^(SSE|SZSE):([0-9]{6})$")
 TIER = "A_BOTH_POSITIVE_NO_ACCOUNTING_FLAGS"
-BATCH_SIZE = 30
+BATCH_SIZE = 16
 SCHEMA = "AI_CORE_EVID_GROWTH_RESEARCH_REVIEW_V1"
 
 
