@@ -39,7 +39,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v5
       - name: Execute decision mainline regressions
@@ -73,3 +73,31 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Restore prior 310 growth A-tier cohort
+        uses: actions/download-artifact@v4
+        with:
+          name: growth-cutoff-20261029-observed-20261030
+          repository: Justalittlebittt/AI-Core-EVID
+          run-id: 41010835022
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/original-cohort
+      - name: Read-only market context capture for the complete 310
+        timeout-minutes: 6
+        run: |
+          python scripts/v29_growth_market_context.py \
+            --review-json "$RUNNER_TEMP/original-cohort/growth-cutoff-report.json" \
+            --raw-dir "$RUNNER_TEMP/market-quote-raw" \
+            --output "$RUNNER_TEMP/market-310.json" \
+            --max-age-minutes 240 \
+            --queue-limit 20
+      - name: Retain market source evidence and matched context
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-market-310-cohort-20261030
+          path: |
+            ${{ runner.temp }}/market-quote-raw
+            ${{ runner.temp }}/market-310.json
+          if-no-files-found: ignore
+          retention-days: 14
