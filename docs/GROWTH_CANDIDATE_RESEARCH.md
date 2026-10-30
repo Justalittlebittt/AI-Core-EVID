@@ -38,6 +38,7 @@ Use the existing public report capture to compare the 2026-09-30 and 2026-06-30 
     python scripts/v29_growth_persistence_review.py \
       --latest-period 2026-09-30 \
       --prior-period 2026-06-30 \
+      --notice-before 2026-10-30 \
       --raw-dir /private/finance-compare-20261030 \
       --output /private/finance-review-20261030.json \
       --queue-limit 20
@@ -55,3 +56,5 @@ Data availability caveats: the third-party provider may revise historical record
 Offline regression:
 
     python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
+
+Live vendor diagnosis (2026-10-30): the API caps pagination at 500 rows even for larger page-size requests. During same-day Q3 publication, page-count metadata changed across requests and the collector correctly aborted. A shared *exclusive* notice-date cutoff (e.g. `2026-10-30`) excludes announcements dated on the still-publishing current day, reducing moving-page exposure; it does NOT independently certify true PIT availability or guarantee against source revisions. Missing/changed pagination still stops collection rather than releasing a partial candidate pool.
