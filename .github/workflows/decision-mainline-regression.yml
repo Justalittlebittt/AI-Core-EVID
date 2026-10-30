@@ -45,7 +45,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
       - name: Execute decision mainline regressions
@@ -82,17 +82,3 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
-
-      - name: Temporary one-time BaoStock historical data capability check
-        timeout-minutes: 4
-        run: |
-          python -m pip install --disable-pip-version-check baostock==0.9.4
-          python scripts/v29_historical_2022_25_source_pilot.py --output-dir "$RUNNER_TEMP/historical-source-pilot"
-      - name: Temporary retain raw price observations and source receipt
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: v29-2022-2025-price-source-feasibility
-          path: ${{ runner.temp }}/historical-source-pilot
-          if-no-files-found: ignore
-          retention-days: 14
