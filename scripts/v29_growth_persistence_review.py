@@ -57,6 +57,8 @@ def compare(latest, prior, queue_limit=20):
     prior_date, earlier = _validated_snapshot(prior)
     if prior_date >= recent_date:
         raise ValueError("PRIOR_PERIOD_NOT_EARLIER")
+    if latest.get("notice_cutoff_exclusive") != prior.get("notice_cutoff_exclusive"):
+        raise ValueError("INCONSISTENT_CAPTURE_NOTICE_CUTOFF")
     rows = []
     counts = {"both_positive": 0, "both_positive_no_accounting_flags": 0,
               "both_positive_with_review_flags": 0, "prior_positive_not_observed": 0}
@@ -110,6 +112,7 @@ def compare(latest, prior, queue_limit=20):
         "latest_period": latest["report_date"],
         "prior_period": prior["report_date"],
         "latest_capture": latest["captured_at"],
+        "notice_cutoff_exclusive": latest.get("notice_cutoff_exclusive"),
         "prior_capture": prior["captured_at"],
         "latest_source_page_hashes": latest["raw_page_hashes"],
         "prior_source_page_hashes": prior["raw_page_hashes"],
@@ -128,6 +131,7 @@ def compare(latest, prior, queue_limit=20):
 def main():
     p = argparse.ArgumentParser(description="Two fiscal periods of growth research; not buy advice.")
     p.add_argument("--latest-period", required=True)
+    p.add_argument("--notice-before", required=True, help="Exclude still-publishing current day")
     p.add_argument("--prior-period", required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--raw-dir", type=Path, required=True)
@@ -136,8 +140,8 @@ def main():
     if a.output.exists() or a.raw_dir.exists():
         p.error("Do not overwrite a previous financial capture")
     # Capture both *today*: later provider revisions must not be called historical PIT.
-    latest, raw_latest = collect(a.latest_period)
-    prior, raw_prior = collect(a.prior_period)
+    latest, raw_latest = collect(a.latest_period, notice_before=a.notice_before)
+    prior, raw_prior = collect(a.prior_period, notice_before=a.notice_before)
     report = compare(latest, prior, a.queue_limit)
     for sub, raw, snapshot in (
         ("latest", raw_latest, latest), ("prior", raw_prior, prior)
