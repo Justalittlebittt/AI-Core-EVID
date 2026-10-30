@@ -88,6 +88,22 @@ class GrowthCandidateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "CAPTURE_TIME_REQUIRES_OFFSET"):
             build_snapshot("2026-09-30", make_pages([row()]), "2026-10-30T12:00:00")
 
+    def test_disclosure_cutoff_is_bound_to_source_and_content(self):
+        from v29_growth_candidate_snapshot import fetch_page
+        rec = make_pages([row()])[0]
+        seen = {}
+        def opener(req, timeout):
+            seen.update(parse_qs(urlparse(req.full_url).query))
+            return BytesIO(rec)
+        fetch_page("2026-09-30", 1, opener, notice_before="2026-10-30")
+        self.assertIn("(NOTICE_DATE<'2026-10-30')", seen["filter"][0])
+        result = build_snapshot("2026-09-30", [rec], AT, notice_before="2026-10-30")
+        self.assertEqual(result["notice_cutoff_exclusive"], "2026-10-30")
+        with self.assertRaisesRegex(ValueError, "DISCLOSURE_OUTSIDE_SNAPSHOT_CUTOFF"):
+            build_snapshot("2026-09-30",
+                           make_pages([row(NOTICE_DATE="2026-10-30")]),
+                           AT, notice_before="2026-10-30")
+
     def test_provider_request_and_capture(self):
         page = make_pages([row()])[0]
         calls = []

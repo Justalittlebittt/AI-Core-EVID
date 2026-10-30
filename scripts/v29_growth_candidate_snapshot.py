@@ -44,19 +44,22 @@ def _security(row):
     return None
 
 
-def fetch_page(report_date, page, opener=urlopen):
+def fetch_page(report_date, page, opener=urlopen, notice_before=None):
     params = {"reportName": REPORT, "columns": "ALL",
               "filter": "(REPORTDATE='" + report_date + "')",
               "pageSize": "500", "pageNumber": str(page),
               "sortColumns": "SECURITY_CODE", "sortTypes": "1",
               "source": "WEB", "client": "WEB"}
+    if notice_before is not None:
+        date.fromisoformat(notice_before)
+        params["filter"] += "(NOTICE_DATE<'" + notice_before + "')"
     request = Request(URL + "?" + urlencode(params),
                       headers={"User-Agent": "AI-Core-EVID-Research/1.0"})
     with opener(request, timeout=15) as response:
         return response.read(5_000_000)
 
 
-def build_snapshot(report_date, pages, captured_at):
+def build_snapshot(report_date, pages, captured_at, notice_before=None):
     period = date.fromisoformat(report_date)
     observed = datetime.fromisoformat(captured_at)
     if observed.tzinfo is None or observed.utcoffset() is None:
@@ -64,6 +67,8 @@ def build_snapshot(report_date, pages, captured_at):
     capture_day = observed.astimezone(ZoneInfo("Asia/Shanghai")).date()
     if period > capture_day:
         raise ValueError("REPORT_PERIOD_IN_FUTURE")
+    if notice_before is not None and date.fromisoformat(notice_before) > capture_day:
+        raise ValueError("NOTICE_CUTOFF_AFTER_CAPTURE_DAY")
     if not pages or len(pages) > 40:
         raise ValueError("INVALID_CAPTURE_PAGE_COUNT")
     records, hashes = [], []
@@ -106,6 +111,8 @@ def build_snapshot(report_date, pages, captured_at):
         published = _date(notice)
         if published > capture_day:
             raise ValueError("FUTURE_DISCLOSURE_DATE")
+        if notice_before is not None and published >= date.fromisoformat(notice_before):
+            raise ValueError("DISCLOSURE_OUTSIDE_SNAPSHOT_CUTOFF")
         values = [_num(row.get(f)) for f in
                   ("TOTAL_OPERATE_INCOME", "PARENT_NETPROFIT", "YSTZ", "SJLTZ")]
         if any(v is None for v in values):
@@ -132,6 +139,7 @@ def build_snapshot(report_date, pages, captured_at):
     return {"schema": "AI_CORE_EVID_GROWTH_CANDIDATE_SNAPSHOT_V1",
             "source": "UNOFFICIAL_EASTMONEY_FINANCIAL_AGGREGATE",
             "report": REPORT, "report_date": report_date,
+            "notice_cutoff_exclusive": notice_before,
             "captured_at": observed.isoformat(), "raw_page_hashes": hashes,
             "total_source_rows": len(records), "evaluated_a_share_rows": len(seen),
             "counts": counts, "candidate_count": len(candidates),
@@ -142,27 +150,28 @@ def build_snapshot(report_date, pages, captured_at):
             "strategy_validated": False, "live_buy_eligibility": "NOT_AUTHORIZED"}
 
 
-def collect(report_date, opener=urlopen):
-    first = fetch_page(report_date, 1, opener)
+def collect(report_date, opener=urlopen, notice_before=None):
+    first = fetch_page(report_date, 1, opener, notice_before=notice_before)
     result = json.loads(first).get("result")
     if not isinstance(result, dict) or type(result.get("pages")) is not int:
         raise ValueError("PROVIDER_RESPONSE_INVALID")
     total = result["pages"]
     if not 1 <= total <= 40:
         raise ValueError("PAGE_LIMIT_EXCEEDED")
-    raw = [first] + [fetch_page(report_date, i, opener) for i in range(2, total + 1)]
-    return build_snapshot(report_date, raw, datetime.now(timezone.utc).isoformat()), raw
+    raw = [first] + [fetch_page(report_date, i, opener, notice_before=notice_before) for i in range(2, total + 1)]
+    return build_snapshot(report_date, raw, datetime.now(timezone.utc).isoformat(), notice_before), raw
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--report-date", required=True)
+    p.add_argument("--notice-before", help="Exclusive disclosure-date cutoff, e.g. 2026-10-30")
     p.add_argument("--raw-dir", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     args = p.parse_args()
     if args.raw_dir.exists() or args.output.exists():
         p.error("Output exists: do not overwrite a previous evidence capture")
-    result, pages = collect(args.report_date)
+    result, pages = collect(args.report_date, notice_before=args.notice_before)
     args.raw_dir.mkdir(parents=True)
     for i, raw in enumerate(pages, 1):
         (args.raw_dir / f"page-{i:03d}.json").write_bytes(raw)
