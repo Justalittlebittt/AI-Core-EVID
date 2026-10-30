@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_historical_2022_25_source_pilot.py'
+      - 'scripts/test_v29_historical_2022_25_source_pilot.py'
       - 'scripts/v29_growth_forward_cohort.py'
       - 'scripts/test_v29_growth_forward_cohort.py'
       - 'research/V2.9_GROWTH_122_FORWARD_EVALUATION_PROTOCOL.json'
@@ -54,6 +56,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_growth_raw_quality_audit.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_core_earnings.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_historical_2022_25_source_pilot.py' -v
           python scripts/v29_growth_forward_cohort.py > /tmp/v29-forward-readiness.json
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
