@@ -84,3 +84,5 @@ Offline tests:
 Completing a purchase-decision product still requires original filing reconciliation, correct historical PIT data-vintage semantics, appropriately comparable valuation metrics, balance-sheet and nonrecurring income quality, preregistered OOS net-of-cost evaluation, user risk inputs and V2.9 discipline review. A green ingestion result does not prove those research conditions.
 
 Live batch-capability probe 2026-10-30: Eastmoney accepted requests of 2, 8, and 16 securities, while a 30-security request returned HTTP 502. Use the empirically supported 16-security maximum; any future vendor failure remains a transport failure, not inferred missing stock data.
+
+A quote captured during a trading session is an intraday observation, not the official daily close; source field f6 reflects trading up to the capture time. The market-context report has no industry-relative valuation threshold, so a low or high observed PE never changes BUY eligibility. Missing quotes remain unknown rather than assumed untradeable.
