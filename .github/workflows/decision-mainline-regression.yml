@@ -1,5 +1,8 @@
 name: Decision Mainline Regression
 on:
+  push:
+    branches:
+      - 'verify/v29-core-earnings-real-20261030'
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
