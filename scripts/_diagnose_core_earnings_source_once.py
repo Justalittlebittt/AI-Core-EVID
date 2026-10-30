@@ -60,3 +60,23 @@ for label, params in MORE:
                           "sample":out},ensure_ascii=False))
     except Exception as e:
         print(json.dumps({"case":label,"error":type(e).__name__+":"+str(e)[:180]}))
+
+for period in ("2026-09-30","2026-06-30"):
+    try:
+        params={"reportName":"RPT_F10_FINANCE_MAINFINADATA",
+           "columns":"SECUCODE,SECURITY_CODE,ORG_CODE,REPORT_DATE,NOTICE_DATE,UPDATE_DATE,KCFJCXSYJLR,KCFJCXSYJLRTZ,PARENTNETPROFIT",
+           "filter":"(REPORT_DATE='"+period+"')(NOTICE_DATE<'2026-10-30')",
+           "pageNumber":1,"pageSize":500,"sortColumns":"SECURITY_CODE",
+           "sortTypes":"1","source":"HSF10","client":"PC"}
+        url="https://datacenter.eastmoney.com/securities/api/data/v1/get?"+urlencode(params)
+        with urlopen(Request(url, headers={"User-Agent":"Mozilla/5.0"}), timeout=15) as res:
+            obj=json.loads(res.read(4000000))
+        d=obj.get("result") or {}
+        rows=d.get("data") or []
+        print(json.dumps({"case":"bulk_cutoff","period":period,"code":obj.get("code"),
+                          "message":str(obj.get("message",""))[:100],
+                          "count":d.get("count"),"pages":d.get("pages"),
+                          "rows":len(rows),"fields":list(rows[0]) if rows else [],
+                          "sample":rows[:1]},ensure_ascii=False))
+    except Exception as e:
+        print(json.dumps({"case":"bulk_cutoff","period":period,"error":type(e).__name__+":"+str(e)[:180]}))
