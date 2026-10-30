@@ -83,8 +83,18 @@ class QualityAuditTests(unittest.TestCase):
 
     def test_after_cutoff_update_rejected(self):
         obj = fixture(latest=raw("2026-09-30", UPDATE_DATE="2026-10-30 00:00:00"))
-        with self.assertRaisesRegex(ValueError, "SOURCE_REVISED_AFTER_CAPTURE_CUTOFF"):
+        with self.assertRaisesRegex(ValueError, "SELECTED_SOURCE_REVISED_AFTER_CAPTURE_CUTOFF"):
             audit(*obj)
+
+    def test_unrelated_late_update_does_not_block_selected_a_tier(self):
+        r, q3, h1 = fixture()
+        other = raw("2026-09-30", SECUCODE="600001.SH",
+                    SECURITY_CODE="600001", ORG_CODE="OTHER",
+                    UPDATE_DATE="2026-10-30 00:00:00")
+        q3 = [page(raw("2026-09-30"), other)]
+        r["latest_source_page_hashes"][0]["sha256"] = hashlib.sha256(q3[0]).hexdigest()
+        out = audit(r, q3, h1)
+        self.assertEqual(out["counts"]["reviewed_a_tier"], 1)
 
     def test_missing_raw_source_row_rejected(self):
         r, q3, h1 = fixture()
