@@ -105,6 +105,13 @@ class GrowthReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "UNVERIFIED_FINANCIAL_SNAPSHOT_PROVENANCE"):
             compare(bad, self.earlier)
 
+    def test_captures_must_share_same_notice_cutoff(self):
+        old = copy.deepcopy(self.earlier)
+        self.recent["notice_cutoff_exclusive"] = "2026-10-30"
+        old["notice_cutoff_exclusive"] = "2026-10-29"
+        with self.assertRaisesRegex(ValueError, "INCONSISTENT_CAPTURE_NOTICE_CUTOFF"):
+            compare(self.recent, old)
+
     def test_queue_bound_and_provenance(self):
         result = compare(self.recent, self.earlier, 2)
         self.assertEqual(len(result["review_queue"]), 2)
