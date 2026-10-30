@@ -70,3 +70,8 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Temporary inspect public deducted-earnings reporting fields
+        timeout-minutes: 2
+        run: |
+          python scripts/_diagnose_core_earnings_source_once.py
