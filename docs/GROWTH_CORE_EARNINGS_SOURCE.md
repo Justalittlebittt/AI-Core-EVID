@@ -23,3 +23,7 @@ The captured report is **not independently audited issuer financials**. Official
 3. Check a representative subset against the original exchange-issued Q3/H1 reports and then attach valuation and available trading-liquidity context. Only research candidates may be emitted; production BUY depends on separate prospective/out-of-sample strategy admission.
 
 Run from a locally preserved financial source archive using the mainline script --financial-review, --financial-raw-dir, --core-raw-dir and --output arguments. Never upload private holdings. No V2.8.12 E-layer or Fold3/Fold4 research data is read or changed.
+
+## Acceptance update: completed 2026-10-30
+
+The previous pending real coverage requirement has now been **executed**: GitHub Actions run 41023214144 passed full Q3/H1 ingestion and 310/310 company-level source reconciliation; 310/310 deducted parent-profit fields available, 1 nonpositive Q3 cumulative and 2 nonpositive standalone Q3. See [the verified receipt](../research/V2.9_GROWTH_310_CORE_PROFIT_REAL_REVIEW_20261030.md). No financial data was labeled as historically PIT-certified or alpha-validated. The standalone market valuation feed still lacks full real coverage due upstream HTTP 502 and remains separate from this completed source-quality work.
