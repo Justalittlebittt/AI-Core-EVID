@@ -1,0 +1,45 @@
+{
+  "schema": "V29_2025_REAL_REPORT_PRICE_RECEIPT_V1",
+  "recorded_on": "2026-10-30",
+  "source_run_id": 41038012507,
+  "source_artifact_id": 12968881412,
+  "raw_market_sha256": "4eafc27a513d5dd08b6e4b6798bf32fcab9a87aea6a614964ae419283b006223",
+  "complete_output_sha256": "4f7efbf7203c37dda6d93048be5a3315f4055094adfbe1447df4c55d34e167e5",
+  "full_financial_input_sha256": "eff4c45a7c86fd8ae8e0eaa96d93208631829f94e7f3ee94af05f1dfc7bf8175",
+  "market_capture_time": "2026-10-30T10:04:38.143371+00:00",
+  "comparison": "CSI300_PRICE_INDEX_NOT_TOTAL_RETURN",
+  "round_trip_cost_assumption": 0.003,
+  "observations": [
+    {
+      "sid": "SZSE:300408",
+      "report_notice": "2025-04-24",
+      "entry": "2025-04-25",
+      "exit": "2025-05-27",
+      "price_entry": 35.31,
+      "price_exit": 32.01,
+      "price_return": -0.09345794392523377,
+      "matched_index_return": 0.013837678156158661,
+      "price_only_cost_adjusted_excess": -0.11029562208139243,
+      "fy2024_deduct_parent_profit_growth_pct": 58.221566348402455
+    },
+    {
+      "sid": "SSE:688002",
+      "report_notice": "2025-04-11",
+      "entry": "2025-04-14",
+      "exit": "2025-05-14",
+      "price_entry": 56.1,
+      "price_exit": 58.92,
+      "price_return": 0.05026737967914441,
+      "matched_index_return": 0.04896558581902011,
+      "price_only_cost_adjusted_excess": -0.001698206139875702,
+      "fy2024_deduct_parent_profit_growth_pct": 16.874780620726646
+    }
+  ],
+  "no_pit_market_vintage_certification": true,
+  "no_historical_original_pdf_bytes_preserved": true,
+  "no_total_economic_return_calculated": true,
+  "retrospectively_selected_after_2026_growth_known": true,
+  "unaffected_frozen_2026_forward_experiment": true,
+  "statistically_validated_alpha": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED"
+}
