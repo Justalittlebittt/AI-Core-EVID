@@ -58,3 +58,27 @@ Offline regression:
     python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
 
 Live vendor diagnosis (2026-10-30): the API caps pagination at 500 rows even for larger page-size requests. During same-day Q3 publication, page-count metadata changed across requests and the collector correctly aborted. A shared *exclusive* notice-date cutoff (e.g. `2026-10-30`) excludes announcements dated on the still-publishing current day, reducing moving-page exposure; it does NOT independently certify true PIT availability or guarantee against source revisions. Missing/changed pagination still stops collection rather than releasing a partial candidate pool.
+
+
+## Valuation and liquidity market context (no alpha rank)
+
+After capturing a complete two-period financial review, attach unofficial *capture-time* market context to the **A** tier (two-period positive and without the existing accounting-review flags):
+
+    python scripts/v29_growth_market_context.py \
+      --review-json /private/finance-review-20261030.json \
+      --raw-dir /private/finance-quote-batches-20261030 \
+      --output /private/finance-market-context-20261030.json \
+      --max-age-minutes 90 \
+      --queue-limit 20
+
+Quote source: free, undocumented Eastmoney push2 ulist.np/get JSON endpoint, captured in 30-security batches. Public, third-party, non-certified market observations only. Raw quote JSON and per-batch SHA256 hashes are locally persisted; stock IDs must match financial screening. Unmatched/duplicated symbols are rejected; missing/stale/future quotes are marked unknown.
+
+Reported PE field f9 is explicitly labeled vendor ratio, with basis not independently certified: it is NOT assumed to be TTM or a justified valuation. f23 is labeled vendor PB; f6 is cumulative session-to-observation traded amount, not full-session liquidity. Field f124 is the provider Unix quote timestamp, not a broker fill or verified official close. Sector, price and market-cap context are also unverified observations.
+
+Only the prior A-tier research pool is enriched. B/C candidates remain in the original financial report; they are not deemed uninvestable. Within A the output is sorted by canonical security ID, NOT expected return, risk-adjusted return or fair-value score. Every row retains NOT_AUTHORIZED for BUY/ADD. No trading, new monitoring pipeline, frozen threshold changes or Fold3/Fold4 access.
+
+Offline tests:
+
+    python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
+
+Completing a purchase-decision product still requires original filing reconciliation, correct historical PIT data-vintage semantics, appropriately comparable valuation metrics, balance-sheet and nonrecurring income quality, preregistered OOS net-of-cost evaluation, user risk inputs and V2.9 discipline review. A green ingestion result does not prove those research conditions.
