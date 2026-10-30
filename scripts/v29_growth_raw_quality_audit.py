@@ -48,8 +48,6 @@ def _financial_rows(pages, receipt, period, cutoff):
                 raise ValueError("FINANCIAL_REPORT_PERIOD_CHANGED")
             if row.get("NOTICE_DATE", "")[:10] >= cutoff:
                 raise ValueError("DISCLOSURE_AFTER_FROZEN_CAPTURE_CUTOFF")
-            if row.get("UPDATE_DATE") and row["UPDATE_DATE"][:10] >= cutoff:
-                raise ValueError("SOURCE_REVISED_AFTER_CAPTURE_CUTOFF")
             sid = ("SSE:" if symbol.endswith(".SH") else "SZSE:")+str(code)
             if sid in by_id:
                 raise ValueError("DUPLICATE_RAW_FINANCIAL_ID")
@@ -81,6 +79,8 @@ def audit(review, latest_pages, prior_pages):
         if sid not in current or sid not in previous:
             raise ValueError("CANDIDATE_RAW_SOURCE_ROW_MISSING")
         now, old = current[sid], previous[sid]
+        if any((r.get("UPDATE_DATE") or "")[:10] >= cutoff for r in (now, old)):
+            raise ValueError("SELECTED_SOURCE_REVISED_AFTER_CAPTURE_CUTOFF")
         if now.get("ORG_CODE") != old.get("ORG_CODE"):
             raise ValueError("MATERIAL_ISSUER_IDENTITY_MISMATCH")
         if now.get("NOTICE_DATE", "")[:10] != candidate["recent_notice_date"]:
