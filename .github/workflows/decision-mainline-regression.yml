@@ -73,3 +73,27 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Temporary determine whole-market snapshot pagination capability
+        timeout-minutes: 3
+        run: |
+          python - <<'PY'
+          import json
+          from urllib.parse import urlencode
+          from urllib.request import Request,urlopen
+          base="https://push2.eastmoney.com/api/qt/clist/get"
+          for size,num in ((500,1),(500,12),(1000,1)):
+              q={"pn":num,"pz":size,"po":1,"np":1,"fltt":2,"invt":2,"fid":"f12",
+                 "fs":"m:1+t:2,m:1+t:23,m:0+t:6,m:0+t:80",
+                 "fields":"f12,f13,f14,f2,f6,f9,f23,f124,f20,f21,f100"}
+              try:
+                  with urlopen(Request(base+"?"+urlencode(q),headers={"User-Agent":"Mozilla/5.0","Referer":"https://quote.eastmoney.com/"}),timeout=18) as res:
+                      obj=json.loads(res.read(2000000))
+                  data=obj.get("data") or {}
+                  values=data.get("diff") or []
+                  if isinstance(values,dict): values=list(values.values())
+                  print(json.dumps({"requested":size,"page":num,"rc":obj.get("rc"),"total":data.get("total"),
+                     "rows":len(values),"first":values[:1],"last":values[-1:]},ensure_ascii=False))
+              except Exception as e:
+                  print(json.dumps({"requested":size,"page":num,"error":type(e).__name__+":"+str(e)[:150]}))
+          PY
