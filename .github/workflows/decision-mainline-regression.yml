@@ -36,10 +36,11 @@ on:
 permissions:
   contents: read
   actions: read
+  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
       - name: Execute decision mainline regressions
@@ -73,3 +74,30 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Restore validated 310-candidate source capture
+        uses: actions/download-artifact@v4
+        with:
+          name: growth-cutoff-20261029-observed-20261030
+          repository: Justalittlebittt/AI-Core-EVID
+          run-id: 41010835022
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/base-growth
+      - name: One-off bulk 310-candidate deducted-profit capture and reconciliation
+        timeout-minutes: 7
+        run: |
+          python scripts/v29_growth_core_earnings.py \
+            --financial-review "$RUNNER_TEMP/base-growth/growth-cutoff-report.json" \
+            --financial-raw-dir "$RUNNER_TEMP/base-growth/growth-cutoff-raw" \
+            --core-raw-dir "$RUNNER_TEMP/core-q3h1" \
+            --output "$RUNNER_TEMP/core-310.json"
+      - name: Preserve core earnings source data and joined result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-310-core-profit-asof-20261029
+          path: |
+            ${{ runner.temp }}/core-q3h1
+            ${{ runner.temp }}/core-310.json
+          if-no-files-found: ignore
+          retention-days: 14
