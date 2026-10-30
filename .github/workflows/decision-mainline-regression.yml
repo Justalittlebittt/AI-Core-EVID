@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_growth_persistence_review.py'
+      - 'scripts/test_v29_growth_persistence_review.py'
       - 'scripts/v29_growth_candidate_snapshot.py'
       - 'scripts/test_v29_growth_candidate_snapshot.py'
       - 'scripts/v29_daily_review.py'
@@ -36,6 +38,7 @@ jobs:
       - name: Execute decision mainline regressions
         run: |
           python -m unittest discover -s scripts -p 'test_v29_growth_candidate_snapshot.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
