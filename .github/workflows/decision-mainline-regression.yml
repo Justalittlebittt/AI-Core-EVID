@@ -63,3 +63,24 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Temporary single-page finance source capability check
+        timeout-minutes: 2
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import json
+          from urllib.request import urlopen, Request
+          from urllib.parse import urlencode
+          for period in ("2026-09-30", "2026-06-30"):
+              q = {"reportName":"RPT_LICO_FN_CPD", "columns":"ALL",
+                   "filter":"(REPORTDATE='" + period + "')",
+                   "pageSize":"10000", "pageNumber":"1", "sortColumns":"SECURITY_CODE",
+                   "sortTypes":"1", "source":"WEB", "client":"WEB"}
+              u = "https://datacenter-web.eastmoney.com/api/data/v1/get?" + urlencode(q)
+              with urlopen(Request(u,headers={"User-Agent":"AI-Core-EVID-Research/1.0"}),timeout=18) as r:
+                  j=json.loads(r.read(20000000))
+              obj=j["result"]
+              print(json.dumps({"period":period,"count":obj.get("count"),
+                                "pages":obj.get("pages"),"received_rows":len(obj.get("data") or [])}))
+          PY
