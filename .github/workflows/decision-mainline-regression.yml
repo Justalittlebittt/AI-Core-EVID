@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_growth_market_context.py'
+      - 'scripts/test_v29_growth_market_context.py'
       - 'scripts/v29_growth_persistence_review.py'
       - 'scripts/test_v29_growth_persistence_review.py'
       - 'scripts/v29_growth_candidate_snapshot.py'
@@ -39,6 +41,7 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p 'test_v29_growth_candidate_snapshot.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
@@ -64,29 +67,3 @@ jobs:
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
 
-      - name: Temporary read-only public valuation endpoint check
-        timeout-minutes: 3
-        continue-on-error: true
-        run: |
-          python - <<'PY'
-          from urllib.request import urlopen,Request
-          from urllib.parse import urlencode
-          import json
-          targets=[
-             ("ulist","https://push2.eastmoney.com/api/qt/ulist.np/get",{"fltt":2,"invt":2,"fields":"f12,f13,f14,f2,f6,f9,f23,f124,f20,f21,f100","secids":"1.600519,0.000001"}),
-             ("clist","https://push2.eastmoney.com/api/qt/clist/get",{"pn":1,"pz":5,"po":1,"np":1,"fltt":2,"invt":2,"fid":"f12","fs":"m:1+t:2,m:1+t:23,m:0+t:6,m:0+t:80","fields":"f12,f13,f14,f2,f6,f9,f23,f124,f20,f21,f100"})
-          ]
-          for label,base,params in targets:
-              try:
-                  uri=base+"?"+urlencode(params)
-                  with urlopen(Request(uri,headers={"User-Agent":"Mozilla/5.0","Referer":"https://quote.eastmoney.com/"}),timeout=14) as response:
-                      raw=response.read(50000)
-                  data=json.loads(raw)
-                  obj=data.get("data")
-                  print(json.dumps({"probe":label,"status":data.get("rc"),"data_shape":list(obj)[:10] if isinstance(obj,dict) else type(obj).__name__,
-                                    "total":obj.get("total") if isinstance(obj,dict) else None,
-                                    "sample":(obj.get("diff") or [])[:2] if isinstance(obj,dict) and isinstance(obj.get("diff"),list) else
-                                     list((obj.get("diff") or {}).values())[:2] if isinstance(obj,dict) and isinstance(obj.get("diff"),dict) else str(obj)[:400]},ensure_ascii=False))
-              except Exception as exc:
-                  print(json.dumps({"probe":label,"error":type(exc).__name__+":"+str(exc)[:180]}))
-          PY
