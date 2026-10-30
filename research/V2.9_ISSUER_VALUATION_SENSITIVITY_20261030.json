@@ -1,0 +1,186 @@
+{
+  "schema": "V2.9_ISSUER_EPS_PE_SENSITIVITY_V1",
+  "as_of": "2026-10-30",
+  "reference_price_session": "2026-10-29",
+  "description": "Descriptive scenarios, not fair-value estimates or stock forecasts",
+  "method": "price_t=P0*(1+growth_in_TTM_EPS)*(terminal_PE/observed_PE)",
+  "hypothetical_ttm_eps_growth": [
+    -0.1,
+    0.2,
+    0.4
+  ],
+  "hypothetical_pe_retention": [
+    0.65,
+    0.8,
+    1
+  ],
+  "payouts_and_fees": "EXCLUDED",
+  "company_pit_certification": false,
+  "price_target_certification": false,
+  "independent_alpha_evidence": false,
+  "buy_eligibility": "NOT_AUTHORIZED",
+  "cases": [
+    {
+      "security_id": "SZSE:300408",
+      "name": "三环集团",
+      "quote_asof_beijing": "2026-10-29 15:00",
+      "reference_price_cny": 84.54,
+      "vendor_pe_ttm": 37.3,
+      "implied_trailing_eps_cny": 2.26649,
+      "implied_earnings_yield_pct": 2.681,
+      "ytd_gross_margin_2025_pct": 42.4885,
+      "ytd_gross_margin_2026_pct": 48.4725,
+      "gross_margin_change_pp": 5.9841,
+      "sources": {
+        "report": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12670181&stockid=300408",
+        "quote": "https://longbridge.com/zh-CN/quote/300408.SZ"
+      },
+      "illustrative_matrix": [
+        {
+          "assumed_ttm_eps_growth": -0.1,
+          "assumed_pe_retention": 0.65,
+          "assumed_exit_pe": 24.245,
+          "hypothetical_price_cny": 49.46,
+          "hypothetical_price_return_pct": -41.5
+        },
+        {
+          "assumed_ttm_eps_growth": -0.1,
+          "assumed_pe_retention": 0.8,
+          "assumed_exit_pe": 29.84,
+          "hypothetical_price_cny": 60.87,
+          "hypothetical_price_return_pct": -28
+        },
+        {
+          "assumed_ttm_eps_growth": -0.1,
+          "assumed_pe_retention": 1,
+          "assumed_exit_pe": 37.3,
+          "hypothetical_price_cny": 76.09,
+          "hypothetical_price_return_pct": -10
+        },
+        {
+          "assumed_ttm_eps_growth": 0.2,
+          "assumed_pe_retention": 0.65,
+          "assumed_exit_pe": 24.245,
+          "hypothetical_price_cny": 65.94,
+          "hypothetical_price_return_pct": -22
+        },
+        {
+          "assumed_ttm_eps_growth": 0.2,
+          "assumed_pe_retention": 0.8,
+          "assumed_exit_pe": 29.84,
+          "hypothetical_price_cny": 81.16,
+          "hypothetical_price_return_pct": -4
+        },
+        {
+          "assumed_ttm_eps_growth": 0.2,
+          "assumed_pe_retention": 1,
+          "assumed_exit_pe": 37.3,
+          "hypothetical_price_cny": 101.45,
+          "hypothetical_price_return_pct": 20
+        },
+        {
+          "assumed_ttm_eps_growth": 0.4,
+          "assumed_pe_retention": 0.65,
+          "assumed_exit_pe": 24.245,
+          "hypothetical_price_cny": 76.93,
+          "hypothetical_price_return_pct": -9
+        },
+        {
+          "assumed_ttm_eps_growth": 0.4,
+          "assumed_pe_retention": 0.8,
+          "assumed_exit_pe": 29.84,
+          "hypothetical_price_cny": 94.68,
+          "hypothetical_price_return_pct": 12
+        },
+        {
+          "assumed_ttm_eps_growth": 0.4,
+          "assumed_pe_retention": 1,
+          "assumed_exit_pe": 37.3,
+          "hypothetical_price_cny": 118.36,
+          "hypothetical_price_return_pct": 40
+        }
+      ]
+    },
+    {
+      "security_id": "SSE:688002",
+      "name": "睿创微纳",
+      "quote_asof_beijing": "2026-10-29 15:00",
+      "reference_price_cny": 139.03,
+      "vendor_pe_ttm": 23.82,
+      "implied_trailing_eps_cny": 5.83669,
+      "implied_earnings_yield_pct": 4.1982,
+      "ytd_gross_margin_2025_pct": 51.9746,
+      "ytd_gross_margin_2026_pct": 59.6433,
+      "gross_margin_change_pp": 7.6687,
+      "sources": {
+        "report": "https://www.cfi.net.cn/newspage.aspx?hisgetall=1&id=20261026003240",
+        "quote": "https://data.cfi.cn/quote.aspx?client=pc&lm=fxysg&stockid=93333"
+      },
+      "illustrative_matrix": [
+        {
+          "assumed_ttm_eps_growth": -0.1,
+          "assumed_pe_retention": 0.65,
+          "assumed_exit_pe": 15.483,
+          "hypothetical_price_cny": 81.33,
+          "hypothetical_price_return_pct": -41.5
+        },
+        {
+          "assumed_ttm_eps_growth": -0.1,
+          "assumed_pe_retention": 0.8,
+          "assumed_exit_pe": 19.056,
+          "hypothetical_price_cny": 100.1,
+          "hypothetical_price_return_pct": -28
+        },
+        {
+          "assumed_ttm_eps_growth": -0.1,
+          "assumed_pe_retention": 1,
+          "assumed_exit_pe": 23.82,
+          "hypothetical_price_cny": 125.13,
+          "hypothetical_price_return_pct": -10
+        },
+        {
+          "assumed_ttm_eps_growth": 0.2,
+          "assumed_pe_retention": 0.65,
+          "assumed_exit_pe": 15.483,
+          "hypothetical_price_cny": 108.44,
+          "hypothetical_price_return_pct": -22
+        },
+        {
+          "assumed_ttm_eps_growth": 0.2,
+          "assumed_pe_retention": 0.8,
+          "assumed_exit_pe": 19.056,
+          "hypothetical_price_cny": 133.47,
+          "hypothetical_price_return_pct": -4
+        },
+        {
+          "assumed_ttm_eps_growth": 0.2,
+          "assumed_pe_retention": 1,
+          "assumed_exit_pe": 23.82,
+          "hypothetical_price_cny": 166.84,
+          "hypothetical_price_return_pct": 20
+        },
+        {
+          "assumed_ttm_eps_growth": 0.4,
+          "assumed_pe_retention": 0.65,
+          "assumed_exit_pe": 15.483,
+          "hypothetical_price_cny": 126.52,
+          "hypothetical_price_return_pct": -9
+        },
+        {
+          "assumed_ttm_eps_growth": 0.4,
+          "assumed_pe_retention": 0.8,
+          "assumed_exit_pe": 19.056,
+          "hypothetical_price_cny": 155.71,
+          "hypothetical_price_return_pct": 12
+        },
+        {
+          "assumed_ttm_eps_growth": 0.4,
+          "assumed_pe_retention": 1,
+          "assumed_exit_pe": 23.82,
+          "hypothetical_price_cny": 194.64,
+          "hypothetical_price_return_pct": 40
+        }
+      ]
+    }
+  ]
+}
