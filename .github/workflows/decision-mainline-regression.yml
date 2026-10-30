@@ -60,3 +60,13 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      # One-off mainline provider verification; must not change offline test eligibility.
+      - name: Non-gating finance provider integration probe (temporary PR)
+        continue-on-error: true
+        timeout-minutes: 3
+        run: |
+          python scripts/v29_growth_candidate_snapshot.py \
+            --report-date 2026-09-30 \
+            --raw-dir "$RUNNER_TEMP/growth-raw" \
+            --output "$RUNNER_TEMP/growth.json"
