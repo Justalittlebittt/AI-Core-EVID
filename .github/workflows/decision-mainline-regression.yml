@@ -63,3 +63,24 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Temporary live two-period capture (non-gating)
+        continue-on-error: true
+        timeout-minutes: 3
+        run: |
+          python scripts/v29_growth_persistence_review.py \
+            --latest-period 2026-09-30 \
+            --prior-period 2026-06-30 \
+            --raw-dir "$RUNNER_TEMP/growth-two-period-raw" \
+            --output "$RUNNER_TEMP/growth-two-period-review.json" \
+            --queue-limit 20
+      - name: Temporary preserve real-data provenance artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: growth-two-period-research-capture
+          path: |
+            ${{ runner.temp }}/growth-two-period-raw
+            ${{ runner.temp }}/growth-two-period-review.json
+          if-no-files-found: ignore
+          retention-days: 14
