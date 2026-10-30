@@ -32,6 +32,7 @@ on:
 permissions:
   contents: read
   actions: read
+  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -67,3 +68,30 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Temporary fetch verified H1-Q3 A-share research capture
+        uses: actions/download-artifact@v4
+        with:
+          name: growth-cutoff-20261029-observed-20261030
+          repository: Justalittlebittt/AI-Core-EVID
+          run-id: 41010835022
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/growth-source
+      - name: Temporary full A-tier real quote observation
+        timeout-minutes: 4
+        run: |
+          python scripts/v29_growth_market_context.py \
+            --review-json "$RUNNER_TEMP/growth-source/growth-cutoff-report.json" \
+            --raw-dir "$RUNNER_TEMP/quote-raw" \
+            --output "$RUNNER_TEMP/context.json" \
+            --queue-limit 20
+      - name: Temporary capture source and context artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-A-tier-valuation-liquidity-20261030
+          path: |
+            ${{ runner.temp }}/quote-raw
+            ${{ runner.temp }}/context.json
+          if-no-files-found: ignore
+          retention-days: 14
