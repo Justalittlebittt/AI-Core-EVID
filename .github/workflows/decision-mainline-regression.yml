@@ -36,7 +36,6 @@ on:
 permissions:
   contents: read
   actions: read
-  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
