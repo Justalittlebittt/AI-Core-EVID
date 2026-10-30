@@ -48,7 +48,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
       - name: Execute decision mainline regressions
@@ -86,17 +86,3 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
-
-      - name: Temporary real two-issuer 2025 annual filing to subsequent price validation
-        timeout-minutes: 4
-        run: |
-          python -m pip install --disable-pip-version-check baostock==0.9.4
-          python scripts/v29_2025_filing_to_return_case.py --out-dir "$RUNNER_TEMP/issuer-event-case"
-      - name: Temporary archive 2025 actual raw price-case
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: v29-2025-real-two-issuer-filing-price-case
-          path: ${{ runner.temp }}/issuer-event-case
-          if-no-files-found: ignore
-          retention-days: 14
