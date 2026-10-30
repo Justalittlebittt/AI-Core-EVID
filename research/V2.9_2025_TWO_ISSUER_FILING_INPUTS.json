@@ -1,0 +1,45 @@
+{
+  "schema": "AI_CORE_EVID_V29_HISTORICAL_2025_TWO_ISSUER_CASE_INPUT_V1",
+  "study_status": "HISTORICAL_DEVELOPMENT_EXAMPLES_ONLY",
+  "not_unseen_oos": true,
+  "not_pre_registered_before_historical_2025_outcomes": true,
+  "annual_report_year": 2024,
+  "conservative_signal": "first_exchange_session_strictly_after_report_announcement",
+  "holding_period_sessions_including_entry": 20,
+  "round_trip_cost_assumption": 0.003,
+  "benchmark": "CSI300_PRICE_INDEX_sh.000300_NOT_TOTAL_RETURN",
+  "market_source": "BaoStock daily retrospectively retrieved in 2026",
+  "issuers": [
+    {
+      "canonical_id": "SZSE:300408",
+      "baostock": "sz.300408",
+      "name": "三环集团",
+      "financial_report_end": "2024-12-31",
+      "published_on": "2025-04-24",
+      "official_pdf": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223237532.PDF",
+      "revenue_2024_yuan": 7374990821.2,
+      "revenue_2023_yuan": 5726688546.9,
+      "deduct_parent_2024_yuan": 1932207242.08,
+      "deduct_parent_2023_yuan": 1221203459.6,
+      "cfo_2024_yuan": 2403122345.06,
+      "cfo_2023_yuan": 1718967962.8,
+      "full_annual_report_text": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10948296"
+    },
+    {
+      "canonical_id": "SSE:688002",
+      "baostock": "sh.688002",
+      "name": "睿创微纳",
+      "financial_report_end": "2024-12-31",
+      "published_on": "2025-04-11",
+      "official_pdf": "https://star.sse.com.cn/disclosure/listedinfo/announcement/c/new/2025-04-11/688002_20250411_5RV2.pdf",
+      "revenue_2024_yuan": 4315695760.92,
+      "revenue_2023_yuan": 3558596269.22,
+      "deduct_parent_2024_yuan": 510152275.78,
+      "deduct_parent_2023_yuan": 436494745.12,
+      "cfo_2024_yuan": 449632715.1,
+      "cfo_2023_yuan": 491455477.9,
+      "full_annual_report_text": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10864152&stockid=688002"
+    }
+  ],
+  "buy_authorized": false
+}
