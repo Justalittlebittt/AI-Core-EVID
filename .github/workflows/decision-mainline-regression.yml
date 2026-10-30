@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_growth_core_earnings.py'
+      - 'scripts/test_v29_growth_core_earnings.py'
       - 'scripts/v29_growth_raw_quality_audit.py'
       - 'scripts/test_v29_growth_raw_quality_audit.py'
       - 'scripts/v29_growth_market_context.py'
@@ -34,10 +36,11 @@ on:
 permissions:
   contents: read
   actions: read
+  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v5
       - name: Execute decision mainline regressions
@@ -46,6 +49,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_raw_quality_audit.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_core_earnings.py' -v
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
@@ -71,7 +75,30 @@ jobs:
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
 
-      - name: Temporary inspect public deducted-earnings reporting fields
-        timeout-minutes: 2
+
+      - name: Temporary restore recorded growth-financial source capture
+        uses: actions/download-artifact@v4
+        with:
+          name: growth-cutoff-20261029-observed-20261030
+          repository: Justalittlebittt/AI-Core-EVID
+          run-id: 41010835022
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/growth-prior
+      - name: Temporary real bulk deducted-parent-profit reconciliation
+        timeout-minutes: 7
         run: |
-          python scripts/_diagnose_core_earnings_source_once.py
+          python scripts/v29_growth_core_earnings.py \
+            --financial-review "$RUNNER_TEMP/growth-prior/growth-cutoff-report.json" \
+            --financial-raw-dir "$RUNNER_TEMP/growth-prior/growth-cutoff-raw" \
+            --core-raw-dir "$RUNNER_TEMP/core-earnings-pages" \
+            --output "$RUNNER_TEMP/core-earnings-310.json"
+      - name: Temporary archive core-earnings evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-20261030-310-core-earnings-evidence
+          path: |
+            ${{ runner.temp }}/core-earnings-pages
+            ${{ runner.temp }}/core-earnings-310.json
+          if-no-files-found: ignore
+          retention-days: 14
