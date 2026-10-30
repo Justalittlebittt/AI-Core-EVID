@@ -1,0 +1,58 @@
+{
+  "schema": "AI_CORE_EVID_V29_FIXED_GROWTH_COHORT_FORWARD_EXPERIMENT_V1",
+  "experiment_id": "V29_122_GROWTH_COHORT_PROSPECTIVE_20261030",
+  "registered_date": "2026-10-30",
+  "research_only": true,
+  "sample": {
+    "manifest": "research/V2.9_GROWTH_122_ISSUER_COHORT_20261030.md",
+    "size": 122,
+    "sha256_linefeed": "7dd4cf1f5e90c50e35f91d0092fb14b81a25d07682f147a09c8c7ed73b221b7e",
+    "selection_known_to_researcher": true,
+    "selection_descriptor": "122 of 310 reviewed, original source cohort seen before registration, cumulative revenue YoY Q3 > H1 and positive stand-alone Q3 deducted parent profit",
+    "not_generalizable_unseen_cohorts": true
+  },
+  "research_freeze": "2026-10-30",
+  "execution_proxy": {
+    "entry": "CLOSE_OF_FIRST_OFFICIAL_MAINLAND_A_SHARE_TRADING_SESSION_AFTER_2026_10_30",
+    "exit": "CLOSE_OF_20TH_COMPLETED_TRADING_SESSION_COUNTING_ENTRY_SESSION_AS_ONE",
+    "returns": "SAME_VENDOR_CORPORATE_ACTION_AND_DIVIDEND_ADJUSTED_CLOSE_TO_CLOSE",
+    "instrument_entry": "PAPER_ONLY_NOT_REPRODUCIBLE_LIVE_FILL",
+    "require_complete_122": true,
+    "exclude_suspended_or_limit_price_trades": false,
+    "treat_untradeable": "INCOMPLETE_REPORT_NO_SUBSTITUTION",
+    "adjustment_and_calendar_source_evidence_required": true
+  },
+  "baseline": {
+    "id": "H00300.CSI",
+    "name": "CSI_300_TOTAL_RETURN_INDEX",
+    "measurement": "TOTAL_RETURN_INDEX_CLOSE_TO_CLOSE_MATCHED_SESSION_ENDPOINTS",
+    "no_lookahead": true,
+    "reference_url": "https://oss-ch.csindex.com.cn/static/html/csindex/public/uploads/indices/detail/files/zh_CN/000300factsheet.pdf"
+  },
+  "costs": {
+    "round_trip_fraction": 0.003,
+    "description": "30bps fixed assumption including commissions, sell-side taxes and spread/slippage; NOT empirically calibrated; no extra turnover, no margin or borrow"
+  },
+  "primary_metric": "equal_weighted_122_adjusted_price_return_minus_30bps_minus_H00300_total_return_same_endpoints",
+  "primary_question": "Does this previously observed growth cohort have positive prospective net excess over CSI300 TR over one fixed 20-session episode?",
+  "secondary_metrics": [
+    "fraction_of_122_names_positive_net_excess",
+    "median_individual_net_excess",
+    "min_and_max_individual_net_excess",
+    "coverage",
+    "calendar_and_price_instrument_tradability"
+  ],
+  "statistical_limitation": "One market episode; correlated securities; no independent multi-period alpha significance. This cannot alone promote a general strategy.",
+  "no_adaptive_changes": [
+    "universe",
+    "20_session_horizon",
+    "primary_benchmark",
+    "primary_metric",
+    "round_trip_cost",
+    "entry_exit_definition"
+  ],
+  "future_outcome_data_read_before_registration": false,
+  "result_access_policy": "future outcome file may be read only after 20 actual post-freeze sessions completed; existing V2.8.12 prospective E-layer Fold3 Fold4 strictly excluded",
+  "minimum_validity": "all_122_have_matching_tradable_price_and_adjustment_source_or_result_INSUFFICIENT",
+  "live_buy_eligibility": "NOT_AUTHORIZED"
+}
