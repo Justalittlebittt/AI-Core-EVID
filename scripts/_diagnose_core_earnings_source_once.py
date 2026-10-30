@@ -33,3 +33,30 @@ for label, base, params in CASES:
                           "selected":useful},ensure_ascii=False,default=str))
     except Exception as e:
         print(json.dumps({"case":label,"error":type(e).__name__+":"+str(e)[:180]}))
+
+# Determine whether the main-financial dataset can be obtained once for a period.
+MORE = [
+ ("main_bulk", {"reportName":"RPT_F10_FINANCE_MAINFINADATA","columns":"ALL",
+   "filter":"(REPORT_DATE='2026-09-30')","pageNumber":1,"pageSize":2,
+   "sortColumns":"SECURITY_CODE","sortTypes":"1","source":"HSF10","client":"PC"}),
+ ("main_codes", {"reportName":"RPT_F10_FINANCE_MAINFINADATA",
+   "columns":"SECUCODE,SECURITY_CODE,ORG_CODE,REPORT_DATE,NOTICE_DATE,UPDATE_DATE,KCFJCXSYJLR,KCFJCXSYJLRTZ,PARENTNETPROFIT",
+   "filter":"(REPORT_DATE='2026-09-30')","pageNumber":1,"pageSize":5,
+   "sortColumns":"SECURITY_CODE","sortTypes":"1","source":"HSF10","client":"PC"}),
+ ("main_one", {"reportName":"RPT_F10_FINANCE_MAINFINADATA","columns":"ALL",
+   "filter":'(SECUCODE="600111.SH")',"pageNumber":1,"pageSize":4,
+   "sortColumns":"REPORT_DATE","sortTypes":"-1","source":"HSF10","client":"PC"}),
+]
+for label, params in MORE:
+    try:
+        base="https://datacenter.eastmoney.com/securities/api/data/v1/get"
+        req=Request(base+"?"+urlencode(params),headers={"User-Agent":"Mozilla/5.0"})
+        with urlopen(req,timeout=12) as res: obj=json.loads(res.read(1200000))
+        d=obj.get("result") or {}
+        rows=d.get("data") or []
+        out=[{k:r.get(k) for k in ("SECUCODE","SECURITY_CODE","ORG_CODE","REPORT_DATE","NOTICE_DATE","UPDATE_DATE","KCFJCXSYJLR","KCFJCXSYJLRTZ","PARENTNETPROFIT","EPSKCJB")} for r in rows[:2]]
+        print(json.dumps({"case":label,"code":obj.get("code"),"message":str(obj.get("message",""))[:100],
+                          "count":d.get("count"),"pages":d.get("pages"),"rows":len(rows),
+                          "sample":out},ensure_ascii=False))
+    except Exception as e:
+        print(json.dumps({"case":label,"error":type(e).__name__+":"+str(e)[:180]}))
