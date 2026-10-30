@@ -90,6 +90,13 @@ class CoreEarningsTests(unittest.TestCase):
         q=[page([row("2026-09-30","core",ORG_CODE="WRONG")])]
         out=enrich(r,l,p,q,h)
         self.assertEqual(out["counts"]["unmatched_or_missing"],1)
+    def test_source_profit_rounding_tolerance_and_conflict(self):
+        r,l,p,q,h=setup()
+        q=[page([row("2026-09-30","core",PARENTNETPROFIT=264724885.25)])]
+        self.assertEqual(enrich(r,l,p,q,h)["counts"]["both_periods_matched"],1)
+        q=[page([row("2026-09-30","core",PARENTNETPROFIT=264724885.26)])]
+        self.assertEqual(enrich(r,l,p,q,h)["counts"]["both_periods_matched"],0)
+
     def test_requested_dates_are_bound(self):
         observed={}
         def opener(req, timeout):
