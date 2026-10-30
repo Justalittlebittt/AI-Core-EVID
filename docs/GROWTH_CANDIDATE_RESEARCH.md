@@ -86,3 +86,23 @@ Completing a purchase-decision product still requires original filing reconcilia
 Live batch-capability probe 2026-10-30: Eastmoney accepted requests of 2, 8, and 16 securities, while a 30-security request returned HTTP 502. Use the empirically supported 16-security maximum; any future vendor failure remains a transport failure, not inferred missing stock data.
 
 A quote captured during a trading session is an intraday observation, not the official daily close; source field f6 reflects trading up to the capture time. The market-context report has no industry-relative valuation threshold, so a low or high observed PE never changes BUY eligibility. Missing quotes remain unknown rather than assumed untradeable.
+
+
+## Raw-financial quality audit of the real A-tier (2026-10-30)
+
+This audits the original source bytes already captured by GitHub Actions run 41010835022. Source artifact: https://github.com/Justalittlebittt/AI-Core-EVID/actions/runs/41010835022/artifacts/12957159001 (14-day retention). Fiscal periods 2026-06-30 and 2026-09-30, mutually exclusive notice cutoff 2026-10-30, both collected on 2026-10-30. The report confirms 310 prior A-tier observations and preserves their original identity; it does **not** promote 310 assets as high-quality or buy-eligible.
+
+Observed source profile for those 310: 309/310 Q3 rows did not supply DEDUCT_BASIC_EPS, 0/310 H1 rows lacked that field; 84/310 had a lower Q3 cumulative reported gross margin versus H1, 6/310 had missing gross margin in at least one period; 6/310 had a stock name beginning ST or *ST; all 310 had positive stand-alone Q3 revenues and parent profit when computed as Q3 cumulative minus H1 cumulative. Outside A, the raw source also contained 2 latest- and 1 prior-period rows with UPDATE_DATE on the excluded 2026-10-30 date. These are not selected A-tier identities; the audit must not falsely block A for unrelated source rows.
+
+The near-total Q3 deduct-EPS missingness prevents drawing a conclusion about nonrecurring earnings quality. A name-based ST check is **only a warning**, not official exchange risk-status verification. A lower cumulative gross margin is a descriptive change, not evidence of a forecast. Q3 YTD minus H1 YTD is a quarter amount only if the provider used mutually compatible cumulative accounting semantics, which still need filing-level validation. Existing A/B/C tiers remain unchanged; missing data never becomes a false PASS or BUY.
+
+Reproduce from the extracted source artifact:
+
+    python scripts/v29_growth_raw_quality_audit.py \
+      --review-json /private/extracted/growth-cutoff-report.json \
+      --raw-dir /private/extracted/growth-cutoff-raw \
+      --output /private/growth-quality-audit-20261030.json
+
+The input review stores the exact raw-page SHA256 hashes. The audit verifies each page hash and issuer organization identity before using the rows, records missing fields without imputation, and aborts only for identity and temporal conflicts relevant to the selected A-tier. This is source/data-quality work, not alpha research, policy threshold change, or live-trading authorization.
+
+    python -m unittest discover -s scripts -p 'test_v29_growth_raw_quality_audit.py' -v
