@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_2025_filing_to_return_case.py'
+      - 'scripts/test_v29_2025_filing_to_return_case.py'
+      - 'research/V2.9_2025_TWO_ISSUER_FILING_INPUTS.json'
       - 'scripts/v29_historical_2022_25_source_pilot.py'
       - 'scripts/test_v29_historical_2022_25_source_pilot.py'
       - 'scripts/v29_growth_forward_cohort.py'
@@ -45,7 +48,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
       - name: Execute decision mainline regressions
@@ -57,6 +60,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_growth_core_earnings.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_2022_25_source_pilot.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_2025_filing_to_return_case.py' -v
           python scripts/v29_growth_forward_cohort.py > /tmp/v29-forward-readiness.json
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
@@ -82,3 +86,17 @@ jobs:
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
           PY
+
+      - name: Temporary real two-issuer 2025 annual filing to subsequent price validation
+        timeout-minutes: 4
+        run: |
+          python -m pip install --disable-pip-version-check baostock==0.9.4
+          python scripts/v29_2025_filing_to_return_case.py --out-dir "$RUNNER_TEMP/issuer-event-case"
+      - name: Temporary archive 2025 actual raw price-case
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-2025-real-two-issuer-filing-price-case
+          path: ${{ runner.temp }}/issuer-event-case
+          if-no-files-found: ignore
+          retention-days: 14
