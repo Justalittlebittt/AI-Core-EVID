@@ -21,7 +21,7 @@ CANDIDATES = (
     {"security_id":"SSE:688002", "baostock":"sh.688002",
      "issuer":"睿创微纳","financial_period_end":"2024-12-31",
      "initial_report_announcement":"2025-04-11",
-     "filing_url":"https://static.cninfo.com.cn/finalpage/2025-04-11/1223058686.PDF"}
+     "filing_url":"https://static.cninfo.com.cn/finalpage/2025-04-11/1223058665.PDF"}
 )
 FIELDS="date,code,close,volume,amount,adjustflag,tradestatus,peTTM,pbMRQ,isST"
 YEARS=(2022,2023,2024,2025)
