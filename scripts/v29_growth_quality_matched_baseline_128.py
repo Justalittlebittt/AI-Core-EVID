@@ -101,6 +101,8 @@ def _ranking_by_entry_day(features, outcomes):
     for outcome in outcomes:
         sid = outcome["security_id"]
         feat = feature_map[sid]
+        if feat["historical_annual_report_notice_day"] != outcome["original_report_publication_day"]:
+            raise ValueError("FINANCIAL_AND_ORIGINAL_REPORT_NOTICE_MISMATCH:" + sid)
         eligible = (outcome["comparison_eligible"] and
                     all(feat[k] is not None and math.isfinite(feat[k]) for k in METRICS))
         record = {
@@ -152,7 +154,11 @@ def compare(features, outcomes, spec):
             or spec.get("status") !=
             "EXPLORATORY_RULES_FROZEN_BEFORE_THIS_FACTOR_CONDITIONED_RUN_BUT_2025_RETURNS_ALREADY_OBSERVED"
             or spec.get("same_day_random_baseline", {}).get("seed") != SEED
-            or spec.get("same_day_random_baseline", {}).get("replicates") != REPLICATES):
+            or spec.get("same_day_random_baseline", {}).get("replicates") != REPLICATES
+            or spec.get("minimum_tradeable_companies_per_same_entry_session") != MIN_DAY_SIZE
+            or spec.get("selection_count") != "ceil(number of eligible candidates in exact entry session / 3); stable security_id ascending tie-break"
+            or spec.get("primary_rule") != "Rank highest 2024 annual revenue growth YoY and ROE within exact first trade session, combine two rank positions using equal weights, select best one-third of groups with >=5 eligible issuers"
+            or spec.get("live_buy_eligibility") != "NOT_AUTHORIZED"):
         raise ValueError("EXPLORATORY_RULES_OR_CONFIG_DRIFT")
     rows = _ranking_by_entry_day(features, outcomes)
     tradable = [r for r in rows if r["factor_candidate_eligible"]]
