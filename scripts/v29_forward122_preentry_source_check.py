@@ -83,7 +83,13 @@ def parse_total_return(raw):
         code=str(code or "").upper()
         if code not in ("H00300","H00300.CSI"):
             raise ValueError("NOT_CSI300_TOTAL_RETURN_IDENTITY")
-        day=str(d)[:10]
+        date_str=str(d)
+        if len(date_str)==8 and date_str.isdigit():
+            day=datetime.strptime(date_str,"%Y%m%d").date().isoformat()
+        elif len(date_str)==10:
+            day=datetime.strptime(date_str,"%Y-%m-%d").date().isoformat()
+        else:
+            raise ValueError("CSINDEX_UNSUPPORTED_OFFICIAL_DATE_FORMAT")
         if day < LOOKBACK_START or day > REFERENCE_DAY:
             raise ValueError("CSINDEX_INDEX_DATA_OUTSIDE_ALLOWED_PRE_FREEZE_WINDOW")
         value=float(close)
