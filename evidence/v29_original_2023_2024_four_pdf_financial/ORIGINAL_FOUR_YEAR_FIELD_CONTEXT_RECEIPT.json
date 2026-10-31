@@ -1,0 +1,538 @@
+{
+  "schema": "V29_PRIOR_YEAR_FOUR_REAL_ORIGINAL_PDF_FINANCIAL_ROW_EVIDENCE_V1",
+  "captured_at_utc": "2026-10-31T08:27:22.770171+00:00",
+  "source_manifests_sha256": {
+    "frozen_frame_sha256": "abbcfd5c1784d5bcf69a66eaab77846b5e6bd7e34c70428a4de4fad6adcd2eb1",
+    "official_metadata_sha256": "33e347a0c5201221f5d48d427dfb1d9945900ec79997ba5a5f4b495c644b670e",
+    "retrospective_vendor_json_sha256": "e5cdea77e6624d6f85f7f320d795e5913624cf27a0f8b0cc96470c8781667d9d"
+  },
+  "frozen_target_count": 4,
+  "attempted_count": 4,
+  "archived_full_original_pdf_count": 4,
+  "field_context_candidate_only_no_automatic_semantic_certification": true,
+  "complete_original_financial_field_pit_certified_count": 0,
+  "no_outcomes_or_return_data_read": true,
+  "independent_unseen_oos_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SSE:688416",
+      "fiscal_year": 2022,
+      "issue_year": 2023,
+      "source_notice": "2023-04-28",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216672235.PDF",
+      "issuer_short_name_in_2026_membership": "恒烁股份",
+      "vendor_values_2026_retrieval": {
+        "revenue_yuan": 433277479.71,
+        "parent_net_profit_yuan": 21205562.13,
+        "revenue_growth_yoy_pct": -24.7593757681,
+        "weighted_roe_pct": 2.42
+      },
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "vendor_source_hashes": [
+        "c7846b8106273ac525fa3556e8a8023640d6c4d6f29d11147f03f01c07dfd501"
+      ],
+      "original_pdf_retrieved_at_utc": "2026-10-31T08:27:13.647053+00:00",
+      "source_capture_calendar_year": 2026,
+      "historical_asof_filing_fields_certified": false,
+      "original_release_time_binary_hash_known": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "original_full_issuer_report_identity_verified": true,
+      "pages": 274,
+      "2026_capture_pdf_sha256": "07b108b036208255cbf16c7ff26739dca3901d5c0d04790a30c67eb7ef4e0bb4",
+      "binary_size": 5501913,
+      "issuer_identity_in_cover_or_front_matter": true,
+      "fiscal_year_report_title_in_cover": true,
+      "financial_field_row_evidence": {
+        "revenue_yuan": {
+          "status": "FIELD_LABEL_AND_EXPECTED_VALUE_NEARBY_UNITS_NOT_INDEPENDENTLY_CERTIFIED",
+          "candidate_rows": [
+            {
+              "pdf_page": 2,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": "三、 重大风险提示 |  | 报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 2,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": " | 报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 2,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 1,
+              "excerpt": "报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 16,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": "2022 年公司业务受到地缘政治变化、短期经济冲击及半导体行业周期波动等综合因素影响， | 下游需求减弱，公司主要产品销量、平均销售单价和毛利率均出现下滑，同时期间费用同比提升， | 业绩承压，导致全年业绩大幅下滑。2022 年公司实现营业收入43,327.75 万元，同比下降24.76%；",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 16,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": "下游需求减弱，公司主要产品销量、平均销售单价和毛利率均出现下滑，同时期间费用同比提升， | 业绩承压，导致全年业绩大幅下滑。2022 年公司实现营业收入43,327.75 万元，同比下降24.76%；",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 16,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 1,
+              "excerpt": "业绩承压，导致全年业绩大幅下滑。2022 年公司实现营业收入43,327.75 万元，同比下降24.76%；",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 30,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": "√适用 □不适用 |  | 报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 30,
+              "label": "营业收入",
+              "numeric_text": "43327.75",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": " | 报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东",
+              "semantic_table_cell_certified": false
+            }
+          ],
+          "candidate_count": 9,
+          "semantic_table_cell_certified": false
+        },
+        "parent_net_profit_yuan": {
+          "status": "FIELD_LABEL_AND_EXPECTED_VALUE_NEARBY_UNITS_NOT_INDEPENDENTLY_CERTIFIED",
+          "candidate_rows": [
+            {
+              "pdf_page": 2,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": " | 报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东 | 的净利润2,120.56 万元，同比下降85.63%。2022 年公司业务受到地缘政治变化、短期经济冲击",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 2,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": "报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东 | 的净利润2,120.56 万元，同比下降85.63%。2022 年公司业务受到地缘政治变化、短期经济冲击",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 2,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": " | 经容诚会计师事务所（特殊普通合伙）审计，公司2022 年度实现归属于上市公司股东的净 | 利润为人民币2,120.56 万元，截至2022 年12 月31 日，母公司期末可供分配利润为人民币",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 2,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": "经容诚会计师事务所（特殊普通合伙）审计，公司2022 年度实现归属于上市公司股东的净 | 利润为人民币2,120.56 万元，截至2022 年12 月31 日，母公司期末可供分配利润为人民币",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 30,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": " | 报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东 | 的净利润2,120.56 万元，同比下降85.63%。2022 年公司业务受到地缘政治变化、短期经济冲击",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 30,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": "报告期内公司实现营业收入43,327.75 万元，同比下降24.76%，；实现归属于上市公司股东 | 的净利润2,120.56 万元，同比下降85.63%。2022 年公司业务受到地缘政治变化、短期经济冲击",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 33,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": " | 报告期内，公司实现营业收入4.33 亿元，同比下降24.76%；归属于上市公司股东的净利润 | 2,120.56 万元，同比下降85.63%；归属于上市公司股东的扣除非经常性损益的净利润350.05 万",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 33,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "2120.56",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": "报告期内，公司实现营业收入4.33 亿元，同比下降24.76%；归属于上市公司股东的净利润 | 2,120.56 万元，同比下降85.63%；归属于上市公司股东的扣除非经常性损益的净利润350.05 万",
+              "semantic_table_cell_certified": false
+            }
+          ],
+          "candidate_count": 8,
+          "semantic_table_cell_certified": false
+        },
+        "revenue_growth_yoy_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        },
+        "weighted_roe_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        }
+      },
+      "field_nearby_value_hits": 17,
+      "semantic_table_cell_certified": false,
+      "2023_or_2024_original_release_pdf_hash_certified": false,
+      "historical_year_contemporaneous_financial_vintage_certified": false,
+      "stored_pdf_file": "SSE-688416-FY2022-ISSUED2023.pdf",
+      "status": "FULL_ISSUER_PDF_BYTES_ARCHIVED_FIELD_ROW_EVIDENCE_ONLY"
+    },
+    {
+      "security_id": "SSE:600088",
+      "fiscal_year": 2022,
+      "issue_year": 2023,
+      "source_notice": "2023-04-21",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216492576.PDF",
+      "issuer_short_name_in_2026_membership": "中视传媒",
+      "vendor_values_2026_retrieval": {
+        "revenue_yuan": 1149492197.34,
+        "parent_net_profit_yuan": -64909557.15,
+        "revenue_growth_yoy_pct": -3.2459615429,
+        "weighted_roe_pct": -6.23
+      },
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "vendor_source_hashes": [
+        "40d9bb5d90493a260ec4d16f58f3e12bb28b8aab9505139345f237dc561732c1"
+      ],
+      "original_pdf_retrieved_at_utc": "2026-10-31T08:27:17.105724+00:00",
+      "source_capture_calendar_year": 2026,
+      "historical_asof_filing_fields_certified": false,
+      "original_release_time_binary_hash_known": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "original_full_issuer_report_identity_verified": true,
+      "pages": 181,
+      "2026_capture_pdf_sha256": "77c88040e14e146df972f40e42fc2cac70156e749b9fffda6250154d0baf930f",
+      "binary_size": 3524197,
+      "issuer_identity_in_cover_or_front_matter": true,
+      "fiscal_year_report_title_in_cover": true,
+      "financial_field_row_evidence": {
+        "revenue_yuan": {
+          "status": "FIELD_LABEL_AND_EXPECTED_VALUE_NEARBY_UNITS_NOT_INDEPENDENTLY_CERTIFIED",
+          "candidate_rows": [
+            {
+              "pdf_page": 8,
+              "label": "营业收入",
+              "numeric_text": "1149492197.34",
+              "provisional_unit": "yuan",
+              "text_lines_in_window": 3,
+              "excerpt": "生产经营，全力以赴应对各种不确定因素所带来的困难与挑战，多措并举推进各项经营工作稳步 | 开展。 | 报告期，公司共实现营业收入1,149,492,197.34 元，较上年同期下降3.25%；实现营业利润",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 8,
+              "label": "营业收入",
+              "numeric_text": "1149492197.34",
+              "provisional_unit": "yuan",
+              "text_lines_in_window": 2,
+              "excerpt": "开展。 | 报告期，公司共实现营业收入1,149,492,197.34 元，较上年同期下降3.25%；实现营业利润",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 8,
+              "label": "营业收入",
+              "numeric_text": "1149492197.34",
+              "provisional_unit": "yuan",
+              "text_lines_in_window": 1,
+              "excerpt": "报告期，公司共实现营业收入1,149,492,197.34 元，较上年同期下降3.25%；实现营业利润",
+              "semantic_table_cell_certified": false
+            }
+          ],
+          "candidate_count": 3,
+          "semantic_table_cell_certified": false
+        },
+        "parent_net_profit_yuan": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        },
+        "revenue_growth_yoy_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        },
+        "weighted_roe_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        }
+      },
+      "field_nearby_value_hits": 3,
+      "semantic_table_cell_certified": false,
+      "2023_or_2024_original_release_pdf_hash_certified": false,
+      "historical_year_contemporaneous_financial_vintage_certified": false,
+      "stored_pdf_file": "SSE-600088-FY2022-ISSUED2023.pdf",
+      "status": "FULL_ISSUER_PDF_BYTES_ARCHIVED_FIELD_ROW_EVIDENCE_ONLY"
+    },
+    {
+      "security_id": "SSE:688031",
+      "fiscal_year": 2023,
+      "issue_year": 2024,
+      "source_notice": "2024-04-26",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219823708.PDF",
+      "issuer_short_name_in_2026_membership": "星环科技",
+      "vendor_values_2026_retrieval": {
+        "revenue_yuan": 490805231.02,
+        "parent_net_profit_yuan": -288243033.17,
+        "revenue_growth_yoy_pct": 31.7157081699,
+        "weighted_roe_pct": -18.3
+      },
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "vendor_source_hashes": [
+        "adb71790c961045b5f6592798c8ebf5b334879d650674d526b67e7f94ce978e9"
+      ],
+      "original_pdf_retrieved_at_utc": "2026-10-31T08:27:18.416742+00:00",
+      "source_capture_calendar_year": 2026,
+      "historical_asof_filing_fields_certified": false,
+      "original_release_time_binary_hash_known": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "original_full_issuer_report_identity_verified": true,
+      "pages": 293,
+      "2026_capture_pdf_sha256": "59f1a21d25d9dd6ca803e514c6636066f5e273c26046338cb64bfd68fe54088e",
+      "binary_size": 6742222,
+      "issuer_identity_in_cover_or_front_matter": true,
+      "fiscal_year_report_title_in_cover": true,
+      "financial_field_row_evidence": {
+        "revenue_yuan": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        },
+        "parent_net_profit_yuan": {
+          "status": "FIELD_LABEL_AND_EXPECTED_VALUE_NEARBY_UNITS_NOT_INDEPENDENTLY_CERTIFIED",
+          "candidate_rows": [
+            {
+              "pdf_page": 25,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "-28824.30",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": "合计                 49,053.30       100.00%            37,262.47       100.00% |  | 公司在2023 年仍处于战略投入期，公司实现归属于上市公司股东的净利润-28,824.30 万元，",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 25,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "-28824.30",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": " | 公司在2023 年仍处于战略投入期，公司实现归属于上市公司股东的净利润-28,824.30 万元，",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 25,
+              "label": "归属于上市公司股东的净利润",
+              "numeric_text": "-28824.30",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 1,
+              "excerpt": "公司在2023 年仍处于战略投入期，公司实现归属于上市公司股东的净利润-28,824.30 万元，",
+              "semantic_table_cell_certified": false
+            }
+          ],
+          "candidate_count": 3,
+          "semantic_table_cell_certified": false
+        },
+        "revenue_growth_yoy_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        },
+        "weighted_roe_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        }
+      },
+      "field_nearby_value_hits": 3,
+      "semantic_table_cell_certified": false,
+      "2023_or_2024_original_release_pdf_hash_certified": false,
+      "historical_year_contemporaneous_financial_vintage_certified": false,
+      "stored_pdf_file": "SSE-688031-FY2023-ISSUED2024.pdf",
+      "status": "FULL_ISSUER_PDF_BYTES_ARCHIVED_FIELD_ROW_EVIDENCE_ONLY"
+    },
+    {
+      "security_id": "SZSE:000070",
+      "fiscal_year": 2023,
+      "issue_year": 2024,
+      "source_notice": "2024-04-26",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219841790.PDF",
+      "issuer_short_name_in_2026_membership": "特发信息",
+      "vendor_values_2026_retrieval": {
+        "revenue_yuan": 4937289689.32,
+        "parent_net_profit_yuan": -272482091.07,
+        "revenue_growth_yoy_pct": 17.789781004,
+        "weighted_roe_pct": -14.27
+      },
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "vendor_source_hashes": [
+        "ad780f31fdee82908efe95a71e5fb29dcb435db06d2cdd6922a9d3a07a9ac76a"
+      ],
+      "original_pdf_retrieved_at_utc": "2026-10-31T08:27:21.260989+00:00",
+      "source_capture_calendar_year": 2026,
+      "historical_asof_filing_fields_certified": false,
+      "original_release_time_binary_hash_known": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "original_full_issuer_report_identity_verified": true,
+      "pages": 213,
+      "2026_capture_pdf_sha256": "37aec7575470b1770cd704af0b9280abc704ec4613b73a71ec0d6546581923ae",
+      "binary_size": 2381235,
+      "issuer_identity_in_cover_or_front_matter": true,
+      "fiscal_year_report_title_in_cover": true,
+      "financial_field_row_evidence": {
+        "revenue_yuan": {
+          "status": "FIELD_LABEL_AND_EXPECTED_VALUE_NEARBY_UNITS_NOT_INDEPENDENTLY_CERTIFIED",
+          "candidate_rows": [
+            {
+              "pdf_page": 20,
+              "label": "营业收入",
+              "numeric_text": "493728.97",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 3,
+              "excerpt": "响。 |  | 报告期内，公司实现营业收入493,728.97 万元，同比上年同期增加74,567.85",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 20,
+              "label": "营业收入",
+              "numeric_text": "493728.97",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 2,
+              "excerpt": " | 报告期内，公司实现营业收入493,728.97 万元，同比上年同期增加74,567.85",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 20,
+              "label": "营业收入",
+              "numeric_text": "493728.97",
+              "provisional_unit": "ten_thousand_yuan",
+              "text_lines_in_window": 1,
+              "excerpt": "报告期内，公司实现营业收入493,728.97 万元，同比上年同期增加74,567.85",
+              "semantic_table_cell_certified": false
+            }
+          ],
+          "candidate_count": 3,
+          "semantic_table_cell_certified": false
+        },
+        "parent_net_profit_yuan": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        },
+        "revenue_growth_yoy_pct": {
+          "status": "FIELD_LABEL_AND_EXPECTED_VALUE_NEARBY_UNITS_NOT_INDEPENDENTLY_CERTIFIED",
+          "candidate_rows": [
+            {
+              "pdf_page": 20,
+              "label": "营业收入",
+              "numeric_text": "17.79",
+              "provisional_unit": "percentage",
+              "text_lines_in_window": 3,
+              "excerpt": "报告期内，公司实现营业收入493,728.97 万元，同比上年同期增加74,567.85 |  | 万元，同比增长17.79%；实现利润总额-19,892.93 万元，比上年同期减少",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 23,
+              "label": "营业收入",
+              "numeric_text": "17.79",
+              "provisional_unit": "percentage",
+              "text_lines_in_window": 3,
+              "excerpt": "金额     占营业收入比重     金额     占营业收入比重 |  | 营业收入合计            4,937,289,689.32             100%   4,191,611,230.82             100%       17.79%",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 23,
+              "label": "营业收入",
+              "numeric_text": "17.79",
+              "provisional_unit": "percentage",
+              "text_lines_in_window": 2,
+              "excerpt": " | 营业收入合计            4,937,289,689.32             100%   4,191,611,230.82             100%       17.79%",
+              "semantic_table_cell_certified": false
+            },
+            {
+              "pdf_page": 23,
+              "label": "营业收入",
+              "numeric_text": "17.79",
+              "provisional_unit": "percentage",
+              "text_lines_in_window": 1,
+              "excerpt": "营业收入合计            4,937,289,689.32             100%   4,191,611,230.82             100%       17.79%",
+              "semantic_table_cell_certified": false
+            }
+          ],
+          "candidate_count": 4,
+          "semantic_table_cell_certified": false
+        },
+        "weighted_roe_pct": {
+          "status": "NO_FIELD_ROW_VALUE_PROXIMITY_FOUND",
+          "candidate_rows": [],
+          "candidate_count": 0,
+          "semantic_table_cell_certified": false
+        }
+      },
+      "field_nearby_value_hits": 7,
+      "semantic_table_cell_certified": false,
+      "2023_or_2024_original_release_pdf_hash_certified": false,
+      "historical_year_contemporaneous_financial_vintage_certified": false,
+      "stored_pdf_file": "SZSE-000070-FY2023-ISSUED2024.pdf",
+      "status": "FULL_ISSUER_PDF_BYTES_ARCHIVED_FIELD_ROW_EVIDENCE_ONLY"
+    }
+  ]
+}
