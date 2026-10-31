@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/decision-mainline-regression.yml'
       - 'scripts/v29_2025_filing_to_return_case.py'
+      - 'scripts/test_v29_real_filing_decision_case.py'
+      - 'scripts/v29_real_filing_decision_case.py'
       - 'scripts/test_v29_2025_filing_to_return_case.py'
       - 'research/V2.9_2025_TWO_ISSUER_FILING_INPUTS.json'
       - 'scripts/v29_historical_2022_25_source_pilot.py'
@@ -61,6 +63,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_2022_25_source_pilot.py' -v
           python -m unittest discover -s scripts -p 'test_v29_2025_filing_to_return_case.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_real_filing_decision_case.py' -v
           python scripts/v29_growth_forward_cohort.py > /tmp/v29-forward-readiness.json
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
