@@ -160,9 +160,9 @@ def parse_original_table(doc,fiscal_year,maxpages=55):
                                 continue
                             if j<=column+1:
                                 continue
-                            current_header=" ".join(
+                            current_header=compact(" ".join(
                                 str(r[j]) for r in rows[:max(header_index+1,1)]
-                                if j<len(r) and r[j] is not None)
+                                if j<len(r) and r[j] is not None))
                             if "%" not in str(cell) and not (
                                     "增减" in current_header and
                                     ("%" in current_header or "％" in current_header)):
