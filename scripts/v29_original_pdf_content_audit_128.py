@@ -15,6 +15,7 @@ import re
 from datetime import datetime,timezone
 from decimal import Decimal,ROUND_HALF_UP
 from pathlib import Path
+from pypdf.errors import PyPdfError
 
 from v29_historical_universe_sampling import build_frame,INTERVALS
 from v29_original_filing_pdf_proof import fetch_binary
@@ -150,7 +151,7 @@ def collect(out,limit=128,fetch=fetch_binary):
                                if audit["full_report_identity_pass"]
                                else "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED")
                 fail_streak=0
-            except (OSError,RuntimeError,ValueError) as exc:
+            except (OSError,RuntimeError,ValueError,PyPdfError) as exc:
                 rec["status"]="PDF_RETRIEVAL_OR_DECODING_FAILED"
                 rec["failure_reason"]=type(exc).__name__+":"+str(exc)[:135]
                 fail_streak+=1
@@ -162,7 +163,8 @@ def collect(out,limit=128,fetch=fetch_binary):
         "schema":"V29_2025_FY2024_ORIGINAL_PDF_CONTENT_AUDIT_128_V1",
         "captured_at_utc":datetime.now(timezone.utc).isoformat(),
         "frozen_sample_sha256":frame["selected_ids_sha256"],
-        "requested_count":limit,"full_128_attempted":limit==128,
+        "requested_count":limit,"full_128_requested":limit==128,
+        "full_128_http_attempted":limit==128 and not any(x["status"]=="UNQUERIED_AFTER_SIX_PDF_FETCH_FAILURES" for x in receipts),
         "resolved_pdf_source_count":sum(x["original_pdf_url"] is not None for x in receipts),
         "complete_pdf_content_identity_pass_count":sum(x.get("full_report_identity_pass") is True for x in receipts),
         "both_vendor_amounts_text_found_count":sum(x.get("both_financial_amounts_have_text_matches") is True for x in receipts),
