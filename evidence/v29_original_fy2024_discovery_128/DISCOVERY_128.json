@@ -1,0 +1,4384 @@
+{
+  "schema": "V29_FY2024_OFFICIAL_2025_ANNUAL_PDF_DISCOVERY_128_V1",
+  "captured_at_utc": "2026-10-31T05:18:47.405860+00:00",
+  "original_2025_notice_window": [
+    "2025-01-01",
+    "2025-12-31"
+  ],
+  "retrospective_2026_source_query": true,
+  "frozen_population_count": 5121,
+  "frozen_sample_size": 128,
+  "frozen_sample_sha256": "ded26da069f22888455ac080fbc2593ee9477a23bb0dc619569115cf4d7f73ac",
+  "attempted_sample_count": 128,
+  "full_128_coverage_attempted": true,
+  "original_pdf_url_discovered_count": 127,
+  "date_matched_vendor_count": 127,
+  "no_original_url_count": 1,
+  "query_failed_count": 0,
+  "original_pdf_binary_captured_count": 0,
+  "financial_fields_original_document_reconciled_count": 0,
+  "independent_oos_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SSE:601009",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900003284",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "南京银行股份有限公司2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223197865",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223197865.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "南京银行股份有限公司2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223197865",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223197865.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "ce081ff8d9f0b27cd74665592553d825b488b57e6ae641997e26490be145db0c",
+        "annual_page_1": "ef63c7d02200c345862cd402e51327275d19b63e8727ea8ce0d233561326f4d0"
+      }
+    },
+    {
+      "security_id": "SZSE:300978",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900039792",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223322685",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223322685.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223322685",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223322685.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "508991c08e0440abe2464ee1ad4a11b5d1294660d77374253b1ea7888b8d923a",
+        "annual_page_1": "7e0a09a14fa70110596eb20bfdac90ccc576750b749c0d3ccf302dc104ac5e37"
+      }
+    },
+    {
+      "security_id": "SZSE:002493",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900015502",
+      "annual_announcement_count": 5,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223285131",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285131.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223285131",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285131.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "b986ffdb04dc4e94b886d27f3231eabafd0c17ded99c323f8d8c65e62a36d418",
+        "annual_page_1": "f58023b24d92f76159dc7b8f75cf2a81cc4eb91cda40de447b167a546f993cec"
+      }
+    },
+    {
+      "security_id": "SSE:688486",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "nssc1000599",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "龙迅股份2024年年度报告",
+          "publication_day": "2025-02-28",
+          "document_id": "1222663156",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-02-28/1222663156.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "龙迅股份2024年年度报告",
+        "publication_day": "2025-02-28",
+        "document_id": "1222663156",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-02-28/1222663156.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-02-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "282cfebf056dcd4415b9fc5a7394a7462b5edf46eed85d2047c972c7e0506c37",
+        "annual_page_1": "67d1d7c37ba86e8b05002a6f8dfe75112490fe67a2330b759b4ca9cfe16e9af7"
+      }
+    },
+    {
+      "security_id": "SSE:600887",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600887",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "内蒙古伊利实业集团股份有限公司2024年年度报告",
+          "publication_day": "2025-04-30",
+          "document_id": "1223421123",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223421123.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "内蒙古伊利实业集团股份有限公司2024年年度报告",
+        "publication_day": "2025-04-30",
+        "document_id": "1223421123",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223421123.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "95fa2cc1c3cd1a22e7b2023978f6d72f6d80163beb53dc19bea5cbc591fdd35f",
+        "annual_page_1": "6767cccf9d9cf3776ea759ebbf218b44535495f477d1b53d2a86751a386c8e33"
+      }
+    },
+    {
+      "security_id": "SSE:600803",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600803",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "新奥股份2024年年度报告",
+          "publication_day": "2025-03-27",
+          "document_id": "1222909079",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-27/1222909079.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "新奥股份2024年年度报告",
+        "publication_day": "2025-03-27",
+        "document_id": "1222909079",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-27/1222909079.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-27"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "b4f27dbd720e88a3b70a448377c191fa80b169a9aa37d1c91ef219bb3a01953a",
+        "annual_page_1": "2c700c54b05f2443b9245c1bfe0d0e0e5524c89670bcd3051dd1aa0c6cbf0396"
+      }
+    },
+    {
+      "security_id": "SZSE:002234",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900004604",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222943285",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222943285.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222943285",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222943285.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c93be0850d46536d2def135ab0ff3bdf9570ae9836f806584e51cceeef075270",
+        "annual_page_1": "73da162f5a2e9e9df6a8d5108d069edbae6c6fb72390bf073671b0c811772b89"
+      }
+    },
+    {
+      "security_id": "SSE:605155",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900039759",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222948343",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222948343.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222948343",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222948343.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "4eced3fc16ed5fe0287513b7d99675442d4577c3e1def430602f792797b584c0",
+        "annual_page_1": "b5557989167dfdfcc95279ae84c0de520dbe73ec3f247f3bac26af68948b4ec9"
+      }
+    },
+    {
+      "security_id": "SSE:600163",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600163",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "中闽能源2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223361039",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223361039.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "中闽能源2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223361039",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223361039.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c43892176bb1d4605845c5c645293b74c0d18401c925165c728eeb48d50b9d16",
+        "annual_page_1": "1a0ff3a5b0a59b8a5b5903e176648be8ac57d734bf282a4699a252ca2274e504"
+      }
+    },
+    {
+      "security_id": "SZSE:000403",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000403",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223241555",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223241555.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223241555",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223241555.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9bd9bab5bec8872b3f0e3bf8cbb5726aba198baadc413470d56e624fd8535fd1",
+        "annual_page_1": "6d8bd3d080499b633b3881530bacff771fed7b76ef0fef0ed9bdff6f2d0b0ed7"
+      }
+    },
+    {
+      "security_id": "SSE:600653",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600653",
+      "annual_announcement_count": 3,
+      "original_candidates": [
+        {
+          "title": "申华控股2024年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222951421",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951421.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "申华控股2024年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222951421",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951421.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9733249b39ed7efdc60cc430d9242d076d030db0c7252d422534552159dc7491",
+        "annual_page_1": "157d71c6d6a3e251ca202e4c3e494fda7d4ec06d11d675b4b37402949b59144b"
+      }
+    },
+    {
+      "security_id": "SZSE:002552",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900018064",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222950189",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222950189.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222950189",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222950189.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-21"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "bcfcb004162f206d717ccdb4874438efff07e99ae3997b6bde8930804e05f4f8",
+        "annual_page_1": "887d67f362860bd76a679dcdc061ba187ee860261facba334e0bbabcfb531fca"
+      }
+    },
+    {
+      "security_id": "SZSE:002702",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900023240",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223300513",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223300513.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223300513",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223300513.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "6ca309159ad14ffcbf6fd9f218c104ce0557803ab851c75f1e570c5234828669",
+        "annual_page_1": "32b514819907b634e097f52bb40884768fc51c473895a937b22db7d938183c54"
+      }
+    },
+    {
+      "security_id": "SSE:603976",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900032884",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-10",
+          "document_id": "1223043683",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223043683.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-10",
+        "document_id": "1223043683",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223043683.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9251d9715444f08ded57dc4bd63e21bee70a34d3a99a05e0f134f6e8f64d4817",
+        "annual_page_1": "0a53651502d90889a18e4795d500b8c679bff7ff0fbc1dc85eebf5b5828fc4d3"
+      }
+    },
+    {
+      "security_id": "SZSE:002557",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900018281",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223280054",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223280054.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223280054",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223280054.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "4bcef0a1350aa4a1d75eff265ec80e31c1d7d866229fb0da7f425c19afd9a88a",
+        "annual_page_1": "57d13189bfb0b1980e99c35e06b121a626d7a78aed8a7850344be55523481829"
+      }
+    },
+    {
+      "security_id": "SZSE:301268",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "nssc1000550",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223375620",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223375620.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223375620",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223375620.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "dc8d43d8285db3582394e79a626c8f613108d1e2d01b0955a4749ee86b877367",
+        "annual_page_1": "eea3d5653298f92310d807edecf5269a15e48076e377b5a9b8da4b06e1502f6e"
+      }
+    },
+    {
+      "security_id": "SSE:603113",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900024626",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "金能科技股份有限公司2024 年年度报告",
+          "publication_day": "2025-03-22",
+          "document_id": "1222871762",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-22/1222871762.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "金能科技股份有限公司2024 年年度报告",
+        "publication_day": "2025-03-22",
+        "document_id": "1222871762",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-22/1222871762.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-03-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c48402be48bc2c12847172a2ffcf144ef392ad7d82a1003a925ad4b204c45887",
+        "annual_page_1": "7fbc20af4938314673ae96dc898e70c06fe16c50c2070ef54a24566f2f86ce20"
+      }
+    },
+    {
+      "security_id": "SSE:688212",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900047918",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-10",
+          "document_id": "1223045728",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223045728.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-10",
+        "document_id": "1223045728",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223045728.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "1249d3593451414af0ebda299677c3749d97960eb52ab5ceed1a6ebc933461e3",
+        "annual_page_1": "823aae833883659512aff2c95338664ccbd3e04188c4bd9d0290ebbc6ee8bd51"
+      }
+    },
+    {
+      "security_id": "SZSE:002731",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900022974",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223188135",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188135.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223188135",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188135.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2025-04-22"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "31642f6668ce5e03b8aaed77df9c125074920f3fe06a061523a5adb7cda18b29",
+        "annual_page_1": "ae982319b0a9543183d4ad1bd6355f84ae79d38fcdc3883028bd45997a26613d"
+      }
+    },
+    {
+      "security_id": "SZSE:300365",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900022869",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223150886",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223150886.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223150886",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223150886.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "01dbbcc5dbbc9043b4aa0308f667b22278fb3ab911b114c6f612e7373d177377",
+        "annual_page_1": "282f885cae80cd3ebd73532a6a770ef6ed097135ff59afb5f960237363824828"
+      }
+    },
+    {
+      "security_id": "SZSE:300917",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900039821",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-21",
+          "document_id": "1223151849",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-21/1223151849.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-21",
+        "document_id": "1223151849",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-21/1223151849.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-21"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "8b3e8ec5f0cd3522346c204652b402b3af4b67d36c705c679fdd3408e6bb8025",
+        "annual_page_1": "5f1f12f61af3305010bb8d26239cd98512fb382508a16daae90eb2aba6894858"
+      }
+    },
+    {
+      "security_id": "SZSE:300842",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900038394",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-02-28",
+          "document_id": "1222662510",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-02-28/1222662510.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-02-28",
+        "document_id": "1222662510",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-02-28/1222662510.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-02-28"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "00c0b8b0d812fc80a3322103ef21645d214eb3048f323ee9c32b873bc485b581",
+        "annual_page_1": "e884c9032e4d4fdff4bfca63883fbad91ae16623767ea017f50231e812183449"
+      }
+    },
+    {
+      "security_id": "SSE:605266",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900035301",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223391072",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223391072.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223391072",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223391072.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "dbad0f56986e47e60a26d757b16c1f01d96d110951d7d3d6dae07d7b735f184b",
+        "annual_page_1": "33f588a947ceb9cf341434a290e1f47792816e3b41c8b445d2b689e4463a8bf4"
+      }
+    },
+    {
+      "security_id": "SZSE:002632",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900021691",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223187707",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223187707.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223187707",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223187707.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "660bd74dd52562beeff4446b0c99db87a8d1f55dbe1ce5b3b6d0b19ad3d5ea70",
+        "annual_page_1": "762c29701d6d011ea52ac63069ae6056102ca2319c6b179d46614f61751cb0c7"
+      }
+    },
+    {
+      "security_id": "SSE:603505",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900029041",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "金石资源集团股份有限公司2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223216594",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216594.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "金石资源集团股份有限公司2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223216594",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216594.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "b2117299a68a4acf782c75dd482ca575d5a814c00d1c61a6194fd570dcc8c057",
+        "annual_page_1": "677431cb252178f8d196da235e07bdecf5cc8df685a7f4a2b75f4f77533a265e"
+      }
+    },
+    {
+      "security_id": "SSE:600021",
+      "status": "MULTIPLE_SAME_DAY_ORIGINAL_PDFS_UNRESOLVED",
+      "org_id": "gssh0600021",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "上海电力股份有限公司2024年年度报告（全文）",
+          "publication_day": "2025-04-01",
+          "document_id": "1222972839",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972839.PDF"
+        },
+        {
+          "title": "上海电力股份有限公司2024年年度报告",
+          "publication_day": "2025-04-01",
+          "document_id": "1222972845",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972845.PDF"
+        }
+      ],
+      "chosen": null,
+      "vendor_notice_dates": [
+        "2025-04-01"
+      ],
+      "vendor_update_dates": [
+        "2026-04-14"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": false,
+      "raw_request_sha256": {
+        "org_search": "62f41f5d016dcf403814e345d11e1b9f680130b06c4e35ba0c4ce5c4137475c0",
+        "annual_page_1": "b37465490ddcee5e980f60776bf4d24750c700485dac6a865c9e2aa2a53182e4"
+      }
+    },
+    {
+      "security_id": "SZSE:300180",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900016351",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223216840",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216840.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223216840",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216840.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9e0fb7c8ad34f1cec3d4422e865a286b63199285c6172644d0ec57648336ca9e",
+        "annual_page_1": "560f1c50850fc82e5d7d8bd6808e93c3cc1a27f707d53fc051f3db441cdabd31"
+      }
+    },
+    {
+      "security_id": "SSE:688313",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900041526",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223157242",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223157242.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223157242",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223157242.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "e15a4d126d94d5015dde6e57e266b1a50f5e09c110ac62d03069e768da74febf",
+        "annual_page_1": "7be037129f3b6cc78892ca156644e5b4b9053b6a9f3874baad5443773f3024ee"
+      }
+    },
+    {
+      "security_id": "SZSE:002164",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900003443",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223356802",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223356802.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223356802",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223356802.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "d702a99865b4966a930c1d828699479ecf3fcd7d62722377d7c140027187c117",
+        "annual_page_1": "66cb4f976dc36df9cbfbfc60d08ba341014e9463e86a0ecb3f641fb78e17d9e3"
+      }
+    },
+    {
+      "security_id": "SZSE:002869",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900030824",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223191242",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223191242.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223191242",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223191242.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "5a6e2904bbd8d7c3ffc6575ca6b2e9f55f1e80285963919d65bc078e3c09ea76",
+        "annual_page_1": "51031bb7c590731c6d671575f3d4f6d8fc47399100d7e6ea8abcf07acfa54554"
+      }
+    },
+    {
+      "security_id": "SSE:688155",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900042938",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "上海先惠自动化技术股份有限公司2024年年度报告",
+          "publication_day": "2025-04-18",
+          "document_id": "1223128787",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-18/1223128787.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "上海先惠自动化技术股份有限公司2024年年度报告",
+        "publication_day": "2025-04-18",
+        "document_id": "1223128787",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-18/1223128787.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-18"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "b4fed33311a9978d14feceffb7a4dcec58cf07add31a62caf3b4502283a38c56",
+        "annual_page_1": "9404c168ef451a1a8bc652ab16572947d58444807601867f323ff8a3832845c7"
+      }
+    },
+    {
+      "security_id": "SZSE:002228",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900004545",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223318784",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223318784.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223318784",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223318784.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-27"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c673114d4a1e1719a16102d3d7ccae8781b0f547c3801bd52f48390baa09ab20",
+        "annual_page_1": "2c3117e5975f59b7ef2efe93b3b460c04c229952239781681a58a2d7b5382080"
+      }
+    },
+    {
+      "security_id": "SSE:603027",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900024904",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "千禾味业2024年年度报告全文",
+          "publication_day": "2025-04-16",
+          "document_id": "1223103749",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223103749.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "千禾味业2024年年度报告全文",
+        "publication_day": "2025-04-16",
+        "document_id": "1223103749",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223103749.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "d3b1085c781ffd5397ff9e18686b95e402b066c175c43369f2e309a5feb40983",
+        "annual_page_1": "6c86a72d8974dc2f84708a76eae8c6f6dd1c6f5ccd71448b3126fdd840f6e06c"
+      }
+    },
+    {
+      "security_id": "SZSE:301188",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0833017",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223268301",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223268301.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223268301",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223268301.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "cdd162b118a45e4b24417b28b23873229f43a8b4bfff38ea10e2e52b81f8bb05",
+        "annual_page_1": "bde0f4fc253ece70714214179956da5fa584f5ef3da806c1b118515bc223958b"
+      }
+    },
+    {
+      "security_id": "SSE:600736",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600736",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "苏州高新2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223317086",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223317086.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "苏州高新2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223317086",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223317086.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9ed1982776e4acd87d13329996b9734557183ceb42867b6d2fcd22d95da691b8",
+        "annual_page_1": "b2207f78f91c94a547991b57ca4a89388ef3a5bdd3bce1615b16532aee17d036"
+      }
+    },
+    {
+      "security_id": "SSE:600601",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600601",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "方正科技2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222946366",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222946366.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "方正科技2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222946366",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222946366.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c822adddb21b8b46660d8f239aa5f7f3a018edad0d75393a586ad9783fb4410d",
+        "annual_page_1": "d8646fc35bf1b8a9832fcb1244fc1e203f2da7e41fad51541f2e22773ecce788"
+      }
+    },
+    {
+      "security_id": "SZSE:300959",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900041603",
+      "annual_announcement_count": 4,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223378390",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223378390.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223378390",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223378390.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "1e836db69a49d2e7acae9eecba9a38f4aa8c0d9a2637a095df6f4438785f078d",
+        "annual_page_1": "55761b5e4561717ce3edf9bc68b7f6ebce87631966d0e82f28157872f25c0e5e"
+      }
+    },
+    {
+      "security_id": "SSE:603351",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900036282",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "威尔药业2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223190237",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223190237.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "威尔药业2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223190237",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223190237.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "d19fe20c5d80402aa558d9ec74a009ea028fdac2458d6c358c9a3472fb631995",
+        "annual_page_1": "08d78f3136584f97b19819fec8806996e82375833dc7277c89f466ead9acce50"
+      }
+    },
+    {
+      "security_id": "SZSE:002816",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900026779",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223379421",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223379421.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223379421",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223379421.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "1103575442ec1849ba1ca5a1a67633795e8ad9a7558bb043b488cb7ab78a2686",
+        "annual_page_1": "12818980162f78f9a0295f12a7aa521b20601102f209ffdd43a88c2a516031cb"
+      }
+    },
+    {
+      "security_id": "SZSE:300928",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900038107",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223265807",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223265807.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223265807",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223265807.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "fe85ef680940e82dd8fd2d2219b86233580bac44f78b488874dc15070edf638b",
+        "annual_page_1": "ab1cf2eb7331a1155377844a60927843d97782e54c04a081d578c566502004c5"
+      }
+    },
+    {
+      "security_id": "SSE:688386",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900041594",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "泛亚微透2024年年度报告",
+          "publication_day": "2025-04-30",
+          "document_id": "1223452204",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223452204.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "泛亚微透2024年年度报告",
+        "publication_day": "2025-04-30",
+        "document_id": "1223452204",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223452204.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "ac9331cf775e2fa61e44e62fecb4baaceb48a6b10dba18ab2e3c9b84963be6af",
+        "annual_page_1": "c273cb56f37fc29dd6c442ca7a0f5b0addb7f862aaed3dc327074b0fc359de04"
+      }
+    },
+    {
+      "security_id": "SZSE:000778",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000778",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-11",
+          "document_id": "1223058153",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223058153.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-11",
+        "document_id": "1223058153",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223058153.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "ff6255e2ca45d58cd7a3a711d7c81d176dcad130433a9e72a213c972b8df01a9",
+        "annual_page_1": "a8b95a999f141d947eb6ad7e82033ab498f4e4dbea19a7b82b5632b9142aefc9"
+      }
+    },
+    {
+      "security_id": "SSE:603516",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0834801",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "北京淳中科技股份有限公司2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223216003",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216003.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "北京淳中科技股份有限公司2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223216003",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216003.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9b07cca6b243248eeaa93bb7f75e110ab81a107dbbd5e754ec7ee1d450a7ddc2",
+        "annual_page_1": "33748fbc72b04b3cd8c5f977624c63761cceec0ed41161ac2a9e189fc898715a"
+      }
+    },
+    {
+      "security_id": "SZSE:002668",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900022336",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-08",
+          "document_id": "1222743875",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-08/1222743875.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-08",
+        "document_id": "1222743875",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-08/1222743875.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-08"
+      ],
+      "vendor_update_dates": [
+        "2026-03-11"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "a6310d76859de32e67ced881dbe8b418776d1a6b30e2645d1d65f04f52fb9d54",
+        "annual_page_1": "bb709f2b729c2185507f2b9dd5d846887682eb2a3a4a24f48d31539dcb866189"
+      }
+    },
+    {
+      "security_id": "SZSE:000637",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000637",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223369814",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223369814.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223369814",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223369814.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-08-06"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "22dba4618f1f2694fa45b2b308597cd2456c2bfaf19fb2498555eaa36ccfff74",
+        "annual_page_1": "295b42c0354f4ed3865882e5906766515995884fd10414ebbe5206ce0c080523"
+      }
+    },
+    {
+      "security_id": "SSE:688330",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900041745",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "宏力达2024年年度报告",
+          "publication_day": "2025-04-15",
+          "document_id": "1223094502",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223094502.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "宏力达2024年年度报告",
+        "publication_day": "2025-04-15",
+        "document_id": "1223094502",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223094502.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "d65b34071a49fb26a9ca8e86e0005309e329e3c67d39d86c8d6ce3b5f3bb6af7",
+        "annual_page_1": "24adacefb51803aaa9f95e2e098846f1e88620a9a1cd257e01fcfa58287335a8"
+      }
+    },
+    {
+      "security_id": "SZSE:000663",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000663",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-31",
+          "document_id": "1222949362",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222949362.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-31",
+        "document_id": "1222949362",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222949362.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-31"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "57d7d429c92c997b07eb1c5e71371cdacfc4d1af4124d76e02b88b4d639fc5a4",
+        "annual_page_1": "586b9faf8da7db29b078052c105f15293308528e7be0f69f057af88cf6812911"
+      }
+    },
+    {
+      "security_id": "SZSE:002222",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900004361",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223360523",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223360523.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223360523",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223360523.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "f3b684c78d76892fd99c6bdb569ff7571bd3ffa2486ec59951dd1e17297d50d5",
+        "annual_page_1": "cd1a386e668a26352e048aefcac8f08ccee7b2d096a783dd3c6c15e386f569eb"
+      }
+    },
+    {
+      "security_id": "SZSE:002978",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900034946",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-14",
+          "document_id": "1222789664",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-14/1222789664.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-14",
+        "document_id": "1222789664",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-14/1222789664.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-14"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "4de811ad4543b3dab0b72cfa2c12555e1082c7a9be8dcb0f308e330b46dc9fc8",
+        "annual_page_1": "2a203a9b94c0f734008f74d1dd2cf96e49580d9591d10e461d360bb68a98ca99"
+      }
+    },
+    {
+      "security_id": "SZSE:000938",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000938",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223369453",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223369453.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223369453",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223369453.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "3f70a26ded6268644a10b0907ac29e39793e8f4f6dd22b5d10438d3a8114490c",
+        "annual_page_1": "9fd7b6082dd30c04cc51de1532211d5698140d326ae143849e48ce619a6fe0b4"
+      }
+    },
+    {
+      "security_id": "SSE:605151",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900032989",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "西上海2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223285173",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285173.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "西上海2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223285173",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285173.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-27"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "23f3f69159c2a01dd5f90d65c84aa5da0e7a10ca3f50c5888b82e422ab715fe5",
+        "annual_page_1": "a5d4d60042a9ee0f6adca0d8e8aa3d5b10593eb1bb182e51363482c078415a6e"
+      }
+    },
+    {
+      "security_id": "SZSE:300246",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900020347",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223270360",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223270360.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223270360",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223270360.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9d1caadba3e1d0a1fb2141bcec59209d28b1099e43d5fc8c540e8e3528b5f618",
+        "annual_page_1": "16f8d045ce8740fa018516bbd201d598c50de8cb3ad6d5ce17c653aab9ed7dcf"
+      }
+    },
+    {
+      "security_id": "SZSE:300364",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900023871",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223385316",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223385316.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223385316",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223385316.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "6375ee033907b5818b280ac1d4eac295f40d86fed677cacd8679af24ee75c461",
+        "annual_page_1": "ab7d21a2814569c128fc1e2c49253d7045ff19cfce9a1c12aabed83c90c51ddf"
+      }
+    },
+    {
+      "security_id": "SZSE:300056",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900010148",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223221470",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221470.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223221470",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221470.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9a2dfa6bafd05cbb94bd918001ebe3aa2e8eef69d6efcbf65b665c41a448d127",
+        "annual_page_1": "52371c33dcbe805b2f2b9bae1969b810c0b409b035cf7aa4bb40dce83aeb73b3"
+      }
+    },
+    {
+      "security_id": "SSE:688576",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0834788",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "重庆西山科技股份有限公司2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223392033",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223392033.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "重庆西山科技股份有限公司2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223392033",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223392033.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "358f3cbf3e23e3c4bec2775b1a134d3cd59d0eb092e2b75704f2d4f39e5afa8f",
+        "annual_page_1": "5acdbcc9d0de9ac98061e512677edf71614903a848178a958a8e7c64d34cba93"
+      }
+    },
+    {
+      "security_id": "SZSE:002141",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900003282",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223379959",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223379959.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223379959",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223379959.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "0b886c3e18d807f523ed357a2ba0690977102612f281ac034bdd7c2aa58097cd",
+        "annual_page_1": "0b16b99d4cb02a445426bb8b892f62f41ae91aa947a827c03d867e1fe94acfc7"
+      }
+    },
+    {
+      "security_id": "SZSE:300907",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900039797",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223146278",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223146278.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223146278",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223146278.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7cffe6d5afe168ffe3fd1427e16875274dbef46818f366139aa2678df6791139",
+        "annual_page_1": "ca48bbd4d26b41d75d74c066bb82325c88a7f574c01284ecedfeb24de1be49a6"
+      }
+    },
+    {
+      "security_id": "SZSE:300166",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900016307",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223221255",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221255.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223221255",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221255.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "623ce9cea1f658e5c549269a96f6dc37ad37d92f2c4a77fd55a5abc7d779fde4",
+        "annual_page_1": "f140089d0e5b0ff6ca85069fb786fe51b8065e3595933b87d07f93595756d7cd"
+      }
+    },
+    {
+      "security_id": "SSE:603456",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900022935",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "浙江九洲药业股份有限公司2024年年度报告",
+          "publication_day": "2025-04-11",
+          "document_id": "1223054540",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223054540.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "浙江九洲药业股份有限公司2024年年度报告",
+        "publication_day": "2025-04-11",
+        "document_id": "1223054540",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223054540.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "043609bdbbe50f9380201403c777f0d7c4a96fffe10387988d533d0609198791",
+        "annual_page_1": "da893e34869cf6f84796311272bcd824fd48287618303996fd2d3a317e38c8b4"
+      }
+    },
+    {
+      "security_id": "SZSE:300034",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900009028",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223243343",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223243343.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223243343",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223243343.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "e280bc0bb6732b1a64738942ba711d1df145a8e9356e92143fc0c1e8f0ab36f7",
+        "annual_page_1": "700c2f726f15a870e0163b7f6c0bc8ea439667968e46a0aabf25e8b978267402"
+      }
+    },
+    {
+      "security_id": "SZSE:002413",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900012690",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223149241",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223149241.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223149241",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223149241.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "6ade3e07d7c1d632c3bfd8366550c14d9691976728ab573bb33203458a7b05af",
+        "annual_page_1": "ec15cf5075b98b0dac0ddf526d5f645994f770c734762e7ef253282d75b81af5"
+      }
+    },
+    {
+      "security_id": "SZSE:300561",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900029015",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223221900",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221900.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223221900",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221900.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "a0c8246812e757ec5db0f3962e8edd6a85c176bd085186f3cebc9b408b1aaf10",
+        "annual_page_1": "c9bd5e0bbbff8810ce6f9a74f9187d5937e8f1cf5d3496d5fa9a739203c7c27b"
+      }
+    },
+    {
+      "security_id": "SSE:688629",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900048587",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223372592",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223372592.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223372592",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223372592.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "3ec7a4ffa76834223c29bbf41cf1dcec3c3bce4fbe36c5115b5a096b6fafe8a0",
+        "annual_page_1": "f025b15401cb12f98a1e69e0e56b69317dddb17c19079c473889d5b9dca5686e"
+      }
+    },
+    {
+      "security_id": "SSE:688531",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0834204",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223324566",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223324566.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223324566",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223324566.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "18b9c479b0da5f09f01725bfc4232a250f7be8599ab075eeb74fb777242cb850",
+        "annual_page_1": "11921ebfa2ce61cde09a28e9f2811a74bdf3081cca6f656bb081df7320dc9df1"
+      }
+    },
+    {
+      "security_id": "SZSE:301196",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "nssc1000723",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223188795",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188795.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223188795",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188795.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "562520dc17b71c5c4efa01c7d170dc8ccbdfdbb1b75d906937606bbfa5478ebd",
+        "annual_page_1": "03c30caaab1c8fcbc47dcfac0aa53c7c1c0fc07f235ec0261b1ac365430cbd3d"
+      }
+    },
+    {
+      "security_id": "SZSE:002832",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900026776",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223374135",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223374135.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223374135",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223374135.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7c8a32e3538bc3220db957317625b94bd5be1f7b92372ced2a1a74b380f2726b",
+        "annual_page_1": "1f8bd8ca79972bf0cf412909a3146f22aeabe5259aeea12ab3d6c5c388df34f9"
+      }
+    },
+    {
+      "security_id": "SSE:688343",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900047695",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223327349",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223327349.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223327349",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223327349.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "4218bca9597856e41bed101dc598cfd4201ae6ed4d58b9633f9326ddb7799768",
+        "annual_page_1": "7094e606cd925e6d2ded17f5cd464984143a59f142164acb6865809528b0d8fa"
+      }
+    },
+    {
+      "security_id": "SZSE:002155",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900003428",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-11",
+          "document_id": "1223058050",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223058050.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-11",
+        "document_id": "1223058050",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223058050.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "114192e3d7bc690a0a61ad5eaae3a225f02b4231547f5203da5cbbce73227828",
+        "annual_page_1": "a50f7b2d194e74d12ddb127d728aa8bc7050271e79e516d3992fd7308ee6d634"
+      }
+    },
+    {
+      "security_id": "SSE:603385",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900030578",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223365846",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223365846.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223365846",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223365846.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "41e94a026552eb3df5d7120a9748478354c2f671f627b56804dfa7d7df21d5c7",
+        "annual_page_1": "251f0a4f1041d205bf248f2ff21ea55b7ca806e5c7c09473ca21db2d31723e86"
+      }
+    },
+    {
+      "security_id": "SSE:600775",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600775",
+      "annual_announcement_count": 3,
+      "original_candidates": [
+        {
+          "title": "南京熊猫2024年年度报告",
+          "publication_day": "2025-03-28",
+          "document_id": "1222922864",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222922864.PDF"
+        },
+        {
+          "title": "南京熊猫2024年年度报告（更新稿）",
+          "publication_day": "2025-04-01",
+          "document_id": "1222969802",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222969802.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "南京熊猫2024年年度报告",
+        "publication_day": "2025-03-28",
+        "document_id": "1222922864",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222922864.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-28"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7b755aa1a6d6f1fdd531f312ed8a2495eb5b62d9c3cb7e61d8a930b0c3682e11",
+        "annual_page_1": "f6a70d2f17e7c7221e926b86388fbb0bea646c34e47425963a84d2755faee018"
+      }
+    },
+    {
+      "security_id": "SZSE:001238",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900033230",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223356742",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223356742.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223356742",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223356742.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "96ceae7b9443d0e18290992933b396487b0e4deb2fa2d83ddd1d14966ec76b65",
+        "annual_page_1": "73b299b6444634659815e5e2ec819f1fc3e0500b6f9b9d0e196922956decd67d"
+      }
+    },
+    {
+      "security_id": "SSE:601618",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900008087",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "中国中冶2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222951596",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951596.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "中国中冶2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222951596",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951596.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "a2bfa1d33830ac78691d987e48cd650afbf54647b6a08817ecb799376498b914",
+        "annual_page_1": "e49f8f2a628d0b4d33ac547b5f4a7fae7ff6a229ade68e94b771b192adc2d888"
+      }
+    },
+    {
+      "security_id": "SZSE:002154",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900003429",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223144950",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223144950.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223144950",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223144950.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "fae51edcbd2957af8d541fa30ea1592c467ae2c417f276433cd2833e932803ea",
+        "annual_page_1": "1af0476af4f33f5b3fdd514a2672fcbb104ff895d0ada40efa61e7cf7809a06a"
+      }
+    },
+    {
+      "security_id": "SZSE:300179",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900012352",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-28",
+          "document_id": "1222926664",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222926664.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-28",
+        "document_id": "1222926664",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222926664.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-02"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "10a415dbc6384079787f5ed497bc0bec8e249a51e232d561e1ec9e129e500dfc",
+        "annual_page_1": "0834df77d4bab61c00a4880ca6802d5b138455fa0501aa8e552f29d86ba98c31"
+      }
+    },
+    {
+      "security_id": "SZSE:300195",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900017111",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-28",
+          "document_id": "1223316722",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223316722.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-28",
+        "document_id": "1223316722",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223316722.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "1fdb278861522690b18eddf21166a9e4e35716a2d1e39bb679326df76b3f7e85",
+        "annual_page_1": "79c1207fd700f81b9f3c45ed2231eb4da02b4ad57e0b3a7cfd268bcc610ca9bc"
+      }
+    },
+    {
+      "security_id": "SZSE:301109",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0872664",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223195217",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223195217.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223195217",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223195217.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "57e19b02c3d77461f2fa6911d2549eb5c5417260785709c8a6023f1997fa6957",
+        "annual_page_1": "8c4d5072fba40f6df5a7ffdee4dfff8e1fb4ae31dc1d4b2cee0e0357c6d29d06"
+      }
+    },
+    {
+      "security_id": "SSE:603025",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900023457",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "北京大豪科技股份有限公司2024年年度报告",
+          "publication_day": "2025-03-21",
+          "document_id": "1222857260",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-21/1222857260.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "北京大豪科技股份有限公司2024年年度报告",
+        "publication_day": "2025-03-21",
+        "document_id": "1222857260",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-21/1222857260.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-21"
+      ],
+      "vendor_update_dates": [
+        "2026-03-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c7f611cb86da684e03f03f0a94563e1370a292fd7ec0d1f12357efa46e6c725b",
+        "annual_page_1": "c313a87888f969f79be8dd24bd12598bb7cc6d2c5c656fa8ee2c7acd201effc7"
+      }
+    },
+    {
+      "security_id": "SZSE:300024",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900004062",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223152070",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223152070.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223152070",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223152070.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "16200acd5a0db0cd715ebe5c9442b1f786f107cbad5d4c6fb8dc24d5f4a17835",
+        "annual_page_1": "afd3eee87c695383ce7c206840c90a87a9cd2f40710ed2b9ca7f1b4f45a6508b"
+      }
+    },
+    {
+      "security_id": "SZSE:002615",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900021413",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223194371",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223194371.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223194371",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223194371.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "95f5643d224fc06498e89c2deae8c2dfff1a8d22cbe16be9fa89cdc4d2f5497b",
+        "annual_page_1": "b6c0f7b302941b9455befadc07024132a4c0a518d09a848534a27c049d030661"
+      }
+    },
+    {
+      "security_id": "SZSE:301125",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900047975",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223211427",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223211427.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223211427",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223211427.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-07-08"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "13b3a368db6bbc70f3fff78ac2a90238bb50349950c6cc7a24743075be03b0fc",
+        "annual_page_1": "3d08aabc2d68de12c4d2ff15ac2080cf4a003aeca9db71c5f144892d7ed8e1e3"
+      }
+    },
+    {
+      "security_id": "SZSE:300331",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900015287",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223239563",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223239563.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223239563",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223239563.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "b6fe40c2e7c3b6108184161e8f9532508d5b2793cf45c1d659bae9f3c3f1b730",
+        "annual_page_1": "18ca47d34eda1a37fcbff908d5b8fac55f160f020e5a295ae82a111b424accd4"
+      }
+    },
+    {
+      "security_id": "SZSE:002395",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900012130",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-15",
+          "document_id": "1223091574",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223091574.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-15",
+        "document_id": "1223091574",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223091574.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-14"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "95b6febbae7175fd2b1d57b66863e95adbd84c20f45dfb4b24b0b37ac73edd92",
+        "annual_page_1": "d32ffeb3b6e81aa40079f91448a2bbc6679bc7fd7f2430030a0e6f628d7c886d"
+      }
+    },
+    {
+      "security_id": "SZSE:301456",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900047323",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223212526",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223212526.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223212526",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223212526.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "ac903982c2d2f5b4c43bd0dd17df3fc9cbcdccec1f0d9c3412dbf2478236d586",
+        "annual_page_1": "a7fbc12598aab2e4d158a16f819d564e1f3fd429bec4cd9e48634c6a1ff38173"
+      }
+    },
+    {
+      "security_id": "SZSE:000548",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000548",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-03",
+          "document_id": "1222991736",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222991736.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-03",
+        "document_id": "1222991736",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222991736.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-04"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "3d5f5fa57d16b8325b57f5319685e4e40f1bbc64329ba4e070a3314ea3dfb077",
+        "annual_page_1": "f24ab9b2a07b1614fdeb2a9315d507d55ac12a903bc46c993321b84b61017b30"
+      }
+    },
+    {
+      "security_id": "SSE:600020",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600020",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "河南中原高速公路股份有限公司2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222952051",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222952051.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "河南中原高速公路股份有限公司2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222952051",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222952051.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "a3e2c0e1fc0092bafaf524e4d5766bd95fef9259125490d3a45551eb71a5635c",
+        "annual_page_1": "31c58133a0e1cb2d2616cc1d92014de856fd1ce13a04f88e6cce5b3923f5b724"
+      }
+    },
+    {
+      "security_id": "SSE:601139",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900009513",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "深圳燃气2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223283829",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223283829.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "深圳燃气2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223283829",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223283829.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7e8c187f5b50277c9b756a09ce22e2ea84c884619969d77e7896fee6f3ef5bc9",
+        "annual_page_1": "e260df08722c95e3440f488f0c44b311a5a99f63b5512abe3cfb74526c6c224d"
+      }
+    },
+    {
+      "security_id": "SSE:688025",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0870105",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "深圳市杰普特光电股份有限公司2024年年度报告",
+          "publication_day": "2025-03-25",
+          "document_id": "1222881177",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881177.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "深圳市杰普特光电股份有限公司2024年年度报告",
+        "publication_day": "2025-03-25",
+        "document_id": "1222881177",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881177.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "dbd5880143b847a6012ec3623c928a24c543240587c499e5084d36e189a31e3e",
+        "annual_page_1": "6793e65acd7e9ad669cd00d1a663af2b313579c593217e06690441d51be4b65c"
+      }
+    },
+    {
+      "security_id": "SZSE:000913",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000913",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223188280",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188280.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223188280",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188280.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "f21764876173880af5c9c114453d6e20738941d1959699e9fad7b0e1d74be607",
+        "annual_page_1": "c210ef23cd98c6da4b0138567dd7823b294a1b17efa08502ecc7bce525346fad"
+      }
+    },
+    {
+      "security_id": "SSE:601216",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900017867",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "君正集团2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223306248",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223306248.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "君正集团2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223306248",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223306248.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9e2a332759bd2f1a68c50513ea481676c22f82bafb007c324f3fa81aa2f34517",
+        "annual_page_1": "6dcf2a68b894c2933ae337d83e0534b3845a4ab33de84d648893a943f1f96f86"
+      }
+    },
+    {
+      "security_id": "SSE:600663",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600663",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223218010",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223218010.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223218010",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223218010.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "8d4d082427470e521118a5a093d15a45c2201f4770834cba31abe0513a6cd542",
+        "annual_page_1": "7975849b73ee91796f7cfa2e77d4e65fafac0e8ae2bbe8fac4cd62422e64141f"
+      }
+    },
+    {
+      "security_id": "SZSE:300696",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900033185",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223189685",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223189685.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223189685",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223189685.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "20146f52f8c201bfca6ea21aa129bf1e2cd5d7f7510cea95dc42088a4859cd58",
+        "annual_page_1": "1be1357c23ce6799ff20d6b8f3a1d2c117b8c4efae3d6f9e8feabd9c8905d098"
+      }
+    },
+    {
+      "security_id": "SSE:603608",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900024757",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "天创时尚股份有限公司2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223153993",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223153993.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "天创时尚股份有限公司2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223153993",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223153993.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "80d19490fbf8c60c59c5860fa0570176789579bee935f296e9c40904cf4a4b51",
+        "annual_page_1": "b3c21481e7fe103e74a5be4501715dcd7e3f817071464374ec679f03491a2aa9"
+      }
+    },
+    {
+      "security_id": "SSE:688282",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "nssc1000849",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "北京理工导航控制科技股份有限公司2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223901103",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223901103.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "北京理工导航控制科技股份有限公司2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223901103",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223901103.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "640a7390fd1e0aab1ed4bf02c20ee1aae5c8ca63a34fa07830ee5d9c336c02dd",
+        "annual_page_1": "ff89d87700b23d26fe867c65d2ad764db20a222362c27c83fa3d6c2f379900ec"
+      }
+    },
+    {
+      "security_id": "SSE:603700",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0834980",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-10",
+          "document_id": "1223043138",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223043138.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-10",
+        "document_id": "1223043138",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223043138.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "1f6930037e500b1fc163339d639c015cbd5aae95971f4d5777284e1b1b314ce7",
+        "annual_page_1": "dd1cafc81cf13b7a2d4f8e5d80af3647d619724825364eecb49d9856a2a55258"
+      }
+    },
+    {
+      "security_id": "SSE:603938",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900031499",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "三孚股份：2024年年度报告",
+          "publication_day": "2025-04-16",
+          "document_id": "1223100095",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223100095.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "三孚股份：2024年年度报告",
+        "publication_day": "2025-04-16",
+        "document_id": "1223100095",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223100095.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c6c4a78e294eea43bc512b4b7ed182901b34848594dcc16cec1072378aa98572",
+        "annual_page_1": "87401584d0bac50be3bf55bb62f66d2cfc6e0d2ab8a50e2218e31eb3d6b807b0"
+      }
+    },
+    {
+      "security_id": "SZSE:301040",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0833879",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223246819",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223246819.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223246819",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223246819.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "5ee3b5765bf3e5ec2070797ccd2fd2a2c4240cbedfde5e022bb7a0612cc7239d",
+        "annual_page_1": "c3541db4facee06c626bf887f2b81bfb020a055f03b1d4c5401c7740c6ac25b1"
+      }
+    },
+    {
+      "security_id": "SZSE:002116",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900002183",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223237992",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223237992.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223237992",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223237992.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c3ac4bc0076d1c4eab7a3618409e423bf6ac1bd02c5f0baf40e14b5f8e7e03c8",
+        "annual_page_1": "281215071168cbb69c9a04599923fdfcb97eda8b83b7a153a23abea5edd168d2"
+      }
+    },
+    {
+      "security_id": "SZSE:002786",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900023708",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223382867",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223382867.pdf"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223382867",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223382867.pdf"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "58385c4100480492d27dd55953d0b0ed81e60ce79684121fd73dbeca87cde209",
+        "annual_page_1": "ad0b5cf64b143b574e1e0138b1c55aacfbf7a60dd2f3cedc13db23050dbbad34"
+      }
+    },
+    {
+      "security_id": "SZSE:301516",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900046543",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223310050",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223310050.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223310050",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223310050.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "d2629ccb2a9c5687f4ab2a41d282bcbc7a04e1eb0961e179bbf1feb9aae7a07a",
+        "annual_page_1": "f63a7c5a813de09934b19d6b3daa3b666a7f737fb7ecbeec7de846dbc95a0ab5"
+      }
+    },
+    {
+      "security_id": "SZSE:002197",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900003915",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223382640",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223382640.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223382640",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223382640.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "32a950f430ce47752cad22f32005c9af0bab7a27b377f3958df0aeb45428f613",
+        "annual_page_1": "e8e7db53ecfc3fb75d18b2a7828f6ec738bbb0715d5ddeedcd11f2d7bc17c6d1"
+      }
+    },
+    {
+      "security_id": "SSE:600230",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600230",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "沧州大化股份有限公司2024年年度报告",
+          "publication_day": "2025-04-19",
+          "document_id": "1223146627",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223146627.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "沧州大化股份有限公司2024年年度报告",
+        "publication_day": "2025-04-19",
+        "document_id": "1223146627",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223146627.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "cab48076569968bd21f39ac80c2a6a3e92b4efff455038737174ba186ad0ada9",
+        "annual_page_1": "ba775bc15d4453bfb08d697df154756cb22e8fd42a696ac27aad465b6aeaff47"
+      }
+    },
+    {
+      "security_id": "SZSE:002543",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900017428",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223317619",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223317619.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223317619",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223317619.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7f7607dbb968e71fae241dd99b02daab783475717ae08fc1424696646a0fb13d",
+        "annual_page_1": "fb6401c93e51fe4fff7f74f457b5432f0f3e188ebee1fbe9389ea1906d9255e9"
+      }
+    },
+    {
+      "security_id": "SSE:600282",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600282",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "南京钢铁股份有限公司2024年年度报告",
+          "publication_day": "2025-03-20",
+          "document_id": "1222846547",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-20/1222846547.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "南京钢铁股份有限公司2024年年度报告",
+        "publication_day": "2025-03-20",
+        "document_id": "1222846547",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-20/1222846547.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-20"
+      ],
+      "vendor_update_dates": [
+        "2026-03-17"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "ff51306a59343197b93a68dff170840ba6597946a162c47833d76a12cd4ef9ab",
+        "annual_page_1": "b7cddcc1affbab4f5155a75df557703d32cfd6864ec0c11028e78cead96e9b68"
+      }
+    },
+    {
+      "security_id": "SSE:688601",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900033358",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-12",
+          "document_id": "1223072573",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-12/1223072573.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-12",
+        "document_id": "1223072573",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-12/1223072573.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-12"
+      ],
+      "vendor_update_dates": [
+        "2026-04-11"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "17e9a9115355dd4f71d9a879f441ff8a932f9edaba06541f2535538fe6a1a5d5",
+        "annual_page_1": "ce58ae72dfac3fc67ca83c6229908bc5236dd9517bc836c716a9d8fbd71b79c5"
+      }
+    },
+    {
+      "security_id": "SSE:603389",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900026793",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-30",
+          "document_id": "1223426816",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223426816.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-30",
+        "document_id": "1223426816",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223426816.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-06-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7e656864e2d4b5372e3d1d7c2548bc2976e5f38dbfdbfd3fd4368d4370ffbbd0",
+        "annual_page_1": "456f87faac34cabf60968564556039685441e899e8ee8cad6e6f18ef36d6311e"
+      }
+    },
+    {
+      "security_id": "SZSE:300307",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900021889",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-16",
+          "document_id": "1223100229",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223100229.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-16",
+        "document_id": "1223100229",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223100229.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "bb1e47d3791a161faebef4befef3cbd7449f836629019787b967825df6a64106",
+        "annual_page_1": "fbfd3fb2d9316b71105238b0071ba1c0ec2aea8608c5d9594846149d1bffac3c"
+      }
+    },
+    {
+      "security_id": "SZSE:000710",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000710",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223272292",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223272292.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223272292",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223272292.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "15c7d2475bd8b0aa8a52938510cec598577e59ece5ccdba42d58d2f78c31c080",
+        "annual_page_1": "a0cb4845516c167a8fd40ef166d3301accd36070a381575be4bcd43bef19e761"
+      }
+    },
+    {
+      "security_id": "SSE:603587",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900031496",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "地素时尚2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223385908",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223385908.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "地素时尚2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223385908",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223385908.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "dd5230c103a898437f90d0e9ee4adc76697c8a89caa4d5a7b52e39320c072ab9",
+        "annual_page_1": "e6d1441a2a4eb562eb87c8cfaccc44e5350ed43e6792f1b967f51c18433053a0"
+      }
+    },
+    {
+      "security_id": "SZSE:002029",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0002029",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-03",
+          "document_id": "1222989624",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222989624.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-03",
+        "document_id": "1222989624",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222989624.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-03"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "0160f95b31244552bd7069d058192b7e0851e2f819cd2d3b4cdb48ced8853fb7",
+        "annual_page_1": "04edbb5bfa1498c9af429c3099afe1f74091112519680d87a93c967092df81c6"
+      }
+    },
+    {
+      "security_id": "SZSE:002303",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900008616",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-15",
+          "document_id": "1223093193",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223093193.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-15",
+        "document_id": "1223093193",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223093193.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-03"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "ae4ad4d1e95a9d08dbbc5f6483f39c80f87251c727facbd3bdf8199b2c3959b7",
+        "annual_page_1": "7cf770c43135f65b46a031b1351bcd84e15a55f09b0a940bd5c52d5b59f3f9dc"
+      }
+    },
+    {
+      "security_id": "SSE:603538",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900029824",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "宁波美诺华药业股份有限公司2024年年度报告",
+          "publication_day": "2025-04-18",
+          "document_id": "1223130508",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-18/1223130508.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "宁波美诺华药业股份有限公司2024年年度报告",
+        "publication_day": "2025-04-18",
+        "document_id": "1223130508",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-18/1223130508.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-18"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "2f9cada60d222d52255fbf0177fe9fe0e2ae714d2d9a1f92d2b32b7b1580e26e",
+        "annual_page_1": "1dd2ef6100bbeb20d80a4a8483bdb68d2cea5eb62c334692672e9acd3c544ce9"
+      }
+    },
+    {
+      "security_id": "SZSE:301081",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900041947",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-28",
+          "document_id": "1223299788",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223299788.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-28",
+        "document_id": "1223299788",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223299788.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "b22403e528ef2fc8f2c1fd2e746a34888bff0a80bf3fcdbcd5eedc9ede505e4a",
+        "annual_page_1": "0acfe0bde35b08996647df9e17272cb1a412c4ad314814d06e343bcd26855968"
+      }
+    },
+    {
+      "security_id": "SZSE:300415",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900023889",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223216928",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216928.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223216928",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216928.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "669221bfff74804feb435360465958b48ca759b34eab1777f5102a0325bf81c5",
+        "annual_page_1": "f107e47a9e2ef5daad7e990e0f2dbabcda1fa25fc9746725cc594260cf9073e1"
+      }
+    },
+    {
+      "security_id": "SZSE:002752",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900022981",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223365749",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223365749.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223365749",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223365749.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-18"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "2c76698c378469015eab371279a7c02e274e68fd5aee24d55d95035777767994",
+        "annual_page_1": "2e12e4a4966d9074996f966d3d0914d7bd139861b86948413c3d4c2d72fab80e"
+      }
+    },
+    {
+      "security_id": "SZSE:000757",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000757",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-25",
+          "document_id": "1223273161",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223273161.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-25",
+        "document_id": "1223273161",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223273161.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7cfe4d4c6847048ec87e3a18cbcff49395f34c1396ca50de886fe238c9b1178a",
+        "annual_page_1": "1eca1df5cc8fadcf6c3b5f96e101af55ff6292608fe233a9112b19f21c845d43"
+      }
+    },
+    {
+      "security_id": "SZSE:002594",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gshk0001211",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-25",
+          "document_id": "1222881496",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881496.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-25",
+        "document_id": "1222881496",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881496.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "424d6ab8efa6361d7a49e2c141de97ba36d8a8f3402ab1473e5fabc51e58e083",
+        "annual_page_1": "d823cfa39e235a0ed39f83f21d29d451ee57a1140171de6e8d41921c991f8de4"
+      }
+    },
+    {
+      "security_id": "SZSE:003020",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900030695",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-22",
+          "document_id": "1223188937",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188937.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-22",
+        "document_id": "1223188937",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188937.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "7c9319c627c05470d5a8057a632aa308339e71ea6d420c509a7d19ecab6cc999",
+        "annual_page_1": "203cc9f8024ff316a350377a2d38a7bcad31016d439972b350ad2d05f95c1cf0"
+      }
+    },
+    {
+      "security_id": "SZSE:300183",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900016709",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-31",
+          "document_id": "1222943793",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222943793.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-31",
+        "document_id": "1222943793",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222943793.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-31"
+      ],
+      "vendor_update_dates": [
+        "2026-04-11"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9e5f43d5f72649b6c1c121b9475fddd0936870b570ab3d662ba7ce7b229d41ad",
+        "annual_page_1": "94e80afa1800fe3d61c8508b9885e8d2632f5ccfef08c0638b612e36f95ca425"
+      }
+    },
+    {
+      "security_id": "SSE:600104",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600104",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "上汽集团2024年年度报告",
+          "publication_day": "2025-04-30",
+          "document_id": "1223418977",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223418977.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "上汽集团2024年年度报告",
+        "publication_day": "2025-04-30",
+        "document_id": "1223418977",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223418977.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-02"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "da0d06d8a00a4b4e7598ef1e57be0ea11d3d534fb4fb552bba2e21b8c5a19121",
+        "annual_page_1": "f77ed7682e1e22c8a9da8a574d20aa64771b60c886795f75c24c0d03f33923a2"
+      }
+    },
+    {
+      "security_id": "SZSE:000892",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000892",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-10",
+          "document_id": "1223046511",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223046511.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-10",
+        "document_id": "1223046511",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223046511.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9b9aa987a227bce42c17397e0cea6a9fb28f12712b16d174ef43a44f1487385b",
+        "annual_page_1": "0d0628174ffe9a9988670281b6fd2ebf640774f17321c9bfa91d596a59a74119"
+      }
+    },
+    {
+      "security_id": "SZSE:001270",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900052541",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-23",
+          "document_id": "1223220363",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223220363.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-23",
+        "document_id": "1223220363",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223220363.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "f5fef16ea8b4b0d7554985a402fee34c6856fbe0b786f40b82cd399b961b28ef",
+        "annual_page_1": "1911381434a8f05626c38494a97ea6ae3ed9e68a08ba92cb4a0f2cf552f515ca"
+      }
+    },
+    {
+      "security_id": "SZSE:300394",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900023911",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-21",
+          "document_id": "1223152632",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-21/1223152632.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-21",
+        "document_id": "1223152632",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-21/1223152632.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-21"
+      ],
+      "vendor_update_dates": [
+        "2026-04-08"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "c59449dc277ecdc7d174d8b70843780ceabe7204ef38355665ca1b5ae93b67aa",
+        "annual_page_1": "ae86d9128a1ae06a30f5114d430ee8b80dcd22c9fb2bdc79ab66e9ac15102986"
+      }
+    },
+    {
+      "security_id": "SZSE:002320",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900009333",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-03-29",
+          "document_id": "1222942739",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222942739.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-03-29",
+        "document_id": "1222942739",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222942739.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "9cb00abec1ba84d48cd17cd5b4b03edf27cd0507a1f5b139e80f0b1134f2a853",
+        "annual_page_1": "8155ef3ad4c4fbb12f1a85eaaf371fb75c734994c5a4247ded93f7ac1fbdbe68"
+      }
+    },
+    {
+      "security_id": "SSE:600519",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600519",
+      "annual_announcement_count": 3,
+      "original_candidates": [
+        {
+          "title": "贵州茅台2024年年度报告",
+          "publication_day": "2025-04-03",
+          "document_id": "1222993920",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222993920.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "贵州茅台2024年年度报告",
+        "publication_day": "2025-04-03",
+        "document_id": "1222993920",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222993920.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "2d23a5667f625d146298e2c313ccd064a0eb80dede0a43f1a2f7ab2fa65c40e9",
+        "annual_page_1": "2ec239b925f9259b1df6749fd6e5ddfbaab748a818843681e731956af3b5a9a0"
+      }
+    },
+    {
+      "security_id": "SZSE:000758",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssz0000758",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-24",
+          "document_id": "1223238473",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223238473.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-24",
+        "document_id": "1223238473",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223238473.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "3e669a509a5bdf8bce685a97c2ba7a9876b69b0615890278c65c310f79ff9cb6",
+        "annual_page_1": "9715226fce6d28dffa17d20c933c9e71779348449caae508f3e593b681e17915"
+      }
+    },
+    {
+      "security_id": "SSE:605286",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "9900040546",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "同力日升2024年年度报告",
+          "publication_day": "2025-04-26",
+          "document_id": "1223320846",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223320846.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "同力日升2024年年度报告",
+        "publication_day": "2025-04-26",
+        "document_id": "1223320846",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223320846.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "f1b47e78321f5c5d404656f14323793eabebadf24ff7f07795b075422147d805",
+        "annual_page_1": "0a3647637ab1806df4ac108c3d24601402071fa97a1261c016aa32ceea28ffe5"
+      }
+    },
+    {
+      "security_id": "SSE:600171",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gssh0600171",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "上海贝岭2024年年度报告",
+          "publication_day": "2025-04-01",
+          "document_id": "1222972211",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972211.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "上海贝岭2024年年度报告",
+        "publication_day": "2025-04-01",
+        "document_id": "1222972211",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972211.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-01"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "05b8703578174b1c5b39f329d0d5f8f3f9cabc8970128507fe570fff1ae92b5d",
+        "annual_page_1": "95cabc1caf8ccf7f1f387086e25afd367028b8e89af7b89a607c97766f764512"
+      }
+    },
+    {
+      "security_id": "SZSE:301070",
+      "status": "FULL_ORIGINAL_PDF_URL_DISCOVERED",
+      "org_id": "gfbj0832365",
+      "annual_announcement_count": 2,
+      "original_candidates": [
+        {
+          "title": "2024年年度报告",
+          "publication_day": "2025-04-29",
+          "document_id": "1223377804",
+          "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223377804.PDF"
+        }
+      ],
+      "chosen": {
+        "title": "2024年年度报告",
+        "publication_day": "2025-04-29",
+        "document_id": "1223377804",
+        "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223377804.PDF"
+      },
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_sealed": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "notice_date_matches_vendor": true,
+      "raw_request_sha256": {
+        "org_search": "542494faaf97f3a864c581df2f7e1e118cd82e2be70924a5db36b25cdf3fe801",
+        "annual_page_1": "f2d701c8869227c031cd02971a78ad56d4315cd3003ca3d70296c04c6face170"
+      }
+    }
+  ],
+  "raw_source_zip_sha256": "9fdf8519e9d215b8cc76793619a26bbc31641b1109743da66eeb2011a8cc7dbf"
+}
