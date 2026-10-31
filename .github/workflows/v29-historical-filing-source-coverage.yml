@@ -1,11 +1,10 @@
-name: V2.9 Historical FY2024 Filing Source Coverage
+name: V2.9 Historical FY2024 Financial Source Coverage
 on:
   pull_request:
     paths:
       - '.github/workflows/v29-historical-filing-source-coverage.yml'
       - 'scripts/v29_2025_filing_source_coverage.py'
       - 'scripts/test_v29_2025_filing_source_coverage.py'
-      - 'scripts/v29_historical_universe_sampling.py'
   push:
     branches: [main]
     paths:
@@ -19,57 +18,15 @@ jobs:
   source-probe:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
-      - name: Offline acquisition tests
-        run: python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
-      - name: Diagnose exact CNINFO and Eastmoney provider response shapes
+      - name: Offline fixed-frame and historical coverage tests
         run: |
-          PYTHONPATH=scripts python - <<'PY'
-          import json
-          from urllib.request import Request,urlopen
-          from urllib.parse import urlencode
-          from v29_2025_filing_source_coverage import HEADERS,ANNOUNCEMENTS_URL
-          from v29_growth_candidate_snapshot import fetch_page
-          payload=urlencode({
-              "stock":"601009,gssh0601009","tabName":"fulltext","column":"sse",
-              "category":"category_ndbg_szsh","seDate":"2025-01-01~2025-12-31",
-              "pageNum":"1","pageSize":"30","isHLtitle":"false",
-          }).encode()
-          try:
-              req=Request(ANNOUNCEMENTS_URL,payload,headers={**HEADERS,"Content-Type":"application/x-www-form-urlencoded"})
-              with urlopen(req,timeout=9) as r:
-                  raw=r.read(1000)
-                  print("CNINFO HTTP",r.status,"TYPE",r.headers.get("Content-Type"),"RAW_PREFIX",repr(raw[:400]))
-          except Exception as e:
-              print("CNINFO_REQUEST_ERROR",type(e).__name__,str(e)[:160])
-          try:
-              raw=fetch_page("2024-12-31",1,notice_before="2025-07-01")
-              x=json.loads(raw)
-              block=x.get("result") or {}
-              print("EASTMONEY_SUCCESS",x.get("success"),"PAGES",block.get("pages"),"COUNT",block.get("count"),"FIRST_KEYS",list((block.get("data") or [{}])[0])[:18])
-          except Exception as e:
-              print("EASTMONEY_REQUEST_ERROR",type(e).__name__,str(e)[:160])
-          PY
-      - name: Genuine eight-issuer CNINFO original-filing source probe
-        run: |
-          python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-probe --limit 8 --pdf-limit 2
-          python - <<'PY'
-          import json
-          d=json.load(open("/tmp/v29-filing-probe/coverage.json"))
-          if d["metadata_identified"] < 1:
-              raise SystemExit("CNINFO_SOURCE_PROBE_NO_REAL_REPORT_METADATA: inspect captured per-issuer diagnoses")
-          print("CNINFO_REAL_REPORT_METADATA_IDENTIFIED", d["metadata_identified"])
-          PY
-      - name: Archive short-lived raw source and two bounded original PDF candidates
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: v29-historical-filing-source-probe
-          path: /tmp/v29-filing-probe/
-          if-no-files-found: warn
-          retention-days: 14
+          python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
+      - name: Genuine first-page FY2024 Eastmoney data acquisition probe
+        run: python scripts/v29_2025_filing_source_coverage.py --probe
 
   full-128-source-capture:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -79,36 +36,36 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Frozen population and offline source-integrity checks
+      - name: Validate membership frame and source parser before acquisition
         run: |
           python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
           python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
-      - name: Query all 128 frozen issuers without looking at price outcomes
+      - name: Acquire and retain all vendor 2024 annual financial pages and the complete 128-row coverage
         run: |
-          python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-capture --limit 128 --pdf-limit 8
+          python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-capture
           python - <<'PY'
           import json
           d=json.load(open("/tmp/v29-filing-capture/coverage.json"))
-          assert d["requested_issuer_count"]==128
-          assert len(d["rows"])==128
+          assert d["fixed_sample_count"]==128 and len(d["rows"])==128
           assert d["live_buy_eligibility"]=="NOT_AUTHORIZED"
-          if d["metadata_identified"]==0:
-              raise SystemExit("NO_CNINFO_REAL_METADATA: full historical source remains BLOCKED")
-          print("REAL_SOURCE_COVERAGE", d["metadata_identified"], "/", d["requested_issuer_count"])
+          if d["vendor_metadata_matched_count"]==0:
+              raise SystemExit("NO_REAL_HISTORICAL_FINANCIAL_SOURCE_MATCHES")
+          print("128-ISSUER_VENDOR_SOURCE_MATCHES",d["vendor_metadata_matched_count"],"/128")
+          print("ORIGINAL_PDFS_NOT_ARCHIVED; HISTORICAL_PIT_UNCERTIFIED; BUY_NOT_AUTHORIZED")
           PY
-      - name: Persist complete 128-row research coverage, excluding original PDF blobs
+      - name: Commit compact financial-source coverage JSON and CSV; do not commit raw provider pages
         run: |
           cp /tmp/v29-filing-capture/coverage.json research/V2.9_2025_128_FILING_SOURCE_COVERAGE.json
           cp /tmp/v29-filing-capture/coverage.csv research/V2.9_2025_128_FILING_SOURCE_COVERAGE.csv
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
           git add research/V2.9_2025_128_FILING_SOURCE_COVERAGE.json research/V2.9_2025_128_FILING_SOURCE_COVERAGE.csv
-          git diff --cached --quiet || (git commit -m "research(v29): preserve 128-issuer real filing source coverage [skip ci]" && git push origin HEAD:main)
-      - name: Archive original API responses and at most eight full PDFs (14-day TTL)
+          git diff --cached --quiet || (git commit -m "research(v29): bind 128-issuer FY2024 vendor filing coverage [skip ci]" && git push origin HEAD:main)
+      - name: Archive original retrospective source responses for inspectability (14 days)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v29-historical-filing-source-capture-128
+          name: v29-2025-historical-financial-coverage-raw-pages
           path: /tmp/v29-filing-capture/
           if-no-files-found: warn
           retention-days: 14
