@@ -1,0 +1,85 @@
+name: V2.9 FY2024 Original PDF Content Audit — Frozen 128
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-original-pdf-content-audit.yml'
+      - 'scripts/v29_original_pdf_content_audit_128.py'
+      - 'scripts/test_v29_original_pdf_content_audit_128.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-original-pdf-content-audit.yml'
+      - 'scripts/v29_original_pdf_content_audit_128.py'
+permissions:
+  contents: read
+jobs:
+  content-pilot:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install existing light PDF verifier
+        run: python -m pip install --disable-pip-version-check pypdf==6.1.1
+      - name: Test strict full vs summary and historical sample invariants
+        run: python -m unittest discover -s scripts -p 'test_v29_original_pdf_content_audit_128.py' -v
+      - name: Check eight actual original FY2024 PDFs without committing the binaries
+        run: |
+          python scripts/v29_original_pdf_content_audit_128.py --out /tmp/v29-pdf-content-8 --limit 8
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/v29-pdf-content-8/PDF_CONTENT_AUDIT_128.json'))
+          assert d['requested_count']==8 and len(d['rows'])==8
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          if d['complete_pdf_content_identity_pass_count']==0:
+              raise SystemExit('NO_FULL_REPORT_CONTENT_CONFIRMED')
+          print('ACTUAL_PDFS_VERIFIED',d['complete_pdf_content_identity_pass_count'],
+                '/8','AMOUNT_TOKENS',d['both_vendor_amounts_text_found_count'])
+          PY
+      - name: Retain inspectable PDF audit metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-fy2024-content-audit-8
+          path: /tmp/v29-pdf-content-8/
+          retention-days: 14
+          if-no-files-found: warn
+
+  content-full-128:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install existing light PDF verifier
+        run: python -m pip install --disable-pip-version-check pypdf==6.1.1
+      - name: Verify immutable issuer cohort and full-document checks
+        run: python -m unittest discover -s scripts -p 'test_v29_original_pdf_content_audit_128.py' -v
+      - name: Download full original PDF bytes; record SHA, page counts, company identity and financial amount-text observations
+        run: |
+          python scripts/v29_original_pdf_content_audit_128.py --out research/v29_original_fy2024_content_audit
+          python - <<'PY'
+          import json
+          d=json.load(open('research/v29_original_fy2024_content_audit/PDF_CONTENT_AUDIT_128.json'))
+          assert d['full_128_requested'] and len(d['rows'])==128
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('FULL_REPORTS_VERIFIED',d['complete_pdf_content_identity_pass_count'],
+                '/128','FINANCIAL_AMOUNT_TOKENS',d['both_vendor_amounts_text_found_count'],
+                'SOURCE_FAILURES',d['pdf_fetch_or_decode_failed_count'])
+          PY
+      - name: Preserve 128-name PDF content audit receipt without bloating the public Git repository with 126 further PDFs
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/v29_original_fy2024_content_audit/PDF_CONTENT_AUDIT_128.json
+          git diff --cached --quiet || (git commit -m "research(v29): persist 128 original annual PDF content and SHA audit [skip ci]" && git push origin HEAD:main)
+      - name: Preserve exact audit output if source or git commit fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-original-pdf-content-audit-128
+          path: research/v29_original_fy2024_content_audit/
+          retention-days: 14
+          if-no-files-found: warn
