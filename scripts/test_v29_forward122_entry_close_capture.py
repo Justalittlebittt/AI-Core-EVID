@@ -102,6 +102,12 @@ class EntryCloseCaptureTests(unittest.TestCase):
             ready_to_query(datetime(2026,11,2,18,0))
         self.assertEqual(ready_to_query(AFTER).date(),ENTRY_DAY)
 
+    def test_late_manual_run_after_registered_entry_window_rejected_before_vendor_login(self):
+        bs=self.provider()
+        with self.assertRaisesRegex(ValueError,"ENTRY_CAPTURE_WINDOW_EXPIRED"):
+            capture(bs,lambda:index_bytes(),now=datetime(2026,11,5,0,0,tzinfo=CHINA))
+        self.assertEqual(bs.calls,[])
+
     def test_official_exchange_date_cannot_be_shifted_to_november_three(self):
         self.assertEqual(verify_calendar(calendar()),"2026-11-02")
         bad=calendar()

@@ -47,6 +47,8 @@ def after_maturity_gate(now):
     local=now.astimezone(LOCAL)
     if local < datetime.combine(EARLIEST_PLAUSIBLE_EXIT,CLOSE_GATE,LOCAL):
         raise ValueError("FROZEN_20TH_SESSION_MATURITY_NOT_YET_OBSERVABLE")
+    if local.date()>date(2026,12,2):
+        raise ValueError("FIXED_FORWARD_OUTCOME_SOURCE_WINDOW_EXPIRED")
     return local
 
 def load_entry():

@@ -55,6 +55,10 @@ jobs:
             echo "SKIP_NOT_MATURE_ENOUGH_FOR_20_SESSIONS"
             exit 0
           fi
+          if [[ "$china_day" > "2026-12-02" ]]; then
+            echo "SKIP_EXPIRED_FORWARD_OUTCOME_SOURCE_WINDOW"
+            exit 0
+          fi
           if [ -e research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026/20_SESSION_RESEARCH_VERDICT.json ]; then
             echo "SKIP_OUTCOME_ALREADY_CAPTURED_FROM_FIXED_SOURCES"
             exit 0

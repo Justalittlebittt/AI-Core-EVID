@@ -49,6 +49,8 @@ def ready_to_query(now):
     local=now.astimezone(LOCAL)
     if local < datetime.combine(ENTRY_DAY,AFTER_CLOSE,LOCAL):
         raise ValueError("ENTRY_CLOSE_NOT_YET_OBSERVABLE")
+    if local.date()>date(2026,11,4):
+        raise ValueError("ENTRY_CAPTURE_WINDOW_EXPIRED_NO_LATE_HINDSIGHT_BACKFILL")
     return local
 
 def fixed_sources():
