@@ -32,11 +32,11 @@ def fake_opener(request, timeout=None):
         code = q["stock"][0][:6]
         events = [{
             "secCode": code, "announcementTitle": "甲公司：2024年年度报告摘要",
-            "announcementTime": 1745400000000,
+            "announcementTime": 1745424000000,
             "adjunctUrl": "finalpage/2025-04-24/1111111111.PDF",
         }, {
             "secCode": code, "announcementTitle": "甲公司：2024年年度报告",
-            "announcementTime": 1745400000000,
+            "announcementTime": 1745424000000,
             "adjunctUrl": "finalpage/2025-04-24/2222222222.PDF",
         }]
         return Response(json.dumps({"announcements": events, "totalpages": 1}).encode())
@@ -55,11 +55,11 @@ class CoverageTests(unittest.TestCase):
     def test_only_original_full_report_not_summary(self):
         events = [{
             "secCode": "600001", "announcementTitle": "公司2024年年度报告摘要",
-            "announcementTime": 1745400000000,
+            "announcementTime": 1745424000000,
             "adjunctUrl": "finalpage/2025-04-24/1111111111.PDF",
         }, {
             "secCode": "600001", "announcementTitle": "公司2024年年度报告",
-            "announcementTime": 1745400000000,
+            "announcementTime": 1745424000000,
             "adjunctUrl": "finalpage/2025-04-24/2222222222.PDF",
         }]
         out = _annual_versions("SSE:600001", events)
