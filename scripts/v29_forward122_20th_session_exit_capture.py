@@ -93,7 +93,7 @@ def trading_sessions(calendar,asof):
     # missing a single vendor weekday must NOT silently slide the exit to Nov 30.
     # An extraordinary exchange closure requires explicit source reconciliation
     # rather than retroactive horizon/date changes.
-    expected=[ENTRY_DAY.fromordinal(n) for n in
+    expected=[date.fromordinal(n) for n in
               range(ENTRY_DAY.toordinal(),EARLIEST_PLAUSIBLE_EXIT.toordinal()+1)]
     if len([d for d in expected if d.weekday()<5])!=HORIZON:
         raise ValueError("FROZEN_NOVEMBER_REFERENCE_CALENDAR_INCONSISTENT")
