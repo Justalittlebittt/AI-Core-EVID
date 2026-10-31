@@ -102,9 +102,8 @@ def verify_pdf(data, target):
         raise ValueError("PDF_NOT_FULL_ANNUAL_REPORT_PAGE_COUNT")
     front="\n".join(page.extract_text() or "" for page in reader.pages[:min(6,page_count)])
     flattened=re.sub(r"\s+","",front)
-    code=target["security_id"].split(":")[1]
-    if code not in flattened or "2024" not in flattened or "年度报告" not in flattened:
-        raise ValueError("PDF_SECURITY_YEAR_OR_FULL_REPORT_IDENTITY_FAILED")
+    if target["name"] not in flattened or "2024" not in flattened or "年度报告" not in flattened:
+        raise ValueError("PDF_ISSUER_NAME_YEAR_OR_FULL_REPORT_IDENTITY_FAILED")
     # Presence of the exact numeric tokens is a machine check, NOT a semantic
     # extraction of which financial statement row they belong to.
     excerpts=[]

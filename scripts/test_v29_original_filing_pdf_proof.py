@@ -28,7 +28,7 @@ class MockPage:
 
 class MockPdf:
     def __init__(self,_buf,strict=True):
-        self.pages=[MockPage("2024 年度报告 股票代码 601009")] + [MockPage("营业收入 50,273,070 归母净利润 20,176,728")]+[MockPage("其他页")]*40
+        self.pages=[MockPage("南京银行 2024 年度报告 股票代码 601009")] + [MockPage("营业收入 50,273,070 归母净利润 20,176,728")]+[MockPage("其他页")]*40
 
 class OriginalPdfTests(unittest.TestCase):
     def setUp(self):
@@ -69,7 +69,7 @@ class OriginalPdfTests(unittest.TestCase):
 
     def test_wrong_issuer_identity_rejected(self):
         with patch("pypdf.PdfReader",MockPdf):
-            with self.assertRaisesRegex(ValueError,"PDF_SECURITY_YEAR_OR_FULL_REPORT_IDENTITY_FAILED"):
+            with self.assertRaisesRegex(ValueError,"PDF_ISSUER_NAME_YEAR_OR_FULL_REPORT_IDENTITY_FAILED"):
                 verify_pdf(b"%PDF-1.7 mock %%EOF",TARGETS[1])
 
 if __name__=="__main__":
