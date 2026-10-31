@@ -1,0 +1,78 @@
+name: V2.9 Frozen 128 FY2024 Growth Quality vs Same-Day Random
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-growth-quality-matched-baseline.yml'
+      - 'scripts/v29_growth_quality_matched_baseline_128.py'
+      - 'scripts/test_v29_growth_quality_matched_baseline_128.py'
+      - 'research/V2.9_2025_128_GROWTH_QUALITY_EXPLORATORY_SPEC.json'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-growth-quality-matched-baseline.yml'
+      - 'scripts/v29_growth_quality_matched_baseline_128.py'
+permissions:
+  contents: read
+
+jobs:
+  deterministic-rules:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tested comparison libraries
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6 pandas==2.2.3
+      - name: Validate frozen source identity, source hash, no-lookahead selection and matched random research
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_growth_quality_matched_baseline_128.py' -v
+
+  once-off-retrospective-study:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tested comparison libraries
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6 pandas==2.2.3
+      - name: Confirm fixed data source and rule boundaries before any factor scoring
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_growth_quality_matched_baseline_128.py' -v
+      - name: Capture FY2024 growth and ROE factors and run same-entry-day random baselines
+        run: |
+          python scripts/v29_growth_quality_matched_baseline_128.py --out /tmp/v29-growth-quality-result
+          python scripts/v29_growth_quality_matched_baseline_128.py --replay-dir /tmp/v29-growth-quality-result
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('/tmp/v29-growth-quality-result')
+          d=json.loads((root/'EXPLORATORY_FACTOR_COMPARISON.json').read_text(encoding='utf-8'))
+          f=json.loads((root/'FEATURES_128.json').read_text(encoding='utf-8'))
+          assert len(d['rows'])==128 and len(f['rows'])==128
+          assert d['market_price_comparison_eligible_count']==120
+          assert d['primary_selected_count']>0
+          assert d['evidence_strength']=='INSUFFICIENT'
+          assert d['independent_untouched_oos_validated'] is False
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('PRIMARY_MEAN_NET_EXCESS',d['screens']['growth_plus_roe_equal_rank']['stock_return_vs_market_price_index']['mean_excess_return'])
+          print('REPLAY_AND_FIXED_COHORT_PASS')
+          PY
+      - name: Permanently preserve source row identities, factor rules, 128 outcomes and same-day random baseline
+        run: |
+          mkdir -p research/v29_2025_growth_quality_matched_baseline
+          cp /tmp/v29-growth-quality-result/FEATURES_128.json research/v29_2025_growth_quality_matched_baseline/
+          cp /tmp/v29-growth-quality-result/EXPLORATORY_FACTOR_COMPARISON.json research/v29_2025_growth_quality_matched_baseline/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/v29_2025_growth_quality_matched_baseline/
+          git diff --cached --quiet || (git commit -m "research(v29): preserve frozen retrospective growth+ROE vs same-day random findings [skip ci]" && git push origin HEAD:main)
+      - name: Keep exact research outputs if the source changes or repository write fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-2025-growth-quality-matched-baseline
+          path: /tmp/v29-growth-quality-result/
+          retention-days: 14
+          if-no-files-found: warn
