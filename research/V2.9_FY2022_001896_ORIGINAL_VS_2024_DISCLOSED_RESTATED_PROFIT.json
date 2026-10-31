@@ -1,0 +1,39 @@
+{
+  "schema": "V29_FY2022_001896_LATER_RESTATEMENT_OFFICIAL_2023_REPORT_V1",
+  "verified_on": "2026-10-31",
+  "security_id": "SZSE:001896",
+  "original_fiscal_year": 2022,
+  "original_FY2022_annual_report": {
+    "announcement_date": "2023-03-25",
+    "pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-25/1216222589.PDF",
+    "pdf_sha256_of_2026_capture": "bfbfcea1e6a9a7c1c1b58fb69b837299a662682161c041d6f78a8de4d699e002",
+    "pdf_page_1based": 8,
+    "original_2022_attributable_net_profit_CNY": "-2140481533.99"
+  },
+  "later_FY2023_annual_report": {
+    "announcement_date": "2024-04-25",
+    "pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219802509.PDF",
+    "fiscal_year": 2023,
+    "comparative_fiscal_year": 2022,
+    "comparative_adjustment_before_attributable_net_profit_CNY": "-2140481533.99",
+    "comparative_adjustment_after_attributable_net_profit_CNY": "-2140500473.51",
+    "later_adjusted_minus_original_CNY": "-18939.52",
+    "reported_reason": "会计政策变更；执行《企业会计准则解释第16号》关于单项交易产生资产和负债相关递延所得税的会计处理规定",
+    "independently_archived_2024_report_binary_sha_in_repository": false
+  },
+  "third_party_retrospective_source": {
+    "vendor": "Eastmoney FY2022 retrospective financial summary retrieved in 2026",
+    "original_year_field_presented_CNY": "-2140500473.51",
+    "interpretation": "Matches the 2024-issued FY2023 report's RESTATED 2022 comparative, not the 2023 original-issuance FY2022 value"
+  },
+  "integrity": {
+    "source_archive_24": "research/v29_original_table_24_20261031/FIXED_24_ORIGINAL_YEAR_TABLE_FIELDS.json",
+    "source_precision_reconciliation": "research/v29_original_table_24_20261031/PRECISION_RECONCILIATION.json",
+    "later_issued_report_contains_adjustment_before_and_after": true,
+    "original_2023_release_time_pdf_sha_certified": false,
+    "later_2024_release_time_pdf_sha_certified": false,
+    "contemporaneous_2023_vendor_asof_certified": false,
+    "independent_unseen_oos_validated": false,
+    "live_buy_eligibility": "NOT_AUTHORIZED"
+  }
+}
