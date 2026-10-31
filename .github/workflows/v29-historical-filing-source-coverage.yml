@@ -24,6 +24,34 @@ jobs:
       - uses: actions/checkout@v4
       - name: Offline acquisition tests
         run: python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
+      - name: Diagnose exact CNINFO and Eastmoney provider response shapes
+        run: |
+          python - <<'PY'
+          import json
+          from urllib.request import Request,urlopen
+          from urllib.parse import urlencode
+          from v29_2025_filing_source_coverage import HEADERS,ANNOUNCEMENTS_URL
+          from v29_growth_candidate_snapshot import fetch_page
+          payload=urlencode({
+              "stock":"601009,gssh0601009","tabName":"fulltext","column":"sse",
+              "category":"category_ndbg_szsh","seDate":"2025-01-01~2025-12-31",
+              "pageNum":"1","pageSize":"30","isHLtitle":"false",
+          }).encode()
+          try:
+              req=Request(ANNOUNCEMENTS_URL,payload,headers={**HEADERS,"Content-Type":"application/x-www-form-urlencoded"})
+              with urlopen(req,timeout=9) as r:
+                  raw=r.read(1000)
+                  print("CNINFO HTTP",r.status,"TYPE",r.headers.get("Content-Type"),"RAW_PREFIX",repr(raw[:400]))
+          except Exception as e:
+              print("CNINFO_REQUEST_ERROR",type(e).__name__,str(e)[:160])
+          try:
+              raw=fetch_page("2024-12-31",1,notice_before="2025-07-01")
+              x=json.loads(raw)
+              block=x.get("result") or {}
+              print("EASTMONEY_SUCCESS",x.get("success"),"PAGES",block.get("pages"),"COUNT",block.get("count"),"FIRST_KEYS",list((block.get("data") or [{}])[0])[:18])
+          except Exception as e:
+              print("EASTMONEY_REQUEST_ERROR",type(e).__name__,str(e)[:160])
+          PY
       - name: Genuine eight-issuer CNINFO original-filing source probe
         run: |
           python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-probe --limit 8 --pdf-limit 2
