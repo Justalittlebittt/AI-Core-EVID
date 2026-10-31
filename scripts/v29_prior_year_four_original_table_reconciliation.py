@@ -90,8 +90,11 @@ def exact_value_on_original_page(page_text,value):
     # Require the actual REPORT number printed with full decimal precision.
     # This check does not alone certify the cell/year association; that
     # association was separately reviewed on the rendered current-year table.
-    t=norm(page_text)
-    amt=norm(format(Decimal(value),",.2f"))
+    # Preserve source whitespace as a boundary between adjacent table cells.
+    # Removing ALL whitespace concatenates 2022/2021 numbers in a PDF row,
+    # making a correct current-year amount fail a strict numeric token check.
+    t=str(page_text).replace(",","").replace("，","").replace("−","-").replace("－","-")
+    amt=format(Decimal(value),".2f")
     return bool(re.search(r"(?<![0-9.])"+re.escape(amt)+r"(?![0-9.])",t))
 
 def evaluate(m,v,frames,reader=None):
