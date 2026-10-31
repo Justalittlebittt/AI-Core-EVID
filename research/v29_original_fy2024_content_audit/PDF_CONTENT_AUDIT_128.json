@@ -1,0 +1,5473 @@
+{
+  "schema": "V29_2025_FY2024_ORIGINAL_PDF_CONTENT_AUDIT_128_V1",
+  "captured_at_utc": "2026-10-31T05:29:46.710545+00:00",
+  "frozen_sample_sha256": "ded26da069f22888455ac080fbc2593ee9477a23bb0dc619569115cf4d7f73ac",
+  "requested_count": 128,
+  "full_128_requested": true,
+  "full_128_http_attempted": true,
+  "resolved_pdf_source_count": 128,
+  "complete_pdf_content_identity_pass_count": 117,
+  "both_vendor_amounts_text_found_count": 110,
+  "pdf_fetch_or_decode_failed_count": 0,
+  "summary_or_identity_uncertain_count": 11,
+  "this_job_commits_original_pdf_bytes": false,
+  "original_2025_pdf_bytes_at_release_sha_certified": false,
+  "semantic_numeric_field_mapping_certified": false,
+  "independent_oos_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SSE:601009",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223197865.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "cc5248615b1e259b5985e6156cdc8ed6a0c0aa4a213633858cdd4f5da10e0d98",
+      "pdf_bytes": 11795057,
+      "pdf_page_count": 245,
+      "expected_short_name": "南京银行",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "thousand_yuan": [
+            16,
+            23,
+            24
+          ],
+          "ten_thousand_yuan": [
+            16,
+            23,
+            24
+          ]
+        },
+        "parent_profit_yuan": {
+          "thousand_yuan": [
+            16,
+            23
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300978",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223322685.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "6d99a7634e6e4062a0305c5a6c72b877ee4d7be6853ae80fdc8dfcad78d5a047",
+      "pdf_bytes": 4055434,
+      "pdf_page_count": 221,
+      "expected_short_name": "东箭科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002493",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285131.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "b371f213b6fb12c58b867752e9a6a32c777d9c4ca86b54f6aa2952e8fc8553a2",
+      "pdf_bytes": 6359579,
+      "pdf_page_count": 217,
+      "expected_short_name": "荣盛石化",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10,
+            29
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            10
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688486",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-02-28/1222663156.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-02-28",
+      "vendor_notice_dates": [
+        "2025-02-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "eae49fed4b8e72848b8736842474f1caeb7e4fd335cdcb8f48816165c08b8167",
+      "pdf_bytes": 4127497,
+      "pdf_page_count": 241,
+      "expected_short_name": "龙迅股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            33
+          ],
+          "ten_thousand_yuan": [
+            9,
+            12,
+            33
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            9,
+            12,
+            33
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600887",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223421123.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-30",
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+      "pdf_bytes": 1522472,
+      "pdf_page_count": 270,
+      "expected_short_name": "伊利股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {},
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600803",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-27/1222909079.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-27",
+      "vendor_notice_dates": [
+        "2025-03-27"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7449f4b1f1aa9c0858e72701ae88c10994256d96717909f3cae66383b19cdd55",
+      "pdf_bytes": 6332746,
+      "pdf_page_count": 306,
+      "expected_short_name": "新奥股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {},
+        "parent_profit_yuan": {
+          "ten_thousand_yuan": [
+            8,
+            27
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002234",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222943285.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "4ece3670d811d248b9cfd95a39db780362150121b378a2bdbff2cc5529d7acd0",
+      "pdf_bytes": 4786724,
+      "pdf_page_count": 168,
+      "expected_short_name": "民和股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SSE:605155",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222948343.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "13f96518725c3acb6a417ef65ddc71a72a9291cdfba3cc04f56dc4158f118d52",
+      "pdf_bytes": 4351142,
+      "pdf_page_count": 172,
+      "expected_short_name": "西大门",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6,
+            37
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600163",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223361039.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "b2299a5525d6955ab1c2fa5c2eb96e56f69f32942a29157c191a44c575095412",
+      "pdf_bytes": 1415716,
+      "pdf_page_count": 191,
+      "expected_short_name": "中闽能源",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6,
+            38,
+            39
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000403",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223241555.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c1342a64203c77654db6d2639733242d08df9ae48fea27e7149919ffb7b5b874",
+      "pdf_bytes": 3803964,
+      "pdf_page_count": 191,
+      "expected_short_name": "派林生物",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600653",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951421.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "31fed24e157bb30991ca586d27583967573b27b4ad0894893a18655c65086e66",
+      "pdf_bytes": 3863147,
+      "pdf_page_count": 181,
+      "expected_short_name": "申华控股",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            5,
+            10
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            5,
+            36
+          ],
+          "ten_thousand_yuan": [
+            11
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002552",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222950189.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-21"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "28ed9070c4765734751da8271f46d00b14369d5592c6557a3fdf2ccef9ae8a9e",
+      "pdf_bytes": 6687661,
+      "pdf_page_count": 229,
+      "expected_short_name": "宝鼎科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            23,
+            24
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8,
+            23
+          ],
+          "ten_thousand_yuan": [
+            8,
+            23
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002702",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223300513.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "0df82545d599e1f302c8ada152bbdde81361f58530ea5d66ca37dde5350a6e1b",
+      "pdf_bytes": 3774474,
+      "pdf_page_count": 233,
+      "expected_short_name": "海欣食品",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            9,
+            16
+          ],
+          "ten_thousand_yuan": [
+            13,
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603976",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223043683.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-10",
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "92a39e784f219a89f76c4ae4188ab7f8e85eadb302b4492e51b9479c74a144f2",
+      "pdf_bytes": 1735370,
+      "pdf_page_count": 201,
+      "expected_short_name": "正川股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            14
+          ],
+          "ten_thousand_yuan": [
+            9,
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            6,
+            36
+          ],
+          "ten_thousand_yuan": [
+            9,
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002557",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223280054.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "33d174eb35172c2ef3caadd01611e2fcf6b100e3127e4ecaec1949052d8989ca",
+      "pdf_bytes": 2048453,
+      "pdf_page_count": 248,
+      "expected_short_name": "洽洽食品",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16,
+            18,
+            41
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7,
+            16,
+            41
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301268",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223375620.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "529b8369550fc673ce3cb271998e0d1f6dcb62118a7e9c87b560187d10704371",
+      "pdf_bytes": 5448076,
+      "pdf_page_count": 241,
+      "expected_short_name": "铭利达",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            17,
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603113",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-22/1222871762.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-22",
+      "vendor_notice_dates": [
+        "2025-03-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "0b8cad3e3e45b77f3d47aec3257610e5b4152c3b176333a9434e10598fdfaf49",
+      "pdf_bytes": 2218732,
+      "pdf_page_count": 205,
+      "expected_short_name": "金能科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {},
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            5,
+            43
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688212",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223045728.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-10",
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "8869630fcb276ede1fb838bd5c7e7d7449bcac33c13dd579bad0ae67f61a6b91",
+      "pdf_bytes": 1799981,
+      "pdf_page_count": 258,
+      "expected_short_name": "澳华内镜",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            30
+          ],
+          "ten_thousand_yuan": [
+            9,
+            12
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            9,
+            12
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002731",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188135.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2025-04-22"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "92d35546f470ab4da3869c76b00b8ac780f1a6fd68cbdd9d609e55ef545a5204",
+      "pdf_bytes": 6694884,
+      "pdf_page_count": 217,
+      "expected_short_name": "*ST萃华",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SZSE:300365",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223150886.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "295f84fe6a4a2be46b5b196260ddc1f690fa831e778e5b4582e0ea35d8adc7c1",
+      "pdf_bytes": 2371634,
+      "pdf_page_count": 195,
+      "expected_short_name": "恒华科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SZSE:300917",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-21/1223151849.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-21",
+      "vendor_notice_dates": [
+        "2025-04-21"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "267df9ed94200cd7d943e63974560740609ab3c7ff2aa2e061d534759022b401",
+      "pdf_bytes": 1120155,
+      "pdf_page_count": 203,
+      "expected_short_name": "特发服务",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            17,
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300842",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-02-28/1222662510.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-02-28",
+      "vendor_notice_dates": [
+        "2025-02-28"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "220e09025e182eb3d441a1e64f9f8566b03a649cf8eb5d6149cb36c8c473a550",
+      "pdf_bytes": 1457226,
+      "pdf_page_count": 214,
+      "expected_short_name": "帝科股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            18
+          ],
+          "ten_thousand_yuan": [
+            14,
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            14,
+            17
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:605266",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223391072.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "83407e0d8209d760e50977ed3042283a2fdcbacfeca1ee4fdbc7ff7b1e64c06f",
+      "pdf_bytes": 4238819,
+      "pdf_page_count": 299,
+      "expected_short_name": "健之佳",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            27,
+            31
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6,
+            27
+          ],
+          "ten_thousand_yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002632",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223187707.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "f81854d1a6da0798acc324f7d68fc2eb4dcc2e988d4ba0d4fdff7b991e1e33da",
+      "pdf_bytes": 5544848,
+      "pdf_page_count": 240,
+      "expected_short_name": "道明光学",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            31,
+            32
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603505",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216594.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "a9e221e7668d5a9063203efeaaba86e8c41d999a8e93c36a9c2be63c60795594",
+      "pdf_bytes": 2104575,
+      "pdf_page_count": 209,
+      "expected_short_name": "金石资源",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            13,
+            27
+          ],
+          "ten_thousand_yuan": [
+            13,
+            15,
+            27
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            13
+          ],
+          "ten_thousand_yuan": [
+            15,
+            27
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600021",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972839.PDF",
+      "source_resolution": "PDF_COVER_AND_PAGE_COUNT_DISAMBIGUATED",
+      "source_announcement_day": "2025-04-01",
+      "vendor_notice_dates": [
+        "2025-04-01"
+      ],
+      "vendor_update_dates": [
+        "2026-04-14"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "1d860a7f2c01ce97a4d8b4020737c61bd0af917e8eabefcad579d87935f9a33f",
+      "pdf_bytes": 5789447,
+      "pdf_page_count": 323,
+      "expected_short_name": "上海电力",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300180",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216840.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "f3982cebd20e27772a851cfa2c1e9d450357437ca258eecd9c5c8901560c3cf3",
+      "pdf_bytes": 4144828,
+      "pdf_page_count": 205,
+      "expected_short_name": "华峰超纤",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            16,
+            24
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688313",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223157242.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "371f0185342f18c0661c7431b5e96e540f1e65533943e6e9eed1c7bfc2e049c6",
+      "pdf_bytes": 4836089,
+      "pdf_page_count": 235,
+      "expected_short_name": "仕佳光子",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            29
+          ],
+          "ten_thousand_yuan": [
+            12
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            12
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002164",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223356802.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "5b115f3bb0ab71190dcbfd14e523c55fc9788074cc8e9d225385c6d93f05e2b5",
+      "pdf_bytes": 4445927,
+      "pdf_page_count": 167,
+      "expected_short_name": "宁波东力",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002869",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223191242.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "120a458323e874814f23e2b52a3ed894b8ea7d880e5e9217bfb12c93c6dbe413",
+      "pdf_bytes": 4791411,
+      "pdf_page_count": 245,
+      "expected_short_name": "金溢科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10,
+            33,
+            34
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            10
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688155",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-18/1223128787.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-18",
+      "vendor_notice_dates": [
+        "2025-04-18"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "11cd8a80aeb29e5afaf680426e079c01c6c3d09967c147df1f9e66268a90a064",
+      "pdf_bytes": 5003103,
+      "pdf_page_count": 295,
+      "expected_short_name": "先惠技术",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002228",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223318784.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-27"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c90608c80e140b35fb75e697db69694cf3dabce89dea26a225346f0d3d53a1fd",
+      "pdf_bytes": 3739016,
+      "pdf_page_count": 244,
+      "expected_short_name": "合兴包装",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16,
+            17,
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7,
+            16
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603027",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223103749.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-16",
+      "vendor_notice_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "bc50e75d62cf8fc585828027763c78220768050e0b938554da4b59ffed2215e3",
+      "pdf_bytes": 1277823,
+      "pdf_page_count": 197,
+      "expected_short_name": "千禾味业",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            5,
+            11
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            5,
+            33
+          ],
+          "ten_thousand_yuan": [
+            32
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301188",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223268301.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "5fecdc6ad436d7c91f124097e7dc7cec41b8864fba0b5ca904f1e65a06f07ff1",
+      "pdf_bytes": 1375229,
+      "pdf_page_count": 218,
+      "expected_short_name": "力诺药包",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            16,
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            13
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600736",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223317086.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "9b599d44ad990dd20295c142a3fbfeb2f40e953e894dad82f460df4556a97861",
+      "pdf_bytes": 1568437,
+      "pdf_page_count": 246,
+      "expected_short_name": "苏州高新",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6
+          ],
+          "thousand_yuan": [
+            6
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600601",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222946366.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "a69b57a3035ffdd091306634b48019047762385d167538dcee707fb0f8853bba",
+      "pdf_bytes": 4084678,
+      "pdf_page_count": 193,
+      "expected_short_name": "方正科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            11
+          ],
+          "ten_thousand_yuan": [
+            9
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            6
+          ],
+          "ten_thousand_yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300959",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223378390.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7c8491d0be3a2d44797ec0130d37836d1cdab738f31ba844eb13e4c55cabd92c",
+      "pdf_bytes": 4481690,
+      "pdf_page_count": 211,
+      "expected_short_name": "线上线下",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            17
+          ],
+          "ten_thousand_yuan": [
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            17
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603351",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223190237.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "0262e54a70193c1e82faf475670612a4674db0e971e318371bec5ee8ac986093",
+      "pdf_bytes": 1324650,
+      "pdf_page_count": 195,
+      "expected_short_name": "威尔药业",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            5,
+            12
+          ],
+          "ten_thousand_yuan": [
+            8,
+            12
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            5,
+            39
+          ],
+          "ten_thousand_yuan": [
+            2,
+            8,
+            12
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002816",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223379421.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "2fad93fdbcc943c1c17626079955f62407a3c50dc65303b03e1fbb37a878a465",
+      "pdf_bytes": 3297889,
+      "pdf_page_count": 220,
+      "expected_short_name": "*ST和科",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SZSE:300928",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223265807.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "54e66d49b67dbe512964a3b1cc8349bcfadcc09c9baae89a26fa56bbb7bba855",
+      "pdf_bytes": 4772932,
+      "pdf_page_count": 202,
+      "expected_short_name": "华安鑫创",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            14,
+            15
+          ],
+          "ten_thousand_yuan": [
+            2
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            2
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688386",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223452204.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-30",
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "8d11eead081faba9ea3fd69f9dc57a5e87694b5837044a28a08cb8be23aeb35c",
+      "pdf_bytes": 1905625,
+      "pdf_page_count": 245,
+      "expected_short_name": "泛亚微透",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            32
+          ],
+          "ten_thousand_yuan": [
+            10,
+            31
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            10,
+            31
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000778",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223058153.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-11",
+      "vendor_notice_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "d70264c602f68d254e7c65e1960f90e224d67082a77228f23ab56eee18b360ba",
+      "pdf_bytes": 1341621,
+      "pdf_page_count": 222,
+      "expected_short_name": "新兴铸管",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            15,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603516",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216003.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "13a4b59bb06d8926d6f88edabcb247a6bae690b04126e4a103f0dbe512a67c63",
+      "pdf_bytes": 2555975,
+      "pdf_page_count": 236,
+      "expected_short_name": "淳中科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            24
+          ],
+          "ten_thousand_yuan": [
+            25
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            10
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002668",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-08/1222743875.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-08",
+      "vendor_notice_dates": [
+        "2025-03-08"
+      ],
+      "vendor_update_dates": [
+        "2026-03-11"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "fa33661fe7e853bb1e4cfa046c203d4e1eb3097aa2a8ce8ef17cbbac68543084",
+      "pdf_bytes": 3882873,
+      "pdf_page_count": 199,
+      "expected_short_name": "TCL智家",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10,
+            25
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            10
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000637",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223369814.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-08-06"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "1cbaf0a4548ac651e6e21622ddea7dd9f94ce928098a1dc7a99e705cb43c03f0",
+      "pdf_bytes": 4669513,
+      "pdf_page_count": 240,
+      "expected_short_name": "茂化实华",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            8,
+            25
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688330",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223094502.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-15",
+      "vendor_notice_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c13a1136e1c90ab498d096982e43ba316404dccfb1aa8371e1e5c57e880c8eda",
+      "pdf_bytes": 4083949,
+      "pdf_page_count": 237,
+      "expected_short_name": "宏力达",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            32,
+            33
+          ],
+          "ten_thousand_yuan": [
+            13
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9,
+            32
+          ],
+          "ten_thousand_yuan": [
+            13
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000663",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222949362.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-31",
+      "vendor_notice_dates": [
+        "2025-03-31"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "6bcfae4ea43534fde49c1b403a7ba57c4f6d8fba87e4bcbdbe7e0259e537b217",
+      "pdf_bytes": 1399032,
+      "pdf_page_count": 234,
+      "expected_short_name": "永安林业",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            8,
+            13
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002222",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223360523.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "4a9fad6537425eea3e86e3c02a095944ed77bb6fa98c2882ae7100115af176a9",
+      "pdf_bytes": 4649927,
+      "pdf_page_count": 176,
+      "expected_short_name": "福晶科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            5,
+            21,
+            22
+          ],
+          "ten_thousand_yuan": [
+            21
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            5
+          ],
+          "ten_thousand_yuan": [
+            21
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002978",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-14/1222789664.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-14",
+      "vendor_notice_dates": [
+        "2025-03-14"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "623073ecaea22adaa57189cfc84cd2aee4ea5324d2788845d847229d936d44e0",
+      "pdf_bytes": 2952884,
+      "pdf_page_count": 200,
+      "expected_short_name": "安宁股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            15
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000938",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223369453.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "800c4831eea23ff93e392caab413d560c2344bb10d16e503c7ab024fdb100cd3",
+      "pdf_bytes": 5439385,
+      "pdf_page_count": 252,
+      "expected_short_name": "紫光股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            23,
+            24
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:605151",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285173.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-27"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7a9c8e05eff12d0ede7103d9b38913f7b2568531c3f255878a611df0b2ee7181",
+      "pdf_bytes": 1911739,
+      "pdf_page_count": 220,
+      "expected_short_name": "西上海",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            9,
+            18
+          ],
+          "ten_thousand_yuan": [
+            18,
+            20
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6,
+            9
+          ],
+          "ten_thousand_yuan": [
+            18
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300246",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223270360.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "ea44513c9df6ae1505a8e60c47fae5969090c29f163df2c4fb88f9dfd2a5530a",
+      "pdf_bytes": 4264498,
+      "pdf_page_count": 236,
+      "expected_short_name": "宝莱特",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            20
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300364",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223385316.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c7c2b6a2cef322521aebc952621dc6b66612f3457643f4bafb1b104a3ed996f8",
+      "pdf_bytes": 4311509,
+      "pdf_page_count": 234,
+      "expected_short_name": "中文在线",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            14,
+            29,
+            30
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300056",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221470.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7df38e031f0fea232e7c4649509d1076faa67df84433283aa90cd9f2b1d60964",
+      "pdf_bytes": 1834904,
+      "pdf_page_count": 265,
+      "expected_short_name": "中创环保",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            10
+          ],
+          "ten_thousand_yuan": [
+            2
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688576",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223392033.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "d98439d4960f8ad81eb7ef0b732e5baed0f3f2148834d805bda1a41fc197276c",
+      "pdf_bytes": 1371690,
+      "pdf_page_count": 200,
+      "expected_short_name": "西山科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            33
+          ],
+          "ten_thousand_yuan": [
+            11,
+            32,
+            33
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            11,
+            33
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002141",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223379959.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "6e869f5f20145b68330d94cf9a8f8f99f5166f22aa97387f03dedafb1e285c0f",
+      "pdf_bytes": 1220499,
+      "pdf_page_count": 168,
+      "expected_short_name": "贤丰控股",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300907",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223146278.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "146b6948c86f2c262a5607debf2979973409e063e7f23a1d254be588886f0ac1",
+      "pdf_bytes": 1422429,
+      "pdf_page_count": 193,
+      "expected_short_name": "康平科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            12
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300166",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221255.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "6e139efd3c8c7695022db18ce21192944bf0703983b4d541480c8e76b326b567",
+      "pdf_bytes": 4247540,
+      "pdf_page_count": 253,
+      "expected_short_name": "东方国信",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            42,
+            43
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            34
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603456",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223054540.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-11",
+      "vendor_notice_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "1d8fba09885afce0096767bae050c4d7bd1beb281e0d57739a25959f37bd5eac",
+      "pdf_bytes": 1484896,
+      "pdf_page_count": 220,
+      "expected_short_name": "九洲药业",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            22,
+            27
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300034",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223243343.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e4c2bbf52b72c29538b590786b45f8a1bc71ffa7ebabf8bcae0e8c716ef9e506",
+      "pdf_bytes": 5376391,
+      "pdf_page_count": 231,
+      "expected_short_name": "钢研高纳",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            15,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002413",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223149241.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e1f33836fb65055c88f0e9cd9bd0eda3f3dc8732ae7fd8156316ceaca34b2fee",
+      "pdf_bytes": 5735916,
+      "pdf_page_count": 231,
+      "expected_short_name": "雷科防务",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            8,
+            14,
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7,
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300561",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223221900.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7c0018da829032a91b4045f139cc406f1986536641f1170798b073b5097e38f6",
+      "pdf_bytes": 2648574,
+      "pdf_page_count": 153,
+      "expected_short_name": "汇金科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            2,
+            9,
+            17
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688629",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223372592.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "f8eb4a391b2198a765d41c0c9b8c6cddfebda0d3fb7fcdc628328717aeb119a5",
+      "pdf_bytes": 2420645,
+      "pdf_page_count": 300,
+      "expected_short_name": "华丰科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            38
+          ],
+          "ten_thousand_yuan": [
+            13,
+            37
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            13,
+            37
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688531",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223324566.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "444571a52764a0bc9acbdfc36c6f792f3c8ef19958f0684f521925ac2abcbf90",
+      "pdf_bytes": 1564856,
+      "pdf_page_count": 272,
+      "expected_short_name": "日联科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            9,
+            37
+          ],
+          "ten_thousand_yuan": [
+            12,
+            37
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8,
+            9
+          ],
+          "ten_thousand_yuan": [
+            12,
+            37
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301196",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188795.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "5d1eac2a33ca1c03c5853d0472c5cbdd3027647d2a9adc3c564575f5e2695fdc",
+      "pdf_bytes": 5139788,
+      "pdf_page_count": 280,
+      "expected_short_name": "唯科科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            26,
+            27
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002832",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223374135.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "cf33647c00aa1d9361b94de291339e94bf6ff827a75b206d2d2d8b5689a75884",
+      "pdf_bytes": 5305600,
+      "pdf_page_count": 179,
+      "expected_short_name": "比音勒芬",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            32
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688343",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223327349.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "3b4158231686de0d47d08342b7c27c4e0955408ab111d0394a7d8b723f679dd6",
+      "pdf_bytes": 2058065,
+      "pdf_page_count": 288,
+      "expected_short_name": "云天励飞",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10
+          ],
+          "ten_thousand_yuan": [
+            2,
+            42
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            10
+          ],
+          "ten_thousand_yuan": [
+            2,
+            11,
+            41
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002155",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-11/1223058050.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-11",
+      "vendor_notice_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "a49286ccbc20143855863be3ecd7fbb8c10bf198503c074b83acab7cf95f121e",
+      "pdf_bytes": 3355551,
+      "pdf_page_count": 216,
+      "expected_short_name": "湖南黄金",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            15,
+            16
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8,
+            42
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603385",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223365846.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e1f46593248e928e07ab608f7c15e0c70a7a6d9ae841908f6b8c08780623054a",
+      "pdf_bytes": 1875801,
+      "pdf_page_count": 252,
+      "expected_short_name": "惠达卫浴",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            23
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            4,
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600775",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222922864.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-28",
+      "vendor_notice_dates": [
+        "2025-03-28"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "808e92cef39474955fc89bcf2d7084f08dace4f548afe4bcbae10ab71010b846",
+      "pdf_bytes": 4830156,
+      "pdf_page_count": 277,
+      "expected_short_name": "南京熊猫",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            15
+          ],
+          "ten_thousand_yuan": [
+            9,
+            32
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            6
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:001238",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223356742.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "6b889f1477d91660c124f782162324736bbafd96ad3a0b3bcafe6cb21b4578d1",
+      "pdf_bytes": 6064156,
+      "pdf_page_count": 181,
+      "expected_short_name": "浙江正特",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:601618",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951596.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "ce967fc45e5aae8634aa1e683e8e829fb86f572656152879e4d3c0649c13ef81",
+      "pdf_bytes": 5663769,
+      "pdf_page_count": 304,
+      "expected_short_name": "中国中冶",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "thousand_yuan": [
+            10,
+            11,
+            26
+          ]
+        },
+        "parent_profit_yuan": {
+          "thousand_yuan": [
+            10,
+            12,
+            26
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002154",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223144950.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "cbe7a704dd207792c2fb1d7674211485e6c38afd0fb2c18dd88d5b0b082ed9ac",
+      "pdf_bytes": 2701272,
+      "pdf_page_count": 227,
+      "expected_short_name": "报 喜 鸟",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            20
+          ],
+          "ten_thousand_yuan": [
+            12,
+            37
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            7,
+            12,
+            37
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300179",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222926664.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-28",
+      "vendor_notice_dates": [
+        "2025-03-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-02"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "1c5548f193bebcb0e8505eaabc214edf89d22483b5ef6090199d0eca58dae018",
+      "pdf_bytes": 1489559,
+      "pdf_page_count": 213,
+      "expected_short_name": "四方达",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            18
+          ],
+          "ten_thousand_yuan": [
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            17
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300195",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223316722.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-28",
+      "vendor_notice_dates": [
+        "2025-04-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7db6abc0cdea6f98323a5f4bdaf2117efeaf0f16fd5142121883aa2a99296bc1",
+      "pdf_bytes": 2547219,
+      "pdf_page_count": 235,
+      "expected_short_name": "长荣股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SZSE:301109",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223195217.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "327ea857d658ed3cccee6bd1b67246aa8423ee12a83a95131e2660dadac22439",
+      "pdf_bytes": 2230579,
+      "pdf_page_count": 365,
+      "expected_short_name": "军信股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            25,
+            26
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603025",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-21/1222857260.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-21",
+      "vendor_notice_dates": [
+        "2025-03-21"
+      ],
+      "vendor_update_dates": [
+        "2026-03-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "011798be0a27a848b4e9a1df0c7e44e852590686214b8b336c8369832a98c0d9",
+      "pdf_bytes": 4308910,
+      "pdf_page_count": 193,
+      "expected_short_name": "大豪科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            21
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300024",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223152070.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "178032bdc38fe00aa2a33dc767db72d920ee49adbde752569a0ea56fa963addf",
+      "pdf_bytes": 6640998,
+      "pdf_page_count": 218,
+      "expected_short_name": "机器人",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            10,
+            24,
+            25,
+            26
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002615",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223194371.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "dfb602d09592ba2f94c2c79f425c5eae7c2776e8fdd3c4084a1b5934f5eb46e8",
+      "pdf_bytes": 5262917,
+      "pdf_page_count": 195,
+      "expected_short_name": "哈尔斯",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301125",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223211427.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-07-08"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e5884557a0745a00d62e6f67bcfab071b15b8e92fd66729ef959de3c13a62e6a",
+      "pdf_bytes": 4704413,
+      "pdf_page_count": 202,
+      "expected_short_name": "腾亚精工",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            21
+          ],
+          "ten_thousand_yuan": [
+            21
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            21
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300331",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223239563.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "cdaaf0f943642996e3a22a75423f4320eba1c9d4decf95740bd3a33e59fbefdc",
+      "pdf_bytes": 5706876,
+      "pdf_page_count": 239,
+      "expected_short_name": "苏大维格",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10,
+            31,
+            32
+          ],
+          "ten_thousand_yuan": [
+            2,
+            26
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            10
+          ],
+          "ten_thousand_yuan": [
+            2,
+            26
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002395",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223091574.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-15",
+      "vendor_notice_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-14"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "133dc5ab52f3980c6b3bceecbb39c7762994516ec77e881b3d1fc3d55f43037b",
+      "pdf_bytes": 4448436,
+      "pdf_page_count": 160,
+      "expected_short_name": "双象股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SZSE:301456",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223212526.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "6d817ae900ebd61237ebfa6d0c367f961f7f30aaf5f2ec6869dc074a0dbe5985",
+      "pdf_bytes": 2265615,
+      "pdf_page_count": 190,
+      "expected_short_name": "盘古智能",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            26
+          ],
+          "ten_thousand_yuan": [
+            23
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            23
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000548",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222991736.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-03",
+      "vendor_notice_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-04"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "657d3a9832dc9bde687bdd9ad89f1c613941ef24590f1f471b5cb00ab849894f",
+      "pdf_bytes": 4120639,
+      "pdf_page_count": 132,
+      "expected_short_name": "湖南投资",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7,
+            38
+          ],
+          "ten_thousand_yuan": [
+            15
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600020",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222952051.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "bab860c2673b1a0a9ce0aa5b28eef62609cb1fce3852d809797b54b869633d0c",
+      "pdf_bytes": 4075884,
+      "pdf_page_count": 243,
+      "expected_short_name": "中原高速",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            16
+          ]
+        },
+        "parent_profit_yuan": {}
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:601139",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223283829.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "369c94cbca6567294b09e3a5a3b2e37eddbf5f235f1e38557c573c132fe84c7d",
+      "pdf_bytes": 1356652,
+      "pdf_page_count": 218,
+      "expected_short_name": "深圳燃气",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6,
+            42,
+            43
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688025",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881177.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-25",
+      "vendor_notice_dates": [
+        "2025-03-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7b340e42e7fe018a032aca22843ca1ed7e71db94ddfd9f30f7695b53b34dc12b",
+      "pdf_bytes": 4378977,
+      "pdf_page_count": 281,
+      "expected_short_name": "杰普特",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            30
+          ],
+          "ten_thousand_yuan": [
+            9
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000913",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188280.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "d0c6f1a72e6ac5eec25e9a9d980497faeaaf71975b922791c9eda7eaf63faba0",
+      "pdf_bytes": 5703837,
+      "pdf_page_count": 230,
+      "expected_short_name": "钱江摩托",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            15,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:601216",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223306248.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "104ff036b20819a1493cace8b7bdefaf9566d3f059125c0e0c604f1be0be418f",
+      "pdf_bytes": 2503600,
+      "pdf_page_count": 283,
+      "expected_short_name": "君正集团",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            19
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600663",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223218010.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c7ac8feb889517ebaa9a07c964981f0facabfcfe9311486f8f49a3bfbcc767e2",
+      "pdf_bytes": 1827015,
+      "pdf_page_count": 330,
+      "expected_short_name": "陆家嘴",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            19,
+            29
+          ],
+          "ten_thousand_yuan": [
+            35
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            19
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300696",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223189685.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "aea76b2d02c15f90efa36e229d90c80bb70d55cdc7ede038f598ed0e2891463a",
+      "pdf_bytes": 1350656,
+      "pdf_page_count": 219,
+      "expected_short_name": "爱乐达",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            22
+          ],
+          "ten_thousand_yuan": [
+            20
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            20
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603608",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223153993.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c068e2162ee28e65c94d3c3ab1a0c1758d15ba8228cb117f755033060b0ea31a",
+      "pdf_bytes": 5765608,
+      "pdf_page_count": 239,
+      "expected_short_name": "天创时尚",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            25
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            6
+          ],
+          "ten_thousand_yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688282",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223901103.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "2913943c8c0093f5594822a00bf6a39e5a55a439896e0a7e9bc28c13dcdf151d",
+      "pdf_bytes": 4733908,
+      "pdf_page_count": 285,
+      "expected_short_name": "理工导航",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603700",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223043138.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-10",
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e453986682d025fabbe0f4cd0a554757ad93a6217978f9f34d2e91b348777f53",
+      "pdf_bytes": 3167093,
+      "pdf_page_count": 305,
+      "expected_short_name": "宁水集团",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            11,
+            44
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            11,
+            44
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603938",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223100095.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-16",
+      "vendor_notice_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "3c6a20a245f777c52f50c2b742806d9b4ac7f9ff24db477f7afdba60fa06d728",
+      "pdf_bytes": 3789156,
+      "pdf_page_count": 195,
+      "expected_short_name": "三孚股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            15
+          ],
+          "ten_thousand_yuan": [
+            9,
+            15,
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            9,
+            15
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301040",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223246819.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "46c6b185c5b69423da824296f48743d54533e3b3815fdd9859109dbc2605ca9b",
+      "pdf_bytes": 6026161,
+      "pdf_page_count": 265,
+      "expected_short_name": "中环海陆",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            25,
+            26
+          ]
+        },
+        "parent_profit_yuan": {}
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002116",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223237992.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "8632a9957afe388125471b7a4de1b0a1e239715680d97c7b5a38a9be45c85b2d",
+      "pdf_bytes": 3113367,
+      "pdf_page_count": 188,
+      "expected_short_name": "中国海诚",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            17,
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002786",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223382867.pdf",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "b8aadc49c6c69d6a728b4eac091424174adc2c3c3858914b9bf8774ab0576635",
+      "pdf_bytes": 1358136,
+      "pdf_page_count": 222,
+      "expected_short_name": "银宝山新",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            14,
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8,
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301516",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223310050.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "fb336998b955bcf009f4d3535341cb328cbb69003f838cbf4b37850faf99b480",
+      "pdf_bytes": 3796462,
+      "pdf_page_count": 244,
+      "expected_short_name": "中远通",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            10,
+            25,
+            26
+          ],
+          "ten_thousand_yuan": [
+            19
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            19
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002197",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223382640.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7c7081f7c6e34f49c7557d9635c18baaeafa25d709079f4c01d2f6290d973fc0",
+      "pdf_bytes": 1417017,
+      "pdf_page_count": 189,
+      "expected_short_name": "证通电子",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            9,
+            16,
+            17
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600230",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-19/1223146627.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-19",
+      "vendor_notice_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "ed768582862188a2cb97e165e6b9f7c09725accd9b3bbf14be11611d3f768b8c",
+      "pdf_bytes": 3642869,
+      "pdf_page_count": 197,
+      "expected_short_name": "沧州大化",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            6,
+            12
+          ],
+          "ten_thousand_yuan": [
+            11
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            6,
+            44
+          ],
+          "ten_thousand_yuan": [
+            11
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002543",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223317619.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "a36267e3545d803d4a1a3654e5aa70ab395d2fc4ec1890ecad98e236a6a0d6e1",
+      "pdf_bytes": 1435398,
+      "pdf_page_count": 215,
+      "expected_short_name": "万和电气",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SSE:600282",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-20/1222846547.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-20",
+      "vendor_notice_dates": [
+        "2025-03-20"
+      ],
+      "vendor_update_dates": [
+        "2026-03-17"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "89462a5a6e8318b82e8736b9f91239b8a3d58aec75aefaf136e4b9315d40bfdb",
+      "pdf_bytes": 6634322,
+      "pdf_page_count": 301,
+      "expected_short_name": "南钢股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            23
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:688601",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-12/1223072573.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-12",
+      "vendor_notice_dates": [
+        "2025-04-12"
+      ],
+      "vendor_update_dates": [
+        "2026-04-11"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "aed4ab63c75ded159ac02936ed509fcffd3a77a48daa8bccc67287ae006f15a9",
+      "pdf_bytes": 3043060,
+      "pdf_page_count": 275,
+      "expected_short_name": "力芯微",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            12,
+            27,
+            29
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            8,
+            12,
+            27
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603389",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223426816.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-30",
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-06-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "01fa650abbc73df787e447ee3ba6a976d318d1f82a38885ffe7d5d709d1c6809",
+      "pdf_bytes": 3472219,
+      "pdf_page_count": 198,
+      "expected_short_name": "亚振家居",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {},
+        "parent_profit_yuan": {}
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300307",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-16/1223100229.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-16",
+      "vendor_notice_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "eed08986d3fb927406d517207faba6e826b19c1358f85dbf7f34e90d7a78dd2b",
+      "pdf_bytes": 3396290,
+      "pdf_page_count": 198,
+      "expected_short_name": "慈星股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            13
+          ],
+          "ten_thousand_yuan": [
+            11,
+            13
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            11
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000710",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223272292.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e9353263d058eed41c5318a3724bdeda0f99f7d5e87c5d427e6da7db9914fb3a",
+      "pdf_bytes": 1197371,
+      "pdf_page_count": 191,
+      "expected_short_name": "贝瑞基因",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            8,
+            22
+          ],
+          "ten_thousand_yuan": [
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            18
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603587",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223385908.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e635019241d08e3df6c8f7e8c1264055528a60a116673a0b2f6c8637f5a526f9",
+      "pdf_bytes": 3162558,
+      "pdf_page_count": 208,
+      "expected_short_name": "地素时尚",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            22
+          ],
+          "ten_thousand_yuan": [
+            16,
+            22
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            16,
+            22
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002029",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222989624.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-03",
+      "vendor_notice_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-03"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "f0fd7be994bcc4b108b7d27dc9b505b336fcaf3721a70f07aa7486616522c0e1",
+      "pdf_bytes": 4251694,
+      "pdf_page_count": 193,
+      "expected_short_name": "七 匹 狼",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16,
+            17
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            14
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002303",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-15/1223093193.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-15",
+      "vendor_notice_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-03"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "012a9918ab01621608911a8e865e00196074040c8163b11625cf3989b9c803e5",
+      "pdf_bytes": 1880380,
+      "pdf_page_count": 220,
+      "expected_short_name": "美盈森",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            19
+          ],
+          "ten_thousand_yuan": [
+            14,
+            37
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            14,
+            37
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:603538",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-18/1223130508.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-18",
+      "vendor_notice_dates": [
+        "2025-04-18"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e775fd75e8c9b9dd0c975c144cdd0fda63dd958042fe89eb5b4b944de66f1de0",
+      "pdf_bytes": 1769193,
+      "pdf_page_count": 277,
+      "expected_short_name": "美诺华",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            27
+          ],
+          "ten_thousand_yuan": [
+            8,
+            27
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301081",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223299788.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-28",
+      "vendor_notice_dates": [
+        "2025-04-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "7fb203e9ec1300b393d5ef53efaf642d5ddf081c8683ee7b2482467daa21c2a1",
+      "pdf_bytes": 4739436,
+      "pdf_page_count": 273,
+      "expected_short_name": "严牌股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            22
+          ],
+          "ten_thousand_yuan": [
+            20
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            8
+          ],
+          "ten_thousand_yuan": [
+            20
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300415",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223216928.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "0bb3286e9f73c413b64f23691edcbc727d2c73d12c37992194523f8e4cefb0a9",
+      "pdf_bytes": 6056815,
+      "pdf_page_count": 235,
+      "expected_short_name": "伊之密",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            11,
+            15,
+            16,
+            17
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            11,
+            15,
+            16,
+            45
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002752",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223365749.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-18"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "a641957d288aed4a56169969cfb5ae4ab47c56f34226ddc636956e80d39d3a0c",
+      "pdf_bytes": 3554938,
+      "pdf_page_count": 197,
+      "expected_short_name": "昇兴股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            17,
+            18
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000757",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223273161.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-25",
+      "vendor_notice_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "4cdc9d33250065d67b49b1053bb486e2634ca6f2352734c17767d8a3df2bd2c2",
+      "pdf_bytes": 2375214,
+      "pdf_page_count": 181,
+      "expected_short_name": "浩物股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            10,
+            28
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:002594",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881496.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-25",
+      "vendor_notice_dates": [
+        "2025-03-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e9c2d7fdd088e151ccb6c8ad3d95587b2b014b10f2c9731508d23ce07fde4de3",
+      "pdf_bytes": 10092140,
+      "pdf_page_count": 290,
+      "expected_short_name": "比亚迪",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            10,
+            24
+          ],
+          "thousand_yuan": [
+            10,
+            24
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            11
+          ],
+          "thousand_yuan": [
+            11
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:003020",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223188937.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-22",
+      "vendor_notice_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "b11b358ee6ccbd58be1a4a316e8cb1453b547dafd870c763409859c3d682cb29",
+      "pdf_bytes": 4971940,
+      "pdf_page_count": 251,
+      "expected_short_name": "立方制药",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            22
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300183",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222943793.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-31",
+      "vendor_notice_dates": [
+        "2025-03-31"
+      ],
+      "vendor_update_dates": [
+        "2026-04-11"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "4c8edad56b6f783702ae65d2a8e320c1c0f434ff0927bfea6370817e8432140b",
+      "pdf_bytes": 4622445,
+      "pdf_page_count": 186,
+      "expected_short_name": "东软载波",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            9,
+            24,
+            25
+          ],
+          "ten_thousand_yuan": [
+            21
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            9
+          ],
+          "ten_thousand_yuan": [
+            21
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:600104",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223418977.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-30",
+      "vendor_notice_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-02"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "c980b2d827f372b5b90742e299d609345c83342584901c96ea95891c43f4ab3f",
+      "pdf_bytes": 1577457,
+      "pdf_page_count": 219,
+      "expected_short_name": "上汽集团",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            5,
+            11
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            5,
+            40,
+            41
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000892",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-10/1223046511.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-10",
+      "vendor_notice_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "3d9c2d829ced3bfc498fc23be9b994ca240a31b7302913cfb2bcffe64b0280c2",
+      "pdf_bytes": 3721226,
+      "pdf_page_count": 130,
+      "expected_short_name": "欢瑞世纪",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            13,
+            14
+          ],
+          "ten_thousand_yuan": [
+            11
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            11
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:001270",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-23/1223220363.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-23",
+      "vendor_notice_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "89eca9a2563e0ba8f1df8da9a9be3e5f09a952d7593d29dcd27a2d0c33e26ede",
+      "pdf_bytes": 4077625,
+      "pdf_page_count": 207,
+      "expected_short_name": "铖昌科技",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            18,
+            19
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            17
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:300394",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-21/1223152632.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-21",
+      "vendor_notice_dates": [
+        "2025-04-21"
+      ],
+      "vendor_update_dates": [
+        "2026-04-08"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "b411f1cfbc224f0d12c20a6df89cb0896ffd36b9b2b9f64377a897c2161a2e6c",
+      "pdf_bytes": 3688060,
+      "pdf_page_count": 251,
+      "expected_short_name": "天孚通信",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SZSE:002320",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222942739.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-03-29",
+      "vendor_notice_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "d1f2904d125f09888cadf1e74ce7fd85a14c33f860586c2acddddd11573993f2",
+      "pdf_bytes": 3878578,
+      "pdf_page_count": 228,
+      "expected_short_name": "海峡股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SSE:600519",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222993920.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-03",
+      "vendor_notice_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+      "pdf_bytes": 3626217,
+      "pdf_page_count": 143,
+      "expected_short_name": "贵州茅台",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {},
+        "parent_profit_yuan": {
+          "yuan": [
+            5,
+            35
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": false,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:000758",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-24/1223238473.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-24",
+      "vendor_notice_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e7b2e6b17ec47cc65b99c8ec2cb723c230d4a807be62b81be12ff11e6f1fc263",
+      "pdf_bytes": 1550104,
+      "pdf_page_count": 180,
+      "expected_short_name": "中色股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            7,
+            16
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            7
+          ],
+          "ten_thousand_yuan": [
+            16
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SSE:605286",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223320846.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-26",
+      "vendor_notice_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "ddbb4c49548f9ec946972c4bda53c3c2e5495f2cc41c9b5350b72f6f9a55ac11",
+      "pdf_bytes": 1987051,
+      "pdf_page_count": 295,
+      "expected_short_name": "同力天启",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    },
+    {
+      "security_id": "SSE:600171",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972211.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-01",
+      "vendor_notice_dates": [
+        "2025-04-01"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "262fb959491ea31a95a4bcadea9bf2e74d57a1aa343df2f7eeffe978a98b8490",
+      "pdf_bytes": 4001015,
+      "pdf_page_count": 214,
+      "expected_short_name": "上海贝岭",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": true,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": true,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {
+        "revenue_yuan": {
+          "yuan": [
+            8,
+            15
+          ],
+          "ten_thousand_yuan": [
+            12,
+            15
+          ]
+        },
+        "parent_profit_yuan": {
+          "yuan": [
+            2,
+            8
+          ]
+        }
+      },
+      "both_financial_amounts_have_text_matches": true,
+      "status": "FULL_ORIGINAL_REPORT_CONTENT_CHECK_PASS"
+    },
+    {
+      "security_id": "SZSE:301070",
+      "original_pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-29/1223377804.PDF",
+      "source_resolution": "UNIQUE_CNINFO_SOURCE_METADATA",
+      "source_announcement_day": "2025-04-29",
+      "vendor_notice_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "original_pdf_bytes_committed_to_main_by_this_audit": false,
+      "historical_asof_financial_fields_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_sha256": "e5c63bfc436ff5b3b5b3cb535295f7e3f72d5b6b08266b8ddf1499236f5762fa",
+      "pdf_bytes": 1477432,
+      "pdf_page_count": 208,
+      "expected_short_name": "开勒股份",
+      "cover_has_year_2024": true,
+      "cover_has_annual_title": true,
+      "cover_has_expected_issuer_name": false,
+      "cover_indicates_summary": false,
+      "full_report_identity_pass": false,
+      "field_semantic_table_row_certified": false,
+      "amount_text_candidate_pages_first_45": {},
+      "both_financial_amounts_have_text_matches": false,
+      "status": "ORIGINAL_PDF_FULL_REPORT_IDENTITY_NOT_VERIFIED"
+    }
+  ]
+}
