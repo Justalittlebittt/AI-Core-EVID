@@ -133,7 +133,7 @@ def sources():
     targets=[]
     for f,s,v in zip(frozen["cohorts"],official["cohorts"],vendor["cohorts"]):
         if (s["cohort_id"]!=f["cohort_id"] or v["cohort_id"]!=f["cohort_id"] or
-                len(s["rows"])!=len(v["rows"])!=128):
+                len(s["rows"])!=128 or len(v["rows"])!=128):
             raise ValueError("COHORT_COUNTS_OR_SOURCE_IDENTITIES_DIFFER")
         source_map={x["security_id"]:x for x in s["rows"]}
         vendor_map={x["security_id"]:x for x in v["rows"]}
