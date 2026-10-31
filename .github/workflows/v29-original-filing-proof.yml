@@ -25,6 +25,9 @@ jobs:
       - name: Check frozen issuer/sample identities and reject fake PDF sources
         run: |
           python -m unittest discover -s scripts -p 'test_v29_original_filing_pdf_proof.py' -v
+      - name: Diagnose real original PDF text extraction without persisting the PDFs
+        run: |
+          python scripts/v29_original_filing_pdf_proof.py --out /tmp/v29-original-pdf-diag
 
   first-two-original-pdfs:
     if: github.event_name == 'push'
