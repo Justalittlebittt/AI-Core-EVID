@@ -155,7 +155,7 @@ def collect(out, targets=TARGETS, opener=urlopen):
                         "saved_pdf_path":filename,
                         "sha256_pdf":sha(data),
                         "bytes_pdf":len(data)})
-        except (OSError,ValueError,Exception) as ex:
+        except (OSError,ValueError,RuntimeError) as ex:
             # Capture the failure while preserving other fixed sample members.
             # A failed PDF is NEVER represented as a verified financial record.
             rec.update({"status":"PDF_ACQUISITION_OR_VERIFICATION_FAILED",
