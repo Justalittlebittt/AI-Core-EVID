@@ -43,8 +43,8 @@ def load_pilot():
         raise ValueError("HISTORICAL_256_FIXED_SOURCE_IDENTITIES_CHANGED")
     targets=[]
     for fr,ann,fin in zip(frozen["cohorts"],original["cohorts"],vendor["cohorts"]):
-        if (fr["cohort_id"]!=ann["cohort_id"]!=fin["cohort_id"] or
-            len(fr["selected_ids"])!=len(ann["rows"])!=len(fin["rows"])!=128):
+        if (fr["cohort_id"]!=ann["cohort_id"] or fr["cohort_id"]!=fin["cohort_id"] or
+            len(fr["selected_ids"])!=128 or len(ann["rows"])!=128 or len(fin["rows"])!=128):
             raise ValueError("INCORRECT_SOURCE_IDENTITY_OR_COHORT_SIZE")
         a={r["security_id"]:r for r in ann["rows"]}
         v={r["security_id"]:r for r in fin["rows"]}
