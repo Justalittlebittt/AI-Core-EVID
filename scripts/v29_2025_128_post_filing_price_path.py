@@ -158,6 +158,8 @@ def one_price_case(issuer, sessions, benchmark, quote):
 
 def evaluate(issuers, calendar, index_rows, market):
     sessions=validated_calendar(calendar)
+    if sessions[0] < date.fromisoformat(START) or sessions[-1] > date.fromisoformat(END):
+        raise ValueError("EXCHANGE_CALENDAR_OUT_OF_CAPTURE_WINDOW")
     benchmark=validated_bars(index_rows,"sh.000300",set(sessions))
     output=[]
     for issuer in issuers:
@@ -248,12 +250,50 @@ def collect(bs, out):
     print(json.dumps({k:v for k,v in report.items() if k!="rows"},ensure_ascii=False),flush=True)
     return report
 
+def live_source_probe(bs):
+    issuers,_,_=source_issuers()
+    status=bs.login()
+    if status.error_code!="0":
+        raise ValueError("BAOSTOCK_LOGIN_FAILED:"+str(status.error_msg))
+    try:
+        calendar=records(bs.query_trade_dates(start_date=START,end_date=END))
+        sessions=validated_calendar(calendar)
+        index=records(bs.query_history_k_data_plus(
+            "sh.000300",INDEX_FIELDS,start_date=START,end_date=END,
+            frequency="d",adjustflag="3"))
+        validated_bars(index,"sh.000300",set(sessions))
+        checks=[]
+        for r in issuers[:4]:
+            code=code_for(r["security_id"])
+            x=records(bs.query_history_k_data_plus(
+                code,BAR_FIELDS,start_date=START,end_date=END,
+                frequency="d",adjustflag="3"))
+            y=records(bs.query_history_k_data_plus(
+                code,BAR_FIELDS,start_date=START,end_date=END,
+                frequency="d",adjustflag="2"))
+            validated_bars(x,code,set(sessions),"3")
+            validated_bars(y,code,set(sessions),"2")
+            checks.append({"sid":r["security_id"],"raw_bars":len(x),"adjusted_bars":len(y)})
+        if not index or not any(v["raw_bars"] for v in checks):
+            raise ValueError("HISTORICAL_PRICE_SOURCE_EMPTY")
+        print(json.dumps({"probe":"2025_FREE_BAOSTOCK_PRICE", "calendar_sessions":len(sessions),
+                          "csi300_index_bars":len(index),"test_issuers":checks,
+                          "no_strategy_or_buy_authority":True},ensure_ascii=False),flush=True)
+    finally:
+        bs.logout()
+
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument("--out",type=Path,required=True)
+    p.add_argument("--out",type=Path)
+    p.add_argument("--probe",action="store_true")
     args=p.parse_args()
     import baostock
-    collect(baostock,args.out)
+    if args.probe:
+        live_source_probe(baostock)
+    elif args.out:
+        collect(baostock,args.out)
+    else:
+        p.error("--out required unless --probe")
 
 if __name__=="__main__":
     main()
