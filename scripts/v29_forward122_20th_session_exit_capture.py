@@ -16,6 +16,7 @@ import hashlib
 import json
 import math
 from datetime import date, datetime, time, timezone
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -74,12 +75,12 @@ def load_entry():
         raise ValueError("SEALED_ENTRY_DATA_OR_IDENTITY_CHANGED")
     return spec,ids,protocol_sha,sha(evidence_bytes),data,provenance
 
-def trading_sessions(calendar):
+def trading_sessions(calendar,asof):
     seen={}
     for r in calendar:
         day=date.fromisoformat(r["calendar_date"])
         flag=r["is_trading_day"]
-        if day in seen or flag not in ("0","1") or day<ENTRY_DAY:
+        if day in seen or flag not in ("0","1") or day<ENTRY_DAY or day>asof:
             raise ValueError("OFFICIAL_SESSION_SOURCE_INVALID_OR_DUPLICATE")
         seen[day]=flag
     if seen.get(ENTRY_DAY)!="1":
@@ -201,7 +202,12 @@ def one_issuer(sid,sessions,entry_provenance,raw,adjusted):
         if not e or not x or not ae or not ax:
             receipt["observation_status"]="ENDPOINT_BAR_MISSING_NO_SUBSTITUTION"
             return receipt,sources
-        if e.get("close")!=initial[0].get("close"):
+        try:
+            same_raw_close=(Decimal(str(e.get("close")))==
+                            Decimal(str(initial[0].get("close"))))
+        except InvalidOperation:
+            same_raw_close=False
+        if not same_raw_close:
             receipt["observation_status"]="FROZEN_UNADJUSTED_ENTRY_CLOSE_VINTAGE_DRIFT"
             return receipt,sources
         receipt["entry_tradeable_at_reference_close"]=active_bar(e)
@@ -241,7 +247,7 @@ def capture(bs,now=None,official_fetch=fetch_official_index,entry_sources=None):
     try:
         cal=records(bs.query_trade_dates(
             start_date=ENTRY_DAY.isoformat(),end_date=local.date().isoformat()))
-        sessions=trading_sessions(cal)
+        sessions=trading_sessions(cal,local.date())
         exit_day=require_20th_close(sessions,local).isoformat()
         for i,(sid,original) in enumerate(zip(ids,archive["quotes"]),1):
             code=baostock_code(sid)
