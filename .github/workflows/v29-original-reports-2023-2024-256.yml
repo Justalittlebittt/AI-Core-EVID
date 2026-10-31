@@ -1,0 +1,94 @@
+name: V2.9 Original FY2022 and FY2023 Report Discovery — 256 Frozen Issuers
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-original-reports-2023-2024-256.yml'
+      - 'scripts/v29_2023_2024_original_filing_discovery_256.py'
+      - 'scripts/test_v29_2023_2024_original_filing_discovery_256.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-original-reports-2023-2024-256.yml'
+      - 'scripts/v29_2023_2024_original_filing_discovery_256.py'
+permissions:
+  contents: read
+
+jobs:
+  preregistered-source-probe:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate two immutable prior-year frames and original filing locator
+        run: python -m unittest discover -s scripts -p 'test_v29_2023_2024_original_filing_discovery_256.py' -v
+      - name: Verify real official 2023 and 2024 annual-report API for 6 frozen issuers per year
+        run: |
+          python scripts/v29_2023_2024_original_filing_discovery_256.py --out /tmp/v29-prior-year-six --limit-per-cohort 6
+          python - <<'PY'
+          import json
+          p='/tmp/v29-prior-year-six/HISTORICAL_256_OFFICIAL_DISCOVERY.json'
+          d=json.load(open(p))
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          assert [x['attempted_count'] for x in d['cohorts']]==[6,6]
+          assert all(x['single_source_candidate_count']>=1 for x in d['cohorts']), "NO_REAL_ORIGINAL_REPORTS_IN_YEAR"
+          print('TWO_ACTUAL_HISTORICAL_REPORT_YEARS',[
+            (x['expected_issue_year'],x['single_source_candidate_count'],x['failed_query_count'])
+            for x in d['cohorts']])
+          PY
+      - name: Retain original vendor bytes and source failures for diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-fy2022-fy2023-annual-source-6x2-probe
+          path: /tmp/v29-prior-year-six/
+          if-no-files-found: warn
+          retention-days: 14
+
+  two-year-complete-256-source-capture:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 26
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate locked 256 issuer source sample and raw API evidence handling
+        run: python -m unittest discover -s scripts -p 'test_v29_2023_2024_original_filing_discovery_256.py' -v
+      - name: Retrieve genuine CNINFO FY2022 issued 2023 and FY2023 issued 2024 official report metadata for frozen 256
+        run: |
+          python scripts/v29_2023_2024_original_filing_discovery_256.py --out /tmp/v29-prior-year-256
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('/tmp/v29-prior-year-256')
+          d=json.loads((p/'HISTORICAL_256_OFFICIAL_DISCOVERY.json').read_text())
+          assert len(d['cohorts'])==2
+          assert all(c['attempted_count']==len(c['rows'])==128 for c in d['cohorts'])
+          assert d['raw_api_zip_sha256']==hashlib.sha256(
+            (p/'RAW_CNINFO_2023_2024_RESPONSES.zip').read_bytes()).hexdigest()
+          assert not d['pristine_chronological_oos_validated']
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('REAL_OFFICIAL_2023_2024_YEAR_COVERAGE',[
+            (c['expected_issue_year'],c['single_source_candidate_count'],
+             c['ambiguous_same_day_count'],c['failed_query_count'],
+             c['not_discovered_count'],c['missing_org_id_count'])
+            for c in d['cohorts']])
+          PY
+      - name: Persist all 256 original filing metadata rows and official raw HTTP responses (no original PDF bytes yet)
+        run: |
+          mkdir -p evidence/v29_original_2023_2024_reports_256
+          cp /tmp/v29-prior-year-256/HISTORICAL_256_OFFICIAL_DISCOVERY.json evidence/v29_original_2023_2024_reports_256/
+          cp /tmp/v29-prior-year-256/RAW_CNINFO_2023_2024_RESPONSES.zip evidence/v29_original_2023_2024_reports_256/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/v29_original_2023_2024_reports_256/
+          git diff --cached --quiet || (git commit -m "research(v29): save 256 historic FY2022/2023 original report source metadata and API response hash [skip ci]" && git push origin HEAD:main)
+      - name: Keep raw acquisition evidence if archive persistence fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-fy2022-fy2023-full-256-official-source-capture
+          path: /tmp/v29-prior-year-256/
+          if-no-files-found: warn
+          retention-days: 14
