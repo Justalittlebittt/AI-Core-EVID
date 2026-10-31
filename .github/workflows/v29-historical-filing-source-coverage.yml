@@ -1,0 +1,71 @@
+name: V2.9 Historical FY2024 Financial Source Coverage
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-historical-filing-source-coverage.yml'
+      - 'scripts/v29_2025_filing_source_coverage.py'
+      - 'scripts/test_v29_2025_filing_source_coverage.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-historical-filing-source-coverage.yml'
+      - 'scripts/v29_2025_filing_source_coverage.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  source-probe:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Offline fixed-frame and historical coverage tests
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
+      - name: Genuine first-page FY2024 Eastmoney data acquisition probe
+        run: python scripts/v29_2025_filing_source_coverage.py --probe
+
+  full-128-source-capture:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate membership frame and source parser before acquisition
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
+      - name: Acquire and retain all vendor 2024 annual financial pages and the complete 128-row coverage
+        run: |
+          python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-capture
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/v29-filing-capture/coverage.json"))
+          assert d["fixed_sample_count"]==128 and len(d["rows"])==128
+          assert d["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          if d["vendor_metadata_matched_count"]==0:
+              raise SystemExit("NO_REAL_HISTORICAL_FINANCIAL_SOURCE_MATCHES")
+          print("128-ISSUER_VENDOR_SOURCE_MATCHES",d["vendor_metadata_matched_count"],"/128")
+          print("ORIGINAL_PDFS_NOT_ARCHIVED; HISTORICAL_PIT_UNCERTIFIED; BUY_NOT_AUTHORIZED")
+          PY
+      - name: Commit compact financial-source coverage JSON and CSV; do not commit raw provider pages
+        run: |
+          cp /tmp/v29-filing-capture/coverage.json research/V2.9_2025_128_FILING_SOURCE_COVERAGE.json
+          cp /tmp/v29-filing-capture/coverage.csv research/V2.9_2025_128_FILING_SOURCE_COVERAGE.csv
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/V2.9_2025_128_FILING_SOURCE_COVERAGE.json research/V2.9_2025_128_FILING_SOURCE_COVERAGE.csv
+          git diff --cached --quiet || (git commit -m "research(v29): bind 128-issuer FY2024 vendor filing coverage [skip ci]" && git push origin HEAD:main)
+      - name: Archive original retrospective source responses for inspectability (14 days)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-2025-historical-financial-coverage-raw-pages
+          path: /tmp/v29-filing-capture/
+          if-no-files-found: warn
+          retention-days: 14
