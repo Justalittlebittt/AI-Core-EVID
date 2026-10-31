@@ -1,0 +1,127 @@
+name: V2.9 Frozen 122 Prospective Entry Close — One Bounded Capture
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-forward122-entry-close.yml'
+      - 'scripts/v29_forward122_entry_close_capture.py'
+      - 'scripts/test_v29_forward122_entry_close_capture.py'
+  workflow_dispatch:
+  schedule:
+    # Beijing 21:20, Nov 2-4. 2026 ONLY (job guard); max 3 bounded chances,
+    # always query the FIXED Nov 2 entry, NEVER roll to Nov 3/4 prices.
+    - cron: '20 13 2-4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: v29-2026-frozen-122-entry-close
+  cancel-in-progress: false
+
+jobs:
+  entry-tests:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test prospectively locked after-close clock, 122 source cardinality, ST/limit uncertainty and official total-return identity
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_forward122_preentry_source_check.py' -v
+
+  entry-capture-once:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard year and prevent duplicate stable entry records
+        id: guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          china_year="$(TZ=Asia/Shanghai date +%Y)"
+          china_day="$(TZ=Asia/Shanghai date +%F)"
+          if [ "$china_year" != "2026" ]; then
+            echo "SKIP_OUTSIDE_FROZEN_2026_YEAR"
+            exit 0
+          fi
+          if [[ "$china_day" < "2026-11-02" ]]; then
+            echo "SKIP_BEFORE_FIRST_ENTRY_SESSION"
+            exit 0
+          fi
+          if [ -e research/V2.9_FORWARD_122_ENTRY_20261102/ENTRY_SNAPSHOT_122.json ]; then
+            echo "SKIP_ALREADY_COMMITTED_COMPLETE_FROZEN_ENTRY"
+            exit 0
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+      - name: Check frozen protocol and pure synthetic boundary tests
+        if: steps.guard.outputs.run == 'true'
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+      - name: Install existing free BaoStock quote adapter
+        if: steps.guard.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Query only the 2026-11-02 postclose stock bars and official H00300 index; retain every failed name
+        if: steps.guard.outputs.run == 'true'
+        run: |
+          python scripts/v29_forward122_entry_close_capture.py --out /tmp/v29-forward122-entry
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          base=Path('/tmp/v29-forward122-entry')
+          report=json.loads((base/'ENTRY_SNAPSHOT_122.json').read_text())
+          source=gzip.decompress((base/'RAW_ENTRY_QUOTE_CALENDAR_AND_INDEX.json.gz').read_bytes())
+          assert len(report['rows'])==report['actual_rows_count']==122
+          assert report['source_quote_complete_count']+report['source_quote_incomplete_count']==122
+          assert report['frozen_issuer_count']==122
+          assert report['entry_session']=='2026-11-02'
+          assert hashlib.sha256(source).hexdigest()==report['raw_source_bytes_sha256']
+          assert not report['future_return_or_twentieth_session_exit_read']
+          assert not report['future_outcome_strategy_performance_computed']
+          assert not report['all_122_actual_buy_fills_certified']
+          assert report['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('FROZEN_122_ENTRY_SOURCE_STATUS',report['market_source_information_status'])
+          print('BENCHMARK',report['benchmark']['status'],
+                'COMPLETE_STOCK_SOURCE_PAIRS',report['source_quote_complete_count'],'/122')
+          PY
+      - name: Persist real source bytes and complete or incomplete attempt without overwriting a historical vintage
+        if: steps.guard.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          state="$(python - <<'PY'
+          import json
+          d=json.load(open('/tmp/v29-forward122-entry/ENTRY_SNAPSHOT_122.json'))
+          print(d['market_source_information_status'])
+          PY
+          )"
+          if [ "$state" = "COMPLETE_QUOTES_AND_OFFICIAL_TR" ]; then
+            destination="research/V2.9_FORWARD_122_ENTRY_20261102"
+          else
+            destination="research/V2.9_FORWARD_122_ENTRY_ATTEMPTS_20261102/run_$GITHUB_RUN_ID"
+          fi
+          if [ -e "$destination/ENTRY_SNAPSHOT_122.json" ]; then
+            echo "REFUSE_DUPLICATE_SOURCE_VINTAGE"
+            exit 1
+          fi
+          mkdir -p "$destination"
+          cp /tmp/v29-forward122-entry/ENTRY_SNAPSHOT_122.json "$destination/"
+          cp /tmp/v29-forward122-entry/RAW_ENTRY_QUOTE_CALENDAR_AND_INDEX.json.gz "$destination/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$destination/"
+          git commit -m "research(v29): fixed 2026-11-02 entry evidence, $state [skip ci]"
+          git push origin HEAD:main
+          echo "PERSISTED_SOURCE_RECEIPT $destination"
+      - name: Keep source bytes and all 122 records if persistence fails
+        if: always() && steps.guard.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-frozen-122-entry-close-snapshot
+          path: /tmp/v29-forward122-entry/
+          if-no-files-found: warn
+          retention-days: 30
