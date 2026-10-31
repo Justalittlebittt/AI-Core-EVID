@@ -288,11 +288,37 @@ def capture(out):
     return report
 
 
+def replay(saved):
+    """Verify factor findings using only the frozen files, with NO vendor network."""
+    features=json.loads((saved/"FEATURES_128.json").read_text(encoding="utf-8"))
+    old=json.loads((saved/"EXPLORATORY_FACTOR_COMPARISON.json").read_text(encoding="utf-8"))
+    source=json.loads(PRICE.read_text(encoding="utf-8"))
+    spec_blob=SPEC.read_bytes()
+    spec=json.loads(spec_blob)
+    if (features["schema"]!=FEATURE_SCHEMA or
+        old["schema"]!=RESULT_SCHEMA or
+        old["fixed_exploratory_spec_sha256"]!=sha(spec_blob) or
+        old["frozen_price_evidence_sha256"]!=sha(PRICE.read_bytes())):
+        raise ValueError("FROZEN_EXPLORATORY_SOURCE_REPLAY_DRIFT")
+    recalculated=compare(features["rows"],source["rows"],spec)
+    for key in ("rows","screens","primary_selected_count",
+                "qualifying_same_entry_session_counts","outcome_status_counts"):
+        if recalculated[key]!=old[key]:
+            raise ValueError("EXPLORATORY_COMPUTATION_NOT_REPRODUCIBLE:"+key)
+    print("OFFLINE_REPLAY_SUCCESS",
+          json.dumps({"fixed_cohort":128,"selected":old["primary_selected_count"],
+                      "no_independent_oos":True,"live_buy_eligibility":"NOT_AUTHORIZED"}))
+
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument("--out",type=Path,required=True)
+    group=p.add_mutually_exclusive_group(required=True)
+    group.add_argument("--out",type=Path)
+    group.add_argument("--replay-dir",type=Path)
     args=p.parse_args()
-    capture(args.out)
+    if args.replay_dir:
+        replay(args.replay_dir)
+    else:
+        capture(args.out)
 
 
 if __name__=="__main__":
