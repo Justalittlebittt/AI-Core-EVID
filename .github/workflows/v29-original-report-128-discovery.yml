@@ -1,0 +1,83 @@
+name: V2.9 Original FY2024 Full Report Discovery — Fixed 128
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-original-report-128-discovery.yml'
+      - 'scripts/v29_original_report_discovery_128.py'
+      - 'scripts/test_v29_original_report_discovery_128.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-original-report-128-discovery.yml'
+      - 'scripts/v29_original_report_discovery_128.py'
+permissions:
+  contents: read
+jobs:
+  source-probe:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate historical source-selection invariants without network
+        run: python -m unittest discover -s scripts -p 'test_v29_original_report_discovery_128.py' -v
+      - name: Check genuine CNINFO official source metadata on the first eight fixed issuers
+        run: |
+          python scripts/v29_original_report_discovery_128.py --out /tmp/v29-cninfo-eight --limit 8
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/v29-cninfo-eight/DISCOVERY_128.json'))
+          assert len(d['rows'])==8 and d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          if d['original_pdf_url_discovered_count'] == 0:
+              raise SystemExit('NO_REAL_FULL_REPORTS_RESOLVED')
+          print('REAL_PDF_SOURCE_DISCOVERED',d['original_pdf_url_discovered_count'],'/8',
+                'NOTICE_DATE_MATCHED',d['date_matched_vendor_count'])
+          PY
+      - name: Retain probe raw provider bytes for inspecting unrecognized records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-original-pdf-discovery-8-probe
+          path: /tmp/v29-cninfo-eight/
+          retention-days: 14
+          if-no-files-found: warn
+
+  discover-full-128:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen sample selection and discovery decoder
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_original_report_discovery_128.py' -v
+      - name: Resolve original FY2024 annual report metadata for all 128 fixed issuers
+        run: |
+          python scripts/v29_original_report_discovery_128.py --out evidence/v29_original_fy2024_discovery_128
+          python - <<'PY'
+          import json
+          d=json.load(open('evidence/v29_original_fy2024_discovery_128/DISCOVERY_128.json'))
+          assert d['full_128_coverage_attempted'] and len(d['rows'])==128
+          assert d['independent_oos_validated'] is False
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('ORIGINAL_PDF_URLS',d['original_pdf_url_discovered_count'],'/128',
+                'VENDOR_DATE_MATCHES',d['date_matched_vendor_count'],
+                'SOURCE_ERRORS',d['query_failed_count'])
+          PY
+      - name: Persist exact raw response ZIP and all 128 metadata rows
+        run: |
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add evidence/v29_original_fy2024_discovery_128/
+          git diff --cached --quiet || (git commit -m "research(v29): preserve 128 official annual report discoveries and raw API evidence [skip ci]" && git push origin HEAD:main)
+      - name: Keep source diagnosis even if discovery provider is unavailable
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-original-full-reports-128-metadata
+          path: evidence/v29_original_fy2024_discovery_128/
+          retention-days: 14
+          if-no-files-found: warn
