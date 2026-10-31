@@ -1,0 +1,89 @@
+name: V2.9 Forward 122 Frozen Preentry Source Check
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-forward122-preentry-source-check.yml'
+      - 'scripts/v29_forward122_preentry_source_check.py'
+      - 'scripts/test_v29_forward122_preentry_source_check.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-forward122-preentry-source-check.yml'
+      - 'scripts/v29_forward122_preentry_source_check.py'
+permissions:
+  contents: read
+
+jobs:
+  four-name-source-probe:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify 2026-10-30 freeze, zero future quotes and H00300 identity only
+        run: python -m unittest discover -s scripts -p 'test_v29_forward122_preentry_source_check.py' -v
+      - name: Install free stock quote provider
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Fetch real official H00300 total-return index and four reference-day stock quotes
+        run: |
+          python scripts/v29_forward122_preentry_source_check.py --out /tmp/v29-preentry-four.json --limit 4
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/v29-preentry-four.json"))
+          assert d["attempted_count"]==4
+          assert d["future_sessions_queried"] is False
+          assert d["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          print("FOUR_STOCK_REFERENCE_SOURCE_STATUS",d["stock_reference_bar_both_versions_ok"],"/4")
+          print("OFFICIAL_TOTAL_RETURN_SOURCE",d["benchmark"]["benchmark_source_status"])
+          PY
+      - name: Preserve truthful probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-prospective122-preentry-four
+          path: /tmp/v29-preentry-four.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  full-122-preentry-source-evidence:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run source no-lookahead and protocol identity tests
+        run: python -m unittest discover -s scripts -p 'test_v29_forward122_preentry_source_check.py' -v
+      - name: Install free stock quote provider
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Audit all 122 frozen issuer references and official total-return source strictly as of 2026-10-30
+        run: |
+          python scripts/v29_forward122_preentry_source_check.py --out /tmp/v29-forward122-preentry.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/v29-forward122-preentry.json"))
+          assert d["frozen_cohort_count"]==d["attempted_count"]==len(d["rows"])==122
+          assert d["historical_reference_session"]=="2026-10-30"
+          assert d["future_sessions_queried"] is False
+          assert d["benchmark_type_price_index_substitution_allowed"] is False
+          assert d["prospective_122_price_outcomes_ready"] is False
+          assert d["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          print("PREENTRY_REFERENCE_BARS",d["stock_reference_bar_both_versions_ok"],"/122",
+                "TOTAL_RETURN_BENCHMARK",d["benchmark"]["benchmark_source_status"])
+          PY
+      - name: Preserve all 122 reference-source records, including failed or blocked vendor records
+        run: |
+          cp /tmp/v29-forward122-preentry.json research/V2.9_FORWARD_122_PREENTRY_SOURCE_FEASIBILITY_20261031.json
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/V2.9_FORWARD_122_PREENTRY_SOURCE_FEASIBILITY_20261031.json
+          git diff --cached --quiet || (git commit -m "research(v29): preserve all 122 pre-entry reference source statuses, no future price read [skip ci]" && git push origin HEAD:main)
+      - name: Preserve source preflight if repository persistence fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-prospective122-preentry-full
+          path: /tmp/v29-forward122-preentry.json
+          if-no-files-found: warn
+          retention-days: 14
