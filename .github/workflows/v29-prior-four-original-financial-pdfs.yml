@@ -1,0 +1,91 @@
+name: V2.9 FY2022 FY2023 Original PDFs Financial Row Evidence — Fixed Four
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-prior-four-original-financial-pdfs.yml'
+      - 'scripts/v29_prior_year_four_original_pdfs.py'
+      - 'scripts/test_v29_prior_year_four_original_pdfs.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-prior-four-original-financial-pdfs.yml'
+      - 'scripts/v29_prior_year_four_original_pdfs.py'
+permissions:
+  contents: read
+
+jobs:
+  row-evidence-contract:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PyMuPDF free PDF page text reader
+        run: python -m pip install --disable-pip-version-check pymupdf==1.26.5
+      - name: Reject year/identity drift, unrelated number matches, and accidental financial PIT promotion
+        run: python -m unittest discover -s scripts -p 'test_v29_prior_year_four_original_pdfs.py' -v
+      - name: Existing original-source and 256 matching constraints unchanged
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_prior_year_financial_256_vendor_vintage.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_2023_2024_original_filing_discovery_256.py' -v
+
+  four-real-original-pdfs-source-receipt:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install original PDF reader
+        run: python -m pip install --disable-pip-version-check pymupdf==1.26.5
+      - name: Recheck frozen four targets and strict financial field distinction offline
+        run: python -m unittest discover -s scripts -p 'test_v29_prior_year_four_original_pdfs.py' -v
+      - name: Fetch four true 2023/2024 official annual PDFs and extract labeled value-row evidence
+        run: |
+          python scripts/v29_prior_year_four_original_pdfs.py --out /tmp/v29-four-original-pdf-audit
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path("/tmp/v29-four-original-pdf-audit")
+          d=json.loads((p/"ORIGINAL_FOUR_YEAR_FIELD_CONTEXT_RECEIPT.json").read_text())
+          assert d["schema"]=="V29_PRIOR_YEAR_FOUR_REAL_ORIGINAL_PDF_FINANCIAL_ROW_EVIDENCE_V1"
+          assert d["attempted_count"]==len(d["rows"])==4
+          assert d["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          assert d["complete_original_financial_field_pit_certified_count"]==0
+          assert d["independent_unseen_oos_validated"] is False
+          for r in d["rows"]:
+              if r.get("stored_pdf_file"):
+                  raw=(p/r["stored_pdf_file"]).read_bytes()
+                  assert hashlib.sha256(raw).hexdigest()==r["2026_capture_pdf_sha256"]
+                  assert len(raw)==r["binary_size"]
+                  assert r["semantic_table_cell_certified"] is False
+          print("REAL_ORIGINAL_PDFS_ARCHIVED",d["archived_full_original_pdf_count"])
+          print("FIELD_LABEL_AND_VALUE_PROXIMITY",[
+              (x["security_id"],x["status"],
+               {k:v.get("status") for k,v in x.get("financial_field_row_evidence",{}).items()})
+              for x in d["rows"]])
+          PY
+      - name: Persist each verified original PDF and exact source proof with bounded four-issuer scope
+        run: |
+          set -euo pipefail
+          dest=evidence/v29_original_2023_2024_four_pdf_financial
+          test ! -e "$dest/ORIGINAL_FOUR_YEAR_FIELD_CONTEXT_RECEIPT.json"
+          mkdir -p "$dest"
+          cp /tmp/v29-four-original-pdf-audit/* "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest/"
+          git commit -m "research(v29): preserve 4 original FY2022-23 report bytes and row-level candidate evidence, no PIT promotion [skip ci]"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+          echo "REAL_ORIGINAL_PDFS_AND_EVIDENCE_PERSISTED"
+      - name: Preserve source receipts if PDF/network/branch persistence fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-original-2023-2024-four-financial-pdf-proofs
+          path: /tmp/v29-four-original-pdf-audit/
+          if-no-files-found: warn
+          retention-days: 30
