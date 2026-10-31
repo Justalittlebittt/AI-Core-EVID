@@ -1,0 +1,91 @@
+name: V2.9 FY2022 FY2023 Financial Source Version Coverage — Frozen 256
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-prior-year-financial-vintage-256.yml'
+      - 'scripts/v29_prior_year_financial_256_vendor_vintage.py'
+      - 'scripts/test_v29_prior_year_financial_256_vendor_vintage.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-prior-year-financial-vintage-256.yml'
+      - 'scripts/v29_prior_year_financial_256_vendor_vintage.py'
+permissions:
+  contents: read
+
+jobs:
+  vendor-2023-2024-page-smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify year-specific fiscal/notice/retrospective vintage constraints offline
+        run: python -m unittest discover -s scripts -p 'test_v29_prior_year_financial_256_vendor_vintage.py' -v
+      - name: Probe one genuine FY2022 and FY2023 financial page before bulk acquisition
+        run: |
+          python - <<'PY'
+          import json,sys
+          sys.path.insert(0,'scripts')
+          from v29_growth_candidate_snapshot import fetch_page
+          for fiscal,cutoff in [
+            ('2022-12-31','2024-01-01'),
+            ('2023-12-31','2025-01-01')]:
+              b=fetch_page(fiscal,1,notice_before=cutoff)
+              j=json.loads(b)
+              result=j.get('result') or {}
+              if not isinstance(result.get('pages'),int) or result['pages']<=0:
+                raise SystemExit('HISTORICAL_FINANCIAL_SOURCE_PAGE_UNAVAILABLE')
+              print('FINANCIAL_SOURCE_YEAR',fiscal,'COUNT',result.get('count'),
+                    'PAGES',result['pages'],
+                    'PAGE1_ROWS',len(result.get('data') or []),
+                    'RETROSPECTIVE_NOT_PIT',True)
+          PY
+
+  archive-historical-financial-256:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure the fixed historical 256 identities still precede this financial retrieval
+        run: python -m unittest discover -s scripts -p 'test_v29_prior_year_financial_256_vendor_vintage.py' -v
+      - name: Retrieve original vendor page bytes for FY2022 and FY2023 and preserve every frozen issuer row
+        run: |
+          python scripts/v29_prior_year_financial_256_vendor_vintage.py --out /tmp/v29-prior-vintage-256
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('/tmp/v29-prior-vintage-256')
+          d=json.load(open(p/'FINANCIAL_256_VENDOR_COVERAGE.json'))
+          assert len(d['cohorts'])==2
+          assert d['total_sampled_issuer_year_cases']==256
+          assert [c['sample_count'] for c in d['cohorts']]==[128,128]
+          assert d['raw_financial_page_zip_sha256']==hashlib.sha256(
+            (p/'RAW_EASTMONEY_2022_2023_FINANCIAL_PAGES.zip').read_bytes()).hexdigest()
+          assert not d['point_in_time_financial_values_certified']
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('FY2022_FY2023_HISTORICAL_RETROSPECTIVE_VENDOR_COVERAGE',[
+            (x['publication_year'],x['vendor_single_record_matched_count'],
+             x['vendor_missing_count'],x['vendor_updated_after_original_publication_year_count'])
+            for x in d['cohorts']])
+          PY
+      - name: Persist archival raw source pages and fixed 256 issuer retrospective financial metadata
+        run: |
+          mkdir -p research/v29_prior_financial_source_256
+          cp /tmp/v29-prior-vintage-256/FINANCIAL_256_VENDOR_COVERAGE.json research/v29_prior_financial_source_256/
+          cp /tmp/v29-prior-vintage-256/RAW_EASTMONEY_2022_2023_FINANCIAL_PAGES.zip research/v29_prior_financial_source_256/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/v29_prior_financial_source_256/
+          git diff --cached --quiet || (git commit -m "research(v29): preserve 256 FY2022/FY2023 historical financial source rows for official PDF reconciliation [skip ci]" && git push origin HEAD:main)
+      - name: Preserve financial source evidence even if provider or git push fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-fy2022-fy2023-retrospective-financial-256
+          path: /tmp/v29-prior-vintage-256/
+          if-no-files-found: warn
+          retention-days: 14
