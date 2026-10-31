@@ -1,0 +1,4729 @@
+{
+  "schema": "V29_TWO_EARLIER_FISCAL_YEARS_256_ORIGINAL_NOTICE_VENDOR_LINEAGE_V1",
+  "compiled_on": "2026-10-31",
+  "note": "Metadata reconciliation only. Original PDF numeric-table-cell semantics and 2023/2024 financial vintage are NOT certified.",
+  "upstream": {
+    "frozen_source_frame_git_blob_sha": "f9d1f89800fbd74f31ec3c4c3d312506040bf4c8",
+    "official_annual_metadata_git_blob_sha": "41bef755d69e24b652d059ac8a352f16c98870f4",
+    "retrospective_financial_source_git_blob_sha": "f8321b86efbc6435e3530d98d7d001368c8fc078",
+    "official_raw_api_zip_sha256": "91752d63a35a2da4bb1360b2a4d336593f335ed9cf672771a06de501703928f0",
+    "third_party_financial_raw_page_zip_sha256": "c63d24111cefc11e5fe8584181b88d0e98e154c59b2fa1401557b1b80a0af93a"
+  },
+  "frozen_sample_count": 256,
+  "exact_original_and_vendor_notice_match_count": 245,
+  "financial_row_updated_after_original_year_count": 251,
+  "cohort_results": {
+    "2023": {
+      "issue_year": 2023,
+      "source_only_unique": 123,
+      "source_ambiguous": 4,
+      "source_not_discovered": 1,
+      "vendor_single": 124,
+      "vendor_absent": 4,
+      "both_unique_and_vendor_single": 119,
+      "published_dates_match": 119,
+      "published_dates_disagree": 0,
+      "financial_late_update_count": 124,
+      "exceptions": [
+        {
+          "id": "SSE:603717",
+          "official": "REPORT_NOT_DISCOVERED_IN_OFFICIAL_API_NOT_PROOF_OF_ABSENCE",
+          "notice": null,
+          "vendor": "SINGLE_2026_RETROSPECTIVE_VENDOR_RECORD",
+          "vendor_notice": [
+            "2023-04-29"
+          ]
+        },
+        {
+          "id": "SSE:601228",
+          "official": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+          "notice": null,
+          "vendor": "SINGLE_2026_RETROSPECTIVE_VENDOR_RECORD",
+          "vendor_notice": [
+            "2023-04-08"
+          ]
+        },
+        {
+          "id": "SZSE:300282",
+          "official": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+          "notice": "2023-04-28",
+          "vendor": "NO_MATCHING_VENDOR_YEAR_ROW",
+          "vendor_notice": []
+        },
+        {
+          "id": "SSE:688428",
+          "official": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+          "notice": null,
+          "vendor": "SINGLE_2026_RETROSPECTIVE_VENDOR_RECORD",
+          "vendor_notice": [
+            "2023-04-27"
+          ]
+        },
+        {
+          "id": "SSE:603963",
+          "official": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+          "notice": "2023-04-28",
+          "vendor": "NO_MATCHING_VENDOR_YEAR_ROW",
+          "vendor_notice": []
+        },
+        {
+          "id": "SZSE:300330",
+          "official": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+          "notice": "2023-04-27",
+          "vendor": "NO_MATCHING_VENDOR_YEAR_ROW",
+          "vendor_notice": []
+        },
+        {
+          "id": "SSE:600981",
+          "official": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+          "notice": null,
+          "vendor": "SINGLE_2026_RETROSPECTIVE_VENDOR_RECORD",
+          "vendor_notice": [
+            "2023-04-25"
+          ]
+        },
+        {
+          "id": "SSE:605128",
+          "official": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+          "notice": null,
+          "vendor": "SINGLE_2026_RETROSPECTIVE_VENDOR_RECORD",
+          "vendor_notice": [
+            "2023-04-21"
+          ]
+        },
+        {
+          "id": "SZSE:300309",
+          "official": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+          "notice": "2023-03-29",
+          "vendor": "NO_MATCHING_VENDOR_YEAR_ROW",
+          "vendor_notice": []
+        }
+      ]
+    },
+    "2024": {
+      "issue_year": 2024,
+      "source_only_unique": 127,
+      "source_ambiguous": 1,
+      "source_not_discovered": 0,
+      "vendor_single": 127,
+      "vendor_absent": 1,
+      "both_unique_and_vendor_single": 126,
+      "published_dates_match": 126,
+      "published_dates_disagree": 0,
+      "financial_late_update_count": 127,
+      "exceptions": [
+        {
+          "id": "SSE:600837",
+          "official": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+          "notice": "2024-03-29",
+          "vendor": "NO_MATCHING_VENDOR_YEAR_ROW",
+          "vendor_notice": []
+        },
+        {
+          "id": "SSE:688261",
+          "official": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+          "notice": null,
+          "vendor": "SINGLE_2026_RETROSPECTIVE_VENDOR_RECORD",
+          "vendor_notice": [
+            "2024-04-27"
+          ]
+        }
+      ]
+    }
+  },
+  "issuer_year_rows": [
+    {
+      "security_id": "SSE:688416",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216672235.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600088",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216492576.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002177",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216705319.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002200",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216628959.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605100",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-15/1216411587.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-15"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002114",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-29/1216247027.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-29"
+      ],
+      "vendor_update_days": [
+        "2024-03-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002818",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216272011.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603717",
+      "year": 2023,
+      "official_report_status": "REPORT_NOT_DISCOVERED_IN_OFFICIAL_API_NOT_PROOF_OF_ABSENCE",
+      "official_source_announcement_day": null,
+      "official_source_original_pdf_url": null,
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-06-08"
+      ],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688185",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-28/1216236894.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-28"
+      ],
+      "vendor_update_days": [
+        "2024-03-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300252",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216657482.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603233",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216655482.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:001896",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-25/1216222589.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:001209",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216697082.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600783",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216706325.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601228",
+      "year": 2023,
+      "official_report_status": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+      "official_source_announcement_day": null,
+      "official_source_original_pdf_url": null,
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-08"
+      ],
+      "vendor_update_days": [
+        "2024-04-09"
+      ],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688533",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216673260.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603648",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216667140.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300286",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-18/1216148010.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-18"
+      ],
+      "vendor_update_days": [
+        "2024-03-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603538",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-04",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-04/1216316688.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-04"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605168",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-12",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-12/1216380734.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-12"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600103",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216559019.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-02"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600101",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-01",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-01/1216298454.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-01"
+      ],
+      "vendor_update_days": [
+        "2024-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301025",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216491966.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600487",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-26/1216585673.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-26"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300282",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216663099.PDF",
+      "vendor_record_count": 0,
+      "vendor_notice_days": [],
+      "vendor_update_days": [],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301176",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-24/1216521889.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-24"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002554",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216690798.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000571",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216706219.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300039",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-19/1216458412.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-19"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300809",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-22/1216527068.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-13"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300720",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216651028.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002607",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216649550.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002051",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-22/1216525794.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-08"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002827",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216491191.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600243",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-28/1216234924.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-16"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002847",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-15/1216420073.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-15"
+      ],
+      "vendor_update_days": [
+        "2024-03-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605188",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216629661.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300604",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216496131.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603739",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216628619.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600703",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216651622.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300584",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216551598.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688586",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-15/1216117185.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-15"
+      ],
+      "vendor_update_days": [
+        "2024-03-15"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000752",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216705603.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300780",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216495910.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300609",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-22/1216516764.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002672",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216276909.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-03-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301042",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-19/1216455588.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-19"
+      ],
+      "vendor_update_days": [
+        "2024-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301003",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-21/1216165122.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-21"
+      ],
+      "vendor_update_days": [
+        "2024-03-05"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688590",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-26/1216594466.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-26"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300636",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-24/1216514469.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-24"
+      ],
+      "vendor_update_days": [
+        "2024-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300068",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-22/1216522877.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603686",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-14",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-14/1216405045.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-14"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300500",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216646275.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2025-12-31"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300845",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216277116.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300310",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216558945.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688190",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216282624.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-03-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300456",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-29/1216246151.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-29"
+      ],
+      "vendor_update_days": [
+        "2024-03-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002646",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216618908.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688428",
+      "year": 2023,
+      "official_report_status": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+      "official_source_announcement_day": null,
+      "official_source_original_pdf_url": null,
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-03-29"
+      ],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000852",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216654791.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603126",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-12",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-12/1216382115.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-12"
+      ],
+      "vendor_update_days": [
+        "2024-04-13"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:003011",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216557830.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688333",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216281022.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688038",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-15/1216415064.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-15"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301131",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-18/1216441713.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-18"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600919",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-26/1216586501.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-26"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603399",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-30/1216259554.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-30"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600641",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216705008.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002810",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-26/1216586053.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-26"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603963",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216657128.PDF",
+      "vendor_record_count": 0,
+      "vendor_notice_days": [],
+      "vendor_update_days": [],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605336",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216497749.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300330",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216625072.PDF",
+      "vendor_record_count": 0,
+      "vendor_notice_days": [],
+      "vendor_update_days": [],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300800",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216555422.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301299",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-17",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-17/1216138314.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-17"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600438",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216551537.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301090",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216547179.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600981",
+      "year": 2023,
+      "official_report_status": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+      "official_source_announcement_day": null,
+      "official_source_original_pdf_url": null,
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603389",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216563044.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300659",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216278973.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-03-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300753",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-24/1216520926.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-24"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688389",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216672153.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-03-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603949",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-07",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-07/1216345293.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-07"
+      ],
+      "vendor_update_days": [
+        "2024-04-03"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301129",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-18/1216435406.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-18"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301229",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-12",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-12/1216377606.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-12"
+      ],
+      "vendor_update_days": [
+        "2024-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300301",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216703420.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603665",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216656313.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002064",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216650728.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002241",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-18/1216438911.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-18"
+      ],
+      "vendor_update_days": [
+        "2024-03-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688616",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216623484.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600725",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-30/1216259482.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-30"
+      ],
+      "vendor_update_days": [
+        "2026-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600765",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-15/1216117909.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-15"
+      ],
+      "vendor_update_days": [
+        "2024-03-15"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600367",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216488510.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601975",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-28/1216236281.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-28"
+      ],
+      "vendor_update_days": [
+        "2024-03-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603219",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-22/1216181078.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300377",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216614955.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605169",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-12",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-12/1216379514.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-12"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300953",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-01",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-01/1216300331.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-01"
+      ],
+      "vendor_update_days": [
+        "2024-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301040",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-22/1216523249.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300697",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-31",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216273123.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-03-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601555",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216707006.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688026",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216646831.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600751",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216705901.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300319",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-30/1216261632.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-30"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300626",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216652006.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603658",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216488606.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300919",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216618846.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605128",
+      "year": 2023,
+      "official_report_status": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+      "official_source_announcement_day": null,
+      "official_source_original_pdf_url": null,
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-03-29"
+      ],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600159",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-22/1216518713.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-22"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300785",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-11",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-11/1216370435.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-11"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688626",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216674269.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600502",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-30/1216260939.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-30"
+      ],
+      "vendor_update_days": [
+        "2024-03-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300681",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216493407.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-03-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300309",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-29/1216246509.PDF",
+      "vendor_record_count": 0,
+      "vendor_notice_days": [],
+      "vendor_update_days": [],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603933",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216668795.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-03-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000586",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-07",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-07/1216342913.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-07"
+      ],
+      "vendor_update_days": [
+        "2024-04-03"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601399",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216664921.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300966",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216491676.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002169",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216696192.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000506",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216654569.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-11-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300964",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-24/1216516276.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-24"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002785",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-26/1216589690.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-26"
+      ],
+      "vendor_update_days": [
+        "2026-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600736",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216705586.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300905",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-30/1216259195.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-30"
+      ],
+      "vendor_update_days": [
+        "2024-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002474",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-11",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-11/1216371570.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-11"
+      ],
+      "vendor_update_days": [
+        "2024-04-10"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301319",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-21",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216496216.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603595",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-03-11",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-11/1216094644.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-03-11"
+      ],
+      "vendor_update_days": [
+        "2024-04-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:001309",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216688469.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-02-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002540",
+      "year": 2023,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2023-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-25/1216564098.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2023-04-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688031",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219823708.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000070",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219841790.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601878",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-11",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-11/1219564546.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-11"
+      ],
+      "vendor_update_days": [
+        "2025-04-11"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688141",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219923763.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300822",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219692835.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002191",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219701083.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000501",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219471864.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600837",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-29/1219446510.PDF",
+      "vendor_record_count": 0,
+      "vendor_notice_days": [],
+      "vendor_update_days": [],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603333",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219879887.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300406",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219467029.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000703",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219706490.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300224",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-28/1219428105.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-28"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000655",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-23/1219387025.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-23"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000419",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219700747.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600592",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219876146.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-12-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002351",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219826265.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688129",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219855106.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688261",
+      "year": 2024,
+      "official_report_status": "SAME_DAY_MULTIPLE_ORIGINAL_CANDIDATES_NEEDS_PDF_IDENTITY_CHECK",
+      "official_source_announcement_day": null,
+      "official_source_original_pdf_url": null,
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": false,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600110",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-10",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-10/1219554230.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-10"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600094",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-16",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-16/1219622167.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-16"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605133",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-10",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-10/1219553291.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-10"
+      ],
+      "vendor_update_days": [
+        "2025-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688372",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-22/1219375310.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-22"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300603",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219803721.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301041",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219827620.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000576",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219692407.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300133",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219789805.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603871",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-18/1219650193.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-18"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002988",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-19/1219328850.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-19"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603966",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219881611.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688591",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219921245.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688585",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-03",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-03/1219502457.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-03"
+      ],
+      "vendor_update_days": [
+        "2025-04-03"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300512",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-24/1219769546.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-24"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000430",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219736015.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-16"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605180",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219821084.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600602",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-28/1219424611.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-28"
+      ],
+      "vendor_update_days": [
+        "2025-03-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000792",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219471218.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002867",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219830523.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300077",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219827367.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-17"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000677",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-12",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-12/1219579312.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-12"
+      ],
+      "vendor_update_days": [
+        "2025-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300045",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219799573.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603229",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219855743.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688620",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219887040.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600663",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1222823303.pdf",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688479",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219468182.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300491",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219865855.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000516",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219835252.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:003035",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219466439.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600510",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219747237.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301069",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-15/1219306056.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-15"
+      ],
+      "vendor_update_days": [
+        "2025-03-15"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688128",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219738733.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002961",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219469694.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002563",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-02",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-02/1219489505.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-02"
+      ],
+      "vendor_update_days": [
+        "2025-04-01"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000751",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219692630.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300450",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219803635.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688334",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-11",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-11/1219564778.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-11"
+      ],
+      "vendor_update_days": [
+        "2025-04-11"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000532",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-27/1219410493.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-27"
+      ],
+      "vendor_update_days": [
+        "2025-03-27"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300533",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219736853.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688478",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219921009.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688092",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219692284.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300923",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219746347.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-21"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688312",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219798188.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300528",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-29/1219869741.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-29"
+      ],
+      "vendor_update_days": [
+        "2025-04-12"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000793",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219912853.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002079",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219473024.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-15"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300663",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219801328.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600587",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-29/1219441992.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-29"
+      ],
+      "vendor_update_days": [
+        "2025-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300573",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-19/1219662325.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-19"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300543",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219832011.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688503",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-01",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-01/1219482409.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-01"
+      ],
+      "vendor_update_days": [
+        "2025-04-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002368",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-18/1219648035.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-18"
+      ],
+      "vendor_update_days": [
+        "2026-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002272",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219908169.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000623",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-17",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-17/1219637050.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-17"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002792",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219833222.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301380",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219797768.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002799",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219832238.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000933",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-26/1219401996.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-26"
+      ],
+      "vendor_update_days": [
+        "2025-03-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300355",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-24/1219772941.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-24"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688559",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-13",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219598697.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-13"
+      ],
+      "vendor_update_days": [
+        "2025-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002836",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-29/1219859788.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-29"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000099",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-19/1219328401.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-19"
+      ],
+      "vendor_update_days": [
+        "2025-03-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301336",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219917518.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300552",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-18/1219651252.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-18"
+      ],
+      "vendor_update_days": [
+        "2025-04-12"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600456",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219465685.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-01"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301257",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-29/1219860519.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-29"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:003013",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219466606.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-01"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603708",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219703269.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301321",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219832664.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301251",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219742846.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000066",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219903899.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300591",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-29/1219873613.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-29"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600976",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-16",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-16/1219313365.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-16"
+      ],
+      "vendor_update_days": [
+        "2025-03-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603616",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219918147.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-30"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300127",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219465320.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601686",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-19/1219667277.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-19"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600143",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219921870.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002397",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-29/1219871569.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-29"
+      ],
+      "vendor_update_days": [
+        "2026-01-17"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002570",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-30",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219913116.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300661",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219867965.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600884",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219833410.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603618",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-17",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-17/1219635482.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-17"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300998",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-29/1219871618.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-29"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600851",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219689929.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:600356",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-15/1219306241.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-15"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603213",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-12",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-12/1219578981.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-12"
+      ],
+      "vendor_update_days": [
+        "2026-01-31"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:601800",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-29/1219449278.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-29"
+      ],
+      "vendor_update_days": [
+        "2025-03-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300882",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-23",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219746053.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-23"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002452",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-27/1219412203.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002666",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-18",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-18/1219651479.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-18"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000068",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-28",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-28/1219429623.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-28"
+      ],
+      "vendor_update_days": [
+        "2025-03-15"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300597",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219826745.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688058",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219883314.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000661",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-20/1219347108.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-21"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000573",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-13",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219600830.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-13"
+      ],
+      "vendor_update_days": [
+        "2025-04-19"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:000968",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-25",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219793592.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-25"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688429",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-10",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-10/1219553789.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-10"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:688049",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-26/1219404922.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-26"
+      ],
+      "vendor_update_days": [
+        "2025-03-31"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301296",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-24/1219773569.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-24"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300455",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-20",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219705474.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:002859",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-16",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-16/1219624296.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-16"
+      ],
+      "vendor_update_days": [
+        "2025-04-15"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:003041",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-27",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219868931.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603893",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-15",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-15/1219612040.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-15"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301005",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-24",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-24/1219766204.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-24"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:605169",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-19",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-19/1219669111.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-19"
+      ],
+      "vendor_update_days": [
+        "2025-04-18"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301378",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-22",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-22/1219689984.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-22"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300176",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219842059.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:300864",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-03-29",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-29/1219445246.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-03-29"
+      ],
+      "vendor_update_days": [
+        "2025-03-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SSE:603095",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-13",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219593371.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-13"
+      ],
+      "vendor_update_days": [
+        "2025-04-12"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    },
+    {
+      "security_id": "SZSE:301082",
+      "year": 2024,
+      "official_report_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_source_announcement_day": "2024-04-26",
+      "official_source_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219829767.PDF",
+      "vendor_record_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-28"
+      ],
+      "official_and_vendor_notice_day_match": true,
+      "vendor_original_financial_values_not_asof_certified": true,
+      "original_pdf_numeric_table_cells_verified": false,
+      "historical_outcome_used_for_selection": false
+    }
+  ],
+  "original_official_PDF_number_semantic_certification_count": 0,
+  "independent_untouched_out_of_sample_validated": false,
+  "source_vintage_captured_after_historical_returns": true,
+  "strategy_admission": "BLOCKED_ORIGINAL_TIME_FIELD_VALUES_NOT_PIT",
+  "live_buy_eligibility": "NOT_AUTHORIZED"
+}
