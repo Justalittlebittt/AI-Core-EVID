@@ -1,116 +1,101 @@
-"""Offline-only tests for FY2024 issuer filing source capture and fail-closed coverage."""
+"""Pure, offline source-integrity tests for retrospective financial coverage."""
+import copy
 import json
 import sys
 import tempfile
 import unittest
 from pathlib import Path
-from urllib.error import HTTPError
-from urllib.parse import parse_qs
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from v29_2025_filing_source_coverage import (
-    _annual_versions, _org_id, _pdf_capture, collect, evaluate_one,
-    FIELDNAMES,
-)
+from v29_historical_universe_sampling import build_frame
+from v29_2025_filing_source_coverage import valid_pages, match_fixed_sample, collect
 
-class Response:
-    def __init__(self, raw):
-        self.raw = raw
-        self.offset = 0
-    def __enter__(self):
-        return self
-    def __exit__(self, *args):
-        return False
-    def read(self, limit):
-        chunk = self.raw[self.offset:self.offset+limit]
-        self.offset += len(chunk)
-        return chunk
+FRAME = build_frame()
 
-def fake_opener(request, timeout=None):
-    if "hisAnnouncement/query" in request.full_url:
-        q = parse_qs(request.data.decode("utf-8"))
-        code = q["stock"][0][:6]
-        events = [{
-            "secCode": code, "announcementTitle": "甲公司：2024年年度报告摘要",
-            "announcementTime": 1745424000000,
-            "adjunctUrl": "finalpage/2025-04-24/1111111111.PDF",
-        }, {
-            "secCode": code, "announcementTitle": "甲公司：2024年年度报告",
-            "announcementTime": 1745424000000,
-            "adjunctUrl": "finalpage/2025-04-24/2222222222.PDF",
-        }]
-        return Response(json.dumps({"announcements": events, "totalpages": 1}).encode())
-    if "static.cninfo.com.cn" in request.full_url:
-        return Response(b"%PDF-1.4\nexample\n%%EOF\n")
-    raise AssertionError("Unexpected network request " + request.full_url)
+def row(sid, notice="2025-04-20", update="2025-04-20", revenue=200):
+    exchange, code = sid.split(":")
+    return {"SECUCODE":code+(".SH" if exchange=="SSE" else ".SZ"),
+            "SECURITY_CODE":code, "REPORTDATE":"2024-12-31 00:00:00",
+            "NOTICE_DATE":notice+" 00:00:00","UPDATE_DATE":update+" 00:00:00",
+            "TOTAL_OPERATE_INCOME":revenue,"PARENT_NETPROFIT":20}
 
-def blocked_opener(request, timeout=None):
-    raise HTTPError(request.full_url, 403, "Forbidden", None, None)
+def pages(rows):
+    half=len(rows)//2
+    parts=[rows[:half],rows[half:]]
+    n=len(rows)
+    return [json.dumps({"success":True,"result":{"count":n,"pages":2,"data":p}},
+                       ensure_ascii=False).encode() for p in parts]
 
-class CoverageTests(unittest.TestCase):
-    def test_fixed_id_org_mapping(self):
-        self.assertEqual(_org_id("SSE:600001"), "gssh0600001")
-        self.assertEqual(_org_id("SZSE:000001"), "gssz0000001")
+class FixedHistoricalCoverageTests(unittest.TestCase):
+    def test_frozen_128_population(self):
+        self.assertEqual(len(FRAME["selected_ids"]),128)
+        self.assertEqual(FRAME["population_count"],5121)
 
-    def test_only_original_full_report_not_summary(self):
-        events = [{
-            "secCode": "600001", "announcementTitle": "公司2024年年度报告摘要",
-            "announcementTime": 1745424000000,
-            "adjunctUrl": "finalpage/2025-04-24/1111111111.PDF",
-        }, {
-            "secCode": "600001", "announcementTitle": "公司2024年年度报告",
-            "announcementTime": 1745424000000,
-            "adjunctUrl": "finalpage/2025-04-24/2222222222.PDF",
-        }]
-        out = _annual_versions("SSE:600001", events)
-        self.assertEqual(len(out), 1)
-        self.assertTrue(out[0]["url"].endswith("2222222222.PDF"))
-        self.assertEqual(out[0]["day"], "2025-04-24")
+    def test_real_identity_join_and_all_missing_retained(self):
+        s=FRAME["selected_ids"]
+        raw=pages([row(s[0]),row(s[1]),row(s[1],notice="2025-05-10"),
+                   row(s[2],update="2026-05-10")])
+        records, receipts=valid_pages(raw)
+        result=match_fixed_sample(FRAME,records,receipts)
+        self.assertEqual(len(result["rows"]),128)
+        self.assertEqual(result["vendor_metadata_matched_count"],3)
+        self.assertEqual(result["unmatched_count"],125)
+        self.assertEqual(result["multiple_version_count"],1)
+        self.assertEqual(result["rows"][0]["coverage_status"],"SINGLE_VENDOR_SUMMARY_RECORD_NOT_OFFICIAL_PDF_CERTIFIED")
+        self.assertEqual(result["rows"][1]["coverage_status"],"MULTIPLE_VENDOR_RECORDS_VERSION_NOT_UNIQUELY_RESOLVED")
+        self.assertEqual(result["rows"][2]["coverage_status"],"VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED")
+        self.assertIsNone(result["rows"][1]["vendor_revenue_yuan"])
+        self.assertEqual(result["original_issuer_pdf_sha256_certified_count"],0)
+        self.assertFalse(result["independent_oos_validated"])
+        self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
+        self.assertTrue(all(not r["historical_pit_certified"] for r in result["rows"]))
 
-    def test_announcement_is_not_false_pdf_certification(self):
-        row, raw = evaluate_one("SSE:600001", fake_opener)
-        self.assertEqual(row["status"], "FULL_REPORT_METADATA_IDENTIFIED_NOT_PDF_CERTIFIED")
-        self.assertFalse(row["source_vintage_verified_pit"])
-        self.assertIsNone(row["pdf_sha256"])
-        self.assertEqual(len(raw), 1)
+    def test_no_future_notice_or_report_period(self):
+        s=FRAME["selected_ids"][0]
+        bad=row(s,notice="2026-04-20")
+        badperiod=row(s)
+        badperiod["REPORTDATE"]="2025-12-31"
+        rows, receipts=valid_pages(pages([bad,badperiod]))
+        result=match_fixed_sample(FRAME,rows,receipts)
+        self.assertEqual(result["vendor_metadata_matched_count"],0)
 
-    def test_full_pdf_header_trailer_and_sha_from_bytes(self):
-        with tempfile.TemporaryDirectory() as t:
-            path = Path(t) / "out.pdf"
-            data = _pdf_capture("https://static.cninfo.com.cn/finalpage/2025-04-24/2222222222.PDF", path, fake_opener)
-            self.assertTrue(path.exists())
-            self.assertEqual(len(data["pdf_sha256"]), 64)
-            self.assertEqual(data["pdf_bytes"], path.stat().st_size)
+    def test_source_page_truncation_and_count_drift_block(self):
+        src=pages([row(FRAME["selected_ids"][0]),row(FRAME["selected_ids"][1])])
+        with self.assertRaisesRegex(ValueError,"VENDOR_PAGINATION_OR_ROW_TOTAL_INCOMPLETE"):
+            valid_pages(src[:1])
+        wrong=json.loads(src[1])
+        wrong["result"]["count"]=100
+        with self.assertRaisesRegex(ValueError,"VENDOR_PAGINATION_CHANGED"):
+            valid_pages([src[0],json.dumps(wrong).encode()])
 
-    def test_failed_provider_never_claims_missing_filing(self):
-        row, raw = evaluate_one("SSE:600001", blocked_opener)
-        self.assertEqual(row["status"], "QUERY_FAILED_NOT_PROOF_OF_ABSENCE")
-        self.assertEqual(row["query_error"], "HTTP_403")
-        self.assertEqual(raw, [])
+    def test_outcome_fields_do_not_affect_join_or_select(self):
+        s=FRAME["selected_ids"][0]
+        original=row(s)
+        updated=copy.deepcopy(original)
+        updated["future_2025_return"]=99999
+        for source in (original,updated):
+            records,receipts=valid_pages(pages([source]))
+            result=match_fixed_sample(FRAME,records,receipts)
+            self.assertEqual(result["rows"][0]["coverage_status"],
+                             "SINGLE_VENDOR_SUMMARY_RECORD_NOT_OFFICIAL_PDF_CERTIFIED")
+            self.assertEqual(result["rows"][0]["vendor_revenue_yuan"],200)
 
-    def test_first_six_fixed_sample_ids_and_failure_retention(self):
-        with tempfile.TemporaryDirectory() as t:
-            out = Path(t) / "capture"
-            result = collect(out, limit=6, pdf_limit=2, opener=fake_opener)
-            self.assertEqual(result["requested_issuer_count"], 6)
-            self.assertEqual(result["metadata_identified"], 6)
-            self.assertEqual(result["full_pdf_bytes_captured"], 2)
-            self.assertEqual(result["source_attempt_is_complete_128"], False)
-            self.assertEqual(result["live_buy_eligibility"], "NOT_AUTHORIZED")
-            self.assertEqual(len(result["rows"]), 6)
-            self.assertTrue((out/"coverage.csv").exists())
-            self.assertTrue((out/"coverage.json").exists())
-            with self.assertRaisesRegex(ValueError, "CANNOT_OVERWRITE"):
-                collect(out, limit=6, pdf_limit=2, opener=fake_opener)
+    def test_network_free_capture_persists_all_rows_and_raw_pages(self):
+        raw=pages([row(FRAME["selected_ids"][0]),row(FRAME["selected_ids"][1])])
+        def fetch(period,page,notice_before=None):
+            self.assertEqual(period,"2024-12-31")
+            self.assertEqual(notice_before,"2025-07-01")
+            return raw[page-1]
+        with tempfile.TemporaryDirectory() as d:
+            dest=Path(d)/"capture"
+            result=collect(dest,fetch)
+            self.assertEqual(result["fixed_sample_count"],128)
+            self.assertEqual(len(list((dest/"raw_vendor_pages").glob("*.json"))),2)
+            self.assertEqual(len(result["source_pages"]),2)
+            self.assertTrue((dest/"coverage.csv").exists())
+            self.assertTrue((dest/"coverage.json").exists())
+            with self.assertRaisesRegex(ValueError,"NO_OVERWRITE"):
+                collect(dest,fetch)
 
-    def test_circuit_break_preserves_all_rows(self):
-        with tempfile.TemporaryDirectory() as t:
-            result = collect(Path(t)/"capture", limit=7, pdf_limit=0, opener=blocked_opener)
-            self.assertEqual(result["requested_issuer_count"], 7)
-            self.assertEqual(result["queried_issuers"], 4)
-            self.assertEqual(result["failed_or_unresolved"], 7)
-            self.assertEqual(result["rows"][4]["status"], "UNQUERIED_SOURCE_UNAVAILABLE_CIRCUIT_BREAK")
-            self.assertEqual(result["metadata_identified"], 0)
-
-if __name__ == "__main__":
+if __name__=="__main__":
     unittest.main()
