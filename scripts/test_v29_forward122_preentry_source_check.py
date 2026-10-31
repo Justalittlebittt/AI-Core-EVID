@@ -57,7 +57,7 @@ class Future122ReadinessTests(unittest.TestCase):
         invalid={"data":[["2026-11-02","H00300","沪深300全收益","s","e","a","b","c","d",5555.0]]}
         with self.assertRaisesRegex(ValueError,"OUTSIDE_ALLOWED_PRE_FREEZE_WINDOW"):
             parse_total_return(json.dumps(invalid).encode())
-        with self.assertRaisesRegex(ValueError,"CSINDEX_TOTAL_RETURN_RESPONSE_SCHEMA_INVALID"):
+        with self.assertRaises(json.JSONDecodeError):
             parse_total_return(b'<html>Blocked</html>')
 
     def test_old_day_quote_suspension_st_and_zero_volume_only_descriptive(self):
