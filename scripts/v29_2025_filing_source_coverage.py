@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Acquire FY2024 ORIGINAL annual-report evidence for the frozen 128-name 2025 frame.
+"""Retrospective FY2024 vendor filing-coverage acquisition for fixed 128 issuers.
 
-2025 filings are queried retrospectively in 2026: NO pristine PIT, OOS, or BUY.
-Unknown / blocked / missing cases remain explicit; never silently drop names.
+Reuse the existing Eastmoney financial-summary source adapter. This is a 2026
+retrieval of 2025-noticed fiscal reports, NOT genuine historical PIT evidence.
+Every sampled issuer is retained; no 2025 price outcomes or BUY authority.
 """
 from __future__ import annotations
 
@@ -10,250 +11,178 @@ import argparse
 import csv
 import hashlib
 import json
-import re
-import time
-from datetime import datetime, timezone, timedelta
+from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
-from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
+from v29_growth_candidate_snapshot import fetch_page, _security
 from v29_historical_universe_sampling import build_frame
 
-SEARCH_URL = "https://www.cninfo.com.cn/new/information/topSearch/query"
-ANNOUNCEMENTS_URL = "https://www.cninfo.com.cn/new/hisAnnouncement/query"
-PDF_BASE = "https://static.cninfo.com.cn/"
-MAX_PDF_BYTES = 25_000_000
-BEIJING = timezone(timedelta(hours=8))
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
-    "Referer": "https://www.cninfo.com.cn/new/commonUrl/pageOfSearch?url=disclosure/list/search",
-    "Origin": "https://www.cninfo.com.cn",
-    "X-Requested-With": "XMLHttpRequest",
-}
-FIELDNAMES = [
-    "security_id", "status", "query_error", "annual_report_title", "announcement_day",
-    "announcement_id", "original_pdf_url", "announcement_response_sha256",
-    "version_count", "version_dates", "pdf_sha256", "pdf_bytes", "pdf_status",
-    "source_vintage_verified_pit", "original_pdf_bytes_durable_in_git",
+PERIOD = "2024-12-31"
+NOTICE_BEFORE = "2025-07-01"
+MAX_PAGES = 40
+FIELDS = [
+    "security_id", "coverage_status", "matched_vendor_rows", "vendor_announcement_dates",
+    "vendor_update_dates", "source_row_hashes", "vendor_revenue_yuan",
+    "vendor_parent_profit_yuan", "original_pdf_url", "original_pdf_bytes_preserved",
+    "historical_pit_certified",
 ]
 
-def checksum(raw):
-    return hashlib.sha256(raw).hexdigest()
+def digest(blob):
+    return hashlib.sha256(blob).hexdigest()
 
-def _post(url, params, opener=urlopen):
-    payload = urlencode(params).encode("utf-8")
-    request = Request(url, payload, headers={**HEADERS, "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"})
-    with opener(request, timeout=9) as response:
-        raw = response.read(2_000_001)
-    if len(raw) > 2_000_000:
-        raise ValueError("SOURCE_RESPONSE_TOO_LARGE")
-    return json.loads(raw), raw
+def valid_pages(raw_pages):
+    """One validation at the incoming vendor-data trust boundary."""
+    if not raw_pages or len(raw_pages) > MAX_PAGES:
+        raise ValueError("INVALID_SOURCE_PAGE_COUNT")
+    all_rows, page_receipts, expected = [], [], None
+    for page_no, raw in enumerate(raw_pages, 1):
+        if not isinstance(raw, bytes):
+            raise ValueError("SOURCE_PAGE_MUST_BE_RAW_BYTES")
+        doc = json.loads(raw)
+        block = doc.get("result")
+        if doc.get("success") is False or not isinstance(block, dict):
+            raise ValueError("VENDOR_SOURCE_RESPONSE_FAILED")
+        count, pages, records = block.get("count"), block.get("pages"), block.get("data")
+        if type(count) is not int or type(pages) is not int or not isinstance(records, list):
+            raise ValueError("VENDOR_PAGINATION_SCHEMA_INVALID")
+        if expected is None:
+            expected = (count, pages)
+        elif (count, pages) != expected:
+            raise ValueError("VENDOR_PAGINATION_CHANGED_DURING_CAPTURE")
+        all_rows.extend(records)
+        page_receipts.append({"page": page_no, "sha256": digest(raw), "rows": len(records)})
+    if len(raw_pages) != expected[1] or len(all_rows) != expected[0]:
+        raise ValueError("VENDOR_PAGINATION_OR_ROW_TOTAL_INCOMPLETE")
+    return all_rows, page_receipts
 
-def _org_id(stock_id):
-    exchange, code = stock_id.split(":")
-    return ("gssh0" if exchange == "SSE" else "gssz0") + code
-
-def _resolve_org_id(code, opener):
-    obj, _ = _post(SEARCH_URL, {"keyWord": code, "maxNum": "10"}, opener)
-    data = obj if isinstance(obj, list) else (obj.get("stockList") or obj.get("data") or [])
-    ids = set()
-    for item in data:
-        if not isinstance(item, dict):
+def match_fixed_sample(frame, source_rows, page_receipts):
+    ids = frame["selected_ids"]
+    grouped = defaultdict(list)
+    rejected = {"non_a_share_identity": 0, "wrong_report_period": 0,
+                "notice_missing_or_out_of_scope": 0}
+    for row in source_rows:
+        sid = _security(row)
+        if sid is None:
+            rejected["non_a_share_identity"] += 1
             continue
-        candidate = item.get("orgId") or item.get("code")
-        if isinstance(candidate, str) and re.fullmatch(r"(gssh|gssz)\d+|\d{8,12}", candidate):
-            ids.add(candidate)
-    return sorted(ids)
-
-def _announcement_pages(stock_id, org, opener):
-    exchange, code = stock_id.split(":")
-    rows, blobs = [], []
-    for page in range(1, 5):
-        obj, raw = _post(ANNOUNCEMENTS_URL, {
-            "stock": f"{code},{org}", "tabName": "fulltext",
-            "column": "sse" if exchange == "SSE" else "szse",
-            "category": "category_ndbg_szsh",
-            "seDate": "2025-01-01~2025-12-31",
-            "pageNum": str(page), "pageSize": "30", "isHLtitle": "false",
-        }, opener)
-        if not isinstance(obj, dict) or not isinstance(obj.get("announcements"), list):
-            raise ValueError("CNINFO_ANNOUNCEMENT_SCHEMA_INVALID")
-        rows.extend(obj["announcements"])
-        blobs.append(raw)
-        total = obj.get("totalpages", 1)
-        if page >= int(total):
-            return rows, blobs
-    raise ValueError("MORE_THAN_FOUR_ANNOUNCEMENT_PAGES")
-
-def _annual_versions(stock_id, announcements):
-    code = stock_id.split(":")[1]
-    found = []
-    for x in announcements:
-        if str(x.get("secCode", "")) != code:
+        if str(row.get("REPORTDATE", ""))[:10] != PERIOD:
+            rejected["wrong_report_period"] += 1
             continue
-        title = re.sub(r"<[^>]+>", "", str(x.get("announcementTitle", "")))
-        compact = re.sub(r"\s+", "", title)
-        if ("2024年年度报告" not in compact or "摘要" in compact
-                or "英文" in compact or "提示性公告" in compact):
+        notice = row.get("NOTICE_DATE")
+        if not isinstance(notice, str) or not ("2025-01-01" <= notice[:10] < NOTICE_BEFORE):
+            rejected["notice_missing_or_out_of_scope"] += 1
             continue
-        stamp = x.get("announcementTime")
-        rel = str(x.get("adjunctUrl") or "")
-        if not re.fullmatch(r"finalpage/\d{4}-\d\d-\d\d/\d+\.PDF", rel):
-            continue
-        try:
-            date_str = datetime.fromtimestamp(int(stamp) / 1000, tz=BEIJING).date().isoformat()
-        except (TypeError, ValueError, OverflowError, OSError):
-            continue
-        if not date_str.startswith("2025-"):
-            continue
-        found.append({
-            "title": title, "day": date_str, "id": rel.rsplit("/", 1)[-1][:-4],
-            "url": PDF_BASE + rel,
-        })
-    found.sort(key=lambda r: (r["day"], r["url"]))
-    return found
-
-def _pdf_capture(url, destination, opener=urlopen):
-    request = Request(url, headers={"User-Agent": HEADERS["User-Agent"], "Referer": HEADERS["Referer"]})
-    chunks, size = [], 0
-    with opener(request, timeout=20) as response:
-        while True:
-            chunk = response.read(65536)
-            if not chunk:
-                break
-            size += len(chunk)
-            if size > MAX_PDF_BYTES:
-                return {"pdf_status": "PDF_EXCEEDS_25MB_LIMIT", "pdf_sha256": None, "pdf_bytes": None}
-            chunks.append(chunk)
-    raw = b"".join(chunks)
-    if not raw.startswith(b"%PDF-") or b"%%EOF" not in raw[-8192:]:
-        return {"pdf_status": "PDF_SIGNATURE_OR_TRAILER_NOT_VERIFIED", "pdf_sha256": None, "pdf_bytes": None}
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_bytes(raw)
-    return {"pdf_status": "FULL_PDF_BYTES_CAPTURED_IN_SHORT_LIVED_ACTIONS_ARTIFACT",
-            "pdf_sha256": checksum(raw), "pdf_bytes": len(raw)}
-
-def _row(sid, status, error=""):
-    return {
-        "security_id": sid, "status": status, "query_error": error,
-        "annual_report_title": None, "announcement_day": None,
-        "announcement_id": None, "original_pdf_url": None,
-        "announcement_response_sha256": None, "version_count": 0,
-        "version_dates": [], "pdf_sha256": None, "pdf_bytes": None,
-        "pdf_status": "NOT_ATTEMPTED", "source_vintage_verified_pit": False,
-        "original_pdf_bytes_durable_in_git": False,
-    }
-
-def evaluate_one(sid, opener=urlopen):
-    """Return one row and raw JSON responses. API errors do not imply no filing."""
-    try:
-        announcements, blobs = _announcement_pages(sid, _org_id(sid), opener)
-        if not announcements:
-            org_ids = _resolve_org_id(sid.split(":")[1], opener)
-            for org in org_ids:
-                if org == _org_id(sid):
-                    continue
-                alt_rows, alt_blobs = _announcement_pages(sid, org, opener)
-                if alt_rows:
-                    announcements, blobs = alt_rows, alt_blobs
-                    break
-    except (HTTPError, URLError, TimeoutError, OSError, ValueError, TypeError, json.JSONDecodeError) as e:
-        code = f"HTTP_{e.code}" if isinstance(e, HTTPError) else type(e).__name__
-        return _row(sid, "QUERY_FAILED_NOT_PROOF_OF_ABSENCE", code), []
-    versions = _annual_versions(sid, announcements)
-    if not versions:
-        r = _row(sid, "NO_MATCHING_FY2024_FULL_REPORT_IN_RETURNED_2025_METADATA")
-        r["announcement_response_sha256"] = checksum(b"".join(blobs))
-        return r, blobs
-    original = versions[0]
-    r = _row(sid, "FULL_REPORT_METADATA_IDENTIFIED_NOT_PDF_CERTIFIED")
-    r.update({
-        "annual_report_title": original["title"],
-        "announcement_day": original["day"],
-        "announcement_id": original["id"],
-        "original_pdf_url": original["url"],
-        "announcement_response_sha256": checksum(b"".join(blobs)),
-        "version_count": len(versions),
-        "version_dates": [x["day"] for x in versions],
-    })
-    return r, blobs
-
-def collect(out, limit=128, pdf_limit=8, opener=urlopen):
-    frame = build_frame()
-    selected = frame["selected_ids"][:limit]
-    if limit < 1 or limit > 128 or pdf_limit < 0 or pdf_limit > limit:
-        raise ValueError("INVALID_FIXED_SAMPLE_SLICE")
-    if out.exists():
-        raise ValueError("CANNOT_OVERWRITE_EXISTING_CAPTURE")
-    out.mkdir(parents=True)
-    (out / "source_json").mkdir()
-    rows = []
-    consecutive_errors = 0
-    for i, sid in enumerate(selected):
-        if consecutive_errors >= 4:
-            row, blobs = _row(sid, "UNQUERIED_SOURCE_UNAVAILABLE_CIRCUIT_BREAK"), []
+        grouped[sid].append(row)
+    output = []
+    for sid in ids:
+        matches = grouped.get(sid, [])
+        dates = sorted({str(x["NOTICE_DATE"])[:10] for x in matches})
+        updates = sorted({str(x["UPDATE_DATE"])[:10] for x in matches if x.get("UPDATE_DATE")})
+        hashes = sorted(digest(json.dumps(x, ensure_ascii=False, sort_keys=True,
+                                        separators=(",", ":")).encode()) for x in matches)
+        if not matches:
+            status = "NOT_FOUND_IN_VENDOR_CUTOFF_QUERY_NOT_PROOF_OF_NO_2025_REPORT"
+        elif len(matches) > 1:
+            status = "MULTIPLE_VENDOR_RECORDS_VERSION_NOT_UNIQUELY_RESOLVED"
+        elif updates and updates[-1] >= NOTICE_BEFORE:
+            status = "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED"
         else:
-            row, blobs = evaluate_one(sid, opener)
-            consecutive_errors = consecutive_errors + 1 if row["status"].startswith("QUERY_FAILED") else 0
-        rows.append(row)
-        if blobs:
-            (out / "source_json" / (sid.replace(":", "-") + ".json")).write_bytes(
-                b"\n".join(blobs))
-        if i < pdf_limit and row["original_pdf_url"]:
-            try:
-                captured = _pdf_capture(row["original_pdf_url"],
-                                        out / "pdf" / (sid.replace(":", "-") + ".pdf"), opener)
-                row.update(captured)
-                if row["pdf_sha256"]:
-                    row["status"] = "ORIGINAL_PDF_FULL_BYTES_CAPTURED"
-            except (HTTPError, URLError, TimeoutError, OSError) as e:
-                row["pdf_status"] = "PDF_FETCH_FAILED_" + (f"HTTP_{e.code}" if isinstance(e, HTTPError) else type(e).__name__)
-        elif row["original_pdf_url"]:
-            row["pdf_status"] = "NOT_REQUESTED_BOUNDED_SOURCE_PROBE"
-        print(f"ISSUER {i+1}/{len(selected)} {sid} {row['status']} {row['pdf_status']}", flush=True)
-        if i < len(selected)-1:
-            time.sleep(0.15)
-    summary = {
-        "schema": "V29_128_ISSUER_FY2024_ORIGINAL_REPORT_COVERAGE_V1",
-        "capture_timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "source": "CNINFO_HISTORICAL_ANNOUNCEMENTS_AND_BOUNDED_PDF",
-        "report_fiscal_period_end": "2024-12-31",
-        "announcement_query_range": ["2025-01-01", "2025-12-31"],
-        "fixed_frame_date": frame["frame_date"],
+            status = "SINGLE_VENDOR_SUMMARY_RECORD_NOT_OFFICIAL_PDF_CERTIFIED"
+        one = matches[0] if len(matches) == 1 else {}
+        output.append({
+            "security_id": sid,
+            "coverage_status": status,
+            "matched_vendor_rows": len(matches),
+            "vendor_announcement_dates": dates,
+            "vendor_update_dates": updates,
+            "source_row_hashes": hashes,
+            "vendor_revenue_yuan": one.get("TOTAL_OPERATE_INCOME"),
+            "vendor_parent_profit_yuan": one.get("PARENT_NETPROFIT"),
+            "original_pdf_url": None,
+            "original_pdf_bytes_preserved": False,
+            "historical_pit_certified": False,
+        })
+    return {
+        "schema": "V29_2025_128_ISSUER_RETROSPECTIVE_FINANCIAL_SOURCE_COVERAGE_V1",
+        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+        "vendor": "EASTMONEY_RPT_LICO_FN_CPD_UNOFFICIAL",
+        "fiscal_period_end": PERIOD,
+        "vendor_notice_date_cutoff_exclusive": NOTICE_BEFORE,
+        "frame_date": frame["frame_date"],
         "frame_population_count": frame["population_count"],
-        "full_sample_selection_sha256": frame["selected_ids_sha256"],
-        "requested_issuer_count": len(selected),
-        "full_sample_count": len(frame["selected_ids"]),
-        "source_attempt_is_complete_128": limit == 128,
-        "queried_issuers": sum(r["status"] != "UNQUERIED_SOURCE_UNAVAILABLE_CIRCUIT_BREAK" for r in rows),
-        "metadata_identified": sum(r["original_pdf_url"] is not None for r in rows),
-        "full_pdf_bytes_captured": sum(r["pdf_sha256"] is not None for r in rows),
-        "failed_or_unresolved": sum(r["original_pdf_url"] is None for r in rows),
-        "pdf_capture_limit_first_n": pdf_limit,
-        "original_pdf_bytes_persisted_to_git": False,
-        "source_capture_2026_not_original_2025_pit": True,
-        "not_pristine_oos": True,
-        "strategy_validated": False,
+        "full_selected_issuer_count": 128,
+        "full_selected_issuer_ids_sha256": frame["selected_ids_sha256"],
+        "total_vendor_rows": len(source_rows),
+        "source_pages": page_receipts,
+        "rejected_unqualified_vendor_rows": rejected,
+        "fixed_sample_count": len(output),
+        "vendor_metadata_matched_count": sum(x["matched_vendor_rows"]>0 for x in output),
+        "unmatched_count": sum(x["matched_vendor_rows"]==0 for x in output),
+        "multiple_version_count": sum(x["matched_vendor_rows"]>1 for x in output),
+        "original_issuer_pdf_sha256_certified_count": 0,
+        "original_report_pdf_bytes_archived": False,
+        "retrospective_vendor_vintage_not_asof_certified": True,
+        "stock_selection_precedes_this_source_capture_but_not_2025_outcomes": True,
+        "independent_oos_validated": False,
+        "trade_authorized": False,
         "live_buy_eligibility": "NOT_AUTHORIZED",
-        "rows": rows,
+        "rows": output,
     }
-    (out / "coverage.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    with (out / "coverage.csv").open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDNAMES)
-        w.writeheader()
-        for row in rows:
-            w.writerow({**row, "version_dates": "|".join(row["version_dates"])})
-    print(json.dumps({k: v for k, v in summary.items() if k != "rows"}, ensure_ascii=False), flush=True)
-    return summary
+
+def acquire_pages(fetch=fetch_page):
+    first = fetch(PERIOD, 1, notice_before=NOTICE_BEFORE)
+    doc=json.loads(first)
+    block=doc.get("result") or {}
+    total=block.get("pages")
+    if type(total) is not int or not 1 <= total <= MAX_PAGES:
+        raise ValueError("VENDOR_PAGE_COUNT_INVALID")
+    pages=[first]+[fetch(PERIOD, p, notice_before=NOTICE_BEFORE) for p in range(2,total+1)]
+    return pages
+
+def collect(out, fetch=fetch_page):
+    frame=build_frame()
+    if out.exists():
+        raise ValueError("NO_OVERWRITE_OF_PRIOR_SOURCE_CAPTURE")
+    pages=acquire_pages(fetch)
+    rows, receipts=valid_pages(pages)
+    report=match_fixed_sample(frame,rows,receipts)
+    if len(report["rows"])!=128:
+        raise ValueError("FIXED_SAMPLE_CARDINALITY_VIOLATED")
+    out.mkdir(parents=True)
+    (out/"raw_vendor_pages").mkdir()
+    for i, raw in enumerate(pages,1):
+        (out/"raw_vendor_pages"/f"page-{i:03d}.json").write_bytes(raw)
+    (out/"coverage.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    with (out/"coverage.csv").open("w",encoding="utf-8",newline="") as f:
+        writer=csv.DictWriter(f,fieldnames=FIELDS)
+        writer.writeheader()
+        for row in report["rows"]:
+            writer.writerow({**row,
+                             "vendor_announcement_dates":"|".join(row["vendor_announcement_dates"]),
+                             "vendor_update_dates":"|".join(row["vendor_update_dates"]),
+                             "source_row_hashes":"|".join(row["source_row_hashes"])})
+    print(json.dumps({k:v for k,v in report.items() if k not in ("rows","source_pages")},
+                     ensure_ascii=False),flush=True)
+    return report
 
 def main():
-    p = argparse.ArgumentParser()
-    p.add_argument("--out", type=Path, required=True)
-    p.add_argument("--limit", type=int, default=128)
-    p.add_argument("--pdf-limit", type=int, default=8)
-    a = p.parse_args()
-    collect(a.out, a.limit, a.pdf_limit)
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--out",type=Path)
+    parser.add_argument("--probe",action="store_true",help="Query just page 1 and report actual source schema")
+    args=parser.parse_args()
+    if args.probe:
+        raw=fetch_page(PERIOD,1,notice_before=NOTICE_BEFORE)
+        x=json.loads(raw)
+        d=x.get("result") or {}
+        print(json.dumps({"real_source_response":x.get("success"),
+                          "pages":d.get("pages"),"total_rows":d.get("count"),
+                          "page1_rows":len(d.get("data") or []),
+                          "not_an_original_PDF_or_OOS":True},ensure_ascii=False))
+    elif args.out:
+        collect(args.out)
+    else:
+        parser.error("--out required unless --probe")
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
