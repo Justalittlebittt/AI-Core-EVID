@@ -1,0 +1,91 @@
+{
+  "schema": "V29_ORIGINAL_2025_FY2024_REPORT_BINARY_SEAL_PILOT_V1",
+  "capture_time_utc": "2026-10-31T05:02:51.972941+00:00",
+  "fixed_sample_sha256": "ded26da069f22888455ac080fbc2593ee9477a23bb0dc619569115cf4d7f73ac",
+  "sample_count": 128,
+  "attempted_original_reports": 2,
+  "original_full_pdf_verified": 2,
+  "field_numeric_text_present": 2,
+  "unverified_or_failed_count": 0,
+  "historical_vendor_rows_retrospectively_updated_not_pit_certified": true,
+  "full_128_original_report_complete": false,
+  "no_prices_or_outcomes_read": true,
+  "oos_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "receipts": [
+    {
+      "security_id": "SSE:601009",
+      "source_publication_day": "2025-04-22",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223197865.PDF",
+      "report_year": 2024,
+      "retrospective_vendor_2026_update_days": [
+        "2026-04-23"
+      ],
+      "pdf_unit_multiplier_yuan": "1000",
+      "expected_field_values_pdf_units": {
+        "revenue": "50273070",
+        "parent_profit": "20176728"
+      },
+      "original_report_released_time_pdf_sha_unknown": true,
+      "current_pdf_retrieved_at_utc": "2026-10-31T05:02:44.273629+00:00",
+      "source_at_2025_asof_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_structurally_parsed": true,
+      "page_count": 245,
+      "identity_first_pages_verified": true,
+      "expected_financial_amount_text_pages_first_42": {
+        "revenue": [
+          16,
+          23,
+          24
+        ],
+        "parent_profit": [
+          16,
+          23
+        ]
+      },
+      "expected_amounts_text_present": true,
+      "semantic_field_to_table_cell_automatically_certified": false,
+      "status": "FULL_ORIGINAL_PDF_BYTES_SEALED_2026_VINTAGE",
+      "saved_pdf_path": "SSE-601009-FY2024-ISSUED2025.pdf",
+      "sha256_pdf": "cc5248615b1e259b5985e6156cdc8ed6a0c0aa4a213633858cdd4f5da10e0d98",
+      "bytes_pdf": 11795057
+    },
+    {
+      "security_id": "SZSE:002493",
+      "source_publication_day": "2025-04-25",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223285131.PDF",
+      "report_year": 2024,
+      "retrospective_vendor_2026_update_days": [
+        "2026-04-28"
+      ],
+      "pdf_unit_multiplier_yuan": "1",
+      "expected_field_values_pdf_units": {
+        "revenue": "326475162608.88",
+        "parent_profit": "724484686.45"
+      },
+      "original_report_released_time_pdf_sha_unknown": true,
+      "current_pdf_retrieved_at_utc": "2026-10-31T05:02:49.001410+00:00",
+      "source_at_2025_asof_certified": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "pdf_structurally_parsed": true,
+      "page_count": 217,
+      "identity_first_pages_verified": true,
+      "expected_financial_amount_text_pages_first_42": {
+        "revenue": [
+          10,
+          29
+        ],
+        "parent_profit": [
+          10
+        ]
+      },
+      "expected_amounts_text_present": true,
+      "semantic_field_to_table_cell_automatically_certified": false,
+      "status": "FULL_ORIGINAL_PDF_BYTES_SEALED_2026_VINTAGE",
+      "saved_pdf_path": "SZSE-002493-FY2024-ISSUED2025.pdf",
+      "sha256_pdf": "b371f213b6fb12c58b867752e9a6a32c777d9c4ca86b54f6aa2952e8fc8553a2",
+      "bytes_pdf": 6359579
+    }
+  ]
+}
