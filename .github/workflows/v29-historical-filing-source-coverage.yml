@@ -1,0 +1,86 @@
+name: V2.9 Historical FY2024 Filing Source Coverage
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-historical-filing-source-coverage.yml'
+      - 'scripts/v29_2025_filing_source_coverage.py'
+      - 'scripts/test_v29_2025_filing_source_coverage.py'
+      - 'scripts/v29_historical_universe_sampling.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-historical-filing-source-coverage.yml'
+      - 'scripts/v29_2025_filing_source_coverage.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  source-probe:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Offline acquisition tests
+        run: python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
+      - name: Genuine eight-issuer CNINFO original-filing source probe
+        run: |
+          python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-probe --limit 8 --pdf-limit 2
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/v29-filing-probe/coverage.json"))
+          if d["metadata_identified"] < 1:
+              raise SystemExit("CNINFO_SOURCE_PROBE_NO_REAL_REPORT_METADATA: inspect captured per-issuer diagnoses")
+          print("CNINFO_REAL_REPORT_METADATA_IDENTIFIED", d["metadata_identified"])
+          PY
+      - name: Archive short-lived raw source and two bounded original PDF candidates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-historical-filing-source-probe
+          path: /tmp/v29-filing-probe/
+          if-no-files-found: warn
+          retention-days: 14
+
+  full-128-source-capture:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Frozen population and offline source-integrity checks
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_2025_filing_source_coverage.py' -v
+      - name: Query all 128 frozen issuers without looking at price outcomes
+        run: |
+          python scripts/v29_2025_filing_source_coverage.py --out /tmp/v29-filing-capture --limit 128 --pdf-limit 8
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/v29-filing-capture/coverage.json"))
+          assert d["requested_issuer_count"]==128
+          assert len(d["rows"])==128
+          assert d["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          if d["metadata_identified"]==0:
+              raise SystemExit("NO_CNINFO_REAL_METADATA: full historical source remains BLOCKED")
+          print("REAL_SOURCE_COVERAGE", d["metadata_identified"], "/", d["requested_issuer_count"])
+          PY
+      - name: Persist complete 128-row research coverage, excluding original PDF blobs
+        run: |
+          cp /tmp/v29-filing-capture/coverage.json research/V2.9_2025_128_FILING_SOURCE_COVERAGE.json
+          cp /tmp/v29-filing-capture/coverage.csv research/V2.9_2025_128_FILING_SOURCE_COVERAGE.csv
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/V2.9_2025_128_FILING_SOURCE_COVERAGE.json research/V2.9_2025_128_FILING_SOURCE_COVERAGE.csv
+          git diff --cached --quiet || (git commit -m "research(v29): preserve 128-issuer real filing source coverage [skip ci]" && git push origin HEAD:main)
+      - name: Archive original API responses and at most eight full PDFs (14-day TTL)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-historical-filing-source-capture-128
+          path: /tmp/v29-filing-capture/
+          if-no-files-found: warn
+          retention-days: 14
