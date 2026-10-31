@@ -1,0 +1,135 @@
+name: V2.9 Frozen 122 — Fixed 20th Session Prospective Outcome
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-forward122-20th-session-outcome.yml'
+      - 'scripts/v29_forward122_20th_session_exit_capture.py'
+      - 'scripts/test_v29_forward122_20th_session_exit_capture.py'
+  workflow_dispatch:
+  schedule:
+    # Bounded 2026-only post-close capture windows (Beijing 21:25).
+    # Actual EXIT = twentieth VERIFIED exchange session, never calendar-day substitution.
+    - cron: '25 13 27,30 11 *'
+    - cron: '25 13 1-2 12 *'
+permissions:
+  contents: read
+concurrency:
+  group: v29-2026-frozen-122-fixed-twentieth-session-outcome
+  cancel-in-progress: false
+
+jobs:
+  future-boundary-tests:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Regress immutable registered 122 and synthetic-only 20-session data maturity gate
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_forward122_20th_session_exit_capture.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
+
+  one-future-outcome-when-mature:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip until maturity and never recapture completed frozen outcome
+        id: gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          china_year="$(TZ=Asia/Shanghai date +%Y)"
+          china_day="$(TZ=Asia/Shanghai date +%F)"
+          if [ "$china_year" != "2026" ]; then
+            echo "SKIP_OUTSIDE_REGISTERED_2026_FUTURE_EPISODE"
+            exit 0
+          fi
+          if [[ "$china_day" < "2026-11-27" ]]; then
+            echo "SKIP_NOT_MATURE_ENOUGH_FOR_20_SESSIONS"
+            exit 0
+          fi
+          if [ -e research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026/20_SESSION_RESEARCH_VERDICT.json ]; then
+            echo "SKIP_OUTCOME_ALREADY_CAPTURED_FROM_FIXED_SOURCES"
+            exit 0
+          fi
+          if [ ! -e research/V2.9_FORWARD_122_ENTRY_20261102/ENTRY_SNAPSHOT_122.json ]; then
+            echo "ENTRY_EVIDENCE_NOT_YET_SEALED_NO_OUTCOME_POSSIBLE"
+            exit 0
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+      - name: Check immutable 122 protocol and 20 session no-lookahead outcome arithmetic
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_forward122_20th_session_exit_capture.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+      - name: Install historical quote provider version already proven on 122 pre-entry data
+        if: steps.gate.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Query only after actual twentieth official session has CLOSED; preserve all 122 and original exact entry
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python scripts/v29_forward122_20th_session_exit_capture.py --out /tmp/v29-forward122-20th-outcome
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          base=Path('/tmp/v29-forward122-20th-outcome')
+          r=json.loads((base/'20_SESSION_RESEARCH_VERDICT.json').read_text())
+          o=json.loads((base/'OUTCOMES_122.json').read_text())
+          raw=gzip.decompress((base/'RAW_VENDOR_STOCK_AND_H00300_INDEX.json.gz').read_bytes())
+          assert len(o['verified_exchange_sessions'])==20
+          assert o['verified_exchange_sessions'][0]=='2026-11-02'
+          assert r['fixed_exit_session']==o['verified_exchange_sessions'][19]
+          assert r['quote_source_eligible_count']+r['quote_source_incomplete_count']==122
+          assert r['frozen_cohort_count']==len(o['securities'])==122
+          assert hashlib.sha256(raw).hexdigest()==r['source_bytes_sha256']
+          assert not r['trade_authorized'] and r['live_buy_eligibility']=='NOT_AUTHORIZED'
+          assert not r['actual_entry_exit_fills_proven']
+          assert r['outcome_evaluation']['strategy_validated'] is False
+          print('FROZEN_122_ONE_EPISODE_RESEARCH_STATUS',
+                r['outcome_evaluation']['status'],'EXACT_EXIT',r['fixed_exit_session'],
+                'QUOTES',r['quote_source_eligible_count'],'/122',
+                'OFFICIAL_BENCHMARK',r['benchmark_source_status'])
+          PY
+      - name: Persist full 122 outcome if complete, or immutable run-scoped incomplete result for another bounded attempt
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(python - <<'PY'
+          import json
+          d=json.load(open('/tmp/v29-forward122-20th-outcome/20_SESSION_RESEARCH_VERDICT.json'))
+          print(d['outcome_evaluation']['status'])
+          PY
+          )"
+          if [ "$status" = "ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE" ]; then
+            destination="research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026"
+          else
+            destination="research/V2.9_FORWARD_122_OUTCOME_ATTEMPTS_2026/run_$GITHUB_RUN_ID"
+          fi
+          if [ -e "$destination/20_SESSION_RESEARCH_VERDICT.json" ]; then
+            echo "IMMUTABLE_OUTCOME_SOURCE_VINTAGE_ALREADY_EXISTS"
+            exit 1
+          fi
+          mkdir -p "$destination"
+          cp /tmp/v29-forward122-20th-outcome/20_SESSION_RESEARCH_VERDICT.json "$destination/"
+          cp /tmp/v29-forward122-20th-outcome/OUTCOMES_122.json "$destination/"
+          cp /tmp/v29-forward122-20th-outcome/RAW_VENDOR_STOCK_AND_H00300_INDEX.json.gz "$destination/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$destination/"
+          git commit -m "research(v29): seal fixed 122 twentieth-session evidence $status, no BUY [skip ci]"
+          git push origin HEAD:main
+          echo "PERSISTED_OUTCOME_EVIDENCE $destination"
+      - name: Preserve raw proof regardless of source or repository outcome
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-122-20th-session-source-and-outcome
+          path: /tmp/v29-forward122-20th-outcome/
+          if-no-files-found: warn
+          retention-days: 30
