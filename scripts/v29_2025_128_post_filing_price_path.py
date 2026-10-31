@@ -103,10 +103,19 @@ def one_price_case(issuer, sessions, benchmark, quote):
         return fail("ENTRY_SESSION_NOT_TRADEABLE")
     if e["isST"] == "1":
         return fail("ENTRY_SESSION_ST_FLAGGED")
+    if e["isST"] != "0":
+        return fail("ENTRY_ST_FLAG_UNKNOWN")
     if x["tradestatus"] != "1":
         return fail("EXIT_SESSION_NOT_TRADEABLE")
     if x["isST"] == "1":
         return fail("EXIT_SESSION_ST_FLAGGED")
+    if x["isST"] != "0":
+        return fail("EXIT_ST_FLAG_UNKNOWN")
+    try:
+        if float(e["volume"]) <= 0 or float(x["volume"]) <= 0:
+            return fail("ENTRY_OR_EXIT_ZERO_TRADED_VOLUME")
+    except (ValueError,KeyError):
+        return fail("ENTRY_OR_EXIT_VOLUME_UNKNOWN")
     if entry not in benchmark or exit_day not in benchmark:
         return fail("BENCHMARK_ENDPOINT_MISSING")
     try:
