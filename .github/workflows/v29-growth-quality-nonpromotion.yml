@@ -1,0 +1,60 @@
+name: V2.9 Growth Quality Nonpromotion Verdict
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-growth-quality-nonpromotion.yml'
+      - 'scripts/v29_growth_quality_nonpromotion.py'
+      - 'scripts/test_v29_growth_quality_nonpromotion.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-growth-quality-nonpromotion.yml'
+      - 'scripts/v29_growth_quality_nonpromotion.py'
+permissions:
+  contents: read
+
+jobs:
+  verify-verdict:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit saved 128-name research result and all no-promotion guardrails
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_growth_quality_nonpromotion.py' -v
+          python scripts/v29_growth_quality_nonpromotion.py --out-dir /tmp/v29-growth-quality-verdict
+      - name: Check the audit is deterministic from prior sealed inputs
+        run: |
+          python scripts/v29_growth_quality_nonpromotion.py --out-dir /tmp/v29-growth-quality-verdict-replay
+          diff -u /tmp/v29-growth-quality-verdict/NONPROMOTION_VERDICT.json /tmp/v29-growth-quality-verdict-replay/NONPROMOTION_VERDICT.json
+          diff -u /tmp/v29-growth-quality-verdict/NONPROMOTION_VERDICT.md /tmp/v29-growth-quality-verdict-replay/NONPROMOTION_VERDICT.md
+
+  persist-failed-screen-verdict:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-run regression on original unmodified prior factor study
+        run: python -m unittest discover -s scripts -p 'test_v29_growth_quality_nonpromotion.py' -v
+      - name: Produce permanent no-promotion report without vendor data or API calls
+        run: |
+          python scripts/v29_growth_quality_nonpromotion.py --out-dir /tmp/v29-growth-quality-verdict
+          mkdir -p research/v29_2025_growth_quality_nonpromotion
+          cp /tmp/v29-growth-quality-verdict/NONPROMOTION_VERDICT.json research/v29_2025_growth_quality_nonpromotion/
+          cp /tmp/v29-growth-quality-verdict/NONPROMOTION_VERDICT.md research/v29_2025_growth_quality_nonpromotion/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/v29_2025_growth_quality_nonpromotion/
+          git diff --cached --quiet || (git commit -m "research(v29): record 2025 growth-quality NOT PROMOTED, no OOS or BUY [skip ci]" && git push origin HEAD:main)
+      - name: Keep offline source-bound verdict if repository persistence fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-growth-quality-nonpromotion
+          path: /tmp/v29-growth-quality-verdict/
+          if-no-files-found: warn
+          retention-days: 14
