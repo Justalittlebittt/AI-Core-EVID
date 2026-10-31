@@ -52,6 +52,10 @@ jobs:
             echo "SKIP_BEFORE_FIRST_ENTRY_SESSION"
             exit 0
           fi
+          if [[ "$china_day" > "2026-11-04" ]]; then
+            echo "SKIP_EXPIRED_FORWARD_ENTRY_CAPTURE_NO_BACKFILL"
+            exit 0
+          fi
           if [ -e research/V2.9_FORWARD_122_ENTRY_20261102/ENTRY_SNAPSHOT_122.json ]; then
             echo "SKIP_ALREADY_COMMITTED_COMPLETE_FROZEN_ENTRY"
             exit 0
