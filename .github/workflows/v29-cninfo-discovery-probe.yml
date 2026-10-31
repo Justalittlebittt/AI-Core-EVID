@@ -1,0 +1,16 @@
+name: V2.9 CNINFO annual-report discovery diagnostic
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-cninfo-discovery-probe.yml'
+      - 'scripts/v29_cninfo_discovery_probe.py'
+permissions:
+  contents: read
+jobs:
+  source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check real orgId resolution and annual report lookup for three issuers
+        run: python scripts/v29_cninfo_discovery_probe.py
