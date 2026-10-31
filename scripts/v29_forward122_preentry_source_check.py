@@ -41,6 +41,7 @@ def fetch_total_return(opener=urlopen):
         "Accept":"application/json,text/plain,*/*",
         "Referer":"https://www.csindex.com.cn/",
     })
+    raw=None
     try:
         with opener(request,timeout=15) as response:
             raw=response.read(900_001)
@@ -51,11 +52,16 @@ def fetch_total_return(opener=urlopen):
         return result,raw
     except (HTTPError,URLError,TimeoutError,OSError,ValueError,KeyError,TypeError,json.JSONDecodeError) as e:
         reason=(f"HTTP_{e.code}" if isinstance(e,HTTPError) else type(e).__name__)
+        # The response is from a public index site, not portfolio/secret data.
+        # Preserve a bounded diagnostic and hash to identify source drift.
+        preview=raw[:240].decode("utf-8","replace") if raw else None
         return {"source":"CSINDEX_OFFICIAL_INDEX_PERF",
                 "requested_index":"H00300.CSI",
                 "benchmark_source_status":"UNVERIFIED_OFFICIAL_TOTAL_RETURN_SOURCE",
                 "reason":reason,
-                "official_raw_sha256":None},None
+                "source_response_error_detail":str(e)[:180],
+                "source_response_preview":preview,
+                "official_raw_sha256":sha(raw) if raw else None},raw
 
 def parse_total_return(raw):
     obj=json.loads(raw)
