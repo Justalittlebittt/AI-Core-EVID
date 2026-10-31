@@ -1,0 +1,43 @@
+{
+  "schema": "V29_2025_FIXED_128_GROWTH_QUALITY_EXPLORATORY_COMPARISON_SPEC_V1",
+  "registered_date": "2026-10-31",
+  "status": "EXPLORATORY_RULES_FROZEN_BEFORE_THIS_FACTOR_CONDITIONED_RUN_BUT_2025_RETURNS_ALREADY_OBSERVED",
+  "source_population": "2025-01-02 reconstructed A-share member intervals; 128 issuer deterministic identity-only sample",
+  "financial_source": "Eastmoney 2024 FY report RPT_LICO_FN_CPD; current 2026 vendor vintage; required source-row SHA matches archived 2026-10-31 128 financial coverage",
+  "outcomes": "research/v29_2025_post_disclosure_price_128/PRICE_PATH_128.json",
+  "fixed_sample_size": 128,
+  "eligible_only": "price comparison eligible true, no shifts of entry or exit dates",
+  "screen_months": "2025-03 to 2025-05",
+  "opportunity_set": "EXACT_FIRST_POST_DISCLOSURE_TRADING_SESSION",
+  "minimum_tradeable_companies_per_same_entry_session": 5,
+  "selection_count": "ceil(number of eligible candidates in exact entry session / 3); stable security_id ascending tie-break",
+  "feature_spec": {
+    "revenue_growth_yoy_pct": "YSTZ as recorded by 2026 vintage financial vendor, not 2025 source-certified",
+    "weighted_roe_pct": "WEIGHTAVG_ROE as recorded by 2026 vintage vendor, not original-time PIT certified"
+  },
+  "primary_rule": "Rank highest 2024 annual revenue growth YoY and ROE within exact first trade session, combine two rank positions using equal weights, select best one-third of groups with >=5 eligible issuers",
+  "diagnostic_rules": [
+    "revenue_growth_yoy_pct_only",
+    "weighted_roe_pct_only"
+  ],
+  "primary_metric": "equal_weighted selected stocks 2025 price_only_return minus 0.003 cost minus same-stock same-window CSI300 price index return",
+  "same_day_random_baseline": {
+    "evaluator": "scripts/v292_matched_random_baseline.py",
+    "metric": "realized_net_return = stock 20-session unadjusted price-only return minus 0.003; not total return",
+    "replicates": 3000,
+    "seed": 290131,
+    "sampling": "select same number of names within each exact entry-session opportunity set, without replacement"
+  },
+  "event_evaluator": "scripts/v290_strategy_validity_evaluator.py",
+  "selection_concentration": "A few 2025 announcement episodes; no temporal OOS or independently untouched future outcomes",
+  "multiple_comparisons": "1 primary screen plus 2 predeclared diagnostics; no post-outcome retuning; any random tail rates are exploratory diagnostics, not valid statistical p-values",
+  "coverage_policy": "Preserve 128 fixed rows; 8 already marked ST/nontradeable are never assigned a numeric outcome. Smaller entry cohorts remain in denominator and are not selected. Do not fill or reweight failed/missing issuers as if they achieved random baseline returns.",
+  "forbidden": [
+    "Access V2.8.12 Fold3/Fold4",
+    "Change frozen research thresholds or past outcomes",
+    "Describe hindsight vendor FY2024 metrics as contemporaneous PIT",
+    "Turn exploratory 2025 exercise into strategy admission or live BUY"
+  ],
+  "expected_evidence_strength": "INSUFFICIENT",
+  "live_buy_eligibility": "NOT_AUTHORIZED"
+}
