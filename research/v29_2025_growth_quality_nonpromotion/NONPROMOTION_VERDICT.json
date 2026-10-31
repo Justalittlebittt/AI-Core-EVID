@@ -1,0 +1,189 @@
+{
+  "schema": "V29_2025_GROWTH_QUALITY_POSTHOC_NONPROMOTION_V1",
+  "previous_factor_rules_unchanged": true,
+  "post_hoc_robustness_not_a_new_predictive_test": true,
+  "entire_frozen_sample_count": 128,
+  "market_comparison_eligible": 120,
+  "excluded_ST_or_untradeable": 8,
+  "screen_results": {
+    "growth_plus_roe_equal_rank": {
+      "selected_count": 29,
+      "mean_excess": 0.013743413634640302,
+      "median_excess": -0.007005305437393413,
+      "positive_excess_count": 14,
+      "same_entry_session_group_count": 7,
+      "negative_mean_excess_group_count": 5,
+      "same_entry_session_results": [
+        {
+          "entry_session": "2025-03-31",
+          "selected_count": 4,
+          "mean_net_excess": -0.01868972198224103
+        },
+        {
+          "entry_session": "2025-04-21",
+          "selected_count": 3,
+          "mean_net_excess": 0.20057154800128615
+        },
+        {
+          "entry_session": "2025-04-23",
+          "selected_count": 4,
+          "mean_net_excess": -0.005294440702668462
+        },
+        {
+          "entry_session": "2025-04-24",
+          "selected_count": 3,
+          "mean_net_excess": -0.027643885979173333
+        },
+        {
+          "entry_session": "2025-04-25",
+          "selected_count": 3,
+          "mean_net_excess": -0.015054172473493941
+        },
+        {
+          "entry_session": "2025-04-28",
+          "selected_count": 6,
+          "mean_net_excess": 0.038161236373518204
+        },
+        {
+          "entry_session": "2025-04-30",
+          "selected_count": 6,
+          "mean_net_excess": -0.03468204012379319
+        }
+      ],
+      "largest_excess_issuer": "SSE:688313",
+      "largest_excess_value": 0.5263590374507593,
+      "largest_issuer_contribution_to_mean": 0.01815031163623308,
+      "mean_excess_excluding_largest_issuer": -0.004564287215935376,
+      "selection_minus_same_day_random_mean_net_stock_return": -0.0010464552757054081,
+      "same_day_random_draws_at_or_above_selection_share": 0.5103333333333333,
+      "random_tail_share_is_not_an_unseen_oos_p_value": true
+    },
+    "revenue_growth_yoy_pct_only": {
+      "selected_count": 29,
+      "mean_excess": 0.026489264861582023,
+      "median_excess": 0.0021582237584586474,
+      "positive_excess_count": 15,
+      "same_entry_session_group_count": 7,
+      "negative_mean_excess_group_count": 3,
+      "same_entry_session_results": [
+        {
+          "entry_session": "2025-03-31",
+          "selected_count": 4,
+          "mean_net_excess": -0.01813205837999224
+        },
+        {
+          "entry_session": "2025-04-21",
+          "selected_count": 3,
+          "mean_net_excess": 0.2220430086736815
+        },
+        {
+          "entry_session": "2025-04-23",
+          "selected_count": 4,
+          "mean_net_excess": -0.01227910154847514
+        },
+        {
+          "entry_session": "2025-04-24",
+          "selected_count": 3,
+          "mean_net_excess": 0.010147733673459261
+        },
+        {
+          "entry_session": "2025-04-25",
+          "selected_count": 3,
+          "mean_net_excess": 0.03462221022086417
+        },
+        {
+          "entry_session": "2025-04-28",
+          "selected_count": 6,
+          "mean_net_excess": 0.04731171399900178
+        },
+        {
+          "entry_session": "2025-04-30",
+          "selected_count": 6,
+          "mean_net_excess": -0.03241263683304622
+        }
+      ],
+      "largest_excess_issuer": "SSE:688313",
+      "largest_excess_value": 0.5263590374507593,
+      "largest_issuer_contribution_to_mean": 0.01815031163623308,
+      "mean_excess_excluding_largest_issuer": 0.008636772983397122,
+      "selection_minus_same_day_random_mean_net_stock_return": 0.01169939595123631,
+      "same_day_random_draws_at_or_above_selection_share": 0.243,
+      "random_tail_share_is_not_an_unseen_oos_p_value": true
+    },
+    "weighted_roe_pct_only": {
+      "selected_count": 29,
+      "mean_excess": -0.013318044399065938,
+      "median_excess": -0.019336907574656333,
+      "positive_excess_count": 11,
+      "same_entry_session_group_count": 7,
+      "negative_mean_excess_group_count": 4,
+      "same_entry_session_results": [
+        {
+          "entry_session": "2025-03-31",
+          "selected_count": 4,
+          "mean_net_excess": -0.03716584051696706
+        },
+        {
+          "entry_session": "2025-04-21",
+          "selected_count": 3,
+          "mean_net_excess": 0.01778670379911903
+        },
+        {
+          "entry_session": "2025-04-23",
+          "selected_count": 4,
+          "mean_net_excess": 0.03102345329840059
+        },
+        {
+          "entry_session": "2025-04-24",
+          "selected_count": 3,
+          "mean_net_excess": -0.0451117286884258
+        },
+        {
+          "entry_session": "2025-04-25",
+          "selected_count": 3,
+          "mean_net_excess": -0.015054172473493941
+        },
+        {
+          "entry_session": "2025-04-28",
+          "selected_count": 6,
+          "mean_net_excess": 0.0045942085426280066
+        },
+        {
+          "entry_session": "2025-04-30",
+          "selected_count": 6,
+          "mean_net_excess": -0.04368023297766871
+        }
+      ],
+      "largest_excess_issuer": "SZSE:002731",
+      "largest_excess_value": 0.14742979976273485,
+      "largest_issuer_contribution_to_mean": 0.005083786198714995,
+      "mean_excess_excluding_largest_issuer": -0.019059038833415965,
+      "selection_minus_same_day_random_mean_net_stock_return": -0.028107913309411647,
+      "same_day_random_draws_at_or_above_selection_share": 0.9626666666666667,
+      "random_tail_share_is_not_an_unseen_oos_p_value": true
+    }
+  },
+  "primary_rule_admission": "DO_NOT_PROMOTE",
+  "revenue_only_diagnostic_admission": "NOT_PROMOTED_AFTER_OBSERVING_2025_OUTCOMES",
+  "roe_only_diagnostic_admission": "NOT_PROMOTED_AFTER_OBSERVING_2025_OUTCOMES",
+  "reasons": [
+    "2026_VENDOR_FINANCIAL_VALUES_NOT_CERTIFIED_HISTORICAL_ASOF",
+    "2025_OUTCOMES_ALREADY_OBSERVED_NO_UNTOUCHED_OOS",
+    "UNADJUSTED_PRICE_ONLY_VS_PRICE_INDEX_NOT_TOTAL_RETURN",
+    "SEVEN_CONCENTRATED_DISCLOSURE_TRADING_EPISODES",
+    "ORIGINAL_REPORT_AMOUNT_TEXT_NOT_SEMANTIC_FIELD_VINTAGE_CERTIFICATION",
+    "NO_VERIFIED_REALISTIC_EXECUTABLE_FILL_OR_STOP_TAKE_PROFIT_PATH",
+    "PRIMARY_NOT_BETTER_THAN_SAME_ENTRY_DAY_RANDOM",
+    "PRIMARY_NONPOSITIVE_MEDIAN_EXCESS",
+    "PRIMARY_MEAN_REVERSES_WITHOUT_ONE_TOP_WINNER"
+  ],
+  "evidence_strength": "INSUFFICIENT",
+  "independent_untouched_oos_validated": false,
+  "trade_authorized": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "source_sha256": {
+    "frozen_factor_result": "31c55a8a6d347b7b6f5966acb986c4258e748606bb16342b2d55f2e7fc9fc0a1",
+    "frozen_financial_features": "2cbdc156bdf9e962d375d7dac82702c693ef303b00083fc843320008cdf45dd2",
+    "fixed_screen_spec": "ebbf52b6bbdc81e75c81c06566371b935ca5663b6b2b944ca2461bb6a9c92a37"
+  }
+}
