@@ -53,6 +53,18 @@ class Future122ReadinessTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"NOT_CSI300_TOTAL_RETURN_IDENTITY"):
             parse_total_return(json.dumps(price).encode())
 
+    def test_real_official_dict_shape_compact_tradeDate_with_strict_index_identity(self):
+        payload={"code":"200","msg":"Success","data":[
+            {"tradeDate":"20261020","indexCode":"H00300","close":"5000.1"},
+            {"tradeDate":"20261030","indexCode":"H00300","close":"5100.25"}]}
+        result=parse_total_return(json.dumps(payload).encode())
+        self.assertEqual(result["requested_index"],"H00300.CSI")
+        self.assertEqual(result["reference_close"],5100.25)
+        self.assertEqual(result["reference_index_points"][0]["date"],"2026-10-20")
+        payload["data"][1]["tradeDate"]="20261102"
+        with self.assertRaisesRegex(ValueError,"OUTSIDE_ALLOWED_PRE_FREEZE_WINDOW"):
+            parse_total_return(json.dumps(payload).encode())
+
     def test_future_bar_and_wrong_identity_rejected(self):
         invalid={"data":[["2026-11-02","H00300","沪深300全收益","s","e","a","b","c","d",5555.0]]}
         with self.assertRaisesRegex(ValueError,"OUTSIDE_ALLOWED_PRE_FREEZE_WINDOW"):
