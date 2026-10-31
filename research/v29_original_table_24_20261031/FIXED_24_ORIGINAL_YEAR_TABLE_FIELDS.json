@@ -1,0 +1,3299 @@
+{
+  "schema": "V29_PRIOR_2023_2024_FIXED_24_PDF_CURRENT_YEAR_FIELD_AUDIT_V1",
+  "captured_at_utc": "2026-10-31T08:47:43.189313+00:00",
+  "frozen_source_manifests": {
+    "frozen_original_cohorts_sha256": "abbcfd5c1784d5bcf69a66eaab77846b5e6bd7e34c70428a4de4fad6adcd2eb1",
+    "official_2023_2024_metadata_sha256": "33e347a0c5201221f5d48d427dfb1d9945900ec79997ba5a5f4b495c644b670e",
+    "2026_retrospective_financial_source_sha256": "e5cdea77e6624d6f85f7f320d795e5913624cf27a0f8b0cc96470c8781667d9d"
+  },
+  "source_population_issuer_year_count": 256,
+  "fixed_first_twelve_per_cohort_selected_before_pdf_queries": true,
+  "frozen_audit_sample_count": 24,
+  "attempted_count": 24,
+  "original_pdf_full_identity_verified_count": 19,
+  "original_pdf_all_four_current_year_fields_unambiguous_count": 15,
+  "current_year_table_field_extracted_count": 63,
+  "table_field_agrees_with_retrospective_vendor_count": 58,
+  "table_field_disagrees_with_retrospective_vendor_count": 5,
+  "source_pdf_bytes_in_this_git_commit": false,
+  "source_pdf_raw_bytes_stored_as_bounded_actions_artifact": true,
+  "this_2026_retrospective_archive_proves_original_report_release_time_hash": false,
+  "this_24_issuer_pilot_is_not_unseen_chronological_out_of_sample": true,
+  "no_historical_or_future_price_outcomes_queried": true,
+  "strategy_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SSE:688416",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-28",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216672235.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "07b108b036208255cbf16c7ff26739dca3901d5c0d04790a30c67eb7ef4e0bb4",
+      "pdf_size_bytes": 5501913,
+      "pdf_total_pages": 274,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "433277479.71",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 11,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "433,277,479.71",
+              "table_cell_numeric": "433277479.71",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                84.47,
+                520.11,
+                537.01,
+                736.22
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "433277479.71"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "433277479.71",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "433277479.71",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "21205562.13",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 11,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 2,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "21,205,562.13",
+              "table_cell_numeric": "21205562.13",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                84.47,
+                520.11,
+                537.01,
+                736.22
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "21205562.13"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "21205562.13",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "21205562.13",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-24.76",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 11,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "-24.76",
+              "table_cell_numeric": "-24.76",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                84.47,
+                520.11,
+                537.01,
+                736.22
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-24.76"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-24.7593757681",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-24.76",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "2.42",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 12,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "2.42",
+              "table_cell_numeric": "2.42",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                84.47,
+                176.02,
+                537.02,
+                344.25
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "2.42"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "2.42",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "2.42",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SSE:600088",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-21",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-21/1216492576.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-21"
+      ],
+      "vendor_update_days": [
+        "2024-04-20"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "77c88040e14e146df972f40e42fc2cac70156e749b9fffda6250154d0baf930f",
+      "pdf_size_bytes": 3524197,
+      "pdf_total_pages": 181,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1149492197.34",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 5,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "1,149,492,197.34",
+              "table_cell_numeric": "1149492197.34",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.4,
+                385.81,
+                510.98,
+                677.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1149492197.34"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1149492197.34",
+          "vendor_update_days": [
+            "2024-04-20"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1149492197.34",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-65289963.12",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 5,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 3,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "-65,289,963.12",
+              "table_cell_numeric": "-65289963.12",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.4,
+                385.81,
+                510.98,
+                677.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-65289963.12"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-64909557.15",
+          "vendor_update_days": [
+            "2024-04-20"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-64909557.15",
+          "vendor_minus_source_value": "380405.97",
+          "comparison_status": "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-3.25",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 5,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "-3.25",
+              "table_cell_numeric": "-3.25",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.4,
+                385.81,
+                510.98,
+                677.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-3.25"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-3.2459615429",
+          "vendor_update_days": [
+            "2024-04-20"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-3.25",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-6.32",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 6,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "-6.32",
+              "table_cell_numeric": "-6.32",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "CONTINUED_LAST_PAGES_CURRENT_YEAR_TABLE_COLUMN",
+              "table_bbox": [
+                58.39,
+                72.2,
+                510.99,
+                141.9
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-6.32"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-6.23",
+          "vendor_update_days": [
+            "2024-04-20"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-6.23",
+          "vendor_minus_source_value": "0.09",
+          "comparison_status": "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:002177",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-29",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216705319.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-04-25"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "e10739794aa4a92a942afe433cb2506e8bfec0486bcf8ffc639663aa8ed1e450",
+      "pdf_size_bytes": 4030292,
+      "pdf_total_pages": 137,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "68057326.31",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "68,057,326.31",
+              "table_cell_numeric": "68057326.31",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                28.04,
+                515.3,
+                567.35,
+                757.54
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "68057326.31"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "68057326.31",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "68057326.31",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "54166778.27",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 4,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "54,166,778.27",
+              "table_cell_numeric": "54166778.27",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                28.04,
+                515.3,
+                567.35,
+                757.54
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "54166778.27"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "54166778.27",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "54166778.27",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-20.76",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 10,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "-20.76%",
+              "table_cell_numeric": "-20.76",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                28.04,
+                515.3,
+                567.35,
+                757.54
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-20.76"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-20.7578465141",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-20.76",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "3.27",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 15,
+              "field_label": "加权平均净资产收益率",
+              "table_cell_original_text": "3.27%",
+              "table_cell_numeric": "3.27",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                28.04,
+                515.3,
+                567.35,
+                757.54
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "3.27"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "3.27",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "3.27",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:002200",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-27",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-27/1216628959.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-27"
+      ],
+      "vendor_update_days": [
+        "2024-04-26"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "804a80968fc4b5e8ca72747ff9e485d48b6e8d105b7806893319a9f13b54399b",
+      "pdf_size_bytes": 3210764,
+      "pdf_total_pages": 211,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "584193328.65",
+          "vendor_update_days": [
+            "2024-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "11037500.78",
+          "vendor_update_days": [
+            "2024-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "48.9338438343",
+          "vendor_update_days": [
+            "2024-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "23.61",
+          "vendor_update_days": [
+            "2024-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": false
+    },
+    {
+      "security_id": "SSE:605100",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-15",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-15/1216411587.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-15"
+      ],
+      "vendor_update_days": [
+        "2024-04-30"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "8011e574d668040fd1c0a77629e89123223cbdfc66b3989f1fc15eb03bf6cf72",
+      "pdf_size_bytes": 3838175,
+      "pdf_total_pages": 184,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "744781553.97",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 6,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "744,781,553.97",
+              "table_cell_numeric": "744781553.97",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                265.3,
+                505.33,
+                527.87
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "744781553.97"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "744781553.97",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "744781553.97",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "23593453.52",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 6,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 2,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "23,593,453.52",
+              "table_cell_numeric": "23593453.52",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                265.3,
+                505.33,
+                527.87
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "23593453.52"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "23593453.52",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "23593453.52",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-45.01",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 6,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "-45.01",
+              "table_cell_numeric": "-45.01",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                265.3,
+                505.33,
+                527.87
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-45.01"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-45.0056593139",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-45.01",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1.31",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 6,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "1.31",
+              "table_cell_numeric": "1.31",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                602.31,
+                505.33,
+                741.62
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1.31"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1.31",
+          "vendor_update_days": [
+            "2024-04-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1.31",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:002114",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-03-29",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-29/1216247027.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-03-29"
+      ],
+      "vendor_update_days": [
+        "2024-03-30"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "efff6e4ae626ddfd8731aa18dbb35f7b58c130d961d0178ad563b7e5c00348a9",
+      "pdf_size_bytes": 3394590,
+      "pdf_total_pages": 231,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "1968690824.27",
+          "vendor_update_days": [
+            "2024-03-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "-236473503.08",
+          "vendor_update_days": [
+            "2024-03-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "7.8935380749",
+          "vendor_update_days": [
+            "2024-03-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "-17.52",
+          "vendor_update_days": [
+            "2024-03-30"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": false
+    },
+    {
+      "security_id": "SZSE:002818",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-03-31",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-31/1216272011.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-03-31"
+      ],
+      "vendor_update_days": [
+        "2024-03-29"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "b35c707691d61760f666e0f5e2556f069b3452ec4733daf94cb4bd111dfea6f2",
+      "pdf_size_bytes": 4412980,
+      "pdf_total_pages": 204,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "1482730184.19",
+          "vendor_update_days": [
+            "2024-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "783050306.45",
+          "vendor_update_days": [
+            "2024-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "-3.5187706979",
+          "vendor_update_days": [
+            "2024-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "NO_CURRENT_YEAR_CELL",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [],
+          "original_pdf_table_candidate_count": 0,
+          "vendor_2026_source_value": "13.24",
+          "vendor_update_days": [
+            "2024-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": false
+    },
+    {
+      "security_id": "SSE:603717",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "REPORT_NOT_DISCOVERED_IN_OFFICIAL_API_NOT_PROOF_OF_ABSENCE",
+      "official_announcement_day": null,
+      "official_original_pdf_url": null,
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-29"
+      ],
+      "vendor_update_days": [
+        "2024-06-08"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "NO_UNIQUE_ORIGINAL_2023_OR_2024_PDF_SOURCE"
+    },
+    {
+      "security_id": "SSE:688185",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-03-28",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-28/1216236894.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-03-28"
+      ],
+      "vendor_update_days": [
+        "2024-03-28"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "6414313b23a8df3a474eb139cd4bc57bc018cce7d04dc715124e0304c9d72af0",
+      "pdf_size_bytes": 4228353,
+      "pdf_total_pages": 214,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1034595000",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "1,034,595",
+              "table_cell_numeric": "1034595",
+              "unit_evidence": "thousand_yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                311.89,
+                531.36,
+                526.43
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1034595000"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1034595413.49",
+          "vendor_update_days": [
+            "2024-03-28"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1034595413.49",
+          "vendor_minus_source_value": "413.49",
+          "comparison_status": "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-909431000",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 3,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "-909,431",
+              "table_cell_numeric": "-909431",
+              "unit_evidence": "thousand_yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                311.89,
+                531.36,
+                526.43
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-909431000"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-909431138.03",
+          "vendor_update_days": [
+            "2024-03-28"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-909431138.03",
+          "vendor_minus_source_value": "-138.03",
+          "comparison_status": "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-75.94",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "-75.94",
+              "table_cell_numeric": "-75.94",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                311.89,
+                531.36,
+                526.43
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-75.94"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-75.9379739924",
+          "vendor_update_days": [
+            "2024-03-28"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-75.94",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-12.36",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "-12.36",
+              "table_cell_numeric": "-12.36",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                560.07,
+                531.36,
+                727.1
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-12.36"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-12.36",
+          "vendor_update_days": [
+            "2024-03-28"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-12.36",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:300252",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-28",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216657482.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_PDF_FETCH_IDENTITY_OR_TABLE_PARSING_FAILED",
+      "source_error": "ValueError:ISSUER_SECURITY_CODE_FISCAL_YEAR_OR_FULL_REPORT_NOT_IDENTIFIED"
+    },
+    {
+      "security_id": "SSE:603233",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-04-28",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-04-28/1216655482.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-04-28"
+      ],
+      "vendor_update_days": [
+        "2024-04-29"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "d1178aba47005c1eea673988ef7ecebbe4fde8736ce2dfb0f9b69bd358ff73e1",
+      "pdf_size_bytes": 6203169,
+      "pdf_total_pages": 237,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "21248086692.45",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "21,248,086,692.45",
+              "table_cell_numeric": "21248086692.45",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.41,
+                119.02,
+                510.97,
+                354.45
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "21248086692.45"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "21248086692.45",
+          "vendor_update_days": [
+            "2024-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "21248086692.45",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1035723834.94",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 2,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "1,035,723,834.94",
+              "table_cell_numeric": "1035723834.94",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.41,
+                119.02,
+                510.97,
+                354.45
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1035723834.94"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1035723834.94",
+          "vendor_update_days": [
+            "2024-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1035723834.94",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "26.78",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "26.78",
+              "table_cell_numeric": "26.78",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.41,
+                119.02,
+                510.97,
+                354.45
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "26.78"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "26.7835887102",
+          "vendor_update_days": [
+            "2024-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "26.78",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "17.87",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "17.87",
+              "table_cell_numeric": "17.87",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                58.41,
+                386.53,
+                510.97,
+                512.15
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "17.87"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "17.87",
+          "vendor_update_days": [
+            "2024-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "17.87",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:001896",
+      "fiscal_year": 2022,
+      "issued_year": 2023,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2023-03-25",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2023-03-25/1216222589.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2023-03-25"
+      ],
+      "vendor_update_days": [
+        "2024-04-25"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "bfbfcea1e6a9a7c1c1b58fb69b837299a662682161c041d6f78a8de4d699e002",
+      "pdf_size_bytes": 5777534,
+      "pdf_total_pages": 226,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "13097502049.75",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "13,097,502,0\n49.75",
+              "table_cell_numeric": "13097502049.75",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.06,
+                533.6,
+                533.28,
+                765.34
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "13097502049.75"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "13097502049.75",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "13097502049.75",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-2140481533.99",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 5,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "-\n2,140,481,53\n3.99",
+              "table_cell_numeric": "-2140481533.99",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.06,
+                533.6,
+                533.28,
+                765.34
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-2140481533.99"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-2140500473.51",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-2140500473.51",
+          "vendor_minus_source_value": "-18939.52",
+          "comparison_status": "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "9.69",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 10,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "9.69%",
+              "table_cell_numeric": "9.69",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.06,
+                533.6,
+                533.28,
+                765.34
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "9.69"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "9.6888558653",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "9.69",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-48.40",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 9,
+              "fiscal_year_column_header": "2022年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "加权平均净资产收益率",
+              "table_cell_original_text": "-48.40%",
+              "table_cell_numeric": "-48.40",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "CONTINUED_LAST_PAGES_CURRENT_YEAR_TABLE_COLUMN",
+              "table_bbox": [
+                51.12,
+                72.26,
+                533.31,
+                263.99
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-48.40"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-48.4",
+          "vendor_update_days": [
+            "2024-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-48.40",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SSE:688031",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-26",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219823708.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "59f1a21d25d9dd6ca803e514c6636066f5e273c26046338cb64bfd68fe54088e",
+      "pdf_size_bytes": 6742222,
+      "pdf_total_pages": 293,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "490805231.02",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 21,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "490,805,231.02",
+              "table_cell_numeric": "490805231.02",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.11,
+                167.14,
+                531.37,
+                472.67
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "490805231.02"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "490805231.02",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "490805231.02",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-288243033.17",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 21,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 3,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "-288,243,033.17",
+              "table_cell_numeric": "-288243033.17",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.11,
+                167.14,
+                531.37,
+                472.67
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-288243033.17"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-288243033.17",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-288243033.17",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "31.72",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 21,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "31.72",
+              "table_cell_numeric": "31.72",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.11,
+                167.14,
+                531.37,
+                472.67
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "31.72"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "31.7157081699",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "31.72",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-18.30",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 21,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "-18.30",
+              "table_cell_numeric": "-18.30",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.11,
+                516.75,
+                531.37,
+                695.9
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-18.30"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-18.3",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-18.30",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:000070",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-26",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219841790.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-26"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "37aec7575470b1770cd704af0b9280abc704ec4613b73a71ec0d6546581923ae",
+      "pdf_size_bytes": 2381235,
+      "pdf_total_pages": 213,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "4937289689.32",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "4,937,289,689.3\n2",
+              "table_cell_numeric": "4937289689.32",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                70.91,
+                528.92,
+                566.94,
+                756.32
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "4937289689.32"
+            },
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "4,937,289,689.32",
+              "table_cell_numeric": "4937289689.32",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                85.12,
+                637.14,
+                566.92,
+                726.1
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "4937289689.32"
+            }
+          ],
+          "original_pdf_table_candidate_count": 2,
+          "vendor_2026_source_value": "4937289689.32",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "4937289689.32",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-272482091.07",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 5,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "-272,482,091.07",
+              "table_cell_numeric": "-272482091.07",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                70.91,
+                528.92,
+                566.94,
+                756.32
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-272482091.07"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-272482091.07",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-272482091.07",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "17.79",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 6,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "17.79%",
+              "table_cell_numeric": "17.79",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                70.91,
+                528.92,
+                566.94,
+                756.32
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "17.79"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "17.789781004",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "17.79",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-14.27",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 5,
+              "field_label": "加权平均净资产收益率",
+              "table_cell_original_text": "-14.27%",
+              "table_cell_numeric": "-14.27",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "CONTINUED_LAST_PAGES_CURRENT_YEAR_TABLE_COLUMN",
+              "table_bbox": [
+                70.91,
+                56.8,
+                566.92,
+                292.79
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-14.27"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-14.27",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-14.27",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SSE:601878",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-11",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-11/1219564546.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-11"
+      ],
+      "vendor_update_days": [
+        "2025-04-11"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "38d776c1615800791afd7b8ca6a9c128130f890ee146e5c129881f275ec4bf08",
+      "pdf_size_bytes": 5250478,
+      "pdf_total_pages": 302,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "17638225323.48",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 27,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "17,638,225,323.48",
+              "table_cell_numeric": "17638225323.48",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.14,
+                703.3,
+                531.34,
+                759.34
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "17638225323.48"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "17638225323.48",
+          "vendor_update_days": [
+            "2025-04-11"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "17638225323.48",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "MISSING_UNIT_OR_COLUMN_CERTIFICATION",
+          "original_current_year_table_value": null,
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 28,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 0,
+              "field_label": "归属于母公司股东的净利润",
+              "table_cell_original_text": "1,753,537,425.31",
+              "table_cell_numeric": "1753537425.31",
+              "unit_evidence": "UNRESOLVED_MONEY_UNIT",
+              "year_mapping_evidence": "CONTINUED_LAST_PAGES_CURRENT_YEAR_TABLE_COLUMN",
+              "table_bbox": [
+                90.14,
+                76.44,
+                531.34,
+                409.13
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "MONEY_UNIT_UNVERIFIED"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1753537425.31",
+          "vendor_update_days": [
+            "2025-04-11"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "comparison_status": "UNRESOLVED_OR_AMBIGUOUS_ORIGINAL_PDF_TABLE_FIELD"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "4.90",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 27,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "4.90",
+              "table_cell_numeric": "4.90",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.14,
+                703.3,
+                531.34,
+                759.34
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "4.90"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "4.9013297654",
+          "vendor_update_days": [
+            "2025-04-11"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "4.90",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "6.61",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 28,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "6.61",
+              "table_cell_numeric": "6.61",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.14,
+                444.77,
+                531.34,
+                583.99
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "6.61"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "6.61",
+          "vendor_update_days": [
+            "2025-04-11"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "6.61",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": false
+    },
+    {
+      "security_id": "SSE:688141",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-30",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-30/1219923763.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-30"
+      ],
+      "vendor_update_days": [
+        "2025-04-22"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "50b4c7e14b3dcbd9119e9d3744b2af5ac6866d07f25afc6952adb42f30b8417e",
+      "pdf_size_bytes": 6428330,
+      "pdf_total_pages": 274,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1296748737.23",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 10,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "1,296,748,737.23",
+              "table_cell_numeric": "1296748737.23",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                287.53,
+                531.37,
+                568.31
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1296748737.23"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1296748737.23",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1296748737.23",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-531409069.34",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 10,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 3,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "-531,409,069.34",
+              "table_cell_numeric": "-531409069.34",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                287.53,
+                531.37,
+                568.31
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-531409069.34"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-531409069.34",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-531409069.34",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-10.43",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 10,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "-10.43",
+              "table_cell_numeric": "-10.43",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                287.53,
+                531.37,
+                568.31
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-10.43"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-10.425623763",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-10.43",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-18.36",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 10,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "-18.36",
+              "table_cell_numeric": "-18.36",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                90.12,
+                624.54,
+                531.37,
+                764.3
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "-18.36"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-18.36",
+          "vendor_update_days": [
+            "2025-04-22"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-18.36",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:300822",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-20",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219692835.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-25"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "c472d623d8a7e3bb5f21beeda8029bd968d97eea5235727d76685f7fd625288d",
+      "pdf_size_bytes": 4585904,
+      "pdf_total_pages": 178,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "866835918.75",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "866,835,918.\n75",
+              "table_cell_numeric": "866835918.75",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                290.74,
+                533.27,
+                706.05
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "866835918.75"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "866835918.75",
+          "vendor_update_days": [
+            "2025-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "866835918.75",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "47606804.53",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 5,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "47,606,804.5\n3",
+              "table_cell_numeric": "47606804.53",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                290.74,
+                533.27,
+                706.05
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "47606804.53"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "47606804.53",
+          "vendor_update_days": [
+            "2025-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "47606804.53",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-12.77",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 10,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "-12.77%",
+              "table_cell_numeric": "-12.77",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                290.74,
+                533.27,
+                706.05
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-12.77"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-12.7741765312",
+          "vendor_update_days": [
+            "2025-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-12.77",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "3.82",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 20,
+              "field_label": "加权平均净资产收益率",
+              "table_cell_original_text": "3.82%",
+              "table_cell_numeric": "3.82",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                290.74,
+                533.27,
+                706.05
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "3.82"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "3.82",
+          "vendor_update_days": [
+            "2025-04-25"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "3.82",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:002191",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-20",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219701083.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-29"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "753627600b972e9a1b5d0846a82be782771b4103bd7d418b3a6a720116ca6d90",
+      "pdf_size_bytes": 1524710,
+      "pdf_total_pages": 217,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "3945497084.44",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 9,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 2,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "3,945,497,084.44",
+              "table_cell_numeric": "3945497084.44",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                394.67,
+                544.0,
+                757.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "3945497084.44"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "3945497084.44",
+          "vendor_update_days": [
+            "2025-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "3945497084.44",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "118370068.09",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 9,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 3,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "118,370,068.09",
+              "table_cell_numeric": "118370068.09",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                394.67,
+                544.0,
+                757.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "118370068.09"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "118370068.09",
+          "vendor_update_days": [
+            "2025-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "118370068.09",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-23.96",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 9,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 4,
+              "current_year_row_index": 2,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "-23.96%",
+              "table_cell_numeric": "-23.96",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                394.67,
+                544.0,
+                757.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-23.96"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-23.958978847",
+          "vendor_update_days": [
+            "2025-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-23.96",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1.64",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 9,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 8,
+              "field_label": "加权平均净资产收益率项目",
+              "table_cell_original_text": "1.64%",
+              "table_cell_numeric": "1.64",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.28,
+                394.67,
+                544.0,
+                757.66
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1.64"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1.64",
+          "vendor_update_days": [
+            "2025-04-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1.64",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:000501",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-03-30",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219471864.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "0201947c9b6b9383aaab9d72f871d5af04f2ac9c348a0a43d5ee5b48cdecbfe6",
+      "pdf_size_bytes": 4408039,
+      "pdf_total_pages": 168,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "7177500740.94",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "7,177,500,74\n0.94",
+              "table_cell_numeric": "7177500740.94",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.15,
+                614.74,
+                533.37,
+                766.16
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "7177500740.94"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "7177500740.94",
+          "vendor_update_days": [
+            "2025-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "7177500740.94",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "209077636.90",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 5,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "209,077,636.\n90",
+              "table_cell_numeric": "209077636.90",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.15,
+                614.74,
+                533.37,
+                766.16
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "209077636.90"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "209077636.9",
+          "vendor_update_days": [
+            "2025-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "209077636.9",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "13.26",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 10,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "13.26%",
+              "table_cell_numeric": "13.26",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                51.15,
+                614.74,
+                533.37,
+                766.16
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "13.26"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "13.2606055758",
+          "vendor_update_days": [
+            "2025-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "13.26",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "1.91",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 9,
+              "field_label": "加权平均净资产收益率",
+              "table_cell_original_text": "1.91%",
+              "table_cell_numeric": "1.91",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "CONTINUED_LAST_PAGES_CURRENT_YEAR_TABLE_COLUMN",
+              "table_bbox": [
+                51.18,
+                72.15,
+                533.35,
+                332.37
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "1.91"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "1.91",
+          "vendor_update_days": [
+            "2025-03-29"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "1.91",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SSE:600837",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-03-29",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-29/1219446510.PDF",
+      "retrospective_vendor_row_count": 0,
+      "vendor_notice_days": [],
+      "vendor_update_days": [],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_PDF_FETCH_IDENTITY_OR_TABLE_PARSING_FAILED",
+      "source_error": "ValueError:ISSUER_SECURITY_CODE_FISCAL_YEAR_OR_FULL_REPORT_NOT_IDENTIFIED"
+    },
+    {
+      "security_id": "SSE:603333",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-27",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-27/1219879887.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-27"
+      ],
+      "vendor_update_days": [
+        "2025-04-26"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "4832f6db81896a6695b13e0f61c10a95e643cb758e420c92c88ff6231fb30da1",
+      "pdf_size_bytes": 4715198,
+      "pdf_total_pages": 229,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "2206670507.99",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "2,206,670,507.99",
+              "table_cell_numeric": "2206670507.99",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                221.26,
+                505.07,
+                482.99
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "2206670507.99"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "2206670507.99",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "2206670507.99",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "20443401.12",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 2,
+              "field_label": "归属于上市公司股东的净利润",
+              "table_cell_original_text": "20,443,401.12",
+              "table_cell_numeric": "20443401.12",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                221.26,
+                505.07,
+                482.99
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "20443401.12"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "20443401.12",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "20443401.12",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "9.41",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 1,
+              "field_label": "营业收入",
+              "table_cell_original_text": "9.41",
+              "table_cell_numeric": "9.41",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                221.26,
+                505.07,
+                482.99
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "9.41"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "9.4132944859",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "9.41",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "0.96",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 8,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 1,
+              "current_year_row_index": 4,
+              "field_label": "加权平均净资产收益率(%)",
+              "table_cell_original_text": "0.96",
+              "table_cell_numeric": "0.96",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                64.07,
+                564.27,
+                505.07,
+                701.3
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "0.96"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "0.96",
+          "vendor_update_days": [
+            "2025-04-26"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "0.96",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    },
+    {
+      "security_id": "SZSE:300406",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-03-30",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-30/1219467029.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-03-30"
+      ],
+      "vendor_update_days": [
+        "2025-03-29"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_PDF_FETCH_IDENTITY_OR_TABLE_PARSING_FAILED",
+      "source_error": "ValueError:ISSUER_SECURITY_CODE_FISCAL_YEAR_OR_FULL_REPORT_NOT_IDENTIFIED"
+    },
+    {
+      "security_id": "SZSE:000703",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-04-20",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-20/1219706490.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-04-20"
+      ],
+      "vendor_update_days": [
+        "2025-04-24"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": false,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_PDF_FETCH_IDENTITY_OR_TABLE_PARSING_FAILED",
+      "source_error": "ValueError:ISSUER_SECURITY_CODE_FISCAL_YEAR_OR_FULL_REPORT_NOT_IDENTIFIED"
+    },
+    {
+      "security_id": "SZSE:300224",
+      "fiscal_year": 2023,
+      "issued_year": 2024,
+      "source_discovery_status": "ONE_ORIGINAL_ANNUAL_PDF_CANDIDATE",
+      "official_announcement_day": "2024-03-28",
+      "official_original_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-03-28/1219428105.PDF",
+      "retrospective_vendor_row_count": 1,
+      "vendor_notice_days": [
+        "2024-03-28"
+      ],
+      "vendor_update_days": [
+        "2025-04-23"
+      ],
+      "original_PDF_release_time_sha256_certified": false,
+      "pdf_original_current_year_field_source": true,
+      "live_buy_eligibility": "NOT_AUTHORIZED",
+      "status": "ORIGINAL_FULL_REPORT_IDENTITY_VERIFIED_TABLE_SCAN_COMPLETE",
+      "pdf_sha256_2026_retrieval": "c556c110148f34eeb15ab83bdf3bdc95cc4dc560d75e5dae9fc1be7a5f007f31",
+      "pdf_size_bytes": 4534567,
+      "pdf_total_pages": 178,
+      "original_table_status": "ORIGINAL_YEAR_ACCOUNTING_TABLE_SCAN_COMPLETE",
+      "field_sources": {
+        "revenue_yuan": {
+          "financial_field": "revenue_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "5873747747.73",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "5,873,747,747.73",
+              "table_cell_numeric": "5873747747.73",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                56.71,
+                260.95,
+                538.69,
+                656.25
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "5873747747.73"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "5873747747.73",
+          "vendor_update_days": [
+            "2025-04-23"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "5873747747.73",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "parent_net_profit_yuan": {
+          "financial_field": "parent_net_profit_yuan",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "447505171.66",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "parent_net_profit_yuan",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 4,
+              "field_label": "归属于上市公司股东的净利润(元)",
+              "table_cell_original_text": "447,505,171.66",
+              "table_cell_numeric": "447505171.66",
+              "unit_evidence": "yuan",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                56.71,
+                260.95,
+                538.69,
+                656.25
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "447505171.66"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "447505171.66",
+          "vendor_update_days": [
+            "2025-04-23"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "447505171.66",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "revenue_growth_yoy_pct": {
+          "financial_field": "revenue_growth_yoy_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "-7.05",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "revenue_growth_yoy_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 10,
+              "current_year_row_index": 3,
+              "field_label": "营业收入(元)",
+              "table_cell_original_text": "-7.05%",
+              "table_cell_numeric": "-7.05",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                56.71,
+                260.95,
+                538.69,
+                656.25
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "ANNUAL_REVENUE_YOY_COLUMN_EXTRACTED",
+              "normalized_value": "-7.05"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "-7.0464928044",
+          "vendor_update_days": [
+            "2025-04-23"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "-7.05",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        },
+        "weighted_roe_pct": {
+          "financial_field": "weighted_roe_pct",
+          "original_current_year_table_source_status": "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED",
+          "original_current_year_table_value": "12.09",
+          "original_pdf_table_evidence": [
+            {
+              "financial_field": "weighted_roe_pct",
+              "source_pdf_page_1based": 7,
+              "fiscal_year_column_header": "2023年",
+              "current_year_table_column_index": 3,
+              "current_year_row_index": 18,
+              "field_label": "加权平均净资产收益率",
+              "table_cell_original_text": "12.09%",
+              "table_cell_numeric": "12.09",
+              "unit_evidence": "percentage_points",
+              "year_mapping_evidence": "EXPLICIT_CURRENT_FISCAL_YEAR_TABLE_HEADER",
+              "table_bbox": [
+                56.71,
+                260.95,
+                538.69,
+                656.25
+              ],
+              "source_table_cell_not_pit_release_hash": true,
+              "third_party_vendor_value_NOT_used_for_extraction": true,
+              "status": "CURRENT_FISCAL_YEAR_CELL_EXTRACTED",
+              "normalized_value": "12.09"
+            }
+          ],
+          "original_pdf_table_candidate_count": 1,
+          "vendor_2026_source_value": "12.09",
+          "vendor_update_days": [
+            "2025-04-23"
+          ],
+          "original_release_time_binary_hash_certified": false,
+          "2026_vendor_financial_record_not_a_historical_original_vintage": true,
+          "vendor_to_original_printed_precision": "12.09",
+          "vendor_minus_source_value": "0.00",
+          "comparison_status": "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+        }
+      },
+      "original_table_all_four_fields_unambiguous": true
+    }
+  ]
+}
