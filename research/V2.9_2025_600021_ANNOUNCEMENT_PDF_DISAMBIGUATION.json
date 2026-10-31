@@ -1,0 +1,34 @@
+{
+  "schema": "V29_FY2024_ORIGINAL_PDF_METADATA_AMBIGUITY_RESOLUTION_V1",
+  "research_date": "2026-10-31",
+  "security_id": "SSE:600021",
+  "company_name": "上海电力",
+  "original_publication_day": "2025-04-01",
+  "discovery_manifest": "evidence/v29_original_fy2024_discovery_128/DISCOVERY_128.json",
+  "rationale": "CNINFO metadata lists two same-day candidates without a reliable summary label for the second. Actual PDF first pages and full page counts distinguish original full annual report (323 pages) from an annual report summary (11 pages).",
+  "full_report": {
+    "cninfo_document_id": "1222972839",
+    "pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972839.PDF",
+    "announced_title": "上海电力股份有限公司2024年年度报告（全文）",
+    "actual_pdf_cover": "上海电力股份有限公司2024年年度报告",
+    "actual_pdf_pages": 323,
+    "actual_pdf_company_code": "600021",
+    "source_verified_via_pdf_rendered_first_page": true
+  },
+  "mislabeled_summary": {
+    "cninfo_document_id": "1222972845",
+    "pdf_url": "https://static.cninfo.com.cn/finalpage/2025-04-01/1222972845.PDF",
+    "cninfo_metadata_title": "上海电力股份有限公司2024年年度报告",
+    "actual_pdf_cover": "上海电力股份有限公司2024年年度报告摘要",
+    "actual_pdf_pages": 11,
+    "underlying_document_is_summary": true
+  },
+  "resolution": "USE_1222972839_FULL_REPORT_ONLY",
+  "evidence_limitation": "The original full-report PDF bytes are not yet durably stored and its SHA256 has not been computed by the V2.9 batch proof. This manually checked resolution is not automatic proof that every other discovered URL points to a full report.",
+  "vendor_source_notice_date_matches": true,
+  "vendor_row_updated_after_2025": true,
+  "financial_fields_as_disclosed_certified": false,
+  "pdf_binary_sha256_certified": false,
+  "independent_oos_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED"
+}
