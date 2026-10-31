@@ -1,0 +1,77 @@
+name: V2.9 FY2024 Post-Disclosure Price Evidence — Fixed 128
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-post-disclosure-price-128.yml'
+      - 'scripts/v29_2025_128_post_filing_price_path.py'
+      - 'scripts/test_v29_2025_128_post_filing_price_path.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-post-disclosure-price-128.yml'
+      - 'scripts/v29_2025_128_post_filing_price_path.py'
+permissions:
+  contents: read
+
+jobs:
+  fixed-sample-price-source-probe:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test 128 denominator, no lookahead, ST/halt, fixed entry and exit
+        run: python -m unittest discover -s scripts -p 'test_v29_2025_128_post_filing_price_path.py' -v
+      - name: Install known free historical market source
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Check true 2025 market data for first four frozen sampled securities
+        run: python scripts/v29_2025_128_post_filing_price_path.py --probe
+
+  capture-complete-128-price-evidence:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate immutable sample and all boundary tests
+        run: python -m unittest discover -s scripts -p 'test_v29_2025_128_post_filing_price_path.py' -v
+      - name: Install pinned historical quote source
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Acquire 128 actual stock-price paths and CSI300 index with one public BaoStock session
+        run: |
+          python scripts/v29_2025_128_post_filing_price_path.py --out /tmp/v29-2025-price-128
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          folder=Path('/tmp/v29-2025-price-128')
+          d=json.loads((folder/'PRICE_PATH_128.json').read_text())
+          raw=gzip.decompress((folder/'RAW_BAOSTOCK_QUOTES_AND_CALENDAR.json.gz').read_bytes())
+          assert hashlib.sha256(raw).hexdigest()==d['raw_vendor_snapshot_sha256']
+          assert len(d['rows'])==128 and d['sample_size']==128
+          assert d['price_comparison_count']+d['missing_or_nontradeable_count']==128
+          assert d['strategy_validated'] is False and d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          if d['price_comparison_count']==0:
+              raise SystemExit('NO_HISTORICAL_PRICE_OBSERVATIONS_COLLECTED')
+          print('COMPLETE_PRICE_ENDPOINTS',d['price_comparison_count'],'/128')
+          print('MISSING_OR_NONTRADEABLE',d['missing_or_nontradeable_count'])
+          print('NOT_OOS_NOT_TOTAL_RETURN_NO_BUY')
+          PY
+      - name: Persist complete 128-case dated price evidence and compressed raw vendor source bytes
+        run: |
+          mkdir -p research/v29_2025_post_disclosure_price_128
+          cp /tmp/v29-2025-price-128/PRICE_PATH_128.json research/v29_2025_post_disclosure_price_128/
+          cp /tmp/v29-2025-price-128/RAW_BAOSTOCK_QUOTES_AND_CALENDAR.json.gz research/v29_2025_post_disclosure_price_128/
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/v29_2025_post_disclosure_price_128/
+          git diff --cached --quiet || (git commit -m "research(v29): seal 128 FY2024 annual-report-to-market price paths [skip ci]" && git push origin HEAD:main)
+      - name: Retain source and calculations even if git persistence fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-2025-post-disclosure-price-128
+          path: /tmp/v29-2025-price-128/
+          retention-days: 14
+          if-no-files-found: warn
