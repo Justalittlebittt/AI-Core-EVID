@@ -131,6 +131,14 @@ class Fixed20ExitTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"AWARE_MATURITY_CLOCK_REQUIRED"):
             after_maturity_gate(datetime(2026,11,27,20))
 
+    def test_hindsight_outcome_requery_after_registered_window_rejected_before_login(self):
+        bs=FakeBS()
+        with self.assertRaisesRegex(ValueError,"FIXED_FORWARD_OUTCOME_SOURCE_WINDOW_EXPIRED"):
+            capture(bs,now=datetime(2026,12,3,0,1,tzinfo=LOCAL),
+                    official_fetch=lambda _d:fake_index(),
+                    entry_sources=synthetic_entry())
+        self.assertEqual(bs.calls,[])
+
     def test_vendor_calendar_must_have_20_and_not_shift_entry_date(self):
         with self.assertRaisesRegex(ValueError,"FROZEN_20_SESSION_WINDOW_NOT_COMPLETE"):
             trading_sessions(trading_calendar()[:-1],AFTER.date())
