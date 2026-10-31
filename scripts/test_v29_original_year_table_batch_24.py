@@ -103,7 +103,7 @@ class Batch24TableTests(unittest.TestCase):
                 self.assertEqual(
                     record["field_sources"]["parent_net_profit_yuan"]
                     ["comparison_status"],
-                    "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE")
+                    "DIFFERENCE_BEYOND_PUBLISHED_PRECISION_REQUIRES_SOURCE_REVIEW")
                 self.assertEqual(
                     record["field_sources"]["parent_net_profit_yuan"]
                     ["vendor_minus_source_value"],"380405.97")

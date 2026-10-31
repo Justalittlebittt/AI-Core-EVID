@@ -20,6 +20,7 @@ from pathlib import Path
 from v29_2023_2024_original_filing_discovery_256 import load_frozen_frames
 from v29_original_filing_pdf_proof import fetch_binary
 from v29_original_year_table_parser import parse_original_table,FIELDS
+from v29_original_table_reporting_precision import reconcile_field
 
 ROOT=Path(__file__).resolve().parents[1]
 OFFICIAL=ROOT/"evidence/v29_original_2023_2024_reports_256/HISTORICAL_256_OFFICIAL_DISCOVERY.json"
@@ -98,17 +99,13 @@ def compare_original_field(extracted,record,field):
     elif record["matched_vendor_rows"]!=1 or vendor_value is None:
         answer["comparison_status"]="ORIGINAL_PDF_VALUE_FOUND_NO_UNIQUE_RETROSPECTIVE_VENDOR"
     else:
-        historical=Decimal(orig["extracted_value"])
-        later=Decimal(str(vendor_value))
-        # PDF money tables normally have 2-decimal cent precision, percentages
-        # 2-decimal percentage point. NEVER infer profit values from P&L text.
-        comparable=(later.quantize(PERCENT,rounding=ROUND_HALF_UP)
-                    if field.endswith("_pct") else later)
-        answer["vendor_to_original_printed_precision"]=str(comparable)
-        answer["vendor_minus_source_value"]=str(comparable-historical)
-        answer["comparison_status"]=(
-            "EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH" if comparable==historical
-            else "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE")
+        revised=reconcile_field(answer)
+        answer["original_reporting_quantum"]=revised["original_reporting_quantum"]
+        answer["vendor_to_original_printed_precision"]=revised[
+            "later_vendor_rounded_to_original_source_reporting_precision"]
+        answer["vendor_minus_source_value"]=revised[
+            "later_vendor_minus_source_unrounded"]
+        answer["comparison_status"]=revised["status"]
     return answer
 
 def one(target,fetch,raw_out=None):
@@ -194,11 +191,11 @@ def collect(out,raw_out=None,fetch=fetch_binary):
             f["original_current_year_table_source_status"]==
             "UNIQUE_FISCAL_YEAR_TABLE_CELL_EXTRACTED" for f in fields),
         "table_field_agrees_with_retrospective_vendor_count":sum(
-            f["comparison_status"]=="EXACT_ORIGINAL_TABLE_PRINTED_VALUE_MATCH"
+            f["comparison_status"]=="SAME_NUMERIC_VALUE_AS_ORIGINAL_PUBLISHED_CELL"
             for f in fields),
         "table_field_disagrees_with_retrospective_vendor_count":sum(
             f["comparison_status"]==
-            "ORIGINAL_AS_DISCLOSED_DIFFERS_FROM_LATER_VENDOR_VALUE" for f in fields),
+            "DIFFERENCE_BEYOND_PUBLISHED_PRECISION_REQUIRES_SOURCE_REVIEW" for f in fields),
         "source_pdf_bytes_in_this_git_commit":False,
         "source_pdf_raw_bytes_stored_as_bounded_actions_artifact":bool(raw_out),
         "this_2026_retrospective_archive_proves_original_report_release_time_hash":False,
