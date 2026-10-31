@@ -88,9 +88,21 @@ def trading_sessions(calendar,asof):
     days=sorted(day for day,flag in seen.items() if flag=="1")
     if len(days)<HORIZON:
         raise ValueError("FROZEN_20_SESSION_WINDOW_NOT_COMPLETE")
-    final=days[HORIZON-1]
-    if final < EARLIEST_PLAUSIBLE_EXIT:
-        raise ValueError("FUTURE_TRADING_CALENDAR_VIOLATES_2026_HOLIDAY_SCHEDULE")
+    # SSE's published 2026 closure notice lists no November public-market
+    # holidays. Demand an independently expected full Nov 2-27 calendar:
+    # missing a single vendor weekday must NOT silently slide the exit to Nov 30.
+    # An extraordinary exchange closure requires explicit source reconciliation
+    # rather than retroactive horizon/date changes.
+    expected=[ENTRY_DAY.fromordinal(n) for n in
+              range(ENTRY_DAY.toordinal(),EARLIEST_PLAUSIBLE_EXIT.toordinal()+1)]
+    if len([d for d in expected if d.weekday()<5])!=HORIZON:
+        raise ValueError("FROZEN_NOVEMBER_REFERENCE_CALENDAR_INCONSISTENT")
+    if any(d not in seen for d in expected):
+        raise ValueError("NOVEMBER_EXCHANGE_CALENDAR_HAS_MISSING_DATES")
+    if any(seen[d]!=("1" if d.weekday()<5 else "0") for d in expected):
+        raise ValueError("NOVEMBER_EXCHANGE_CALENDAR_CONFLICTS_WITH_PUBLISHED_CLOSURES")
+    if days[HORIZON-1]!=EARLIEST_PLAUSIBLE_EXIT:
+        raise ValueError("TWENTIETH_SESSION_SLID_FROM_FROZEN_NOVEMBER_SCHEDULE")
     return [x.isoformat() for x in days[:HORIZON]]
 
 def require_20th_close(sessions,now):
