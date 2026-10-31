@@ -1,0 +1,2393 @@
+{
+  "schema": "V29_122_PROSPECTIVE_PREENTRY_SOURCE_FEASIBILITY_V1",
+  "captured_at_utc": "2026-10-31T06:02:12.582180+00:00",
+  "protocol_sha256": "5c9fd8bee18dd2fd5af6acf0eed1a1768d8d370274a1098e21f6cae064f9e957",
+  "frozen_sample_sha256": "7dd4cf1f5e90c50e35f91d0092fb14b81a25d07682f147a09c8c7ed73b221b7e",
+  "frozen_cohort_count": 122,
+  "attempted_count": 122,
+  "historical_reference_session": "2026-10-30",
+  "future_sessions_queried": false,
+  "stock_reference_bar_both_versions_ok": 122,
+  "stock_reference_bar_uncertain_count": 0,
+  "benchmark": {
+    "source": "CSINDEX_OFFICIAL_INDEX_PERF",
+    "requested_index": "H00300.CSI",
+    "benchmark_source_status": "OFFICIAL_H00300_PRE_FREEZE_REFERENCE_BAR_VERIFIED",
+    "reference_close": 6001.14,
+    "reference_index_points": [
+      {
+        "date": "2026-10-20",
+        "index": "H00300.CSI",
+        "close": 6243.18
+      },
+      {
+        "date": "2026-10-21",
+        "index": "H00300.CSI",
+        "close": 6185.14
+      },
+      {
+        "date": "2026-10-22",
+        "index": "H00300.CSI",
+        "close": 6071.79
+      },
+      {
+        "date": "2026-10-23",
+        "index": "H00300.CSI",
+        "close": 6179.38
+      },
+      {
+        "date": "2026-10-26",
+        "index": "H00300.CSI",
+        "close": 6177.54
+      },
+      {
+        "date": "2026-10-27",
+        "index": "H00300.CSI",
+        "close": 6097.04
+      },
+      {
+        "date": "2026-10-28",
+        "index": "H00300.CSI",
+        "close": 6148.71
+      },
+      {
+        "date": "2026-10-29",
+        "index": "H00300.CSI",
+        "close": 6085.42
+      },
+      {
+        "date": "2026-10-30",
+        "index": "H00300.CSI",
+        "close": 6001.14
+      }
+    ],
+    "official_raw_sha256": "dd9dee70522fcc586ea6fa21f6f4d6840b20a1233b875d8d06b4e335eb436c46"
+  },
+  "benchmark_raw_response_sha256": "dd9dee70522fcc586ea6fa21f6f4d6840b20a1233b875d8d06b4e335eb436c46",
+  "benchmark_type_price_index_substitution_allowed": false,
+  "first_future_reference_close_observed": false,
+  "exit_future_reference_close_observed": false,
+  "prospective_122_price_outcomes_ready": false,
+  "strategy_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SSE:601965",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.85,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 6158663.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.85,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 6158663.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4c85d23cf07a5e36bd494fe48807429354000b36660f439a33bff550d037985e"
+    },
+    {
+      "security_id": "SSE:688630",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 213.42,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 6295665.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 213.42,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 6295665.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "37ddade80651e60f85a07c5091d963a4f75c152a33e80997a87dbe3a6c898526"
+    },
+    {
+      "security_id": "SZSE:300519",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.89,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4325500.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.89,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4325500.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "526779c7bbc4b3f904ebcf82d3b6db129e3317d0ee50cf8bef10635d2aa92b43"
+    },
+    {
+      "security_id": "SSE:600601",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.58,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 331425500.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.58,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 331425500.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "92edf48a040ab1eb0ddbd8f33dbbeb9548cdadc5c7a446f2572eab55f2e74ea7"
+    },
+    {
+      "security_id": "SSE:603186",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 147.29,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24531831.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 147.29,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24531831.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "b098dd296fbf59ed6aab05809a0050ce8692de9cfd15cdd9fc59df6d2a22b3e2"
+    },
+    {
+      "security_id": "SZSE:000636",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.26,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 78318599.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.26,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 78318599.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "809371b269769ed87b12105c22b06692795bf74d23e91d0e8f7884402bf0fa09"
+    },
+    {
+      "security_id": "SZSE:001232",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 153.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3889445.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 153.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3889445.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ead5f58a69f4a05fe32b1721502cb37bb4eb4be75c01e6b52021dea4f5c32134"
+    },
+    {
+      "security_id": "SZSE:002134",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.41,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 22438901.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.41,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 22438901.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "fa98c3f22b5737a34623403bfdcc402d55b0c42d27bcdf75547c52f9cb38e42a"
+    },
+    {
+      "security_id": "SZSE:002436",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 28.91,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 108604694.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 28.91,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 108604694.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "8c098d4c8e2928d0b63a8fa410d1d6aed7ec2afcfdccb933a9522bfcbf7c3807"
+    },
+    {
+      "security_id": "SZSE:002463",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 87.34,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 64044235.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 87.34,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 64044235.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "d6b8ce8980f8069c727f912f043ff0b92bb063e771ed40807d1986bc96afb269"
+    },
+    {
+      "security_id": "SZSE:002484",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.29,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 35103207.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.29,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 35103207.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ecd0d3d586621f16b38ec14c3b24b9b0faf0df2e1a073ba550842c1bcfa2d883"
+    },
+    {
+      "security_id": "SZSE:002552",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.74,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 26100200.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.74,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 26100200.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4d189240970b0266a684009be25a06765c2c58dc408c5c0a86f99ec30176bfa2"
+    },
+    {
+      "security_id": "SZSE:002636",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 63.68,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 66690152.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 63.68,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 66690152.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "93007a04a5b77f94e53ad15e1d925b75487862c23a1780106bdbadd717a94f22"
+    },
+    {
+      "security_id": "SZSE:002916",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 233.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10619953.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 233.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10619953.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "3c0cd30c9c5ef674b33347694e466e7021b804556c423b677a0922e736b0421e"
+    },
+    {
+      "security_id": "SZSE:002938",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 55.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 37379168.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 55.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 37379168.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4d27d4e10c1f7b3337b56d5403327c0f1e4383abd119ac07ae0721356179c9dd"
+    },
+    {
+      "security_id": "SZSE:300408",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 79.23,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 50424482.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 79.23,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 50424482.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "943faefb7f64f73093c960c2494b8c77c4c3076969842de3f490f14c2ff8be8d"
+    },
+    {
+      "security_id": "SZSE:300852",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 52.32,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16433200.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 52.32,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16433200.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "454bc67913f10a66bc831e5c8d255f44c66245eda3cf2d45deaaadcca399ca8e"
+    },
+    {
+      "security_id": "SZSE:301041",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 27.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 11078598.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 27.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 11078598.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "1ca83b356d56e4a9de3753cbe573e53488ea9f625a2641ed3df03005485c87b0"
+    },
+    {
+      "security_id": "SZSE:301366",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 47.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10846696.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 47.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10846696.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "2d910e120f8863f0223537532aaff100dc7661cd4643a15e7f8425af9b576979"
+    },
+    {
+      "security_id": "SZSE:301458",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 29.36,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5646400.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 29.36,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5646400.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "5b3cf73fd49661c9aa6ffdc05855ab20b5434707668f68a6d2eae441a4fd1a9f"
+    },
+    {
+      "security_id": "SSE:688195",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 97.58,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8413805.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 97.58,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8413805.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "2cd974a73db6c9fa8cee897f3da481f5e1591c3a18b3b097ef24c6e994ec147f"
+    },
+    {
+      "security_id": "SZSE:002273",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.7,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 43563375.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.7,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 43563375.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "bc40ecaab44ce8928d7664099851ee0c118e9bd67cb10faf8a678f7a0421ac82"
+    },
+    {
+      "security_id": "SZSE:300219",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 5.73,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13228999.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 5.73,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13228999.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "0fc0adb0f4a36a06f4797607684a269e4dcbcaeb67cc546b06ba67c04782cd98"
+    },
+    {
+      "security_id": "SZSE:301421",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 53.58,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3729582.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 53.58,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3729582.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "cd8fc52572d4e83f34c79725a85f9f036004fd7bfddce1ffd562ade44fd9aa61"
+    },
+    {
+      "security_id": "SSE:688002",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 138.5,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10753842.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 138.5,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10753842.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "07fc00b9891c7841fad1b05044e20cee8c25669862978822aaece5eef24a189a"
+    },
+    {
+      "security_id": "SSE:600078",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 8.91,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 29162258.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 8.91,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 29162258.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "9f937d6b355f0c27ac0b2f344a500d954f0f6726aacfd197474ed9b823180e82"
+    },
+    {
+      "security_id": "SZSE:000408",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 68.05,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5852376.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 68.05,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5852376.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "af198b05aaa02a65c5c804b0089f16a30873f17d2b34766b3c274ef87b3ff805"
+    },
+    {
+      "security_id": "SSE:603022",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.82,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5497200.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.82,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5497200.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "857be25a8c42e0b706bbebb460485f28dfb03d9a7741180141793e242fdfcf34"
+    },
+    {
+      "security_id": "SZSE:002014",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.42,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3665226.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.42,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3665226.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "c7f442e97e8256613edb110aca2e341a4a3491f92cb7534ef6c0471a5578a16f"
+    },
+    {
+      "security_id": "SZSE:003018",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 33.15,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10661534.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 33.15,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10661534.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "c62e34f95734fbfdfc169ebb444afb43fe83e5c1effe4b26e26910f3c5d8aef9"
+    },
+    {
+      "security_id": "SSE:603790",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 22.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2165963.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 22.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2165963.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "554a778e95646f174b17df3916a2993d08c09a83bbd8ef6a2e5123ec59456d6d"
+    },
+    {
+      "security_id": "SSE:605566",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 24.7,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5479000.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 24.7,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5479000.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "538530f4e55892b3b182bd703055fbbfabf3e562040cd6bbb99d5cdebb8def0b"
+    },
+    {
+      "security_id": "SZSE:300107",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 6.65,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 30387192.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 6.65,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 30387192.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "3676ff330e2053814f21452eeb8b4729096a44fd626b8e2e622e470da1e53adf"
+    },
+    {
+      "security_id": "SSE:688428",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 24.3,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9203623.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 24.3,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9203623.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "aae9ede4612c0883c9db1a04e8dba8cbc7f8aa891511a4a28061db2fdb84957d"
+    },
+    {
+      "security_id": "SZSE:001367",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.68,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 1462854.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.68,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 1462854.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4d6c5b514f1c3806f9f2cac1b461c6fd24ce98259224623c040cc75ae400ab54"
+    },
+    {
+      "security_id": "SZSE:300199",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.86,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 40645702.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.86,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 40645702.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "160f4910158de08a2d480573d68b9efe2a98f44a0116d3a6be3f3114bdda6cd7"
+    },
+    {
+      "security_id": "SZSE:300497",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.28,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 25065339.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.28,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 25065339.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "76c00a299b98f3f0486d0ea3d2775411f6324c18442654c311261daa0bdd4c7c"
+    },
+    {
+      "security_id": "SSE:600623",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.88,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 14724139.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.88,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 14724139.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "667d774f89c3f58f5df9efd4242d44ee99efbdf7c04f4951d8e5a71088bd2c19"
+    },
+    {
+      "security_id": "SSE:603332",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.31,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9264992.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.31,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9264992.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "acc09cbbf1f1e88fc0ff4928f294147252eb5437ad4f655592dc63c7bc1ee22d"
+    },
+    {
+      "security_id": "SSE:603205",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 20.47,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 1310326.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 20.47,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 1310326.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "0818ed981ca0188a60b0398e4e6540ec443496a2b3da84b81f2135d6d2550a43"
+    },
+    {
+      "security_id": "SSE:605369",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.27,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2492896.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.27,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2492896.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "c9aece51141c9306827534c5c2a484e86604b2d19837468beb9d7196addc0aae"
+    },
+    {
+      "security_id": "SSE:688575",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 10.76,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12767861.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 10.76,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12767861.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "06218f4e123e59bfbca4cce15563bdc243f7a53a96f45a5531c17252244ad211"
+    },
+    {
+      "security_id": "SZSE:300981",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 14.95,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 20112559.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 14.95,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 20112559.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ede080b5db63f7df075edb22bed23a974f012b225cde47df38784c291138e4d5"
+    },
+    {
+      "security_id": "SZSE:301363",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.24,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 37952024.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.24,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 37952024.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "dfba3192ba35a01ebda90dbff7ce9085d65f62b217a07aa1c9db30298d501dd3"
+    },
+    {
+      "security_id": "SSE:688710",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 93.22,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5667454.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 93.22,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5667454.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "c304cefb9fce25e03870e1cd2f57d5f2abb421f2f680093b7d635109940a5b68"
+    },
+    {
+      "security_id": "SZSE:300759",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 41.37,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 53278031.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 41.37,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 53278031.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "b8c3f7fc8b4358e2d7cd957c4d29c7d0218518663ad38851925d63735ca3f6de"
+    },
+    {
+      "security_id": "SZSE:301239",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 35.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4480265.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 35.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4480265.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "808a59b575d2138faf29a5af16605a84e487b152fd26b383bf4807e9c1b56220"
+    },
+    {
+      "security_id": "SZSE:301584",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.76,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7192521.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.76,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7192521.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "3efcb91bd665ef5786c35f6ad534477be7b4a49012980ca62582f41e7784cee8"
+    },
+    {
+      "security_id": "SSE:600584",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 49.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 69834688.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 49.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 69834688.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "341b22d72ff3c641180199a2e7ac20e1f9d5afdf03da736f5d32743d9d124879"
+    },
+    {
+      "security_id": "SSE:603893",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 178.81,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12469974.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 178.81,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12469974.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4fc10d27e585dd6076775365cbd0945c036d0b8185b4a82d6fded51a3db4f857"
+    },
+    {
+      "security_id": "SSE:603991",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 113.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3356788.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 113.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3356788.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "d0e2862b8099a08c35a52b4ff5df67e595ff6e1a979fa0dac3948d81a4214334"
+    },
+    {
+      "security_id": "SSE:605358",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 29.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 30416494.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 29.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 30416494.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ec8e495dd4d2edfdd67ae28e14b26bfa59faa5f734f24162c50e6c1cbb0da9d8"
+    },
+    {
+      "security_id": "SSE:688018",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 131.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8628935.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 131.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8628935.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "753d390c35bcd75eba4e63de0dc068d9b6957adb36abde008813bb0ca6edfa26"
+    },
+    {
+      "security_id": "SSE:688110",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 50.32,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24337022.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 50.32,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24337022.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "736b4610b7ccac0f6d959efe28604b956e3b96fed8a1c6681cac3315f9d2177f"
+    },
+    {
+      "security_id": "SSE:688216",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 25.03,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4102283.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 25.03,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4102283.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "16ca02f6bb747363bf35482780a7506d300de7f64a7c221b799ea7ce09f86b4d"
+    },
+    {
+      "security_id": "SSE:688368",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 86.8,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7730024.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 86.8,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7730024.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "63fd0614e712452d4afdab9a514560dffcbc35f61b3948fe173656279d9e5674"
+    },
+    {
+      "security_id": "SSE:688536",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 270.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3728300.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 270.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3728300.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "8487342600c038ba27ed619975e00d2541345d944a346f3ddc2b37cb7b8a939e"
+    },
+    {
+      "security_id": "SSE:688653",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.96,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 20956598.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.96,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 20956598.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "fa489369b4b041012a85ef5d014db8530f3cc14c317eaa8831cdcae5650996c4"
+    },
+    {
+      "security_id": "SSE:688689",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.48,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7536161.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.48,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7536161.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "135f68c0335b7447e3e19b208d08035e7c6421f0d7d36a85490c726cc4de5ac5"
+    },
+    {
+      "security_id": "SSE:688720",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 41.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4019213.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 41.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 4019213.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "7c8d5a2eff99a0fed0d1c23a6009d3449b599c584743973ad9e74578af9a8f49"
+    },
+    {
+      "security_id": "SSE:688797",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 172.88,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2340103.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 172.88,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2340103.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "085013a8a955ad37122b632ab5992d9dae8b4176fb00f7ac435997bab32410d2"
+    },
+    {
+      "security_id": "SZSE:300223",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 109.61,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 55124590.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 109.61,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 55124590.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "d080b5d63e9ab44e82bbf7ab7c161c0b6741d70d13ae000c71a449435a20f5eb"
+    },
+    {
+      "security_id": "SZSE:300373",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 70.41,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8907221.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 70.41,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8907221.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "1e5cfa7a4cb0df0d11b3c3ce9882e26021b56bc5c77d0004de5d85d7aaf8a563"
+    },
+    {
+      "security_id": "SZSE:300623",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 25.14,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18792899.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 25.14,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18792899.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ccd961d5c8b3d75d940a145ca56a1e8917318f3aa45671026f598a2e41072ef2"
+    },
+    {
+      "security_id": "SZSE:300672",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 115.63,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8611126.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 115.63,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8611126.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "9d1a2f2dba599d431414c84e0b24cc25dd1bd61c8f4440a03c0282f0ad385e6f"
+    },
+    {
+      "security_id": "SZSE:301348",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.09,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8821320.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.09,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 8821320.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "60ef4e61dbf52497733e4ecc035275a52895b30419f13657fae917cc8dd0a058"
+    },
+    {
+      "security_id": "SZSE:301536",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 83.46,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 15269808.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 83.46,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 15269808.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "2f61cc099ac944cb0ffcc88f8978d8bd73e34e775059ca36acb417c512ccb718"
+    },
+    {
+      "security_id": "SZSE:301003",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 45.98,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2316300.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 45.98,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2316300.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "8a08a25b5b11ad783702d0320f5bb0d9004a1aacaf2cd08d210de990cd1e8b34"
+    },
+    {
+      "security_id": "SSE:603600",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.09,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9278500.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.09,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9278500.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "942c0564d30c9552b872babea25cceac3d19546301f4ada79e424abc3e141857"
+    },
+    {
+      "security_id": "SSE:601958",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 15.72,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 23917557.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 15.72,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 23917557.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "fccb336558fab38785a21a2a31b52dde00a0e13d564679e4ecc5ec4a67718134"
+    },
+    {
+      "security_id": "SZSE:001257",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.41,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5441633.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.41,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5441633.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4ef5932a1b0ab988fabf3c326791e647f08a379abdcda245d4f5618e899b06e7"
+    },
+    {
+      "security_id": "SZSE:002167",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.88,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 49367378.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.88,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 49367378.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "59308a1b386ad0c0b92d02b2d9bdcea3e5b2502b840da643e21d18348badd156"
+    },
+    {
+      "security_id": "SSE:603132",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 15.95,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5148000.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 15.95,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5148000.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "626b742e66ff056b600bdb27ac5465417810d801f1f077d9c8a4ae2c78793cf8"
+    },
+    {
+      "security_id": "SZSE:000933",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 26.08,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 25513907.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 26.08,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 25513907.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4f7f89fd800c3caf9d89352b0ed29f5434314d7660871d718fc0f60a9574bc19"
+    },
+    {
+      "security_id": "SSE:603129",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 284.39,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 1162516.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 284.39,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 1162516.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ec221c365208fceede3b68b0a60ff12cb895f019dae8e662aa6a91eee21519c0"
+    },
+    {
+      "security_id": "SSE:600661",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.67,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 14139312.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.67,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 14139312.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "97ea0827d16bb5f49fa0becf57287e0496563c4e59a447d9568a6c84d9788e19"
+    },
+    {
+      "security_id": "SZSE:003032",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.96,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18881101.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.96,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18881101.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "470babf9ce6d6f179a9e6ccb2035ad82658b452dedb71fecbef4753a42653a54"
+    },
+    {
+      "security_id": "SZSE:002627",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 6.49,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 22605803.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 6.49,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 22605803.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "6664cabe6c452501de7b1fb478cc60fade7e5e5fc64b44632812c0e5c14c7eaf"
+    },
+    {
+      "security_id": "SZSE:001207",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 16.09,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2910580.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 16.09,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2910580.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "7e672a6bcd5047c8644fedf0b8e446daec171c91ad31b4c0d28979eb4d69343a"
+    },
+    {
+      "security_id": "SSE:603006",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 10.63,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18360667.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 10.63,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18360667.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ee226800c0e0369eba20f7456b919f910b62972731b1800ca0c53d8f769559c3"
+    },
+    {
+      "security_id": "SSE:603009",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 48.51,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9151556.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 48.51,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 9151556.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "9dfe82e33fa786cabd2feab5ceefc377a7e5661896c988e2e886c2ac333f750b"
+    },
+    {
+      "security_id": "SSE:605319",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 20.06,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3467366.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 20.06,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3467366.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "5e377550d825c9eb6b41cebce78c812f47a506ba89dcf1cf34bccd40cb5b0eb3"
+    },
+    {
+      "security_id": "SZSE:002472",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 41.21,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 36700471.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 41.21,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 36700471.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "fe8d1b96f887d9a44f1690a53f2b479a2ecf5e65e300da120e377edbae13932e"
+    },
+    {
+      "security_id": "SSE:600123",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 6.39,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16300046.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 6.39,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16300046.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "e26f38bd9a5ff3a5287e3fe3966c68a1731bd60293e53b718bb49587fec0296a"
+    },
+    {
+      "security_id": "SSE:600985",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 14.96,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16673521.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 14.96,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16673521.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "06755d2a6f08284de4010cf64d8541248533c253f6c8b3b1e9f90701df059073"
+    },
+    {
+      "security_id": "SSE:601101",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.81,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 17274578.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.81,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 17274578.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "9601c2f5314bbb9ce4420cc1659c0b966bfa1409ecc8c210fe026b35f24f196f"
+    },
+    {
+      "security_id": "SZSE:300332",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 4.35,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13269383.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 4.35,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13269383.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "f94b14c14ea4a5ed6c6b9cf6ffb1fa914be2a9bc85c0df8c7edd7d842d5f11a7"
+    },
+    {
+      "security_id": "SZSE:300483",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 20.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12410816.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 20.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12410816.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "5548500c00633aea1b4ab76453f8f7839c20be17f9fe621e95dab44289825a8a"
+    },
+    {
+      "security_id": "SZSE:000598",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.2,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 14967767.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.2,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 14967767.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "3c35e09c1becc5ccbc96929b540cac278abbc2145ca52eb9e9a7fa6c2e03ac2c"
+    },
+    {
+      "security_id": "SZSE:301175",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 5.57,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 21224372.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 5.57,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 21224372.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ac3d040ceb6669f3f1ed369978cab6c761c24356531b541d84b4bc0a041bf7d7"
+    },
+    {
+      "security_id": "SSE:600176",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 27.68,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 145160216.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 27.68,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 145160216.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "c0012229331bd50c0293b06558ca14ffae472884ccddd3947a189862eca10a89"
+    },
+    {
+      "security_id": "SSE:603256",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 76.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18394553.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 76.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18394553.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ea2bfe7d013c74130bc4fbde09f522c511f391e3fd27a56f65745bcb3fd4c7f6"
+    },
+    {
+      "security_id": "SZSE:301526",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 87466359.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 18.6,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 87466359.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "f6d0c13ceee595e79b68510ffdf51738ce79069b9d3ba0964d898a25adb942ed"
+    },
+    {
+      "security_id": "SZSE:300357",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.46,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13890106.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.46,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13890106.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "00ca9f9f08a60656b313161ff8e82172832fd8deb38667d950b6f05ba68da8fd"
+    },
+    {
+      "security_id": "SZSE:301080",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 103.5,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 23317336.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 103.5,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 23317336.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "be4963d53bc8cf0516dc12418112b95667f3b934c90674ce95999f3842dd1b4f"
+    },
+    {
+      "security_id": "SSE:688268",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 95.04,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3173420.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 95.04,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3173420.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "b3e96232cfe9af72c37ac1a9cf4c4137dcf5dffa559f2bd49a4f706b2ea2946b"
+    },
+    {
+      "security_id": "SSE:688548",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 23.08,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18686134.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 23.08,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18686134.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "cdfb565b45b98ffad6f6265295682f4682a3d1301b0c14dd88d978b6faea5eb0"
+    },
+    {
+      "security_id": "SSE:603728",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 57.85,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 15407476.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 57.85,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 15407476.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "811593824e71a296c562cfea34f32abf1f630e0743e22f7cb28097b5f4098e91"
+    },
+    {
+      "security_id": "SSE:603196",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 14.76,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2441600.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 14.76,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2441600.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "bc8743f3b23301e8bc5142b7cf7458c8b735950435e837eb82efcec6bb7f1f7f"
+    },
+    {
+      "security_id": "SZSE:300410",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18499191.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 7.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 18499191.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "fe19eead503d6f64ef80a590b0c4d86ff2f6e53d72b8b1f516a173d43abe4d0a"
+    },
+    {
+      "security_id": "SZSE:300432",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.65,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 73687291.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 13.65,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 73687291.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "49603320dd33404dfb454853f5546a2985d121aa052074429f80b742af0906a4"
+    },
+    {
+      "security_id": "SZSE:002003",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.52,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13936744.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.52,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13936744.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "3b9cd12d80764140331cdbc180ac89653cad993c4d1201bf3a11ebe2a887dcf3"
+    },
+    {
+      "security_id": "SZSE:002083",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 8.29,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24415609.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 8.29,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24415609.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "9b9be07575ce0a3a95dc22fbdda065b7e06d06c41af76e47552ded1cd013e7f5"
+    },
+    {
+      "security_id": "SZSE:002674",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.24,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12364146.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.24,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12364146.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "eb722b6439cb58553eab8f0d078cd4b732c9ca358ff6ff0a925d942937ae0746"
+    },
+    {
+      "security_id": "SSE:603283",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.87,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13561409.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 32.87,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13561409.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "33cd5bb3a482b15dbcc7bbd59f6449571225d1b39fd222bd9f8f32ef1745abef"
+    },
+    {
+      "security_id": "SSE:688025",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 328.66,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3494325.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 328.66,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3494325.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "d53cffeff7783cf2b4e15b4d612790acfa1e8fe29df09e89b3e56079877af2ab"
+    },
+    {
+      "security_id": "SZSE:002975",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 75.36,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13314176.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 75.36,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13314176.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "17d07fa114fe4c310d50efdf72b888aa2c4f07d28a6c26a12ef5785c87c1662e"
+    },
+    {
+      "security_id": "SZSE:301029",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 26.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16609885.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 26.38,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 16609885.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "98637e0af5f0d17c53c296e8187ddb59d61b4e09173906541b52a59a1c3750e3"
+    },
+    {
+      "security_id": "SSE:600428",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.47,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 84476149.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 11.47,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 84476149.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "76c3a02a8787bdc2c0120ba4c74c577d018b6247113f9ed4d6246cce43270d83"
+    },
+    {
+      "security_id": "SSE:603565",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.55,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 25531514.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.55,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 25531514.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "ca5e9d0acf8ab1a15c1fa758bab1974af78613f5c5e63043921813eb0df1b169"
+    },
+    {
+      "security_id": "SZSE:000088",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 4.51,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24755143.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 4.51,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 24755143.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "cca45dca862c5d9e9deeb4d9d4aa28269831b1c9785ea474f6b14e806f16d83e"
+    },
+    {
+      "security_id": "SSE:688569",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.97,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3576051.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 17.97,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 3576051.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "023636e079b45c90709c86ab500c07dfb8014879c243e03d2b70d01c384a1960"
+    },
+    {
+      "security_id": "SZSE:301048",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.36,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7565228.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.36,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 7565228.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "af0aee4e664f76ce0e1d735ac20de9ae5f90feb9ac1c204903adb88e78448ace"
+    },
+    {
+      "security_id": "SZSE:300209",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.62,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 79979963.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 21.62,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 79979963.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "d3694f69958d7d445a86ae96b58742754e6a976efbd7508ef43b2f4f9b64cea3"
+    },
+    {
+      "security_id": "SZSE:003031",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 80.3,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 6343647.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 80.3,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 6343647.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "514ec927b9d47b4e559d7a02ce9c75b03aad30e1c19bd91ec6664dd0d7151e91"
+    },
+    {
+      "security_id": "SZSE:300394",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 148.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 46517731.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 148.0,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 46517731.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "8218c7229bdf7d603febfe2830b64edd8fb43f1c23e9b5219fc914e4b86ec50e"
+    },
+    {
+      "security_id": "SZSE:300414",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.51,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5461712.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 9.51,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 5461712.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "c8b340f63bed8ef2f5dff7bb15eab75404d1a57b69e09861e22ac54d404adc1e"
+    },
+    {
+      "security_id": "SZSE:300488",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 35.74,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12654754.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 35.74,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 12654754.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "09fe34dee2a69935f720aa0e3436a51b87fa05d40de9fd642252ca98f4f39002"
+    },
+    {
+      "security_id": "SZSE:300224",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.7,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 43107309.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 12.7,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 43107309.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "4f07f3fa5106baec61945728be047e4a5f78a33282972501c45e937eed87330a"
+    },
+    {
+      "security_id": "SZSE:300811",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 64.54,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13601425.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 64.54,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 13601425.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "d39f7876366ceef5410f8aaf666ca9d07d248185bc49d8037261580b07dd8c12"
+    },
+    {
+      "security_id": "SSE:688300",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 78.02,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10055913.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 78.02,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 10055913.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "56751cf8164264c68ab35a52870d53277b23a12f4088e46dd49d39091228821f"
+    },
+    {
+      "security_id": "SZSE:301456",
+      "unadjusted": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 22.45,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2134616.0
+      },
+      "forward_adjusted_2026_vintage": {
+        "status": "REFERENCE_BAR_TRADEABLE_OBSERVED",
+        "close": 22.45,
+        "trading_status": "1",
+        "isST": "0",
+        "volume": 2134616.0
+      },
+      "reference_valid_both_price_versions": true,
+      "raw_quote_sha256": "787145bd1bbc1e6ba5f641689c3dadc2ebf5c4d7459f43a0f19c0e8e79bbd2aa"
+    }
+  ]
+}
