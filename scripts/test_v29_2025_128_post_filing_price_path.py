@@ -120,6 +120,17 @@ class PricePathTests(unittest.TestCase):
             "ENTRY_SESSION_NOT_TRADEABLE","ENTRY_SESSION_ST_FLAGGED",
             "EXIT_SESSION_NOT_TRADEABLE","EXIT_SESSION_ST_FLAGGED"])
 
+    def test_missing_ST_flags_and_zero_volume_block_comparability(self):
+        c,i,m=fixture()
+        modify_endpoint(ISSUERS[0],c,m,"entry","isST","")
+        modify_endpoint(ISSUERS[1],c,m,"exit","isST","")
+        modify_endpoint(ISSUERS[2],c,m,"entry","volume","0")
+        result=evaluate(ISSUERS,c,i,m)
+        self.assertEqual(result["price_comparison_count"],125)
+        self.assertEqual([x["price_observation_status"] for x in result["rows"][:3]],[
+            "ENTRY_ST_FLAG_UNKNOWN","EXIT_ST_FLAG_UNKNOWN",
+            "ENTRY_OR_EXIT_ZERO_TRADED_VOLUME"])
+
     def test_identity_integrity_and_api_failure_no_silent_drop(self):
         c,i,m=fixture()
         m[ISSUERS[0]["security_id"]]["unadjusted"][0]["code"]="sh.123456"
