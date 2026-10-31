@@ -1,0 +1,38 @@
+{
+  "schema": "V29_2025_FY2024_ORIGINAL_FILING_TEXT_RECONCILIATION_V1",
+  "research_date": "2026-10-31",
+  "security_id": "SSE:601009",
+  "issuer": "南京银行",
+  "fiscal_period_end": "2024-12-31",
+  "original_issuer_report_publication_day": "2025-04-22",
+  "issuer_official_annual_report_index": "https://www.njcb.com.cn/njcb/2025-04/22/article_2025042209195917413.html",
+  "full_original_annual_report_pdf": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223197865.PDF",
+  "source_kind": "ISSUER_2025_PUBLISHED_FULL_FY2024_REPORT_TEXT_CROSSCHECK",
+  "source_text_financial_units": "RMB_thousands",
+  "original_report_values_rmb_thousands": {
+    "fiscal_2024_revenue": 50273070,
+    "fiscal_2024_parent_profit": 20176728
+  },
+  "retrospective_vendor_2026_capture_values_rmb": {
+    "fiscal_2024_revenue": 50273070000,
+    "fiscal_2024_parent_profit": 20176728000
+  },
+  "named_fields_exact_reconciled": true,
+  "official_pdf_bytes_saved": false,
+  "official_pdf_sha256": null,
+  "original_document_image_visual_verification_complete": false,
+  "original_publication_notice_and_pdf_url_grounded": true,
+  "coverage_scope": "ONE_OF_128_FIXED_SAMPLED_SECURITIES_TWO_FINANCIAL_FIELDS_ONLY",
+  "nonadmitted_fields": [
+    "contemporaneous_vendor_PE_PB",
+    "share_actions",
+    "earnings_restated_vintage",
+    "tradeability",
+    "forward_returns"
+  ],
+  "note": "The source text visibly contains FY2024 revenue and profit attributable to shareholders in RMB thousands; converted into yuan they equal the retrospectively queried values. The issuer page independently dates the full report to 2025-04-22. This does not prove later vendor updates did not change other fields, or establish original bytes SHA.",
+  "status": "FIELD_LEVEL_ORIGINAL_DISCLOSURE_TEXT_MATCH_ONLY_NOT_FULL_PIT_CERTIFICATION",
+  "lookahead_evaluation_performed": false,
+  "oos_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED"
+}
