@@ -1,0 +1,55 @@
+name: V2.9 Freeze FY2022 and FY2023 Original-Report Source Cohorts
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-prior-original-source-cohorts.yml'
+      - 'scripts/v29_prior_year_original_source_cohorts.py'
+      - 'scripts/test_v29_prior_year_original_source_cohorts.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-prior-original-source-cohorts.yml'
+      - 'scripts/v29_prior_year_original_source_cohorts.py'
+permissions:
+  contents: read
+
+jobs:
+  prospective-identity-only-frame-tests:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify reconstructed 2023 and 2024 membership as-of frames without any filing/outcome API
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_prior_year_original_source_cohorts.py' -v
+          python scripts/v29_prior_year_original_source_cohorts.py --out /tmp/v29-two-historical-frames.json
+
+  freeze-two-128-name-samples:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify as-of eligibility and no outcome-conditioned selection
+        run: python -m unittest discover -s scripts -p 'test_v29_prior_year_original_source_cohorts.py' -v
+      - name: Freeze both 2023/2024 original filing-source frames before making source queries
+        run: |
+          python scripts/v29_prior_year_original_source_cohorts.py --out research/V2.9_2023_2024_ORIGINAL_FILING_SOURCE_FRAMES_128.json
+          python - <<'PY'
+          import hashlib,json
+          d=json.load(open('research/V2.9_2023_2024_ORIGINAL_FILING_SOURCE_FRAMES_128.json'))
+          assert [x['expected_issuer_publication_year'] for x in d['cohorts']]==[2023,2024]
+          assert all(len(x['selected_ids'])==128 for x in d['cohorts'])
+          assert not d['chronological_untouched_oos_certified']
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('TWO_FROZEN_HISTORICAL_COHORTS',[
+            (x['asof_membership_date'],x['population_count'],x['selected_ids_sha256'])
+            for x in d['cohorts']])
+          PY
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/V2.9_2023_2024_ORIGINAL_FILING_SOURCE_FRAMES_128.json
+          git diff --cached --quiet || (git commit -m "research(v29): freeze 2023/2024 historical membership frames before source/outcome queries [skip ci]" && git push origin HEAD:main)
