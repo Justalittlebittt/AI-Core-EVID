@@ -1,0 +1,77 @@
+name: V2.9 Recover Captured Official Original-Report 256 Source Evidence
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-recover-original-256-archive.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-recover-original-256-archive.yml'
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  verify-and-recover-without-requery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download already captured official API responses from finished run 41180780616
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 41180780616
+          name: v29-fy2022-fy2023-full-256-official-source-capture
+          github-token: ${{ github.token }}
+          path: /tmp/v29-original-official-recovery
+      - name: Verify every frozen cohort issuer, complete raw API bytes and failure-denominator before promotion
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          source=Path('/tmp/v29-original-official-recovery')
+          d=json.loads((source/'HISTORICAL_256_OFFICIAL_DISCOVERY.json').read_text())
+          frames=Path('research/V2.9_2023_2024_ORIGINAL_FILING_SOURCE_FRAMES_128.json')
+          frozen=json.loads(frames.read_text())
+          raw=(source/'RAW_CNINFO_2023_2024_RESPONSES.zip').read_bytes()
+          assert d['schema']=='V29_2023_2024_2X128_ORIGINAL_ANNUAL_REPORT_DISCOVERY_V1'
+          assert d['sealed_prequery_cohorts_manifest_sha256']==hashlib.sha256(frames.read_bytes()).hexdigest()
+          assert d['raw_api_zip_sha256']==hashlib.sha256(raw).hexdigest()
+          assert len(d['cohorts'])==len(frozen['cohorts'])==2
+          assert d['2023_2024_price_outcomes_queried'] is False
+          assert d['pristine_chronological_oos_validated'] is False
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          for report,frame in zip(d['cohorts'],frozen['cohorts']):
+              assert report['cohort_id']==frame['cohort_id']
+              assert report['frozen_sample_sha256']==frame['selected_ids_sha256']
+              assert report['attempted_count']==len(report['rows'])==128
+              assert [r['security_id'] for r in report['rows']]==frame['selected_ids']
+              assert report['single_source_candidate_count']+report['ambiguous_same_day_count']+report['not_discovered_count']+report['failed_query_count']+report['unqueried_count']+report['missing_org_id_count']==128
+          print('RECOVERED_EXISTING_2023_2024_ORIGINAL_SOURCES_WITHOUT_ANY_NEW_REMOTE_QUERY',
+                [(x['expected_issue_year'],x['single_source_candidate_count'],
+                  x['ambiguous_same_day_count'],x['not_discovered_count'])
+                 for x in d['cohorts']])
+          PY
+      - name: Persist original already-captured 256-source file and raw ZIP on current main without redoing API calls
+        if: github.event_name == 'push'
+        run: |
+          set -euo pipefail
+          dir=evidence/v29_original_2023_2024_reports_256
+          if [ -e "$dir/HISTORICAL_256_OFFICIAL_DISCOVERY.json" ]; then
+              echo "ALREADY_DURABLY_ARCHIVED_DO_NOT_OVERWRITE"
+              exit 0
+          fi
+          mkdir -p "$dir"
+          cp /tmp/v29-original-official-recovery/HISTORICAL_256_OFFICIAL_DISCOVERY.json "$dir/"
+          cp /tmp/v29-original-official-recovery/RAW_CNINFO_2023_2024_RESPONSES.zip "$dir/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dir/"
+          git commit -m "research(v29): restore 256 source PDFs announcement metadata and raw API proof after concurrent push [skip ci]"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+          echo "RESTORED_WITHOUT_REFETCH_AND_PERSISTED $dir"
