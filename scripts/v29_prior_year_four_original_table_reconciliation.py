@@ -61,9 +61,9 @@ TABLE={
 }
 LABELS={
     "revenue_yuan":("营业收入",),
-    "parent_net_profit_yuan":("归属于上市公司股东的净利润","归属于母公司股东的净利润"),
+    "parent_net_profit_yuan":("归属于上市公司股东的净利润","归属于母公司股东的净利润","归属于上市公司股"),
     "revenue_growth_yoy_pct":("营业收入","本年比上年增减"),
-    "weighted_roe_pct":("加权平均净资产收益率",),
+    "weighted_roe_pct":("加权平均净资产收益率","加权平均净"),
 }
 
 def sha(data):
