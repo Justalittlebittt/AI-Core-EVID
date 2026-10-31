@@ -1,0 +1,2579 @@
+{
+  "schema": "V29_2025_128_ISSUER_RETROSPECTIVE_FINANCIAL_SOURCE_COVERAGE_V1",
+  "captured_at_utc": "2026-10-31T04:46:26.247793+00:00",
+  "vendor": "EASTMONEY_RPT_LICO_FN_CPD_UNOFFICIAL",
+  "fiscal_period_end": "2024-12-31",
+  "vendor_notice_date_cutoff_exclusive": "2025-07-01",
+  "frame_date": "2025-01-02",
+  "frame_population_count": 5121,
+  "full_selected_issuer_count": 128,
+  "full_selected_issuer_ids_sha256": "ded26da069f22888455ac080fbc2593ee9477a23bb0dc619569115cf4d7f73ac",
+  "total_vendor_rows": 11322,
+  "source_pages": [
+    {
+      "page": 1,
+      "sha256": "85b6290c7be3f4a2a9155f0b5e4c5e0936f3a128f119abcfe86b89c48c40efac",
+      "rows": 500
+    },
+    {
+      "page": 2,
+      "sha256": "3de1937bb8459f19dd1876d65940bfbf1e215682c91e562175eca446f8571ed8",
+      "rows": 500
+    },
+    {
+      "page": 3,
+      "sha256": "43c41072e51e75f0993bb59264bd6326c7a2a597e560826d7c78c34040d21411",
+      "rows": 500
+    },
+    {
+      "page": 4,
+      "sha256": "2a1ffd98893a81fbfdc12b65c7d1625447a63d9417f970f47fadd093a7093ba4",
+      "rows": 500
+    },
+    {
+      "page": 5,
+      "sha256": "56260d78a856f3f462fbfbe43cc33c5fb0c0eae359c1eac829cf65172a704926",
+      "rows": 500
+    },
+    {
+      "page": 6,
+      "sha256": "58dc19cf1e3b28800b05120bc549b0a6f7a19e561bf8a34ec698118c45af1dd7",
+      "rows": 500
+    },
+    {
+      "page": 7,
+      "sha256": "0f6f9230f72a9ac7b6aaf629d6a2203a3df5d2398b6d66bb5d33ec4df62f6009",
+      "rows": 500
+    },
+    {
+      "page": 8,
+      "sha256": "18256b052212a3277a6dcf591c91a6ef3766d2110bc01d7b8c21f407c3729bd0",
+      "rows": 500
+    },
+    {
+      "page": 9,
+      "sha256": "9b34c7c9d72edf17f42831f948789d574a22420a4323783117d9f3bbef114aeb",
+      "rows": 500
+    },
+    {
+      "page": 10,
+      "sha256": "2e9574268c715e33367120e9fe6a2691e8370380db7c32a91ae2a43d5dcb40fc",
+      "rows": 500
+    },
+    {
+      "page": 11,
+      "sha256": "fb735f9f67294a676403ef92ac9285cdb0f288d7d00aac9d9831e3b5bff272e0",
+      "rows": 500
+    },
+    {
+      "page": 12,
+      "sha256": "5b6db8baa9f4f412f3fb1aa34aa8e7acd5d093d53ba337e5520ec7207ad1c5e7",
+      "rows": 500
+    },
+    {
+      "page": 13,
+      "sha256": "93022a6d5104caa250c2ad073824d2bd0841aa77d6e5626ad015382ecad4e114",
+      "rows": 500
+    },
+    {
+      "page": 14,
+      "sha256": "1f91d75cc0fd1deaa3cc3f0d371562d552790470f5a5b1f9265fabed06454fbe",
+      "rows": 500
+    },
+    {
+      "page": 15,
+      "sha256": "e0dfa32d8c7be0a9e4840323a35f7024b2f7a1e37f6c6b87808a5fe592f72dba",
+      "rows": 500
+    },
+    {
+      "page": 16,
+      "sha256": "162281999c1de53360365c73bbb71b399db9f1c754bbd818feb6de7a53446c30",
+      "rows": 500
+    },
+    {
+      "page": 17,
+      "sha256": "fcce61d8c68d6a1051d6f54f0f9116c6b5fafe88400512b25a75031a762c60d8",
+      "rows": 500
+    },
+    {
+      "page": 18,
+      "sha256": "00ef046aa52334804544ec798cc49a6909ec92fb0132039d390d2a6c70e0d11f",
+      "rows": 500
+    },
+    {
+      "page": 19,
+      "sha256": "c59a918a95328b2a534a74de60adab68d2fdcb82c2493ea8724a8f85856502a8",
+      "rows": 500
+    },
+    {
+      "page": 20,
+      "sha256": "a9e4dabb895a6c9e7883eaccb79ce8836fa68fb4beb1c58f92c761510019ca05",
+      "rows": 500
+    },
+    {
+      "page": 21,
+      "sha256": "6065a66cf4d1fff090bd8a94553ca17712ac7fe34345d05c4c1c6ec6361ccd06",
+      "rows": 500
+    },
+    {
+      "page": 22,
+      "sha256": "b3b070b2e3c29cb9b8f1d70d10263ac2bba69e3d54063476d3b8b81831ef53aa",
+      "rows": 500
+    },
+    {
+      "page": 23,
+      "sha256": "35338bb4e90a653d39354fb0402b9b96660725f256286f6410749f1b1f0886ac",
+      "rows": 322
+    }
+  ],
+  "rejected_unqualified_vendor_rows": {
+    "non_a_share_identity": 6135,
+    "wrong_report_period": 0,
+    "notice_missing_or_out_of_scope": 0
+  },
+  "fixed_sample_count": 128,
+  "vendor_metadata_matched_count": 128,
+  "unmatched_count": 0,
+  "multiple_version_count": 0,
+  "original_issuer_pdf_sha256_certified_count": 0,
+  "original_report_pdf_bytes_archived": false,
+  "retrospective_vendor_vintage_not_asof_certified": true,
+  "stock_selection_precedes_this_source_capture_but_not_2025_outcomes": true,
+  "independent_oos_validated": false,
+  "trade_authorized": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SSE:601009",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "3a49b5cdcbcd846e457b70c8703a1999b47160258f3501e0e1572112d2b1fe7c"
+      ],
+      "vendor_revenue_yuan": 50273070000,
+      "vendor_parent_profit_yuan": 20176728000,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300978",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "1560939115d9fdaf119a294842d8ff1207671b8fd03697f7a7fe663752183d92"
+      ],
+      "vendor_revenue_yuan": 2189690200.2,
+      "vendor_parent_profit_yuan": 150430067,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002493",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "5b70ed4f9d0b3cdbc9b9ba58215ecee22c7314ca11493471a82f9896ac868340"
+      ],
+      "vendor_revenue_yuan": 326475162608.88,
+      "vendor_parent_profit_yuan": 724484686.45,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688486",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-02-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "source_row_hashes": [
+        "532821caea446767b721e14c450bb71e38468bba72865726d24c0b814621a241"
+      ],
+      "vendor_revenue_yuan": 466002733.23,
+      "vendor_parent_profit_yuan": 144411417.58,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600887",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "source_row_hashes": [
+        "5404d9a6a5e01d212d747c3c00844319c5a931162a7b68ecb9f3ebbe79768e98"
+      ],
+      "vendor_revenue_yuan": 115779554649.3,
+      "vendor_parent_profit_yuan": 8452859993.18,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600803",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-27"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "source_row_hashes": [
+        "bdf0cf74767311eedf516a803ebbd0dd72f8f4d4f84352b9b48058f058175d40"
+      ],
+      "vendor_revenue_yuan": 135910100000,
+      "vendor_parent_profit_yuan": 4493180000,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002234",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "source_row_hashes": [
+        "5eb4be5436c8eb8e36b45a5c0b31b0795a208a1263d2b32863ac802047351747"
+      ],
+      "vendor_revenue_yuan": 2159658432.85,
+      "vendor_parent_profit_yuan": -249127026,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:605155",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "source_row_hashes": [
+        "69a2b7b9a3ac51ad91dd70a8cadfa933e57b235dc42fc3a7ff87f42ca96df5fc"
+      ],
+      "vendor_revenue_yuan": 817085062.74,
+      "vendor_parent_profit_yuan": 122257401.3,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600163",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "5832026d64f8b99155d366fea342cba583e81ff106d92db793fa2f50c6310565"
+      ],
+      "vendor_revenue_yuan": 1741208106.74,
+      "vendor_parent_profit_yuan": 651146307.09,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000403",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "c088a37e2ed3dc0892d36dc5541cd7fb6cb2e3c9db9e235962f888374ea0fc14"
+      ],
+      "vendor_revenue_yuan": 2654684638.93,
+      "vendor_parent_profit_yuan": 745320757.41,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600653",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "source_row_hashes": [
+        "ae38973bb8b1046e0514b1a180853921074b47db46be67ed89a19ff68a782971"
+      ],
+      "vendor_revenue_yuan": 4193384127.55,
+      "vendor_parent_profit_yuan": 38598756.24,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002552",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-21"
+      ],
+      "source_row_hashes": [
+        "be562a2dcd476f5fee571953ff548c20ab02a7eebb5653a4c901c58d45a6256b"
+      ],
+      "vendor_revenue_yuan": 2894091551.4,
+      "vendor_parent_profit_yuan": 247630026.15,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002702",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "d2c91c5d757a0356e5d1561f30106476bef601f3d9d6dde411cfb317732fbf94"
+      ],
+      "vendor_revenue_yuan": 1706495912.33,
+      "vendor_parent_profit_yuan": -36943292.56,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603976",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "983ac0535e01547ec8607c80d8a4e75e37e67c057e5ca6d8615d565e3ef5a2d5"
+      ],
+      "vendor_revenue_yuan": 801121624.6,
+      "vendor_parent_profit_yuan": 53248789.91,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002557",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "source_row_hashes": [
+        "8ab065edd3bb3fb6f0e5dd997fe267d391596f88e9af390db3df9f3f15d7dbd5"
+      ],
+      "vendor_revenue_yuan": 7131364079.37,
+      "vendor_parent_profit_yuan": 849480766.93,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301268",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "039d7c10a24dfa0c53b41482b8f4feca58178ef4c35f39d7e2bbc6c0ad79ad8c"
+      ],
+      "vendor_revenue_yuan": 2558887640.94,
+      "vendor_parent_profit_yuan": -469337283.61,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603113",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "source_row_hashes": [
+        "b804cbcb52d3921ab59f3d2aa287f786da2e40870f2d6c9abc6e56f861f14e5e"
+      ],
+      "vendor_revenue_yuan": 16261380066.3,
+      "vendor_parent_profit_yuan": -57872897.83,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688212",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "source_row_hashes": [
+        "5d8b9c540d688493c57d0dc69371ab063b31f55c843859669767f54a162349cd"
+      ],
+      "vendor_revenue_yuan": 749549531.34,
+      "vendor_parent_profit_yuan": 21012248.88,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002731",
+      "coverage_status": "SINGLE_VENDOR_SUMMARY_RECORD_NOT_OFFICIAL_PDF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2025-04-22"
+      ],
+      "source_row_hashes": [
+        "e8b50273d788d2bb9de7695a107a718c27ced7fd1c9660b77dacb734d025ecc6"
+      ],
+      "vendor_revenue_yuan": 4437882825.07,
+      "vendor_parent_profit_yuan": 216691690.62,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300365",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "source_row_hashes": [
+        "22aeafb76ee5a704714acac1e84e0f4b46140e2832d23ad49cb08b26cd019503"
+      ],
+      "vendor_revenue_yuan": 956567332.85,
+      "vendor_parent_profit_yuan": -157741565.46,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300917",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-21"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "source_row_hashes": [
+        "1a7d3939d22feae791482e884784e9d5a45d595ddf40df64eaeef7b8ec16097e"
+      ],
+      "vendor_revenue_yuan": 2863615951.63,
+      "vendor_parent_profit_yuan": 121638011,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300842",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-02-28"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "source_row_hashes": [
+        "db312b8f78ffa84b88314e5f7988912da4f1b543941460288b38dfecafe26f68"
+      ],
+      "vendor_revenue_yuan": 15350571546.73,
+      "vendor_parent_profit_yuan": 359961693.46,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:605266",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "c63e95d0173da016d79474deacd014656e2135feb4ab11247eb1b1372c2ade03"
+      ],
+      "vendor_revenue_yuan": 9282846172.38,
+      "vendor_parent_profit_yuan": 128126430.37,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002632",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "f27a9e5e1b560cd4737b7bc8fac296593bdb1d2b95156de124f44cb6ed5177e7"
+      ],
+      "vendor_revenue_yuan": 1441214788.06,
+      "vendor_parent_profit_yuan": 169936971.23,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603505",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "836b8f5d33b91e0a0f54a78625aaf6f5f747712cacb7322d806d96d7a81cda51"
+      ],
+      "vendor_revenue_yuan": 2752280029.79,
+      "vendor_parent_profit_yuan": 257027424.87,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600021",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-01"
+      ],
+      "vendor_update_dates": [
+        "2026-04-14"
+      ],
+      "source_row_hashes": [
+        "080a509046b9fc5eebbeed674a74cbed546d1a3e51e16d71c88ceb300f6367c8"
+      ],
+      "vendor_revenue_yuan": 42733886034.16,
+      "vendor_parent_profit_yuan": 2045978960.3,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300180",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "source_row_hashes": [
+        "339ae836b37de423f5f545f2dab97ab32bca02fac89e46ef4fd9f7b6dde6c7f0"
+      ],
+      "vendor_revenue_yuan": 4581757317.61,
+      "vendor_parent_profit_yuan": 71015537.1,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688313",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "source_row_hashes": [
+        "f1cc8c50b6d7f70e48f2eca4933f5917cbbec98d4382ef50f4f9b159c60c3577"
+      ],
+      "vendor_revenue_yuan": 1074527562.56,
+      "vendor_parent_profit_yuan": 64933344.62,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002164",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "dcf6ad5d0e6153a664dbdbb3e52e5b28727dd2f1627863c02ca3bcb3a9c91062"
+      ],
+      "vendor_revenue_yuan": 1461705055.17,
+      "vendor_parent_profit_yuan": 45914452.16,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002869",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "a25a71836297b388a33b357930c9a865a93647716deaf80339702179da19c3a0"
+      ],
+      "vendor_revenue_yuan": 596414840.33,
+      "vendor_parent_profit_yuan": 78754832.89,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688155",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-18"
+      ],
+      "vendor_update_dates": [
+        "2026-04-21"
+      ],
+      "source_row_hashes": [
+        "87cca0d2ade38555351d820e87af9aaefdb047328a7a3dc28d3234cd5c074d7c"
+      ],
+      "vendor_revenue_yuan": 2463960507.89,
+      "vendor_parent_profit_yuan": 223022885.43,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002228",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-27"
+      ],
+      "source_row_hashes": [
+        "a7d5085e40519b444d57ecc1315c0d404ba15c08aa2a1f0c66f1e809a0d81c01"
+      ],
+      "vendor_revenue_yuan": 11470316937.21,
+      "vendor_parent_profit_yuan": 93555134.73,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603027",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "source_row_hashes": [
+        "4b594ea89cd7c1f8412190739299595fa0c2f0be09955739d3a91acef7ac09f2"
+      ],
+      "vendor_revenue_yuan": 3073386672.97,
+      "vendor_parent_profit_yuan": 514151627.28,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301188",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "67e8a142d495dab655832d5a6ec37902cbe6c5fe12c114aac39703a76b11a316"
+      ],
+      "vendor_revenue_yuan": 1080841711.81,
+      "vendor_parent_profit_yuan": 66067595.87,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600736",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "2f324356679cab0f7b8540ed3e66baba8497e4cf8edf365ef085c43a4397c7c4"
+      ],
+      "vendor_revenue_yuan": 7300388447.57,
+      "vendor_parent_profit_yuan": 130615002.74,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600601",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "source_row_hashes": [
+        "e690ef48dfc4cbbc055c22468e505f0c47604dc97c12a80b443396ccf7e6f17f"
+      ],
+      "vendor_revenue_yuan": 3481654488.91,
+      "vendor_parent_profit_yuan": 257389895.46,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300959",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "1da2b219d65c94e11220f7e8ca76127c89a6185a3c5ebe4e0a764621ee042923"
+      ],
+      "vendor_revenue_yuan": 1135600294.81,
+      "vendor_parent_profit_yuan": 30459433.9,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603351",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "bb8c6af7cc8191651ef9f0c2ecc48aa135c9c9c0fcab8777e03170d573bcd1be"
+      ],
+      "vendor_revenue_yuan": 1296753389.06,
+      "vendor_parent_profit_yuan": 146421823.99,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002816",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "1205953f6954c09c83c22be288135a01437aef0306ccfc0c8920f0e6febd6039"
+      ],
+      "vendor_revenue_yuan": 24594583.59,
+      "vendor_parent_profit_yuan": -52784096.15,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300928",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "bc98bc000dcde3312c2d81eb7dfb7081ec60fff41dd32378bf74e6060563f62e"
+      ],
+      "vendor_revenue_yuan": 1034763255.06,
+      "vendor_parent_profit_yuan": -76057367.8,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688386",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "source_row_hashes": [
+        "5e3cc17fde0b7910fe5fbf8c9c9e30e73450b9abca2a91aa94ce377e52eb13bd"
+      ],
+      "vendor_revenue_yuan": 514775993.36,
+      "vendor_parent_profit_yuan": 99157042.08,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000778",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "source_row_hashes": [
+        "a52a3212ec493cfe946339739ed94e4809efa20c62806bf1ea2a5cb75492e44f"
+      ],
+      "vendor_revenue_yuan": 36194132288.44,
+      "vendor_parent_profit_yuan": 167442049.75,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603516",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "61577dc557373990981890ab93db204e6e356a7bf1e540153b30bca41497dd84"
+      ],
+      "vendor_revenue_yuan": 494890122.06,
+      "vendor_parent_profit_yuan": 85799953.88,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002668",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-08"
+      ],
+      "vendor_update_dates": [
+        "2026-03-11"
+      ],
+      "source_row_hashes": [
+        "d6a0760c2905841391a80c36413458e0abdd307624f9c92901f50cfafe95e70e"
+      ],
+      "vendor_revenue_yuan": 18360802831.59,
+      "vendor_parent_profit_yuan": 1019246632.25,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000637",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-08-06"
+      ],
+      "source_row_hashes": [
+        "0dfe46db0e8388bc3c67f7098a30523c6463ac1d5261ade1b0c26a18c009c1d9"
+      ],
+      "vendor_revenue_yuan": 3754940782.49,
+      "vendor_parent_profit_yuan": -83383070.82,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688330",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "edf99f55cfff5aa8dc2d524cad9c4c2c939e83c583a769104d1649fd074a509e"
+      ],
+      "vendor_revenue_yuan": 978709710.51,
+      "vendor_parent_profit_yuan": 222735516.54,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000663",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-31"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "5b3390170a8e7a19ce935a044828e1f4253cb73ebe4929161d8b1874841e5ffc"
+      ],
+      "vendor_revenue_yuan": 323086122.97,
+      "vendor_parent_profit_yuan": -85038418.13,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002222",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "b4b9b271212c432356abb994204ee0311b6265e5f1f36c838174e47d366545bc"
+      ],
+      "vendor_revenue_yuan": 875715492.95,
+      "vendor_parent_profit_yuan": 218790226.51,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002978",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-14"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "d2aea7bfe6b7d888b4ed7d2843bfed89c563a0fdaafcba303535b0fcf77e990a"
+      ],
+      "vendor_revenue_yuan": 1857027665.81,
+      "vendor_parent_profit_yuan": 851629453.57,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000938",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "source_row_hashes": [
+        "686f9ec5601eabc480f3d8fe23940af4d799977a9663361f1d43145dcfc56729"
+      ],
+      "vendor_revenue_yuan": 79024078451.16,
+      "vendor_parent_profit_yuan": 1572434477.25,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:605151",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-27"
+      ],
+      "source_row_hashes": [
+        "c3cd68348a682be715fa328b26454dd1b7126bcf4a32b6ba521c03929656ec7a"
+      ],
+      "vendor_revenue_yuan": 1619096722.39,
+      "vendor_parent_profit_yuan": 35007402.17,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300246",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "71c1a3c2c672e34ce13b29c6d8cca6dabe8e31ec52438d13a32bee4db0d00420"
+      ],
+      "vendor_revenue_yuan": 1060481198.38,
+      "vendor_parent_profit_yuan": -71441315.88,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300364",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "9d87b00ab773287b8059318822e6be23221ee6c001117f74c9b7886dbbbb044b"
+      ],
+      "vendor_revenue_yuan": 1159119215.32,
+      "vendor_parent_profit_yuan": -242889520.02,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300056",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "a81ead38d2a518194e7a8daa7f768c6f08a7caff9727f86fff060967108f7ef5"
+      ],
+      "vendor_revenue_yuan": 466005254.03,
+      "vendor_parent_profit_yuan": -109115626.15,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688576",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "source_row_hashes": [
+        "7eb84b17c5969b5f81ec8102f9a18434b242763e64794d2e6f03e56e7e214015"
+      ],
+      "vendor_revenue_yuan": 336380651.11,
+      "vendor_parent_profit_yuan": 98666904.12,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002141",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "source_row_hashes": [
+        "442a3a36c65ac1f2b1b627bf01032cfb260d29902b7c371e7d5045fce3dba1e8"
+      ],
+      "vendor_revenue_yuan": 440478600.49,
+      "vendor_parent_profit_yuan": -113006166.29,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300907",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "72792d8ec6eb20096f25e5fc08dd994481b9a50ce562924000d2529178dda600"
+      ],
+      "vendor_revenue_yuan": 1161100193.16,
+      "vendor_parent_profit_yuan": 85077012.42,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300166",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "c8c6278d0d8e7286278737a23b18afb286f63fcac02814c2b0508169ea67b5ee"
+      ],
+      "vendor_revenue_yuan": 2792664075.19,
+      "vendor_parent_profit_yuan": 29427133.72,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603456",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "48af188efb707852b5c89897fbf76fcf11f2e0bb5502428432d74649235938da"
+      ],
+      "vendor_revenue_yuan": 5160584725.38,
+      "vendor_parent_profit_yuan": 606096350.9,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300034",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-03-20"
+      ],
+      "source_row_hashes": [
+        "31dbba04b240810311c818ba0323ba361ca6f2c98492fc2e7ced4a586ba47181"
+      ],
+      "vendor_revenue_yuan": 3523917418.25,
+      "vendor_parent_profit_yuan": 248655164.34,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002413",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "source_row_hashes": [
+        "9947894e10d2bcb320590dbe2877924ca7c85ff67e934573f21e45d9825e819d"
+      ],
+      "vendor_revenue_yuan": 1242377698.24,
+      "vendor_parent_profit_yuan": -396034606.97,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300561",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "source_row_hashes": [
+        "96424ff111e374b8179ffd5b2da2a37257baad9b62add84879536d641485bd55"
+      ],
+      "vendor_revenue_yuan": 89833754.57,
+      "vendor_parent_profit_yuan": -21193282.28,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688629",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "source_row_hashes": [
+        "15abeb90ebd32117f76c5e555c4652575507499a10028deca265c5871e84274a"
+      ],
+      "vendor_revenue_yuan": 1091896036.87,
+      "vendor_parent_profit_yuan": -17750544.81,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688531",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "source_row_hashes": [
+        "a7918f4d2355dbb52d5a523c173bc2636def9abb7ca241189af25831268d0258"
+      ],
+      "vendor_revenue_yuan": 739495926.25,
+      "vendor_parent_profit_yuan": 143304426.86,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301196",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "14b47c787492c796b36eac3d4ba141af6e675d5990b1b458127187c6f13d9774"
+      ],
+      "vendor_revenue_yuan": 1819075569.77,
+      "vendor_parent_profit_yuan": 220261152.36,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002832",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "c2843983cf087a71e9fda0f9362d6e4d9fae0f0865baee387eac8fa3291f95df"
+      ],
+      "vendor_revenue_yuan": 4004463319.82,
+      "vendor_parent_profit_yuan": 780690051.75,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688343",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "2e6cdac941fcc519c9c7fb0616a2d228fcd13019e162333a007e73954cedb78f"
+      ],
+      "vendor_revenue_yuan": 917371920.91,
+      "vendor_parent_profit_yuan": -579047039.3,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002155",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-11"
+      ],
+      "vendor_update_dates": [
+        "2026-04-10"
+      ],
+      "source_row_hashes": [
+        "adfbe019c5176a61e8082db525d7badc8595721b181683a2ee4f147e07de4061"
+      ],
+      "vendor_revenue_yuan": 27838535232.01,
+      "vendor_parent_profit_yuan": 846543591.1,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603385",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "9e808670d7e57fb2602c0b3a876670a25cadfd3baf7b3e858d3f16facf6c02da"
+      ],
+      "vendor_revenue_yuan": 3461754610.38,
+      "vendor_parent_profit_yuan": 138941666.19,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600775",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-28"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "source_row_hashes": [
+        "683478c44bc6859e44ee40975b15f469c74ed7db78098c9d6fee5a8abd7057d6"
+      ],
+      "vendor_revenue_yuan": 2645884960.86,
+      "vendor_parent_profit_yuan": -188854556.25,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:001238",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "a5ca4d9cc960a635631e79b9c3244594c6bdf669f6b2e5c6f37b17f63494e674"
+      ],
+      "vendor_revenue_yuan": 1236843102.22,
+      "vendor_parent_profit_yuan": -13981036.69,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:601618",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "b61a85bb82cf0aabf00fa6e645157431a8f65daff4677c119eaaa2f53e3052ff"
+      ],
+      "vendor_revenue_yuan": 552024638000,
+      "vendor_parent_profit_yuan": 6745954000,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002154",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "6b97c8b08a30f5e958d42292f77cad6055443e505ac14040434d863ebfbb0bac"
+      ],
+      "vendor_revenue_yuan": 5153231587.72,
+      "vendor_parent_profit_yuan": 494960049.58,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300179",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-02"
+      ],
+      "source_row_hashes": [
+        "e925688317060a1a6d55cbf2ba38cd903db69c3d3b48ac155fa9c43d32c291aa"
+      ],
+      "vendor_revenue_yuan": 524989654.21,
+      "vendor_parent_profit_yuan": 117608028.01,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300195",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "46fd8eb16c5c14b1a71496dc247045db022e18972c3b04fab651781d6c948c6a"
+      ],
+      "vendor_revenue_yuan": 1642099189.82,
+      "vendor_parent_profit_yuan": 12607581.04,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301109",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "f8582743e49d5062b77dd64e9b1363d435303bdd209f10f3f8c1ad790cddf0cd"
+      ],
+      "vendor_revenue_yuan": 2430648235.7,
+      "vendor_parent_profit_yuan": 536277664.83,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603025",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-21"
+      ],
+      "vendor_update_dates": [
+        "2026-03-25"
+      ],
+      "source_row_hashes": [
+        "1987000b6ce36ef35845a6bfbb42fdb4d63b5cb2da8d9c1f7ba352108e65193a"
+      ],
+      "vendor_revenue_yuan": 2528884785.79,
+      "vendor_parent_profit_yuan": 584253941.44,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300024",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "c8fe180872a398b91ad2d1339f34fa625b20ce6a52821c279eae51b5c114567a"
+      ],
+      "vendor_revenue_yuan": 4138485312.56,
+      "vendor_parent_profit_yuan": -193682012.61,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002615",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-15"
+      ],
+      "source_row_hashes": [
+        "59ef04539d4842987bb55da994066be827d9eb65e3251a165e0631f8a47e846a"
+      ],
+      "vendor_revenue_yuan": 3331522170.62,
+      "vendor_parent_profit_yuan": 286544933.32,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301125",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-07-08"
+      ],
+      "source_row_hashes": [
+        "0b791395a3c4071734487e36739e40f76df62babb497009e17293baf604cbddf"
+      ],
+      "vendor_revenue_yuan": 606634214.34,
+      "vendor_parent_profit_yuan": 10393725.39,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300331",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "4f6345ded6479639a44dc71055c80df19bdd05d76b1a59236b2a8815acbc68c0"
+      ],
+      "vendor_revenue_yuan": 1840603907.68,
+      "vendor_parent_profit_yuan": -58049979.94,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002395",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-14"
+      ],
+      "source_row_hashes": [
+        "01995835d3f3f04ec74f7db560b34c8d7c6cc9184746dbfaa8b9310b78333645"
+      ],
+      "vendor_revenue_yuan": 2289610786.22,
+      "vendor_parent_profit_yuan": 472015721.37,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301456",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "187f2638f112d9d9dbc1bf13bab1d653a3d5153515e1ea53a920294f0445c307"
+      ],
+      "vendor_revenue_yuan": 481522247.87,
+      "vendor_parent_profit_yuan": 62567007.14,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000548",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-04"
+      ],
+      "source_row_hashes": [
+        "647d8a00ff3d666e5ac6e379e70a1cd800cd294e3278670871617735f0023a25"
+      ],
+      "vendor_revenue_yuan": 631192166.94,
+      "vendor_parent_profit_yuan": 81423202.24,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600020",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "dbead40c23e2cc8a7492ae08377336efc749ea75db20d7c97485edbfb642819c"
+      ],
+      "vendor_revenue_yuan": 6969109247.88,
+      "vendor_parent_profit_yuan": 886850652.23,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:601139",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "555359245a82dd750ba26ae5382a0b1afd072ca11e5538b470c8a419dc05029f"
+      ],
+      "vendor_revenue_yuan": 28348120438.95,
+      "vendor_parent_profit_yuan": 1457074272.21,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688025",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "source_row_hashes": [
+        "d23f0efeca95189cdc19ea8556c0d21da17ff670e4f830b7604db34fb0945b89"
+      ],
+      "vendor_revenue_yuan": 1453846220.53,
+      "vendor_parent_profit_yuan": 132684792.36,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000913",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "source_row_hashes": [
+        "3542a93c7e742b40e5bc374d5a16c0208c31caee2e11007252dd54f0fc682b46"
+      ],
+      "vendor_revenue_yuan": 6030882914.58,
+      "vendor_parent_profit_yuan": 676738050.81,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:601216",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "cfaace9589bf4cd5a722f4e33aac6af24d61f4c35d4b50152ce6071422fac7a9"
+      ],
+      "vendor_revenue_yuan": 25211157317.8,
+      "vendor_parent_profit_yuan": 2803794005.71,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600663",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-22"
+      ],
+      "source_row_hashes": [
+        "47c779f0a32fe0ec750b05b8b34ddd43c41069066c01ea715020dd98ed585397"
+      ],
+      "vendor_revenue_yuan": 14650978489.57,
+      "vendor_parent_profit_yuan": 1508475025.93,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300696",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "e518b1ac8ff0e8e6dc00e9f7bd3b571c737268a49ae37d42e3afb0e643bca937"
+      ],
+      "vendor_revenue_yuan": 301066040.43,
+      "vendor_parent_profit_yuan": -24942531.91,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603608",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "502575be484029ede2950b8f561077fb422eaed4827d3fcd0d9c80f2437b520d"
+      ],
+      "vendor_revenue_yuan": 1098642403,
+      "vendor_parent_profit_yuan": -90814140,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688282",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "a94c0a8e41eea72d34deb4191eafaffba8b9827099138e336d749f2b2e1b7160"
+      ],
+      "vendor_revenue_yuan": 170876566.92,
+      "vendor_parent_profit_yuan": -4531861.74,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603700",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "source_row_hashes": [
+        "17c9589cca45b39721d320887c741cc0ead4e7dc4ec90fdf4fb0d7b6d5451dc2"
+      ],
+      "vendor_revenue_yuan": 1500514439.82,
+      "vendor_parent_profit_yuan": 52417452.39,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603938",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "9e305dc2e438eba957b8e1d2494971202fbf5c1e92b060016f7c11cbb190d901"
+      ],
+      "vendor_revenue_yuan": 1769763442.04,
+      "vendor_parent_profit_yuan": 63778928.19,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301040",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-23"
+      ],
+      "source_row_hashes": [
+        "e6354302b3e0a1fa6d4d28c7a055e7a753be72c10b4e042dbcbe1992a490087a"
+      ],
+      "vendor_revenue_yuan": 578662643.08,
+      "vendor_parent_profit_yuan": -150066305.91,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002116",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "9a23dcfc27fb8f06f57a481dc8d434745d6a34bb414358afcc4d4963df690f4f"
+      ],
+      "vendor_revenue_yuan": 6821450241.28,
+      "vendor_parent_profit_yuan": 335354059.79,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002786",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "e01c89c22000230670ed2fdd0b3a3c7a6f13459de2e31e097248f6db80e09fc3"
+      ],
+      "vendor_revenue_yuan": 2221171289.51,
+      "vendor_parent_profit_yuan": -271835754.78,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301516",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "2bf878df47be8cc12082bd5ec6df0c09ed23c6b1ae0a9cca04f72339b60e8a04"
+      ],
+      "vendor_revenue_yuan": 830447588.59,
+      "vendor_parent_profit_yuan": -89394046.32,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002197",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "01e933d77f7189a1bf5a3ef78cdb5c54856508a9089b372915fb1e82c5553602"
+      ],
+      "vendor_revenue_yuan": 925091488.91,
+      "vendor_parent_profit_yuan": -378942537.53,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600230",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-19"
+      ],
+      "vendor_update_dates": [
+        "2026-04-24"
+      ],
+      "source_row_hashes": [
+        "5d6d49f28b99d6a0f4f834d9bdd5aaca1d6d93834690d5e593812c57393126a5"
+      ],
+      "vendor_revenue_yuan": 5071071099.37,
+      "vendor_parent_profit_yuan": 27738543.18,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002543",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "096f9a41dfd737ab0bc8e10ba6ce7698b075c27c1dea550ee97dc4b5fbc45797"
+      ],
+      "vendor_revenue_yuan": 7341989612.77,
+      "vendor_parent_profit_yuan": 657625480.85,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600282",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-20"
+      ],
+      "vendor_update_dates": [
+        "2026-03-17"
+      ],
+      "source_row_hashes": [
+        "04778ad125a8a7e2f7c0d835c6f65c5bd739021d6ea593b95feeb8ebc0a6b137"
+      ],
+      "vendor_revenue_yuan": 61810635136.13,
+      "vendor_parent_profit_yuan": 2260763334.01,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:688601",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-12"
+      ],
+      "vendor_update_dates": [
+        "2026-04-11"
+      ],
+      "source_row_hashes": [
+        "6c9426dc41e5bd5720a7fef9a8abd3559b27ef96f96d5b7a5656a55b88956344"
+      ],
+      "vendor_revenue_yuan": 787493272.86,
+      "vendor_parent_profit_yuan": 125857356.24,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603389",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-06-30"
+      ],
+      "source_row_hashes": [
+        "107d00dc242049af4bd329cd7332024aae7d94a8a326b6ccb3bea4a2c57ef9ff"
+      ],
+      "vendor_revenue_yuan": 181117951.13,
+      "vendor_parent_profit_yuan": -122479364.11,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300307",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-16"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "7adac5f2728ba6aae3155f75fcf57a23cbb89deb813c8e03eada557f68c28f64"
+      ],
+      "vendor_revenue_yuan": 2218230313.95,
+      "vendor_parent_profit_yuan": 283836511.82,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000710",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-29"
+      ],
+      "source_row_hashes": [
+        "81ef6732fed4730d37f773cfc41bf0a1dc2131b2ea60b7cff650a5b14a9fda15"
+      ],
+      "vendor_revenue_yuan": 1078165273.94,
+      "vendor_parent_profit_yuan": -192428499.73,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603587",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-18"
+      ],
+      "source_row_hashes": [
+        "fbc3ffb37abc56ce3a25c641d3f659ae2528af933e519e51ee7b266420e6e87e"
+      ],
+      "vendor_revenue_yuan": 2218818429.14,
+      "vendor_parent_profit_yuan": 303507573.46,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002029",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-03"
+      ],
+      "source_row_hashes": [
+        "fba373e620905305e00119b4849d582f743ff710ab30374c33160c013468a38f"
+      ],
+      "vendor_revenue_yuan": 3140081720.82,
+      "vendor_parent_profit_yuan": 284548796.8,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002303",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-15"
+      ],
+      "vendor_update_dates": [
+        "2026-04-03"
+      ],
+      "source_row_hashes": [
+        "63867e4c545571e56beace46df533955eb20d7a561376cedf8b91f78520d91a7"
+      ],
+      "vendor_revenue_yuan": 4007212562.28,
+      "vendor_parent_profit_yuan": 281604315.56,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:603538",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-18"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "b0e0e63b7f4ebe51a1f64b602b62dc677cc5a3ef0e3d19a5a2784a59182cdb7a"
+      ],
+      "vendor_revenue_yuan": 1372855272.57,
+      "vendor_parent_profit_yuan": 66806624.45,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301081",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-28"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "51b93b17e918108397eb5d61afe57c021fec9ba94fe0031fb813d3e412bb40ec"
+      ],
+      "vendor_revenue_yuan": 784613108.49,
+      "vendor_parent_profit_yuan": 42179074.53,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300415",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "source_row_hashes": [
+        "c88f62f92ae513655192daa4b2e3ec370f2c68b555ffb750f488827e3685303f"
+      ],
+      "vendor_revenue_yuan": 5062986914.57,
+      "vendor_parent_profit_yuan": 607895384.28,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002752",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-18"
+      ],
+      "source_row_hashes": [
+        "f5ca1fd1ea6abb2fc88f892591f87d9a1c9798021f6faeb4364f25c97ad898e7"
+      ],
+      "vendor_revenue_yuan": 7130253406.63,
+      "vendor_parent_profit_yuan": 423301503.63,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000757",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-25"
+      ],
+      "vendor_update_dates": [
+        "2026-04-25"
+      ],
+      "source_row_hashes": [
+        "75c5cd4ccb41e08067ded966d876c3984d96ee309a5ccb337c5e3135ce44f9c1"
+      ],
+      "vendor_revenue_yuan": 3594718680.94,
+      "vendor_parent_profit_yuan": -20005709.41,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002594",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-25"
+      ],
+      "vendor_update_dates": [
+        "2026-03-28"
+      ],
+      "source_row_hashes": [
+        "31213ea44142f36e53953acb20c33015dd65ddf184fa5420eb3ce11eef4fff58"
+      ],
+      "vendor_revenue_yuan": 777102455000,
+      "vendor_parent_profit_yuan": 40254346000,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:003020",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-22"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "ae7f07f385d5e24ab5ff5e3f8107ed286b4a1a70346ca9ad8abd82fafc3b2766"
+      ],
+      "vendor_revenue_yuan": 1518486284.88,
+      "vendor_parent_profit_yuan": 160597316.84,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300183",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-31"
+      ],
+      "vendor_update_dates": [
+        "2026-04-11"
+      ],
+      "source_row_hashes": [
+        "6a263222d40b3f5c4428352c4c42d48aeb1e550f7ff08d2fb8dc6d0a7fff2c66"
+      ],
+      "vendor_revenue_yuan": 1030467840.44,
+      "vendor_parent_profit_yuan": 66827640.62,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600104",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-30"
+      ],
+      "vendor_update_dates": [
+        "2026-04-02"
+      ],
+      "source_row_hashes": [
+        "5d7a477cb0878c3443e17cd4b332fd4d71e8ac536974547b2a9984e6e6a2f41d"
+      ],
+      "vendor_revenue_yuan": 627589946567.69,
+      "vendor_parent_profit_yuan": 1666376761.07,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000892",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-10"
+      ],
+      "vendor_update_dates": [
+        "2026-04-30"
+      ],
+      "source_row_hashes": [
+        "82f95fa9ace8871f7931da54d1694b64d63a8c19e0405495507d427d362ec69e"
+      ],
+      "vendor_revenue_yuan": 384875816.62,
+      "vendor_parent_profit_yuan": -241108403.54,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:001270",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-23"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "source_row_hashes": [
+        "76239425442358668f5d95952f1fe4b9b64393367af09ccfe458cfb24aed9989"
+      ],
+      "vendor_revenue_yuan": 211539009.02,
+      "vendor_parent_profit_yuan": -31117893.52,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:300394",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-21"
+      ],
+      "vendor_update_dates": [
+        "2026-04-08"
+      ],
+      "source_row_hashes": [
+        "fe43165f1b28ea75a04bfe20ceeb1d888a2cd8b08702be30ebbd1c651f922efe"
+      ],
+      "vendor_revenue_yuan": 3251707626.61,
+      "vendor_parent_profit_yuan": 1343522232.87,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:002320",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-03-29"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "675bb663ccb2be6fec36bff977a1b12e74bf803814fdbb0e2e3e0a659f4963f1"
+      ],
+      "vendor_revenue_yuan": 5133366306.22,
+      "vendor_parent_profit_yuan": 309878416.63,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600519",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-03"
+      ],
+      "vendor_update_dates": [
+        "2026-04-17"
+      ],
+      "source_row_hashes": [
+        "2438b9ef7faa415853386eb9a208c387e0ae1655f10617e53e9efe24c1abcc32"
+      ],
+      "vendor_revenue_yuan": 174144069958.25,
+      "vendor_parent_profit_yuan": 86228146421.62,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:000758",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-24"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "68c6c35016b30be1af5ae8d3f12f4871d62858e8f9192a8ab84a6db5cb901a53"
+      ],
+      "vendor_revenue_yuan": 8917892057.98,
+      "vendor_parent_profit_yuan": 402313183.34,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:605286",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-26"
+      ],
+      "vendor_update_dates": [
+        "2026-04-09"
+      ],
+      "source_row_hashes": [
+        "c27a63e1a83aa490d25dea810b383d411ff2a93012cd7f5ac81f1e40b3c603b8"
+      ],
+      "vendor_revenue_yuan": 2526011928.18,
+      "vendor_parent_profit_yuan": 246420822.37,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SSE:600171",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-01"
+      ],
+      "vendor_update_dates": [
+        "2026-03-31"
+      ],
+      "source_row_hashes": [
+        "90848f79ca440cbad43732a699323eeccb9928bdc04947042aa7ed0aa9b8bcbf"
+      ],
+      "vendor_revenue_yuan": 2818708639.06,
+      "vendor_parent_profit_yuan": 395533544.89,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    },
+    {
+      "security_id": "SZSE:301070",
+      "coverage_status": "VENDOR_ROW_UPDATED_AFTER_2025_CUTOFF_NOT_ASOF_CERTIFIED",
+      "matched_vendor_rows": 1,
+      "vendor_announcement_dates": [
+        "2025-04-29"
+      ],
+      "vendor_update_dates": [
+        "2026-04-28"
+      ],
+      "source_row_hashes": [
+        "4fce65c40c817fe5b38d180a460891edcd8de96ea7ed22e5065be7ae671426ad"
+      ],
+      "vendor_revenue_yuan": 331191152.88,
+      "vendor_parent_profit_yuan": -10530566.16,
+      "original_pdf_url": null,
+      "original_pdf_bytes_preserved": false,
+      "historical_pit_certified": false
+    }
+  ]
+}
