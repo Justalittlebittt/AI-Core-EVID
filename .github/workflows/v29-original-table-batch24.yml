@@ -1,0 +1,96 @@
+name: V2.9 Original FY2022 FY2023 Structured Current-Year Table Cells — 24 Fixed Issuers
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-original-table-batch24.yml'
+      - 'scripts/v29_original_year_table_parser.py'
+      - 'scripts/v29_prior_year_original_table_batch_24.py'
+      - 'scripts/test_v29_original_year_table_batch_24.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-original-table-batch24.yml'
+      - 'scripts/v29_original_year_table_parser.py'
+permissions:
+  contents: read
+
+jobs:
+  existing-four-binaries-and-frozen-24-regression:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned PDF table parser only
+        run: python -m pip install --disable-pip-version-check pymupdf==1.26.5
+      - name: Reopen real previously preserved four original full PDFs and prove identical 16 current-year table cells
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_original_year_table_batch_24.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_prior_year_four_original_table_reconciliation.py' -v
+
+  retrieve-24-real-source-only-issuer-years:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned PDF table parser
+        run: python -m pip install --disable-pip-version-check pymupdf==1.26.5
+      - name: Validate exact frozen first 12 from both cohorts and previously verified 16 original table cells
+        run: python -m unittest discover -s scripts -p 'test_v29_original_year_table_batch_24.py' -v
+      - name: Fetch exactly preselected 24 original annual source PDFs, preserving missing documents and 2026 vendor vintage differences
+        run: |
+          python scripts/v29_prior_year_original_table_batch_24.py \
+            --out /tmp/v29-24-original-table \
+            --raw-out /tmp/v29-24-original-pdf-bytes
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          manifest=Path("/tmp/v29-24-original-table/FIXED_24_ORIGINAL_YEAR_TABLE_FIELDS.json")
+          d=json.loads(manifest.read_bytes())
+          assert d["schema"]=="V29_PRIOR_2023_2024_FIXED_24_PDF_CURRENT_YEAR_FIELD_AUDIT_V1"
+          assert d["frozen_audit_sample_count"]==d["attempted_count"]==len(d["rows"])==24
+          assert d["source_population_issuer_year_count"]==256
+          assert d["no_historical_or_future_price_outcomes_queried"] is True
+          assert d["strategy_validated"] is False and d["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          for row in d["rows"]:
+              if row.get("pdf_sha256_2026_retrieval"):
+                  pdf=Path("/tmp/v29-24-original-pdf-bytes")/(
+                      row["security_id"].replace(":","-")+f"-FY{row['fiscal_year']}.pdf")
+                  assert hashlib.sha256(pdf.read_bytes()).hexdigest()==row["pdf_sha256_2026_retrieval"]
+                  assert pdf.stat().st_size==row["pdf_size_bytes"]
+          print("FIXED_24_FY2022_FY2023_ORIGINAL_YEAR_PDF_COVERAGE",
+                d["original_pdf_full_identity_verified_count"],"24",
+                "FOUR_FIELDS_EXTRACTED",
+                d["original_pdf_all_four_current_year_fields_unambiguous_count"],
+                "SOURCE_FIELD_TOTAL",d["current_year_table_field_extracted_count"],
+                "LATE_VENDOR_DIFFERENCES",
+                d["table_field_disagrees_with_retrospective_vendor_count"])
+          PY
+      - name: Commit SHA-hashed source table evidence, without enormous PDF binaries in git
+        run: |
+          set -euo pipefail
+          target=research/v29_original_table_24_20261031/FIXED_24_ORIGINAL_YEAR_TABLE_FIELDS.json
+          test ! -e "$target"
+          mkdir -p "$(dirname "$target")"
+          cp /tmp/v29-24-original-table/FIXED_24_ORIGINAL_YEAR_TABLE_FIELDS.json "$target"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$target"
+          git commit -m "research(v29): preserve 24 real original-year table extracts and 2026 vendor-vintage comparison, no BUY [skip ci]"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+          echo "STORED_SOURCE_TABLE_EVIDENCE_24_NO_PRICE_RETURN_CALCULATED"
+      - name: Retain exact source PDF bytes separately for forensic audit without git repository bloat
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-24-original-financial-report-pdfs-and-cell-proofs
+          path: |
+            /tmp/v29-24-original-table/
+            /tmp/v29-24-original-pdf-bytes/
+          if-no-files-found: warn
+          retention-days: 30
