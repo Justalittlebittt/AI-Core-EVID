@@ -35,6 +35,8 @@ on:
       - 'scripts/v29_position_exit_review.py'
       - 'scripts/test_v29_position_exit_review.py'
       - 'scripts/v29_historical_asof_rank.py'
+      - 'scripts/v29_historical_universe_sampling.py'
+      - 'scripts/test_v29_historical_universe_sampling.py'
       - 'scripts/test_v29_historical_asof_rank.py'
       - 'scripts/v29_decision_case_demo.py'
       - 'scripts/test_v29_decision_case_demo.py'
@@ -68,6 +70,8 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
+          python scripts/v29_historical_universe_sampling.py --out /tmp/v29-historical-source-frame.json
           python -m unittest discover -s scripts -p 'test_v29_position_exit_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_position_watchlist.py' -v
           python -m unittest discover -s scripts -p 'test_v29_exit_execution_readiness.py' -v
