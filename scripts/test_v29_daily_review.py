@@ -66,6 +66,38 @@ class DailyReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"EXPECTED_SESSION_DIFFERS"):
             run_daily([pos()],AT,"2026-10-23",[quote()])
 
+    def test_previous_completed_session_reference_alert_without_current_clearance(self):
+        x=run_daily([pos()], "2026-10-26T09:30:00+08:00", "2026-10-23",
+                    [quote(as_of="2026-10-23T15:00:00+08:00",close=8.5)],
+                    max_quote_age_hours=72,allow_prior_session=True)
+        self.assertTrue(x["reference_session_only"])
+        self.assertIs(x["current_day_price_or_exit_clearance_established"],False)
+        self.assertEqual(x["exit_required_count"],1)
+        self.assertEqual(x["rows"][0]["decision"],
+                         "EXIT_REQUIRED_REFERENCE_SESSION_EXECUTION_UNCONFIRMED")
+        self.assertIn("今天行情与成交未确认",render_text(x))
+
+    def test_previous_session_non_trigger_is_not_today_safe(self):
+        x=run_daily([pos()], "2026-10-26T09:30:00+08:00", "2026-10-23",
+                    [quote(as_of="2026-10-23T15:00:00+08:00",close=9.5)],
+                    max_quote_age_hours=72,allow_prior_session=True)
+        self.assertEqual(x["rows"][0]["decision"],
+                         "REFERENCE_SESSION_NO_EXIT_TRIGGER_NOT_CURRENT_CLEARANCE")
+        self.assertIn("不得视为今天安全",render_text(x))
+
+    def test_previous_session_reference_keeps_staleness_and_session_guards(self):
+        x=run_daily([pos()], "2026-10-26T09:30:00+08:00", "2026-10-23",
+                    [quote(as_of="2026-10-23T15:00:00+08:00")],
+                    allow_prior_session=True)
+        self.assertEqual(x["rows"][0]["decision"],"UNASSESSABLE_QUOTE")
+        self.assertEqual(x["unassessable_quote_count"],1)
+        y=run_daily([pos()], "2026-10-26T09:30:00+08:00", "2026-10-23",
+                    [quote(as_of="2026-10-26T09:00:00+08:00")],
+                    max_quote_age_hours=72,allow_prior_session=True)
+        self.assertEqual(y["rows"][0]["decision"],"UNASSESSABLE_QUOTE")
+        with self.assertRaisesRegex(ValueError,"EXPECTED_SESSION_DIFFERS"):
+            run_daily([pos()],AT,"2026-10-27",[quote()],allow_prior_session=True)
+
     def test_timezone_must_be_explicit(self):
         with self.assertRaisesRegex(ValueError,"EVALUATION_REQUIRES_TIMEZONE"):
             run_daily([pos()],"2026-10-26T15:30:00","2026-10-26",[quote()])
