@@ -221,6 +221,24 @@ class Fixed20ExitTests(unittest.TestCase):
         self.assertIsNone(report["outcome_evaluation"]["mean_net_excess"])
         self.assertFalse(report["trade_authorized"])
 
+    def test_official_positional_total_return_rows_and_identity_lock(self):
+        def row(day,code,close):
+            values=[None]*16
+            values[0]=day
+            values[1]=code
+            values[9]=close
+            return values
+        raw=json.dumps({"data":[row("20261102","H00300","6010.30"),
+                                row("20261127","H00300","6110.30")]}).encode()
+        parsed=index_result(raw,"2026-11-27",6010.30)
+        self.assertEqual(parsed["exit_total_return_index_close"],6110.30)
+        wrong=json.dumps({"data":[row("20261102","H00300","6010.30"),
+                                  row("20261127","000300","6110.30")]}).encode()
+        with self.assertRaisesRegex(ValueError,"PRICE_INDEX_INSTEAD_OF_FROZEN_TOTAL_RETURN"):
+            index_result(wrong,"2026-11-27",6010.30)
+        with self.assertRaisesRegex(ValueError,"ORIGINAL_OFFICIAL_TOTAL_RETURN_ENTRY_PRICE_REVISED"):
+            index_result(raw,"2026-11-27",6010.29)
+
     def test_official_benchmark_failure_also_blocks_all_122_even_with_quotes(self):
         report,outcome,raw=capture(FakeBS(),now=AFTER,
                                    official_fetch=lambda _d:b"<html>blocked</html>",

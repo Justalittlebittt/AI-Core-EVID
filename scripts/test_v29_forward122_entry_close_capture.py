@@ -133,6 +133,24 @@ class EntryCloseCaptureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"BENCHMARK_DATE_OUTSIDE_ALLOWED_WINDOW"):
             parse_index(json.dumps(wrong).encode(),6001.14)
 
+    def test_official_positional_rows_match_preentry_verified_response_shape(self):
+        def row(day,code,close):
+            values=[None]*16
+            values[0]=day
+            values[1]=code
+            values[9]=close
+            return values
+        raw=json.dumps({"data":[row("20261030","H00300","6001.14"),
+                                row("20261102","H00300","6010.30")]}).encode()
+        parsed=parse_index(raw,6001.14)
+        self.assertEqual(parsed["entry_total_return_index_close"],6010.30)
+        wrong=json.dumps({"data":[row("20261030","H00300","6001.14"),
+                                  row("20261102","000300","6010.30")]}).encode()
+        with self.assertRaisesRegex(ValueError,"CSI300_PRICE_INDEX_SUBSTITUTION_REJECTED"):
+            parse_index(wrong,6001.14)
+        with self.assertRaisesRegex(ValueError,"PRIOR_FROZEN_INDEX_CLOSE_REVISED_OR_WRONG_SOURCE"):
+            parse_index(raw,6001.13)
+
     def test_st_suspension_and_missing_are_all_fail_closed_without_filling_prices(self):
         code="sz.300519"
         rec={"code":code,"date":"2026-11-02","adjustflag":"3",

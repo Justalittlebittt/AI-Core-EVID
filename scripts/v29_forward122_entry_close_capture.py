@@ -133,19 +133,27 @@ def parse_index(raw,reference_close):
         raise ValueError("CSINDEX_OFFICIAL_RESPONSE_SCHEMA_UNVERIFIED")
     by_day={}
     for r in obj["data"]:
-        if not isinstance(r,dict):
+        # The official index-perf endpoint returns positional rows (date, code,
+        # close at position 9); retain support for keyed rows as well.
+        if isinstance(r,list) and len(r)>=10:
+            source_date,source_code,source_close=r[0],r[1],r[9]
+        elif isinstance(r,dict):
+            source_date=r.get("tradeDate") or r.get("date")
+            source_code=r.get("indexCode")
+            source_close=r.get("close")
+        else:
             raise ValueError("CSINDEX_OFFICIAL_INDEX_ROW_INVALID")
-        code=str(r.get("indexCode") or "").upper()
+        code=str(source_code or "").upper()
         if code not in ("H00300","H00300.CSI"):
             raise ValueError("CSI300_PRICE_INDEX_SUBSTITUTION_REJECTED")
-        v=str(r.get("tradeDate") or "")
+        v=str(source_date or "")
         if len(v)==8 and v.isdigit():
             d=datetime.strptime(v,"%Y%m%d").date()
         else:
             d=date.fromisoformat(v)
         if not PRIOR_DAY<=d<=ENTRY_DAY or d in by_day:
             raise ValueError("BENCHMARK_DATE_OUTSIDE_ALLOWED_WINDOW_OR_DUPLICATE")
-        close=numeric_positive(r.get("close"))
+        close=numeric_positive(source_close)
         if close is None:
             raise ValueError("BENCHMARK_CLOSE_INVALID")
         by_day[d]=close
