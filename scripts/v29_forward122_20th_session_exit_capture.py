@@ -136,18 +136,25 @@ def index_result(raw,exit_session,entry_level):
         raise ValueError("OFFICIAL_TR_RESULT_SCHEMA_INVALID")
     quotes={}
     for row in obj["data"]:
-        if not isinstance(row,dict):
+        # Match the previously verified official index-perf positional response.
+        if isinstance(row,list) and len(row)>=10:
+            source_date,source_code,source_close=row[0],row[1],row[9]
+        elif isinstance(row,dict):
+            source_date=row.get("tradeDate") or row.get("date")
+            source_code=row.get("indexCode")
+            source_close=row.get("close")
+        else:
             raise ValueError("OFFICIAL_TR_ROW_SCHEMA_INVALID")
-        if row.get("indexCode") not in ("H00300","H00300.CSI"):
+        if str(source_code or "").upper() not in ("H00300","H00300.CSI"):
             raise ValueError("PRICE_INDEX_INSTEAD_OF_FROZEN_TOTAL_RETURN")
-        v=str(row.get("tradeDate") or "")
+        v=str(source_date or "")
         if len(v)==8 and v.isdigit():
             d=datetime.strptime(v,"%Y%m%d").date().isoformat()
         else:
             d=date.fromisoformat(v).isoformat()
         if d < ENTRY_DAY.isoformat() or d > exit_session or d in quotes:
             raise ValueError("OFFICIAL_TR_UNEXPECTED_DATE_OR_DUPLICATE")
-        close=numeric_positive(row.get("close"))
+        close=numeric_positive(source_close)
         if close is None:
             raise ValueError("OFFICIAL_TR_NONPOSITIVE_OR_INVALID")
         quotes[d]=close
