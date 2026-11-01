@@ -44,3 +44,15 @@ No frozen prospective evidence, Fold3/Fold4, scientific threshold, sample or aut
 - Terminal decision: **NOT SUPPORTED**. Permanent record: `research/CLOSE_LOCATION_V1_RESULT.md`; Actions artifact `exploratory-close-location-v1` contains complete daily results.
 - This does not validate a stock predictor. Do not reverse the signal, retune deciles or revisit the pre-registered 2025–2026 sample as untouched OOS.
 - Priority: avoid serial retrospective factor roulette on previously viewed windows. Preserve present no-action and user-supplied-position monitoring capabilities, and design any future predictive study around an independently frozen, genuinely unobserved prospective sample and economically realistic execution assumptions. Do not add additional monitoring scaffolding merely to record failed retrospective hypotheses.
+
+## 2026-11-01: real-issuer research reviews without synthetic risk placeholders
+
+The FY2024 as-disclosed integration case is a valid *engineering test* but takes synthetic risk inputs from the Decision Packet demo. For the two already researched 2026-Q3 issuers, a separate read-only research review now exists:
+
+```bash
+python scripts/v29_current_issuer_research_review.py
+```
+
+This reads the existing `research/V2.9_ISSUER_VALUATION_SENSITIVITY_20261030.json` and outputs the real source-bound 2026-10-29 quoted prices and 2026-10-30 research context for `SZSE:300408` and `SSE:688002`. It preserves exact input SHA256 and cited public research/quote URLs. **It is not a V2.9 Decision Packet**: no hypothetical risk inputs are manufactured; the Discipline Engine is not invoked; contemplated trade and stop/take-profit/position fields remain `null`, and BUY/ADD remain unauthorized. This is a practical honest candidate-review deliverable, not an empirical alpha or a current-day quote, and does not revise any frozen evidence or risk rules.
+
+The next scientific bottleneck remains future cost-aware independent validation of an actually predictive rule. Once a qualifying strategy exists, an intended trade requires *real human-specified risk parameters* in the existing V2.9 packet, not these research-only records.
