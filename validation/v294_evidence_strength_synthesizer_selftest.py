@@ -68,7 +68,7 @@ def main() -> None:
     set_status(anchor_failed, "baseline_comparison", "FAILED")
     strength, reasons = synthesize_strength(prereg, anchor_failed)
     assert strength == "WEAK"
-    assert "failed_cap_weak:baseline_comparison" in reasons
+    assert "required_anchor_failed:baseline_comparison" in reasons
 
     anchor_mixed = deepcopy(base)
     set_status(anchor_mixed, "out_of_sample", "MIXED_OR_UNSTABLE")
