@@ -1,0 +1,116 @@
+name: V2.9 Original Annual Source-Only Coverage - Complete Frozen 256
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/v29-original-full256-source.yml'
+      - 'scripts/v29_original_full256_source_frame.py'
+      - 'scripts/test_v29_original_full256_source_frame.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-original-full256-source.yml'
+permissions:
+  contents: read
+
+jobs:
+  offline-identity-and-no-backfill:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen 256 selection, original-year values, 24 reuse and missingness
+        run: python -m unittest discover -s scripts -p 'test_v29_original_full256_source_frame.py' -v
+
+  capture-remaining-232:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install existing pinned original-report PDF parser
+        run: python -m pip install --disable-pip-version-check pymupdf==1.26.5
+      - name: Retrieve exactly 58 frozen source identities, never stock prices or returns
+        run: |
+          python scripts/v29_original_full256_source_frame.py capture \
+            --shard ${{ matrix.shard }} \
+            --out /tmp/v29-full256/shard-${{ matrix.shard }}.json
+      - name: Store bounded machine-readable source-table receipts, not bulk PDF binaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-original-256-source-shard-${{ matrix.shard }}
+          path: /tmp/v29-full256/shard-${{ matrix.shard }}.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  merge-source-only-256:
+    if: github.event_name == 'push'
+    needs: capture-remaining-232
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v29-original-256-source-shard-*
+          merge-multiple: true
+          path: /tmp/v29-source-shards
+      - name: Join all 256 in frozen cohort order and verify no vendor backfill or BUY eligibility
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts -p 'test_v29_original_full256_source_frame.py' -v
+          python scripts/v29_original_full256_source_frame.py merge \
+            --shard-dir /tmp/v29-source-shards \
+            --out-dir /tmp/v29-source-256-combined
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          p=Path("/tmp/v29-source-256-combined")
+          frame=json.loads((p/"ORIGINAL_SOURCE_256_FRAME.json").read_bytes())
+          receipt=json.loads((p/"ORIGINAL_PDF_TABLE_256_RECEIPT.json").read_bytes())
+          assert frame["frozen_issuer_year_count"]==len(frame["rows"])==256
+          assert len(receipt["rows"])==256
+          assert frame["additional_original_pdf_source_cases_attempted"]==232
+          assert frame["complete_four_field_count"]+frame["incomplete_four_field_count"]==256
+          assert frame["complete_four_field_count"]>=15
+          assert frame["source_values_from_original_year_table_cells_only"] is True
+          assert frame["later_2026_vendor_values_never_used_as_financial_features"] is True
+          assert frame["2023_2024_release_time_pdf_sha_certified"] is False
+          assert frame["independent_untouched_oos_or_price_outcomes_used"] is False
+          assert frame["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          assert all(x["live_buy_eligibility"]=="NOT_AUTHORIZED" and not x["strict_historical_pit_certified"] for x in frame["rows"])
+          print("COMPLETE_FROZEN_SOURCE_ONLY_FRAME",
+                frame["original_pdf_full_identity_verified_count"],
+                frame["complete_four_field_count"],
+                "unresolved",frame["incomplete_four_field_count"])
+          PY
+      - name: Persist 256 original-year source receipts once, never alter first 24 archive
+        run: |
+          set -euo pipefail
+          target=research/v29_original_source_256_20261101
+          test ! -e "$target"
+          mkdir -p "$target"
+          cp /tmp/v29-source-256-combined/*.json "$target/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$target"
+          git commit -m "research(v29): persist full 256 original-year PDF source table frame, no BUY [skip ci]"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+      - name: Keep full source receipts as bounded Actions artifact if repository commit fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-original-256-complete-source-receipts
+          path: /tmp/v29-source-256-combined/
+          if-no-files-found: warn
+          retention-days: 30
