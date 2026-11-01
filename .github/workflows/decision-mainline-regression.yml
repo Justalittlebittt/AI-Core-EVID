@@ -39,6 +39,9 @@ on:
       - 'scripts/test_v29_historical_universe_sampling.py'
       - 'scripts/test_v29_historical_asof_rank.py'
       - 'scripts/v29_decision_case_demo.py'
+      - 'scripts/v29_current_issuer_research_review.py'
+      - 'scripts/test_v29_current_issuer_research_review.py'
+      - 'research/V2.9_ISSUER_VALUATION_SENSITIVITY_20261030.json'
       - 'scripts/test_v29_decision_case_demo.py'
       - 'scripts/v29_historical_factor_admission.py'
       - 'scripts/test_v29_historical_factor_admission.py'
@@ -70,6 +73,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_real_filing_decision_case.py' -v
           python scripts/v29_growth_forward_cohort.py > /tmp/v29-forward-readiness.json
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_current_issuer_research_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
@@ -86,12 +90,17 @@ jobs:
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
+          python scripts/v29_current_issuer_research_review.py > /tmp/v29-actual-issuer-reviews.json
           python scripts/v29_historical_factor_admission.py > /tmp/admission.json
           python - <<'PY'
           import json
           with open("/tmp/decision-demo.json") as f: d=json.load(f)
           with open("/tmp/admission.json") as f: a=json.load(f)
           assert d["evaluation"]["discipline_decision"]["decision"] == "NO_ACTION_INSUFFICIENT_EVIDENCE"
+          with open("/tmp/v29-actual-issuer-reviews.json") as f: real=json.load(f)
+          assert len(real["cases"]) == 2 and real["live_buy_eligibility"] == "NOT_AUTHORIZED"
+          assert real["synthetic_risk_fields_used"] is False
+          assert all(x["decision_packet"] is None and x["contemplated_action"] is None and not x["buy_add_authorized"] for x in real["cases"])
           assert a["factors_tested"] == 9 and a["factors_promoted"] == 0
           assert a["live_buy_eligibility"] == "NOT_AUTHORIZED"
           print("DECISION_MAINLINE_VERIFIED: 2 engines; no unsupported buys")
