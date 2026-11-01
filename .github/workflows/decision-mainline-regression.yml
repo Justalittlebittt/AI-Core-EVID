@@ -41,6 +41,10 @@ on:
       - 'scripts/v29_decision_case_demo.py'
       - 'scripts/v29_current_issuer_research_review.py'
       - 'scripts/test_v29_current_issuer_research_review.py'
+      - 'scripts/v29_original_24_source_frame.py'
+      - 'scripts/test_v29_original_24_source_frame.py'
+      - 'research/v29_original_table_24_20261031/FIXED_24_ORIGINAL_YEAR_TABLE_FIELDS.json'
+      - 'research/v29_original_table_24_20261031/PRECISION_RECONCILIATION.json'
       - 'research/V2.9_ISSUER_VALUATION_SENSITIVITY_20261030.json'
       - 'scripts/test_v29_decision_case_demo.py'
       - 'scripts/v29_historical_factor_admission.py'
@@ -74,6 +78,8 @@ jobs:
           python scripts/v29_growth_forward_cohort.py > /tmp/v29-forward-readiness.json
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_current_issuer_research_review.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_original_24_source_frame.py' -v
+          python scripts/v29_original_24_source_frame.py > /tmp/v29-original-24-source-frame.json
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_asof_rank.py' -v
           python -m unittest discover -s scripts -p 'test_v29_historical_universe_sampling.py' -v
@@ -97,6 +103,13 @@ jobs:
           with open("/tmp/decision-demo.json") as f: d=json.load(f)
           with open("/tmp/admission.json") as f: a=json.load(f)
           assert d["evaluation"]["discipline_decision"]["decision"] == "NO_ACTION_INSUFFICIENT_EVIDENCE"
+          with open("/tmp/v29-original-24-source-frame.json") as f: frame=json.load(f)
+          assert frame["frozen_issuer_year_count"] == 24
+          assert frame["complete_four_field_count"] == 15 and frame["incomplete_four_field_count"] == 9
+          assert frame["all_four_positive_descriptive_count"] == 3
+          assert frame["vendor_2026_numeric_values_used_as_features"] is False
+          assert frame["historical_pit_reconstruction_complete"] is False
+          assert frame["live_buy_eligibility"] == "NOT_AUTHORIZED"
           with open("/tmp/v29-actual-issuer-reviews.json") as f: real=json.load(f)
           assert len(real["cases"]) == 2 and real["live_buy_eligibility"] == "NOT_AUTHORIZED"
           assert real["synthetic_risk_fields_used"] is False
