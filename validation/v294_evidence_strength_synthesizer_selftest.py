@@ -68,7 +68,7 @@ def main() -> None:
     set_status(anchor_failed, "baseline_comparison", "FAILED")
     strength, reasons = synthesize_strength(prereg, anchor_failed)
     assert strength == "WEAK"
-    assert "failed_cap_weak:baseline_comparison" in reasons
+    assert "required_anchor_failed:baseline_comparison" in reasons
 
     anchor_mixed = deepcopy(base)
     set_status(anchor_mixed, "out_of_sample", "MIXED_OR_UNSTABLE")
@@ -85,6 +85,48 @@ def main() -> None:
     strength, reasons = synthesize_strength(prereg, anchor_insufficient)
     assert strength == "INSUFFICIENT"
     assert reasons == ["anchor_insufficient_data:transaction_cost_and_execution_constraints"]
+
+    # Optional calibration may be explicitly inapplicable, but core evidence
+    # can never be exempted and still claim strong action eligibility.
+    optional_na = deepcopy(base)
+    set_status(optional_na, "probability_calibration_where_applicable",
+               "NOT_APPLICABLE_PREDECLARED")
+    strength, _ = synthesize_strength(prereg, optional_na)
+    assert strength == "STRONG"
+
+    for anchor in ("baseline_comparison", "out_of_sample",
+                   "transaction_cost_and_execution_constraints"):
+        missing_anchor = deepcopy(base)
+        set_status(missing_anchor, anchor, "NOT_APPLICABLE_PREDECLARED")
+        strength, reasons = synthesize_strength(prereg, missing_anchor)
+        assert strength == "INSUFFICIENT"
+        assert reasons == [f"required_anchor_not_applicable:{anchor}"]
+
+    for cap in ("UNCERTAINTY_ONLY", "CAP_AT_MODERATE"):
+        relaxed_prereg = deepcopy(prereg)
+        for dim in relaxed_prereg["dimensions"]:
+            if dim["dimension"] == "baseline_comparison":
+                dim["failure_effect"] = cap
+        failed_baseline = deepcopy(base)
+        set_status(failed_baseline, "baseline_comparison", "FAILED")
+        strength, reasons = synthesize_strength(relaxed_prereg, failed_baseline)
+        assert strength == "WEAK"
+        assert "required_anchor_failed:baseline_comparison" in reasons
+
+    for duplicate_in in ("prereg", "result"):
+        duplicated_prereg = deepcopy(prereg)
+        duplicated_result = deepcopy(base)
+        if duplicate_in == "prereg":
+            duplicated_prereg["dimensions"].append(
+                deepcopy(duplicated_prereg["dimensions"][1]))
+        else:
+            duplicated_result["dimensions"].append(
+                deepcopy(duplicated_result["dimensions"][1]))
+        try:
+            synthesize_strength(duplicated_prereg, duplicated_result)
+            raise AssertionError("duplicate dimensions must fail")
+        except RuntimeError as exc:
+            assert "DUPLICATE_VALIDITY_DIMENSION" in str(exc)
 
     no_oos = deepcopy(base)
     no_oos["untouched_oos_completed"] = False

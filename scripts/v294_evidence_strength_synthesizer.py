@@ -39,6 +39,10 @@ def synthesize_strength(prereg: dict, result: dict) -> Tuple[str, List[str]]:
     prereg_dims: Dict[str, dict] = {d["dimension"]: d for d in prereg["dimensions"]}
     result_dims: Dict[str, dict] = {d["dimension"]: d for d in result["dimensions"]}
 
+    # Duplicate dimensions could silently overwrite a failed required anchor.
+    if (len(prereg_dims) != len(prereg["dimensions"]) or
+            len(result_dims) != len(result["dimensions"])):
+        raise RuntimeError("DUPLICATE_VALIDITY_DIMENSION")
     if set(prereg_dims) != set(result_dims):
         raise RuntimeError("DIMENSION_SET_MISMATCH")
 
@@ -62,6 +66,9 @@ def synthesize_strength(prereg: dict, result: dict) -> Tuple[str, List[str]]:
         if status not in VALID_STATUSES:
             raise RuntimeError(f"INVALID_DIMENSION_STATUS:{name}:{status}")
         if status == "NOT_APPLICABLE_PREDECLARED":
+            # Essential OOS, matched baseline and execution evidence is never optional.
+            if name in REQUIRED_ANCHORS:
+                return "INSUFFICIENT", [f"required_anchor_not_applicable:{name}"]
             continue
         applicable_count += 1
 
@@ -73,7 +80,12 @@ def synthesize_strength(prereg: dict, result: dict) -> Tuple[str, List[str]]:
             continue
 
         if status == "FAILED":
-            if failure_effect == "CAP_AT_WEAK":
+            # A predeclared cap must not permit a failed core anchor to
+            # produce MODERATE/STRONG, which would unlock BUY/ADD review.
+            if name in REQUIRED_ANCHORS:
+                strength = _cap(strength, "WEAK")
+                reasons.append(f"required_anchor_failed:{name}")
+            elif failure_effect == "CAP_AT_WEAK":
                 strength = _cap(strength, "WEAK")
                 reasons.append(f"failed_cap_weak:{name}")
             elif failure_effect == "CAP_AT_MODERATE":
