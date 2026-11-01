@@ -47,7 +47,8 @@ def load_population():
     if (vendor.get("schema") != "V29_FY2022_FY2023_2X128_RETROSPECTIVE_VENDOR_FINANCIAL_SOURCE_V1"
             or official["sealed_prequery_cohorts_manifest_sha256"] != frame_hash
             or vendor["prequery_historical_frame_sha256"] != frame_hash
-            or len(frozen["cohorts"]) != len(official["cohorts"]) != 2):
+            or len(frozen["cohorts"]) != 2 or len(official["cohorts"]) != 2
+            or len(vendor["cohorts"]) != 2):
         raise ValueError("FROZEN_COHORT_OR_VENDOR_SOURCE_IDENTITY_CHANGED")
     if (pilot.get("schema") != "V29_PRIOR_2023_2024_FIXED_24_PDF_CURRENT_YEAR_FIELD_AUDIT_V1"
             or len(pilot.get("rows", [])) != 24
