@@ -147,7 +147,7 @@ conditional-310-supplement-when-parent-sealed:
     # Separate optional post-parent job. A failed 188-name supplement cannot
     # rewrite or invalidate the frozen original 122-source experiment.
     needs: one-future-outcome-when-mature
-    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && needs.one-future-outcome-when-mature.result == 'success'
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && needs['one-future-outcome-when-mature'].result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 50
     permissions:
