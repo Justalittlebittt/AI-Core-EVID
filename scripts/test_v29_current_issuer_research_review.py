@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from v29_current_issuer_research_review import SOURCE, build_reviews
+from v29_current_issuer_research_review import SOURCE, build_reviews, assess_private_capital_capacity
 
 
 class CurrentIssuerResearchReviewTests(unittest.TestCase):
@@ -82,6 +82,92 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
         import hashlib
         self.assertEqual(a["financial_research_source_sha256"],
                          hashlib.sha256(self.source_bytes).hexdigest())
+
+
+    def capacity_fixture(self):
+        return {
+            "as_of": "2026-11-02T14:12:00+08:00",
+            "account_equity_cny": 100000,
+            "available_cash_cny": 100000,
+            "max_single_name_position_fraction": 0.35,
+            "max_single_name_risk_fraction": 0.01,
+            "buy_fee_reserve_cny": 300,
+            "quotes": [
+                {"security_id": "SZSE:300408", "as_of": "2026-11-02T14:10:00+08:00",
+                 "price_cny": 80.0, "source": "USER_SUPPLIED_UNVERIFIED"},
+                {"security_id": "SSE:688002", "as_of": "2026-11-02T14:10:00+08:00",
+                 "price_cny": 140.0, "source": "USER_SUPPLIED_UNVERIFIED"},
+            ],
+            "stops": [
+                {"security_id": "SZSE:300408", "stop_price_cny": 75.0},
+                {"security_id": "SSE:688002", "stop_price_cny": 136.0},
+            ],
+            "permissions": {"chinext": True, "star": True},
+        }
+
+    def test_private_capital_sizing_uses_true_chinext_and_star_lots(self):
+        # Invented scenario only; these are NOT actual market quotes or orders.
+        report = assess_private_capital_capacity(build_reviews(self.source_bytes), self.capacity_fixture())
+        by_id = {r["security_id"]: r for r in report["cases"]}
+        a, b = by_id["SZSE:300408"], by_id["SSE:688002"]
+        self.assertEqual(a["standalone_hypothetical_max_shares_not_order"], 200)
+        self.assertEqual(a["minimum_buy_shares"], 100)
+        self.assertEqual(a["subsequent_quantity_increment_shares"], 100)
+        self.assertEqual(b["standalone_hypothetical_max_shares_not_order"], 250)
+        self.assertEqual(b["minimum_buy_shares"], 200)
+        self.assertEqual(b["subsequent_quantity_increment_shares"], 1)
+        self.assertEqual(b["standalone_hypothetical_notional_cny"], 35000)
+        self.assertFalse(report["trade_authorized"])
+        self.assertTrue(report["standalone_alternatives_not_an_aggregate_portfolio"])
+
+    def test_private_account_permission_never_inferred(self):
+        plan = self.capacity_fixture()
+        plan["permissions"]["star"] = False
+        report = assess_private_capital_capacity(build_reviews(self.source_bytes), plan)
+        b = next(x for x in report["cases"] if x["security_id"] == "SSE:688002")
+        self.assertEqual(b["capacity_status"], "TRADING_PERMISSION_UNKNOWN_OR_DISABLED")
+        self.assertIsNone(b["standalone_hypothetical_max_shares_not_order"])
+
+    def test_private_cash_or_risk_below_one_lot_blocks(self):
+        plan = self.capacity_fixture()
+        plan["account_equity_cny"] = 15000
+        plan["available_cash_cny"] = 15000
+        plan["max_single_name_position_fraction"] = .2
+        report = assess_private_capital_capacity(build_reviews(self.source_bytes), plan)
+        self.assertTrue(all(x["capacity_status"] == "MINIMUM_ORDER_EXCEEDS_CASH_POSITION_OR_RISK_LIMIT"
+                            for x in report["cases"]))
+        self.assertTrue(all(x["standalone_hypothetical_max_shares_not_order"] is None
+                            for x in report["cases"]))
+
+    def test_old_private_quote_does_not_produce_sizing(self):
+        plan = self.capacity_fixture()
+        plan["quotes"][0]["as_of"] = "2026-11-01T15:00:00+08:00"
+        report = assess_private_capital_capacity(build_reviews(self.source_bytes), plan)
+        a = next(x for x in report["cases"] if x["security_id"] == "SZSE:300408")
+        self.assertEqual(a["capacity_status"], "QUOTE_STALE_FUTURE_OR_DIFFERENT_SESSION_DAY")
+        self.assertIsNone(a["standalone_hypothetical_max_shares_not_order"])
+
+    def test_missing_real_stop_or_quote_does_not_invent_one(self):
+        plan = self.capacity_fixture()
+        plan["stops"] = []
+        plan["quotes"] = []
+        report = assess_private_capital_capacity(build_reviews(self.source_bytes), plan)
+        self.assertTrue(all(x["capacity_status"] == "NO_USER_SUPPLIED_SAME_DAY_QUOTE"
+                            for x in report["cases"]))
+        self.assertTrue(all(x["standalone_hypothetical_max_shares_not_order"] is None
+                            for x in report["cases"]))
+
+    def test_invalid_private_cash_and_duplicate_quote_rejected_at_boundary(self):
+        research = build_reviews(self.source_bytes)
+        plan = self.capacity_fixture()
+        plan["available_cash_cny"] = True
+        with self.assertRaisesRegex(ValueError, "INVALID_PRIVATE_FIELD"):
+            assess_private_capital_capacity(research, plan)
+        plan = self.capacity_fixture()
+        plan["quotes"].append(plan["quotes"][0].copy())
+        with self.assertRaisesRegex(ValueError, "DUPLICATED_PRIVATE_QUOTES"):
+            assess_private_capital_capacity(research, plan)
+
 
 
 if __name__ == "__main__":
