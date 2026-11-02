@@ -1,4 +1,4 @@
-# Mainline integration inventory — updated 2026-10-27
+# Mainline integration inventory — updated 2026-11-02
 
 Purpose: first checkpoint in [Decision-first mainline](../MAINLINE_DECISION_FIRST.md). This is an evidence-based repository code inventory, not a claim that historical strategies are live-eligible.
 
@@ -12,7 +12,7 @@ Purpose: first checkpoint in [Decision-first mainline](../MAINLINE_DECISION_FIRS
 | Integrated no-action example | `scripts/v29_decision_case_demo.py` | SYNTHETIC_SLICE | Checks wiring only, cannot justify purchasing DEMO:000001 or any listed equity |
 | Production PIT candidate screener | No general-purpose production entry point established in this inventory | NOT_YET_VERIFIED | Must determine universe, PIT source/vintage, strategy rule and reproducible ranking |
 | User-supplied holdings review | scripts/v29_daily_review.py, scripts/v29_position_watchlist.py, scripts/v29_exit_execution_readiness.py | REUSABLE_OFFLINE_NO_BROKER | Actual positions and sellability must be supplied; no orders, stored broker state or independently verified live feed |
-| Evidence-strength preregistration | `README.md` identifies this as pending | BLOCKED_BY_PREREGISTRATION | Cannot assert STRONG or MODERATE based on retrospective outcomes |
+| General evidence-strength mapping | `evidence/V2.9_EVIDENCE_STRENGTH_MAPPING_CONTRACT.json` and `scripts/v294_evidence_strength_synthesizer.py` | REUSABLE_FROZEN_FOUNDATION | Experiment-specific pre-outcome criteria and independent validity evidence still missing; no real strategy strength is established |
 
 ## Scope gate
 
@@ -20,7 +20,7 @@ Do not reuse prospective V2.8.4/V2.8.12 outcome data or Fold3/Fold4 in any demo,
 
 ## Next executable user-value step
 
-The real historical identity-bound no-action example is now verified. The next blocker is a **predeclared candidate strategy with positive PIT/OOS validity evidence** and a separate current-vintage market data feed, not another monitoring workflow. Existing unpromoted ret_20 ranks cannot be treated as buy signals. Current watchlist review accepts private user-supplied positions but is not a validated full-market stock screener.
+The real historical identity-bound no-action example is verified and the general strength mapping already exists. The **only decisive scientific blocker** to a BUY-supporting strategy is an independently verified, predeclared candidate rule with reliable decision-time vintages, realistic post-cost execution and a genuinely unobserved evaluation. Source-bound 2026-Q3 issuer reviews and the frozen 122-issuer experiment are useful research, but do not promote an action. Reuse current validation, decision and watchlist modules. Do not add another monitoring workflow or evidence-strength framework.
 
 ## 2026-10-27 checkpoint 2: verified full historical PIT cross-section
 
@@ -56,3 +56,15 @@ python scripts/v29_current_issuer_research_review.py
 This reads the existing `research/V2.9_ISSUER_VALUATION_SENSITIVITY_20261030.json` and outputs the real source-bound 2026-10-29 quoted prices and 2026-10-30 research context for `SZSE:300408` and `SSE:688002`. It preserves exact input SHA256 and cited public research/quote URLs. **It is not a V2.9 Decision Packet**: no hypothetical risk inputs are manufactured; the Discipline Engine is not invoked; contemplated trade and stop/take-profit/position fields remain `null`, and BUY/ADD remain unauthorized. This is a practical honest candidate-review deliverable, not an empirical alpha or a current-day quote, and does not revise any frozen evidence or risk rules.
 
 The next scientific bottleneck remains future cost-aware independent validation of an actually predictive rule. Once a qualifying strategy exists, an intended trade requires *real human-specified risk parameters* in the existing V2.9 packet, not these research-only records.
+
+## 2026-11-02 subtractive mainline execution decision
+
+This section records priorities **without introducing a new gate, workflow, classifier, strategy or trading authority**.
+
+1. **REUSE:** Keep `v290_strategy_validity_evaluator.py`, `v291_portfolio_path_evaluator.py`, `v294_evidence_strength_synthesizer.py`, `v29_decision_packet_adapter.py`, `v29_discipline_engine.py`, and existing `v29_daily_review.py`. Use `v29_current_issuer_research_review.py` for the two source-bound real issuers without inventing risk fields.
+2. **PROTECT:** Preserve the existing 122-name prospective experiment and its 2026-10-30 freeze (`research/V2.9_GROWTH_122_FORWARD_EVALUATION_PROTOCOL.json`). Its fixed 2026-11-02 entry-session close acquisition is scheduled after that day's market close; **run status, price capture and outcome validity must be confirmed from actual evidence**, not forecast. The 20-session episode is descriptive even if positive and cannot establish a repeatable BUY-eligible rule on its own. Independently preserve V2.8.12's blind E accumulation and its unchanged information gate.
+3. **DO NOT REOPEN:** V2.8.1's nine nonpromoted price factors, V2.8.7–V2.8.10 rejected setup shapes, V2.8.12R descriptive-only E events, `research/OPENING_GAP_V1_RESULT.md`, `research/CLOSE_LOCATION_V1_RESULT.md`, and the 2025 growth-quality nonpromotion verdict are closed as originally tested. No parameter reversal or rescue on inspected returns.
+4. **DEFER UNLESS ESSENTIAL:** The one-off frozen-256 original-source workflow's 2026-11-01 push capture was cancelled, so complete persisted 256-row source evidence is **not verified**. Its expansion does not itself certify 2023/24 publication-time PIT or alpha. Do not rerun it solely to improve historical completeness: first show which specific new, separately preregistered strategy test cannot proceed without those sources. Preserve existing 24-row research and one-off artifacts.
+5. **NEXT DELIVERABLE:** One clearly specified, *prospectively assessable* real candidate-selection rule on an independently sourced future cohort, defining when data become available, selection/universe, costs, realistic execution, matched comparison and action frequency **before examining qualifying outcomes**. Reuse the existing engines to evaluate that cohort and produce real-security source-bound research cases; produce a full BUY/ADD Decision Packet only if the strategy genuinely qualifies and actual human risk inputs exist. Until then, report `INSUFFICIENT`/NO_ACTION and allow existing position-risk review.
+
+Do not spend Fold3/Fold4, relax frozen E-layer gates, start V2.8.13, or invent current-day prices/positions to accelerate this plan.
