@@ -7,16 +7,20 @@ plan is established. Never fill risk fields using synthetic demo values.
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import math
 from datetime import date, datetime
 from pathlib import Path
 
+from v29_growth_310_conditional_result import FRAME, FLAGS, load_fixed
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "research/V2.9_ISSUER_VALUATION_SENSITIVITY_20261030.json"
 SCHEMA = "V29_REAL_ISSUER_RESEARCH_REVIEW_V1"
 ISSUER_IDS = {"SZSE:300408", "SSE:688002"}
+FINANCIAL_CAPTURE_DAY = "2026-10-30"
 
 
 def build_reviews(original_bytes: bytes) -> dict:
@@ -38,6 +42,22 @@ def build_reviews(original_bytes: bytes) -> dict:
             or {item["security_id"] for item in cases} != ISSUER_IDS):
         raise ValueError("UNEXPECTED_OR_DUPLICATED_ISSUER_CASES")
 
+    # Reuse already frozen source identities and accounting-risk membership.
+    # The vendor snapshot is NOT proof of original issuer publication-time PIT.
+    _, _, frozen_selected, _ = load_fixed(ROOT)
+    with (ROOT / FRAME).open(encoding="utf-8-sig", newline="") as fp:
+        financial_rows = {row["security_id"]: row for row in csv.DictReader(fp)}
+    with (ROOT / FLAGS).open(encoding="utf-8-sig", newline="") as fp:
+        risk_rows = {row["security_id"]: row for row in csv.DictReader(fp)}
+    if (not ISSUER_IDS.issubset(frozen_selected)
+            or not ISSUER_IDS.issubset(financial_rows)
+            or not ISSUER_IDS.issubset(risk_rows)):
+        raise ValueError("REAL_ISSUER_NOT_IN_FROZEN_122")
+    frozen_source_hashes = {
+        "preoutcome_financial_frame_sha256": hashlib.sha256((ROOT / FRAME).read_bytes()).hexdigest(),
+        "preoutcome_source_risk_flags_sha256": hashlib.sha256((ROOT / FLAGS).read_bytes()).hexdigest(),
+    }
+
     reports = []
     for case in cases:
         quote_time = datetime.strptime(case["quote_asof_beijing"], "%Y-%m-%d %H:%M")
@@ -54,8 +74,22 @@ def build_reviews(original_bytes: bytes) -> dict:
                 or not isinstance(sources.get("quote"), str)
                 or not sources["quote"].startswith("https://")):
             raise ValueError("MISSING_PUBLIC_RESEARCH_SOURCE")
+        sid = case["security_id"]
+        fin = financial_rows[sid]
+        flags = risk_rows[sid]
+        if (fin["group"] != "SELECTED_122" or fin["core_source_match_status"] != "MATCHED_BOTH"
+                or flags["frozen_selected_122"] != "1"
+                or flags["no_specified_risk_flags"] != "1"
+                or flags["numeric_growth_and_core_pass"] != "1"
+                or flags["source_risk_flags"]):
+            raise ValueError("REAL_ISSUER_FROZEN_FINANCIAL_STATUS_MISMATCH:" + sid)
+        disclosed = date.fromisoformat(fin["disclosure_date_q3"])
+        if disclosed > study_day:
+            raise ValueError("REAL_ISSUER_REPORT_DISCLOSED_AFTER_RESEARCH_DATE:" + sid)
+        revenue_q3 = float(fin["revenue_yoy_q3_ytd_pct"])
+        revenue_h1 = float(fin["revenue_yoy_h1_ytd_pct"])
         reports.append({
-            "security_id": case["security_id"],
+            "security_id": sid,
             "issuer": case["name"],
             "research_as_of": study_day.isoformat(),
             "quote_session": reference_day.isoformat(),
@@ -64,6 +98,21 @@ def build_reviews(original_bytes: bytes) -> dict:
             "vendor_labeled_pe_ttm": pe,
             "ytd_gross_margin_2025_pct": case["ytd_gross_margin_2025_pct"],
             "ytd_gross_margin_2026_pct": case["ytd_gross_margin_2026_pct"],
+            "frozen_forward_cohort": "V29_122_GROWTH_COHORT_PROSPECTIVE_20261030",
+            "frozen_cohort_membership": "SELECTED_122_RESEARCH_ONLY",
+            "frozen_financial_capture_date": FINANCIAL_CAPTURE_DAY,
+            "financial_data_original_publication_vintage_independently_certified": False,
+            "q3_report_disclosure_date": disclosed.isoformat(),
+            "quote_and_report_same_calendar_day_release_order_unverified": disclosed == reference_day,
+            "financial_source_identity_match": fin["core_source_match_status"],
+            "specified_accounting_risk_flags_at_frozen_capture": [],
+            "q3_ytd_revenue_yoy_pct": revenue_q3,
+            "h1_ytd_revenue_yoy_pct": revenue_h1,
+            "revenue_growth_acceleration_pp": revenue_q3 - revenue_h1,
+            "q3_ytd_parent_profit_yoy_pct": float(fin["parent_profit_yoy_q3_ytd_pct"]),
+            "q3_ytd_weighted_roe_pct": float(fin["roe_pct_q3_ytd"]),
+            "q3_ytd_operating_cash_flow_per_share_cny": float(fin["cfo_per_share_q3_ytd"]),
+            "standalone_q3_deducted_parent_profit_yuan": float(fin["standalone_q3_deducted_parent_profit_yuan"]),
             "source_urls": sources,
             "candidate_status": "REAL_ISSUER_RESEARCH_ONLY",
             "contemplated_action": None,
@@ -83,6 +132,8 @@ def build_reviews(original_bytes: bytes) -> dict:
         "research_as_of": study_day.isoformat(),
         "financial_research_source_path": str(SOURCE.relative_to(ROOT)),
         "financial_research_source_sha256": hashlib.sha256(original_bytes).hexdigest(),
+        "frozen_cohort_financial_source_hashes": frozen_source_hashes,
+        "frozen_cohort_preoutcome_snapshot_not_current_market": True,
         "selection_basis": "TWO_PURPOSIVELY_STUDIED_ISSUERS_NOT_OUT_OF_SAMPLE",
         "cases": reports,
         "trade_authorized": False,
