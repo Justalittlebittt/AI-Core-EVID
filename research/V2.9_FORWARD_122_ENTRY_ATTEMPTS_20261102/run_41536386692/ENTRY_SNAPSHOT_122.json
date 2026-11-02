@@ -1,0 +1,2962 @@
+{
+  "schema": "V29_122_PROSPECTIVE_FIXED_ENTRY_CLOSE_EVIDENCE_V1",
+  "captured_at_china": "2026-11-03T06:20:30.445793+08:00",
+  "frozen_protocol_sha256": "5c9fd8bee18dd2fd5af6acf0eed1a1768d8d370274a1098e21f6cae064f9e957",
+  "frozen_122_ids_sha256": "7dd4cf1f5e90c50e35f91d0092fb14b81a25d07682f147a09c8c7ed73b221b7e",
+  "frozen_preentry_evidence_sha256": "37c0e9bd7064ce07cb4f7e8f0103cac3dda15997514995d08189ae6662d5afd6",
+  "frozen_issuer_count": 122,
+  "actual_rows_count": 122,
+  "entry_session": "2026-11-02",
+  "entry_is_first_vendor_calendar_session_after_2026_10_30": true,
+  "exchange_schedule_source": "https://www.sse.com.cn/disclosure/announcement/general/c/c_20251222_10802507.shtml",
+  "exchange_calendar_vendor": "BAOSTOCK",
+  "source_quote_complete_count": 122,
+  "source_quote_incomplete_count": 0,
+  "benchmark": {
+    "status": "OFFICIAL_H00300_ENTRY_SOURCE_UNVERIFIED",
+    "security_id": "H00300.CSI",
+    "reason": "URLError:<urlopen error _ssl.c:983: The handshake operation timed out>",
+    "source_sha256": null,
+    "entry_total_return_index_close": null
+  },
+  "raw_source_bytes_sha256": "92d963989654bf0a81a29fd931a3f7bf07516007db2093fcf169431026f485ec",
+  "market_source_information_status": "INCOMPLETE_NO_SUBSTITUTION_OR_ENTRY_SHIFT",
+  "same_vendor_corporate_action_dividend_adjusted_exit_still_unobserved": true,
+  "future_return_or_twentieth_session_exit_read": false,
+  "future_outcome_strategy_performance_computed": false,
+  "actual_limit_price_order_book_fill_certified": false,
+  "all_122_actual_buy_fills_certified": false,
+  "independent_OOS_strategy_validated": false,
+  "paper_entry_only": true,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.46,
+        "volume": 13618800.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.46,
+        "volume": 13618800.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:601965",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8fb4b7247af9cba40032e8f9766a243fc5b16d6b2a94fc171e77ec4fcbef7b01",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 222.19,
+        "volume": 5778242.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 222.19,
+        "volume": 5778242.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688630",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "f31be4cd3615385350cbdc9f07cbfc26dceb3d732000481f3ac7ab505a6ec52e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.36,
+        "volume": 4916000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.36,
+        "volume": 4916000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300519",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "b768690f8e02cce971ff923f91be18c308a1ba2674bbdfaa48943cc8e7337fac",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.47,
+        "volume": 289966081.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.47,
+        "volume": 289966081.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600601",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "72d8ded07f57433cf4074d4f9c71a8cec0c01219f59fe4b665d374f1811a9885",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 146.69,
+        "volume": 17315925.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 146.69,
+        "volume": 17315925.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603186",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "6e205f8863aa7a345ad59c37f6b3365f0d923ff30898fff17d6fcb44afd391cd",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 32.8,
+        "volume": 71184803.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 32.8,
+        "volume": 71184803.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:000636",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3566e5acf7937eac6a0c565d5c5ee8fb6baadd9d3b39189b493cfbb1445cb9a6",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 153.0,
+        "volume": 2736265.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 153.0,
+        "volume": 2736265.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:001232",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "f90c54bfe2d176f74e9e7bfeb7dc6be4970878095b6ba1c39670f26a2b4fd8ec",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.42,
+        "volume": 20392600.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.42,
+        "volume": 20392600.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002134",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "602deb8746e9e310b94e17ed098cec43be8193da6583d4433fadcc7619b4697c",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 28.27,
+        "volume": 95104809.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 28.27,
+        "volume": 95104809.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002436",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "73cdc46b2e3ac7c1fa9c0193f50b0f938920f45147d39ad2f2d1988a19ab2123",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 86.05,
+        "volume": 63861404.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 86.05,
+        "volume": 63861404.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002463",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "aed2d16df9c92e66d6c76301d2ba6d6f8ee0383a0fef557cd897b50856d5228e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.32,
+        "volume": 38869621.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.32,
+        "volume": 38869621.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002484",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "da0b1d6b823113e44da5305f88ea4b88aa9d114db397798ecd6652eca6eaec2a",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.17,
+        "volume": 21858600.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.17,
+        "volume": 21858600.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002552",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "1c8233b2511e6be494c24e2b718608372462ae77adcb68e9528256c7ecab1fa4",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 63.7,
+        "volume": 82278000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 63.7,
+        "volume": 82278000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002636",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "66ac3297311f85f0d71cf742e829334b408801b74d157dcd266189ecca8623db",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 227.88,
+        "volume": 11231124.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 227.88,
+        "volume": 11231124.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002916",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "e75728125b1614cd91073667414101b5ae0c90c1b51c29b84a563b85dd03e2ec",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 54.06,
+        "volume": 36093037.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 54.06,
+        "volume": 36093037.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002938",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8e98e05a468ca04a2dea7ef9031db88d87baeb10a7d66dcbee0894aa80057de4",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 75.78,
+        "volume": 71136299.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 75.78,
+        "volume": 71136299.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300408",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "640d183911d10a4b3965379739e223cffed6cd4d49b3056563e19c62af11a043",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 52.32,
+        "volume": 15008806.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 52.32,
+        "volume": 15008806.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300852",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "a236da4102d36b127ceb3a281899d87a7e75f70c51d46739ccc01611aef8e84f",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 27.7,
+        "volume": 10239891.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 27.7,
+        "volume": 10239891.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301041",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "36d9c9ee46dab56a35c2c2647c9d39617e15201331b9f666d1a75b95f61ce7eb",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 47.8,
+        "volume": 9066606.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 47.8,
+        "volume": 9066606.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301366",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "2fd88bb6c46bfd7a69370183fb3537e587c61c714b89e005caadd7d48e731ead",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 29.95,
+        "volume": 4849882.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 29.95,
+        "volume": 4849882.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301458",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ef7aa588a8b976ee2efa72f650ce6214071a7165f70156d49134e52fc00b816e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 98.24,
+        "volume": 8094535.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 98.24,
+        "volume": 8094535.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688195",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "e7d5d7334e49cc0deb51743e0c88f46bd284117b8391fb68d21fcfcae566741d",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.23,
+        "volume": 50000627.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.23,
+        "volume": 50000627.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002273",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "017e945243a61ac8f4215389baaba4ed72d0c6a1ca925539475f82d1a7ed17af",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 5.92,
+        "volume": 11705603.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 5.92,
+        "volume": 11705603.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300219",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "4925f0aff69bdafa34b19245ac1e6037fd8f43eeac76a7bd158cf80e1c69a9f4",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 55.77,
+        "volume": 4073933.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 55.77,
+        "volume": 4073933.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301421",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "7b4c552385b2a16eff624276b862ac0311c22651be724712cdbca4594992d839",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 146.86,
+        "volume": 14349257.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 146.86,
+        "volume": 14349257.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688002",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "c3a10605318e80babc639bc368bcfc0e2b46d30c86e5a52f726cf3073f1124dd",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.11,
+        "volume": 20332597.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.11,
+        "volume": 20332597.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600078",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "c1f8928ade170107045e3e017f376c409e47047153b1f914ec74fb709b38b190",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 66.97,
+        "volume": 15668371.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 66.97,
+        "volume": 15668371.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:000408",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "cb3f71ec3db9a9b50270d478a17943c495b492080411b7e849ede34484502efd",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.9,
+        "volume": 6031000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.9,
+        "volume": 6031000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603022",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "2395f262687c69d1dc283d33ab180ce8a0c34de38436a78e0204b4ef985856a7",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.67,
+        "volume": 4997140.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.67,
+        "volume": 4997140.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002014",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "a96c020d8b89c49c3bf180b37bc1b31e9d11027cd3d3d849f0d6fa84b3585214",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.22,
+        "volume": 8089952.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.22,
+        "volume": 8089952.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:003018",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ee2a6b4b69b8ec2f90ee0631f3793821b0ef87097658253dbb7c3d9223530415",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.87,
+        "volume": 2626300.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.87,
+        "volume": 2626300.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603790",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "931227df9f7ec6b2ac1047603c3aeea27af1e503b544e1d268fb11e9dbd5eb87",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 24.45,
+        "volume": 5155000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 24.45,
+        "volume": 5155000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:605566",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "84cc598bafd20141013dcf417332cf6cc3f86584b7ddeda54e3761cecd0e654a",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 6.95,
+        "volume": 29356000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 6.95,
+        "volume": 29356000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300107",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3323393c2f9841015b40c68e95e683d03651436d34e854f65d6122d66d81dd0c",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 24.56,
+        "volume": 8582875.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 24.56,
+        "volume": 8582875.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688428",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3a0ff82946648c7175a2eb4f2af5a523e458e11db118643c724a02acc69cf0d2",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 19.05,
+        "volume": 1681875.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 19.05,
+        "volume": 1681875.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:001367",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "a9172f81584579e9719c46b77fc054e8edf62fffdf96fe6ee3561aa8b18b6065",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.09,
+        "volume": 28573650.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.09,
+        "volume": 28573650.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300199",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "6b26c69535b39f79208133b636bd459e08732e08940612032b3672b871ef920d",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 13.57,
+        "volume": 26044064.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 13.57,
+        "volume": 26044064.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300497",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "50435373c8ed8545ced52c2b9be45ee7a94856e2c6c602a5f8a46973d53f6b39",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 8.14,
+        "volume": 20925587.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 8.14,
+        "volume": 20925587.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600623",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "42213777864540faf92450f42fc5738872db442111f819983cb3e57856680e4f",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.5,
+        "volume": 9259900.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.5,
+        "volume": 9259900.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603332",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3465ee088f9947f173043d374750e386a299c38fda309dced8cac1183f46c2a3",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 20.78,
+        "volume": 1085354.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 20.78,
+        "volume": 1085354.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603205",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "0cf4b27e89fc8187477489b444959e4c88d22d567649d409be0429d81216cf2b",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.57,
+        "volume": 2152000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.57,
+        "volume": 2152000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:605369",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "6d65e42f03b29faeca8ee44daabe0ca944ade2eb90fabbff9b7bebbf9944bd58",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.04,
+        "volume": 11439280.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.04,
+        "volume": 11439280.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688575",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8f19d3a5ca6fffa2571d7c9f4d544ea7bfb080ea4d51719d0917feff5b156bfa",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 15.43,
+        "volume": 15590664.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 15.43,
+        "volume": 15590664.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300981",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "b6e36bf66bed136ed261f609256e17455f89465702aa12d351afd85dd3ccdf87",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.5,
+        "volume": 31133221.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.5,
+        "volume": 31133221.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301363",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "b289727c581171205c485b6077fe5337755e9fd161752d8b7c0550bf96ed6e3c",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 88.8,
+        "volume": 4804361.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 88.8,
+        "volume": 4804361.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688710",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "823d7ab1818c2ac4a8851555d1cb38ee073ff7b0eb3757e64ff8237b0143f6aa",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 42.76,
+        "volume": 49320214.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 42.76,
+        "volume": 49320214.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300759",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "69e6ab91b933cb135e6d8a658e5fbc59edbeadb1b22aef3b75fd1c321e0dc3dd",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 35.69,
+        "volume": 5003057.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 35.69,
+        "volume": 5003057.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301239",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "06f43c6e3959490115d271bed013bbb648160dac9375ba1004fcbb510d0badb9",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 18.79,
+        "volume": 5442555.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 18.79,
+        "volume": 5442555.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301584",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "e0b6b0163f33904c2c4aeb6f11f401c56e7552bc3d98e8b2789abfaeef20eb96",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 50.3,
+        "volume": 65897314.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 50.3,
+        "volume": 65897314.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600584",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "89283b9bdd3fb20106cd9a4d339050fb30870e452114161a3a63a30bcb63639a",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 181.38,
+        "volume": 12192338.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 181.38,
+        "volume": 12192338.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603893",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "1a54207bb5c908f23c0820b8037de8ba5b2332773dba254755d3666326d22623",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 117.01,
+        "volume": 2842188.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 117.01,
+        "volume": 2842188.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603991",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "2b34066295c085d53618027cd24f7a341ec1337230a6d01760723edd13629541",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 29.88,
+        "volume": 37339533.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 29.88,
+        "volume": 37339533.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:605358",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "b81be62738f3534792483cd5dfac3f7980af7ae12c9e24779f73caf9cf190e75",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 135.64,
+        "volume": 9698841.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 135.64,
+        "volume": 9698841.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688018",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "d78be1fd69cf2c5f637b24d298d5779f74297c0a8c1c6ecbdf1fbdd401587f4e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 51.79,
+        "volume": 24883647.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 51.79,
+        "volume": 24883647.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688110",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "f177e6c99154846e1fecdfe5841a633b209e2fa686c5a154d55da6e38204485e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 26.08,
+        "volume": 3947462.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 26.08,
+        "volume": 3947462.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688216",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "39ae409ede49f0760767c86e1ac33f9a151eaa1f9aa34b67270c87d44df014e9",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 90.33,
+        "volume": 7627112.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 90.33,
+        "volume": 7627112.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688368",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "de8c01e1c80d1a8dbc7a9411d1346704c18e6240e4248a8bb3050c2699f36ab8",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 258.06,
+        "volume": 4814574.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 258.06,
+        "volume": 4814574.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688536",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "7b633e629b0546dfeeea0d8526fc012f92fbaba70f66c02822c2d888acb87c1e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.3,
+        "volume": 16862920.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.3,
+        "volume": 16862920.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688653",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "e73506cc8391adb5445f0aa84df0f236c8aeed988616ff8f4bb2af59669c7d3f",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.5,
+        "volume": 6617803.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 33.5,
+        "volume": 6617803.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688689",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "5e7c76f6a79bc2101ff4a6cc73bdbd1fbfb6cc30a82fa2428f959640af245eee",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 43.36,
+        "volume": 4456931.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 43.36,
+        "volume": 4456931.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688720",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "63a67403ade1a49c8145b75c675efea9c50d322466a400f0417b5759dd3531cf",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 183.07,
+        "volume": 3050831.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 183.07,
+        "volume": 3050831.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688797",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3c8388525c29d7955656fc6b207dda4d9b3568355f34765565303119fabe4c71",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 113.0,
+        "volume": 60788314.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 113.0,
+        "volume": 60788314.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300223",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "1b4e86a9f36748510d1ff96afa75d06cfb2a3a9232a464dbd740d19604e507eb",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 72.51,
+        "volume": 8647325.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 72.51,
+        "volume": 8647325.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300373",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8d8e5c6fcf28694c23891f15db54e38c1982709300c5a1ce8b583701ce086899",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 26.17,
+        "volume": 17710343.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 26.17,
+        "volume": 17710343.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300623",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "02412b82d2bec36c072c24a2069ab87aae279bafec7ed26dc0503b2d76d3585e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 120.6,
+        "volume": 9686728.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 120.6,
+        "volume": 9686728.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300672",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "b93ca89c0e170625db3b109d4b2460b50c0a8caa1572aaeada15ea41a37f0d9c",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 18.56,
+        "volume": 7169795.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 18.56,
+        "volume": 7169795.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301348",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "5e0a5dbd50b5dc310c13d9e69b4a7d09a03dafe867e46afb9bdc4f1cc2d8a2ab",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 83.66,
+        "volume": 15435970.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 83.66,
+        "volume": 15435970.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301536",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "131e889c9a4a9b8a3929eb6a93c467f0ea90da3c2cc18b4f4ae5319deafedaea",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 46.28,
+        "volume": 1965200.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 46.28,
+        "volume": 1965200.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301003",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "aff266c4902e37d8a8aeaaf790e3deebfe963d0add50ee5528ca542852d13bc4",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.22,
+        "volume": 8854600.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.22,
+        "volume": 8854600.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603600",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "0630eab8693078868a078b1a49c483b0b502c1a67c993ec809bcbfc065a2dac4",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.1,
+        "volume": 27665885.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.1,
+        "volume": 27665885.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:601958",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8c33398671acff025f5cb7f1d78d7e87a3be82249004660206481b25f7999538",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.66,
+        "volume": 5027516.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.66,
+        "volume": 5027516.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:001257",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "355608928afa1bf8935f600286f7c9e580cb52a978d5283509969be8b14f5ada",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 13.08,
+        "volume": 40913453.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 13.08,
+        "volume": 40913453.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002167",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "67b24e696a7f5edcca59f19ab2d9e2ee4013e34de967b9049400a2c21d32e5ce",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.28,
+        "volume": 8610573.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.28,
+        "volume": 8610573.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603132",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "d28f171ebadfa2b07c7c3b86a36847039cee074bae8bd3cb1777c1bec7e5269e",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 25.8,
+        "volume": 31614034.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 25.8,
+        "volume": 31614034.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:000933",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "14de0fd44d7a4ebe62336d9e63fad80f78e513b73942d01baad227d99c55e922",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 294.26,
+        "volume": 1664200.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 294.26,
+        "volume": 1664200.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603129",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "9f7245cbb9594cfc6c14a01db632c2c7e9a1cf52275e9cedd7a78adb3691efdd",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.99,
+        "volume": 16886954.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.99,
+        "volume": 16886954.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600661",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "c9d2612e9f70cd656615eba9e5a8df45cf2852222b648802e078ebf27482b578",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.57,
+        "volume": 109048289.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.57,
+        "volume": 109048289.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:003032",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "6bc013f1f6dc7e2fea8e2e5dea7301b748a29f93ff5d8a5df0b346bd208a9765",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 6.49,
+        "volume": 14676849.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 6.49,
+        "volume": 14676849.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002627",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "4a801007e76a29fda55c43a977e11aa020d156750602033abaafe85cd8c0b605",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.43,
+        "volume": 2508120.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 16.43,
+        "volume": 2508120.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:001207",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "5891df40c718ebe563341bb249fc8c6e13a250b8b0b8fa382dd365aa883ba870",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 10.8,
+        "volume": 19013767.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 10.8,
+        "volume": 19013767.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603006",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "99efcbf00985fb0655bd5cabbb2515b5a365b45cffec8e1c3c88be752f9eb2d2",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 49.06,
+        "volume": 12274948.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 49.06,
+        "volume": 12274948.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603009",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "bac2c60ab2aad28ac5b1f2c96510bd07bc1923c3c7f4806143ddea178212f578",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 20.32,
+        "volume": 2676324.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 20.32,
+        "volume": 2676324.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:605319",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "fd2a7e09ecdffeb8013d59ab2f1953b5081a62ea1df4ab35ffd690a6d13bf8ff",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 42.65,
+        "volume": 42656282.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 42.65,
+        "volume": 42656282.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002472",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "2d6a13ab427d75d9df1639bc670f786d748776d37faa3d17f23f7d87094e7266",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 6.26,
+        "volume": 29488966.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 6.26,
+        "volume": 29488966.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600123",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ad0ca351f6ea8eba07d2e0555c1e7f781ae80a446f5b1df0b3bfed8c635518e6",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.14,
+        "volume": 41577916.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.14,
+        "volume": 41577916.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600985",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "513a77d4836fee747a783f6d2eed193088b4ffd9002abb12e12fe5e46846f4e8",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.7,
+        "volume": 20589260.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.7,
+        "volume": 20589260.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:601101",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "0f274297041f6930665949e250c41f746ec6617c9a08a10bb2abb76293eb0ea9",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 4.41,
+        "volume": 14458809.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 4.41,
+        "volume": 14458809.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300332",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "1695731c45329644a0475125750e5bfbcdab39268c3b6f0aceb83b16fcc72298",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 20.65,
+        "volume": 8943100.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 20.65,
+        "volume": 8943100.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300483",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "09d4b88bfbec607496cc9041000f22a50650793954ead1c8a108c55c6edf8966",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.17,
+        "volume": 30297000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.17,
+        "volume": 30297000.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:000598",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "6246d22df039d6b742b4feb49db0f0f6ff87e05c738c787a5177319acde3401d",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 5.58,
+        "volume": 25153620.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 5.58,
+        "volume": 25153620.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301175",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "9e21bb173db8767bcb34b46cb444ee3e8b8ffa5e4497c816d4001bbbfcee3519",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 28.18,
+        "volume": 124428131.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 28.18,
+        "volume": 124428131.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600176",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "03e7d1bef3c451aac65f6622e65cd43d0ae114545259358688222b651b3d6063",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 76.94,
+        "volume": 17331550.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 76.94,
+        "volume": 17331550.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603256",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8032567b7135b2098d0d72e5454540ff7239c75a8ba3a3e7fd2d9d3238501378",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 19.75,
+        "volume": 123985063.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 19.75,
+        "volume": 123985063.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301526",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "28ad3986815885e9df60f8078fdee28105f4940568a97106eff0275d6d140c86",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 21.54,
+        "volume": 10548619.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 21.54,
+        "volume": 10548619.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300357",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "bd36db7aa6a7b009ecbcf56b40b337ccb11cfb4b8ccf0444336ba189b3376e53",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 101.57,
+        "volume": 20341407.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 101.57,
+        "volume": 20341407.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301080",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "c1d5e7c38a0406c3c10361e127c9c117ef089cec72a36ebd903db9a2c575aa17",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 99.1,
+        "volume": 4116444.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 99.1,
+        "volume": 4116444.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688268",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8a4ab99b2e7b0edd14ca380c51fbcbcbf81ab0edaf35fa229e07fa8410b58b8a",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 23.9,
+        "volume": 24444014.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 23.9,
+        "volume": 24444014.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688548",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "2cde1480e5c6abc88b0efe5aa17130a22745cfe2505038993a24b9b784caeeb7",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 58.8,
+        "volume": 14331454.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 58.8,
+        "volume": 14331454.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603728",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "d6711163d49c45c0b0a1e482046a7ecfc9a6d455fc19c6c4052859e3c3606edf",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 15.18,
+        "volume": 3111300.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 15.18,
+        "volume": 3111300.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603196",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "d5122d35fe1733f8e10f330fcb492369832a0805fc878629345a5947d85e3bc8",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.0,
+        "volume": 18908234.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 7.0,
+        "volume": 18908234.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300410",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "042dfb1231ac92732f391d24aa6a03ef24c9c4457cf7c2854828332e8fa4efdf",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.09,
+        "volume": 76027515.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 14.09,
+        "volume": 76027515.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300432",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8f4a3d128fd3d6e337a95479a48ffdb0ac737f80f700fc2beeda8c2b102ae695",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.7,
+        "volume": 17653239.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.7,
+        "volume": 17653239.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002003",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "7292c90cd2cc5fc3c14f7ecbf83a0eb3a4fdc5a23c36d11639e57ba57bf1fb0b",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 8.6,
+        "volume": 27065776.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 8.6,
+        "volume": 27065776.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002083",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8195a853828d4a7a33bf2a07dd018e2e83b525d731bd5fabda30b50e061e8f59",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.37,
+        "volume": 9361500.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 17.37,
+        "volume": 9361500.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002674",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "22ebcf29046dfd2f4aed9327a5aa9a4d7756e81da2ffcb76843c5fdf91ad4911",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 34.35,
+        "volume": 17024005.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 34.35,
+        "volume": 17024005.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603283",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "323ff6f539d2abca808ef7512bb84d2becac941b9d25e0b018e031099f954932",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 330.83,
+        "volume": 4008347.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 330.83,
+        "volume": 4008347.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688025",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "8dc4ec8af711ca7fcbfd57abb2108129597407e04d1c9c2805cb906ef0089c46",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 76.03,
+        "volume": 12544410.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 76.03,
+        "volume": 12544410.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:002975",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "39753d83ce4d5dc787eec5990ae4af842fe833937240ab1a810da385280d5d53",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 27.12,
+        "volume": 15748784.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 27.12,
+        "volume": 15748784.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301029",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "bf356293a9c6c214a22d667f567911151e5b40b746c9b69af4c3dbc3f0043009",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.63,
+        "volume": 58658860.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 11.63,
+        "volume": 58658860.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:600428",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "a8d0eaf2f8037a0b4f8437f81aaf89145ab3fb072ad1b21c01b13ee67abaf020",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.92,
+        "volume": 44580430.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.92,
+        "volume": 44580430.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:603565",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ebccd2d723010b6e5e32159f3e8bad2da584be6c6986ea8d4f81c1b1ec917bc1",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 4.59,
+        "volume": 29454796.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 4.59,
+        "volume": 29454796.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:000088",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "51ad0d1b8450cd4310128fab1344a29dd18263fb39ab8bc941d52e2bd59f4e40",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 18.87,
+        "volume": 5107829.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 18.87,
+        "volume": 5107829.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688569",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3b1bd6af9f8e05ee3b7df4db191edabfdf093b45142421d93b09468ff7e00cfa",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.77,
+        "volume": 11983236.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.77,
+        "volume": 11983236.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301048",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "e643e4e168228da591b531ce025128feb66898dcdb34436628484afab411f951",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 21.81,
+        "volume": 70285256.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 21.81,
+        "volume": 70285256.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300209",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ace0d35a3bb0ca5d0eceb1990b815e780cfa6d2129deb9808a9c0685ecc1d4e3",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 85.13,
+        "volume": 8809174.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 85.13,
+        "volume": 8809174.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:003031",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ea8c112eb402844f37638250565fdbff5581b24ffb95bebc9bff5e631c620b08",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 141.75,
+        "volume": 49174493.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 141.75,
+        "volume": 49174493.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300394",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "7916edd5399f170f98cd7d295feec0695675e86e698d72961b9a59e675ce8293",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.7,
+        "volume": 4346199.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 9.7,
+        "volume": 4346199.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300414",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "7e9a2d93d9f2c2ee7eb00e8f9da2327efae9017a64d28003683a6b1bf837bb0c",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 36.05,
+        "volume": 10832438.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 36.05,
+        "volume": 10832438.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300488",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "ccfdc258f8dc36051851e208470f7da70f38669b33901acf581caaf7a272d0ea",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.63,
+        "volume": 34181832.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 12.63,
+        "volume": 34181832.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300224",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "bd17e7ac5376e0e6fd45c3252b853f7487b70becfdad11bf76d2219ec4694f87",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 63.61,
+        "volume": 13438198.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 63.61,
+        "volume": 13438198.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:300811",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "3cdd0fe227a9a44f0cf2c865159cef95471431aaeb593c5598259abce50625dd",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 79.6,
+        "volume": 9872528.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 79.6,
+        "volume": 9872528.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SSE:688300",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "7638ae90127097dcc6197e0055fede9e6cced324af59d2bcf501836d89d78c56",
+      "historical_date_not_shifted": true
+    },
+    {
+      "entry_unadjusted": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.84,
+        "volume": 1875887.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "entry_forward_adjusted_at_capture_vintage": {
+        "status": "ACTIVE_EOD_QUOTE_NOT_FILL_CERTIFIED",
+        "close": 22.84,
+        "volume": 1875887.0,
+        "isST": "0",
+        "tradestatus": "1"
+      },
+      "source_bar_pair_complete": true,
+      "paper_entry_executability_verified": false,
+      "limit_up_down_trade_fill_verified": false,
+      "security_id": "SZSE:301456",
+      "entry_session": "2026-11-02",
+      "source_query_error": null,
+      "per_issuer_raw_bars_sha256": "bc23dc18026af8eb76a16d9011824d52f2286b43b8b0f6127cf87d141c48b914",
+      "historical_date_not_shifted": true
+    }
+  ]
+}
