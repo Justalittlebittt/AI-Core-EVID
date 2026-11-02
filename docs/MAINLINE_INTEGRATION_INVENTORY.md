@@ -68,3 +68,12 @@ This section records priorities **without introducing a new gate, workflow, clas
 5. **NEXT DELIVERABLE:** One clearly specified, *prospectively assessable* real candidate-selection rule on an independently sourced future cohort, defining when data become available, selection/universe, costs, realistic execution, matched comparison and action frequency **before examining qualifying outcomes**. Reuse the existing engines to evaluate that cohort and produce real-security source-bound research cases; produce a full BUY/ADD Decision Packet only if the strategy genuinely qualifies and actual human risk inputs exist. Until then, report `INSUFFICIENT`/NO_ACTION and allow existing position-risk review.
 
 Do not spend Fold3/Fold4, relax frozen E-layer gates, start V2.8.13, or invent current-day prices/positions to accelerate this plan.
+
+## 2026-11-02: one bounded pre-outcome conditional control, no new pipeline
+
+The original 2026-10-30 source artifacts were retrieved and hash-checked before the 2026-11-02 entry-session market close. Exactly **310** pre-existing A-tier issuer identities reconciled with original F10 source rows; the frozen **122** are a strict subset, leaving **188** exact nonselected identities. To avoid an unfalsifiable broad-index-only interpretation, a **separate, supplementary** descriptive 122-versus-188 same-window comparison was predeclared and its minimal financial source frame preserved:
+
+- `research/V2.9_GROWTH_310_CONDITIONAL_CONTROL_PREOUTCOME_20261102.json` — all fixed 310 issuer IDs, origin ZIP/hash, selected-122 authority, complement-188 hash, missingness and 20-session comparison semantics.
+- `research/V2.9_GROWTH_310_PREOUTCOME_FINANCIAL_FRAME_20261102.csv` — 310 pre-outcome financial observations, marked SELECTED_122 or COMPARATOR_188; no future return, trade, BUY eligibility or portfolio exposure.
+
+This does **not** modify the already frozen 122 experiment's sample, primary CSI300 TR metric, entry/exit dates, cost model, outcome embargo or execution code. The contrast isolates the descriptive *combined selection policy relative to the previously observed A-tier pool*, not a causal effect of any single accounting condition; neither arm is sector/size matched, and one market episode cannot validate a repeatable strategy. No immediate quote collection, new monitoring or independent BUY signal is justified by this artifact. Examine fixed 20-session outcomes only when legally/methodologically mature, preserve all 310 identities and report missingness without substitutions.
