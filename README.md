@@ -89,7 +89,7 @@ This layer computes chronological portfolio metrics only from an **upstream exec
 
 Drawdown and portfolio-path statistics therefore have actual path semantics rather than being reconstructed from unordered event rows.
 
-Evidence strength remains unscored until a separately frozen, pre-outcome threshold contract is defined.
+The general evidence-strength mapping is already frozen in `evidence/V2.9_EVIDENCE_STRENGTH_MAPPING_CONTRACT.json`. It does **not** establish a real strategy's strength: any experiment-specific numeric decision rules must be preregistered before that experiment's qualifying outcomes, and independent OOS and post-cost evidence are still missing.
 
 ## Decision Packet and Discipline Engine
 
@@ -122,10 +122,8 @@ A new workflow/gate/amendment/receipt/probe is not justified merely because it i
 
 ## Research-layer next stage (parallel, not product blocker)
 
-The architecture and metric foundations are sufficient to define the next research-layer contract:
+**Do not recreate an evidence-strength mapping contract.** V2.9 already has its frozen general mapping and existing validity/discipline evaluators. The unresolved scientific question is whether any *specific, predeclared* candidate strategy demonstrates a repeatable positive post-cost advantage on genuinely independent data.
 
-**V2.9 Evidence Strength Threshold Contract**
+The separate, fixed 122-issuer growth cohort (`research/V2.9_GROWTH_122_FORWARD_EVALUATION_PROTOCOL.json`) is an observation of **one** future 20-session episode, not a current BUY strategy or sufficient OOS replication. Preserve its original sample, benchmark, costs, execution proxy and outcome embargo; do not reselect or optimize after inspecting it. New experiments require their own pre-outcome registered rules and valid decision-time source vintages.
 
-That contract must be frozen before seeing the results of a qualifying future experiment. It must map predeclared validity dimensions into `STRONG / MODERATE / WEAK / INSUFFICIENT` without tuning thresholds to rescue observed outcomes.
-
-No current V2.8.12 prospective E outcome data, fold3, or fold4 should be opened merely to design those thresholds.
+Keep the V2.8.4/V2.8.12 prospective E-lane running independently and do not open Fold3/Fold4 or authorize V2.8.13. Do not re-run closed historical negative hypotheses, create a parallel monitor, or automatically restart cancelled one-off source expansion without identifying a direct missing requirement of the decision mainline.
