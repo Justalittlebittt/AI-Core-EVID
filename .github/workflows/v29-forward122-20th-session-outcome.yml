@@ -6,6 +6,8 @@ on:
       - 'scripts/v29_forward122_20th_session_exit_capture.py'
       - 'scripts/test_v29_forward122_20th_session_exit_capture.py'
       - 'scripts/test_v29_forward122_full_pipeline_e2e.py'
+      - 'scripts/v29_growth_310_complement_capture.py'
+      - 'scripts/test_v29_growth_310_complement_capture.py'
   workflow_dispatch:
   schedule:
     # Bounded 2026-only post-close capture windows (Beijing 21:25).
@@ -31,6 +33,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_forward122_full_pipeline_e2e.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
           python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_growth_310_complement_capture.py' -v
 
   one-future-outcome-when-mature:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -138,5 +141,94 @@ jobs:
         with:
           name: v29-122-20th-session-source-and-outcome
           path: /tmp/v29-forward122-20th-outcome/
+          if-no-files-found: warn
+          retention-days: 30
+conditional-310-supplement-when-parent-sealed:
+    # Separate optional post-parent job. A failed 188-name supplement cannot
+    # rewrite or invalidate the frozen original 122-source experiment.
+    needs: one-future-outcome-when-mature
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && needs.one-future-outcome-when-mature.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Only add fixed complement after complete parent and within same capture day
+        id: complement_gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          source="research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026/OUTCOMES_122.json"
+          completed="research/V2.9_FORWARD_310_CONDITIONAL_20261102/310_CONDITIONAL_RESULT.json"
+          if [ -e "$completed" ]; then
+            echo "SUPPLEMENT_ALREADY_COMPLETE_NO_DUPLICATE"
+            exit 0
+          fi
+          if [ ! -e "$source" ]; then
+            echo "ORIGINAL_122_NOT_COMPLETE_NO_SUPPLEMENT"
+            exit 0
+          fi
+          original_day="$(python - <<'PY'
+          import json
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          p=json.load(open("research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026/OUTCOMES_122.json"))
+          print(datetime.fromisoformat(p["capture_timestamp"]).astimezone(ZoneInfo("Asia/Shanghai")).date())
+          PY
+          )"
+          now_day="$(TZ=Asia/Shanghai date +%F)"
+          if [ "$now_day" != "$original_day" ]; then
+            echo "SUPPLEMENT_WINDOW_NOT_SAME_CAPTURE_VINTAGE"
+            exit 0
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+      - name: Synthetic-only complement capture regressions
+        if: steps.complement_gate.outputs.run == 'true'
+        run: python -m unittest discover -s scripts -p 'test_v29_growth_310_complement_capture.py' -v
+      - name: Install already proven free quote dependency
+        if: steps.complement_gate.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Capture only 188 fixed complement quotes, reuse sealed original 122, never change primary result
+        if: steps.complement_gate.outputs.run == 'true'
+        run: python scripts/v29_growth_310_complement_capture.py --out /tmp/v29-310-supplement
+      - name: Seal complete contrast or immutable incomplete source attempt
+        if: steps.complement_gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(python - <<'PY'
+          import json
+          r=json.load(open("/tmp/v29-310-supplement/310_CONDITIONAL_RESULT.json"))
+          print(r["status"])
+          PY
+          )"
+          if [ "$status" = "ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE" ]; then
+            dest="research/V2.9_FORWARD_310_CONDITIONAL_20261102"
+          else
+            dest="research/V2.9_FORWARD_310_CONDITIONAL_ATTEMPTS_2026/run_$GITHUB_RUN_ID"
+          fi
+          if [ -e "$dest/310_CONDITIONAL_RESULT.json" ]; then
+            echo "SUPPLEMENT_RESULT_ALREADY_STORED"
+            exit 1
+          fi
+          mkdir -p "$dest"
+          cp /tmp/v29-310-supplement/310_CONDITIONAL_RESULT.json "$dest/"
+          cp /tmp/v29-310-supplement/310_SAME_VINTAGE_CLOSE_PROXIES.json "$dest/"
+          cp /tmp/v29-310-supplement/RAW_188_QUOTES.json.gz "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest/"
+          git commit -m "research(v29): preserve fixed 310 conditional source status $status, no BUY [skip ci]"
+          git push origin HEAD:main
+          echo "PERSISTED_CONDITIONAL_310 $dest"
+      - name: Preserve raw complement sources even if repository write fails
+        if: always() && steps.complement_gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-310-conditional-same-day-supplement
+          path: /tmp/v29-310-supplement/
           if-no-files-found: warn
           retention-days: 30
