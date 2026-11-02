@@ -59,6 +59,18 @@ class ConditionalResultTest(unittest.TestCase):
                           "adjusted_entry_close":100,"adjusted_exit_close":110 if i<122 else 105}
                           for i,sid in enumerate(self.ids)]}
 
+    def test_real_preoutcome_repo_manifest_is_frozen_and_consistent(self):
+        # Reuse committed 2026-10-30 source identities; do not access price outcomes.
+        repo_root = Path(__file__).resolve().parents[1]
+        registered, all_ids, selected, complement = load_fixed(repo_root)
+        self.assertEqual((len(all_ids), len(selected), len(complement)), (310, 122, 188))
+        self.assertTrue(selected.isdisjoint(complement))
+        self.assertEqual(set(all_ids), selected | set(complement))
+        self.assertEqual(
+            registered["supplementary_observation"]["transaction_cost_round_trip_fraction"],
+            0.003
+        )
+
     def test_full_310_exact_difference(self):
         result = evaluate(self.prices,self.parent,self.root,NOW)
         self.assertEqual(result["status"],"ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE")
