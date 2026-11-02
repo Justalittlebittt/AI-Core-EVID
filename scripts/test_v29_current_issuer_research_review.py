@@ -34,6 +34,27 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
             self.assertFalse(case["strategy_alpha_and_untouched_oos_verified"])
             self.assertTrue(case["source_urls"]["report"].startswith("https://"))
 
+    def test_frozen_122_real_financial_selection_and_quote_timing(self):
+        result = build_reviews(self.source_bytes)
+        cases = {x["security_id"]: x for x in result["cases"]}
+        self.assertEqual(len(result["frozen_cohort_financial_source_hashes"]), 2)
+        self.assertTrue(result["frozen_cohort_preoutcome_snapshot_not_current_market"])
+        expected = {
+            "SZSE:300408": (76.7385401831, 54.824030357, "2026-10-29", True),
+            "SSE:688002": (82.2200585456, 72.8372056798, "2026-10-27", False),
+        }
+        for sid, (revenue_q3, revenue_h1, disclosed, same_day) in expected.items():
+            row = cases[sid]
+            self.assertEqual(row["frozen_cohort_membership"], "SELECTED_122_RESEARCH_ONLY")
+            self.assertAlmostEqual(row["q3_ytd_revenue_yoy_pct"], revenue_q3)
+            self.assertAlmostEqual(row["h1_ytd_revenue_yoy_pct"], revenue_h1)
+            self.assertAlmostEqual(row["revenue_growth_acceleration_pp"], revenue_q3 - revenue_h1)
+            self.assertEqual(row["q3_report_disclosure_date"], disclosed)
+            self.assertIs(row["quote_and_report_same_calendar_day_release_order_unverified"], same_day)
+            self.assertFalse(row["financial_data_original_publication_vintage_independently_certified"])
+            self.assertIsNone(row["decision_packet"])
+            self.assertFalse(row["buy_add_authorized"])
+
     def test_research_only_source_cannot_be_promoted_by_editing_status(self):
         altered = copy.deepcopy(self.source)
         altered["buy_eligibility"] = "AUTHORIZED"
