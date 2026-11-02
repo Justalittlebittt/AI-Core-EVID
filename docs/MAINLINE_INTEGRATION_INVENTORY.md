@@ -69,6 +69,20 @@ This section records priorities **without introducing a new gate, workflow, clas
 
 Do not spend Fold3/Fold4, relax frozen E-layer gates, start V2.8.13, or invent current-day prices/positions to accelerate this plan.
 
+
+### 2026-11-02 source-risk selection reconstruction (pre-outcome)
+
+The original 2026-10-30 financial and F10 ZIP archives were independently reloaded with all preserved source-page SHA256 receipts checked. The frozen selection waterfall was reproduced exactly:
+
+- **310** initial A-tier source-matched financial observations.
+- **210** with none of six specific source-risk flags (84 margin-decline flags; 6 missing margin; 11 nonrecurring-share >50%; 6 ST-name warnings; 1 nonpositive cumulative deducted profit; 2 nonpositive standalone Q3 deducted profit; overlaps mean these are *not additive counts*).
+- **122** of the 210 that additionally have Q3 YTD revenue growth YoY above H1 YTD and positive standalone Q3 deducted profit; **88** of the clean 210 were not selected.
+- **100** of the original 310 were excluded by one or more specific source-risk flags; **49** of those 100 would pass the two simple numeric conditions but are still excluded from the actual frozen 122 sample.
+
+Exact pre-outcome identities and risk-flag labels (without refetching later vendor revisions) are preserved in `research/V2.9_GROWTH_310_PREOUTCOME_SOURCE_RISK_FLAGS_20261102.csv`. All **310** records, **122** selected identities and **210** clean-stage memberships were reconciled against the previously saved source frame, with no price or return input.
+
+**Interpretation correction:** the registered 122-versus-188 contrast evaluates the *entire original multi-stage selection policy*, not the isolated effect of revenue acceleration, of deducted profit, or of accounting-risk flags. It also does not sector/size-match the groups. Preserve the already-frozen comparison contract and do not reinterpret a one-period positive result as alpha or a live BUY authorization. A local, synthetic-only evaluation prototype was tested; no new scheduled workflow or production market-data capture has been authorized by this source reconstruction.
+
 ## 2026-11-02: one bounded pre-outcome conditional control, no new pipeline
 
 The original 2026-10-30 source artifacts were retrieved and hash-checked before the 2026-11-02 entry-session market close. Exactly **310** pre-existing A-tier issuer identities reconciled with original F10 source rows; the frozen **122** are a strict subset, leaving **188** exact nonselected identities. To avoid an unfalsifiable broad-index-only interpretation, a **separate, supplementary** descriptive 122-versus-188 same-window comparison was predeclared and its minimal financial source frame preserved:
