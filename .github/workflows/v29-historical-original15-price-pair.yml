@@ -19,7 +19,9 @@ jobs:
       - name: Pin free quote source
         run: python -m pip install --disable-pip-version-check baostock==0.9.4
       - name: Offline calendar, identity and missing-data tests
-        run: python -m unittest discover -s scripts -p 'test_v29_historical_original15_price_pair.py' -v
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_historical_original15_price_pair.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_historical_original15_market_comparator.py' -v
       - name: Capture original-table preselected fifteen historical post-notice market pairs
         run: |
           if test -e research/v29_historical_original15_price_pair/PRICE_PAIR_COVERAGE_15.json; then
@@ -40,6 +42,26 @@ jobs:
           assert rec['live_buy_eligibility']=='NOT_AUTHORIZED'
           print('HISTORICAL_15_RETROSPECTIVE_PRICE_PAIR_COVERAGE',
                 rec['paired_count'], rec['missing_count'])
+          PY
+      - name: Add single matched CSI300 price-index sensitivity without modifying original 15 rows
+        run: |
+          if test -e research/v29_historical_original15_price_pair/index_comparator/BENCHMARK_MATCHED_15.json; then
+            echo "Matched historical benchmark already persisted; no recapture"
+            exit 0
+          fi
+          python scripts/v29_historical_original15_market_comparator.py --out research/v29_historical_original15_price_pair/index_comparator
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('research/v29_historical_original15_price_pair/index_comparator')
+          d=json.loads((p/'BENCHMARK_MATCHED_15.json').read_text())
+          r=(p/'RAW_CSI300_PRICE_INDEX_2023_2024.json').read_bytes()
+          assert d['index_raw_sha256']==hashlib.sha256(r).hexdigest()
+          assert len(d['rows'])==d['original_15_denominator']==15
+          assert d['nonST_original_filter_count']==13
+          assert d['index_id']=='000300_PRICE_NOT_H00300_TOTAL_RETURN'
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('HISTORICAL_CSI300_PRICE_ONLY_MATCHED',d['paired_count'],'/15')
           PY
       - name: Persist raw prices and coverage once
         run: |
