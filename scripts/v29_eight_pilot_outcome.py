@@ -5,6 +5,7 @@ No price fetch, extra scheduler, strategy promotion or broker order path.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -16,7 +17,12 @@ SCHEMA="V29_FROZEN_EIGHT_VS_122_POST_MATURITY_RESEARCH_RESULT_V1"
 
 def evaluate(outcome, now=None, root=ROOT):
     root=Path(root)
-    pilot=json.loads((root/PILOT.relative_to(ROOT)).read_text(encoding="utf-8"))
+    blob=(root/PILOT.relative_to(ROOT)).read_bytes()
+    # Bind to the pre-close Git blob, rather than copying eight names a second time.
+    git_blob_sha=hashlib.sha1(b"blob "+str(len(blob)).encode()+b"\\0"+blob).hexdigest()
+    if git_blob_sha!="f33e9c5f68c2202c994fece278322413e18059b1":
+        raise ValueError("FROZEN_EIGHT_PREOUTCOME_BLOB_CHANGED")
+    pilot=json.loads(blob)
     if (pilot.get("schema")!="V29_PREOUTCOME_EIGHT_NAME_LOT_FEASIBLE_RESEARCH_PILOT_V1"
             or pilot.get("experiment_id")!="V29_20261102_CAPITAL_AWARE_EIGHT_NAME_EXPLORATORY_RESEARCH"
             or pilot.get("live_buy_eligibility")!="NOT_AUTHORIZED"
