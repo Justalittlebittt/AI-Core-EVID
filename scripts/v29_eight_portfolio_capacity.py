@@ -7,6 +7,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FROZEN = ROOT / "research/V2.9_EIGHT_NAME_LOT_AWARE_PROSPECTIVE_PILOT_PREOUTCOME_20261102.json"
+FROZEN_IDS = ("SZSE:300199", "SZSE:002636", "SZSE:301536", "SZSE:000408",
+              "SZSE:002463", "SSE:603256", "SZSE:002552", "SZSE:300223")
 
 def number(v, field, zero=False):
     if isinstance(v, bool) or not isinstance(v, (str, int, float, Decimal)):
@@ -21,8 +23,8 @@ def number(v, field, zero=False):
 
 def assess(ids, account, positions):
     """Evaluate caller-specified quantities; no implicit optimizer or prices."""
-    if len(ids) != 8 or len(set(ids)) != 8:
-        raise ValueError("EXPECTED_FROZEN_EIGHT")
+    if tuple(ids) != FROZEN_IDS:
+        raise ValueError("FROZEN_EIGHT_IDENTITY_OR_ORDER_CHANGED")
     if not isinstance(account, dict) or not isinstance(positions, list):
         raise ValueError("INVALID_INPUT")
     equity = number(account["equity_cny"], "EQUITY")
