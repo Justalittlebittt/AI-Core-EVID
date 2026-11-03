@@ -19,7 +19,7 @@ def evaluate(outcome, now=None, root=ROOT):
     root=Path(root)
     blob=(root/PILOT.relative_to(ROOT)).read_bytes()
     # Bind to the pre-close Git blob, rather than copying eight names a second time.
-    git_blob_sha=hashlib.sha1(b"blob "+str(len(blob)).encode()+b"\\0"+blob).hexdigest()
+    git_blob_sha=hashlib.sha1(b"blob "+str(len(blob)).encode()+b"\0"+blob).hexdigest()
     if git_blob_sha!="f33e9c5f68c2202c994fece278322413e18059b1":
         raise ValueError("FROZEN_EIGHT_PREOUTCOME_BLOB_CHANGED")
     pilot=json.loads(blob)
