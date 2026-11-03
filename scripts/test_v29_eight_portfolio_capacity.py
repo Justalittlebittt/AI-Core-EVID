@@ -61,6 +61,13 @@ class Tests(unittest.TestCase):
         p[0]["stop_price_cny"]=30
         self.assertIn("SINGLE_NAME_STOP_RISK_LIMIT",assess(IDS,a,p)["positions"][0]["issues"])
 
+    def test_frozen_identity_and_order_unchanged(self):
+        a,p=example()
+        with self.assertRaisesRegex(ValueError,"FROZEN_EIGHT_IDENTITY_OR_ORDER_CHANGED"):
+            assess(list(reversed(IDS)),a,p)
+        with self.assertRaisesRegex(ValueError,"FROZEN_EIGHT_IDENTITY_OR_ORDER_CHANGED"):
+            assess(IDS[:-1]+["SZSE:300408"],a,p)
+
     def test_invalid_numbers(self):
         a,p=example()
         a["cash_cny"]=110000
