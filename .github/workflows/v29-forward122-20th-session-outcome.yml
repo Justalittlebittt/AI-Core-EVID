@@ -8,6 +8,8 @@ on:
       - 'scripts/test_v29_forward122_full_pipeline_e2e.py'
       - 'scripts/v29_growth_310_complement_capture.py'
       - 'scripts/test_v29_growth_310_complement_capture.py'
+      - 'scripts/v29_eight_pilot_outcome.py'
+      - 'scripts/test_v29_eight_pilot_outcome.py'
   workflow_dispatch:
   schedule:
     # Bounded 2026-only post-close capture windows (Beijing 21:25).
@@ -32,6 +34,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_forward122_20th_session_exit_capture.py' -v
           python -m unittest discover -s scripts -p 'test_v29_forward122_full_pipeline_e2e.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_eight_pilot_outcome.py' -v
           python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_310_complement_capture.py' -v
 
@@ -77,6 +80,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_forward122_20th_session_exit_capture.py' -v
           python -m unittest discover -s scripts -p 'test_v29_forward122_full_pipeline_e2e.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_eight_pilot_outcome.py' -v
       - name: Install historical quote provider version already proven on 122 pre-entry data
         if: steps.gate.outputs.run == 'true'
         run: python -m pip install --disable-pip-version-check baostock==0.9.4
@@ -105,6 +109,28 @@ jobs:
                 'QUOTES',r['quote_source_eligible_count'],'/122',
                 'OFFICIAL_BENCHMARK',r['benchmark_source_status'])
           PY
+      - name: Evaluate preregistered eight from the same matured 122 source, never refetch quotes
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          base=Path('/tmp/v29-forward122-20th-outcome')
+          verdict=json.loads((base/'20_SESSION_RESEARCH_VERDICT.json').read_text())
+          if verdict['outcome_evaluation']['status']!='ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE':
+              print('FROZEN_EIGHT_NOT_COMPUTABLE_INCOMPLETE_PARENT')
+          else:
+              destination=base/'FROZEN_EIGHT_PILOT_RESULT.json'
+              subprocess.run(['python','scripts/v29_eight_pilot_outcome.py',
+                  '--parent',str(base/'OUTCOMES_122.json'),'--out',str(destination)],check=True)
+              result=json.loads(destination.read_text())
+              assert result['selected_count']==8
+              assert result['parent_count']==122
+              assert result['status']=='ONE_EPISODE_EXPLORATORY_NOT_BUY_EVIDENCE'
+              assert result['trade_authorized'] is False
+              assert result['live_buy_eligibility']=='NOT_AUTHORIZED'
+              print('FROZEN_EIGHT_VS_122_COMPUTED_WITHOUT_EXTRA_QUOTES')
+          PY
       - name: Persist full 122 outcome if complete, or immutable run-scoped incomplete result for another bounded attempt
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -129,6 +155,9 @@ jobs:
           cp /tmp/v29-forward122-20th-outcome/20_SESSION_RESEARCH_VERDICT.json "$destination/"
           cp /tmp/v29-forward122-20th-outcome/OUTCOMES_122.json "$destination/"
           cp /tmp/v29-forward122-20th-outcome/RAW_VENDOR_STOCK_AND_H00300_INDEX.json.gz "$destination/"
+          if [ -f /tmp/v29-forward122-20th-outcome/FROZEN_EIGHT_PILOT_RESULT.json ]; then
+            cp /tmp/v29-forward122-20th-outcome/FROZEN_EIGHT_PILOT_RESULT.json "$destination/"
+          fi
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
           git add "$destination/"
