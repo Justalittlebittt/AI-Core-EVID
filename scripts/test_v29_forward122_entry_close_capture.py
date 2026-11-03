@@ -10,13 +10,14 @@ import json
 import sys
 import tempfile
 import unittest
+from urllib.error import URLError
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from v29_forward122_entry_close_capture import (
-    ENTRY_DAY, INDEX, SCHEMA, baostock_code, capture, fixed_sources,
+    ENTRY_DAY, INDEX, SCHEMA, baostock_code, capture, fetch_index, fixed_sources,
     parse_index, ready_to_query, validate_bars, verify_calendar, write,
 )
 
@@ -107,6 +108,38 @@ class EntryCloseCaptureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"ENTRY_CAPTURE_WINDOW_EXPIRED"):
             capture(bs,lambda:index_bytes(),now=datetime(2026,11,5,0,0,tzinfo=CHINA))
         self.assertEqual(bs.calls,[])
+
+    def test_official_h00300_transport_retry_recovers_without_source_change(self):
+        calls=[]
+        class Response:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self,limit):
+                return index_bytes()
+        def opener(request,timeout):
+            calls.append(request.full_url)
+            self.assertEqual(timeout,20)
+            self.assertIn("indexCode=H00300",request.full_url)
+            self.assertIn("startDate=20261030",request.full_url)
+            self.assertIn("endDate=20261102",request.full_url)
+            if len(calls)<3:
+                raise URLError("synthetic TLS handshake timeout")
+            return Response()
+        self.assertEqual(fetch_index(opener),index_bytes())
+        self.assertEqual(len(calls),3)
+        self.assertEqual(len(set(calls)),1)
+
+    def test_official_h00300_transport_failure_stops_after_three(self):
+        calls=[]
+        def opener(request,timeout):
+            calls.append(request.full_url)
+            raise URLError("synthetic TLS handshake timeout")
+        with self.assertRaises(URLError):
+            fetch_index(opener)
+        self.assertEqual(len(calls),3)
+        self.assertEqual(len(set(calls)),1)
 
     def test_official_exchange_date_cannot_be_shifted_to_november_three(self):
         self.assertEqual(verify_calendar(calendar()),"2026-11-02")
