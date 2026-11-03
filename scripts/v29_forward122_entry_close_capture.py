@@ -178,11 +178,20 @@ def fetch_index(opener=urlopen):
         "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
         "Accept":"application/json,text/plain,*/*",
         "Referer":"https://www.csindex.com.cn/"})
-    with opener(request,timeout=20) as response:
-        raw=response.read(900_001)
-    if len(raw)>900000:
-        raise ValueError("INDEX_HTTP_RESPONSE_TOO_LARGE")
-    return raw
+    # The official provider previously timed out during TLS handshake.
+    # Retry only transient transport errors; never substitute an index or date.
+    for attempt in range(3):
+        try:
+            with opener(request,timeout=20) as response:
+                raw=response.read(900_001)
+            if len(raw)>900000:
+                raise ValueError("INDEX_HTTP_RESPONSE_TOO_LARGE")
+            return raw
+        except HTTPError:
+            raise
+        except (URLError,TimeoutError,OSError):
+            if attempt==2:
+                raise
 
 def capture(bs,fetch_official=fetch_index,now=None):
     local=ready_to_query(now or datetime.now(timezone.utc))
