@@ -47,6 +47,8 @@ on:
       - 'scripts/v29_current_issuer_research_review.py'
       - 'scripts/v29_eight_portfolio_capacity.py'
       - 'scripts/test_v29_eight_portfolio_capacity.py'
+      - 'scripts/v29_eight_pilot_outcome.py'
+      - 'scripts/test_v29_eight_pilot_outcome.py'
       - 'scripts/test_v29_current_issuer_research_review.py'
       - 'scripts/v29_original_24_source_frame.py'
       - 'scripts/test_v29_original_24_source_frame.py'
@@ -69,6 +71,8 @@ on:
       - '.github/workflows/decision-mainline-regression.yml'
       - 'scripts/v29_eight_portfolio_capacity.py'
       - 'scripts/test_v29_eight_portfolio_capacity.py'
+      - 'scripts/v29_eight_pilot_outcome.py'
+      - 'scripts/test_v29_eight_pilot_outcome.py'
 permissions:
   contents: read
   actions: read
@@ -94,6 +98,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_decision_case_demo.py' -v
           python -m unittest discover -s scripts -p 'test_v29_current_issuer_research_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_eight_portfolio_capacity.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_eight_pilot_outcome.py' -v
           python -m unittest discover -s scripts -p 'test_v29_original_24_source_frame.py' -v
           python scripts/v29_original_24_source_frame.py > /tmp/v29-original-24-source-frame.json
           python -m unittest discover -s scripts -p 'test_v29_historical_factor_admission.py' -v
