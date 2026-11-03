@@ -62,6 +62,13 @@ on:
       - 'validation/v294_evidence_strength_synthesizer_selftest.py'
       - 'evidence/V2.8.1_FINAL_RECORD.json'
       - 'evidence/V2.8.1_STAGE1_FACTOR_SCREEN_RECEIPT.json'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/decision-mainline-regression.yml'
+      - 'scripts/v29_eight_portfolio_capacity.py'
+      - 'scripts/test_v29_eight_portfolio_capacity.py'
 permissions:
   contents: read
   actions: read
