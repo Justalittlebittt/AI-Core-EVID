@@ -1,0 +1,60 @@
+name: V2.9 Historical Original 15 Price Pair Coverage (single capture)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-historical-original15-price-pair.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  capture-historical-original15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin free quote source
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Offline calendar, identity and missing-data tests
+        run: python -m unittest discover -s scripts -p 'test_v29_historical_original15_price_pair.py' -v
+      - name: Capture original-table preselected fifteen historical post-notice market pairs
+        run: |
+          if test -e research/v29_historical_original15_price_pair/PRICE_PAIR_COVERAGE_15.json; then
+            echo "Historical price receipt already persisted; no recapture"
+            exit 0
+          fi
+          python scripts/v29_historical_original15_price_pair.py --out research/v29_historical_original15_price_pair
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          base=Path('research/v29_historical_original15_price_pair')
+          rec=json.loads((base/'PRICE_PAIR_COVERAGE_15.json').read_text())
+          raw=(base/'RAW_15_MARKET_AND_CALENDAR.json').read_bytes()
+          assert rec['raw_market_and_calendar_sha256']==hashlib.sha256(raw).hexdigest()
+          assert len(rec['rows'])==15 and rec['paired_count']+rec['missing_count']==15
+          assert rec['historical_universe_issuer_year_denominator']==256
+          assert rec['unseen_oos'] is False and rec['historical_alpha_validated'] is False
+          assert rec['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('HISTORICAL_15_RETROSPECTIVE_PRICE_PAIR_COVERAGE',
+                rec['paired_count'], rec['missing_count'])
+          PY
+      - name: Persist raw prices and coverage once
+        run: |
+          if ! test -e research/v29_historical_original15_price_pair/PRICE_PAIR_COVERAGE_15.json; then
+            exit 1
+          fi
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/v29_historical_original15_price_pair/
+          git diff --cached --quiet || (git commit -m "research(v29): archive original15 retrospective post-disclosure prices [skip ci]" && git push origin HEAD:main)
+      - name: Keep acquisition evidence even if provider or persistence fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-historical-original15-price-pair
+          path: research/v29_historical_original15_price_pair/
+          if-no-files-found: warn
+          retention-days: 14
