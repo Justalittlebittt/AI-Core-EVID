@@ -63,6 +63,18 @@ class SealedFuturePipelineE2ETests(unittest.TestCase):
             gzip.decompress(exit_.ENTRY_RAW.read_bytes())).hexdigest())
         self.assertEqual(digest, hashlib.sha256(exit_.ENTRY.read_bytes()).hexdigest())
         self.assertEqual([r["security_id"] for r in actual["rows"]], ids)
+        # Ensure the pre-close eight-name exploratory subset really maps onto
+        # the same sealed 122 entry bars, without looking at future returns.
+        from v29_eight_pilot_outcome import PILOT
+        eight=json.loads(PILOT.read_text(encoding="utf-8"))
+        chosen=eight["pre_outcome_rule"]["selected_ids_in_rank_order"]
+        self.assertEqual(len(chosen),8)
+        by_id={r["security_id"]:r for r in actual["rows"]}
+        self.assertEqual(len(set(chosen)),8)
+        self.assertTrue(set(chosen).issubset(set(ids)))
+        self.assertTrue(all(by_id[sid]["source_bar_pair_complete"] for sid in chosen))
+        self.assertAlmostEqual(sum(100*by_id[sid]["entry_unadjusted"]["close"]
+                                   for sid in chosen),54558)
 
     def entry_snapshot(self, root):
         mock = FakeBaoStock()
