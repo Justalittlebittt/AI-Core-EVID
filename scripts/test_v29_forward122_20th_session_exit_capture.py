@@ -215,6 +215,49 @@ class Fixed20ExitTests(unittest.TestCase):
                          "FROZEN_UNADJUSTED_ENTRY_CLOSE_VINTAGE_DRIFT")
         self.assertFalse(outcome["price_comparison_eligible"])
 
+    def test_st_at_exit_with_real_trading_volume_retains_price_observation(self):
+        # Historical study exposed exit-ST selection bias. Synthetic future
+        # fixture checks only the unchanged frozen close-to-close proxy.
+        sid="SZSE:000070"
+        source={"raw_unadjusted":[{"close":"8.14"}]}
+        raw=[
+            {"date":days()[0],"code":baostock_code(sid),
+             "close":"8.14","adjustflag":"3","tradestatus":"1",
+             "isST":"0","volume":"1000"},
+            {"date":days()[-1],"code":baostock_code(sid),
+             "close":"4.55","adjustflag":"3","tradestatus":"1",
+             "isST":"1","volume":"500"},
+        ]
+        adj=[{**r,"adjustflag":"2"} for r in raw]
+        result,_=one_issuer(sid,days(),source,raw,adj)
+        self.assertTrue(result["entry_tradeable_at_reference_close"])
+        self.assertTrue(result["exit_tradeable_at_reference_close"])
+        self.assertTrue(result["exit_ST_flag"])
+        self.assertTrue(result["price_comparison_eligible"])
+        self.assertEqual(result["adjusted_exit_close"],4.55)
+        self.assertFalse(result["actual_exit_fill_proven"])
+        # No shortcut if the stock did not actually trade at the exit.
+        raw[-1]["tradestatus"]="0"
+        result,_=one_issuer(sid,days(),source,raw,adj)
+        self.assertFalse(result["exit_tradeable_at_reference_close"])
+        self.assertFalse(result["price_comparison_eligible"])
+
+    def test_st_at_frozen_entry_still_rejected(self):
+        sid="SZSE:000070"
+        source={"raw_unadjusted":[{"close":"8.14"}]}
+        raw=[
+            {"date":days()[0],"code":baostock_code(sid),
+             "close":"8.14","adjustflag":"3","tradestatus":"1",
+             "isST":"1","volume":"1000"},
+            {"date":days()[-1],"code":baostock_code(sid),
+             "close":"4.55","adjustflag":"3","tradestatus":"1",
+             "isST":"0","volume":"500"},
+        ]
+        adj=[{**r,"adjustflag":"2"} for r in raw]
+        result,_=one_issuer(sid,days(),source,raw,adj)
+        self.assertFalse(result["entry_tradeable_at_reference_close"])
+        self.assertFalse(result["price_comparison_eligible"])
+
     def test_fake_full_122_generates_research_only_evaluator_and_real_source_hashes(self):
         bs=FakeBS()
         report,outcome,raw=capture(bs,now=AFTER,official_fetch=lambda _d:fake_index(),
