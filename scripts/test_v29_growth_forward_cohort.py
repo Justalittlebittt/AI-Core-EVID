@@ -50,7 +50,21 @@ class CohortForwardTests(unittest.TestCase):
         self.assertAlmostEqual(result["mean_net"],.097)
         self.assertAlmostEqual(result["mean_net_excess"],.047)
         self.assertEqual(result["outperforming_name_fraction"],1)
+        self.assertAlmostEqual(result["median_individual_net_excess"],.047)
+        self.assertAlmostEqual(result["min_individual_net_excess"],.047)
+        self.assertAlmostEqual(result["max_individual_net_excess"],.047)
         self.assertFalse(result["strategy_validated"])
+        self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
+
+    def test_predeclared_median_resists_one_outlier_without_changing_mean_metric(self):
+        d=fake()
+        # Synthetic +100% winner: mean moves by 0.9/122 but median stays fixed.
+        d["securities"][0]["adjusted_exit_close"]=200.
+        result=evaluate(d,now=FUTURE_NOW)
+        self.assertAlmostEqual(result["median_individual_net_excess"],.047)
+        self.assertAlmostEqual(result["min_individual_net_excess"],.047)
+        self.assertAlmostEqual(result["max_individual_net_excess"],.947)
+        self.assertAlmostEqual(result["mean_net_excess"],.047+.9/122)
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
 
     def test_mature_only_after_real_exit_time(self):
