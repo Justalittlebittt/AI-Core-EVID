@@ -48,6 +48,22 @@ class StaleCalendarExitBaoStock(ContinuityExitBaoStock):
 
 
 class SealedFuturePipelineE2ETests(unittest.TestCase):
+    def test_actual_sealed_20261102_entry_is_accepted_by_future_exit_loader(self):
+        # Use real PRE-OUTCOME archived 122-stock entry, not synthetic returns.
+        _, ids, _, digest, actual, provenance = exit_.load_entry()
+        self.assertEqual(len(ids), 122)
+        self.assertEqual(len(provenance["quotes"]), 122)
+        self.assertEqual(actual["entry_session"], "2026-11-02")
+        self.assertEqual(actual["source_quote_complete_count"], 122)
+        self.assertEqual(actual["benchmark"]["security_id"], "H00300.CSI")
+        self.assertEqual(actual["benchmark"]["entry_total_return_index_close"], 6048.45)
+        self.assertEqual(actual["market_source_information_status"],
+                         "COMPLETE_QUOTES_AND_OFFICIAL_TR")
+        self.assertEqual(actual["raw_source_bytes_sha256"], hashlib.sha256(
+            gzip.decompress(exit_.ENTRY_RAW.read_bytes())).hexdigest())
+        self.assertEqual(digest, hashlib.sha256(exit_.ENTRY.read_bytes()).hexdigest())
+        self.assertEqual([r["security_id"] for r in actual["rows"]], ids)
+
     def entry_snapshot(self, root):
         mock = FakeBaoStock()
         mock.testcase = self
