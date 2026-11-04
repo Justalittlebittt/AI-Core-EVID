@@ -10,6 +10,17 @@ on:
       - 'scripts/test_v29_growth_310_complement_capture.py'
       - 'scripts/v29_eight_pilot_outcome.py'
       - 'scripts/test_v29_eight_pilot_outcome.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v29-forward122-20th-session-outcome.yml'
+      - 'scripts/v29_forward122_20th_session_exit_capture.py'
+      - 'scripts/test_v29_forward122_20th_session_exit_capture.py'
+      - 'scripts/test_v29_forward122_full_pipeline_e2e.py'
+      - 'scripts/v29_eight_pilot_outcome.py'
+      - 'scripts/test_v29_eight_pilot_outcome.py'
+      - 'scripts/v29_growth_310_complement_capture.py'
+      - 'scripts/test_v29_growth_310_complement_capture.py'
   workflow_dispatch:
   schedule:
     # Bounded 2026-only post-close capture windows (Beijing 21:25).
@@ -24,7 +35,7 @@ concurrency:
 
 jobs:
   future-boundary-tests:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
