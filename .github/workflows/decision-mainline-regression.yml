@@ -68,6 +68,8 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/v29_growth_310_conditional_result.py'
+      - 'scripts/test_v29_growth_310_conditional_result.py'
       - '.github/workflows/decision-mainline-regression.yml'
       - 'scripts/v29_eight_portfolio_capacity.py'
       - 'scripts/test_v29_eight_portfolio_capacity.py'
