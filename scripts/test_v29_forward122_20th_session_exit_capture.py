@@ -9,6 +9,7 @@ import json
 import sys
 import tempfile
 import unittest
+from urllib.error import URLError
 from datetime import date,datetime,timedelta
 from decimal import Decimal
 from pathlib import Path
@@ -20,7 +21,7 @@ from v29_forward122_preentry_source_check import FIELDS,baostock_code
 from v29_forward122_20th_session_exit_capture import (
     ENTRY_DAY,EARLIEST_PLAUSIBLE_EXIT,LOCAL,SCHEMA,
     after_maturity_gate,trading_sessions,require_20th_close,
-    index_result,one_issuer,capture,save,
+    index_result,one_issuer,capture,save,fetch_official_index,
 )
 
 AFTER=datetime(2026,11,27,20,0,tzinfo=LOCAL)
@@ -149,6 +150,38 @@ class Fixed20ExitTests(unittest.TestCase):
         changed=trading_calendar()+[{"calendar_date":"2026-11-30","is_trading_day":"1"}]
         with self.assertRaisesRegex(ValueError,"OFFICIAL_SESSION_SOURCE_INVALID_OR_DUPLICATE"):
             trading_sessions(changed,AFTER.date())
+
+    def test_real_exit_index_tls_retry_recovers_without_source_shift(self):
+        calls=[]
+        class Response:
+            def __enter__(self):
+                return self
+            def __exit__(self,*args):
+                return False
+            def read(self,limit):
+                return fake_index()
+        def opener(request,timeout):
+            calls.append(request.full_url)
+            self.assertEqual(timeout,20)
+            self.assertIn("indexCode=H00300",request.full_url)
+            self.assertIn("startDate=20261102",request.full_url)
+            self.assertIn("endDate=20261127",request.full_url)
+            if len(calls)<3:
+                raise URLError("synthetic TLS timeout")
+            return Response()
+        self.assertEqual(fetch_official_index("2026-11-27",opener),fake_index())
+        self.assertEqual(len(calls),3)
+        self.assertEqual(len(set(calls)),1)
+
+    def test_real_exit_index_tls_retry_stops_and_fails_closed(self):
+        calls=[]
+        def opener(request,timeout):
+            calls.append(request.full_url)
+            raise URLError("synthetic TLS timeout")
+        with self.assertRaises(URLError):
+            fetch_official_index("2026-11-27",opener)
+        self.assertEqual(len(calls),3)
+        self.assertEqual(len(set(calls)),1)
 
     def test_actual_official_total_return_identity_and_prior_entry_level(self):
         out=index_result(fake_index(),"2026-11-27",6010.30)
