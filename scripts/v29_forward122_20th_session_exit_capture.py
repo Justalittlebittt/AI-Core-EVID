@@ -124,11 +124,20 @@ def fetch_official_index(exit_session,opener=urlopen):
         "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
         "Accept":"application/json,text/plain,*/*",
         "Referer":"https://www.csindex.com.cn/"})
-    with opener(request,timeout=20) as response:
-        raw=response.read(900_001)
-    if len(raw)>900000:
-        raise ValueError("CSINDEX_RESPONSE_SIZE_LIMIT")
-    return raw
+    # Mirror the bounded transport retry proven necessary for the original
+    # H00300 entry snapshot; keep index identity and the frozen dates unchanged.
+    for attempt in range(3):
+        try:
+            with opener(request,timeout=20) as response:
+                raw=response.read(900_001)
+            if len(raw)>900000:
+                raise ValueError("CSINDEX_RESPONSE_SIZE_LIMIT")
+            return raw
+        except HTTPError:
+            raise
+        except (URLError, TimeoutError, OSError):
+            if attempt==2:
+                raise
 
 def index_result(raw,exit_session,entry_level):
     obj=json.loads(raw)
