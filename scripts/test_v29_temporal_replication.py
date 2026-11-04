@@ -100,7 +100,7 @@ class TestSecondEpisode(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             out=Path(root)/"replicate-entry"
             t.write(out,"entry",entry,raw)
-            with patch.object(t,"ENTRY",out/"ENTRY_SNAPSHOT_122.json"), \\
+            with patch.object(t,"ENTRY",out/"ENTRY_SNAPSHOT_122.json"), \
                  patch.object(t,"ENTRY_RAW",out/"RAW_ENTRY_122.json.gz"):
                 report,exit_raw=t.capture_outcome(Source(),EXIT_NOW,fake_index)
             self.assertEqual(report["status"],"ONE_MORE_NONOVERLAPPING_EPISODE_DESCRIPTIVE_ONLY")
@@ -134,7 +134,7 @@ class TestSecondEpisode(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             out=Path(root)/"entry"
             t.write(out,"entry",entry,raw)
-            with patch.object(t,"ENTRY",out/"ENTRY_SNAPSHOT_122.json"), \\
+            with patch.object(t,"ENTRY",out/"ENTRY_SNAPSHOT_122.json"), \
                  patch.object(t,"ENTRY_RAW",out/"RAW_ENTRY_122.json.gz"):
                 report,_=t.capture_outcome(Source(st_exit=t.baostock_code(ids[0])),EXIT_NOW,fake_index)
         self.assertEqual(report["price_eligible"],122)
