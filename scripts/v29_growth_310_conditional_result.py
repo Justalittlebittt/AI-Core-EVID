@@ -98,6 +98,14 @@ def evaluate(observations, parent, root=ROOT, now=None):
     now = now or datetime.now(timezone.utc)
     sessions = maturity(parent, now)
     spec, ids, selected, control = load_fixed(root)
+    # Secondary, pre-maturity descriptive comparison within the SAME 210
+    # pre-outcome clean records. The frozen 122-vs-188 primary stays intact.
+    with (Path(root) / FLAGS).open(encoding="utf-8-sig", newline="") as f:
+        clean_210 = {r["security_id"] for r in csv.DictReader(f)
+                     if r["no_specified_risk_flags"] == "1"}
+    clean_complement_88 = clean_210 - selected
+    if len(clean_210) != 210 or len(clean_complement_88) != 88 or not clean_complement_88.issubset(control):
+        raise ValueError("ORIGINAL_CLEAN_210_AND_88_SOURCE_CHANGED")
     parent_bytes = (Path(root) / PARENT_SPEC).read_bytes()
     if (parent.get("protocol_sha256") != hashlib.sha256(parent_bytes).hexdigest()
             or {r.get("canonical_security_id") for r in parent.get("securities", [])} != selected
@@ -140,7 +148,11 @@ def evaluate(observations, parent, root=ROOT, now=None):
         "registered_comparison": REGISTER,
         "fixed_entry_session": sessions[0], "fixed_exit_session": sessions[-1],
         "selected_total": 122, "comparator_total": 188,
+        "clean_88_comparator_total": 88,
+        "clean_88_definition": "ORIGINAL_NO_SPECIFIED_RISK_FLAGS_AND_NOT_IN_FROZEN_122",
+        "clean_88_is_supplementary_pre_maturity_descriptive_only": True,
         "selected_computable": 122 - len(missing["selected"]),
+        "clean_88_computable": sum(sid in returns for sid in clean_complement_88),
         "comparator_computable": 188 - len(missing["comparator"]),
         "missing_by_group": missing,
         "round_trip_cost": 0.003,
@@ -151,12 +163,16 @@ def evaluate(observations, parent, root=ROOT, now=None):
     }
     if missing["selected"] or missing["comparator"]:
         return {**base, "status": "INSUFFICIENT_NEVER_DROP_NAMES",
-                "mean_selected_net": None, "mean_comparator_net": None, "selected_minus_comparator": None}
+                "mean_selected_net": None, "mean_comparator_net": None, "selected_minus_comparator": None,
+                "mean_clean_88_net": None, "selected_minus_clean_88": None}
     a = sum(returns[s] for s in selected)/122
     b = sum(returns[s] for s in control)/188
+    clean_b = sum(returns[s] for s in clean_complement_88)/88
     return {**base, "status": "ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE",
             "mean_selected_net": a, "mean_comparator_net": b,
-            "selected_minus_comparator": a-b}
+            "selected_minus_comparator": a-b,
+            "mean_clean_88_net": clean_b,
+            "selected_minus_clean_88": a-clean_b}
 
 
 def main():
