@@ -50,8 +50,10 @@ def one_complement(sid, sessions, raw, adjusted):
         if not (e and x and ae and ax):
             row["source_status"] = "MISSING_FIXED_ENDPOINT"
             return row, source
+        row["entry_ST_flag"] = e.get("isST") == "1"
+        row["exit_ST_flag"] = x.get("isST") == "1"
         row["entry_tradeable"] = active_bar(e)
-        row["exit_tradeable"] = active_bar(x)
+        row["exit_tradeable"] = active_bar(x, allow_exit_st=True)
         if not (row["entry_tradeable"] and row["exit_tradeable"]):
             row["source_status"] = "ENDPOINT_NOT_ACTIVE_OR_ST_OR_NO_VOLUME"
             return row, source
@@ -134,6 +136,8 @@ def capture(bs, root=ROOT, now=None):
             "security_id": sid,
             "entry_tradeable": p["entry_tradeable_at_reference_close"],
             "exit_tradeable": p["exit_tradeable_at_reference_close"],
+            "entry_ST_flag": p.get("entry_ST_flag"),
+            "exit_ST_flag": p.get("exit_ST_flag"),
             "adjusted_for_corporate_actions": p["corporate_actions_and_dividends_adjusted"],
             "adjusted_entry_close": p["adjusted_entry_close"],
             "adjusted_exit_close": p["adjusted_exit_close"],
