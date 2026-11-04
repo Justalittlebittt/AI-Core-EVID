@@ -75,7 +75,25 @@ class ConditionalResultTest(unittest.TestCase):
         result = evaluate(self.prices,self.parent,self.root,NOW)
         self.assertEqual(result["status"],"ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE")
         self.assertAlmostEqual(result["selected_minus_comparator"],.05)
+        self.assertEqual(result["clean_88_comparator_total"],88)
+        self.assertEqual(result["clean_88_computable"],88)
+        self.assertAlmostEqual(result["mean_clean_88_net"],.047)
+        self.assertAlmostEqual(result["selected_minus_clean_88"],.05)
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
+
+    def test_clean88_comparator_uses_same_original_flags_not_selected_100(self):
+        # Distinguish original 122-vs-188 from secondary clean-only
+        # comparison. No quotes from the real 20th-session experiment.
+        for x in self.prices["securities"]:
+            if x["security_id"] in self.ids[210:]:
+                x["adjusted_exit_close"]=90
+        result=evaluate(self.prices,self.parent,self.root,NOW)
+        clean_expected=.097-.047
+        combined_b=(88*.047+100*(-.103))/188
+        self.assertAlmostEqual(result["selected_minus_clean_88"],clean_expected)
+        self.assertAlmostEqual(result["selected_minus_comparator"],.097-combined_b)
+        self.assertGreater(result["selected_minus_comparator"],result["selected_minus_clean_88"])
+        self.assertEqual(result["clean_88_computable"],88)
 
     def test_missing_quotes_never_silently_disappear(self):
         self.prices["securities"][-1]["exit_tradeable"]=False
@@ -83,6 +101,8 @@ class ConditionalResultTest(unittest.TestCase):
         self.assertEqual(result["status"],"INSUFFICIENT_NEVER_DROP_NAMES")
         self.assertIsNone(result["selected_minus_comparator"])
         self.assertEqual(result["comparator_computable"],187)
+        self.assertEqual(result["clean_88_computable"],88)
+        self.assertIsNone(result["selected_minus_clean_88"])
 
     def test_cohort_mutation_rejected(self):
         self.prices["securities"][-1]["security_id"]="SSE:999999"
