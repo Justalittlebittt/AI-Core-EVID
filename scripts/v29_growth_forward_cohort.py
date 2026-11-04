@@ -116,9 +116,13 @@ def evaluate(outcome, path=PROTOCOL, root=ROOT, now=None):
         return {**base,"status":"INCOMPLETE_NEVER_DROP_NAMES","mean_net_excess":None}
     net=[x-0.003 for x in ret]
     excess=[x-br for x in net]
+    ranked_excess=sorted(excess)
     return {**base,"status":"ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE",
             "mean_gross":sum(ret)/122,"mean_net":sum(net)/122,
             "mean_net_excess":sum(excess)/122,
+            "median_individual_net_excess":(ranked_excess[60]+ranked_excess[61])/2,
+            "min_individual_net_excess":ranked_excess[0],
+            "max_individual_net_excess":ranked_excess[-1],
             "outperforming_name_fraction":sum(x>0 for x in excess)/122}
 
 
