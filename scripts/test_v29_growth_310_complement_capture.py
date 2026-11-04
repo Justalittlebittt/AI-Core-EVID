@@ -46,6 +46,20 @@ class ComplementCaptureTests(unittest.TestCase):
         self.assertFalse(row["entry_tradeable"])
         self.assertFalse(row["adjusted_for_corporate_actions"])
 
+    def test_st_at_exit_with_positive_volume_keeps_loss_in_control(self):
+        raw=[bar(SESSIONS[0],"3",100),bar(SESSIONS[-1],"3",50)]
+        raw[-1]["isST"]="1"
+        adjusted=[bar(SESSIONS[0],"2",100),bar(SESSIONS[-1],"2",50)]
+        result,_=one_complement("SSE:600001",SESSIONS,raw,adjusted)
+        self.assertTrue(result["entry_tradeable"])
+        self.assertTrue(result["exit_tradeable"])
+        self.assertTrue(result["exit_ST_flag"])
+        self.assertEqual(result["adjusted_exit_close"],50)
+        self.assertFalse(result["actual_exit_fill_proven"])
+        raw[-1]["tradestatus"]="0"
+        result,_=one_complement("SSE:600001",SESSIONS,raw,adjusted)
+        self.assertFalse(result["exit_tradeable"])
+
     def test_maturity_guard_before_opening_parent_file(self):
         with tempfile.TemporaryDirectory() as t:
             with self.assertRaisesRegex(ValueError, "FUTURE_OUTCOME_EMBARGO"):
