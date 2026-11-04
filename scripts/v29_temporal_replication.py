@@ -37,7 +37,7 @@ N=122
 GIT_PLAN="4c1059caf679e6b5ce1444ac194da876b5caa5da"
 
 def git_blob(data):
-    return hashlib.sha1(b"blob "+str(len(data)).encode()+b"\\0"+data).hexdigest()
+    return hashlib.sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()
 
 def sources():
     raw=PLAN.read_bytes()
@@ -244,7 +244,10 @@ def capture_outcome(bs,now,index_reader=index_fetch):
                 r["adjusted_exit_close"]/r["adjusted_entry_close"]-1-.003 for r in outcomes}
         net=list(prices.values())
         excess=[v-baseline for v in net]
-        eight_spec=json.loads((ROOT/plan["optional_same_episode_secondary"]["eight_fixed_preoutcome_spec"]).read_text(encoding="utf-8"))
+        eight_file=(ROOT/plan["optional_same_episode_secondary"]["eight_fixed_preoutcome_spec"]).read_bytes()
+        if git_blob(eight_file)!=plan["optional_same_episode_secondary"]["eight_spec_git_blob_sha"]:
+            raise ValueError("FROZEN_EIGHT_SPEC_CHANGED")
+        eight_spec=json.loads(eight_file)
         eight=eight_spec["pre_outcome_rule"]["selected_ids_in_rank_order"]
         if len(eight)!=8 or len(set(eight))!=8 or not set(eight).issubset(ids):
             raise ValueError("FROZEN_EIGHT_CHANGED")
