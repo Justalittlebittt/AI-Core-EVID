@@ -41,6 +41,9 @@ on:
     # Actual EXIT = twentieth VERIFIED exchange session, never calendar-day substitution.
     - cron: '25 13 27,30 11 *'
     - cron: '25 13 1-2 12 *'
+    # Second fixed 122 temporal replication: 2026-12-25 Beijing 21:25;
+    # Nov 30 already occurs in the original November 27/30 schedule above.
+    - cron: '25 13 25 12 *'
 permissions:
   contents: read
 concurrency:
@@ -285,5 +288,105 @@ jobs:
         with:
           name: v29-310-conditional-same-day-supplement
           path: /tmp/v29-310-supplement/
+          if-no-files-found: warn
+          retention-days: 30
+
+  second-temporal-fixed-122:
+    # Uses original 122 identities but two distinct future sessions. This is
+    # not an independent issuer cohort. Runs only on fixed Nov 30 / Dec 25.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Gate one same-day entry or outcome; reject retrospective timing
+        id: second_gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          day="$(TZ=Asia/Shanghai date +%F)"
+          phase=""
+          if [ "$day" = "2026-11-30" ] && ! test -e research/V2.9_TEMPORAL_REPLICATION_20261130_ENTRY/ENTRY_SNAPSHOT_122.json; then
+            phase="entry"
+          elif [ "$day" = "2026-12-25" ] && test -e research/V2.9_TEMPORAL_REPLICATION_20261130_ENTRY/ENTRY_SNAPSHOT_122.json && ! test -e research/V2.9_TEMPORAL_REPLICATION_20261130_OUTCOME/OUTCOME_122.json; then
+            phase="outcome"
+          fi
+          if [ -z "$phase" ]; then
+            echo "SECOND_TEMPORAL_EPISODE_OUTSIDE_SOURCE_WINDOW_OR_ALREADY_SEALED"
+            exit 0
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+          echo "phase=$phase" >> "$GITHUB_OUTPUT"
+      - name: Verify exact frozen temporal contract and synthetic entry/exit handoff
+        if: steps.second_gate.outputs.run == 'true'
+        run: python -m unittest discover -s scripts -p 'test_v29_temporal_replication.py' -v
+      - name: Install same proven free quote dependency
+        if: steps.second_gate.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Capture only second declared session prices and official total-return index
+        if: steps.second_gate.outputs.run == 'true'
+        run: |
+          python scripts/v29_temporal_replication.py --phase "${{ steps.second_gate.outputs.phase }}" --out /tmp/v29-temporal-replication
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          p=Path('/tmp/v29-temporal-replication')
+          if (p/'ENTRY_SNAPSHOT_122.json').exists():
+              d=json.loads((p/'ENTRY_SNAPSHOT_122.json').read_text())
+              raw=gzip.decompress((p/'RAW_ENTRY_122.json.gz').read_bytes())
+              assert d['number_of_original_issuers']==len(d['rows'])==122
+          else:
+              d=json.loads((p/'OUTCOME_122.json').read_text())
+              raw=gzip.decompress((p/'RAW_OUTCOME_122.json.gz').read_bytes())
+              assert d['observed']==len(d['rows'])==122
+          assert d['raw_sha256']==hashlib.sha256(raw).hexdigest()
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('SECOND_TEMPORAL_SOURCE_STATUS',d['status'])
+          PY
+      - name: Preserve canonical complete second period or immutable run-specific incomplete evidence
+        if: steps.second_gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          phase="${{ steps.second_gate.outputs.phase }}"
+          if [ "$phase" = "entry" ]; then
+            file="ENTRY_SNAPSHOT_122.json"
+            complete="COMPLETE_122_AND_H00300"
+            dest="research/V2.9_TEMPORAL_REPLICATION_20261130_ENTRY"
+          else
+            file="OUTCOME_122.json"
+            complete="ONE_MORE_NONOVERLAPPING_EPISODE_DESCRIPTIVE_ONLY"
+            dest="research/V2.9_TEMPORAL_REPLICATION_20261130_OUTCOME"
+          fi
+          status="$(python - "$file" <<'PY'
+          import json,sys
+          print(json.load(open('/tmp/v29-temporal-replication/'+sys.argv[1]))['status'])
+          PY
+          )"
+          if [ "$status" != "$complete" ]; then
+            dest="research/V2.9_TEMPORAL_REPLICATION_ATTEMPTS_2026/run_$GITHUB_RUN_ID"
+          fi
+          if [ -e "$dest/$file" ]; then
+            echo "SECOND_TEMPORAL_SOURCE_ALREADY_SEALED"
+            exit 1
+          fi
+          mkdir -p "$dest"
+          cp -a /tmp/v29-temporal-replication/. "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest/"
+          git commit -m "research(v29): archive second temporal $phase $status; NO BUY [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Keep raw source evidence even if GitHub persistence fails
+        if: always() && steps.second_gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-second-nonoverlap-122-source
+          path: /tmp/v29-temporal-replication/
           if-no-files-found: warn
           retention-days: 30
