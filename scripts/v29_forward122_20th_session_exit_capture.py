@@ -191,14 +191,20 @@ def bars_by_day(sid,rows,adjustflag,allowed):
         result[day]=r
     return result
 
-def active_bar(bar):
+def active_bar(bar, allow_exit_st=False):
+    """Observed trading close proxy; an ST exit flag is not a suspension.
+
+    The frozen entry still requires non-ST. A later ST exit may have an
+    observed positive-volume close; this never proves an order could fill.
+    """
     try:
         close=numeric_positive(bar.get("close"))
         volume=numeric_positive(bar.get("volume"))
     except (TypeError,AttributeError):
         return False
     return (close is not None and volume is not None and
-            bar.get("tradestatus")=="1" and bar.get("isST")=="0")
+            bar.get("tradestatus")=="1" and
+            (bar.get("isST")=="0" or (allow_exit_st and bar.get("isST")=="1")))
 
 def one_issuer(sid,sessions,entry_provenance,raw,adjusted):
     allowed=set(sessions)
@@ -240,8 +246,10 @@ def one_issuer(sid,sessions,entry_provenance,raw,adjusted):
         if not same_raw_close:
             receipt["observation_status"]="FROZEN_UNADJUSTED_ENTRY_CLOSE_VINTAGE_DRIFT"
             return receipt,sources
+        receipt["entry_ST_flag"]=e.get("isST")=="1"
+        receipt["exit_ST_flag"]=x.get("isST")=="1"
         receipt["entry_tradeable_at_reference_close"]=active_bar(e)
-        receipt["exit_tradeable_at_reference_close"]=active_bar(x)
+        receipt["exit_tradeable_at_reference_close"]=active_bar(x,allow_exit_st=True)
         if not receipt["entry_tradeable_at_reference_close"] or not receipt["exit_tradeable_at_reference_close"]:
             receipt["observation_status"]="ENTRY_OR_EXIT_TRADING_ST_VOLUME_NOT_VERIFIED"
             return receipt,sources
