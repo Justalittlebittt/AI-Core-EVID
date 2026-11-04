@@ -12,6 +12,9 @@ on:
       - 'scripts/test_v29_growth_forward_cohort.py'
       - 'scripts/v29_forward122_entry_close_capture.py'
       - 'scripts/test_v29_forward122_entry_close_capture.py'
+      - 'scripts/v29_temporal_replication.py'
+      - 'scripts/test_v29_temporal_replication.py'
+      - 'research/V2.9_TEMPORAL_REPLICATION_20261130_PREOUTCOME.json'
       - 'scripts/v29_eight_pilot_outcome.py'
       - 'scripts/test_v29_eight_pilot_outcome.py'
   push:
@@ -25,6 +28,9 @@ on:
       - 'scripts/test_v29_growth_forward_cohort.py'
       - 'scripts/v29_forward122_entry_close_capture.py'
       - 'scripts/test_v29_forward122_entry_close_capture.py'
+      - 'scripts/v29_temporal_replication.py'
+      - 'scripts/test_v29_temporal_replication.py'
+      - 'research/V2.9_TEMPORAL_REPLICATION_20261130_PREOUTCOME.json'
       - 'scripts/v29_eight_pilot_outcome.py'
       - 'scripts/test_v29_eight_pilot_outcome.py'
       - 'scripts/v29_growth_310_complement_capture.py'
@@ -54,6 +60,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_forward122_full_pipeline_e2e.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
           python -m unittest discover -s scripts -p 'test_v29_eight_pilot_outcome.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_temporal_replication.py' -v
           python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_310_complement_capture.py' -v
 
