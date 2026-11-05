@@ -29,6 +29,32 @@ class FrozenEightTests(unittest.TestCase):
         self.assertAlmostEqual(result["parent_122_mean_net"],.097+(.1/122))
         self.assertAlmostEqual(result["selected_eight_minus_parent_122"],.0125-.1/122)
 
+    def test_real_sealed_20261102_entry_shares_and_capital_are_used(self):
+        result=evaluate(fake(),now=FUTURE_NOW)
+        budget=result["minimum_lot_entry_reference"]
+        self.assertEqual(budget["actual_reference_session"],"2026-11-02")
+        self.assertEqual(budget["min_lot_reference_notional_cny"],54558)
+        self.assertEqual(len(budget["weights"]),8)
+        self.assertTrue(all(x["shares"]==100 for x in budget["weights"]))
+        self.assertAlmostEqual(sum(x["capital_weight"] for x in budget["weights"]),1)
+        self.assertAlmostEqual(result["min_lot_weighted_net_proxy"],.097)
+        self.assertAlmostEqual(result["min_lot_minus_equal_eight_net_proxy"],0)
+        self.assertFalse(budget["tradeable_close_fill_proven"])
+        self.assertFalse(result["trade_authorized"])
+
+    def test_one_synthetic_winner_exposes_equal_weight_vs_actual_lot_difference(self):
+        doc=fake()
+        selected=evaluate(doc,now=FUTURE_NOW)["selected_eight_ids_in_frozen_rank_order"]
+        next(r for r in doc["securities"] if r["canonical_security_id"]==selected[0])["adjusted_exit_close"]=120.
+        result=evaluate(doc,now=FUTURE_NOW)
+        weights=result["minimum_lot_entry_reference"]["weights"]
+        self.assertAlmostEqual(result["selected_eight_mean_net"],.1095)
+        self.assertAlmostEqual(result["min_lot_weighted_net_proxy"],.097+.1*weights[0]["capital_weight"])
+        self.assertAlmostEqual(result["min_lot_minus_equal_eight_net_proxy"],
+                               .1*(weights[0]["capital_weight"]-1/8))
+        self.assertLess(result["min_lot_weighted_net_proxy"],result["selected_eight_mean_net"])
+        self.assertTrue(result["min_lot_paper_proxy_not_broker_fill"])
+
     def test_incomplete_parent_does_not_create_subset_alpha(self):
         outcome=fake()
         outcome["securities"][0]["adjusted_exit_close"]=None
@@ -36,6 +62,7 @@ class FrozenEightTests(unittest.TestCase):
         self.assertEqual(result["status"],"INSUFFICIENT_PARENT_122_NOT_COMPLETE")
         self.assertIsNone(result["selected_eight_mean_net"])
         self.assertIsNone(result["selected_eight_minus_parent_122"])
+        self.assertIsNone(result["min_lot_weighted_net_proxy"])
 
     def test_immature_clock_blocks_synthetic_future_evidence(self):
         with self.assertRaisesRegex(ValueError,"FUTURE_OUTCOME_NOT_YET_OBSERVABLE"):
