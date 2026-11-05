@@ -1,0 +1,79 @@
+{
+  "schema": "V29_FY2026_FRESH_FINANCIAL_VINTAGE_ADAPTED_GROWTH_PREREG_V1",
+  "registered_on": "2026-11-05",
+  "status": "PREREGISTERED_BEFORE_FY2026_REPORTS_AND_TRADING_OUTCOMES",
+  "motivation": "Build the next source-bound A-share stock selector, not another monitoring layer; adapt Q3-to-H1 YTD growth acceleration to FY-to-Q3 YTD as a separate annual-period hypothesis.",
+  "strict_interpretation": {
+    "strategy_class": "FY2026_ANNUAL_VS_2026_Q3_YTD_ADAPTED_NOT_IDENTICAL_Q3_H1_REPLICATION",
+    "independent_full_issuer_cohort_certified": false,
+    "identical_original_2026Q3_rule_replication": false,
+    "future_financial_vintage_new_information_required": true,
+    "cannot_imply_2026Q3_factor_validity_from_this_new_annual_trial": true,
+    "equity_trade_eligibility": "NOT_AUTHORIZED",
+    "do_not_use_2026_nov27_or_dec25_returns_to_revise_this_selector": true
+  },
+  "source_design": {
+    "annual_report_period": "2026-12-31",
+    "comparative_ytd_period": "2026-09-30",
+    "latest_disclosure_date_inclusive": "2027-04-30",
+    "target_full_universe": "ALL_SOURCE_COVERED_MAINLAND_A_SHARES_AT_CUTOFF_NOT_PRESELECTED_2026_122",
+    "missing_disclosures": "INELIGIBLE_WITH_REASON_AND_UNIVERSE_DENOMINATOR_RETAINED",
+    "source_vintage": "ONE_CAPTURE_BEFORE_FIRST_POST_2027_04_30_EXCHANGE_SESSION_OPENS",
+    "input_adapter": "EXISTING_v29_growth_candidate_snapshot_AND_raw_quality_audit_REUSED_WHERE_AVAILABLE",
+    "original_exchange_filing_receipts": "REQUIRED_FOR_SOURCE_PIT_CERTIFICATION; IF_MISSING_LABEL_VENDOR_VINTAGE_ONLY",
+    "source_page_raw_hashes_required": true,
+    "prior_reference_close": "LATEST_EXCHANGE_SESSION_BEFORE_FUTURE_ENTRY; DO_NOT_USE_ENTRY_CLOSE_FOR_SELECTION",
+    "period_source_coverage_and_duplicate_id_review_required": true,
+    "corporate_identity_and_ST_asof_reference_required": true
+  },
+  "selection": {
+    "original_principle": "Preserve positive financial growth, clean accounting flags, ROE and CFO and exact minimum lot budget from preregistered November eight research; this is a NEW FY-adapted hypothesis, not the original frozen 122 cohort.",
+    "annual_revenue_yoy_pct_min_exclusive": 0,
+    "annual_revenue_yoy_pct_max_inclusive": 150,
+    "q3_ytd_revenue_yoy_pct_min_exclusive": 0,
+    "annual_minus_q3_ytd_revenue_yoy_acceleration_pp_min_inclusive": 10,
+    "annual_parent_profit_yuan_min_exclusive": 0,
+    "annual_parent_profit_yoy_pct_min_exclusive": 0,
+    "annual_deducted_parent_profit_yuan_min_exclusive": 0,
+    "standalone_q4_deducted_parent_profit_yuan_min_exclusive": 0,
+    "annual_weighted_roe_pct_min_inclusive": 10,
+    "annual_cfo_per_share_yuan_min_exclusive": 0,
+    "annual_ytd_gross_margin_must_not_be_below_q3_ytd": true,
+    "annual_nonrecurring_share_of_parent_profit_max_inclusive": 0.5,
+    "ST_at_reference_date_disallowed": true,
+    "maximum_minimum_exchange_lot_notional_cny": 12000,
+    "exchange_lot_shares": "STAR 200; OTHER MAINLAND A-SHARE 100",
+    "rank": "ANNUAL_ROE_DESC_THEN_FY_MINUS_Q3_REVENUE_YOY_ACCELERATION_DESC_THEN_CANONICAL_ID_ASC",
+    "selected_count": 8,
+    "fewer_than_eight_qualified": "NO_FIXED_EIGHT_RESULT_NO_BACKFILL_OR_RELAXATION",
+    "do_not_force_disjointness_with_old_122": true,
+    "disclose_overlap_with_2026_122": true
+  },
+  "prospective_evaluation": {
+    "candidate_freeze": "AFTER_REQUIRED_SOURCE_PIT_CAPTURE_BEFORE_FIRST_FOLLOWING_MAINLAND_EXCHANGE_OPEN",
+    "paper_entry": "CLOSE_OF_FIRST_OFFICIAL_TRADING_SESSION_AFTER_2027_04_30",
+    "paper_exit": "CLOSE_OF_TWENTIETH_VERIFIED_TRADING_SESSION_COUNTING_ENTRY_AS_ONE",
+    "no_calendar_day_substitution": true,
+    "minimum_complete_names": 8,
+    "missing_or_untradeable": "INCOMPLETE_KEEP_ALL_8_NO_REPLACEMENT",
+    "return": "ONE_VENDOR_ADJUSTED_CLOSE_TO_CLOSE_MINUS_0.003",
+    "benchmark": "H00300.CSI_TOTAL_RETURN_BOTH_EXACT_SESSIONS",
+    "primary_metric": "EQUAL_WEIGHT_EIGHT_NET_MINUS_H00300_TR",
+    "secondary": "MINIMUM_LOT_CASH_WEIGHTED_NET_AND_EIGHT_VS_ALL_ELIGIBLE_CLEAN_CONTEXT",
+    "transaction_cost_roundtrip_fraction": 0.003,
+    "actual_broker_fills_verified": false,
+    "single_annual_cohort_is_not_repeatable_predictive_alpha": true,
+    "live_buy_eligibility": "NOT_AUTHORIZED"
+  },
+  "source_legal_disclosure_reference": [
+    "https://www.csrc.gov.cn/csrc/c106256/c1653948/content.shtml",
+    "https://www.szse.cn/www/investor/institute/rules/t20231012_604012.html"
+  ],
+  "implementation_boundaries": {
+    "use_existing_financial_capture_tools": true,
+    "no_new_actions_schedule_in_this_change": true,
+    "no_new_historical_factor_search": true,
+    "no_reinterpretation_of_original_Q3_2026_experiment": true,
+    "only_future_unseen_financial_values_may_choose_names": true
+  }
+}
