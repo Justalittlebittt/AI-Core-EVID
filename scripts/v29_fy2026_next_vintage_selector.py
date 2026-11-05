@@ -95,8 +95,9 @@ def record_filter(row,rule,reference_day):
         reasons.append("ROE_OR_CASHFLOW_RULE_FAILED")
     if x["annual_gross_margin_pct"]<x["q3_ytd_gross_margin_pct"]:
         reasons.append("ANNUAL_GROSS_MARGIN_DECLINE")
-    if (abs(x["annual_nonrecurring_parent_profit_yuan"])/x["annual_parent_profit_yuan"]
-            >rule["annual_nonrecurring_share_of_parent_profit_max_inclusive"]):
+    if (x["annual_parent_profit_yuan"]<=0
+            or abs(x["annual_nonrecurring_parent_profit_yuan"])/x["annual_parent_profit_yuan"]
+               >rule["annual_nonrecurring_share_of_parent_profit_max_inclusive"]):
         reasons.append("NONRECURRING_PROFIT_EXCESS")
     if row.get("is_st_at_reference_session") is not False:
         reasons.append("ST_OR_ST_STATUS_UNVERIFIED")
