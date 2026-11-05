@@ -51,6 +51,12 @@ def market():
     return {
         "schema":"V29_FY2026_MARKET_REFERENCE_SOURCE_V1",
         "official_calendar_verified":True,
+        "official_schedule_record":{
+            "source_type":"OFFICIAL_EXCHANGE_SCHEDULE",
+            "source_url":"https://www.sse.com.cn/synthetic-calendar-fixture",
+            "reference_trading_session":"2027-04-30",
+            "first_trading_session":"2027-05-06"
+        },
         "calendar":calendar,
         "all_stock":[{"code":"sz."+c,"tradeStatus":"1","code_name":"synthetic"} for c in IDS],
         "reference_bars":[{"date":"2027-04-30","code":"sz."+c,"adjustflag":"3",
@@ -127,6 +133,16 @@ class FutureSourceFrameTests(unittest.TestCase):
         x["reference_bars"][0]["date"]="2027-05-06"
         with self.assertRaisesRegex(ValueError,"REFERENCE_BAR_DATE_VINTAGE_OR_IDENTITY_INVALID"):
             validate_market(x)
+
+    def test_unsubstantiated_calendar_boolean_rejected(self):
+        m=market()
+        m.pop("official_schedule_record")
+        with self.assertRaisesRegex(ValueError,"OFFICIAL_SCHEDULE_ATTESTATION_REQUIRED"):
+            validate_market(m)
+        m=market()
+        m["official_schedule_record"]["first_trading_session"]="2027-05-07"
+        with self.assertRaisesRegex(ValueError,"OFFICIAL_SCHEDULE_ATTESTATION_REQUIRED"):
+            validate_market(m)
 
     def test_vendor_calendar_not_called_official_without_confirmation(self):
         ann,q3,ca,cq,m,at=fixture()
