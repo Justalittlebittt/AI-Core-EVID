@@ -97,7 +97,7 @@ class FutureSourceFrameTests(unittest.TestCase):
         self.assertEqual(result["total_source_universe"],10)
         self.assertEqual(result["total_rule_eligible"],8)
         self.assertEqual(result["source_exclusion_reason_counts"]["ANNUAL_OR_Q3_DISCLOSURE_MISSING"],1)
-        self.assertEqual(result["source_exclusion_reason_counts"]["MANDATORY_FUNDAMENTAL_OR_REFERENCE_PRICE_MISSING"],1)
+        self.assertEqual(result["source_exclusion_reason_counts"]["REFERENCE_CLOSE_MISSING"],1)
 
     def test_f10_parent_profit_mismatch_excludes_instead_of_fabricating_core(self):
         ann,q3,ca,cq,quote,at=fixture()
