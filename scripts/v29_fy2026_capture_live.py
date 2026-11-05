@@ -24,7 +24,7 @@ CN=ZoneInfo("Asia/Shanghai")
 FIELD="date,code,close,volume,tradestatus,isST,adjustflag"
 RAW_PAIRS=(("annual-summary","annual"),("q3-summary","q3"),("annual-core","annual_core"),("q3-core","q3_core"))
 
-def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core,official_calendar=None):
+def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core,official_calendar=None,clock=None):
     if not isinstance(now,datetime) or now.tzinfo is None or now.utcoffset() is None:
         raise ValueError("AWARE_CAPTURE_TIME_REQUIRED")
     local=now.astimezone(CN)
@@ -93,7 +93,7 @@ def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core
                 market["market_quote_errors"][sid]=type(e).__name__+":"+str(e)[:100]
     finally:
         bs.logout()
-    completed=datetime.now(CN)
+    completed=(clock() if clock else datetime.now(CN)).astimezone(CN)
     if completed>=datetime.fromisoformat(following+"T09:30:00+08:00"):
         raise ValueError("FY26_SOURCE_CAPTURE_COMPLETED_AFTER_ENTRY_OPEN")
     frame=build(annual,q3,annual_core,q3_core,market,completed.isoformat())
