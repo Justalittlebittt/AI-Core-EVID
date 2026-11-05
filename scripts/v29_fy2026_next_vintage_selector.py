@@ -55,10 +55,14 @@ def record_filter(row,rule,reference_day):
     if (row.get("annual_period")!="2026-12-31"
         or row.get("q3_period")!="2026-09-30"):
         raise ValueError("WRONG_REPORT_PERIOD")
-    d=date.fromisoformat(row["annual_disclosure_date"])
-    if d>date(2027,4,30):
+    annual_notice=row.get("annual_disclosure_date")
+    q3_notice=row.get("q3_disclosure_date")
+    if not annual_notice or not q3_notice:
+        reasons.append("ANNUAL_OR_Q3_DISCLOSURE_MISSING")
+        return reasons,None
+    if date.fromisoformat(annual_notice)>date(2027,4,30):
         reasons.append("ANNUAL_REPORT_DISCLOSED_AFTER_CUTOFF")
-    if date.fromisoformat(row["q3_disclosure_date"])>date(2026,10,31):
+    if date.fromisoformat(q3_notice)>date(2026,10,31):
         reasons.append("Q3_DISCLOSURE_AFTER_LEGAL_PERIOD")
     if row.get("reference_close_session")!=reference_day:
         reasons.append("REFERENCE_PRICE_SESSION_CHANGED")
