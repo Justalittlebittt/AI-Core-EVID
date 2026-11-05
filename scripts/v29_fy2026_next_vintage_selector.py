@@ -60,8 +60,6 @@ def record_filter(row,rule,reference_day):
         reasons.append("ANNUAL_REPORT_DISCLOSED_AFTER_CUTOFF")
     if date.fromisoformat(row["q3_disclosure_date"])>date(2026,10,31):
         reasons.append("Q3_DISCLOSURE_AFTER_LEGAL_PERIOD")
-    if row.get("source_original_filing_verified") is not True:
-        reasons.append("ORIGINAL_EXCHANGE_FILING_UNVERIFIED")
     if row.get("reference_close_session")!=reference_day:
         reasons.append("REFERENCE_PRICE_SESSION_CHANGED")
     numbers={
@@ -119,7 +117,8 @@ def record_filter(row,rule,reference_day):
         "pre_entry_reference_notional_cny":notional,
         "reference_close_session":reference_day,
         "annual_disclosure_date":row["annual_disclosure_date"],
-        "research_only":True
+        "research_only":True,
+        "original_filing_verified":row.get("source_original_filing_verified") is True
     }
 
 def select(snapshot,now,root=ROOT):
@@ -140,8 +139,7 @@ def select(snapshot,now,root=ROOT):
         or snapshot.get("report_period")!="2026-12-31"
         or snapshot.get("comparison_period")!="2026-09-30"
         or snapshot.get("financial_coverage_status")!="COMPLETE_VENDOR_ALL_A_CROSS_SECTION"
-        or snapshot.get("market_calendar_verified") is not True
-        or snapshot.get("source_original_filings_available") is not True):
+        or snapshot.get("market_calendar_verified") is not True):
         raise ValueError("COMPLETE_EXCHANGE_SOURCE_OR_CALENDAR_REQUIRED")
     reference_day=snapshot.get("reference_close_session")
     if not isinstance(reference_day,str) or not date.fromisoformat(reference_day)<=date(2027,4,30) or date.fromisoformat(reference_day)>=entry_day:
@@ -169,7 +167,10 @@ def select(snapshot,now,root=ROOT):
     eligible.sort(key=lambda r:(-r["annual_roe_pct"],-r["annual_revenue_acceleration_pp"],r["security_id"]))
     full=len(eligible)>=rule["selected_count"]
     chosen=eligible[:rule["selected_count"]] if full else []
-    previous=set(snapshot.get("old_2026q3_122_ids",[]))
+    # Reuse the actual original frozen cohort, not caller-provided overlap IDs.
+    from v29_growth_forward_cohort import load_registered
+    _,old_names,_=load_registered()
+    previous=set(old_names)
     result={
         "schema":SELECTOR,
         "registered_plan_git_blob_sha":plan_git_sha,
@@ -183,7 +184,10 @@ def select(snapshot,now,root=ROOT):
         "selected_in_frozen_ranking_order":chosen,
         "not_selected_due_to_insufficient_eligibles":not full,
         "source_exclusion_reason_counts":reason_counts,
-        "overlap_with_original_2026q3_122":sum(r["security_id"] in previous for r in chosen) if previous else None,
+        "overlap_with_original_2026q3_122":sum(r["security_id"] in previous for r in chosen),
+        "selected_original_filing_verified_count":sum(r["original_filing_verified"] for r in chosen),
+        "all_selected_original_filings_verified":bool(chosen) and all(r["original_filing_verified"] for r in chosen),
+        "vendor_vintage_not_independent_original_release_pit_certification":True,
         "separate_fy_adapted_hypothesis_not_q3_replication":True,
         "actual_buy_fills_verified":False,
         "strategy_validated":False,
