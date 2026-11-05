@@ -102,6 +102,14 @@ def validate_market(market):
     following=min((d for d,v in by_day.items() if d>"2027-04-30" and v=="1"),default=None)
     if not ref or not following:
         raise ValueError("REFERENCE_OR_FIRST_SESSION_UNAVAILABLE")
+    if market.get("official_calendar_verified") is True:
+        proof=market.get("official_schedule_record") or {}
+        if (proof.get("source_type")!="OFFICIAL_EXCHANGE_SCHEDULE"
+                or proof.get("reference_trading_session")!=ref
+                or proof.get("first_trading_session")!=following
+                or not proof.get("source_url","").startswith(
+                    ("https://www.sse.com.cn/","https://www.szse.cn/"))):
+            raise ValueError("OFFICIAL_SCHEDULE_ATTESTATION_REQUIRED")
     # Exchange dates in the seam must be continuous, not assumed weekdays.
     dates=sorted(d for d in by_day if ref<=d<=following)
     expected=[(date.fromisoformat(ref).toordinal()+i)
@@ -188,7 +196,9 @@ def build(annual_pages,q3_pages,annual_core_pages,q3_core_pages,market,captured_
     return {"schema":SCHEMA,"report_period":ANNUAL,"comparison_period":Q3,
             "financial_coverage_status":"COMPLETE_VENDOR_ALL_A_CROSS_SECTION",
             "market_calendar_verified":market.get("official_calendar_verified") is True,
-            "market_calendar_provenance":"EXPLICIT_VERIFICATION_REQUIRED_NOT_INFERRED_FROM_VENDOR",
+            "market_calendar_provenance":("OFFICIAL_EXCHANGE_SCHEDULE_LINK_AND_DATE_ATTESTATION_NOT_AUTOMATICALLY_AUTHENTICATED"
+                                         if market.get("official_calendar_verified") is True
+                                         else "BAOSTOCK_VENDOR_CALENDAR_ONLY"),
             "source_original_filings_available":False,
             "reference_close_session":ref,
             "first_trading_session_after_cutoff":first,
