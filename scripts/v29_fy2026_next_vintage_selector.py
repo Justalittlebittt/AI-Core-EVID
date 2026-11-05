@@ -74,12 +74,11 @@ def record_filter(row,rule,reference_day):
             "q3_ytd_parent_profit_yoy_pct","annual_deducted_parent_profit_yuan",
             "q3_ytd_deducted_parent_profit_yuan","annual_roe_pct",
             "annual_cfo_per_share_yuan","annual_gross_margin_pct",
-            "q3_ytd_gross_margin_pct","annual_nonrecurring_parent_profit_yuan",
-            "reference_close_cny"
+            "q3_ytd_gross_margin_pct","annual_nonrecurring_parent_profit_yuan"
         )
     }
     if any(v is None for v in numbers.values()):
-        reasons.append("MANDATORY_FUNDAMENTAL_OR_REFERENCE_PRICE_MISSING")
+        reasons.append("MANDATORY_FUNDAMENTAL_MISSING")
         return reasons,None
     x=numbers
     accel=x["annual_revenue_yoy_pct"]-x["q3_ytd_revenue_yoy_pct"]
@@ -106,9 +105,14 @@ def record_filter(row,rule,reference_day):
     if row.get("is_st_at_reference_session") is not False:
         reasons.append("ST_OR_ST_STATUS_UNVERIFIED")
     shares=200 if sid.startswith("SSE:688") else 100
-    notional=round(x["reference_close_cny"]*shares,2)
-    if notional>rule["maximum_minimum_exchange_lot_notional_cny"] or notional<=0:
-        reasons.append("MINIMUM_EXCHANGE_LOT_OUT_OF_BUDGET")
+    price=finite_number(row.get("reference_close_cny"))
+    if price is None:
+        reasons.append("REFERENCE_CLOSE_MISSING")
+        notional=None
+    else:
+        notional=round(price*shares,2)
+        if notional>rule["maximum_minimum_exchange_lot_notional_cny"] or notional<=0:
+            reasons.append("MINIMUM_EXCHANGE_LOT_OUT_OF_BUDGET")
     if reasons:
         return reasons,None
     return [],{
