@@ -60,7 +60,7 @@ class FY2026SelectorTests(unittest.TestCase):
         self.assertEqual(result["selected_count"],8)
         self.assertEqual(result["selected_in_frozen_ranking_order"][0]["security_id"],"SZSE:300199")
         self.assertEqual(result["overlap_with_original_2026q3_122"],1)
-        self.assertEqual(result["selected_original_filing_verified_count"],5)
+        self.assertEqual(result["selected_original_filing_verified_count"],4)
         self.assertFalse(result["all_selected_original_filings_verified"])
         self.assertTrue(result["vendor_vintage_not_independent_original_release_pit_certification"])
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
@@ -91,6 +91,11 @@ class FY2026SelectorTests(unittest.TestCase):
         self.assertEqual(result["source_exclusion_reason_counts"]["NONRECURRING_PROFIT_EXCESS"],1)
         self.assertEqual(result["source_exclusion_reason_counts"]["PARENT_OR_STANDALONE_Q4_CORE_PROFIT_RULE_FAILED"],1)
         self.assertEqual(result["source_exclusion_reason_counts"]["ST_OR_ST_STATUS_UNVERIFIED"],1)
+        d=fixture()
+        d["rows"][0]["annual_parent_profit_yuan"]=0.
+        r=select(d,NOW)
+        self.assertEqual(r["total_rule_eligible"],8)
+        self.assertEqual(r["source_exclusion_reason_counts"]["NONRECURRING_PROFIT_EXCESS"],1)
 
     def test_minimum_lots_and_annual_roe_ranking(self):
         p=plan_source()[0]
