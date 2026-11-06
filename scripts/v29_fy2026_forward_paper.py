@@ -273,6 +273,40 @@ def capture_outcome(bs,now,entry_loader=load_entry,official_fetch=index_fetch):
         "strategy_validated":False,"trade_authorized":False,"live_buy_eligibility":"NOT_AUTHORIZED",
     },raw
 
+def research_brief(packet):
+    """Paper outcome summary; never treat vendor-only sources as certified BUY."""
+    if (packet.get("schema")!="V29_FY2026_NEW_VINTAGE_TWENTIETH_SESSION_EIGHT_OUTCOME_V1"
+        or packet.get("live_buy_eligibility")!="NOT_AUTHORIZED"
+        or packet.get("strategy_validated") is not False
+        or len(packet.get("selected_eight",[]))!=N):
+        raise ValueError("FY2026_PAPER_BRIEF_SOURCE_NOT_AUTHENTICATED")
+    lines=[
+        "# FY2026 新财务期八股前瞻研究结果（非交易指令）","",
+        f"**固定观察时段：** {packet['first_entry_session']} 至 {packet['twentieth_session']}（第20个交易日）。",
+        f"**八股覆盖：** {packet['price_eligible']}/8；**结果状态：** {packet['status']}。",
+        "**公司原始财报全部核验：** "+("是" if packet["financial_report_original_filings_all_verified"] else "否，仅供应商版本，未获得全部原始公告核验。"),
+        "**官方交易日历证据：** "+("已附官方来源" if packet["official_exchange_calendar_verified"] else "尚未独立核验；当前为供应商交易日历。"),
+        "",
+    ]
+    m=packet.get("metrics")
+    if packet["status"]=="ONE_NEW_ANNUAL_REPORT_VINTAGE_PAPER_EPISODE_ONLY" and m:
+        pct=lambda v:f"{100*v:+.2f}%"
+        lines.extend([
+            "## 扣除事前约定 0.30% 往返成本后的纸面结果",
+            f"- 八股等权净收益：**{pct(m['equal_eight_net'])}**",
+            f"- 相对 H00300 全收益指数的等权净超额（登记主指标）：**{pct(m['equal_eight_net_excess_vs_H00300'])}**",
+            f"- 最低交易单位资金加权净收益（事后敏感性分析）：**{pct(m['minimum_lot_cash_weighted_net_posthoc_sensitivity'])}**",
+            f"- 最低交易单位所需参考资金：**¥{m['entry_minimum_lot_total_reference_cny']:,.2f}**（不等于可成交金额或账户可用资金）",
+        ])
+    else:
+        lines.extend(["**INSUFFICIENT：固定八股或官方 H00300 收盘来源不完整。**",
+                      "不删除缺失股票，不回填事后行情，不根据不完整数据宣称超额收益。"])
+    lines.extend(["",
+        "单个新年报样本、未独立核验的原始公告或供应商日历均不足以证明策略有效性。",
+        "**NO ACTION：不授权实际 BUY，不证明真实成交或止损/止盈执行。**",""])
+    return "\n".join(lines)
+
+
 def store(folder,phase,report,raw):
     folder=Path(folder)
     if folder.exists():
@@ -294,6 +328,9 @@ def store(folder,phase,report,raw):
     with (folder/compressed).open("wb") as f:
         with gzip.GzipFile(fileobj=f,mode="wb",mtime=0) as gz:
             gz.write(raw)
+    if phase=="outcome":
+        (folder/"RESEARCH_DECISION_BRIEF.md").write_text(
+            research_brief(report),encoding="utf-8")
 
 def main():
     p=argparse.ArgumentParser()
