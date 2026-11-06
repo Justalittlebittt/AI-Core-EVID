@@ -87,10 +87,57 @@ def assess(ids, account, positions):
             "paper_capacity_feasible":not issues and all(not r["issues"] for r in rows),
             "trade_authorized":False,"live_buy_eligibility":"NOT_AUTHORIZED"}
 
+def sealed_readiness(root=ROOT):
+    """Actual frozen Nov 2 entry reference, not a trade simulation or new BUY."""
+    import hashlib
+    from v29_eight_pilot_outcome import minimum_lot_reference
+    pilot_file=root/"research/V2.9_EIGHT_NAME_LOT_AWARE_PROSPECTIVE_PILOT_PREOUTCOME_20261102.json"
+    raw=pilot_file.read_bytes()
+    sha=hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest()
+    if sha!="f33e9c5f68c2202c994fece278322413e18059b1":
+        raise ValueError("FROZEN_PILOT_SOURCE_CHANGED")
+    pilot=json.loads(raw)
+    ids=pilot["pre_outcome_rule"]["selected_ids_in_rank_order"]
+    if (tuple(ids)!=FROZEN_IDS or pilot["live_buy_eligibility"]!="NOT_AUTHORIZED"):
+        raise ValueError("FROZEN_EIGHT_SOURCE_IDENTITY_CHANGED")
+    reference=minimum_lot_reference(root,ids)
+    rows=[]
+    for r in reference["weights"]:
+        sid=r["security_id"]
+        board="chinext" if sid.startswith(("SZSE:300","SZSE:301")) else "main"
+        rows.append({"security_id":sid,"board":board,"minimum_lot_shares":r["shares"],
+                     "sealed_2026_11_02_entry_close_cny":round(r["reference_notional_cny"]/r["shares"],2),
+                     "minimum_lot_reference_notional_cny":r["reference_notional_cny"],
+                     "minimum_lot_cash_weight_fraction":r["capital_weight"],
+                     "required_account_board_permission":board,
+                     "risk_approval":"UNASSESSED_PERSONAL_ACCOUNT_UNKNOWN"})
+    minimum=reference["min_lot_reference_notional_cny"]
+    return {"schema":"V29_EIGHT_FROZEN_REAL_ENTRY_DECISION_READINESS_V1",
+            "source_entry_sha256":reference["sealed_entry_snapshot_sha256"],
+            "reference_session":"2026-11-02",
+            "names_in_original_registered_order":rows,
+            "names":len(rows),"chinext_permission_needed_count":sum(x["board"]=="chinext" for x in rows),
+            "minimum_lot_gross_reference_cost_cny":minimum,
+            "largest_single_name_reference_notional_cny":max(x["minimum_lot_reference_notional_cny"] for x in rows),
+            "illustrative_equity_required_for_10pct_single_name_cap_cny":10*max(x["minimum_lot_reference_notional_cny"] for x in rows),
+            "ten_percent_cap_is_example_not_user_instruction":True,
+            "real_account_cash_stops_permissions_unverified":True,
+            "outcome_unobserved_before_registered_maturity":True,
+            "financial_signal_independently_validated":False,
+            "action_decision":"NO_ACTION_INSUFFICIENT_PREDICTIVE_EVIDENCE",
+            "do_not_infer_trading_price_or_broker_fill":True,
+            "trade_authorized":False,
+            "live_buy_eligibility":"NOT_AUTHORIZED"}
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--private-input", type=Path, required=True)
+    mode=ap.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--private-input", type=Path)
+    mode.add_argument("--sealed-readiness", action="store_true")
     args = ap.parse_args()
+    if args.sealed_readiness:
+        print(json.dumps(sealed_readiness(),ensure_ascii=False,indent=2))
+        return
     pilot = json.loads(FROZEN.read_text(encoding="utf-8"))
     if (pilot.get("experiment_id") != "V29_20261102_CAPITAL_AWARE_EIGHT_NAME_EXPLORATORY_RESEARCH"
             or pilot.get("live_buy_eligibility") != "NOT_AUTHORIZED"):
