@@ -412,6 +412,9 @@ jobs:
           python scripts/v29_fy2026_forward_paper.py \
             --phase "${{ steps.phase_gate.outputs.phase }}" \
             --out /tmp/v29-fy2026-eight-paper
+          if test -f /tmp/v29-fy2026-eight-paper/RESEARCH_DECISION_BRIEF.md; then
+            cat /tmp/v29-fy2026-eight-paper/RESEARCH_DECISION_BRIEF.md >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Archive bounded complete or run-scoped incomplete source result
         if: steps.phase_gate.outputs.run == 'true'
         shell: bash
