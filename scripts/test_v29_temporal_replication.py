@@ -1,4 +1,5 @@
 """No live price data: synthetic-only second temporal period end-to-end tests."""
+import base64
 import gzip
 import hashlib
 import json
@@ -140,6 +141,28 @@ class TestSecondEpisode(unittest.TestCase):
         self.assertEqual(report["price_eligible"],122)
         self.assertTrue(report["rows"][0]["exit_ST_flag"])
         self.assertFalse(report["rows"][0]["actual_exit_fill_proven"])
+
+    def test_real_sealed_official_h00300_response_parses_in_second_episode_adapter(self):
+        # The November first-close official HTTP response is immutable,
+        # already observed, and contains NO future November/December exits.
+        # This tests the actual exchange provider's array/dict schema,
+        # unlike the synthetic JSON used in the other tests.
+        root=t.ROOT
+        first=root/"research/V2.9_FORWARD_122_ENTRY_20261102"
+        raw=gzip.decompress((first/"RAW_ENTRY_QUOTE_CALENDAR_AND_INDEX.json.gz").read_bytes())
+        sealed=json.loads((first/"ENTRY_SNAPSHOT_122.json").read_text(encoding="utf-8"))
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),
+                         sealed["raw_source_bytes_sha256"])
+        archive=json.loads(raw)
+        self.assertEqual(len(archive["quotes"]),122)
+        official=base64.b64decode(archive["index_http_raw_base64"],validate=True)
+        self.assertEqual(hashlib.sha256(official).hexdigest(),
+                         sealed["benchmark"]["source_sha256"])
+        index=t.read_index(official,"2026-10-30","2026-11-02",6001.14)
+        self.assertEqual(index["security_id"],"H00300.CSI")
+        self.assertEqual(index["entry_close"],6001.14)
+        self.assertEqual(index["exit_close"],6048.45)
+        self.assertTrue(index["same_official_total_return_index"])
 
     def test_official_price_index_substitution_rejected(self):
         bad=json.loads(fake_index("2026-11-30","2026-12-25"))
