@@ -1,6 +1,6 @@
 """Synthetic-only tests for shared portfolio cash and risk; never real quotes."""
 import unittest
-from v29_eight_portfolio_capacity import assess
+from v29_eight_portfolio_capacity import assess, sealed_readiness
 
 IDS = ["SZSE:300199","SZSE:002636","SZSE:301536","SZSE:000408",
        "SZSE:002463","SSE:603256","SZSE:002552","SZSE:300223"]
@@ -15,6 +15,31 @@ def example():
     return account, positions
 
 class Tests(unittest.TestCase):
+    def test_real_sealed_entry_minimum_cash_and_permissions_without_private_inputs(self):
+        r=sealed_readiness()
+        self.assertEqual(r["reference_session"],"2026-11-02")
+        self.assertEqual(r["names"],8)
+        self.assertEqual(r["chinext_permission_needed_count"],3)
+        self.assertEqual(r["minimum_lot_gross_reference_cost_cny"],54558)
+        self.assertEqual(r["largest_single_name_reference_notional_cny"],11300)
+        self.assertEqual(r["illustrative_equity_required_for_10pct_single_name_cap_cny"],113000)
+        self.assertEqual(r["names_in_original_registered_order"][0]["security_id"],IDS[0])
+        self.assertEqual(r["names_in_original_registered_order"][-1]["security_id"],IDS[-1])
+        self.assertEqual(len({x["security_id"] for x in r["names_in_original_registered_order"]}),8)
+        self.assertAlmostEqual(sum(x["minimum_lot_cash_weight_fraction"]
+                                   for x in r["names_in_original_registered_order"]),1)
+        self.assertEqual(r["action_decision"],"NO_ACTION_INSUFFICIENT_PREDICTIVE_EVIDENCE")
+        self.assertFalse(r["trade_authorized"])
+
+    def test_real_sealed_entry_does_not_promote_example_10pct_cap_to_user_risk_rule(self):
+        r=sealed_readiness()
+        self.assertTrue(r["ten_percent_cap_is_example_not_user_instruction"])
+        self.assertTrue(r["real_account_cash_stops_permissions_unverified"])
+        self.assertTrue(r["outcome_unobserved_before_registered_maturity"])
+        self.assertFalse(r["financial_signal_independently_validated"])
+        self.assertEqual(r["live_buy_eligibility"],"NOT_AUTHORIZED")
+        self.assertEqual({x["minimum_lot_shares"] for x in r["names_in_original_registered_order"]},{100})
+
     def test_paper_only(self):
         a,p=example()
         r=assess(IDS,a,p)
