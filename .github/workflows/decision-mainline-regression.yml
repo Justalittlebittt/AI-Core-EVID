@@ -97,6 +97,10 @@ on:
   # only before the next official trading open, and stop on first sealed source.
   schedule:
     - cron: '25 13 1-5 5 *'
+    # Bounded 2027 actual-entry and twentieth-session observation windows.
+    # Runtime gate checks official captured candidate/entry date and BaoStock sessions.
+    - cron: '25 13 6-12,20-31 5 *'
+    - cron: '25 13 1-15 6 *'
 permissions:
   contents: read
   actions: read
@@ -290,5 +294,159 @@ jobs:
         with:
           name: v29-fy2026-new-vintage-raw-and-provisional-candidates
           path: /tmp/v29-fy26-captured/
+          if-no-files-found: warn
+          retention-days: 30
+
+  fy2026-eight-new-vintage-forward-paper:
+    # Separate research-only outcome for the NEW financial-vintage eight.
+    # No scheduled signal reshuffling, no brokerage connection and no BUY.
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Cheap bounded year and pre-entry source readiness gate
+        id: source_gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          day="$(TZ=Asia/Shanghai date +%F)"
+          if [[ "$day" < "2027-05-01" || "$day" > "2027-06-15" ]]; then
+            echo "FY2026_FORWARD_OUTSIDE_DECLARED_2027_PAPER_WINDOW"
+            exit 0
+          fi
+          base="research/V2.9_FY2026_NEW_VINTAGE_SOURCE_202705"
+          if ! test -f "$base/NORMALIZED_ALL_A_FRAME.json"; then
+            echo "FY2026_FORWARD_NO_PREENTRY_FINANCIAL_FREEZE"
+            exit 0
+          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("research/V2.9_FY2026_NEW_VINTAGE_SOURCE_202705")
+          f=json.loads((p/"NORMALIZED_ALL_A_FRAME.json").read_text())
+          options=[p/"FROZEN_EIGHT_RESEARCH_ONLY.json",
+                   p/"PROVISIONAL_EIGHT_RESEARCH_ONLY.json"]
+          existing=[x for x in options if x.is_file()]
+          if len(existing)!=1:
+              raise SystemExit("FY2026_FORWARD_NO_UNIQUE_PREENTRY_SELECTION")
+          chosen=json.loads(existing[0].read_text())
+          if chosen["selected_count"]!=8:
+              raise SystemExit("FY2026_FORWARD_NO_FROZEN_EIGHT_NO_PAPER_BACKFILL")
+          assert chosen["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          print("FY2026_FORWARD_SOURCE_READY",f["first_trading_session_after_cutoff"],
+                "PROVENANCE",chosen["status"])
+          PY
+          echo "maybe=true" >> "$GITHUB_OUTPUT"
+      - name: Install existing free A-share calendar and quote provider
+        if: steps.source_gate.outputs.maybe == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Require exact future entry date or mature twentieth exchange session
+        if: steps.source_gate.outputs.maybe == 'true'
+        id: phase_gate
+        run: |
+          python - <<'PY'
+          import json,os,sys
+          from pathlib import Path
+          from datetime import date,datetime,time
+          from zoneinfo import ZoneInfo
+          sys.path.insert(0,"scripts")
+          import baostock
+          from v29_2025_filing_to_return_case import records
+          from v29_fy2026_forward_paper import (
+              ENTRY,source_candidates,maturity,require_entry_clock,CN)
+          now=datetime.now(CN)
+          frame,selected,ids,_,_=source_candidates()
+          first=date.fromisoformat(frame["first_trading_session_after_cutoff"])
+          entry=Path(ENTRY)
+          outcome=Path("research/V2.9_FY2026_NEW_VINTAGE_PAPER_OUTCOME/OUTCOME_EIGHT.json")
+          phase=None
+          if outcome.is_file():
+              print("FY2026_FORWARD_OUTCOME_ALREADY_SEALED_NO_RECAPTURE")
+          elif entry.is_file():
+              response=baostock.login()
+              if response.error_code!="0":
+                  raise ValueError("FY2026_FORWARD_CALENDAR_PROVIDER_LOGIN_FAILED")
+              try:
+                  calendar=records(baostock.query_trade_dates(
+                      start_date=first.isoformat(),end_date=now.date().isoformat()))
+              finally:
+                  baostock.logout()
+              try:
+                  sessions,twentieth=maturity(calendar,first,now)
+              except ValueError as exc:
+                  if str(exc)=="FUTURE_FINANCIAL_20_SESSION_OUTCOME_NOT_MATURE":
+                      print("FY2026_FORWARD_NO_TWENTIETH_EXCHANGE_SESSION_YET")
+                  else:
+                      raise
+              else:
+                  phase="outcome"
+                  print("FY2026_FORWARD_EXACT_TWENTIETH_SESSION",twentieth)
+          elif now.date()==first and now.time()>=time(16,30):
+              phase="entry"
+          else:
+              print("FY2026_FORWARD_ENTRY_DATE_NOT_TODAY_OR_NOT_SEALED")
+          if phase is not None:
+              with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
+                  f.write("run=true\nphase="+phase+"\n")
+              print("FY2026_FORWARD_PHASE",phase)
+          PY
+      - name: Validate predeclared rule and locked paper entry/exit arithmetic
+        if: steps.phase_gate.outputs.run == 'true'
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_fy2026_next_vintage_selector.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_fy2026_forward_paper.py' -v
+      - name: Query exact eligible session quotes and official H00300, never order trades
+        if: steps.phase_gate.outputs.run == 'true'
+        run: |
+          python scripts/v29_fy2026_forward_paper.py \
+            --phase "${{ steps.phase_gate.outputs.phase }}" \
+            --out /tmp/v29-fy2026-eight-paper
+      - name: Archive bounded complete or run-scoped incomplete source result
+        if: steps.phase_gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          phase="${{ steps.phase_gate.outputs.phase }}"
+          if [ "$phase" = "entry" ]; then
+            filename="ENTRY_EIGHT.json"
+            complete="PAPER_ENTRY_EIGHT_AND_H00300_COMPLETE"
+            dest="research/V2.9_FY2026_NEW_VINTAGE_PAPER_ENTRY"
+          else
+            filename="OUTCOME_EIGHT.json"
+            complete="ONE_NEW_ANNUAL_REPORT_VINTAGE_PAPER_EPISODE_ONLY"
+            dest="research/V2.9_FY2026_NEW_VINTAGE_PAPER_OUTCOME"
+          fi
+          status="$(python - "$filename" <<'PY'
+          import json,sys
+          print(json.load(open("/tmp/v29-fy2026-eight-paper/"+sys.argv[1]))["status"])
+          PY
+          )"
+          if [ "$status" != "$complete" ]; then
+            dest="research/V2.9_FY2026_NEW_VINTAGE_PAPER_ATTEMPTS/run_$GITHUB_RUN_ID"
+          fi
+          if test -e "$dest/$filename"; then
+            echo "FROZEN_FY2026_PAPER_RESULT_ALREADY_EXISTS"
+            exit 1
+          fi
+          mkdir -p "$dest"
+          cp -a /tmp/v29-fy2026-eight-paper/. "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest/"
+          git commit -m "research(v29): seal FY2026 new-vintage paper $phase $status, NO BUY [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "FY2026_PAPER_SOURCE_PRESERVED $dest $status"
+      - name: Preserve original raw paper evidence even on incomplete API capture
+        if: always() && steps.phase_gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v29-fy2026-new-financial-vintage-eight-paper-archive
+          path: /tmp/v29-fy2026-eight-paper/
           if-no-files-found: warn
           retention-days: 30
