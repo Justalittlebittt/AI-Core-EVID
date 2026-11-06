@@ -129,6 +129,63 @@ class SealedFuturePipelineE2ETests(unittest.TestCase):
                     raw)
                 self.assertEqual(hashlib.sha256(raw).hexdigest(), report["source_bytes_sha256"])
 
+    def test_full_post_maturity_handoff_to_122_eight_and_310_readable_decision(self):
+        """Full generated data packets through final reader brief: synthetic exits only."""
+        from v29_forward_maturity_decision_brief import brief
+        from v29_eight_pilot_outcome import evaluate as evaluate_eight
+        from v29_growth_310_conditional_result import evaluate as evaluate_control, load_fixed
+        with tempfile.TemporaryDirectory() as td:
+            folder,_=self.entry_snapshot(Path(td))
+            with (patch.object(exit_, "ENTRY", folder/"ENTRY_SNAPSHOT_122.json"),
+                  patch.object(exit_, "ENTRY_RAW", folder/"RAW_ENTRY_QUOTE_CALENDAR_AND_INDEX.json.gz")):
+                verdict,outcome,raw=exit_.capture(
+                    ContinuityExitBaoStock(),now=EXIT_AFTER,
+                    official_fetch=lambda d:fake_index())
+            self.assertEqual(verdict["outcome_evaluation"]["status"],
+                             "ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE")
+            eight=evaluate_eight(outcome,now=EXIT_AFTER)
+            _,ids,selected,_=load_fixed()
+            frozen={r["canonical_security_id"]:r for r in outcome["securities"]}
+            prices=[]
+            for sid in ids:
+                if sid in selected:
+                    p=frozen[sid]
+                    prices.append({
+                        "security_id":sid,"entry_tradeable":p["entry_tradeable_at_reference_close"],
+                        "exit_tradeable":p["exit_tradeable_at_reference_close"],
+                        "adjusted_for_corporate_actions":p["corporate_actions_and_dividends_adjusted"],
+                        "adjusted_entry_close":p["adjusted_entry_close"],
+                        "adjusted_exit_close":p["adjusted_exit_close"],
+                        "raw_quote_sha256":p["raw_quote_sha256"],
+                        "source_status":"SYNTHETIC_122_E2E_REUSED"})
+                else:
+                    prices.append({
+                        "security_id":sid,"entry_tradeable":True,
+                        "exit_tradeable":True,"adjusted_for_corporate_actions":True,
+                        "adjusted_entry_close":100.0,"adjusted_exit_close":105.0,
+                        "raw_quote_sha256":"a"*64,"source_status":"SYNTHETIC_188_E2E"})
+            observation={
+                "schema":"V29_310_SAME_VINTAGE_CLOSE_PROXIES_V1",
+                "entry_session":"2026-11-02","exit_session":"2026-11-27",
+                "vendor":"BAOSTOCK",
+                "adjustment":"FORWARD_ADJUSTED_SAME_EXIT_CAPTURE_VINTAGE",
+                "captured_at":EXIT_AFTER.isoformat(),
+                "raw_sources_sha256":"a"*64,"securities":prices}
+            control=evaluate_control(observation,outcome,now=EXIT_AFTER)
+            self.assertEqual(control["status"],
+                             "ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE")
+            rendered=brief(verdict,outcome,eight=eight,control=control,
+                           control_prices=observation,now=EXIT_AFTER)
+            self.assertIn("原始 122 股策略",rendered)
+            self.assertIn("冻结 8 股精选",rendered)
+            self.assertIn("310 股条件对照",rendered)
+            self.assertIn("资金加权",rendered)
+            self.assertIn("122 股减原始未入选 188 股",rendered)
+            self.assertIn("NO ACTION",rendered)
+            self.assertNotIn("尚未提供或尚未落盘",rendered)
+            self.assertEqual(eight["live_buy_eligibility"],"NOT_AUTHORIZED")
+            self.assertEqual(control["live_buy_eligibility"],"NOT_AUTHORIZED")
+
     def test_tampered_sealed_entry_prevents_any_exit_quote_query(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td)
