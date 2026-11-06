@@ -7,7 +7,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from test_v29_fy2026_full_source_frame import fixture, IDS, page
-from v29_fy2026_capture_live import capture, store
+from v29_fy2026_capture_live import capture, store, preflight, last_preopen_capture_day
 
 CN=ZoneInfo("Asia/Shanghai")
 NOW=datetime(2027,5,1,12,tzinfo=CN)
@@ -54,6 +54,25 @@ def summary_collector(period,notice_before):
 def core_collector(period,cutoff):
     assert cutoff==("2027-05-01" if period=="2026-12-31" else "2026-11-01")
     return fixture()[2 if period=="2026-12-31" else 3]
+
+class CaptureTimingTests(unittest.TestCase):
+    def test_final_vendor_preopen_date_defers_first_holiday_capture(self):
+        b=FakeBao()
+        early=preflight(b,datetime(2027,5,1,21,25,tzinfo=CN))
+        self.assertFalse(early["capture_today"])
+        self.assertEqual(early["first_trading_session"],"2027-05-06")
+        self.assertEqual(early["last_preopen_scheduled_day"],"2027-05-05")
+        self.assertEqual([r[0] for r in b.queries],["calendar"])
+        end=preflight(FakeBao(),datetime(2027,5,5,21,25,tzinfo=CN))
+        self.assertTrue(end["capture_today"])
+        self.assertEqual(end["calendar_source"],"BAOSTOCK_UNVERIFIED_VENDOR_CALENDAR")
+
+    def test_last_preopen_schedule_adapts_if_market_reopens_earlier(self):
+        self.assertEqual(last_preopen_capture_day("2027-05-04").isoformat(),"2027-05-03")
+        self.assertEqual(last_preopen_capture_day("2027-05-06").isoformat(),"2027-05-05")
+        self.assertEqual(last_preopen_capture_day("2027-05-08").isoformat(),"2027-05-05")
+        with self.assertRaisesRegex(ValueError,"OUTSIDE_BOUNDED_2027_FINANCIAL_CAPTURE_WINDOW"):
+            preflight(FakeBao(),datetime(2027,5,6,21,25,tzinfo=CN))
 
 class LiveCaptureTests(unittest.TestCase):
     def test_financial_gate_queries_only_eligible_names_and_preserves_all_ten(self):
