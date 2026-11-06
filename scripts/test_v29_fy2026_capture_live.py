@@ -65,7 +65,11 @@ class LiveCaptureTests(unittest.TestCase):
         self.assertEqual(len(market["reference_bars"]),10)
         self.assertEqual(len([q for q in b.queries if q[0]=="quote"]),10)
         self.assertFalse(frame["market_calendar_verified"])
-        self.assertIsNone(pick)
+        self.assertEqual(pick["selected_count"],8)
+        self.assertEqual(pick["status"],"PROVISIONAL_VENDOR_CALENDAR_RESEARCH_ONLY")
+        self.assertTrue(pick["calendar_pending_official_verification"])
+        self.assertFalse(pick["calendar_officially_verified"])
+        self.assertEqual(pick["live_buy_eligibility"],"NOT_AUTHORIZED")
         self.assertFalse(frame["source_original_filings_available"])
         self.assertEqual(len(pages["annual"]),1)
         with tempfile.TemporaryDirectory() as p:
@@ -73,7 +77,10 @@ class LiveCaptureTests(unittest.TestCase):
             store(dest,frame,pick,market,pages)
             self.assertTrue((dest/"NORMALIZED_ALL_A_FRAME.json").exists())
             self.assertTrue((dest/"annual-summary/page-001.json").exists())
-            self.assertFalse((dest/"FROZEN_EIGHT_RESEARCH_ONLY.json").exists())
+            self.assertTrue((dest/"FROZEN_EIGHT_RESEARCH_ONLY.json").exists())
+            archived=json.loads((dest/"FROZEN_EIGHT_RESEARCH_ONLY.json").read_text())
+            self.assertEqual(archived["status"],"PROVISIONAL_VENDOR_CALENDAR_RESEARCH_ONLY")
+            self.assertFalse(archived["all_selected_original_filings_verified"])
             with self.assertRaisesRegex(ValueError,"SOURCE_CAPTURE_DESTINATION_ALREADY_EXISTS"):
                 store(dest,frame,pick,market,pages)
 
@@ -93,7 +100,9 @@ class LiveCaptureTests(unittest.TestCase):
         self.assertEqual(len([x for x in b.queries if x[0]=="quote"]),8)
         self.assertEqual(len(market["reference_bars"]),8)
         self.assertEqual(frame["all_source_counts"]["missing_by_field_source"]["reference_bar"],2)
-        self.assertIsNone(selected)
+        self.assertEqual(selected["status"],"PROVISIONAL_VENDOR_CALENDAR_RESEARCH_ONLY")
+        self.assertEqual(selected["selected_count"],8)
+        self.assertFalse(selected["strategy_validated"])
 
     def test_separate_exchange_calendar_evidence_allows_research_selection(self):
         official={"source_type":"OFFICIAL_EXCHANGE_SCHEDULE",
@@ -105,6 +114,9 @@ class LiveCaptureTests(unittest.TestCase):
             official_calendar=official,clock=lambda:NOW)
         self.assertTrue(frame["market_calendar_verified"])
         self.assertEqual(pick["selected_count"],8)
+        self.assertEqual(pick["status"],"FROZEN_NEW_REPORT_CANDIDATES_RESEARCH_ONLY")
+        self.assertTrue(pick["calendar_officially_verified"])
+        self.assertFalse(pick["preliminary_vendor_calendar_only"])
         self.assertEqual(pick["live_buy_eligibility"],"NOT_AUTHORIZED")
         self.assertFalse(pick["all_selected_original_filings_verified"])
         with tempfile.TemporaryDirectory() as temp:
