@@ -192,6 +192,10 @@ def select(snapshot,now,root=ROOT,*,allow_vendor_calendar_research_only=False):
         "registered_plan_git_blob_sha":plan_git_sha,
         "captured_at":captured.isoformat(),
         "source_provenance":receipts,
+        "historical_q3_original_vendor_vintage":snapshot.get("q3_original_source_vintage"),
+        "historical_q3_source_certified_by_original_archive":bool(
+            snapshot.get("q3_original_source_vintage",{}).get("identity")==
+            "2026-10-30_DISCLOSURE_CUTOFF_2026-10-29_ORIGINAL_VENDOR"),
         "pre_entry_reference_session":reference_day,
         "first_eligible_trading_session":entry_day.isoformat(),
         "total_source_universe":len(rows),
