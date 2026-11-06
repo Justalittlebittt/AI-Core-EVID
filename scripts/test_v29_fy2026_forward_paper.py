@@ -127,6 +127,11 @@ class ForwardPaperTests(unittest.TestCase):
             outcome_dir=root/"result"
             f.store(outcome_dir,"outcome",second,second_raw)
             self.assertTrue((outcome_dir/"OUTCOME_EIGHT.json").is_file())
+            decision=(outcome_dir/"RESEARCH_DECISION_BRIEF.md").read_text(encoding="utf-8")
+            self.assertIn("H00300",decision)
+            self.assertIn("NO ACTION",decision)
+            self.assertIn("供应商交易日历",decision) if not second["official_exchange_calendar_verified"] else None
+            self.assertIn("+14.70%",decision)
 
     def test_failed_price_keeps_all_eight_and_does_not_fabricate_return(self):
         with tempfile.TemporaryDirectory() as td:
@@ -145,6 +150,9 @@ class ForwardPaperTests(unittest.TestCase):
             self.assertEqual(len(result["rows"]),8)
             self.assertEqual(result["status"],"INCOMPLETE_KEEP_ALL_EIGHT")
             self.assertIsNone(result["metrics"])
+            decision=f.research_brief(result)
+            self.assertIn("INSUFFICIENT",decision)
+            self.assertIn("NO ACTION",decision)
             self.assertFalse(result["trade_authorized"])
 
     def test_future_gate_rejects_early_or_late_entry_and_outcome(self):
