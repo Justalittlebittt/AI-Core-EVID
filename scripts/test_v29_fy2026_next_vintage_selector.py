@@ -65,6 +65,39 @@ class FY2026SelectorTests(unittest.TestCase):
         self.assertTrue(result["vendor_vintage_not_independent_original_release_pit_certification"])
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
 
+    def test_q3_profit_yoy_negative_or_missing_is_not_a_registered_fy_filter(self):
+        # The November 5 prereg requires annual profit YoY and Q4 core growth,
+        # but has NO threshold nor mandatory field for Q3 parent-profit YoY.
+        rule=plan_source()[0]["selection"]
+        self.assertNotIn("q3_ytd_parent_profit_yoy_pct_min_exclusive",rule)
+        for q3_yoy in (-99.0,0.0,None):
+            candidate_row=row("SZSE:300199",roe=35)
+            candidate_row["q3_ytd_parent_profit_yoy_pct"]=q3_yoy
+            reasons,candidate=record_filter(candidate_row,rule,"2027-04-30")
+            self.assertEqual(reasons,[],msg=f"Q3 parent profit YOY {q3_yoy}")
+            self.assertEqual(candidate["security_id"],"SZSE:300199")
+            test_frame=fixture()
+            test_frame["rows"][0]["q3_ytd_parent_profit_yoy_pct"]=q3_yoy
+            selected=select(test_frame,NOW)
+            self.assertEqual(selected["total_rule_eligible"],9)
+            self.assertEqual(selected["selected_count"],8)
+            self.assertNotIn("PARENT_OR_STANDALONE_Q4_CORE_PROFIT_RULE_FAILED",
+                             selected["source_exclusion_reason_counts"])
+
+    def test_frozen_annual_parent_profit_and_standalone_q4_are_still_strict(self):
+        rule=plan_source()[0]["selection"]
+        fields=(("annual_parent_profit_yuan",0.0),
+                ("annual_parent_profit_yoy_pct",0.0),
+                ("annual_deducted_parent_profit_yuan",0.0),
+                ("q3_ytd_deducted_parent_profit_yuan",1800000.0))
+        for key,value in fields:
+            r=row("SZSE:300199")
+            r["q3_ytd_parent_profit_yoy_pct"]=-30.0
+            r[key]=value
+            reasons,candidate=record_filter(r,rule,"2027-04-30")
+            self.assertIn("PARENT_OR_STANDALONE_Q4_CORE_PROFIT_RULE_FAILED",reasons)
+            self.assertIsNone(candidate)
+
     def test_no_rule_relaxation_if_six_firms_qualify(self):
         d=fixture()
         d["rows"]=d["rows"][:6]
