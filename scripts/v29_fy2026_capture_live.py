@@ -121,7 +121,9 @@ def store(out,frame,candidate,market,pages):
     (out/"NORMALIZED_ALL_A_FRAME.json").write_text(
         json.dumps(frame,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     if candidate is not None:
-        (out/"FROZEN_EIGHT_RESEARCH_ONLY.json").write_text(
+        filename=("FROZEN_EIGHT_RESEARCH_ONLY.json" if candidate.get("calendar_officially_verified")
+                  else "PROVISIONAL_EIGHT_RESEARCH_ONLY.json")
+        (out/filename).write_text(
             json.dumps(candidate,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
 def main():
