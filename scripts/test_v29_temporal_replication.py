@@ -120,6 +120,50 @@ class TestSecondEpisode(unittest.TestCase):
                 (Path(root)/"replicate-exit/RAW_OUTCOME_122.json.gz").read_bytes())).hexdigest(),
                 report["raw_sha256"])
 
+    def test_both_mature_episodes_generate_one_non_buy_readable_summary(self):
+        from test_v29_forward_maturity_decision_brief import evidence
+        first,first_outcome=evidence()
+        entry,raw=t.capture_entry(Source(),ENTRY_NOW,fake_index)
+        with tempfile.TemporaryDirectory() as folder:
+            out=Path(folder)/"second-entry"
+            t.write(out,"entry",entry,raw)
+            with (patch.object(t,"ENTRY",out/"ENTRY_SNAPSHOT_122.json"),
+                  patch.object(t,"ENTRY_RAW",out/"RAW_ENTRY_122.json.gz")):
+                second,_=t.capture_outcome(Source(),EXIT_NOW,fake_index)
+        doc=t.two_episode_research_brief(first,first_outcome,second,EXIT_NOW)
+        self.assertIn("11/02—11/27",doc)
+        self.assertIn("11/30—12/25",doc)
+        self.assertIn("122股相对H00300净超额",doc)
+        self.assertIn("8股减122股",doc)
+        self.assertIn("两期122股超额均为正",doc)
+        self.assertIn("NO ACTION",doc)
+        self.assertIn("并非独立财报信号复现",doc)
+        self.assertNotIn("INSUFFICIENT",doc)
+
+    def test_two_episode_summary_rejects_changed_second_metric_and_stays_incomplete(self):
+        from test_v29_forward_maturity_decision_brief import evidence
+        first,first_outcome=evidence()
+        entry,raw=t.capture_entry(Source(),ENTRY_NOW,fake_index)
+        with tempfile.TemporaryDirectory() as folder:
+            out=Path(folder)/"second-entry"
+            t.write(out,"entry",entry,raw)
+            with (patch.object(t,"ENTRY",out/"ENTRY_SNAPSHOT_122.json"),
+                  patch.object(t,"ENTRY_RAW",out/"RAW_ENTRY_122.json.gz")):
+                second,_=t.capture_outcome(Source(),EXIT_NOW,fake_index)
+        changed=json.loads(json.dumps(second))
+        changed["metrics"]["mean_net_excess_vs_H00300"]=9.0
+        with self.assertRaisesRegex(ValueError,"SECOND_EPISODE_METRIC_NOT_REPRODUCIBLE"):
+            t.two_episode_research_brief(first,first_outcome,changed,EXIT_NOW)
+        incomplete=json.loads(json.dumps(second))
+        incomplete["status"]="INCOMPLETE_KEEP_ALL_122"
+        incomplete["metrics"]=None
+        text=t.two_episode_research_brief(first,first_outcome,incomplete,EXIT_NOW)
+        self.assertIn("INSUFFICIENT",text)
+        self.assertNotIn("两期122股超额均为正",text)
+        with self.assertRaisesRegex(ValueError,"SECOND_OUTCOME_NOT_YET_MATURE"):
+            t.two_episode_research_brief(first,first_outcome,second,
+                                         datetime(2026,12,24,20,0,tzinfo=t.TZ))
+
     def test_one_missing_quote_remains_explicitly_incomplete(self):
         _,ids,_,_=t.sources()
         sid=ids[0]
