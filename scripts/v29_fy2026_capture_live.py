@@ -8,7 +8,10 @@ All market names are retained, even without a financial report or price.
 """
 from __future__ import annotations
 import argparse
+import hashlib
+import io
 import json
+import tarfile
 from datetime import datetime, date, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -23,6 +26,64 @@ from v29_fy2026_next_vintage_selector import plan_source, record_filter, select
 CN=ZoneInfo("Asia/Shanghai")
 FIELD="date,code,close,volume,tradestatus,isST,adjustflag"
 RAW_PAIRS=(("annual-summary","annual"),("q3-summary","q3"),("annual-core","annual_core"),("q3-core","q3_core"))
+
+ORIGINAL_Q3_DIR=Path(__file__).resolve().parents[1]/"research/v29_2026q3_original_vendor_sources_20261030"
+ORIGINAL_Q3_RECEIPT="SOURCE_VINTAGE_RECEIPT.json"
+
+
+def load_sealed_q3(root=ORIGINAL_Q3_DIR):
+    """Reuse actual 2026-10-30 raw Q3/F10 disclosure vintage, never 2027 vendor restatements.
+
+    The source is NOT the fully disclosed Oct 31 Q3 universe. Issuers absent
+    at the 2026-10-29 disclosure cutoff remain missing, not retrofilled.
+    """
+    root=Path(root)
+    receipt_bytes=(root/ORIGINAL_Q3_RECEIPT).read_bytes()
+    receipt=json.loads(receipt_bytes)
+    if (receipt.get("schema")!="V29_20261030_ORIGINAL_VENDOR_Q3_AND_CORE_ARCHIVE_V1"
+            or receipt.get("acquired_on")!="2026-10-30"
+            or receipt.get("disclosure_cutoff_exclusive")!="2026-10-30"
+            or receipt.get("coverage_limited_to_original_vendor_asof_20261029") is not True):
+        raise ValueError("Q3_ORIGINAL_2026_SOURCE_VINTAGE_NOT_CERTIFIED")
+    sources={s["source"]:s for s in receipt["source_archives"]}
+    if set(sources)!={"growth","core"}:
+        raise ValueError("Q3_EXPECTED_ORIGINAL_VENDOR_SOURCE_PAIR_MISSING")
+    restored={}
+    for name,prefix in (("growth","growth-cutoff-raw/latest"),
+                        ("core","core-q3h1/latest")):
+        source=sources[name]
+        archive_bytes=(root/source["preserved_archive"]).read_bytes()
+        if hashlib.sha256(archive_bytes).hexdigest()!=source["preserved_archive_sha256"]:
+            raise ValueError("ORIGINAL_"+name+"_ARCHIVE_SHA_MISMATCH")
+        with tarfile.open(fileobj=io.BytesIO(archive_bytes),mode="r:gz") as z:
+            members={m.name:m for m in z.getmembers() if m.isfile()}
+            manifest={v["path"]:v for v in source["files"]}
+            if len(manifest)!=source["file_count"] or set(members)!=set(manifest):
+                raise ValueError("ORIGINAL_"+name+"_MANIFEST_MISMATCH")
+            pages=[]
+            for key in sorted(x for x in members if x.startswith(prefix+"/page-") and x.endswith(".json")):
+                b=z.extractfile(members[key]).read()
+                if (len(b)!=manifest[key]["bytes"]
+                        or hashlib.sha256(b).hexdigest()!=manifest[key]["sha256"]):
+                    raise ValueError("ORIGINAL_"+name+"_RAW_PAGE_SHA_MISMATCH")
+                pages.append(b)
+            if not pages or len(pages)>100:
+                raise ValueError("ORIGINAL_"+name+"_Q3_RAW_PAGES_UNAVAILABLE")
+            if [int(x.split("page-")[-1].split(".")[0]) for x in
+                sorted(y for y in members if y.startswith(prefix+"/page-") and y.endswith(".json"))]!=list(range(1,len(pages)+1)):
+                raise ValueError("ORIGINAL_"+name+"_Q3_PAGE_SEQUENCE_INVALID")
+        restored[name]=pages
+    provenance={
+        "identity":"2026-10-30_DISCLOSURE_CUTOFF_2026-10-29_ORIGINAL_VENDOR",
+        "source_vintage_date":"2026-10-30",
+        "disclosure_cutoff_exclusive":"2026-10-30",
+        "q3_2026_late_oct30_oct31_not_covered":True,
+        "q3_values_queried_again_in_2027":False,
+        "source_receipt_sha256":hashlib.sha256(receipt_bytes).hexdigest(),
+        "source_git_archive_sha256":{k:sources[k]["preserved_archive_sha256"] for k in ("growth","core")},
+    }
+    return restored["growth"],restored["core"],provenance
+
 
 def last_preopen_capture_day(first_session):
     """Use latest scheduled 2027 May 1-5 opportunity before first market open.
@@ -62,7 +123,7 @@ def preflight(bs,now):
             "calendar_source":"BAOSTOCK_UNVERIFIED_VENDOR_CALENDAR"}
 
 
-def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core,official_calendar=None,clock=None):
+def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core,official_calendar=None,clock=None,q3_source_loader=load_sealed_q3):
     if not isinstance(now,datetime) or now.tzinfo is None or now.utcoffset() is None:
         raise ValueError("AWARE_CAPTURE_TIME_REQUIRED")
     local=now.astimezone(CN)
@@ -71,9 +132,10 @@ def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core
     plan,_=plan_source()
     # Keep raw pages, not only the existing positive-growth candidate summaries.
     _,annual=summary_collector("2026-12-31",notice_before="2027-05-01")
-    _,q3=summary_collector("2026-09-30",notice_before="2026-11-01")
     annual_core=core_collector("2026-12-31","2027-05-01")
-    q3_core=core_collector("2026-09-30","2026-11-01")
+    # DO NOT requery Q3 in 2027: historical rows could be restated and cannot
+    # reconstruct what the October 2026 screening could actually observe.
+    q3,q3_core,q3_provenance=q3_source_loader()
     login=bs.login()
     if login.error_code!="0":
         raise ValueError("BAOSTOCK_LOGIN_FAILED")
@@ -135,6 +197,7 @@ def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core
     if completed>=datetime.fromisoformat(following+"T09:30:00+08:00"):
         raise ValueError("FY26_SOURCE_CAPTURE_COMPLETED_AFTER_ENTRY_OPEN")
     frame=build(annual,q3,annual_core,q3_core,market,completed.isoformat())
+    frame["q3_original_source_vintage"]=q3_provenance
     frame["preliminary_financial_qualification_count"]=len(finance_candidates)
     frame["market_source_unverified_original_exchange_filings"]=True
     # Never block an entirely automated, read-only candidate queue solely
