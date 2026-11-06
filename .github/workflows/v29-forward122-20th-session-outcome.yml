@@ -410,8 +410,9 @@ jobs:
           from v29_temporal_replication import two_episode_research_brief
           first=Path("research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026")
           second=Path("/tmp/v29-temporal-replication/OUTCOME_122.json")
-          if not all((first/"20_SESSION_RESEARCH_VERDICT.json").exists(),
-                     (first/"OUTCOMES_122.json").exists(),second.exists()):
+          if not ((first/"20_SESSION_RESEARCH_VERDICT.json").exists()
+                  and (first/"OUTCOMES_122.json").exists()
+                  and second.exists()):
               print("TWO_EPISODE_COMPARISON_WAITING_FOR_COMPLETE_FIRST_AND_SECOND")
               raise SystemExit(0)
           load=lambda p:json.loads(p.read_text(encoding="utf-8"))
