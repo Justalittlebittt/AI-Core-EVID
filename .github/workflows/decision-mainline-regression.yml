@@ -34,6 +34,8 @@ on:
       - 'scripts/test_v29_fy2026_full_source_frame.py'
       - 'scripts/v29_fy2026_capture_live.py'
       - 'scripts/test_v29_fy2026_capture_live.py'
+      - 'scripts/v29_fy2026_forward_paper.py'
+      - 'scripts/test_v29_fy2026_forward_paper.py'
       - 'research/V2.9_FY2026_NEW_VINTAGE_ADAPTED_GROWTH_PREOUTCOME_20261105.json'
       - 'scripts/test_v29_growth_candidate_snapshot.py'
       - 'scripts/v29_daily_review.py'
@@ -83,6 +85,8 @@ on:
       - 'scripts/test_v29_fy2026_full_source_frame.py'
       - 'scripts/v29_fy2026_capture_live.py'
       - 'scripts/test_v29_fy2026_capture_live.py'
+      - 'scripts/v29_fy2026_forward_paper.py'
+      - 'scripts/test_v29_fy2026_forward_paper.py'
       - 'research/V2.9_FY2026_NEW_VINTAGE_ADAPTED_GROWTH_PREOUTCOME_20261105.json'
       - '.github/workflows/decision-mainline-regression.yml'
       - 'scripts/v29_eight_portfolio_capacity.py'
@@ -109,6 +113,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_fy2026_next_vintage_selector.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_full_source_frame.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_capture_live.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_fy2026_forward_paper.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_raw_quality_audit.py' -v
