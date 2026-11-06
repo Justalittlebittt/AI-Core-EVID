@@ -52,6 +52,11 @@ def record_filter(row,rule,reference_day):
     sid=row.get("security_id")
     if not isinstance(sid,str) or not IDENTITY.fullmatch(sid):
         raise ValueError("INVALID_MAINLAND_SECURITY_ID")
+    # 689xxx is the Shanghai STAR-market CDR (depositary receipt) code
+    # range, not an ordinary mainland A share. Keep it in the observed
+    # source denominator with an explicit exclusion, not a candidate.
+    if sid.startswith("SSE:689"):
+        return ["DEPOSITARY_RECEIPT_OUTSIDE_A_SHARE_RESEARCH_UNIVERSE"],None
     if (row.get("annual_period")!="2026-12-31"
         or row.get("q3_period")!="2026-09-30"):
         raise ValueError("WRONG_REPORT_PERIOD")
