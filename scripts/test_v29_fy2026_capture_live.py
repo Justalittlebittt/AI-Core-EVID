@@ -123,6 +123,9 @@ class LiveCaptureTests(unittest.TestCase):
         self.assertFalse(pick["calendar_officially_verified"])
         self.assertEqual(pick["live_buy_eligibility"],"NOT_AUTHORIZED")
         self.assertFalse(frame["source_original_filings_available"])
+        self.assertEqual(frame["q3_original_source_vintage"]["disclosure_cutoff_exclusive"],"2026-10-30")
+        self.assertFalse(pick["historical_q3_source_certified_by_original_archive"])
+        self.assertEqual(pick["historical_q3_original_vendor_vintage"],frame["q3_original_source_vintage"])
         self.assertEqual(len(pages["annual"]),1)
         with tempfile.TemporaryDirectory() as p:
             dest=Path(p)/"future-data"
@@ -136,6 +139,25 @@ class LiveCaptureTests(unittest.TestCase):
             self.assertFalse(archived["all_selected_original_filings_verified"])
             with self.assertRaisesRegex(ValueError,"SOURCE_CAPTURE_DESTINATION_ALREADY_EXISTS"):
                 store(dest,frame,pick,market,pages)
+
+    def test_live_capture_requests_new_annual_only_not_future_revised_q3(self):
+        requests=[]
+        def only_annual_summary(report_date,notice_before):
+            requests.append(("summary",report_date))
+            if report_date!="2026-12-31":raise AssertionError("2027_Q3_REFETCH_FORBIDDEN")
+            return None,fixture()[0]
+        def only_annual_core(period,cutoff):
+            requests.append(("core",period))
+            if period!="2026-12-31":raise AssertionError("2027_Q3_F10_REFETCH_FORBIDDEN")
+            return fixture()[2]
+        frame,pick,market,pages=capture(
+            FakeBao(),NOW,only_annual_summary,only_annual_core,
+            clock=lambda:NOW,q3_source_loader=synthetic_q3_loader)
+        self.assertEqual(requests,[("summary","2026-12-31"),("core","2026-12-31")])
+        self.assertEqual(len(pages["q3"]),1)
+        self.assertEqual(len(pages["q3_core"]),1)
+        self.assertFalse(frame["q3_original_source_vintage"]["q3_values_queried_again_in_2027"])
+        self.assertEqual(pick["live_buy_eligibility"],"NOT_AUTHORIZED")
 
     def test_financially_ineligible_stocks_never_trigger_quotes(self):
         original=fixture()
