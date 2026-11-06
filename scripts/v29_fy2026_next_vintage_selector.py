@@ -71,7 +71,7 @@ def record_filter(row,rule,reference_day):
         for key in (
             "annual_revenue_yoy_pct","q3_ytd_revenue_yoy_pct",
             "annual_parent_profit_yuan","annual_parent_profit_yoy_pct",
-            "q3_ytd_parent_profit_yoy_pct","annual_deducted_parent_profit_yuan",
+            "annual_deducted_parent_profit_yuan",
             "q3_ytd_deducted_parent_profit_yuan","annual_roe_pct",
             "annual_cfo_per_share_yuan","annual_gross_margin_pct",
             "q3_ytd_gross_margin_pct","annual_nonrecurring_parent_profit_yuan"
@@ -88,10 +88,13 @@ def record_filter(row,rule,reference_day):
             and x["q3_ytd_revenue_yoy_pct"]>rule["q3_ytd_revenue_yoy_pct_min_exclusive"]
             and accel>=rule["annual_minus_q3_ytd_revenue_yoy_acceleration_pp_min_inclusive"]):
         reasons.append("REVENUE_GROWTH_ACCELERATION_RULE_FAILED")
-    if not (x["annual_parent_profit_yuan"]>0 and x["annual_parent_profit_yoy_pct"]>0
-            and x["q3_ytd_parent_profit_yoy_pct"]>0
-            and x["annual_deducted_parent_profit_yuan"]>0
-            and q4_core>0):
+    # The sealed FY2026 rule requires *annual* positive parent-profit growth,
+    # not Q3 parent-profit growth. Q3 parent-profit YoY is NOT preregistered;
+    # enforcing it would silently alter the candidate population.
+    if not (x["annual_parent_profit_yuan"]>rule["annual_parent_profit_yuan_min_exclusive"]
+            and x["annual_parent_profit_yoy_pct"]>rule["annual_parent_profit_yoy_pct_min_exclusive"]
+            and x["annual_deducted_parent_profit_yuan"]>rule["annual_deducted_parent_profit_yuan_min_exclusive"]
+            and q4_core>rule["standalone_q4_deducted_parent_profit_yuan_min_exclusive"]):
         reasons.append("PARENT_OR_STANDALONE_Q4_CORE_PROFIT_RULE_FAILED")
     if not (x["annual_roe_pct"]>=rule["annual_weighted_roe_pct_min_inclusive"]
             and x["annual_cfo_per_share_yuan"]>rule["annual_cfo_per_share_yuan_min_exclusive"]):
