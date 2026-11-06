@@ -39,7 +39,7 @@ def brief(verdict,outcome,eight=None,control=None,control_prices=None,now=None):
         raise ValueError("AWARE_MATURITY_CLOCK_REQUIRED")
     if now<datetime.fromisoformat("2026-11-27T16:30:00+08:00"):
         raise ValueError("FROZEN_OUTCOME_NOT_YET_MATURE")
-    if (verdict.get("schema")!="V29_FORWARD_122_TWENTIETH_SESSION_RESEARCH_VERDICT_V1"
+    if (verdict.get("schema")!="V29_122_FROZEN_FORWARD_20TH_SESSION_EXIT_EVIDENCE_V1"
         or verdict.get("frozen_cohort_count")!=122
         or verdict.get("fixed_entry_session")!="2026-11-02"
         or verdict.get("source_bytes_sha256")!=outcome.get("raw_outcome_sources_sha256")
