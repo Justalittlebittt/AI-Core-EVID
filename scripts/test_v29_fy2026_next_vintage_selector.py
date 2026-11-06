@@ -143,6 +143,39 @@ class FY2026SelectorTests(unittest.TestCase):
         self.assertEqual(candidate["minimum_lot_shares"],200)
         self.assertEqual(candidate["pre_entry_reference_notional_cny"],12000)
 
+    def test_sse_689_cdr_cannot_enter_a_share_eight_rank_or_understate_lot_cost(self):
+        # Exchange 689 is a STAR depositary receipt (CDR) code, not A stock.
+        # Even a fictitiously top-scoring receipt must never displace shares.
+        p=plan_source()[0]
+        cdr=row("SSE:689999",roe=99.,accel=99.)
+        reasons,candidate=record_filter(cdr,p["selection"],"2027-04-30")
+        self.assertEqual(reasons,["DEPOSITARY_RECEIPT_OUTSIDE_A_SHARE_RESEARCH_UNIVERSE"])
+        self.assertIsNone(candidate)
+        d=fixture()
+        d["rows"].append(cdr)
+        d["universe_source_count"]+=1
+        outcome=select(d,NOW)
+        self.assertEqual(outcome["total_source_universe"],10)
+        self.assertEqual(outcome["total_rule_eligible"],9)
+        self.assertEqual(outcome["selected_count"],8)
+        self.assertEqual(
+            outcome["source_exclusion_reason_counts"][
+                "DEPOSITARY_RECEIPT_OUTSIDE_A_SHARE_RESEARCH_UNIVERSE"],1)
+        self.assertTrue(all(not r["security_id"].startswith("SSE:689")
+                            for r in outcome["selected_in_frozen_ranking_order"]))
+        self.assertEqual(outcome["selected_in_frozen_ranking_order"][0]["security_id"],
+                         "SZSE:300199")
+        self.assertEqual(outcome["live_buy_eligibility"],"NOT_AUTHORIZED")
+
+    def test_sse_688_star_share_still_uses_200_not_100(self):
+        p=plan_source()[0]["selection"]
+        star=row("SSE:688999")
+        star["reference_close_cny"]=60.
+        reasons,selected=record_filter(star,p,"2027-04-30")
+        self.assertEqual(reasons,[])
+        self.assertEqual(selected["minimum_lot_shares"],200)
+        self.assertEqual(selected["pre_entry_reference_notional_cny"],12000)
+
     def test_not_allowed_before_new_disclosures_or_after_first_open(self):
         d=fixture()
         for when in (datetime(2026,11,5,13,tzinfo=CN),
