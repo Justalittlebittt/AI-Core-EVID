@@ -9,7 +9,7 @@ All market names are retained, even without a financial report or price.
 from __future__ import annotations
 import argparse
 import json
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -23,6 +23,44 @@ from v29_fy2026_next_vintage_selector import plan_source, record_filter, select
 CN=ZoneInfo("Asia/Shanghai")
 FIELD="date,code,close,volume,tradestatus,isST,adjustflag"
 RAW_PAIRS=(("annual-summary","annual"),("q3-summary","q3"),("annual-core","annual_core"),("q3-core","q3_core"))
+
+def last_preopen_capture_day(first_session):
+    """Use latest scheduled 2027 May 1-5 opportunity before first market open.
+
+    Does not alter the frozen selection rule or assume May 6 is a holiday
+    verified by an exchange. True next session comes from a vendor calendar;
+    unverified results retain their provisional provenance.
+    """
+    next_day=date.fromisoformat(first_session)
+    return min(next_day-timedelta(days=1),date(2027,5,5))
+
+
+def preflight(bs,now):
+    """Cheap one-time source-date gate before any 2027 financial HTTP fetch."""
+    if now.tzinfo is None or now.utcoffset() is None:
+        raise ValueError("AWARE_CAPTURE_TIME_REQUIRED")
+    day=now.astimezone(CN).date()
+    if day<date(2027,5,1) or day>date(2027,5,5):
+        raise ValueError("OUTSIDE_BOUNDED_2027_FINANCIAL_CAPTURE_WINDOW")
+    response=bs.login()
+    if response.error_code!="0":
+        raise ValueError("BAOSTOCK_CALENDAR_LOGIN_FAILED")
+    try:
+        calendar=records(bs.query_trade_dates(start_date="2027-04-25",end_date="2027-05-12"))
+    finally:
+        bs.logout()
+    upcoming=min((r["calendar_date"] for r in calendar
+                  if r.get("is_trading_day")=="1" and r["calendar_date"]>"2027-04-30"),
+                 default=None)
+    if upcoming is None:
+        raise ValueError("FUTURE_FIRST_EXCHANGE_SESSION_UNKNOWN")
+    last=last_preopen_capture_day(upcoming)
+    return {"capture_today":day==last,
+            "first_trading_session":upcoming,
+            "last_preopen_scheduled_day":last.isoformat(),
+            "date_checked":day.isoformat(),
+            "calendar_source":"BAOSTOCK_UNVERIFIED_VENDOR_CALENDAR"}
+
 
 def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core,official_calendar=None,clock=None):
     if not isinstance(now,datetime) or now.tzinfo is None or now.utcoffset() is None:
@@ -128,12 +166,18 @@ def store(out,frame,candidate,market,pages):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument("--out-dir",type=Path,required=True)
+    parser.add_argument("--out-dir",type=Path)
     parser.add_argument("--official-calendar",type=Path)
+    parser.add_argument("--preflight",action="store_true")
     args=parser.parse_args()
+    import baostock
+    if args.preflight:
+        print(json.dumps(preflight(baostock,datetime.now(CN)),ensure_ascii=False))
+        return
+    if args.out_dir is None:
+        parser.error("--out-dir is required except in --preflight mode")
     if args.out_dir.exists():
         raise ValueError("NO_OVERWRITE_FUTURE_FINANCIAL_EVIDENCE")
-    import baostock
     official=json.loads(args.official_calendar.read_text()) if args.official_calendar else None
     frame,pick,market,pages=capture(baostock,datetime.now(CN),official_calendar=official)
     store(args.out_dir,frame,pick,market,pages)
