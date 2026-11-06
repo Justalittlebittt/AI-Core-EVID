@@ -201,6 +201,16 @@ jobs:
             echo "FY2026_NEW_VINTAGE_ALREADY_ARCHIVED"
             exit 0
           fi
+          # Avoid permanently sealing May 1's incomplete provider cache
+          # when later pre-open scheduled days can supply more FY2026 rows.
+          python -m pip install --disable-pip-version-check baostock==0.9.4
+          python scripts/v29_fy2026_capture_live.py --preflight > /tmp/v29-fy26-preflight.json
+          cat /tmp/v29-fy26-preflight.json
+          ready="$(python -c 'import json;print(int(json.load(open("/tmp/v29-fy26-preflight.json"))["capture_today"]))')"
+          if [ "$ready" != "1" ]; then
+            echo "SKIP_EARLY_SOURCE_WINDOW_WAIT_FOR_FINAL_PREOPEN_CAPTURE_DAY"
+            exit 0
+          fi
           echo "run=true" >> "$GITHUB_OUTPUT"
       - name: Verify original pre-outcome candidate rule unchanged
         if: steps.gate.outputs.run == 'true'
@@ -208,9 +218,6 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_fy2026_next_vintage_selector.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_full_source_frame.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_capture_live.py' -v
-      - name: Install previously used free BaoStock quote dependency
-        if: steps.gate.outputs.run == 'true'
-        run: python -m pip install --disable-pip-version-check baostock==0.9.4
       - name: Capture same-vintage free annual and Q3 source; finance-first quotes
         if: steps.gate.outputs.run == 'true'
         run: |
