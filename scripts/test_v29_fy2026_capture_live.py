@@ -7,7 +7,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from test_v29_fy2026_full_source_frame import fixture, IDS, page
-from v29_fy2026_capture_live import capture, store, preflight, last_preopen_capture_day
+from v29_fy2026_capture_live import capture, store, preflight, last_preopen_capture_day, load_sealed_q3
 
 CN=ZoneInfo("Asia/Shanghai")
 NOW=datetime(2027,5,1,12,tzinfo=CN)
@@ -55,6 +55,39 @@ def core_collector(period,cutoff):
     assert cutoff==("2027-05-01" if period=="2026-12-31" else "2026-11-01")
     return fixture()[2 if period=="2026-12-31" else 3]
 
+def synthetic_q3_loader():
+    d=fixture()
+    return d[1],d[3],{
+        "identity":"SYNTHETIC_2026_Q3_TEST_ONLY",
+        "source_vintage_date":"2026-10-30",
+        "disclosure_cutoff_exclusive":"2026-10-30",
+        "q3_2026_late_oct30_oct31_not_covered":True,
+        "q3_values_queried_again_in_2027":False,
+    }
+
+
+class OriginalQ3ArchiveTests(unittest.TestCase):
+    def test_real_archived_q3_and_f10_pages_are_complete_and_source_bound(self):
+        # Read actual 2026 raw files, not handcrafted financial test values.
+        from v29_fy2026_full_source_frame import summary_index, Q3
+        from v29_growth_core_earnings import _decode
+        q3,core,prov=load_sealed_q3()
+        issuers,audit=summary_index(q3,Q3,"2026-11-01")
+        index,hashes,core_count=_decode(core,Q3,"2026-11-01")
+        self.assertGreater(len(q3),1)
+        self.assertGreater(len(core),1)
+        self.assertGreater(len(issuers),1000)
+        self.assertGreater(core_count,1000)
+        self.assertEqual(len(q3),len(audit["page_hashes"]))
+        self.assertEqual(len(core),len(hashes))
+        self.assertTrue(all(r.get("NOTICE_DATE","")[:10]<"2026-10-30"
+                            for r in issuers.values()))
+        self.assertEqual(prov["disclosure_cutoff_exclusive"],"2026-10-30")
+        self.assertTrue(prov["q3_2026_late_oct30_oct31_not_covered"])
+        self.assertFalse(prov["q3_values_queried_again_in_2027"])
+        self.assertEqual(len(prov["source_git_archive_sha256"]),2)
+
+
 class CaptureTimingTests(unittest.TestCase):
     def test_final_vendor_preopen_date_defers_first_holiday_capture(self):
         b=FakeBao()
@@ -78,7 +111,7 @@ class LiveCaptureTests(unittest.TestCase):
     def test_financial_gate_queries_only_eligible_names_and_preserves_all_ten(self):
         b=FakeBao()
         frame,pick,market,pages=capture(
-            b,NOW,summary_collector,core_collector,clock=lambda:NOW)
+            b,NOW,summary_collector,core_collector,clock=lambda:NOW,q3_source_loader=synthetic_q3_loader)
         self.assertEqual(frame["universe_source_count"],10)
         self.assertEqual(frame["preliminary_financial_qualification_count"],10)
         self.assertEqual(len(market["reference_bars"]),10)
@@ -114,7 +147,7 @@ class LiveCaptureTests(unittest.TestCase):
                 raw["result"]["data"][1]["YSTZ"]=-2.
             return None,[json.dumps(raw).encode()]
         b=FakeBao()
-        frame,selected,market,_=capture(b,NOW,summarized,core_collector,clock=lambda:NOW)
+        frame,selected,market,_=capture(b,NOW,summarized,core_collector,clock=lambda:NOW,q3_source_loader=synthetic_q3_loader)
         self.assertEqual(frame["universe_source_count"],10)
         self.assertEqual(frame["preliminary_financial_qualification_count"],8)
         self.assertEqual(len([x for x in b.queries if x[0]=="quote"]),8)
@@ -131,7 +164,7 @@ class LiveCaptureTests(unittest.TestCase):
                   "reference_trading_session":"2027-04-30"}
         frame,pick,market,pages=capture(
             FakeBao(),NOW,summary_collector,core_collector,
-            official_calendar=official,clock=lambda:NOW)
+            official_calendar=official,clock=lambda:NOW,q3_source_loader=synthetic_q3_loader)
         self.assertTrue(frame["market_calendar_verified"])
         self.assertEqual(pick["selected_count"],8)
         self.assertEqual(pick["status"],"FROZEN_NEW_REPORT_CANDIDATES_RESEARCH_ONLY")
@@ -147,7 +180,7 @@ class LiveCaptureTests(unittest.TestCase):
         sid="sz."+IDS[0]
         b=FakeBao(quote_missing=sid)
         frame,pick,market,_=capture(
-            b,NOW,summary_collector,core_collector,clock=lambda:NOW)
+            b,NOW,summary_collector,core_collector,clock=lambda:NOW,q3_source_loader=synthetic_q3_loader)
         self.assertEqual(frame["universe_source_count"],10)
         self.assertEqual(frame["preliminary_financial_qualification_count"],10)
         self.assertEqual(len(market["reference_bars"]),9)
@@ -156,7 +189,7 @@ class LiveCaptureTests(unittest.TestCase):
 
     def test_dated_pre_entry_gate_rejects_early_and_late_use(self):
         def do(when):
-            return capture(FakeBao(),when,summary_collector,core_collector,clock=lambda:when)
+            return capture(FakeBao(),when,summary_collector,core_collector,clock=lambda:when,q3_source_loader=synthetic_q3_loader)
         with self.assertRaisesRegex(ValueError,"FY2026_ANNUAL_DATA_NOT_YET_ELIGIBLE"):
             do(datetime(2026,11,5,12,tzinfo=CN))
         with self.assertRaisesRegex(ValueError,"FY26_SOURCE_NOT_PRE_ENTRY"):
