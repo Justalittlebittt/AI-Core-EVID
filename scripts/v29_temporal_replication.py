@@ -272,6 +272,122 @@ def capture_outcome(bs,now,index_reader=index_fetch):
             "independent_company_cohort":False,"independent_reporting_vintage":False,
             "actual_fills_proven":False,"strategy_validated":False,"live_buy_eligibility":"NOT_AUTHORIZED"},raw
 
+def two_episode_research_brief(first_verdict,first_outcome,second,now):
+    """Compare two registered nonoverlapping market periods, same 122 issuers.
+
+    Source-dependent, descriptive, read-only. The older financial selection
+    vintage and issuer identities are shared; this is not independent OOS alpha.
+    """
+    import math
+    from v29_growth_forward_cohort import evaluate as evaluate_parent
+    if not isinstance(now,datetime) or now.tzinfo is None or now.utcoffset() is None:
+        raise ValueError("TWO_EPISODE_CLOCK_MUST_BE_AWARE")
+    if now.astimezone(TZ)<datetime(2026,12,25,16,30,tzinfo=TZ):
+        raise ValueError("SECOND_OUTCOME_NOT_YET_MATURE")
+    plan,ids,protocol_sha,plan_sha=sources()
+    if (first_verdict.get("schema")!="V29_122_FROZEN_FORWARD_20TH_SESSION_EXIT_EVIDENCE_V1"
+        or first_verdict.get("source_bytes_sha256")!=first_outcome.get("raw_outcome_sources_sha256")
+        or first_verdict.get("protocol_sha256")!=protocol_sha
+        or first_verdict.get("trade_authorized") is not False
+        or first_verdict.get("live_buy_eligibility")!="NOT_AUTHORIZED"
+        or first_verdict.get("fixed_entry_session")!="2026-11-02"
+        or first_verdict.get("fixed_exit_session")!="2026-11-27"):
+        raise ValueError("FIRST_EPISODE_SOURCE_IDENTITY_CHANGED")
+    first=evaluate_parent(first_outcome,now=now)
+    if first!=first_verdict.get("outcome_evaluation"):
+        raise ValueError("FIRST_EPISODE_RESULT_NOT_REPRODUCIBLE")
+    if (second.get("schema")!="V29_SECOND_TEMPORAL_122_OUTCOME_V1"
+        or second.get("experiment_id")!=plan["experiment_id"]
+        or second.get("source_plan_sha256")!=plan_sha
+        or second.get("original_protocol_sha256")!=protocol_sha
+        or second.get("entry_session")!="2026-11-30"
+        or second.get("exit_session")!="2026-12-25"
+        or second.get("observed")!=122
+        or not isinstance(second.get("rows"),list)
+        or len(second["rows"])!=122
+        or [r.get("canonical_security_id") for r in second["rows"]]!=ids
+        or second.get("strategy_validated") is not False
+        or second.get("live_buy_eligibility")!="NOT_AUTHORIZED"
+        or second.get("independent_company_cohort") is not False
+        or second.get("independent_reporting_vintage") is not False):
+        raise ValueError("SECOND_EPISODE_SOURCE_IDENTITY_CHANGED")
+    lines=["# V2.9 两段时间前瞻实验合并结论（仅研究）","",
+           "2026-11-02 至 11-27；2026-11-30 至 12-25。",
+           "**同一冻结122股、同一财务报告期，不能视为两个独立股票样本。**",""]
+    if (first.get("status")!="ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE"
+        or second.get("status")!="ONE_MORE_NONOVERLAPPING_EPISODE_DESCRIPTIVE_ONLY"
+        or second.get("price_eligible")!=122 or not isinstance(second.get("metrics"),dict)):
+        return "\n".join(lines+["**INSUFFICIENT：至少一期结果尚未完整。**",
+               "不得删除缺失股票、填补收益、合并不完整样本或授权BUY。"])
+    bench=second.get("benchmark",{})
+    if (bench.get("security_id")!="H00300.CSI"
+        or bench.get("status")!="OFFICIAL_H00300_BOTH_ENDPOINTS_VERIFIED"
+        or bench.get("same_official_total_return_index") is not True):
+        raise ValueError("SECOND_EPISODE_OFFICIAL_H00300_UNVERIFIED")
+    baseline=bench["exit_close"]/bench["entry_close"]-1
+    if not math.isfinite(baseline):
+        raise ValueError("SECOND_EPISODE_BENCHMARK_INVALID")
+    returns={}
+    for r in second["rows"]:
+        sid=r["canonical_security_id"]
+        if not r.get("price_comparison_eligible"):
+            raise ValueError("SECOND_EPISODE_MISSING_FIXED_QUOTE")
+        a,b=r.get("adjusted_entry_close"),r.get("adjusted_exit_close")
+        if not all(type(x) in (int,float) and math.isfinite(x) and x>0 for x in (a,b)):
+            raise ValueError("SECOND_EPISODE_INVALID_CLOSE")
+        returns[sid]=b/a-1-0.003
+    eight_path=ROOT/plan["optional_same_episode_secondary"]["eight_fixed_preoutcome_spec"]
+    eight_blob=eight_path.read_bytes()
+    if git_blob(eight_blob)!=plan["optional_same_episode_secondary"]["eight_spec_git_blob_sha"]:
+        raise ValueError("SECOND_EPISODE_EIGHT_FROZEN_SOURCE_CHANGED")
+    selected=json.loads(eight_blob)["pre_outcome_rule"]["selected_ids_in_rank_order"]
+    if len(selected)!=8 or len(set(selected))!=8 or not set(selected).issubset(returns):
+        raise ValueError("SECOND_EPISODE_EIGHT_NOT_FROZEN")
+    p=second["metrics"]
+    mean=sum(returns.values())/122
+    eight_mean=sum(returns[sid] for sid in selected)/8
+    computed={
+        "equal_122_mean_net":mean,
+        "mean_net_excess_vs_H00300":mean-baseline,
+        "eight_mean_net":eight_mean,
+        "eight_minus_122":eight_mean-mean,
+        "eight_minus_H00300":eight_mean-baseline,
+        "benchmark_total_return":baseline}
+    for key,val in computed.items():
+        recorded=p.get(key)
+        if (type(recorded) not in (float,int) or not math.isfinite(recorded)
+            or not math.isclose(val,recorded,rel_tol=1e-11,abs_tol=1e-11)):
+            raise ValueError("SECOND_EPISODE_METRIC_NOT_REPRODUCIBLE:"+key)
+    first_eight=None
+    # Nov 27 8-name result is reconstructed from its own frozen 122 outcome,
+    # not trusted from a separate unaudited summary.
+    from v29_eight_pilot_outcome import evaluate as evaluate_eight
+    first_eight=evaluate_eight(first_outcome,now=now)
+    if first_eight["status"]!="ONE_EPISODE_EXPLORATORY_NOT_BUY_EVIDENCE":
+        raise ValueError("FIRST_EPISODE_EIGHT_INCOMPLETE")
+    def pct(v):
+        return f"{v*100:+.2f}%"
+    first_excess=first["mean_net_excess"]
+    second_excess=p["mean_net_excess_vs_H00300"]
+    both_beat=first_excess>0 and second_excess>0
+    lines.extend([
+        "| 指标 | 11/02—11/27 | 11/30—12/25 |",
+        "|---|---:|---:|",
+        f"| 122股扣费净收益 | {pct(first['mean_net'])} | {pct(p['equal_122_mean_net'])} |",
+        f"| 122股相对H00300净超额 | {pct(first_excess)} | {pct(second_excess)} |",
+        f"| 冻结8股扣费净收益 | {pct(first_eight['selected_eight_mean_net'])} | {pct(p['eight_mean_net'])} |",
+        f"| 8股减122股 | {pct(first_eight['selected_eight_minus_parent_122'])} | {pct(p['eight_minus_122'])} |",
+        f"| 8股减H00300 | {pct(first_eight['selected_eight_minus_H00300_total_return'])} | {pct(p['eight_minus_H00300'])} |",
+        "",
+        ("**两期122股超额均为正。**" if both_beat else
+         "**至少一期122股超额未能为正。**"),
+        "两段行情并非独立财报信号复现：旧122股证券、报告期和模型条件完全共用。",
+        "两期正超额也不足以确认长期可复制预测能力、真实可成交收益或用户账户风险许可。",
+        "**NO ACTION：不足以授权真实 BUY。**",
+    ])
+    return "\n".join(lines)+"\n"
+
+
 def write(out,phase,report,raw):
     if out.exists():
         raise ValueError("NEVER_OVERWRITE_ARCHIVED_RESEARCH")
