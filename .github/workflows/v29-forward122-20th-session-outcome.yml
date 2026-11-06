@@ -15,6 +15,8 @@ on:
       - 'scripts/v29_temporal_replication.py'
       - 'scripts/test_v29_temporal_replication.py'
       - 'research/V2.9_TEMPORAL_REPLICATION_20261130_PREOUTCOME.json'
+      - 'scripts/v29_forward_maturity_decision_brief.py'
+      - 'scripts/test_v29_forward_maturity_decision_brief.py'
       - 'scripts/v29_eight_pilot_outcome.py'
       - 'scripts/test_v29_eight_pilot_outcome.py'
   push:
@@ -31,6 +33,8 @@ on:
       - 'scripts/v29_temporal_replication.py'
       - 'scripts/test_v29_temporal_replication.py'
       - 'research/V2.9_TEMPORAL_REPLICATION_20261130_PREOUTCOME.json'
+      - 'scripts/v29_forward_maturity_decision_brief.py'
+      - 'scripts/test_v29_forward_maturity_decision_brief.py'
       - 'scripts/v29_eight_pilot_outcome.py'
       - 'scripts/test_v29_eight_pilot_outcome.py'
       - 'scripts/v29_growth_310_complement_capture.py'
@@ -63,6 +67,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_forward122_full_pipeline_e2e.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_forward_cohort.py' -v
           python -m unittest discover -s scripts -p 'test_v29_eight_pilot_outcome.py' -v
+          python -m unittest discover -s scripts -p 'test_v29_forward_maturity_decision_brief.py' -v
           python -m unittest discover -s scripts -p 'test_v29_temporal_replication.py' -v
           python -m unittest discover -s scripts -p 'test_v29_forward122_entry_close_capture.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_310_complement_capture.py' -v
@@ -160,6 +165,23 @@ jobs:
               assert result['live_buy_eligibility']=='NOT_AUTHORIZED'
               print('FROZEN_EIGHT_VS_122_COMPUTED_WITHOUT_EXTRA_QUOTES')
           PY
+      - name: Summarize real 122 and optional eight in a read-only decision brief
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          dir="/tmp/v29-forward122-20th-outcome"
+          opts=()
+          if test -f "$dir/FROZEN_EIGHT_PILOT_RESULT.json"; then
+            opts+=(--eight "$dir/FROZEN_EIGHT_PILOT_RESULT.json")
+          fi
+          python scripts/v29_forward_maturity_decision_brief.py \
+            --verdict "$dir/20_SESSION_RESEARCH_VERDICT.json" \
+            --outcomes "$dir/OUTCOMES_122.json" \
+            "${opts[@]}" \
+            --out "$dir/RESEARCH_DECISION_BRIEF.md"
+          cat "$dir/RESEARCH_DECISION_BRIEF.md" >> "$GITHUB_STEP_SUMMARY"
       - name: Persist full 122 outcome if complete, or immutable run-scoped incomplete result for another bounded attempt
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -186,6 +208,9 @@ jobs:
           cp /tmp/v29-forward122-20th-outcome/RAW_VENDOR_STOCK_AND_H00300_INDEX.json.gz "$destination/"
           if [ -f /tmp/v29-forward122-20th-outcome/FROZEN_EIGHT_PILOT_RESULT.json ]; then
             cp /tmp/v29-forward122-20th-outcome/FROZEN_EIGHT_PILOT_RESULT.json "$destination/"
+          fi
+          if [ -f /tmp/v29-forward122-20th-outcome/RESEARCH_DECISION_BRIEF.md ]; then
+            cp /tmp/v29-forward122-20th-outcome/RESEARCH_DECISION_BRIEF.md "$destination/"
           fi
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
@@ -253,6 +278,25 @@ jobs:
       - name: Capture only 188 fixed complement quotes, reuse sealed original 122, never change primary result
         if: steps.complement_gate.outputs.run == 'true'
         run: python scripts/v29_growth_310_complement_capture.py --out /tmp/v29-310-supplement
+      - name: Summarize 122, optional eight and completed 310 from original sources
+        if: steps.complement_gate.outputs.run == 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          original="research/V2.9_FORWARD_122_20_SESSION_OUTCOME_2026"
+          opts=()
+          if test -f "$original/FROZEN_EIGHT_PILOT_RESULT.json"; then
+            opts+=(--eight "$original/FROZEN_EIGHT_PILOT_RESULT.json")
+          fi
+          python scripts/v29_forward_maturity_decision_brief.py \
+            --verdict "$original/20_SESSION_RESEARCH_VERDICT.json" \
+            --outcomes "$original/OUTCOMES_122.json" \
+            "${opts[@]}" \
+            --control "/tmp/v29-310-supplement/310_CONDITIONAL_RESULT.json" \
+            --control-prices "/tmp/v29-310-supplement/310_SAME_VINTAGE_CLOSE_PROXIES.json" \
+            --out "/tmp/v29-310-supplement/RESEARCH_DECISION_BRIEF_WITH_310.md"
+          cat /tmp/v29-310-supplement/RESEARCH_DECISION_BRIEF_WITH_310.md >> "$GITHUB_STEP_SUMMARY"
       - name: Seal complete contrast or immutable incomplete source attempt
         if: steps.complement_gate.outputs.run == 'true'
         shell: bash
@@ -277,6 +321,9 @@ jobs:
           cp /tmp/v29-310-supplement/310_CONDITIONAL_RESULT.json "$dest/"
           cp /tmp/v29-310-supplement/310_SAME_VINTAGE_CLOSE_PROXIES.json "$dest/"
           cp /tmp/v29-310-supplement/RAW_188_QUOTES.json.gz "$dest/"
+          if [ -f /tmp/v29-310-supplement/RESEARCH_DECISION_BRIEF_WITH_310.md ]; then
+            cp /tmp/v29-310-supplement/RESEARCH_DECISION_BRIEF_WITH_310.md "$dest/"
+          fi
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
           git add "$dest/"
