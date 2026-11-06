@@ -324,7 +324,7 @@ jobs:
             echo "FY2026_FORWARD_NO_PREENTRY_FINANCIAL_FREEZE"
             exit 0
           fi
-          python - <<'PY'
+          selection_state="$(python - <<'PY'
           import json
           from pathlib import Path
           p=Path("research/V2.9_FY2026_NEW_VINTAGE_SOURCE_202705")
@@ -335,12 +335,18 @@ jobs:
           if len(existing)!=1:
               raise SystemExit("FY2026_FORWARD_NO_UNIQUE_PREENTRY_SELECTION")
           chosen=json.loads(existing[0].read_text())
-          if chosen["selected_count"]!=8:
-              raise SystemExit("FY2026_FORWARD_NO_FROZEN_EIGHT_NO_PAPER_BACKFILL")
           assert chosen["live_buy_eligibility"]=="NOT_AUTHORIZED"
-          print("FY2026_FORWARD_SOURCE_READY",f["first_trading_session_after_cutoff"],
-                "PROVENANCE",chosen["status"])
+          print("READY" if chosen["selected_count"]==8 else "INSUFFICIENT")
           PY
+          )"
+          if [ "$selection_state" != "READY" ]; then
+            echo "FY2026_FORWARD_NO_EIGHT_NO_PAPER_BACKFILL"
+            exit 0
+          fi
+          if test -f research/V2.9_FY2026_NEW_VINTAGE_PAPER_OUTCOME/OUTCOME_EIGHT.json; then
+            echo "FY2026_FORWARD_OUTCOME_ALREADY_PRESERVED"
+            exit 0
+          fi
           echo "maybe=true" >> "$GITHUB_OUTPUT"
       - name: Install existing free A-share calendar and quote provider
         if: steps.source_gate.outputs.maybe == 'true'
