@@ -77,8 +77,9 @@ class LiveCaptureTests(unittest.TestCase):
             store(dest,frame,pick,market,pages)
             self.assertTrue((dest/"NORMALIZED_ALL_A_FRAME.json").exists())
             self.assertTrue((dest/"annual-summary/page-001.json").exists())
-            self.assertTrue((dest/"FROZEN_EIGHT_RESEARCH_ONLY.json").exists())
-            archived=json.loads((dest/"FROZEN_EIGHT_RESEARCH_ONLY.json").read_text())
+            self.assertFalse((dest/"FROZEN_EIGHT_RESEARCH_ONLY.json").exists())
+            self.assertTrue((dest/"PROVISIONAL_EIGHT_RESEARCH_ONLY.json").exists())
+            archived=json.loads((dest/"PROVISIONAL_EIGHT_RESEARCH_ONLY.json").read_text())
             self.assertEqual(archived["status"],"PROVISIONAL_VENDOR_CALENDAR_RESEARCH_ONLY")
             self.assertFalse(archived["all_selected_original_filings_verified"])
             with self.assertRaisesRegex(ValueError,"SOURCE_CAPTURE_DESTINATION_ALREADY_EXISTS"):
