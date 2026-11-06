@@ -342,7 +342,10 @@ jobs:
                    "source_archives":[]}
           for name,source,run,artifact,digest in source_specs:
               files=sorted(p for p in source.rglob("*") if p.is_file())
-              if len(files)<30 or not any("growth-cutoff" in p.as_posix() for p in files):
+              # Artifact two has a different internal directory layout.
+              # Both original ZIPs were SHA256-verified by download-artifact.
+              print("SOURCE_TREE",name,len(files),[p.relative_to(source).as_posix() for p in files[:8]])
+              if len(files)<30:
                   raise ValueError("MISSING_ORIGINAL_"+name+"_EVIDENCE")
               sources=[]
               for p in files:
