@@ -39,6 +39,10 @@ def load_sealed_q3(root=ORIGINAL_Q3_DIR):
     """
     root=Path(root)
     receipt_bytes=(root/ORIGINAL_Q3_RECEIPT).read_bytes()
+    receipt_git_blob=hashlib.sha1(
+        b"blob "+str(len(receipt_bytes)).encode()+b"\0"+receipt_bytes).hexdigest()
+    if receipt_git_blob!="4ec6e670bb8b865b4ee3613b8a3c56135e0c64e0":
+        raise ValueError("ORIGINAL_Q3_20261030_RECEIPT_VERSION_CHANGED")
     receipt=json.loads(receipt_bytes)
     if (receipt.get("schema")!="V29_20261030_ORIGINAL_VENDOR_Q3_AND_CORE_ARCHIVE_V1"
             or receipt.get("acquired_on")!="2026-10-30"
@@ -48,6 +52,11 @@ def load_sealed_q3(root=ORIGINAL_Q3_DIR):
     sources={s["source"]:s for s in receipt["source_archives"]}
     if set(sources)!={"growth","core"}:
         raise ValueError("Q3_EXPECTED_ORIGINAL_VENDOR_SOURCE_PAIR_MISSING")
+    expected_archives={
+        "growth":"3ba5ca1fed54582718312f2f15c95ad886bcff72c5c30cb40ae6780a3e8fcc44",
+        "core":"43de24f8d3e50cfa2fb52beddf3ada898b0079365578cc458cd6ddcdd98f7a04"}
+    if any(sources[k]["preserved_archive_sha256"]!=expected_archives[k] for k in expected_archives):
+        raise ValueError("ORIGINAL_Q3_ARCHIVE_IDENTITIES_CHANGED")
     restored={}
     for name,prefix in (("growth","growth-cutoff-raw/latest"),
                         ("core","core-q3h1/latest")):
