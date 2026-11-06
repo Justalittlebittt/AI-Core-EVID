@@ -99,9 +99,11 @@ def capture(bs,now,summary_collector=collect_summary,core_collector=collect_core
     frame=build(annual,q3,annual_core,q3_core,market,completed.isoformat())
     frame["preliminary_financial_qualification_count"]=len(finance_candidates)
     frame["market_source_unverified_original_exchange_filings"]=True
-    candidate=None
-    if frame["market_calendar_verified"]:
-        candidate=select(frame,completed)
+    # Never block an entirely automated, read-only candidate queue solely
+    # for absent manual exchange calendar proof. Keep the provisional result
+    # explicitly below officially verified selection and always NOT_AUTHORIZED.
+    candidate=select(frame,completed,
+                     allow_vendor_calendar_research_only=not frame["market_calendar_verified"])
     return frame,candidate,market,{"annual":annual,"q3":q3,
                                   "annual_core":annual_core,"q3_core":q3_core}
 
