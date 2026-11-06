@@ -231,6 +231,11 @@ jobs:
           assert frame["comparison_period"]=="2026-09-30"
           assert len(frame["rows"])==frame["universe_source_count"]>0
           assert frame["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          old=frame["q3_original_source_vintage"]
+          assert old["identity"]=="2026-10-30_DISCLOSURE_CUTOFF_2026-10-29_ORIGINAL_VENDOR"
+          assert old["q3_2026_late_oct30_oct31_not_covered"] is True
+          assert old["q3_values_queried_again_in_2027"] is False
+          assert len(old["source_git_archive_sha256"])==2
           provisional=root/"PROVISIONAL_EIGHT_RESEARCH_ONLY.json"
           frozen=root/"FROZEN_EIGHT_RESEARCH_ONLY.json"
           assert provisional.exists() != frozen.exists()
@@ -238,6 +243,8 @@ jobs:
           assert result["live_buy_eligibility"]=="NOT_AUTHORIZED"
           assert result["selected_count"] in (0,8)
           assert result["total_source_universe"]==frame["universe_source_count"]
+          assert result["historical_q3_source_certified_by_original_archive"] is True
+          assert result["historical_q3_original_vendor_vintage"]==old
           assert not result["strategy_validated"]
           if provisional.exists():
               assert result["calendar_pending_official_verification"]
