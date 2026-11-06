@@ -130,7 +130,7 @@ def record_filter(row,rule,reference_day):
         "original_filing_verified":row.get("source_original_filing_verified") is True
     }
 
-def select(snapshot,now,root=ROOT):
+def select(snapshot,now,root=ROOT,*,allow_vendor_calendar_research_only=False):
     p,plan_git_sha=plan_source(root)
     if not isinstance(now,datetime) or now.tzinfo is None or now.utcoffset() is None:
         raise ValueError("AWARE_DECISION_CLOCK_REQUIRED")
@@ -147,9 +147,16 @@ def select(snapshot,now,root=ROOT):
     if (snapshot.get("schema")!="V29_FY2026_NORMALIZED_ALL_A_SOURCE_FRAME_V1"
         or snapshot.get("report_period")!="2026-12-31"
         or snapshot.get("comparison_period")!="2026-09-30"
-        or snapshot.get("financial_coverage_status")!="COMPLETE_VENDOR_ALL_A_CROSS_SECTION"
-        or snapshot.get("market_calendar_verified") is not True):
+        or snapshot.get("financial_coverage_status")!="COMPLETE_VENDOR_ALL_A_CROSS_SECTION"):
         raise ValueError("COMPLETE_EXCHANGE_SOURCE_OR_CALENDAR_REQUIRED")
+    calendar_certified=snapshot.get("market_calendar_verified") is True
+    if not calendar_certified and (
+            not allow_vendor_calendar_research_only
+            or snapshot.get("market_calendar_provenance")!="BAOSTOCK_VENDOR_CALENDAR_ONLY"):
+        raise ValueError("COMPLETE_EXCHANGE_SOURCE_OR_CALENDAR_REQUIRED")
+    # A vendor-only market calendar can produce a preliminary *research*
+    # ranking before first open; it cannot claim official timing or BUY.
+
     reference_day=snapshot.get("reference_close_session")
     if not isinstance(reference_day,str) or not date.fromisoformat(reference_day)<=date(2027,4,30) or date.fromisoformat(reference_day)>=entry_day:
         raise ValueError("REFERENCE_CLOSE_MUST_PRECEDE_NEW_ENTRY")
@@ -197,11 +204,16 @@ def select(snapshot,now,root=ROOT):
         "selected_original_filing_verified_count":sum(r["original_filing_verified"] for r in chosen),
         "all_selected_original_filings_verified":bool(chosen) and all(r["original_filing_verified"] for r in chosen),
         "vendor_vintage_not_independent_original_release_pit_certification":True,
+        "calendar_officially_verified":calendar_certified,
+        "calendar_pending_official_verification":not calendar_certified,
+        "preliminary_vendor_calendar_only":not calendar_certified,
         "separate_fy_adapted_hypothesis_not_q3_replication":True,
         "actual_buy_fills_verified":False,
         "strategy_validated":False,
         "live_buy_eligibility":"NOT_AUTHORIZED",
-        "status":"FROZEN_NEW_REPORT_CANDIDATES_RESEARCH_ONLY" if full else "INSUFFICIENT_NO_EIGHT_NO_THRESHOLD_RELAXATION"
+        "status":("FROZEN_NEW_REPORT_CANDIDATES_RESEARCH_ONLY" if calendar_certified
+                  else "PROVISIONAL_VENDOR_CALENDAR_RESEARCH_ONLY") if full
+                  else "INSUFFICIENT_NO_EIGHT_NO_THRESHOLD_RELAXATION"
     }
     return result
 
