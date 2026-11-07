@@ -146,6 +146,51 @@ def build_reviews(original_bytes: bytes) -> dict:
 
 
 
+def render_research_brief(report: dict) -> str:
+    """Human-readable historical research only; not a Decision Packet or trade advice."""
+    if (report.get("schema") != SCHEMA
+            or report.get("trade_authorized") is not False
+            or report.get("live_buy_eligibility") != "NOT_AUTHORIZED"
+            or report.get("synthetic_risk_fields_used") is not False
+            or not isinstance(report.get("financial_research_source_sha256"), str)
+            or len(report["financial_research_source_sha256"]) != 64):
+        raise ValueError("RESEARCH_BRIEF_SOURCE_NOT_AUTHENTICATED")
+    cases = report.get("cases")
+    if (not isinstance(cases, list) or len(cases) != len(ISSUER_IDS)
+            or {r.get("security_id") for r in cases if isinstance(r, dict)} != ISSUER_IDS
+            or any(r.get("decision_packet") is not None
+                   or r.get("contemplated_action") is not None
+                   or r.get("buy_add_authorized") is not False
+                   or r.get("strategy_alpha_and_untouched_oos_verified") is not False
+                   for r in cases)):
+        raise ValueError("RESEARCH_BRIEF_CANNOT_PROMOTE_TO_DECISION_PACKET")
+    lines = [
+        "# V2.9 真实公司研究摘要（仅历史观察，不授权交易）", "",
+        f"**研究时点：** {report['research_as_of']}；**数据状态：** 不是当前市场行情。",
+        "**研究范围：** 两家定向挑选的历史研究案例；非事前盲选，亦非独立样本外策略验证。",
+        "**交易资格：** NOT_AUTHORIZED；无真实交易计划，未运行实际交易纪律判定。", "",
+    ]
+    for case in cases:
+        lines.extend([
+            f"## {case['issuer']}（{case['security_id']}）", "",
+            f"- 历史参考行情：{case['quote_session']} 收盘参考价 ¥{case['observed_reference_price_cny']:.2f}；供应商标记 PE(TTM) {case['vendor_labeled_pe_ttm']:.2f} 倍。",
+            f"- 2026 Q3 年初至今营收同比：{case['q3_ytd_revenue_yoy_pct']:+.2f}%；H1 同比：{case['h1_ytd_revenue_yoy_pct']:+.2f}%；差值 {case['revenue_growth_acceleration_pp']:+.2f} 个百分点。",
+            f"- 研究来源：财报 {case['source_urls']['report']}；行情 {case['source_urls']['quote']}。",
+            "- 未补足的证明：原始披露时点数据版本核验、PE 分母独立核验、独立 OOS 策略有效性、当前可交易行情及真实风险计划。",
+            "- **当前允许的下一步：** 补证据、继续观察；不得根据本摘要下单。", "",
+        ])
+        if case["quote_and_report_same_calendar_day_release_order_unverified"]:
+            lines.insert(len(lines)-2, "- **额外时间风险：** 报价与财报披露同日，先后顺序未核实。")
+    lines.extend([
+        "## 证据身份与使用限制", "",
+        f"- 原始研究输入 SHA256：`{report['financial_research_source_sha256']}`",
+        f"- 输入位置：`{report['financial_research_source_path']}`",
+        "- SHA256 为输入身份记录，不能替代公告原件核验；该摘要不是 Decision Packet、估值目标价、未来收益预测或仓位建议。",
+        "- **NO BUY / NO ADD：** 证据或纪律证明缺失，不得自动升级为可执行动作。", "",
+    ])
+    return "\n".join(lines)
+
+
 def assess_private_capital_capacity(research: dict, account: dict) -> dict:
     """Bounded cash/stop/lot feasibility for two research issuers, NEVER a buy decision.
 
@@ -287,10 +332,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", type=Path, default=SOURCE)
     parser.add_argument("--out", type=Path, help="Optional local research review JSON, never a trade")
+    parser.add_argument("--brief-out", type=Path,
+                        help="Optional historical Markdown brief; NO BUY and no private account fields")
     parser.add_argument("--private-account-input", type=Path,
                         help="Local-only budget, unverified quotes, stops and permissions; no order")
     args = parser.parse_args()
     report = build_reviews(args.source.read_bytes())
+    if args.brief_out:
+        if args.brief_out.exists():
+            raise ValueError("REFUSE_OVERWRITE_RESEARCH_BRIEF")
+        args.brief_out.write_text(render_research_brief(report), encoding="utf-8")
     if args.private_account_input:
         account = json.loads(args.private_account_input.read_text(encoding="utf-8"))
         report = {"research": report,

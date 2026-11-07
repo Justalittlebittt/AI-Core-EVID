@@ -162,7 +162,10 @@ jobs:
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
-          python scripts/v29_current_issuer_research_review.py > /tmp/v29-actual-issuer-reviews.json
+          python scripts/v29_current_issuer_research_review.py \
+            --out /tmp/v29-actual-issuer-reviews.json \
+            --brief-out /tmp/v29-real-issuer-research-brief.md
+          cat /tmp/v29-real-issuer-research-brief.md >> "$GITHUB_STEP_SUMMARY"
           python scripts/v29_historical_factor_admission.py > /tmp/admission.json
           python - <<'PY'
           import json
