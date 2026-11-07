@@ -94,6 +94,8 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
         self.assertIn("NO BUY / NO ADD", brief)
         self.assertIn("先后顺序未核实", brief)
         self.assertIn("NOT_AUTHORIZED", brief)
+        self.assertIn("非事前盲选", brief)
+        self.assertIn("不能替代公告原件核验", brief)
         self.assertNotIn("建议买入", brief)
         self.assertEqual(brief, render_research_brief(research))
 
