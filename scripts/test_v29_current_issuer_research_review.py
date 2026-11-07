@@ -100,7 +100,8 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
         self.assertIn("后补来源只能改进证据说明", brief)
         self.assertIn("2026-10-16已预告", brief)
         self.assertIn("不能把正式季报视为盈利增长首次公开", brief)
-        self.assertIn("时序仍未认证", brief)
+        self.assertIn("参考报价前传播旁证", brief)
+        self.assertIn("原始文件版本仍未认证", brief)
         self.assertNotIn("建议买入", brief)
         self.assertEqual(brief, render_research_brief(research))
 
