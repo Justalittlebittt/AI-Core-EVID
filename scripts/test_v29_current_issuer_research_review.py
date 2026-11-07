@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from v29_current_issuer_research_review import SOURCE, build_reviews, assess_private_capital_capacity
+from v29_current_issuer_research_review import SOURCE, build_reviews, assess_private_capital_capacity, render_research_brief
 
 
 class CurrentIssuerResearchReviewTests(unittest.TestCase):
@@ -83,6 +83,35 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
         self.assertEqual(a["financial_research_source_sha256"],
                          hashlib.sha256(self.source_bytes).hexdigest())
 
+
+    def test_plain_language_brief_uses_only_source_bound_historical_observations(self):
+        research = build_reviews(self.source_bytes)
+        brief = render_research_brief(research)
+        self.assertIn("三环集团", brief)
+        self.assertIn("睿创微纳", brief)
+        self.assertIn("2026-10-29", brief)
+        self.assertIn(research["financial_research_source_sha256"], brief)
+        self.assertIn("NO BUY / NO ADD", brief)
+        self.assertIn("先后顺序未核实", brief)
+        self.assertIn("NOT_AUTHORIZED", brief)
+        self.assertNotIn("建议买入", brief)
+        self.assertEqual(brief, render_research_brief(research))
+
+    def test_plain_language_brief_fails_closed_on_trade_promotion(self):
+        original = build_reviews(self.source_bytes)
+        for field, value in (("trade_authorized", True),
+                             ("live_buy_eligibility", "AUTHORIZED")):
+            altered = copy.deepcopy(original)
+            altered[field] = value
+            with self.assertRaisesRegex(ValueError, "RESEARCH_BRIEF_SOURCE"):
+                render_research_brief(altered)
+        for field, value in (("decision_packet", {"decision": "BUY"}),
+                             ("contemplated_action", "BUY"),
+                             ("buy_add_authorized", True)):
+            altered = copy.deepcopy(original)
+            altered["cases"][0][field] = value
+            with self.assertRaisesRegex(ValueError, "RESEARCH_BRIEF_CANNOT_PROMOTE"):
+                render_research_brief(altered)
 
     def capacity_fixture(self):
         return {
