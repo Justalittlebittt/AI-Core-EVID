@@ -182,6 +182,11 @@ def render_research_brief(report: dict) -> str:
         if case["quote_and_report_same_calendar_day_release_order_unverified"]:
             lines.insert(len(lines)-2, "- **额外时间风险：** 报价与财报披露同日，先后顺序未核实。")
     lines.extend([
+        "## 事后原始公告核对（不升级PIT认证）", "",
+        "- 2026-11-07追溯核查：research/V2.9_TWO_ISSUER_ORIGINAL_DISCLOSURE_CHECK_20261107.md",
+        "- 三环集团巨潮原始PDF已识别、部分主要字段已交叉核对；同日15:00报价与官方精确发布时序仍未认证。",
+        "- 睿创微纳上交所公告列表标示2026-10-27三季报；原始PDF字节及完整财务字段未独立封存核验。",
+        "- 后补来源只能改进证据说明，不能追溯认证原始研究的披露时点、PE历史分母或独立OOS。", "",
         "## 证据身份与使用限制", "",
         f"- 原始研究输入 SHA256：`{report['financial_research_source_sha256']}`",
         f"- 输入位置：`{report['financial_research_source_path']}`",
