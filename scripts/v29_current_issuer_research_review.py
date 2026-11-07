@@ -167,7 +167,7 @@ def render_research_brief(report: dict) -> str:
     lines = [
         "# V2.9 真实公司研究摘要（仅历史观察，不授权交易）", "",
         f"**研究时点：** {report['research_as_of']}；**数据状态：** 不是当前市场行情。",
-        "**研究范围：** 两家事先选定用于研究的公司；不是独立样本外策略验证。",
+        "**研究范围：** 两家定向挑选的历史研究案例；非事前盲选，亦非独立样本外策略验证。",
         "**交易资格：** NOT_AUTHORIZED；无真实交易计划，未运行实际交易纪律判定。", "",
     ]
     for case in cases:
@@ -185,7 +185,7 @@ def render_research_brief(report: dict) -> str:
         "## 证据身份与使用限制", "",
         f"- 原始研究输入 SHA256：`{report['financial_research_source_sha256']}`",
         f"- 输入位置：`{report['financial_research_source_path']}`",
-        "- 该摘要是研究案例，不是 Decision Packet、估值目标价、未来收益预测或仓位建议。",
+        "- SHA256 为输入身份记录，不能替代公告原件核验；该摘要不是 Decision Packet、估值目标价、未来收益预测或仓位建议。",
         "- **NO BUY / NO ADD：** 证据或纪律证明缺失，不得自动升级为可执行动作。", "",
     ])
     return "\n".join(lines)
