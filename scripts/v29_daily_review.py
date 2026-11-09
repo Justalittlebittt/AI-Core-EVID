@@ -75,6 +75,10 @@ def run_daily(positions, at, expected_session, quotes=None, broker_status=None,
             "security_id": p["security_id"],
             "priority": priority, "decision": label,
             "quote_status": qstate, "quote_timestamp": p["quote_timestamp"],
+            "quote_source": p["quote_source"],
+            "market_data_origin": ("UNOFFICIAL_PUBLIC_PROVIDER_NOT_INDEPENDENTLY_VERIFIED"
+                                   if mode == "PUBLIC_UNOFFICIAL_QUOTE"
+                                   else p["market_data_origin"]),
             "unrealized_return_fraction": p["unrealized_return_fraction"],
             "exit_reasons": execution["exit_reason"],
             "sellable_quantity": execution["sellable_quantity"],
@@ -116,7 +120,7 @@ def render_text(report):
         ret = ("未知" if row["unrealized_return_fraction"] is None
                else f"{row['unrealized_return_fraction']:+.2%}")
         lines.append(f"{row['security_id']} ｜ {title} ｜ 未实现收益：{ret}")
-        lines.append(f"  行情：{row['quote_status']} ｜ 可卖数量：{row['sellable_quantity'] if row['sellable_quantity'] is not None else '未知'} ｜ 执行：{row['execution_status']}")
+        lines.append(f"  行情：{row['quote_status']} ｜ 来源：{row['market_data_origin']}（{row['quote_source'] or '缺失'}） ｜ 可卖数量：{row['sellable_quantity'] if row['sellable_quantity'] is not None else '未知'} ｜ 执行：{row['execution_status']}")
         if row["exit_reasons"]:
             lines.append("  退出触发：" + ", ".join(row["exit_reasons"]))
     if report["reference_session_only"]:
