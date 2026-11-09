@@ -58,6 +58,27 @@ class DailyReviewTests(unittest.TestCase):
         self.assertEqual(x["rows"][0]["decision"],"UNASSESSABLE_QUOTE")
         self.assertEqual(x["data_mode"],"PUBLIC_UNOFFICIAL_QUOTE")
 
+    def test_public_provider_provenance_survives_daily_report(self):
+        from v29_position_watchlist import evaluate_watchlist
+        def public(positions, at, expected_session, max_quote_age_hours):
+            result=evaluate_watchlist(positions,[quote(source="VERIFIED_IMPORT")],
+                                      at,max_quote_age_hours)
+            result["market_feed"]={"provider":"TENCENT_FINANCE_UNOFFICIAL_TILDE_ENDPOINT"}
+            return result
+        report=run_daily([pos()],AT,"2026-10-26",live_fetcher=public)
+        row=report["rows"][0]
+        self.assertEqual(row["quote_source"],"VERIFIED_IMPORT")
+        self.assertEqual(row["market_data_origin"],
+                         "UNOFFICIAL_PUBLIC_PROVIDER_NOT_INDEPENDENTLY_VERIFIED")
+        self.assertIn("UNOFFICIAL_PUBLIC_PROVIDER",render_text(report))
+
+    def test_supplied_quote_provenance_is_not_relabelled_public(self):
+        report=run_daily([pos()],AT,"2026-10-26",[quote(source="USER_SUPPLIED")])
+        row=report["rows"][0]
+        self.assertEqual(row["quote_source"],"USER_SUPPLIED")
+        self.assertEqual(row["market_data_origin"],
+                         "SUPPLIED_SNAPSHOT_NOT_INDEPENDENTLY_VERIFIED")
+
     def test_no_broker_snapshot_is_unknown(self):
         x=run_daily([pos()],AT,"2026-10-26",[quote()])
         self.assertEqual(x["rows"][0]["execution_status"],"BROKER_SELLABLE_QUANTITY_MISSING")
