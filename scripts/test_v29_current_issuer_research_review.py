@@ -104,6 +104,8 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
         self.assertIn("9.91–10.91亿元", brief)
         self.assertIn("实际10.4033亿元", brief)
         self.assertIn("不等同于Q3独立共识或已认证超预期", brief)
+        self.assertIn("F10同一路径检索摘要与重开页面", brief)
+        self.assertIn("不可据此计算季度预期差", brief)
         self.assertIn("参考报价前传播旁证", brief)
         self.assertIn("原始文件版本仍未认证", brief)
         self.assertIn("巨潮原始三季报PDF", brief)
