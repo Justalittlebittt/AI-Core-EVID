@@ -104,6 +104,8 @@ class CurrentIssuerResearchReviewTests(unittest.TestCase):
         self.assertIn("不等同于Q3共识或已认证超预期", brief)
         self.assertIn("参考报价前传播旁证", brief)
         self.assertIn("原始文件版本仍未认证", brief)
+        self.assertIn("巨潮原始三季报PDF", brief)
+        self.assertIn("原件二进制字节、历史版本", brief)
         self.assertNotIn("建议买入", brief)
         self.assertEqual(brief, render_research_brief(research))
 
