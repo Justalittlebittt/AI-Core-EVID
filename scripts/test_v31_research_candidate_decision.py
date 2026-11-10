@@ -45,7 +45,7 @@ class RealCandidateReportTests(unittest.TestCase):
         self.assertIn("SZSE:300199", text)
         self.assertIn("SSE:603256", text)
         self.assertIn("54,558", text)
-        self.assertIn("不是最新行情", text) if False else self.assertIn("非最新行情", text)
+        self.assertIn("非最新行情", text)
         self.assertIn("不授权买入", text)
         self.assertIn("NO_ACTION_INSUFFICIENT_PREDICTIVE_EVIDENCE", text)
         self.assertEqual(text, render(build()))
