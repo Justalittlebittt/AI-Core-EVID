@@ -5,7 +5,7 @@
   "registered_date": "2026-11-10",
   "sample": {
     "membership_authority": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
-    "expected_source_sha256": "52087fa1e68577fae214f8fa18ee60db7206fd839e195b12ed87e39ea433700e3",
+    "expected_source_sha256": "52087fa1e68577fae214f8fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1",
     "frame_dates": [
       "2023-01-03",
       "2024-01-02"
