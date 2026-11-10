@@ -69,7 +69,7 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         self.assertFalse(result["trade_authorized"])
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
         self.assertTrue(all(x["decision"]=="BLOCK_BUY" for x in result["stocks"]))
-        data["account"]["cash_cny"]=200
+        data["account"]["cash_cny"]=500
         result=build(private=data)
         self.assertFalse(result["private_account_and_stop_gate"]["paper_capacity_feasible"])
         self.assertIn("CALLER_SUPPLIED_CAPACITY_CHECK_FAILED",result["blocking_reasons"])
