@@ -841,6 +841,7 @@ jobs:
              f"2023年度月度均值差：{pp(d['year_2023_and_2024_mean_excess']['2023'])}。",
              f"2024年度月度均值差：{pp(d['year_2023_and_2024_mean_excess']['2024'])}。",
              f"入选净收益减沪深300价格指数收益（次要）：{pp(d['secondary_mean_selected_net_minus_csi300_price'])}。",
+             f"行情身份/交易日历/复权标记不一致的股票：{d['instrument_bar_integrity_error_count']}（仍保留原样本身份）。",
              '2026年事后取得的复权价格、未经认证的实际限价成交、缺少官方全收益基准；并非独立盲测。',
              '**NOT_AUTHORIZED / NO BUY。**']
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as fh:fh.write('\n'.join(out)+'\n')
