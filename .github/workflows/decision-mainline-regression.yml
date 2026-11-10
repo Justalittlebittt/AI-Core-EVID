@@ -127,6 +127,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_fy2026_capture_live.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_forward_paper.py' -v
           python -m unittest discover -s scripts -p 'test_v31_research_candidate_decision.py' -v
+          python -m unittest discover -s scripts -p 'test_v31_low_volatility_2023_2024_one_shot.py' -v
           python scripts/v31_research_candidate_decision.py >> "$GITHUB_STEP_SUMMARY"
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
@@ -785,5 +786,90 @@ jobs:
         with:
           name: v31-one-shot-432-f10-core-source
           path: /tmp/v31-f10/
+          if-no-files-found: warn
+          retention-days: 14
+
+  v31-one-shot-low-volatility-historical:
+    # One bounded 2023/24 historical research test. The archived rule and
+    # source hash were committed before any outcomes were queried.
+    # NOT a new monitoring or future-scheduled workflow; never BUY.
+    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): one-shot lowvol 2023-24') }}"
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Preserve the one-off precommitted rule and forbid overwrites
+        id: gate
+        run: |
+          test -f research/V3.1_LOW_VOLATILITY_2023_2024_HISTORICAL_ONE_SHOT_SPEC_20261110.json
+          if test -f research/v31_2023_2024_lowvol_one_shot/RESULT.json; then
+            echo "PRIOR_HISTORICAL_RESULT_EXISTS_NO_RESELECTION"
+            exit 0
+          fi
+          echo 'run=true' >> "$GITHUB_OUTPUT"
+      - name: Install historical price source package (free)
+        if: steps.gate.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4
+      - name: Execute fixed low-absolute-volatility hypothesis
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts -p 'test_v31_low_volatility_2023_2024_one_shot.py' -v
+          python scripts/v31_low_volatility_2023_2024_one_shot.py --out /tmp/v31-historical-lowvol
+          python - <<'PY'
+          from pathlib import Path
+          import gzip,hashlib,json,os
+          p=Path('/tmp/v31-historical-lowvol')
+          d=json.loads((p/'RESULT.json').read_text())
+          r=gzip.decompress((p/'RAW_BAOSTOCK_SOURCE.json.gz').read_bytes())
+          assert hashlib.sha256(r).hexdigest()==d['raw_source_sha256']
+          assert d['requested_signal_months']==20
+          assert not d['trade_authorized']
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          assert d['prior_factor_rv10_over_rv60_tested_again'] is False
+          out=['# V3.1 2023—2024低绝对波动率假说：一次性历史实测','',
+               '历史上固定两个独立年度的128股样本，仅按信号日前60日历史收益波动排序。',
+               f"信号月：{d['requested_signal_months']}；覆盖充分月：{d['valid_descriptive_months']}；入选事件：{d['selected_event_count']}；实际取得收益代理：{d['selected_resolved_count']}。",
+               f"预声明判定：{d['status']}。"]
+          def pp(v):
+              return '不可评估' if v is None else f'{100*v:+.3f}个百分点'
+          out += [
+             f"入选组合净收益与同期样本净收益的等月份差：{pp(d['primary_monthly_equal_weight_excess_selected_net_vs_sample_net'])}。",
+             f"2023年度月度均值差：{pp(d['year_2023_and_2024_mean_excess']['2023'])}。",
+             f"2024年度月度均值差：{pp(d['year_2023_and_2024_mean_excess']['2024'])}。",
+             f"入选净收益减沪深300价格指数收益（次要）：{pp(d['secondary_mean_selected_net_minus_csi300_price'])}。",
+             '2026年事后取得的复权价格、未经认证的实际限价成交、缺少官方全收益基准；并非独立盲测。',
+             '**NOT_AUTHORIZED / NO BUY。**']
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as fh:fh.write('\n'.join(out)+'\n')
+          (p/'SUMMARY.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
+          print('HISTORICAL_LOWVOL_RESULT',d['status'],'MONTHS',d['valid_descriptive_months'],
+                'EXCESS',d['primary_monthly_equal_weight_excess_selected_net_vs_sample_net'])
+          PY
+      - name: Archive source and computed outcomes exactly once
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          dest="research/v31_2023_2024_lowvol_one_shot"
+          test ! -f "$dest/RESULT.json"
+          mkdir -p "$dest"
+          cp /tmp/v31-historical-lowvol/RESULT.json "$dest/"
+          cp /tmp/v31-historical-lowvol/SUMMARY.md "$dest/"
+          cp /tmp/v31-historical-lowvol/RAW_BAOSTOCK_SOURCE.json.gz "$dest/"
+          cp /tmp/v31-historical-lowvol/OBSERVATIONS.json.gz "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest"
+          git commit -m "research(v31): seal 2023-24 lowvol retrospective result, no BUY [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Preserve output if archival write fails
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-lowvol-2023-24-historical-test
+          path: /tmp/v31-historical-lowvol/
           if-no-files-found: warn
           retention-days: 14
