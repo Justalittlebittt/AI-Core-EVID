@@ -676,3 +676,64 @@ jobs:
           path: /tmp/v31-current/
           if-no-files-found: warn
           retention-days: 14
+  v31-once-financial-quality-recheck:
+    # Apply the already implemented original-source quality audit to the live
+    # 2026 Q3/H1 snapshot. No new factor/ranking or recurring action.
+    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): quality audit of current finance snapshot') }}"
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Replay saved source and verify preliminary research flags
+        run: |
+          set -euo pipefail
+          root="research/v31_20261110_current_full_A_research"
+          test -f "$root/FINANCIAL_REVIEW.json"
+          test ! -f "$root/QUALITY_AUDIT.json"
+          mkdir -p /tmp/v31-source
+          tar -xzf "$root/RAW_PUBLIC_SOURCE.tar.gz" -C /tmp/v31-source
+          python scripts/v29_growth_raw_quality_audit.py \
+            --review-json "$root/FINANCIAL_REVIEW.json" \
+            --raw-dir /tmp/v31-source/raw-financial \
+            --output /tmp/v31-source/QUALITY_AUDIT.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.load(open('/tmp/v31-source/QUALITY_AUDIT.json'))
+          n=a['counts']['reviewed_a_tier']
+          r=a['quality_rows']
+          assert n==432 and len(r)==n
+          assert all(x['buy_eligibility']=='NOT_AUTHORIZED' for x in r)
+          clean=[x for x in r if not x['review_flags']]
+          st=[x for x in r if 'ST_NAME_REQUIRES_EXCHANGE_STATUS_CONFIRMATION' in x['review_flags']]
+          out=['# 2026-11-10 原始财务行二次质量检查（只读、非交易）','',
+               '检查来源：本仓库已封存的2026 Q3和H1东财原始响应；不重新请求或篡改财务数据。',
+               f'初筛A档：{n}只；存在ST名称提示：{len(st)}只；本次可检查字段未触发标记：{len(clean)}只。',
+               '这不是原始公告时点认证，也不证明任何个股具有预测优势。','',
+               '## 数据质量警告计数','','| 检查项 | 数量 |','|---|---:|']
+          for k,v in sorted(a['counts'].items()):
+              out.append(f'| {k} | {v} |')
+          out.extend(['','## 风险提示','',
+                      'ST名称需要进一步核实交易所身份及状态；不得把初筛A档解释为低风险、可买入。',
+                      '扣非EPS、现金转换与累计毛利变化仅为质量诊断，并非预测因子。',
+                      '**NO BUY / NOT_AUTHORIZED。**',''])
+          (Path('/tmp/v31-source')/'QUALITY_REVIEW.md').write_text('\n'.join(out),encoding='utf-8')
+          import os
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('\n'.join(out))
+          print('QUALITY_REPLAY',n,'QUALITY_UNFLAGGED',len(clean),'ST_NAME_WARNINGS',len(st))
+          PY
+      - name: Persist bounded quality result
+        run: |
+          set -euo pipefail
+          root="research/v31_20261110_current_full_A_research"
+          test ! -f "$root/QUALITY_AUDIT.json"
+          cp /tmp/v31-source/QUALITY_AUDIT.json /tmp/v31-source/QUALITY_REVIEW.md "$root/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$root/QUALITY_AUDIT.json" "$root/QUALITY_REVIEW.md"
+          git commit -m "research(v31): current Q3 quality audit, no trading authorization [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
