@@ -478,7 +478,7 @@ jobs:
     # A one-time, immediately computable HISTORICAL replication of the frozen
     # 2025 growth+ROE rule on an independently sampled 2026 membership frame.
     # No future waiting, no repeating scheduler, no alpha/BUY promotion.
-    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): one-off 2026 cross-year research')
+    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): one-off 2026 cross-year research') }}"
     needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 15
