@@ -1,0 +1,44 @@
+{
+  "schema": "AI_CORE_EVID_V2_8_4_PROSPECTIVE_FINALIZATION_RECEIPT_V1",
+  "version": "V2.8.4",
+  "status": "FINALIZED_WITH_BLOCKED_POSITIVE_RECORD",
+  "run_id": "42782684770_1",
+  "observation_receipt": "V2.8.4_PROSPECTIVE_OBSERVATION_RECEIPT_42782684770_1.json",
+  "observation_commit_sha": "e9b7347d8ce43157245ab5bba3d31401cfeeecdc",
+  "authoritative_observed_at_utc": "2026-11-10T08:27:47Z",
+  "successful_observation_rows": 2,
+  "ledger_rows_before": 18,
+  "ledger_rows_appended": 2,
+  "ledger_duplicate_noops": 0,
+  "ledger_rows_after": 20,
+  "effective_positive_events": [],
+  "blocked_incomplete_positive_records": [
+    {
+      "canonical_security_id": "SZSE:002310",
+      "issuer_legal_name": "",
+      "issuer_identity_basis": "",
+      "document_type": "CNINFO_ISSUER_DISCLOSURE",
+      "announcement_id": "1225664588",
+      "disclosure_date": "2026-11-10",
+      "source_object_sha256": "fd1a66efb1cce3226a847eb1c3e6ff3b3105b6c0fa24b546170af833a3fef952",
+      "page_number": 3,
+      "evidence_text": "关于本次GPU 采购事项，公司已就相关融资渠道安排、下游订单等事项开",
+      "matched_ai_role": [
+        "gpu"
+      ],
+      "matched_commerciality": [
+        "订单"
+      ],
+      "classification_state": "ELIGIBLE_AI_CORE",
+      "authoritative_observed_at_utc": "2026-11-10T08:27:47Z",
+      "record_complete": false,
+      "eligibility_effect": "BLOCKED_INCOMPLETE_POSITIVE_EVIDENCE_RECORD"
+    }
+  ],
+  "historical_backfill": false,
+  "same_day_eligibility_activation": false,
+  "price_or_return_data_consumed": false,
+  "setup_or_episode_authorized": false,
+  "live_authorized": false,
+  "receipt_sha256": "e7271cd28c3eccae00ec7ec530a71c2efa8d87848f7b4a62cfde12e4a2663393"
+}
