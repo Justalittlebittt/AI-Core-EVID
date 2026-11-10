@@ -38,6 +38,8 @@ on:
       - 'scripts/test_v29_fy2026_forward_paper.py'
       - 'scripts/v31_research_candidate_decision.py'
       - 'scripts/test_v31_research_candidate_decision.py'
+      - 'scripts/v31_cross_year_growth_roe_replication.py'
+      - 'scripts/test_v31_cross_year_growth_roe_replication.py'
       - 'research/V2.9_FY2026_NEW_VINTAGE_ADAPTED_GROWTH_PREOUTCOME_20261105.json'
       - 'scripts/test_v29_growth_candidate_snapshot.py'
       - 'scripts/v29_daily_review.py'
@@ -91,6 +93,8 @@ on:
       - 'scripts/test_v29_fy2026_forward_paper.py'
       - 'scripts/v31_research_candidate_decision.py'
       - 'scripts/test_v31_research_candidate_decision.py'
+      - 'scripts/v31_cross_year_growth_roe_replication.py'
+      - 'scripts/test_v31_cross_year_growth_roe_replication.py'
       - 'research/V2.9_FY2026_NEW_VINTAGE_ADAPTED_GROWTH_PREOUTCOME_20261105.json'
       - '.github/workflows/decision-mainline-regression.yml'
       - 'scripts/v29_eight_portfolio_capacity.py'
@@ -123,6 +127,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_fy2026_capture_live.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_forward_paper.py' -v
           python -m unittest discover -s scripts -p 'test_v31_research_candidate_decision.py' -v
+          python -m unittest discover -s scripts -p 'test_v31_cross_year_growth_roe_replication.py' -v
           python scripts/v31_research_candidate_decision.py >> "$GITHUB_STEP_SUMMARY"
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
@@ -466,5 +471,92 @@ jobs:
         with:
           name: v29-fy2026-new-financial-vintage-eight-paper-archive
           path: /tmp/v29-fy2026-eight-paper/
+          if-no-files-found: warn
+          retention-days: 30
+
+  v31-2026-one-shot-cross-year-replication:
+    # A one-time, immediately computable HISTORICAL replication of the frozen
+    # 2025 growth+ROE rule on an independently sampled 2026 membership frame.
+    # No future waiting, no repeating scheduler, no alpha/BUY promotion.
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): one-off 2026 cross-year research')
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Refuse to overwrite an earlier source vintage
+        id: gate
+        run: |
+          if test -e research/v31_2026_cross_year_growth_roe/RESULT.json; then
+            echo 'ONE_SHOT_2026_RESULT_ALREADY_SEALED'
+            exit 0
+          fi
+          echo 'run=true' >> "$GITHUB_OUTPUT"
+      - name: Install free historical quote adapter
+        if: steps.gate.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check baostock==0.9.4 pandas numpy
+      - name: Execute one frozen-rule cross-year retrospective test without relabeling OOS
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python -m unittest discover -s scripts -p 'test_v31_cross_year_growth_roe_replication.py' -v
+          python scripts/v31_cross_year_growth_roe_replication.py --out /tmp/v31-2026-crossyear
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          p=Path('/tmp/v31-2026-crossyear')
+          d=json.loads((p/'RESULT.json').read_text())
+          raw=gzip.decompress((p/'RAW_SOURCE.json.gz').read_bytes())
+          assert hashlib.sha256(raw).hexdigest()==d['source_raw_sha256']
+          assert d['cohort_size']==len(d['rows'])==128
+          assert not d['independent_untouched_oos']
+          assert not d['strategy_validated'] and not d['trade_authorized']
+          assert d['live_buy_eligibility']=='NOT_AUTHORIZED'
+          print('V31_CROSS_YEAR_HISTORICAL_RESEARCH', d['primary']['status'],
+                'SELECTED',d['selected_count'],
+                'FULL_MATCHED_GROUPS',d['complete_comparison_day_group_count'],
+                '/',d['comparison_day_group_count'])
+          PY
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open('/tmp/v31-2026-crossyear/RESULT.json'))
+          print('# V3.1 2026年跨年度回顾性研究（非盲测；非交易指令）')
+          print('2026年初固定身份样本：',d['cohort_size'])
+          print('入场合格：',d['entry_eligible_count'],'；规则入选：',d['selected_count'])
+          print('同日匹配组完整：',d['complete_comparison_day_group_count'],'/',d['comparison_day_group_count'])
+          print('研究状态：',d['primary']['status'])
+          if 'selected_minus_same_day_random_mean_net' in d['primary']:
+              print('扣费后相对同日随机选股平均净收益差：',
+                    f"{100*d['primary']['selected_minus_same_day_random_mean_net']:+.3f}个百分点")
+          print('非独立盲测、非原始披露时点财务版本、非分红全收益、不是实际可成交记录。')
+          print('**NOT_AUTHORIZED / NO BUY**')
+          PY
+      - name: Preserve source and results exactly once
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          dest="research/v31_2026_cross_year_growth_roe"
+          if test -e "$dest/RESULT.json"; then
+            echo 'PREVIOUS_RESULT_PRESENT_NO_OVERWRITE'
+            exit 1
+          fi
+          mkdir -p "$dest"
+          cp /tmp/v31-2026-crossyear/RESULT.json "$dest/"
+          cp /tmp/v31-2026-crossyear/RAW_SOURCE.json.gz "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest"
+          git commit -m "research(v31): archive 2026 cross-year retrospective results, no BUY [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Keep source evidence if repository write fails
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-2026-cross-year-real-research
+          path: /tmp/v31-2026-crossyear/
           if-no-files-found: warn
           retention-days: 30
