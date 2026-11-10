@@ -559,3 +559,120 @@ jobs:
           path: /tmp/v31-2026-crossyear/
           if-no-files-found: warn
           retention-days: 30
+
+  v31-one-shot-current-a-share-research:
+    # Only a source-bound CURRENT descriptive list. This is not a new alpha
+    # factor, never reopens frozen outcomes, never trades or rates BUY.
+    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): current full A-share research snapshot') }}"
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Require one unmodified source snapshot
+        id: gate
+        run: |
+          if test -f research/v31_20261110_current_full_A_research/FINANCIAL_REVIEW.json; then
+            echo "RESEARCH_SNAPSHOT_EXISTS_NO_OVERWRITE"
+            exit 0
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+      - name: Capture latest completed fiscal period and prior period using existing collectors
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          mkdir -p /tmp/v31-current
+          python scripts/v29_growth_persistence_review.py \
+            --latest-period 2026-09-30 \
+            --prior-period 2026-06-30 \
+            --notice-before 2026-11-10 \
+            --output /tmp/v31-current/FINANCIAL_REVIEW.json \
+            --raw-dir /tmp/v31-current/raw-financial \
+            --queue-limit 20 > /tmp/v31-current/financial_stdout.json
+          python - <<'PY'
+          import json
+          r=json.load(open("/tmp/v31-current/FINANCIAL_REVIEW.json"))
+          assert r["latest_period"]=="2026-09-30"
+          assert r["prior_period"]=="2026-06-30"
+          assert r["notice_cutoff_exclusive"]=="2026-11-10"
+          assert r["strategy_validated"] is False and r["live_buy_eligibility"]=="NOT_AUTHORIZED"
+          assert len(r["full_research_list"])==r["counts"]["both_positive"]
+          assert len({x["security_id"] for x in r["full_research_list"]})==len(r["full_research_list"])
+          print("CAPTURED_REAL_FINANCIAL_SOURCE_COHORT",r["counts"])
+          PY
+      - name: Attach public indicated market context without trading authorization
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          if python scripts/v29_growth_market_context.py \
+            --review-json /tmp/v31-current/FINANCIAL_REVIEW.json \
+            --output /tmp/v31-current/MARKET_CONTEXT.json \
+            --raw-dir /tmp/v31-current/raw-market \
+            --max-age-minutes 180 \
+            --queue-limit 20 > /tmp/v31-current/market_stdout.json; then
+            echo "MARKET_CONTEXT_CAPTURED" > /tmp/v31-current/market_status.txt
+          else
+            echo "MARKET_CONTEXT_UNAVAILABLE_DO_NOT_INFER_PRICES" > /tmp/v31-current/market_status.txt
+            rm -f /tmp/v31-current/MARKET_CONTEXT.json
+          fi
+      - name: Summarize evidence and check no buy authorization
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('/tmp/v31-current')
+          d=json.loads((p/'FINANCIAL_REVIEW.json').read_text())
+          market=p/'MARKET_CONTEXT.json'
+          m=json.loads(market.read_text()) if market.exists() else None
+          if m is not None:
+              assert m['live_buy_eligibility']=='NOT_AUTHORIZED' and m['strategy_validated'] is False
+              assert m['latest_finance_period']=='2026-09-30'
+          assert all(r['buy_eligibility']=='NOT_AUTHORIZED' for r in d['full_research_list'])
+          out=['# 2026-11-10 全A股两期财务研究快照（不代表推荐买入）',
+               '财务报表：2026 Q3与H1；披露截止：2026-11-09（不含10日）；',
+               '供应商数据实际采集于2026-11-10，**不是截至11月9日的认证原始版本**。',
+               f"两期持续正增长：{d['counts']['both_positive']}；无指定财务风险标记：{d['counts']['both_positive_no_accounting_flags']}。",
+               '研究队列为股票代码稳定排序，**不是预测收益排序**。',
+               f"行情参考：{p.joinpath('market_status.txt').read_text().strip() if p.joinpath('market_status.txt').exists() else 'NOT_CAPTURED'}。",
+               '| 股票代码 | 公司 | 最近营收同比 | 最近归母利润同比 | 行情参考 |',
+               '|---|---|---:|---:|---|']
+          quotes={x['security_id']:x for x in m['full_research_list']} if m else {}
+          for row in d['review_queue']:
+              q=quotes.get(row['security_id'])
+              px= f"{q['last_indicated_price_yuan']} @ {q['quote_time']}" if q and q.get('market_context_status')=='FRESH_OBSERVED_VENDOR_QUOTE' else '不可验证'
+              out.append(f"| {row['security_id']} | {row['name']} | {row['revenue_yoy_pct_latest']:.2f}% | {row['profit_yoy_pct_latest']:.2f}% | {px} |")
+          out.extend(['','未经独立策略验证，市场行情来源非交易所认证，原始报告版本可能存在修订，ST及实际成交未独立核实。','**决策：NOT_AUTHORIZED / NO BUY。**'])
+          (p/'REPORT.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('\n'.join(out)+'\n')
+          print('FULL_A_RESEARCH_CURRENT_SNAPSHOT_COUNTS',d['counts'])
+          PY
+      - name: Archive original public source bytes and descriptive output once
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          dest="research/v31_20261110_current_full_A_research"
+          test ! -e "$dest/FINANCIAL_REVIEW.json"
+          mkdir -p "$dest"
+          cp /tmp/v31-current/FINANCIAL_REVIEW.json /tmp/v31-current/REPORT.md /tmp/v31-current/market_status.txt "$dest/"
+          if test -f /tmp/v31-current/MARKET_CONTEXT.json; then
+            cp /tmp/v31-current/MARKET_CONTEXT.json "$dest/"
+          fi
+          tar -C /tmp/v31-current -czf "$dest/RAW_PUBLIC_SOURCE.tar.gz" raw-financial
+          if test -d /tmp/v31-current/raw-market; then
+            tar -C /tmp/v31-current -czf "$dest/RAW_MARKET_SOURCE.tar.gz" raw-market
+          fi
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest"
+          git commit -m "research(v31): capture current A-share descriptive snapshot, no BUY [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Keep capture even if repository write fails
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-current-full-a-research
+          path: /tmp/v31-current/
+          if-no-files-found: warn
+          retention-days: 14
