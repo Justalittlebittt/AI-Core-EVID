@@ -40,6 +40,8 @@ on:
       - 'scripts/test_v31_research_candidate_decision.py'
       - 'scripts/v31_cross_year_growth_roe_replication.py'
       - 'scripts/test_v31_cross_year_growth_roe_replication.py'
+      - 'scripts/v31_eight_closed_session_execution_context.py'
+      - 'scripts/test_v31_eight_closed_session_execution_context.py'
       - 'research/V2.9_FY2026_NEW_VINTAGE_ADAPTED_GROWTH_PREOUTCOME_20261105.json'
       - 'scripts/test_v29_growth_candidate_snapshot.py'
       - 'scripts/v29_daily_review.py'
@@ -95,6 +97,8 @@ on:
       - 'scripts/test_v31_research_candidate_decision.py'
       - 'scripts/v31_cross_year_growth_roe_replication.py'
       - 'scripts/test_v31_cross_year_growth_roe_replication.py'
+      - 'scripts/v31_eight_closed_session_execution_context.py'
+      - 'scripts/test_v31_eight_closed_session_execution_context.py'
       - 'research/V2.9_FY2026_NEW_VINTAGE_ADAPTED_GROWTH_PREOUTCOME_20261105.json'
       - '.github/workflows/decision-mainline-regression.yml'
       - 'scripts/v29_eight_portfolio_capacity.py'
@@ -127,6 +131,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_fy2026_capture_live.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_forward_paper.py' -v
           python -m unittest discover -s scripts -p 'test_v31_research_candidate_decision.py' -v
+          python -m unittest discover -s scripts -p 'test_v31_eight_closed_session_execution_context.py' -v
           python -m unittest discover -s scripts -p 'test_v31_low_volatility_2023_2024_one_shot.py' -v
           python scripts/v31_research_candidate_decision.py >> "$GITHUB_STEP_SUMMARY"
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
@@ -872,5 +877,87 @@ jobs:
         with:
           name: v31-lowvol-2023-24-historical-test
           path: /tmp/v31-historical-lowvol/
+          if-no-files-found: warn
+          retention-days: 14
+
+  v31-one-shot-eight-real-postclose:
+    # Do not repeat an entire strategy/alpha backtest. Observe the 2026-11-10
+    # closed session for only the frozen eight, with source proof and no BUY.
+    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): verify real eight postclose') }}"
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Never overwrite the sealed postclose sample
+        id: gate
+        run: |
+          if test -e research/v31_20261110_eight_real_closed_session/RESULT.json; then
+            echo "PRIOR_EOD_SOURCE_ALREADY_SAVED"
+            exit 0
+          fi
+          echo 'execute=true' >> "$GITHUB_OUTPUT"
+      - name: Retrieve eight free vendor EOD observations
+        if: steps.gate.outputs.execute == 'true'
+        run: |
+          python -m pip install --disable-pip-version-check baostock==0.9.4
+          python -m unittest discover -s scripts -p 'test_v31_eight_closed_session_execution_context.py' -v
+          python scripts/v31_eight_closed_session_execution_context.py --out /tmp/v31-real-postclose
+      - name: Check source seal and summarize verified observable execution constraints
+        if: steps.gate.outputs.execute == 'true'
+        run: |
+          python - <<'PY'
+          import gzip,hashlib,json,os
+          from pathlib import Path
+          d=Path('/tmp/v31-real-postclose')
+          r=json.loads((d/'RESULT.json').read_text())
+          raw=gzip.decompress((d/'RAW_EIGHT_EOD_SOURCE.json.gz').read_bytes())
+          assert hashlib.sha256(raw).hexdigest()==r['original_raw_source_sha256']
+          assert r['sample_count']==8
+          assert not r['trade_authorized'] and r['live_buy_eligibility']=='NOT_AUTHORIZED'
+          assert not r['buyer_side_order_limit_or_halt_tradability_certified']
+          status={s:sum(x['status']==s for x in r['rows']) for s in sorted(set(x['status'] for x in r['rows']))}
+          lines=[
+              '# 2026-11-10 固定8股当日收盘行情与交易约束检查',
+              '',
+              '原策略没有独立预测优势证明，本报告不是买入单，不推断用户现金或账户权限。',
+              f"第三方当日有价格且非ST、有成交量的股票：{r['nonst_positive_volume_quote_count']}/8。",
+              f"最低一手收盘名义金额合计（仅8股全部有效时）：{r['basket_min_lot_eod_notional_cny_if_complete']}元。",
+              '不同于11月2日历史价格及11月10日盘中参考价。BaoStock并非交易所成交认证。',
+              '',
+              '| 股票 | 收盘日期 | 当日收盘参考价 | 100股代理金额 | 市场状态 |',
+              '|---|---|---:|---:|---|'
+          ]
+          for x in r['rows']:
+              lines.append(f"| {x['security_id']} | {x['latest_vendor_bar_date'] or '缺失'} | {x['target_2026_11_10_eod_close_cny']} | {x['one_lot_eod_notional_cny']} | {x['status']} |")
+          lines.extend(['',
+              '**未认证：涨跌停盘口可成交性、真实交易成本、券商板块权限、私有资金及止损执行。**',
+              '**NOT_AUTHORIZED / NO BUY。**'])
+          (d/'SUMMARY.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('\n'.join(lines)+'\n')
+          print('EIGHT_EOD_RESEARCH',status,'MIN_LOT',r['basket_min_lot_eod_notional_cny_if_complete'])
+          PY
+      - name: Save this actual observation and raw vendor bars
+        if: steps.gate.outputs.execute == 'true'
+        run: |
+          set -euo pipefail
+          dest=research/v31_20261110_eight_real_closed_session
+          test ! -e "$dest/RESULT.json"
+          mkdir -p "$dest"
+          cp /tmp/v31-real-postclose/RESULT.json /tmp/v31-real-postclose/SUMMARY.md /tmp/v31-real-postclose/RAW_EIGHT_EOD_SOURCE.json.gz "$dest/"
+          git config user.name "ai-core-evid-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$dest"
+          git commit -m "research(v31): seal actual eight daily market status without buy [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Fallback evidence artifact
+        if: always() && steps.gate.outputs.execute == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-real-eight-postclose
+          path: /tmp/v31-real-postclose/
           if-no-files-found: warn
           retention-days: 14
