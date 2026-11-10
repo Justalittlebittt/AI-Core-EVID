@@ -1,0 +1,68 @@
+{
+  "schema": "V31_LATE_YEAR_INDEPENDENT_SAMPLE_LOW_ABSOLUTE_VOL_2023_2024_PREOUTCOME_SPEC_V1",
+  "hypothesis": "A-share low absolute 60-session volatility associated with higher next 20 joint-session post-cost stock returns than same-day sampled-eligible equal-weight stock benchmark. NOT prior rv10/rv60 ratio.",
+  "external_prior": "Blitz, Hanauer, van Vliet (2021), The Volatility Effect in China, DOI 10.1057/s41260-021-00218-0",
+  "registered_date": "2026-11-10",
+  "sample": {
+    "membership_authority": "evidence/V2.8.1_PIT_MEMBERSHIP_INTERVALS.csv",
+    "expected_source_sha256": "52087fa1e68577fae214f8fa18ee60db7206fd839e195b12ed87e39ea433700e3",
+    "frame_dates": [
+      "2023-01-03",
+      "2024-01-02"
+    ],
+    "each_frame_count": 128,
+    "seeds": [
+      "V31_ONE_SHOT_LOWVOL_2023_YEAR_FRAME_V1",
+      "V31_ONE_SHOT_LOWVOL_2024_YEAR_FRAME_V1"
+    ],
+    "selection_by_hash": "SHA256(seed+'|'+canonical_id) ascending, first 128 PIT members; no future delisting selection",
+    "scope": "Each year's separate 128 membership cohort, not whole A-share market; 2023/24 identity overlap permitted"
+  },
+  "date_policy": {
+    "research_years": [
+      2023,
+      2024
+    ],
+    "signal_dates": "First actual joint BaoStock A-share trading session of each calendar month Apr-Dec in 2023 and Jan-Nov in 2024 (20 dates)",
+    "factor_window_last_60_daily_returns": "Exactly 61 consecutive A-share joint sessions ending on D, from returned 2022-08-01 onward",
+    "quote_capture_start": "2022-08-01",
+    "quote_capture_end": "2025-01-31"
+  },
+  "signal": {
+    "feature": "Sample standard deviation (ddof=0) of the 60 daily log returns of adjusted closing prices, only information through session D",
+    "status": "valid positive adjusted closes for all 61 consecutive sessions and active non-ST positive-volume bar on D",
+    "rank": "ascending absolute 60-session volatility, tie ascending canonical security_id",
+    "select": "bottom ceil(25% of eligible same-day sample), require >=40 eligible same-day stocks",
+    "one_factor_one_direction_no_grid": true
+  },
+  "outcome": {
+    "entry": "Adjusted open of D+1 joint session (signal computed AFTER D close)",
+    "exit": "Adjusted close of D+20 joint session",
+    "exact_calendar_targets": true,
+    "missing_or_ST_at_entry_or_exit": "Keep selected security identity and mark unresolved; never filter the selection using D+1 or D+20 information",
+    "raw_vendor_adjustflag": "2 adjusted by 2026 vendor vintage, not certified point-in-time corporate actions",
+    "market_index": "sh.000300 retrospective PRICE index, D+1 open to D+20 close",
+    "cost_selected_round_trip_fraction": 0.003,
+    "cost_full_universe_comparator_round_trip_fraction": 0.003,
+    "primary": "equal-month selected net average minus same-month signal-eligible equal-weight net average with same 30bp cost; report versus CSI300 price index as secondary",
+    "exact_sample_count_ban_on_postselect_drop": true
+  },
+  "decision": {
+    "minimum_evaluated_months": 15,
+    "minimum_selected_resolved_share": 0.95,
+    "minimum_full_pool_resolved_share": 0.95,
+    "supported_descriptively_only_if": "Primary equal-month selection-minus-universe mean > 0, both 2023 and 2024 year mean > 0, at least 60% of months individually positive; otherwise UNSUPPORTED",
+    "no_statistics_based_parameter_reversal": true,
+    "independent_pristine_unseen_oos": false,
+    "economic_total_return_certified": false,
+    "live_buy_eligibility": "NOT_AUTHORIZED",
+    "trade_authorized": false
+  },
+  "integrity": {
+    "before_look_at_outcome_register_rule": true,
+    "never_consume_prospective_V28_E_Fold3Fold4_or_2026Q3_outcomes": true,
+    "source_archive_raw_baostock_and_full_membership_ids": true,
+    "only_once": true,
+    "no_future_wait": false
+  }
+}
