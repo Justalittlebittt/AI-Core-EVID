@@ -676,64 +676,114 @@ jobs:
           path: /tmp/v31-current/
           if-no-files-found: warn
           retention-days: 14
-  v31-once-financial-quality-recheck:
-    # Apply the already implemented original-source quality audit to the live
-    # 2026 Q3/H1 snapshot. No new factor/ranking or recurring action.
-    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): quality audit of current finance snapshot') }}"
+  v31-once-core-earnings-enrichment:
+    # Reuse the already implemented F10 collector to replace a broken
+    # summary-only deducted-EPS coverage proxy. This is one-time source
+    # enrichment, NOT new factor research or a live trade signal.
+    if: "${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'run(v31): F10 core earnings for 432') }}"
     needs: validate
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v5
-      - name: Replay saved source and verify preliminary research flags
+      - name: Reuse the sealed public financial source
+        id: gate
         run: |
           set -euo pipefail
           root="research/v31_20261110_current_full_A_research"
           test -f "$root/FINANCIAL_REVIEW.json"
-          test ! -f "$root/QUALITY_AUDIT.json"
-          mkdir -p /tmp/v31-source
-          tar -xzf "$root/RAW_PUBLIC_SOURCE.tar.gz" -C /tmp/v31-source
-          python scripts/v29_growth_raw_quality_audit.py \
-            --review-json "$root/FINANCIAL_REVIEW.json" \
-            --raw-dir /tmp/v31-source/raw-financial \
-            --output /tmp/v31-source/QUALITY_AUDIT.json
+          test -f "$root/RAW_PUBLIC_SOURCE.tar.gz"
+          test -f "$root/QUALITY_AUDIT.json"
+          if test -f "$root/CORE_EARNINGS.json"; then
+            echo 'CORE_SOURCE_ALREADY_ARCHIVED_DO_NOT_OVERWRITE'
+            exit 0
+          fi
+          mkdir -p /tmp/v31-f10 /tmp/v31-original
+          tar -xzf "$root/RAW_PUBLIC_SOURCE.tar.gz" -C /tmp/v31-original
+          echo "run=true" >> "$GITHUB_OUTPUT"
+      - name: Capture F10 deducted parent profits using the existing adapter
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python -m unittest discover -s scripts -p 'test_v29_growth_core_earnings.py' -v
+          python scripts/v29_growth_core_earnings.py \
+            --financial-review research/v31_20261110_current_full_A_research/FINANCIAL_REVIEW.json \
+            --financial-raw-dir /tmp/v31-original/raw-financial \
+            --core-raw-dir /tmp/v31-f10/raw-core \
+            --output /tmp/v31-f10/CORE_EARNINGS.json \
+            > /tmp/v31-f10/capture_stdout.json
+      - name: Give the 432-name source coverage and true quality interpretation
+        if: steps.gate.outputs.run == 'true'
+        run: |
           python - <<'PY'
-          import json
           from pathlib import Path
-          a=json.load(open('/tmp/v31-source/QUALITY_AUDIT.json'))
+          import json,os
+          base=Path('research/v31_20261110_current_full_A_research')
+          a=json.loads((Path('/tmp/v31-f10')/'CORE_EARNINGS.json').read_text())
+          q=json.loads((base/'QUALITY_AUDIT.json').read_text())
           n=a['counts']['reviewed_a_tier']
-          r=a['quality_rows']
-          assert n==432 and len(r)==n
-          assert all(x['buy_eligibility']=='NOT_AUTHORIZED' for x in r)
-          clean=[x for x in r if not x['review_flags']]
-          st=[x for x in r if 'ST_NAME_REQUIRES_EXCHANGE_STATUS_CONFIRMATION' in x['review_flags']]
-          out=['# 2026-11-10 原始财务行二次质量检查（只读、非交易）','',
-               '检查来源：本仓库已封存的2026 Q3和H1东财原始响应；不重新请求或篡改财务数据。',
-               f'初筛A档：{n}只；存在ST名称提示：{len(st)}只；本次可检查字段未触发标记：{len(clean)}只。',
-               '这不是原始公告时点认证，也不证明任何个股具有预测优势。','',
-               '## 数据质量警告计数','','| 检查项 | 数量 |','|---|---:|']
-          for k,v in sorted(a['counts'].items()):
-              out.append(f'| {k} | {v} |')
-          out.extend(['','## 风险提示','',
-                      'ST名称需要进一步核实交易所身份及状态；不得把初筛A档解释为低风险、可买入。',
-                      '扣非EPS、现金转换与累计毛利变化仅为质量诊断，并非预测因子。',
-                      '**NO BUY / NOT_AUTHORIZED。**',''])
-          (Path('/tmp/v31-source')/'QUALITY_REVIEW.md').write_text('\n'.join(out),encoding='utf-8')
-          import os
-          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('\n'.join(out))
-          print('QUALITY_REPLAY',n,'QUALITY_UNFLAGGED',len(clean),'ST_NAME_WARNINGS',len(st))
+          assert n==432 and len(a['quality_rows'])==n
+          assert q['counts']['reviewed_a_tier']==n
+          assert all(r['buy_eligibility']=='NOT_AUTHORIZED' for r in a['quality_rows'])
+          assert a['live_buy_eligibility']=='NOT_AUTHORIZED'
+          assert a['return_or_alpha_validated'] is False
+          assert a['historical_pit_issuer_timing_independently_certified'] is False
+          matched=a['counts']['both_periods_matched']
+          comparable=a['counts']['both_core_profit_available']
+          positive=sum(x['standalone_q3_deducted_parent_profit_yuan_cumulative_difference']>0 for x in a['quality_rows'] if x['standalone_q3_deducted_parent_profit_yuan_cumulative_difference'] is not None)
+          names={x['security_id']:x for x in q['quality_rows']}
+          st={s for s,x in names.items() if 'ST_NAME_REQUIRES_EXCHANGE_STATUS_CONFIRMATION' in x['review_flags']}
+          clean_source_ids=[x['security_id'] for x in a['quality_rows']
+            if x['standalone_q3_deducted_parent_profit_yuan_cumulative_difference'] is not None
+            and x['standalone_q3_deducted_parent_profit_yuan_cumulative_difference']>0
+            and x['q3_deducted_parent_profit_yuan'] is not None
+            and x['q3_deducted_parent_profit_yuan']>0
+            and not x['review_flags'] and x['security_id'] not in st]
+          # This is a *data completeness* subpopulation, never a new stock signal.
+          out=[
+            '# 2026-11-10 F10扣非利润数据源实际核验',
+            '',
+            '样本：既有432只财务初筛A档，不重新选股。供应商信息取自2026-11-10采集，披露截止2026-11-09。',
+            '使用原有 F10 扣非归母利润金额字段 KCFJCXSYJLR；原有摘要 DEDUCT_BASIC_EPS 是不同的每股指标，二者不得互相补写。',
+            '',
+            '| 来源与质量指标 | 只数 |','|---|---:|',
+            f'| 既有初筛A档 | {n} |',
+            f'| F10 H1/Q3均按证券、机构与公告日对应 | {matched} |',
+            f'| F10 H1/Q3扣非归母利润金额均有数值 | {comparable} |',
+            f'| 可计算第三季度单季扣非归母利润且数值为正 | {positive} |',
+            f'| F10扣非利润为正、核对无F10标记且无ST名称提示（仅字段完整度） | {len(clean_source_ids)} |',
+            f'| ST名称提示（来自既有原始摘要检查） | {len(st)} |',
+            '',
+            'F10各类状态/缺失见下表；不是上市公司官方公告历史时点原件认证。',
+            '| 原有F10统计键 | 只数 |','|---|---:|',
+          ]
+          out.extend(f'| {k} | {v} |' for k,v in a['counts'].items())
+          out+=['','**结论：这些是来源覆盖和财务事实检查，不是预测排名、估值认可或交易资格。NO BUY。**']
+          p=Path('/tmp/v31-f10/CORE_EARNINGS_BRIEF.md')
+          p.write_text('\n'.join(out)+'\n',encoding='utf-8')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write(p.read_text())
+          print('CORE_F10_QUALITY',a['counts'],'POSITIVE_INCREMENT',positive,'CLEAN_SOURCE_ONLY',len(clean_source_ids))
           PY
-      - name: Persist bounded quality result
+      - name: Preserve original F10 source bytes and one-time analysis
+        if: steps.gate.outputs.run == 'true'
         run: |
           set -euo pipefail
           root="research/v31_20261110_current_full_A_research"
-          test ! -f "$root/QUALITY_AUDIT.json"
-          cp /tmp/v31-source/QUALITY_AUDIT.json /tmp/v31-source/QUALITY_REVIEW.md "$root/"
+          test ! -e "$root/CORE_EARNINGS.json"
+          cp /tmp/v31-f10/CORE_EARNINGS.json /tmp/v31-f10/CORE_EARNINGS_BRIEF.md "$root/"
+          tar -C /tmp/v31-f10 -czf "$root/RAW_F10_CORE_SOURCE.tar.gz" raw-core
           git config user.name "ai-core-evid-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add "$root/QUALITY_AUDIT.json" "$root/QUALITY_REVIEW.md"
-          git commit -m "research(v31): current Q3 quality audit, no trading authorization [skip ci]"
+          git add "$root/CORE_EARNINGS.json" "$root/CORE_EARNINGS_BRIEF.md" "$root/RAW_F10_CORE_SOURCE.tar.gz"
+          git commit -m "research(v31): verify existing 432 candidates with F10 core earnings [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
+      - name: Save research if repository push unavailable
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-one-shot-432-f10-core-source
+          path: /tmp/v31-f10/
+          if-no-files-found: warn
+          retention-days: 14
