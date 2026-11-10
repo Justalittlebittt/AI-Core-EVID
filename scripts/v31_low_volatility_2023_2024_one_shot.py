@@ -90,9 +90,14 @@ def checked_bars(rows,expected_code,calendar):
     seen={}
     for item in rows:
         d=date.fromisoformat(item["date"])
-        if (item["code"]!=expected_code or d not in calendar or d in seen
-            or item.get("adjustflag") != "2"):
-            raise ValueError("ADJUSTED_BAR_ID_OR_DUPLICATE_OR_CALENDAR_MISMATCH")
+        if item["code"]!=expected_code:
+            raise ValueError("BAR_SECURITY_ID_MISMATCH")
+        if d not in calendar:
+            raise ValueError("BAR_OFF_EXCHANGE_CALENDAR:"+d.isoformat())
+        if d in seen:
+            raise ValueError("DUPLICATE_STOCK_DATE:"+d.isoformat())
+        if item.get("adjustflag") != "2":
+            raise ValueError("ADJUSTFLAG_NOT_ADJUSTED:date="+d.isoformat()+":observed="+str(item.get("adjustflag")))
         seen[d] = item
     return seen
 
@@ -162,8 +167,15 @@ def compute(spec, frames, cal, index_rows, quote_rows):
     syms={id for f in frames.values() for id in f["selected_ids"]}
     bars={}
     allowed=set(sessions)
+    integrity_errors={}
     for sid in syms:
-        bars[sid]=checked_bars(quote_rows.get(sid),sid_to_bs(sid),allowed)
+        try:
+            bars[sid]=checked_bars(quote_rows.get(sid),sid_to_bs(sid),allowed)
+        except (ValueError,KeyError,TypeError) as exc:
+            # Never silently replace an invalid security with another. Keep the
+            # preselected issuer and record its failed source integrity.
+            bars[sid]=None
+            integrity_errors[sid]=str(exc)[:180]
     months=[]
     samples=[]
     for d in signal_days:
@@ -240,6 +252,8 @@ def compute(spec, frames, cal, index_rows, quote_rows):
         "sample_years":{y:{"asof":f["frame_date"],"population":f["population_count"],
                            "ids":f["selected_ids"],"ids_sha256":f["selected_ids_sha256"]}
                         for y,f in frames.items()},
+        "instrument_bar_integrity_error_count":len(integrity_errors),
+        "instrument_bar_integrity_errors":dict(sorted(integrity_errors.items())),
         "requested_signal_months":len(months),"valid_descriptive_months":len(ok),
         "selected_event_count":sum(x["selected_count"] for x in months),
         "selected_resolved_count":sum(x["selected_outcome_resolved"] for x in months),
@@ -288,6 +302,9 @@ def collect(bs, folder):
     source={"calendar":cal,"benchmark":index,"quotes":quotes,"frames":frames,
             "source":"BAOSTOCK_ADJUSTED_2026_VENDOR_VINTAGE","fields":FIELDS}
     raw=(json.dumps(source,sort_keys=True,ensure_ascii=False,separators=(",",":"))+"\n").encode()
+    folder.mkdir(parents=True)
+    (folder/"RAW_BAOSTOCK_SOURCE.json.gz").write_bytes(gzip.compress(raw,mtime=0))
+    # Keep raw source even if a downstream calculation or serialization fails.
     report,observations=compute(spec,frames,cal,index,quotes)
     report.update({"study_contract_sha256":spec_sha,
                    "membership_interval_sha256":source_sha,
@@ -296,9 +313,7 @@ def collect(bs, folder):
                    "issuer_price_query_count":len(ids),
                    "instrument_source_failures":sum(x is None for x in quotes.values()),
                    "opportunities_source_gzip":"OBSERVATIONS.json.gz"})
-    folder.mkdir(parents=True)
     (folder/"RESULT.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    (folder/"RAW_BAOSTOCK_SOURCE.json.gz").write_bytes(gzip.compress(raw,mtime=0))
     obs=(json.dumps(observations,ensure_ascii=False,sort_keys=True,separators=(",",":"))+"\n").encode()
     (folder/"OBSERVATIONS.json.gz").write_bytes(gzip.compress(obs,mtime=0))
     print(json.dumps({k:v for k,v in report.items() if k not in ("months","sample_years")},
