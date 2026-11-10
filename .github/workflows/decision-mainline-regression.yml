@@ -597,7 +597,7 @@ jobs:
           assert r["prior_period"]=="2026-06-30"
           assert r["notice_cutoff_exclusive"]=="2026-11-10"
           assert r["strategy_validated"] is False and r["live_buy_eligibility"]=="NOT_AUTHORIZED"
-          assert len(r["full_research_list"])==r["counts"]["both_positive"]
+          assert len(r["full_research_list"])==r["counts"]["both_positive"]+r["counts"]["prior_positive_not_observed"]
           assert len({x["security_id"] for x in r["full_research_list"]})==len(r["full_research_list"])
           print("CAPTURED_REAL_FINANCIAL_SOURCE_COHORT",r["counts"])
           PY
@@ -633,7 +633,7 @@ jobs:
                '财务报表：2026 Q3与H1；披露截止：2026-11-09（不含10日）；',
                '供应商数据实际采集于2026-11-10，**不是截至11月9日的认证原始版本**。',
                f"两期持续正增长：{d['counts']['both_positive']}；无指定财务风险标记：{d['counts']['both_positive_no_accounting_flags']}。",
-               '研究队列为股票代码稳定排序，**不是预测收益排序**。',
+               '研究队列按财务检查分层后以股票代码稳定排序，**不是预测收益排序**。',
                f"行情参考：{p.joinpath('market_status.txt').read_text().strip() if p.joinpath('market_status.txt').exists() else 'NOT_CAPTURED'}。",
                '| 股票代码 | 公司 | 最近营收同比 | 最近归母利润同比 | 行情参考 |',
                '|---|---|---:|---:|---|']
