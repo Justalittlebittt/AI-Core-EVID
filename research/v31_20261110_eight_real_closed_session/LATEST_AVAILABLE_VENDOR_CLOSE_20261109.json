@@ -1,0 +1,113 @@
+{
+  "schema": "V31_EIGHT_FROZEN_LATEST_AVAILABLE_20261109_VENDOR_EOD_CONTEXT_V1",
+  "purpose": "IMMEDIATE_ANALYSIS_WITHOUT_WAITING_FOR_20261110_VENDOR_EOD",
+  "data_captured_at_utc": "2026-11-10T08:07:28.454029+00:00",
+  "observed_vendor_latest_session": "2026-11-09",
+  "not_a_current_2026_11_10_close": true,
+  "archived_capture": "research/v31_20261110_eight_real_closed_session/RAW_EIGHT_EOD_SOURCE.json.gz",
+  "archived_capture_sha256": "fe592acbbc4e6ca887f0d0ee64a0383e0b452aa10f0244ef69acc86c8b5636e6",
+  "archive_must_remain_unmodified": true,
+  "vendor": "BAOSTOCK_0_9_4_UNOFFICIAL",
+  "reference_20261102_minlot_proxy_cost_cny": 54558,
+  "available_20261109_minlot_proxy_cost_cny": 53060,
+  "proxy_difference_cny": -1498,
+  "frozen_eight_count": 8,
+  "usable_vendor_20261109_bar_count": 8,
+  "not_economic_trade_return": true,
+  "not_verified_broker_fill": true,
+  "official_limit_price_and_queue_tradability_not_checked": true,
+  "real_account_cash_permissions_and_stops_unknown": true,
+  "independent_predictive_alpha_validated": false,
+  "trade_authorized": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "rows": [
+    {
+      "security_id": "SZSE:300199",
+      "board": "chinext",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 23.55,
+      "one_lot_proxy_cost_cny": 2355,
+      "nov02_frozen_entry_reference_close_cny": 22.09,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SZSE:002636",
+      "board": "main",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 66.03,
+      "one_lot_proxy_cost_cny": 6603,
+      "nov02_frozen_entry_reference_close_cny": 63.7,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SZSE:301536",
+      "board": "chinext",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 86.72,
+      "one_lot_proxy_cost_cny": 8672,
+      "nov02_frozen_entry_reference_close_cny": 83.66,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SZSE:000408",
+      "board": "main",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 66.41,
+      "one_lot_proxy_cost_cny": 6641,
+      "nov02_frozen_entry_reference_close_cny": 66.97,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SZSE:002463",
+      "board": "main",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 77.1,
+      "one_lot_proxy_cost_cny": 7710,
+      "nov02_frozen_entry_reference_close_cny": 86.05,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SSE:603256",
+      "board": "main",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 75.25,
+      "one_lot_proxy_cost_cny": 7525,
+      "nov02_frozen_entry_reference_close_cny": 76.94,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SZSE:002552",
+      "board": "main",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 32.31,
+      "one_lot_proxy_cost_cny": 3231,
+      "nov02_frozen_entry_reference_close_cny": 33.17,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    },
+    {
+      "security_id": "SZSE:300223",
+      "board": "chinext",
+      "latest_available_vendor_session": "2026-11-09",
+      "one_lot_shares": 100,
+      "latest_vendor_unadjusted_close_cny": 103.23,
+      "one_lot_proxy_cost_cny": 10323,
+      "nov02_frozen_entry_reference_close_cny": 113,
+      "vendor_20261109_nonST_with_positive_volume": true,
+      "broker_limit_order_fill_confirmed": false
+    }
+  ]
+}
