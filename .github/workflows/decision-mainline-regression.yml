@@ -123,6 +123,7 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v29_fy2026_capture_live.py' -v
           python -m unittest discover -s scripts -p 'test_v29_fy2026_forward_paper.py' -v
           python -m unittest discover -s scripts -p 'test_v31_research_candidate_decision.py' -v
+          python scripts/v31_research_candidate_decision.py >> "$GITHUB_STEP_SUMMARY"
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_market_context.py' -v
           python -m unittest discover -s scripts -p 'test_v29_growth_raw_quality_audit.py' -v
