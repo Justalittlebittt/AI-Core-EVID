@@ -47,8 +47,7 @@ class CrossYearResearchTests(unittest.TestCase):
         # Delete later exit quote from one unselected eligible stock. The
         # matched cohort cannot silently shrink its denominator.
         target="SZSE:000001"
-        quotes[target]=[r for r in quotes[target] if r["date"]!="2026-05-21"]
-        # Avoid assuming exact twentieth date; calculate from weekdays.
+        # Compute the twentieth session from the synthetic calendar.
         days=[date.fromisoformat(x["calendar_date"]) for x in cal]
         end=[d for d in days if d>date(2026,4,23)][19].isoformat()
         quotes[target]=[r for r in quotes[target] if r["date"]!=end]
