@@ -1,0 +1,96 @@
+"""Real-source end-to-end regression of unified blocked-BUY decision gate.
+
+Private account and packet values below are synthetically constructed only.
+"""
+from __future__ import annotations
+
+import copy
+import unittest
+
+from v29_decision_case_demo import build_case
+from v31_unified_eight_decision_gate import build, load_archived_market, validate_market_by_identity, render
+
+
+class V31UnifiedDecisionGateTests(unittest.TestCase):
+    def test_current_real_archived_eight_all_blocked(self):
+        result=build()
+        self.assertEqual(result["stock_count"],8)
+        self.assertEqual(result["last_available_vendor_close_date"],"2026-11-09")
+        self.assertEqual(result["market_evidence"]["current_session_eod_count"],0)
+        self.assertEqual(result["market_evidence"]["min_lot_notional_at_20261109_vendor_closes_cny"],53060)
+        self.assertEqual(result["strategy_evidence"]["grade"],"INSUFFICIENT")
+        self.assertEqual(result["private_account_and_stop_gate"]["status"],"NOT_EVALUATED_NO_PRIVATE_ACCOUNT_INPUT")
+        self.assertFalse(result["trade_authorized"])
+        self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
+        self.assertEqual(len({x["security_id"] for x in result["stocks"]}),8)
+        self.assertTrue(all(x["decision"]=="BLOCK_BUY" for x in result["stocks"]))
+        self.assertIn("NOT_AUTHORIZED / NO BUY",render(result))
+
+    def test_wrong_saved_quote_does_not_get_promoted(self):
+        source,eod,latest,seal=load_archived_market(__import__("pathlib").Path(__file__).resolve().parents[1])
+        ids=[x["security_id"] for x in latest["rows"]]
+        source=copy.deepcopy(source)
+        first=ids[0]
+        newest=max(source["raw"][first],key=lambda x:x["date"])
+        newest["close"]=str(float(newest["close"])+1)
+        with self.assertRaisesRegex(ValueError,"DERIVED_1109_BAR_OR_LOT"):
+            validate_market_by_identity(source,eod,latest,ids)
+
+    def test_original_selected_identity_change_fails(self):
+        source,eod,latest,seal=load_archived_market(__import__("pathlib").Path(__file__).resolve().parents[1])
+        ids=[x["security_id"] for x in latest["rows"]]
+        with self.assertRaisesRegex(ValueError,"EIGHT_ARCHIVE_IDENTITY_DRIFT"):
+            validate_market_by_identity(source,eod,latest,list(reversed(ids)))
+
+    def test_fake_real_funding_can_only_make_paper_capacity_pass(self):
+        baseline=build()
+        rows=baseline["stocks"]
+        positions=[]
+        for x in rows:
+            q=x["quote_reference"]
+            px=q["latest_available_close_cny"]
+            positions.append({
+                "security_id":x["security_id"],
+                "shares":q["minimum_lot_shares"],
+                "reference_price_cny":px,
+                "stop_price_cny":round(px*.8,2)})
+        data={
+            "account":{
+                "equity_cny":300000,"cash_cny":300000,"fee_reserve_cny":300,
+                "max_name_fraction":.2,
+                "max_name_loss_fraction":.02,
+                "max_portfolio_loss_fraction":.08,
+                "permissions":{"main":True,"chinext":True,"star":False},
+            },
+            "positions":positions,
+        }
+        result=build(private=data)
+        self.assertTrue(result["private_account_and_stop_gate"]["paper_capacity_feasible"])
+        self.assertFalse(result["trade_authorized"])
+        self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
+        self.assertTrue(all(x["decision"]=="BLOCK_BUY" for x in result["stocks"]))
+        data["account"]["cash_cny"]=200
+        result=build(private=data)
+        self.assertFalse(result["private_account_and_stop_gate"]["paper_capacity_feasible"])
+        self.assertIn("CALLER_SUPPLIED_CAPACITY_CHECK_FAILED",result["blocking_reasons"])
+
+    def test_user_supplied_fake_strong_decision_packet_is_source_downgraded(self):
+        base=build()
+        name=base["stocks"][0]["security_id"]
+        pkt=build_case()["packet"]
+        pkt["validity"]["evidence_strength"]="STRONG"
+        result=build(private={"decision_packets":[{"security_id":name,"packet":pkt}]})
+        p=result["stocks"][0]["discipline_packet_preview"]
+        self.assertEqual(p["claimed_user_evidence_strength"],"STRONG")
+        self.assertEqual(p["effective_source_bound_evidence_strength"],"INSUFFICIENT")
+        self.assertTrue(p["source_overrode_unverified_reported_strength"])
+        self.assertEqual(p["discipline_decision"]["decision"],"NO_ACTION_INSUFFICIENT_EVIDENCE")
+        self.assertFalse(result["trade_authorized"])
+
+    def test_private_input_required_in_complete_pairs(self):
+        with self.assertRaisesRegex(ValueError,"ACCOUNT_AND_POSITIONS_MUST_BE_TOGETHER"):
+            build(private={"account":{}})
+
+
+if __name__=="__main__":
+    unittest.main()
