@@ -58,9 +58,10 @@ def evaluate(sessions):
     # Both offsets per session are required to locate and agree, not just one.
     per_offset=all(page["target_present"] and len(page["target_rows"])==1
                    for s in sessions for page in s)
-    time_path_agree=all(d["official_observed_day"]==d["original_pdf_path_day"]
+    # No returned target record is UNKNOWN, never a vacuous PASS.
+    time_path_agree=bool(details) and all(d["official_observed_day"]==d["original_pdf_path_day"]
                         for d in details)
-    inside_range=all(base.START<=d["official_observed_day"]<=base.END for d in details)
+    inside_range=bool(details) and all(base.START<=d["official_observed_day"]<=base.END for d in details)
     return {"target_id":TARGET,"source_metadata_reconciled":
             bool(coherent and per_offset and time_path_agree and inside_range),
             "all_four_offsets_found":per_offset,
