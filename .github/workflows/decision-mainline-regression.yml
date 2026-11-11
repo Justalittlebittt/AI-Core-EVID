@@ -138,6 +138,8 @@ jobs:
           python -m unittest discover -s scripts -p 'test_v31_eight_closed_session_execution_context.py' -v
           python -m unittest discover -s scripts -p 'test_v31_unified_eight_decision_gate.py' -v
           python scripts/v31_unified_eight_decision_gate.py >> "$GITHUB_STEP_SUMMARY"
+          # Read-only sample from the same frozen eight; not a stock recommendation.
+          python scripts/v31_unified_eight_decision_gate.py --security-id SZSE:300199 >> "$GITHUB_STEP_SUMMARY"
           python -m unittest discover -s scripts -p 'test_v31_low_volatility_2023_2024_one_shot.py' -v
           python scripts/v31_research_candidate_decision.py >> "$GITHUB_STEP_SUMMARY"
           python -m unittest discover -s scripts -p 'test_v29_growth_persistence_review.py' -v
