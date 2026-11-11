@@ -52,6 +52,29 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"INTEGRATED_GATE_UNSAFE_TO_RENDER"):
             render_one(altered,altered["stocks"][0]["security_id"])
 
+    def test_output_refuses_promoted_or_unknown_alpha_claims(self):
+        baseline=build()
+        sid=baseline["stocks"][0]["security_id"]
+        for evidence_path, value in (
+            (("strategy_evidence","grade"),"STRONG"),
+            (("strategy_evidence","grade"),"MODERATE"),
+            (("strategy_evidence","independent_alpha_validated"),True),
+            (("signal_is_not_verified_alpha",),False),
+        ):
+            with self.subTest(field=evidence_path,value=value):
+                changed=copy.deepcopy(baseline)
+                if len(evidence_path)==2:
+                    changed[evidence_path[0]][evidence_path[1]]=value
+                else:
+                    changed[evidence_path[0]]=value
+                with self.assertRaisesRegex(ValueError,"INTEGRATED_GATE_UNSAFE_TO_RENDER"):
+                    render(changed)
+                with self.assertRaisesRegex(ValueError,"INTEGRATED_GATE_UNSAFE_TO_RENDER"):
+                    render_one(changed,sid)
+                with self.assertRaisesRegex(ValueError,"INTEGRATED_GATE_UNSAFE_TO_RENDER"):
+                    select_one(changed,sid)
+        self.assertEqual(select_one(baseline,sid)["strategy_evidence"]["grade"],"INSUFFICIENT")
+
     def test_one_stock_json_projection_is_source_bound_and_no_buy(self):
         full=build()
         sid=full["stocks"][0]["security_id"]
