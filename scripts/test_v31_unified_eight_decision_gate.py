@@ -99,6 +99,50 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         self.assertFalse(result["private_account_and_stop_gate"]["paper_capacity_feasible"])
         self.assertIn("CALLER_SUPPLIED_CAPACITY_CHECK_FAILED",result["blocking_reasons"])
 
+    def test_single_card_shows_local_per_name_and_shared_cash_failure(self):
+        base=build()
+        positions=[]
+        for r in base["stocks"]:
+            price=r["quote_reference"]["latest_available_close_cny"]
+            positions.append({
+                "security_id":r["security_id"],
+                "shares":100,
+                "reference_price_cny":price,
+                "stop_price_cny":round(price*.8,2),
+            })
+        private={
+            "account":{
+                "equity_cny":300000,
+                "cash_cny":500,
+                "fee_reserve_cny":300,
+                "max_name_fraction":.2,
+                "max_name_loss_fraction":.02,
+                "max_portfolio_loss_fraction":.08,
+                "permissions":{"main":True,"chinext":False,"star":False},
+            },
+            "positions":positions,
+        }
+        result=build(private=private)
+        sid=result["stocks"][0]["security_id"]
+        card=render_one(result,sid)
+        self.assertIn("纸面风险核算",card)
+        self.assertIn("¥2355",card)
+        self.assertIn("BOARD_PERMISSION_NOT_GRANTED",card)
+        self.assertIn("SHARED_CASH_EXCEEDED",card)
+        self.assertIn("组合层面纸面容量是否通过：**未通过**",card)
+        self.assertIn("NOT_AUTHORIZED / NO BUY",card)
+        self.assertFalse(result["trade_authorized"])
+        # Positive paper capital only clears the *synthetic* capacity check.
+        private["account"]["cash_cny"]=300000
+        private["account"]["permissions"]["chinext"]=True
+        passing=build(private=private)
+        passing_card=render_one(passing,sid)
+        self.assertIn("组合层面纸面容量是否通过：**通过**",passing_card)
+        self.assertIn("未触发纸面个股限制",passing_card)
+        self.assertIn("未触发纸面组合限制",passing_card)
+        self.assertIn("NOT_AUTHORIZED / NO BUY",passing_card)
+        self.assertFalse(passing["trade_authorized"])
+
     def test_user_supplied_fake_strong_decision_packet_is_source_downgraded(self):
         base=build()
         name=base["stocks"][0]["security_id"]

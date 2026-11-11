@@ -313,8 +313,20 @@ def render_one(report, security_id):
         "- 已触发的阻断因素：",
     ]
     lines.extend(f"  - {reason}" for reason in row["reasons"])
-    if row["account_paper_capacity"] is not None:
-        lines.append("- 已提供私人输入时仅进行纸面容量评估，不能证明券商权限、涨跌停可成交性或滑点。")
+    paper=row["account_paper_capacity"]
+    if paper is not None:
+        audit=report["private_account_and_stop_gate"]
+        lines.extend([
+            "",
+            "## 用户本地参数的纸面风险核算（非券商成交认证）", "",
+            f"- 本股用户输入数量：{paper['shares']}股；用户参考名义敞口：¥{paper['reference_notional_cny']}。",
+            f"- 按用户参考价与止损价估算的**本股**止损距离风险：¥{paper['stop_distance_loss_cny']}（未计跳空与滑点）。",
+            f"- 组合层面纸面容量是否通过：**{'通过' if audit['paper_capacity_feasible'] else '未通过'}**（仅针对用户本地提交的八股篮子）。",
+            "- 本股个别约束：" + ("、".join(paper["issues"]) if paper["issues"] else "未触发纸面个股限制"),
+            "- 全篮子共享现金及总风险约束：" + ("、".join(audit["basket_issues"]) if audit["basket_issues"] else "未触发纸面组合限制"),
+            "- 账户参数只在本地进程读取和打印；本命令不写入仓库。历史参考价与用户输入价可能不同。",
+            "- 纸面通过不等于有效策略、当前交易权限、跳空止损保障或实际成交。",
+        ])
     lines.extend(["", "**结论：NOT_AUTHORIZED / NO BUY；下一步仅限补充独立证据、有效行情与用户提供的风险输入，不得下单。**", ""])
     return "\n".join(lines)
 
