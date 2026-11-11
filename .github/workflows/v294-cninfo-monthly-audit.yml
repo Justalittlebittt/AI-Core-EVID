@@ -1,4 +1,4 @@
-name: CNINFO 002667 Monthly Partition Audit
+name: CNINFO 002667 August Two-Session Diagnostic
 on:
   push:
     branches: [fix/v293-batch3-failure-terminal-evidence]
@@ -17,13 +17,13 @@ jobs:
       - run: |
           pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
           playwright install --with-deps chromium
-      - run: python scripts/v294_cninfo_monthly_audit.py
+      - run: python scripts/v294_cninfo_august_split_audit.py
       - name: Persist audit, including failure evidence if produced
         if: always()
         run: |
-          if test -f evidence/V2.9.4_CNINFO_002667_MONTHLY_AUDIT_1.json; then
+          if test -f evidence/V2.9.4_CNINFO_002667_AUGUST_SPLIT_AUDIT_1.json; then
             git config user.name ai-core-evid-bot
             git config user.email actions@users.noreply.github.com
-            git add evidence/V2.9.4_CNINFO_002667_MONTHLY_AUDIT_1.json
+            git add evidence/V2.9.4_CNINFO_002667_AUGUST_SPLIT_AUDIT_1.json
             git diff --cached --quiet || (git commit -m "Persist read-only monthly pagination audit [skip ci]" && git pull --rebase && git push)
           fi
