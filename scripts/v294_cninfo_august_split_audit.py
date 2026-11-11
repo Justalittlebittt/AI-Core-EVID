@@ -39,7 +39,7 @@ def inspect_pages(page, org, date_range):
         for entry in current:
             aid=str(entry.get("announcementId") or "").strip()
             ms=str(entry.get("announcementTime") or "").strip()
-            if not aid or not re.fullmatch(r"\\d{10}|\\d{13}",ms):
+            if not aid or not re.fullmatch(r"\d{10}|\d{13}",ms):
                 raise RuntimeError("MISSING_ANNOUNCEMENT_ID_OR_TIMESTAMP")
             instant=datetime.fromtimestamp(int(ms)/(1000 if len(ms)==13 else 1),tz=timezone.utc)
             local_day=instant.astimezone(base.SH).date().isoformat()
@@ -64,7 +64,7 @@ def inspect_pages(page, org, date_range):
             "page_counts":page_counts,"raw_count":len(ids),
             "unique_count":len(unique),
             "duplicate_ids":sorted(k for k,v in counts.items() if v>1),
-            "ids":unique,"ids_sha256":hashlib.sha256(("\\n".join(unique)+"\\n").encode()).hexdigest(),
+            "ids":unique,"ids_sha256":hashlib.sha256(("\n".join(unique)+"\n").encode()).hexdigest(),
             "tracked_announcements":rows,"complete":complete}
 
 
@@ -117,7 +117,7 @@ def main():
             "security_id":"SZSE:002667",
             "frozen_original_range":["2023-01-01","2024-12-30"],
             "audit_partitions":PARTS,"sessions":sessions,"evaluation":evaluation}
-    OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(evaluation,ensure_ascii=False))
     if not evaluation["technical_consistency_pass"]:
         raise SystemExit("AUGUST_PARTITION_CONSISTENCY_BLOCKED")
