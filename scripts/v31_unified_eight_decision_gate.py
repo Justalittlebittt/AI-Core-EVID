@@ -282,14 +282,55 @@ def render(report):
     return "\n".join(lines)
 
 
+
+def render_one(report, security_id):
+    """One auditable historical research Decision Case, never an order ticket."""
+    # Reuse the existing display's one high-consequence no-trade boundary.
+    render(report)
+    matches=[r for r in report["stocks"] if r["security_id"]==security_id]
+    if len(matches)!=1:
+        raise ValueError("UNKNOWN_OR_DUPLICATE_RESEARCH_SECURITY")
+    row=matches[0]
+    quote=row["quote_reference"]
+    hashes=report["source_sha256"]
+    lines=[
+        "# AI Core V3.1｜单只股票决策卡（只读）", "",
+        f"**股票：** {security_id}；**历史研究顺序：** {row['research_rank_not_forecast_strength']}（不是预测能力排序）。",
+        f"**信号日期：** {report['original_signal_date']}；**行情参考日期：** {quote['latest_available_close_date']}。",
+        f"**参考价格：** ¥{quote['latest_available_close_cny']:.2f}（非官方供应商历史收盘，非当前盘口、成交报价或买入限价）。",
+        f"**最低交易单位：** {quote['minimum_lot_shares']}股；**最低一手历史参考金额：** ¥{quote['minimum_lot_reference_cny']:,.2f}（不含费用）。",
+        f"**本次归档所要求的2026-11-10收盘行情：** 缺失；本卡仅复用较早的{quote['latest_available_close_date']}记录。", "",
+        "## 证据身份与科学有效性", "",
+        f"- 独立预测证据等级：**{report['strategy_evidence']['grade']}**；没有经过认证的策略超额收益证据。",
+        f"- 原始冻结入场快照 SHA256：`{hashes['sealed_122_nov02_entry']}`",
+        f"- 已归档历史行情原始记录 SHA256：`{hashes['latest_saved_vendor_daily_bars']}`",
+        "- 哈希用于绑定仓库归档字节，不证明行情是交易所官方报价，也不证明行情的历史决策时点可得性。",
+        "- 冻结8股身份及历史数据未变更；不读取受保护的独立样本外结果。", "",
+        "## 风险与交易资格", "",
+        f"- 账户/止损审查状态：**{report['private_account_and_stop_gate']['status']}**。",
+        f"- 纪律模块判定：**{row['discipline_packet_preview']['discipline_decision']['decision'] if row['discipline_packet_preview'] else 'NOT_EVALUATED_NO_USER_DECISION_PACKET'}**。",
+        f"- 本股票决策：**{row['decision']}**。下单、加仓均未获授权。",
+        "- 已触发的阻断因素：",
+    ]
+    lines.extend(f"  - {reason}" for reason in row["reasons"])
+    if row["account_paper_capacity"] is not None:
+        lines.append("- 已提供私人输入时仅进行纸面容量评估，不能证明券商权限、涨跌停可成交性或滑点。")
+    lines.extend(["", "**结论：NOT_AUTHORIZED / NO BUY；下一步仅限补充独立证据、有效行情与用户提供的风险输入，不得下单。**", ""])
+    return "\n".join(lines)
+
+
 def main():
     p=argparse.ArgumentParser(description="Sealed evidence+EOD+capital+discipline single decision gate; no broker orders.")
     p.add_argument("--format",choices=("markdown","json"),default="markdown")
     p.add_argument("--private-input",type=Path,help="Optional LOCAL account + positions and/or existing V2.9 decision packets; never committed.")
+    p.add_argument("--security-id",help="Render one existing fixed-eight security as a read-only Decision Case (Markdown only).")
     args=p.parse_args()
     private=json.loads(args.private_input.read_text(encoding="utf-8")) if args.private_input else None
     result=build(private=private)
-    print(json.dumps(result,ensure_ascii=False,indent=2) if args.format=="json" else render(result))
+    if args.security_id and args.format=="json":
+        p.error("--security-id supports Markdown only; --format json retains the original complete eight-stock report.")
+    print(json.dumps(result,ensure_ascii=False,indent=2) if args.format=="json"
+          else render_one(result,args.security_id) if args.security_id else render(result))
 
 
 if __name__=="__main__":
