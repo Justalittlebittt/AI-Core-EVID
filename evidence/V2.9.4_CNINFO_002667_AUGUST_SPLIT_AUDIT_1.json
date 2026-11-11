@@ -1,0 +1,459 @@
+{
+  "schema": "V294_CNINFO_002667_AUGUST_TWO_SESSION_READ_ONLY_V1",
+  "security_id": "SZSE:002667",
+  "frozen_original_range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "audit_partitions": {
+    "first_half": [
+      "2023-08-01",
+      "2023-08-15"
+    ],
+    "second_half": [
+      "2023-08-16",
+      "2023-08-31"
+    ],
+    "full_august": [
+      "2023-08-01",
+      "2023-08-31"
+    ],
+    "left_boundary": [
+      "2023-07-31",
+      "2023-07-31"
+    ],
+    "right_boundary": [
+      "2023-09-01",
+      "2023-09-01"
+    ]
+  },
+  "sessions": [
+    {
+      "first_half": {
+        "range": [
+          "2023-08-01",
+          "2023-08-15"
+        ],
+        "reported_totals": [
+          3
+        ],
+        "page_counts": [
+          3
+        ],
+        "raw_count": 3,
+        "unique_count": 3,
+        "duplicate_ids": [],
+        "ids": [
+          "1217476889",
+          "1217500977",
+          "1217500978"
+        ],
+        "ids_sha256": "b539d9c868c84c1e48746ab3981571041d8d57dee009cba69031be6ce7c12d82",
+        "tracked_announcements": [],
+        "complete": true
+      },
+      "second_half": {
+        "range": [
+          "2023-08-16",
+          "2023-08-31"
+        ],
+        "reported_totals": [
+          34
+        ],
+        "page_counts": [
+          30,
+          4
+        ],
+        "raw_count": 34,
+        "unique_count": 34,
+        "duplicate_ids": [],
+        "ids": [
+          "1217563573",
+          "1217598363",
+          "1217598364",
+          "1217598365",
+          "1217598366",
+          "1217598367",
+          "1217598368",
+          "1217598369",
+          "1217598370",
+          "1217598371",
+          "1217618430",
+          "1217619903",
+          "1217647208",
+          "1217680937",
+          "1217680938",
+          "1217680939",
+          "1217680940",
+          "1217680941",
+          "1217680942",
+          "1217680943",
+          "1217693814",
+          "1217693815",
+          "1217693816",
+          "1217693817",
+          "1217693818",
+          "1217693819",
+          "1217693820",
+          "1217693821",
+          "1217693822",
+          "1217693823",
+          "1217693824",
+          "1217693825",
+          "1217693826",
+          "1217701738"
+        ],
+        "ids_sha256": "a20e786b6d1d10a931293735040e1d603d6822efeacb5f43aadd1ddd7ded6847",
+        "tracked_announcements": [
+          {
+            "announcement_id": "1217598366",
+            "timestamp_utc": "2023-08-21T16:00:00+00:00",
+            "local_date": "2023-08-22",
+            "source_url": "finalpage/2023-08-22/1217598366.PDF"
+          }
+        ],
+        "complete": true
+      },
+      "full_august": {
+        "range": [
+          "2023-08-01",
+          "2023-08-31"
+        ],
+        "reported_totals": [
+          37
+        ],
+        "page_counts": [
+          30,
+          7
+        ],
+        "raw_count": 37,
+        "unique_count": 37,
+        "duplicate_ids": [],
+        "ids": [
+          "1217476889",
+          "1217500977",
+          "1217500978",
+          "1217563573",
+          "1217598363",
+          "1217598364",
+          "1217598365",
+          "1217598366",
+          "1217598367",
+          "1217598368",
+          "1217598369",
+          "1217598370",
+          "1217598371",
+          "1217618430",
+          "1217619903",
+          "1217647208",
+          "1217680937",
+          "1217680938",
+          "1217680939",
+          "1217680940",
+          "1217680941",
+          "1217680942",
+          "1217680943",
+          "1217693814",
+          "1217693815",
+          "1217693816",
+          "1217693817",
+          "1217693818",
+          "1217693819",
+          "1217693820",
+          "1217693821",
+          "1217693822",
+          "1217693823",
+          "1217693824",
+          "1217693825",
+          "1217693826",
+          "1217701738"
+        ],
+        "ids_sha256": "4b6ab7a8a804d75e25a905a3037a7e620b2f9d21199d15ef70e4ea3132b8c5ab",
+        "tracked_announcements": [
+          {
+            "announcement_id": "1217598366",
+            "timestamp_utc": "2023-08-21T16:00:00+00:00",
+            "local_date": "2023-08-22",
+            "source_url": "finalpage/2023-08-22/1217598366.PDF"
+          }
+        ],
+        "complete": true
+      },
+      "left_boundary": {
+        "range": [
+          "2023-07-31",
+          "2023-07-31"
+        ],
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "unique_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "ids_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "tracked_announcements": [],
+        "complete": true
+      },
+      "right_boundary": {
+        "range": [
+          "2023-09-01",
+          "2023-09-01"
+        ],
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "unique_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "ids_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "tracked_announcements": [],
+        "complete": true
+      }
+    },
+    {
+      "first_half": {
+        "range": [
+          "2023-08-01",
+          "2023-08-15"
+        ],
+        "reported_totals": [
+          3
+        ],
+        "page_counts": [
+          3
+        ],
+        "raw_count": 3,
+        "unique_count": 3,
+        "duplicate_ids": [],
+        "ids": [
+          "1217476889",
+          "1217500977",
+          "1217500978"
+        ],
+        "ids_sha256": "b539d9c868c84c1e48746ab3981571041d8d57dee009cba69031be6ce7c12d82",
+        "tracked_announcements": [],
+        "complete": true
+      },
+      "second_half": {
+        "range": [
+          "2023-08-16",
+          "2023-08-31"
+        ],
+        "reported_totals": [
+          34,
+          35
+        ],
+        "page_counts": [
+          30,
+          5
+        ],
+        "raw_count": 35,
+        "unique_count": 34,
+        "duplicate_ids": [
+          "1217598366"
+        ],
+        "ids": [
+          "1217563573",
+          "1217598363",
+          "1217598364",
+          "1217598365",
+          "1217598366",
+          "1217598367",
+          "1217598368",
+          "1217598369",
+          "1217598370",
+          "1217598371",
+          "1217618430",
+          "1217619903",
+          "1217647208",
+          "1217680937",
+          "1217680938",
+          "1217680939",
+          "1217680940",
+          "1217680941",
+          "1217680942",
+          "1217680943",
+          "1217693814",
+          "1217693815",
+          "1217693816",
+          "1217693817",
+          "1217693818",
+          "1217693819",
+          "1217693820",
+          "1217693821",
+          "1217693822",
+          "1217693823",
+          "1217693824",
+          "1217693825",
+          "1217693826",
+          "1217701738"
+        ],
+        "ids_sha256": "a20e786b6d1d10a931293735040e1d603d6822efeacb5f43aadd1ddd7ded6847",
+        "tracked_announcements": [
+          {
+            "announcement_id": "1217598366",
+            "timestamp_utc": "2023-08-21T16:00:00+00:00",
+            "local_date": "2023-08-22",
+            "source_url": "finalpage/2023-08-22/1217598366.PDF"
+          },
+          {
+            "announcement_id": "1217598366",
+            "timestamp_utc": "2023-08-21T16:00:00+00:00",
+            "local_date": "2023-08-22",
+            "source_url": "finalpage/2023-08-22/1217598366.PDF"
+          }
+        ],
+        "complete": false
+      },
+      "full_august": {
+        "range": [
+          "2023-08-01",
+          "2023-08-31"
+        ],
+        "reported_totals": [
+          37,
+          38
+        ],
+        "page_counts": [
+          30,
+          8
+        ],
+        "raw_count": 38,
+        "unique_count": 37,
+        "duplicate_ids": [
+          "1217598366"
+        ],
+        "ids": [
+          "1217476889",
+          "1217500977",
+          "1217500978",
+          "1217563573",
+          "1217598363",
+          "1217598364",
+          "1217598365",
+          "1217598366",
+          "1217598367",
+          "1217598368",
+          "1217598369",
+          "1217598370",
+          "1217598371",
+          "1217618430",
+          "1217619903",
+          "1217647208",
+          "1217680937",
+          "1217680938",
+          "1217680939",
+          "1217680940",
+          "1217680941",
+          "1217680942",
+          "1217680943",
+          "1217693814",
+          "1217693815",
+          "1217693816",
+          "1217693817",
+          "1217693818",
+          "1217693819",
+          "1217693820",
+          "1217693821",
+          "1217693822",
+          "1217693823",
+          "1217693824",
+          "1217693825",
+          "1217693826",
+          "1217701738"
+        ],
+        "ids_sha256": "4b6ab7a8a804d75e25a905a3037a7e620b2f9d21199d15ef70e4ea3132b8c5ab",
+        "tracked_announcements": [
+          {
+            "announcement_id": "1217598366",
+            "timestamp_utc": "2023-08-21T16:00:00+00:00",
+            "local_date": "2023-08-22",
+            "source_url": "finalpage/2023-08-22/1217598366.PDF"
+          },
+          {
+            "announcement_id": "1217598366",
+            "timestamp_utc": "2023-08-21T16:00:00+00:00",
+            "local_date": "2023-08-22",
+            "source_url": "finalpage/2023-08-22/1217598366.PDF"
+          }
+        ],
+        "complete": false
+      },
+      "left_boundary": {
+        "range": [
+          "2023-07-31",
+          "2023-07-31"
+        ],
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "unique_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "ids_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "tracked_announcements": [],
+        "complete": true
+      },
+      "right_boundary": {
+        "range": [
+          "2023-09-01",
+          "2023-09-01"
+        ],
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "unique_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "ids_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "tracked_announcements": [],
+        "complete": true
+      }
+    }
+  ],
+  "evaluation": {
+    "stable_partitions": {
+      "first_half": true,
+      "second_half": false,
+      "full_august": false,
+      "left_boundary": true,
+      "right_boundary": true
+    },
+    "halves_equal_full_august": true,
+    "no_boundary_overlap": true,
+    "august_unique_count": 37,
+    "tracked_id_presence": {
+      "1217598366": {
+        "august": true,
+        "left_boundary": false,
+        "right_boundary": false
+      },
+      "1217706310": {
+        "august": false,
+        "left_boundary": false,
+        "right_boundary": false
+      }
+    },
+    "technical_consistency_pass": false,
+    "scientific_completeness_certified": false,
+    "batch3_aggregation_authorized": false,
+    "batch4_authorized": false,
+    "outcomes_consumed": false
+  }
+}
