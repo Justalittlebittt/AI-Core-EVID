@@ -1,4 +1,4 @@
-name: CNINFO 002667 August Two-Session Diagnostic
+name: CNINFO 002667 Archived Announcement Identity Check
 on:
   push:
     branches: [fix/v293-batch3-failure-terminal-evidence]
@@ -18,15 +18,15 @@ jobs:
           pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
           playwright install --with-deps chromium
       - name: Fail-closed August reconciliation contract tests
-        run: python -m unittest discover -s scripts -p 'test_v294_cninfo_august_split_audit.py' -v
+        run: python -m unittest discover -s scripts -p 'test_v294_cninfo_target_id_locator.py' -v
       - name: Read-only two-session August source diagnostic
-        run: python scripts/v294_cninfo_august_split_audit.py
+        run: python scripts/v294_cninfo_target_id_locator.py
       - name: Persist audit, including failure evidence if produced
         if: always()
         run: |
-          if test -f evidence/V2.9.4_CNINFO_002667_AUGUST_SPLIT_AUDIT_1.json; then
+          if test -f evidence/V2.9.4_CNINFO_002667_1217706310_IDENTITY_AUDIT_1.json; then
             git config user.name ai-core-evid-bot
             git config user.email actions@users.noreply.github.com
-            git add evidence/V2.9.4_CNINFO_002667_AUGUST_SPLIT_AUDIT_1.json
-            git diff --cached --quiet || (git commit -m "Persist August partition consistency evidence [skip ci]" && git pull --rebase && git push)
+            git add evidence/V2.9.4_CNINFO_002667_1217706310_IDENTITY_AUDIT_1.json
+            git diff --cached --quiet || (git commit -m "Persist 1217706310 original identity diagnostic [skip ci]" && git pull --rebase && git push)
           fi
