@@ -74,6 +74,26 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"INTEGRATED_GATE_UNSAFE_TO_RENDER"):
             select_one(tampered,sid)
 
+    def test_one_stock_json_mutation_cannot_contaminate_archived_eight_result(self):
+        full=build()
+        before=copy.deepcopy(full)
+        sid=full["stocks"][0]["security_id"]
+        exported=select_one(full,sid)
+        # A local JSON consumer can append notes or alter its copy; neither
+        # the original research result nor a subsequent card may change.
+        exported["market_reference"]["latest_available_close_cny"]=99999
+        exported["market_evidence"]["status"]="FAKE_CURRENT_BROKER_FILL"
+        exported["source_sha256"]["latest_saved_vendor_daily_bars"]="fake"
+        exported["strategy_evidence"]["grade"]="STRONG"
+        exported["blocking_reasons"].clear()
+        self.assertEqual(full,before)
+        clean=select_one(full,sid)
+        self.assertEqual(clean["strategy_evidence"]["grade"],"INSUFFICIENT")
+        self.assertNotEqual(clean["market_reference"]["latest_available_close_cny"],99999)
+        self.assertIn("NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE",clean["blocking_reasons"])
+        self.assertEqual(clean["source_sha256"],before["source_sha256"])
+        self.assertIn("NOT_AUTHORIZED / NO BUY",render_one(full,sid))
+
     def test_one_stock_json_local_private_account_only_shows_selected_name(self):
         base=build()
         positions=[]

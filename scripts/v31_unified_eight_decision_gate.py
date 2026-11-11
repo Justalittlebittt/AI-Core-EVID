@@ -300,7 +300,7 @@ def select_one(report, security_id):
     }
     if "stop_gap_risk_unbounded" in audit:
         account["stop_gap_risk_unbounded"]=audit["stop_gap_risk_unbounded"]
-    return {
+    case={
         "schema":"V31_ONE_STOCK_SOURCE_BOUND_READ_ONLY_DECISION_CASE_V1",
         "security_id":security_id,
         "source_scope":report["decision_scope"],
@@ -322,6 +322,9 @@ def select_one(report, security_id):
         "historical_vendor_quote_not_broker_fill":True,
         "private_input_not_written_to_repository":True,
     }
+    # Detach nested maps/lists: callers may annotate the exported JSON without
+    # mutating the source-bound eight-stock evidence still held in memory.
+    return copy.deepcopy(case)
 
 
 def render_one(report, security_id):
