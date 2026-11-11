@@ -8,7 +8,7 @@ import copy
 import unittest
 
 from v29_decision_case_demo import build_case
-from v31_unified_eight_decision_gate import build, load_archived_market, validate_market_by_identity, render
+from v31_unified_eight_decision_gate import build, load_archived_market, validate_market_by_identity, render, render_one
 
 
 class V31UnifiedDecisionGateTests(unittest.TestCase):
@@ -25,6 +25,31 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         self.assertEqual(len({x["security_id"] for x in result["stocks"]}),8)
         self.assertTrue(all(x["decision"]=="BLOCK_BUY" for x in result["stocks"]))
         self.assertIn("NOT_AUTHORIZED / NO BUY",render(result))
+
+    def test_single_security_card_is_reproducible_and_exposes_provenance(self):
+        report=build()
+        sid=report["stocks"][0]["security_id"]
+        card=render_one(report,sid)
+        self.assertEqual(card,render_one(report,sid))
+        self.assertIn(sid,card)
+        self.assertIn(report["source_sha256"]["sealed_122_nov02_entry"],card)
+        self.assertIn(report["source_sha256"]["latest_saved_vendor_daily_bars"],card)
+        self.assertIn("2026-11-09",card)
+        self.assertIn("INSUFFICIENT",card)
+        self.assertIn("BLOCK_BUY",card)
+        self.assertIn("NOT_AUTHORIZED / NO BUY",card)
+        self.assertIn("NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE",card)
+        self.assertNotIn("建议买入",card)
+        self.assertNotIn(report["stocks"][1]["security_id"],card)
+
+    def test_single_security_card_unknown_or_promoted_fails_closed(self):
+        report=build()
+        with self.assertRaisesRegex(ValueError,"UNKNOWN_OR_DUPLICATE_RESEARCH_SECURITY"):
+            render_one(report,"SSE:999999")
+        altered=copy.deepcopy(report)
+        altered["stocks"][0]["decision"]="BUY"
+        with self.assertRaisesRegex(ValueError,"INTEGRATED_GATE_UNSAFE_TO_RENDER"):
+            render_one(altered,altered["stocks"][0]["security_id"])
 
     def test_wrong_saved_quote_does_not_get_promoted(self):
         source,eod,latest,seal=load_archived_market(__import__("pathlib").Path(__file__).resolve().parents[1])
