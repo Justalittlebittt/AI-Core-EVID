@@ -34,6 +34,9 @@ def query_at(page,org,size,page_num):
         instant=datetime.fromtimestamp(int(ms)/(1000 if len(ms)==13 else 1),tz=timezone.utc)
         local=instant.astimezone(base.SH).date().isoformat()
         path,pdate=base.locator(entry.get("adjunctUrl"),TARGET)
+        sec_code=str(entry.get("secCode") or "")
+        if sec_code and sec_code!="002667":
+            raise RuntimeError("TARGET_OFFICIAL_SECURITY_CODE_MISMATCH")
         matches.append({"announcement_id":TARGET,"announcement_time":ms,
                         "official_observed_day":local,"original_pdf_path_day":pdate,
                         "official_relative_pdf_path":path,
@@ -82,9 +85,12 @@ def main():
             try:
                 page=browser.new_page(locale="zh-CN")
                 page.goto("https://www.cninfo.com.cn/",wait_until="domcontentloaded",timeout=90000)
-                org=record.get("validated_org_id") or base.resolve_org(page,"002667")
-                if not org:
-                    raise RuntimeError("FROZEN_ISSUER_ORG_NOT_FOUND")
+                # Reuse the exact issuer route preserved in the prior V2.9.4
+                # scoped diagnostic source; live org autocomplete may return [].
+                # This is a historical query binding, NOT identity certification.
+                org=record.get("validated_org_id") or "9900036460"
+                if str(record.get("security_code") or "002667")!="002667":
+                    raise RuntimeError("FROZEN_SECURITY_CODE_MISMATCH")
                 sessions.append([query_at(page,org,size,num) for size,num in OFFSETS])
             finally:
                 browser.close()
@@ -92,6 +98,7 @@ def main():
     result={"schema":"V294_CNINFO_002667_TARGET_ID_READ_ONLY_V1",
             "security_id":CID,"frozen_query_range":[base.START,base.END],
             "provenance":"TWO_INDEPENDENT_BROWSER_SESSIONS_TWO_HISTORICAL_PAGE_OFFSETS",
+            "org_route_source":"PRIOR_V294_SCOPED_DIAGNOSTIC_9900036460_NOT_INDEPENDENT_IDENTITY_PROOF",
             "sessions":sessions,"evaluation":verdict}
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(verdict,ensure_ascii=False))
