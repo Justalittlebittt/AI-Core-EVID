@@ -70,6 +70,8 @@ def assess(ids, account, positions):
         if risk > equity*max_name_loss:
             issues.append("SINGLE_NAME_STOP_RISK_LIMIT")
         rows.append({"security_id":sid,"board":board,"shares":qty,
+                     "user_reference_price_cny":str(px),
+                     "user_stop_price_cny":str(stop),
                      "reference_notional_cny":str(notional),
                      "stop_distance_loss_cny":str(risk),"issues":issues})
     issues = []
