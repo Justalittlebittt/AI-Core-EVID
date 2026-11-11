@@ -45,6 +45,19 @@ class TargetLocatorTests(unittest.TestCase):
                             p["target_rows"][0]["original_pdf_path_day"]="2025-01-01"
                 self.assertFalse(evaluate(data)["source_metadata_reconciled"])
 
+    def test_zero_matched_rows_are_unknown_not_vacuously_verified(self):
+        data=fixture()
+        for session in data:
+            for page in session:
+                page["target_present"]=False
+                page["target_rows"]=[]
+        result=evaluate(data)
+        self.assertEqual(result["found_count"],0)
+        self.assertFalse(result["source_metadata_reconciled"])
+        self.assertFalse(result["timestamp_matches_official_path_day"])
+        self.assertFalse(result["date_inside_frozen_range"])
+        self.assertIsNone(result["verified_metadata"])
+
     def test_exact_two_sessions(self):
         with self.assertRaisesRegex(ValueError,"TWO_COMPLETE_SOURCE_SESSIONS_REQUIRED"):
             evaluate(fixture()[:1])
