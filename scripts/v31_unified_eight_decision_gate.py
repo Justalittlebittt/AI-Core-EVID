@@ -283,6 +283,47 @@ def render(report):
 
 
 
+
+def select_one(report, security_id):
+    """Project an already source-bound eight-name result to one read-only JSON case."""
+    # Retain the existing no-trade output boundary; do not create a second gate.
+    render(report)
+    matches=[r for r in report["stocks"] if r["security_id"]==security_id]
+    if len(matches)!=1:
+        raise ValueError("UNKNOWN_OR_DUPLICATE_RESEARCH_SECURITY")
+    row=matches[0]
+    audit=report["private_account_and_stop_gate"]
+    account={
+        "status":audit["status"],
+        "paper_capacity_feasible":audit["paper_capacity_feasible"],
+        "basket_issues":audit["basket_issues"],
+    }
+    if "stop_gap_risk_unbounded" in audit:
+        account["stop_gap_risk_unbounded"]=audit["stop_gap_risk_unbounded"]
+    return {
+        "schema":"V31_ONE_STOCK_SOURCE_BOUND_READ_ONLY_DECISION_CASE_V1",
+        "security_id":security_id,
+        "source_scope":report["decision_scope"],
+        "research_rank_not_forecast_strength":row["research_rank_not_forecast_strength"],
+        "original_signal_date":report["original_signal_date"],
+        "market_capture_time_utc":report["market_capture_time_utc"],
+        "market_reference":row["quote_reference"],
+        "source_sha256":report["source_sha256"],
+        "strategy_evidence":report["strategy_evidence"],
+        "market_evidence":report["market_evidence"],
+        "private_account_and_stop_gate":account,
+        "account_paper_capacity":row["account_paper_capacity"],
+        "discipline_packet_preview":row["discipline_packet_preview"],
+        "blocking_reasons":row["reasons"],
+        "decision":row["decision"],
+        "action":report["action"],
+        "trade_authorized":False,
+        "live_buy_eligibility":"NOT_AUTHORIZED",
+        "historical_vendor_quote_not_broker_fill":True,
+        "private_input_not_written_to_repository":True,
+    }
+
+
 def render_one(report, security_id):
     """One auditable historical research Decision Case, never an order ticket."""
     # Reuse the existing display's one high-consequence no-trade boundary.
@@ -337,14 +378,15 @@ def main():
     p=argparse.ArgumentParser(description="Sealed evidence+EOD+capital+discipline single decision gate; no broker orders.")
     p.add_argument("--format",choices=("markdown","json"),default="markdown")
     p.add_argument("--private-input",type=Path,help="Optional LOCAL account + positions and/or existing V2.9 decision packets; never committed.")
-    p.add_argument("--security-id",help="Render one existing fixed-eight security as a read-only Decision Case (Markdown only).")
+    p.add_argument("--security-id",help="Render one fixed-eight security as a read-only Decision Case (Markdown or JSON).")
     args=p.parse_args()
     private=json.loads(args.private_input.read_text(encoding="utf-8")) if args.private_input else None
     result=build(private=private)
-    if args.security_id and args.format=="json":
-        p.error("--security-id supports Markdown only; --format json retains the original complete eight-stock report.")
-    print(json.dumps(result,ensure_ascii=False,indent=2) if args.format=="json"
-          else render_one(result,args.security_id) if args.security_id else render(result))
+    if args.format=="json":
+        output=select_one(result,args.security_id) if args.security_id else result
+        print(json.dumps(output,ensure_ascii=False,indent=2))
+    else:
+        print(render_one(result,args.security_id) if args.security_id else render(result))
 
 
 if __name__=="__main__":
