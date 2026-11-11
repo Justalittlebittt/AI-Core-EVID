@@ -1,1 +1,1 @@
-V2.9.4 targeted August 2023 half-month and boundary two-session diagnostic; source-only, no Batch-3 activation.
+Single bounded read-only check of CNINFO announcement 1217706310 at frozen page 8/30 and page 11/20 in two separate sessions; no Batch-3 admission.
