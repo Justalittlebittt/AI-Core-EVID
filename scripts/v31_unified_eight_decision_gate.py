@@ -254,6 +254,9 @@ def render(report):
         or report.get("trade_authorized") is not False
         or report.get("live_buy_eligibility")!="NOT_AUTHORIZED"
         or report.get("stock_count")!=8
+        or report.get("strategy_evidence",{}).get("grade")!="INSUFFICIENT"
+        or report.get("strategy_evidence",{}).get("independent_alpha_validated") is not False
+        or report.get("signal_is_not_verified_alpha") is not True
         or any(x["decision"]!="BLOCK_BUY" for x in report.get("stocks",[]))):
         raise ValueError("INTEGRATED_GATE_UNSAFE_TO_RENDER")
     lines=[
