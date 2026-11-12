@@ -1,0 +1,136 @@
+{
+  "schema": "V294_SZSE_002667_SOURCE_MIGRATION_REVIEW_NONAUTHORIZING_V1",
+  "reviewed_on": "2026-11-12",
+  "issue_number": 4,
+  "case": "SZSE:002667",
+  "frozen_disclosure_range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "review_classification": "SOURCE_ID_ENUMERATION_VERIFIED_BUT_FROZEN_CHUNK3_INPUT_MIGRATION_BLOCKED",
+  "authority": {
+    "original_probe_contract": {
+      "path": "evidence/V2.9.1_NEGATIVE_SPACE_PROBE_CONTRACT_1.json",
+      "status": "FROZEN_BEFORE_IMPLEMENTATION",
+      "requires": "CNINFO issuer-scoped query, validated issuer map, unchanged title triage, original CNINFO locator and matching temporal dates, PDF classifier, parent negative-space exclusion"
+    },
+    "reconstruction_contract": {
+      "path": "evidence/V2.9.3_BATCH3_MINIMAL_RECONSTRUCTION_CONTRACT_1.json",
+      "status": "FROZEN_BEFORE_IMPLEMENTATION",
+      "approval": "USER_2026_10_10_FOR_ORIGINAL_CHUNK3_RECONSTRUCTION_ONLY",
+      "requires": "Exact ranks 145-152; reuse 7 completed chunks; complete audited chunk3 payload; no original source contract silent substitution"
+    },
+    "current_chunk3": {
+      "path": "evidence/V2.9.3_BATCH3_RECONSTRUCTION_CHUNK_03_RECEIPT_1.json",
+      "status": "V2_9_3_BATCH3_RECONSTRUCTION_CHUNK_BLOCKED",
+      "issuers_transport_passed": 7,
+      "issuers_total": 8,
+      "remaining_rank": 151,
+      "remaining_security": "SZSE:002667",
+      "blocker": "PAGINATION_DEDUPE_MISMATCH"
+    },
+    "source_enumeration": {
+      "path": "evidence/V2.9.4_002667_SZSE_FROZEN_MONTH_CENSUS_V1.json",
+      "git_blob_sha": "9cd93e22096155d9f3171724ef97fb2bf9feef73",
+      "reproducible_months": 24,
+      "months_total": 24,
+      "distinct_announcement_ids": 486,
+      "cross_month_duplicate_count": 0,
+      "source_consistency_pass": true,
+      "raw_row_payload_persisted": false,
+      "available_per_partition_fields": [
+        "range",
+        "size",
+        "reported_totals",
+        "page_counts",
+        "raw_count",
+        "unique_count",
+        "ids",
+        "id_sha256",
+        "row_fingerprint",
+        "error",
+        "complete"
+      ]
+    },
+    "cross_source_reconciliation": {
+      "path": "evidence/V2.9.4_002667_SZSE_CNINFO_FROZEN_ID_RECONCILIATION_1.json",
+      "git_blob_sha": "b4b5143fa3b6d55913afb7df7a98361dee523383",
+      "legacy_cninfo_month_set": 485,
+      "szse_set": 486,
+      "only_missing_from_monthly_cninfo": [
+        "1217706310"
+      ],
+      "historical_cninfo_page_set_union_matches_szse": true
+    }
+  },
+  "hard_contract_review": [
+    {
+      "name": "frozen_issuer_and_development_fold_identity",
+      "status": "UNVERIFIED_FOR_SOURCE_SUBSTITUTION",
+      "reason": "Current SZSE stock code/list is matching issuer but not a replacement for frozen CNINFO org-ID PIT authority"
+    },
+    {
+      "name": "source_announcement_id_coverage",
+      "status": "PASS_DIAGNOSTIC_ONLY",
+      "reason": "24 months x 2 sessions x 2 page sizes, 486 exact IDs; independent exchange source"
+    },
+    {
+      "name": "raw_announcement_rows_for_triage",
+      "status": "MISSING",
+      "reason": "Persisted SZSE census has only ID sets and row fingerprint, cannot reconstruct exact source title, publication timestamp or exchange PDF locator for all 486"
+    },
+    {
+      "name": "unchanged_cninfo_locator_contract",
+      "status": "BLOCKED_IF_DIRECT_SZSE_SUBSTITUTION",
+      "reason": "base.locator validates CNINFO finalpage/<date>/<ID>.PDF; SZSE /disc/disk03/finalpage/<date>/<UUID>.PDF does not conform"
+    },
+    {
+      "name": "temporal_exact_timestamp_and_pdf_path_date",
+      "status": "BLOCKED_IF_DIRECT_SZSE_SUBSTITUTION",
+      "reason": "old.resolve_temporal requires announcement_time and CNINFO finalpage path disclosure date agreement, independent SZSE publishTime/path folder day can differ"
+    },
+    {
+      "name": "pdf_fetch_original_content_route",
+      "status": "BLOCKED_IF_DIRECT_SZSE_SUBSTITUTION",
+      "reason": "old.fetch_pdf hardcodes static.cninfo.com.cn and announcement ID ending locator; exchange UUID attachment cannot be passed as a CNINFO path"
+    },
+    {
+      "name": "unchanged_title_triage_and_classifier",
+      "status": "NOT_RUN_ON_NEW_SOURCE",
+      "reason": "Must preserve exact V2.8.4 triage, OCR prohibition, page-scoped classifier and decision hashes; SZSE title can include short-name prefix"
+    },
+    {
+      "name": "complete_negative_space_and_parent_absence",
+      "status": "NOT_PROVED",
+      "reason": "Must revalidate candidate IDs against immutable parent V2.9 candidate authority without using outcomes"
+    },
+    {
+      "name": "full_chunk3_eight_issuer_payload_and_receipt",
+      "status": "NOT_RUN",
+      "reason": "No complete new reconstructed chunk3 results SHA, classifier-ready materialization or full 8 issuer integrity receipt"
+    },
+    {
+      "name": "science_and_trading_authorization",
+      "status": "NOT_AUTHORIZED",
+      "reason": "No independent validated predictive alpha, no protected return access or freeze changes"
+    }
+  ],
+  "allowed_next_actions_without_science_amendment": [
+    "Continue using SZSE 486-ID source set as independently corroborated forensic reference only",
+    "Review original parent candidate ID authority and existing frozen source/identity bindings without opening Fold3/4, protected outcomes, or changing classifier",
+    "Propose a separately scoped explicit source-adapter authorization with immutable historical source metadata and regression requirements before any scientific chunk3 rerun"
+  ],
+  "prohibited": [
+    "Do not silently swap the SZSE row/file locator into v291_negative_space_batch1.query_rows or v293_batch3_chunk3_reconstruct",
+    "Do not infer missing raw announcement rows from SHA/fingerprint or fabricate timestamps",
+    "Do not modify original frozen contracts, previous chunk receipts, batch memberships, classifier, or information floor",
+    "Do not mark original Batch-3 complete, aggregate Batch-4, inspect protected outcomes, or authorize BUY"
+  ],
+  "disposition": {
+    "source_id_reference": "PASS",
+    "source_migration": "BLOCKED_PENDING_EXPLICIT_AUTHORITY_AND_FULL_INPUT_PROVENANCE",
+    "scientific_batch3": "BLOCKED",
+    "independent_alpha": "INSUFFICIENT",
+    "buy": "NO_BUY"
+  }
+}
