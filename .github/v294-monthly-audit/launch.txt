@@ -1,1 +1,1 @@
-2026-11-12 one-shot offline comparison frozen V2.8.4 title triage for 486 verified SZSE source titles, raw vs historical-name vs explicit prefix separator removal; no PDFs, returns or Batch-3.
+2026-11-12 isolated 2023-04 CNINFO original issuer titles vs 53 verified SZSE April rows, 2 clean browsers x 20/30 page sizes; frozen V2.8.4 input equivalence only, no Batch-3.
