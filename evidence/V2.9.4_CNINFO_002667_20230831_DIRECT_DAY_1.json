@@ -1,0 +1,108 @@
+{
+  "schema": "V294_CNINFO_002667_20230831_SOURCE_DAY_AUDIT_V1",
+  "security_id": "SZSE:002667",
+  "date_range": [
+    "2023-08-31",
+    "2023-08-31"
+  ],
+  "org_route_source": "CNINFO_CURRENT_PUBLIC_SEARCH_002667_ORGID_9900022274",
+  "sessions": [
+    {
+      "30": {
+        "page_size": 30,
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "distinct_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "sorted_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "target_rows": [],
+        "errors": [],
+        "closed": false
+      },
+      "20": {
+        "page_size": 20,
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "distinct_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "sorted_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "target_rows": [],
+        "errors": [],
+        "closed": false
+      }
+    },
+    {
+      "30": {
+        "page_size": 30,
+        "reported_totals": [
+          0
+        ],
+        "page_counts": [
+          0
+        ],
+        "raw_count": 0,
+        "distinct_count": 0,
+        "duplicate_ids": [],
+        "ids": [],
+        "sorted_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "target_rows": [],
+        "errors": [],
+        "closed": false
+      },
+      "20": {
+        "page_size": 20,
+        "reported_totals": [
+          1
+        ],
+        "page_counts": [
+          1
+        ],
+        "raw_count": 1,
+        "distinct_count": 1,
+        "duplicate_ids": [],
+        "ids": [
+          "1217706310"
+        ],
+        "sorted_id_sha256": "3b705c0b30040011a66f709b6c5f466a87a2bf306399be31b6e7dd5619d6f421",
+        "target_rows": [
+          {
+            "id": "1217706310",
+            "local_date": "2023-08-31",
+            "pdf_path_day": "2023-08-31",
+            "pdf_path": "finalpage/2023-08-31/1217706310.PDF",
+            "stock_code": "002667",
+            "short_name": "威领股份",
+            "title": "关于控股股东部分股份质押的公告",
+            "timestamp": "1693411200000"
+          }
+        ],
+        "errors": [],
+        "closed": true
+      }
+    }
+  ],
+  "evaluation": {
+    "direct_day_technical_consistency_pass": false,
+    "all_runs_closed": false,
+    "four_exact_id_sets_equal": false,
+    "reported_totals_equal": false,
+    "target_metadata_equal": false,
+    "target_verified_metadata": null,
+    "historical_full_range_complete": false,
+    "batch3_aggregation_authorized": false,
+    "batch4_authorized": false,
+    "outcomes_consumed": false
+  }
+}
