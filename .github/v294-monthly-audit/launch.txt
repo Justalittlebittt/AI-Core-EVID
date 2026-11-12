@@ -1,1 +1,1 @@
-2026-11-12 one-shot source-only 002667 original SZSE row materialization for frozen 24 months; two independent source sessions, exact 486-ID and existing source fingerprint match; no Batch-3 source substitution.
+2026-11-12 corrected full 486-row synthetic fixture and rerun one-shot read-only 24-month 002667 SZSE row capture; exact official source hashes, no Batch-3 substitution.
