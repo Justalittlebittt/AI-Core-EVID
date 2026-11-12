@@ -1,0 +1,5127 @@
+{
+  "schema": "V294_SZSE_002667_486_SOURCE_ROWS_READ_ONLY_V1",
+  "issuer": "SZSE:002667",
+  "frozen_range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "source_api": "https://www.szse.cn/api/disc/announcement/annList",
+  "reference_path": "evidence/V2.9.4_002667_SZSE_FROZEN_MONTH_CENSUS_V1.json",
+  "source_rows": [
+    {
+      "ann_id": "1215526476",
+      "publication_day": "2023-01-05",
+      "title": "鞍重股份：关于原控股股东股份协议转让事项的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-05/7c2c285c-b5ef-4b2f-8243-ab29e7f1c754.PDF",
+      "exchange_publish_time_raw": "2023-01-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215526477",
+      "publication_day": "2023-01-05",
+      "title": "鞍重股份：关于控股股东部分股份解除质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-04/487c3d1a-3fb6-4fab-a674-fc9f9bf76dca.PDF",
+      "exchange_publish_time_raw": "2023-01-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215539515",
+      "publication_day": "2023-01-07",
+      "title": "鞍重股份：关于持股5%以上股东公司股份解除质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-06/c645ce51-e9fd-4d2a-a3d5-1cd1d734448a.PDF",
+      "exchange_publish_time_raw": "2023-01-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215591497",
+      "publication_day": "2023-01-13",
+      "title": "鞍重股份：关于深圳证券交易所问询函的回复公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-13/2f3d1b10-dbfe-4e06-aa0f-2ea5d77b8920.PDF",
+      "exchange_publish_time_raw": "2023-01-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215650096",
+      "publication_day": "2023-01-19",
+      "title": "鞍重股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-18/e404c946-e0db-4772-9360-2b7c720df3a6.PDF",
+      "exchange_publish_time_raw": "2023-01-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215665573",
+      "publication_day": "2023-01-20",
+      "title": "鞍重股份：关于公司控股股东部分股份质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-19/7f0b2694-af53-4a7e-afe3-85b66f81dc8b.PDF",
+      "exchange_publish_time_raw": "2023-01-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215725913",
+      "publication_day": "2023-01-31",
+      "title": "鞍重股份：2022年度业绩预告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-30/dc86d46f-02a8-47b5-919c-f66c8ab6fae8.PDF",
+      "exchange_publish_time_raw": "2023-01-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215725914",
+      "publication_day": "2023-01-31",
+      "title": "鞍重股份：独立董事对第六届董事会第三十九次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-30/5e61d214-61a4-41fb-b05d-61488c57b9f7.PDF",
+      "exchange_publish_time_raw": "2023-01-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215725915",
+      "publication_day": "2023-01-31",
+      "title": "鞍重股份：第六届董事会第三十九次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-31/49862bb2-52d0-44fa-83c5-c0608b84497d.PDF",
+      "exchange_publish_time_raw": "2023-01-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215725916",
+      "publication_day": "2023-01-31",
+      "title": "鞍重股份：关于公司总裁、董事会秘书辞职的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-30/40bf6706-edaf-4921-acc9-94838bad0ae2.PDF",
+      "exchange_publish_time_raw": "2023-01-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215725917",
+      "publication_day": "2023-01-31",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司轮值总裁制度",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-31/e3f5faa9-646f-409e-92fa-d3af2c80d04b.PDF",
+      "exchange_publish_time_raw": "2023-01-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215725918",
+      "publication_day": "2023-01-31",
+      "title": "鞍重股份：关于聘任公司总裁、董事会秘书及其他高级管理人员的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-01-31/bda338c8-5d56-43aa-97a7-169813b530d7.PDF",
+      "exchange_publish_time_raw": "2023-01-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779805",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：第六届董事会第四十次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/4b7cfa55-f847-4ff3-8308-3f55304894bb.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779806",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司薪酬及考核委员会工作细则",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/28da787b-9e76-41e6-b584-b6e6b3a45e98.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779807",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司战略与发展委员会工作细则",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/ccccf701-de20-4e88-bcc1-8a8f73ebe23b.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779808",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司提名委员会工作细则",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/aae50919-d408-4955-b993-71482d0e0f20.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779809",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：公司章程（2023年2月修订）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/e8b26587-2ebe-4195-8c0d-b8b841a07592.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779810",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：关于持股5%以上股东及其一致行动人减持股份比例达到1%的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/13547110-c7c8-4c56-a638-c551d52a83de.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779815",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：第六届监事会第三十四次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/4d689f11-eb34-475f-8a33-c05de2bbfc95.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779816",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：关于增加公司注册资本并修订公司章程的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/6e9eb933-cb60-4d23-8867-80985d6bd9eb.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779817",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司审计委员会工作细则",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/0625d8aa-bc72-4b92-82a9-6bcabe931eb5.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215779818",
+      "publication_day": "2023-02-07",
+      "title": "鞍重股份：关于召开2023年第一次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-07/8902cd9b-da9d-4624-a4ab-7f2be7575ad2.PDF",
+      "exchange_publish_time_raw": "2023-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215907677",
+      "publication_day": "2023-02-21",
+      "title": "鞍重股份：独立董事对第六届董事会第四十一次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-20/efa4d49c-c7b2-46f3-8bb7-85a0143a4351.PDF",
+      "exchange_publish_time_raw": "2023-02-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215907678",
+      "publication_day": "2023-02-21",
+      "title": "鞍重股份：第六届董事会第四十一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-20/953aec5b-3d90-4499-a309-dc40b8a3742a.PDF",
+      "exchange_publish_time_raw": "2023-02-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215907679",
+      "publication_day": "2023-02-21",
+      "title": "鞍重股份：独立董事对第六届董事会第四十一次会议相关事项发表的事前独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-21/f887d649-699f-45bb-906a-c48e205c541c.PDF",
+      "exchange_publish_time_raw": "2023-02-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215907680",
+      "publication_day": "2023-02-21",
+      "title": "鞍重股份：关于公司终止非公开发行A股股票事项并不再向交易所提交发行上市注册申请文件的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-21/3f9358ba-44ab-4be9-b5ef-6063d176b10f.PDF",
+      "exchange_publish_time_raw": "2023-02-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215907681",
+      "publication_day": "2023-02-21",
+      "title": "鞍重股份：第六届监事会第三十五次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-21/f33d5a9c-020d-4a62-b917-9741ca51a3ab.PDF",
+      "exchange_publish_time_raw": "2023-02-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215907682",
+      "publication_day": "2023-02-21",
+      "title": "鞍重股份：关于与特定对象签订附条件生效的非公开发行股份认购协议之解除协议暨关联交易的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-21/86ddc52f-2e3e-4dc8-9326-bf5e4b4206fd.PDF",
+      "exchange_publish_time_raw": "2023-02-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215939185",
+      "publication_day": "2023-02-23",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第一次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-23/5b01075a-f9f4-47d6-aad0-6977b4ece783.PDF",
+      "exchange_publish_time_raw": "2023-02-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215939186",
+      "publication_day": "2023-02-23",
+      "title": "鞍重股份：鞍重股份2023年第一次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-23/76508edf-8ef6-4022-a123-8e7713ee15d3.PDF",
+      "exchange_publish_time_raw": "2023-02-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215966456",
+      "publication_day": "2023-02-25",
+      "title": "鞍重股份：关于签署宜春千禾新材料有限公司股权转让《终止协议》的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-24/acf1a228-49b7-4044-976d-372d0de83145.PDF",
+      "exchange_publish_time_raw": "2023-02-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215966457",
+      "publication_day": "2023-02-25",
+      "title": "鞍重股份：第六届监事会第三十六次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-24/dde937e1-73d6-44a3-a14a-07d75b8862f8.PDF",
+      "exchange_publish_time_raw": "2023-02-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1215966458",
+      "publication_day": "2023-02-25",
+      "title": "鞍重股份：第六届董事会第四十二次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-02-24/08850b21-d154-48b3-9dd3-a09ea8f2cc6b.PDF",
+      "exchange_publish_time_raw": "2023-02-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216055673",
+      "publication_day": "2023-03-07",
+      "title": "鞍重股份：关于拟挂牌转让控股及参股子公司相关股权事项的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-06/64c842ca-ff31-41b5-b35c-15c55732e724.PDF",
+      "exchange_publish_time_raw": "2023-03-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084393",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：内部控制鉴证报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/869fb22f-d9b8-4f99-9b41-a93e2e3fd55d.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084394",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：关于2022年计提资产减值准备的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/988ee88c-bede-4fe9-9416-0125e49ed51c.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084395",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：年度募集资金使用鉴证报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/449d4896-c766-4f4d-9962-1b3edba393ba.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084396",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：鞍重股份：2022年度监事会工作报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/11a76023-9e27-4505-b211-8bf235b3e374.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084397",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：监事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/591ae263-3769-4a6c-a9cf-ebff53202344.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084398",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：关于续聘公司2023年度审计机构的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/f9f8e6f3-327c-4488-ab56-649aa33fb4b1.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084399",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：年度股东大会通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/951d701f-525c-47f2-a9e8-0f66191c75a9.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084400",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：2022年年度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/8da4b136-842e-4c33-94da-1ac0869d5f1a.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084401",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：2022年年度审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/7c7087c8-6cde-42fb-ad59-4b35409123bb.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084402",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：2022年财务决算报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/2bb5b0f0-9b89-4743-9d00-a9b01a76c126.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084403",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：独立董事对担保等事项的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/10361637-c7ca-4c15-ae75-e552eeb0cf57.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084404",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司2022年度募集资金存放与使用情况的专项核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/fccec3ee-d686-4e94-bb62-ae6a647441db.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084405",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：内部控制自我评价报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/357cc3e2-cab5-42f0-b859-a7743c8d7cd4.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084406",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：鞍重股份：2022年董事会工作报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/1733bb86-4738-40f4-a5f8-92aacbd263b2.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084407",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：年度关联方资金占用专项审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/b7069054-8f8d-4b39-848c-e8d3e8b192d7.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084408",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：独立董事年度述职报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/c9c3bc4f-2b12-4be8-ae01-3e55e093193d.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084409",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：年度募集资金使用情况专项说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/57ccd229-c65c-4bdc-86a1-5ae71fba4d20.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084410",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：关于董事辞职暨拟变更董事的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-09/de43f38b-a5d4-48ed-b9d7-79ab7f56b7aa.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084411",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：独立董事对第六届董事会第四十三次会议相关事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-09/4ece772b-84ea-4df1-a9c8-35619df1de83.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084412",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：关于2022年度日常关联交易预计的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/5fcd907f-7fb3-4eaa-8056-b7c8b4e8dc22.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084413",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：董事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-10/808ffb4d-1459-4d2f-a3f2-f7e3ece003c1.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216084414",
+      "publication_day": "2023-03-10",
+      "title": "鞍重股份：2022年年度报告摘要",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-09/0bfefdf8-b0ed-4f81-9683-f3a6c5a5c6f4.PDF",
+      "exchange_publish_time_raw": "2023-03-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216094564",
+      "publication_day": "2023-03-11",
+      "title": "鞍重股份：关于股东解除一致行动关系的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-11/7597935b-598b-4d2e-a923-e80bee3db7ce.PDF",
+      "exchange_publish_time_raw": "2023-03-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216094565",
+      "publication_day": "2023-03-11",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司 内部控制审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-11/62f298d4-787b-4956-9687-240ebd7c3bf5.PDF",
+      "exchange_publish_time_raw": "2023-03-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101472",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/8f96c971-1e1a-4b22-8625-95d62a1ba37e.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101473",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金预案（摘要）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-13/6ea72499-6eab-4e52-856e-436b4dca327e.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101474",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易采取的保密措施及保密制度的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/6a5979d0-8168-4027-9986-bf8092b41544.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101475",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：第六届董事会第四十四次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-13/8c9d70d9-7c03-4f9c-8641-4259ece3a78d.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101476",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/601a6ba2-b9e7-4347-b370-cd747e59f985.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101477",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-13/eb34e20d-f110-43dd-bc7e-d0a59edcfea8.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101479",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易符合《上市公司证券发行注册管理办法》第十一条规定的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/dec0f9ff-f4ba-4252-88c9-d99980407e0c.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101481",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：第六届监事会第三十八次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-13/13b40f4a-aae7-4227-9c9f-bc73f2e8f5d1.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101483",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/4ec09eb8-717e-48b5-a675-eafe0abc34c0.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101485",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/ced0033d-11af-4c70-a0fb-3cb2636d1eb5.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101487",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易前12个月内购买、出售资产情况的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/4459e544-6ed2-4eeb-ba3b-d08ab4a29499.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101489",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于本次交易不构成关联交易的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/1047117c-05f5-48cc-8518-66af824fb055.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101490",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金预案",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-13/8341c98d-15d5-493f-9fec-6273dc7b305a.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101491",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：鞍重股份独立董事关于公司发行股份购买资产并募集配套资金事项的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-13/82272983-8301-4b4f-ab39-09c4234f9fe4.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216101492",
+      "publication_day": "2023-03-13",
+      "title": "鞍重股份：关于暂不召开股东大会的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-12/370cddbc-5fbf-4ce5-bbd1-f294b2f5538b.PDF",
+      "exchange_publish_time_raw": "2023-03-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216116593",
+      "publication_day": "2023-03-15",
+      "title": "鞍重股份：关于股东解除一致行动关系的补充公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-14/2a7ce62f-c47c-460b-9b9f-52f9b2c8882a.PDF",
+      "exchange_publish_time_raw": "2023-03-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216116594",
+      "publication_day": "2023-03-15",
+      "title": "鞍重股份：关于股东解除一致行动关系的提示性公告（更正后）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-14/3f4f632c-94cb-47af-9f1b-59be97bc0b32.PDF",
+      "exchange_publish_time_raw": "2023-03-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216125255",
+      "publication_day": "2023-03-16",
+      "title": "鞍重股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-15/4c0224d9-5d4b-43f2-a574-2c3c4616b22d.PDF",
+      "exchange_publish_time_raw": "2023-03-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216138777",
+      "publication_day": "2023-03-17",
+      "title": "鞍重股份：关于控股股东持股比例变动达到1%的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-16/56631591-afe0-43c1-a2fc-d8274625b41d.PDF",
+      "exchange_publish_time_raw": "2023-03-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216138778",
+      "publication_day": "2023-03-17",
+      "title": "鞍重股份：关于控股股东减持计划预披露公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-16/7145f1c5-c348-4c89-8ceb-0457fc574ee8.PDF",
+      "exchange_publish_time_raw": "2023-03-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216138779",
+      "publication_day": "2023-03-17",
+      "title": "鞍重股份：关于持股5%以上股东及其一致行动人减持计划提前终止暨后续减持计划预披露的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-17/03fa84fc-b972-418f-82d3-8104d76bf199.PDF",
+      "exchange_publish_time_raw": "2023-03-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216138780",
+      "publication_day": "2023-03-17",
+      "title": "鞍重股份：简式权益变动报告书（杨永柱、温萍）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-17/a399c161-0f45-425e-b537-dafb36858851.PDF",
+      "exchange_publish_time_raw": "2023-03-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216138781",
+      "publication_day": "2023-03-17",
+      "title": "鞍重股份：简式权益变动报告书（强强投资）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-17/5b1a0122-3458-4975-aca0-0ea4001ef701.PDF",
+      "exchange_publish_time_raw": "2023-03-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234799",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：独立董事对关于公开挂牌转让控股及参股公司相关股权事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-28/8c61299a-fc6e-47a6-8e7d-577acca3eda2.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234800",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司拟转让股权所涉及的鞍山鞍重矿山机械有限公司模拟合并后的股东全部权益价值资产评估报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-28/40c3ad12-ba45-42cb-b0a9-b47a0c54898d.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234801",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：关于挂牌转让控股及参股公司相关股权事项的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-27/45365b2d-7aa2-4ce8-a428-c6f6d8c40ba0.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234802",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：第六届监事会第三十九次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-28/56388526-93da-4d2e-8bc8-ee265bd84b2f.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234803",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：关于召开2023年第二次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-27/a9f8f27a-8713-4e59-96ed-c15bc9d2b5ce.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234804",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：第六届董事会第四十五次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-28/f7305fdc-5d00-4704-ae1f-c9801acfa4d9.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234805",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：独立董事对关于公开挂牌转让控股及参股公司相关股权事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-28/464b8637-caef-4f7f-8575-af68d89dc4cb.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216234806",
+      "publication_day": "2023-03-28",
+      "title": "鞍重股份：鞍山鞍重矿山机械有限公司审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-27/ee58b5c3-b1fd-46c1-be54-88dad70b3201.PDF",
+      "exchange_publish_time_raw": "2023-03-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216274275",
+      "publication_day": "2023-03-31",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2022年度股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-31/4d4989e3-f510-40ae-9040-499e9208b3a6.PDF",
+      "exchange_publish_time_raw": "2023-03-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216274276",
+      "publication_day": "2023-03-31",
+      "title": "鞍重股份：2022年度股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-30/23e92928-ad90-4e51-a818-fa57093d8734.PDF",
+      "exchange_publish_time_raw": "2023-03-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299454",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：关于完成公司注册资本工商变更登记的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-31/4e657579-f6f1-47e7-9c7c-e00ede2268b0.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299455",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：第六届监事会第四十次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-01/bfdd1549-4895-4a04-af40-75b09b3ce0a5.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299456",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：第六届董事会第四十六次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-01/4255c9ff-3401-42d7-861f-90c7eaa9c7a6.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299457",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：独立董事关于第六届董事会第四十六次会议相关事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-31/1f6bc8a3-0d16-49c0-9ade-3af8df996cb6.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299458",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：关于公司与持股5%以上股东签署借款补充协议暨关联交易的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-31/00fb9841-e2bd-4ebc-9700-e2e1b8f88daa.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299459",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：独立董事关于第六届董事会第四十六次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-31/c7fea59b-8604-4581-8083-a9f9c65027a2.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216299460",
+      "publication_day": "2023-04-01",
+      "title": "鞍重股份：关于召开2023年第三次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-03-31/8a5bcf15-3bfe-4a82-a784-e8bd6ba63bcb.PDF",
+      "exchange_publish_time_raw": "2023-04-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216330670",
+      "publication_day": "2023-04-06",
+      "title": "鞍重股份：北京中企华资产评估有限责任公司关于对鞍山重型矿山机器股份有限公司关注函所提出的问题回复之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-06/2057dc64-d99c-48b7-96b9-486ec088cb13.PDF",
+      "exchange_publish_time_raw": "2023-04-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216330671",
+      "publication_day": "2023-04-06",
+      "title": "鞍重股份：关于深圳证券交易所关注函的回复公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-06/3fb5c93a-ea81-4993-a7b7-271404db972e.PDF",
+      "exchange_publish_time_raw": "2023-04-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216343162",
+      "publication_day": "2023-04-07",
+      "title": "鞍重股份：关于挂牌转让控股及参股公司相关股权的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-06/806a6b8d-4ce2-42d3-a173-e2ac6783dec2.PDF",
+      "exchange_publish_time_raw": "2023-04-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216369900",
+      "publication_day": "2023-04-11",
+      "title": "鞍重股份：关于控股子公司更名的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-11/819198dc-c649-46c8-9c21-d980832766ca.PDF",
+      "exchange_publish_time_raw": "2023-04-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216391791",
+      "publication_day": "2023-04-13",
+      "title": "鞍重股份：鞍重股份2023年第二次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-13/cdc90c75-3606-478b-9949-7f7a32d33979.PDF",
+      "exchange_publish_time_raw": "2023-04-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216391792",
+      "publication_day": "2023-04-13",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年度第二次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-13/5caea384-8884-463f-a21c-0879961578f7.PDF",
+      "exchange_publish_time_raw": "2023-04-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216403319",
+      "publication_day": "2023-04-14",
+      "title": "鞍重股份：关于召开 2022 年度业绩说明会的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-14/202ef2b1-eb5e-406a-b608-00dcb4b4e7c5.PDF",
+      "exchange_publish_time_raw": "2023-04-14 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216438035",
+      "publication_day": "2023-04-18",
+      "title": "鞍重股份：简式权益变动报告书-强强投资",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-18/3ddce49c-1a2e-46fb-bfb8-f559e96ff076.PDF",
+      "exchange_publish_time_raw": "2023-04-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216438036",
+      "publication_day": "2023-04-18",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第三次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-18/cadb8eee-d72f-4440-b8ee-a0fe487da5b0.PDF",
+      "exchange_publish_time_raw": "2023-04-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216438037",
+      "publication_day": "2023-04-18",
+      "title": "鞍重股份：关于股东权益变动的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-17/8322878b-f114-44c2-8cc8-291c066c9268.PDF",
+      "exchange_publish_time_raw": "2023-04-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216438038",
+      "publication_day": "2023-04-18",
+      "title": "鞍重股份：鞍重股份2023年第三次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-18/d98c71c9-1177-494c-8496-55f1cf986a3f.PDF",
+      "exchange_publish_time_raw": "2023-04-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216438230",
+      "publication_day": "2023-04-18",
+      "title": "鞍重股份：关于控股股东部分股份解除质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-17/a677d36f-2152-4a43-9927-29c1c3bacd0b.PDF",
+      "exchange_publish_time_raw": "2023-04-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216455977",
+      "publication_day": "2023-04-19",
+      "title": "鞍重股份：关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-18/addf43fe-2e99-412a-b1f1-460d5bd8997f.PDF",
+      "exchange_publish_time_raw": "2023-04-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524917",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：关于股东减持计划预披露公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-21/3836a213-2a19-4401-ac19-71668edbf73a.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524919",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司审阅报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/a9c66870-bd85-426a-a7b4-b15e03f57369.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524921",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/52c0f1ef-473a-4d59-9710-ba4fc7a17407.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524924",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易采取的保密措施及保密制度的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/016dfb79-166c-4dbf-a7e6-5be7f81bb40d.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524927",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/a211b57f-9483-4525-a2ff-3bff245b6bed.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524930",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司第六届监事会第四十一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/e51721f4-dd0c-4729-94b2-66d57e04a3bb.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524933",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/78717974-9dea-42c3-9742-e57ef7c45159.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524936",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）与预案差异对比表",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/f9ecf458-6168-4543-bb73-286cfda2b9f0.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524937",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/9ff9527a-4764-4f91-871e-6d8456094be9.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524940",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/8e69df0f-399c-48d5-96ad-49264e1828c9.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524943",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/283681fa-dce7-4448-a80a-997ce0584874.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524945",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/cff73d4b-999c-4ca4-869e-391d35e8686f.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524948",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：江西领辉科技有限公司审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/c4364fb2-9ab9-4ab5-bcde-5858f553b386.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524951",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易不构成关联交易的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/9e2c31e4-ed55-483f-a6d7-b002339c936f.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524954",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司独立董事关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/3358f4c6-09ea-4960-87a9-0f6cbb8c6efb.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524957",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于不存在有偿聘请其他第三方机构或个人行为的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/4301e186-20a9-4f18-8a2f-e92fa8c0c66b.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524959",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次重大资产重组前12个月购买、出售资产的核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/5da4b5e8-1efd-40fd-9cb3-df33b32fc102.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524961",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司独立董事关于公司第六届董事会第四十七次会议相关事项的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/046f3801-8d17-45ee-b454-4feebd86273f.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524965",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于发行股份及支付现金购买资产并募集配套资金的一般风险提示公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/395a8ad0-21d0-44b1-bc02-fccef0feda99.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524966",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于公司本次交易摊薄即期回报采取填补措施及承诺事项的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/9c6894cc-41d3-4cd8-ac8a-32445dd7396c.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524968",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司拟收购股权事宜涉及江西领辉科技有限公司股东全部权益价值项目资产评估报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/3d86757b-9715-4775-add4-deb4e0174d5a.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524972",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：申港证券股份有限公司关于担任鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/86754096-cd2a-493e-a58c-4d21e4d3e45f.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524975",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司证券发行注册管理办法》相关规定的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/0a4e983d-fa55-4e8d-b09f-912b568ee01e.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524977",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/ab8abac7-fdea-4839-a775-c7a820695246.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524979",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：申港证券股份有限公司关于本次交易符合《关于加强证券公司在投资银行类业务中聘请第三方等廉洁从业风险防控的意见》的相关规定之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-21/3d222290-2dae-4846-8a96-82c0e41dacbf.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524981",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司关于召开2023年第四次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/9d9b338b-7755-4c4d-8c19-b415298fd44f.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524983",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司第六届董事会第四十七次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/8077531f-bca7-4247-9444-fa9bb6afbe5e.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524985",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/6b4c6eac-f2f2-439c-b3e9-382ca275a651.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524987",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易前十二个月内购买、出售资产的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/7ac8a99c-8d20-45bf-8cf7-d65473ff2557.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524989",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/705e370c-0a8e-4901-8213-792794ab6600.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216524994",
+      "publication_day": "2023-04-22",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-22/408b1712-6d50-4ba4-9e9c-064890c89a5e.PDF",
+      "exchange_publish_time_raw": "2023-04-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216536919",
+      "publication_day": "2023-04-24",
+      "title": "鞍重股份：关于挂牌转让控股及参股公司相关股权事项的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-23/117ba245-035b-4be9-ba94-b2b6f39faccc.PDF",
+      "exchange_publish_time_raw": "2023-04-24 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216614553",
+      "publication_day": "2023-04-27",
+      "title": "鞍重股份：2023年一季度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-04-27/573e0501-86f7-4f4c-b551-f5ff0d91d1b2.PDF",
+      "exchange_publish_time_raw": "2023-04-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216759620",
+      "publication_day": "2023-05-06",
+      "title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次交易相关内幕信息知情人买卖股票的自查报告之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-06/61b55256-23f6-4a39-b67c-393542d10ae8.PDF",
+      "exchange_publish_time_raw": "2023-05-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216759621",
+      "publication_day": "2023-05-06",
+      "title": "鞍重股份：北京市众明律师事务所关于本次交易内幕信息知情人买卖股票情况的自查报告之专项核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-06/5b9189bf-7516-4ae3-940a-7ea9c6285a92.PDF",
+      "exchange_publish_time_raw": "2023-05-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216759622",
+      "publication_day": "2023-05-06",
+      "title": "鞍重股份：关于本次交易内幕信息知情人买卖公司股票情况的自查报告公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-05/7b94fb47-a9c7-44b7-bf85-2941c5cbf852.PDF",
+      "exchange_publish_time_raw": "2023-05-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216768029",
+      "publication_day": "2023-05-09",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第四次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-09/2d3fe6b9-a8f8-47df-8218-b9748d0b82ea.PDF",
+      "exchange_publish_time_raw": "2023-05-09 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216768030",
+      "publication_day": "2023-05-09",
+      "title": "鞍重股份：鞍重股份2023年第四次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-09/21d9da5c-2742-4dd1-9a31-a199be970d53.PDF",
+      "exchange_publish_time_raw": "2023-05-09 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216782684",
+      "publication_day": "2023-05-10",
+      "title": "鞍重股份：关于发行股份及支付现金购买资产并募集配套资金报告书（草案）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-10/4b37c5fc-90db-4fce-b40e-9ac4d728c35d.PDF",
+      "exchange_publish_time_raw": "2023-05-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216782685",
+      "publication_day": "2023-05-10",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-10/85036a79-f190-4e70-80bb-8a3a440e23c1.PDF",
+      "exchange_publish_time_raw": "2023-05-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216782686",
+      "publication_day": "2023-05-10",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-10/283158e9-f273-4aa9-814b-c3ca06912299.PDF",
+      "exchange_publish_time_raw": "2023-05-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791213",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：第六届董事会第四十九次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-11/4ee747f9-094d-4b17-900e-65e5c17580d5.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791214",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：第六届监事会第四十三次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-11/ec3d16b9-d27c-40f7-94cd-8b63953f773f.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791215",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：公司章程（2023年5月修订）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-11/6d9ca2ff-1079-4c14-930f-145bed24bfec.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791216",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：独立董事对第六届董事会第四十九次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-10/208ec2dd-e7d4-4f53-8665-d43468a23c05.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791217",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：关于提供担保额度的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-10/98cf4583-6e80-4430-a7a7-6f65dd821b55.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791218",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：关于召开2023年第五次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-10/b4baa0cb-b70f-4f56-a848-047a0bc00a35.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791219",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：关于拟变更公司全称和证券简称的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-11/449edd2d-3e96-4f9a-bbbe-3edf3039f8b8.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216791220",
+      "publication_day": "2023-05-11",
+      "title": "鞍重股份：关于拟变更公司经营范围及修订《公司章程》的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-11/82ef6520-8093-4d36-b80d-41a7670a2932.PDF",
+      "exchange_publish_time_raw": "2023-05-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216798263",
+      "publication_day": "2023-05-12",
+      "title": "鞍重股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-11/016ca56a-109f-4992-b46b-1a8386477a4f.PDF",
+      "exchange_publish_time_raw": "2023-05-12 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819055",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：关于公司出售资产暨关联交易的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-15/5e96850b-3e6c-4d5a-b60c-272ee1fa18ae.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819056",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：独立董事关于第六届董事会第五十次会议相关事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-15/7b45ae96-e430-41d4-b030-80e9abb94783.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819057",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：独立董事关于第六届董事会第五十次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-15/e1bd5374-d562-418f-9871-7e12fb527069.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819058",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司拟转让股权所涉及的鞍山鞍重矿山机械有限公司模拟合并后的股东全部权益价值资产评估报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-16/33e2c5b4-be02-4a02-85cc-a3d2b9f4c288.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819059",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：第六届监事会第四十四次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-16/4986424d-8544-4aec-a12c-0cfddae2f25b.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819060",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：关于召开2023年第六次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-15/754f6b6c-8b87-42f3-baef-85c9a953853f.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819061",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：鞍山鞍重矿山机械有限公司审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-15/5110a606-51bc-4d82-a759-6b73b8489fb8.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216819062",
+      "publication_day": "2023-05-16",
+      "title": "鞍重股份：第六届董事会第五十次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-16/d750b316-93b8-43d0-9ebd-d1518665cc24.PDF",
+      "exchange_publish_time_raw": "2023-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216828757",
+      "publication_day": "2023-05-17",
+      "title": "鞍重股份：关于延期回复深圳证券交易所并购重组问询函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-16/ee8ddae7-ace3-495a-a8c1-ed9e762a4727.PDF",
+      "exchange_publish_time_raw": "2023-05-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865215",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：独立董事关于深圳证券交易所《关于对鞍重股份发行股份及支付现金购买资产并募集配套资金的问询函》的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/dd7e489f-b7c5-406d-bc9c-6d82674ee55f.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865216",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/c64cbda4-8dfb-4e5c-a9c9-83ce014bc313.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865217",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：关于发行股份及支付现金购买资产并募集配套资金报告书（草案）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/0aec80d3-f9b0-49d6-b378-78c737900304.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865218",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：关于深圳证券交易所并购重组问询函的回复公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/7ea640b9-d337-41ea-a1b8-7989d4a2716c.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865219",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：中瑞世联资产评估集团有限公司关于深圳证券交易所《关于对鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金的问询函》之评估核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/04378c7f-a9c9-4778-ac87-20b970eb0137.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865220",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：申港证券股份有限公司关于深圳证券交易所《关于对鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金的问询函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-19/bea25ba9-b2cf-421c-8bf0-09a106b18202.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865221",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/d37606eb-6aba-4fab-a985-37d7302fcaef.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865222",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金的问询函中有关财务事项的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/4d7a71bc-d220-4b4b-beb4-b08e7f39c37a.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865223",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）修订稿",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/de121056-6d5a-4883-abf5-42005eecefde.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865224",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：关于召开2023年第六次临时股东大会的通知（增加临时提案后）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/5d4f5373-4167-45b9-8f1f-7452faab29ad.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865225",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：关于2023年第六次临时股东大会增加临时提案的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-19/18bd3227-de17-4a8f-a3b1-897a89320a97.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216865226",
+      "publication_day": "2023-05-20",
+      "title": "鞍重股份：北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之补充法律意见书（一）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-20/2c358e42-c959-491a-ac8b-2ddb87ff3c16.PDF",
+      "exchange_publish_time_raw": "2023-05-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216885436",
+      "publication_day": "2023-05-24",
+      "title": "鞍重股份：关于召开2023年第五次临时股东大会的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-24/4c6ad9b3-e6b0-4ca6-890f-26feef2fcfe6.PDF",
+      "exchange_publish_time_raw": "2023-05-24 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216885437",
+      "publication_day": "2023-05-24",
+      "title": "鞍重股份：关于深圳证券交易所关注函的回复公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-24/263fe59e-78ef-49a0-8f49-23379131148f.PDF",
+      "exchange_publish_time_raw": "2023-05-24 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216920415",
+      "publication_day": "2023-05-27",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第五次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-27/89d725e5-a184-460d-9cbb-5469a61510b3.PDF",
+      "exchange_publish_time_raw": "2023-05-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216920416",
+      "publication_day": "2023-05-27",
+      "title": "鞍重股份：鞍重股份2023年第五次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-05-27/cdc53428-7915-43b7-8073-bf1b06885ca8.PDF",
+      "exchange_publish_time_raw": "2023-05-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216958960",
+      "publication_day": "2023-06-01",
+      "title": "鞍重股份：关于发行股份及支付现金购买资产并募集配套资金报告书（草案）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-01/f6630771-4de0-42d2-a295-9e71e5f337ab.PDF",
+      "exchange_publish_time_raw": "2023-06-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216958961",
+      "publication_day": "2023-06-01",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-01/03c0e7f4-59a5-4b5d-af36-a143de31f6c5.PDF",
+      "exchange_publish_time_raw": "2023-06-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216958962",
+      "publication_day": "2023-06-01",
+      "title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）修订稿",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-01/a6f55b1a-a2c3-49d8-b180-3ca7a3645798.PDF",
+      "exchange_publish_time_raw": "2023-06-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216958963",
+      "publication_day": "2023-06-01",
+      "title": "鞍重股份：鞍重股份2023年第六次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-01/8cb40492-a5bd-4536-8c6d-a284afcf4c77.PDF",
+      "exchange_publish_time_raw": "2023-06-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216958964",
+      "publication_day": "2023-06-01",
+      "title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第六次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-01/8be2b81e-8452-4e57-b3d0-13d6ec89dc2d.PDF",
+      "exchange_publish_time_raw": "2023-06-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216976795",
+      "publication_day": "2023-06-03",
+      "title": "鞍重股份：关于签署股权转让协议补充协议的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-02/f901f583-b98e-4179-8cd5-ba3cdeb3a0f3.PDF",
+      "exchange_publish_time_raw": "2023-06-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216976796",
+      "publication_day": "2023-06-03",
+      "title": "鞍重股份：独立董事关于第六届董事会第五十一次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-02/48d3a596-ce2c-4bcc-8187-74f2d150c7f1.PDF",
+      "exchange_publish_time_raw": "2023-06-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216976797",
+      "publication_day": "2023-06-03",
+      "title": "鞍重股份：独立董事关于第六届董事会第五十一次会议相关事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-02/11df8b17-1a44-4bbf-85d8-8a71e998a129.PDF",
+      "exchange_publish_time_raw": "2023-06-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216976798",
+      "publication_day": "2023-06-03",
+      "title": "鞍重股份：第六届董事会第五十一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-03/7422cdfd-4408-4bc9-9c73-6ed5b450c3d0.PDF",
+      "exchange_publish_time_raw": "2023-06-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1216976800",
+      "publication_day": "2023-06-03",
+      "title": "鞍重股份：第六届监事会第四十五次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-03/f55695dd-e886-47cf-adde-9e6b4505b319.PDF",
+      "exchange_publish_time_raw": "2023-06-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217026397",
+      "publication_day": "2023-06-10",
+      "title": "鞍重股份：关于发行股份及支付现金购买资产并募集配套资金申请获得深圳证券交易所受理的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-09/30389bc7-c25e-48be-9411-b6071b2e50ca.PDF",
+      "exchange_publish_time_raw": "2023-06-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217044616",
+      "publication_day": "2023-06-13",
+      "title": "鞍重股份：关于变更公司全称及证券简称暨完成工商变更登记的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-13/efc41fff-f9b6-4989-9862-f12e3dfec63a.PDF",
+      "exchange_publish_time_raw": "2023-06-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217133141",
+      "publication_day": "2023-06-26",
+      "title": "威领股份：关于收到深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函》的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-25/b8ddb495-7148-4a75-bacf-8425c08bc652.PDF",
+      "exchange_publish_time_raw": "2023-06-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217137330",
+      "publication_day": "2023-06-27",
+      "title": "威领股份：关于股东减持计划数量过半的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-27/45f98e1e-9f9b-41a3-9f31-dd2d544600ec.PDF",
+      "exchange_publish_time_raw": "2023-06-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217152805",
+      "publication_day": "2023-06-29",
+      "title": "威领股份：关于控股股东进行股份质押式回购交易的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-06-28/2bcdb46a-4cdc-468e-9b8e-35f713df4841.PDF",
+      "exchange_publish_time_raw": "2023-06-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217194834",
+      "publication_day": "2023-07-03",
+      "title": "威领股份：关于股权转让完成工商变更登记公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-03/a3944728-483f-459a-83c4-d0547c71a821.PDF",
+      "exchange_publish_time_raw": "2023-07-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217203544",
+      "publication_day": "2023-07-04",
+      "title": "威领股份：关于控股股东相关承诺的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-04/f5b06826-0879-4cde-9b5f-ec4d15ac27e2.PDF",
+      "exchange_publish_time_raw": "2023-07-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217206984",
+      "publication_day": "2023-07-05",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-04/dbb126df-70de-4022-ad22-f2f6b26db68b.PDF",
+      "exchange_publish_time_raw": "2023-07-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217227394",
+      "publication_day": "2023-07-07",
+      "title": "威领股份：关于公司向持股5%以上股东借款暨关联交易的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-06/6d5647d2-f070-4365-86a2-c01b60cd0ec1.PDF",
+      "exchange_publish_time_raw": "2023-07-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217272741",
+      "publication_day": "2023-07-12",
+      "title": "威领股份：关于控股股东减持计划实施时间过半的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-11/05b57569-39c2-49d1-9398-935af33edaeb.PDF",
+      "exchange_publish_time_raw": "2023-07-12 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217282332",
+      "publication_day": "2023-07-13",
+      "title": "威领股份：2022年年度报告补充更正公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-13/05122ab3-e538-407c-9126-b1563f857fc6.PDF",
+      "exchange_publish_time_raw": "2023-07-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217282333",
+      "publication_day": "2023-07-13",
+      "title": "威领股份：2022年年度报告（更正后）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-13/7b8bf362-749e-4ad1-8904-912d29e2e934.PDF",
+      "exchange_publish_time_raw": "2023-07-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217300312",
+      "publication_day": "2023-07-15",
+      "title": "威领股份：2023年半年度业绩预告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-14/15ba7196-b9c8-4bc2-9bdd-9cb786370125.PDF",
+      "exchange_publish_time_raw": "2023-07-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217316091",
+      "publication_day": "2023-07-18",
+      "title": "威领股份：关于延期回复深圳证券交易所2022年年报问询函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-17/e5de2cb5-bed0-4039-8a62-3dd22b0553bb.PDF",
+      "exchange_publish_time_raw": "2023-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323100",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：中瑞世联资产评估集团有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-18/3a8e0bcf-5cdd-41f1-b0a9-1a6f5bd233a8.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323101",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：申港证券股份有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-18/0e0fdc93-9b8c-4129-ba82-b5a60cecf746.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323102",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/56abd035-9f7b-4c38-abb1-c18926779350.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323103",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：北京市众明律师事务所关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之补充法律意见书（二）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/6d5f5c35-0ffa-413e-a4fd-2dc4b7dfa260.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323104",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金的问询函中有关财务事项的说明（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/51d8ee34-4d31-4c80-a9cc-3e01c6bc3563.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323105",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：威领新能源股份有限公司关于对深圳证券交易所并购重组问询函的回复（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/cd9866fc-2546-41f9-baab-e7447d1c619b.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323106",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/3adc51dc-0eaf-495e-ae31-6d6f68ca449b.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323107",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：申港证券股份有限公司关于深圳证券交易所《关于对鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金的问询函》之核查意见（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/ff91f635-80e1-4810-9ad8-61b7c9eaf82f.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323108",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：本次重大资产重组涉及的拟购买资产最近两年及一期的财务报告和审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/e9206483-a051-4f78-b8e7-26ffd75a70e5.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323109",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：威领新能源股份有限公司关于深圳证券交易所关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函之回复",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/73baf039-36c3-4ee3-ae33-9ddbaab4671a.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323110",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函中有关财务事项的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/7783ca92-8a2d-4f08-b4d9-59d3ff8d9ea0.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323111",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/8ec49b47-4e29-4140-abb2-fe05631636d4.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323112",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：威领新能源股份有限公司最近一年及一期的备考财务报表审阅报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/849938bc-8bd6-4927-af58-2b759d82b6d7.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217323113",
+      "publication_day": "2023-07-19",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/72f2fd23-39ce-4edf-87ed-bdbc50c2b163.PDF",
+      "exchange_publish_time_raw": "2023-07-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217332539",
+      "publication_day": "2023-07-20",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-19/f60ce881-3471-4632-bee0-8ea617c410a6.PDF",
+      "exchange_publish_time_raw": "2023-07-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217358970",
+      "publication_day": "2023-07-22",
+      "title": "威领股份：大华会计师事务所关于威领新能源股份有限公司2022 年年报问询函的回复",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-22/5d917541-0b31-401e-8b94-b17f94de2dea.PDF",
+      "exchange_publish_time_raw": "2023-07-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217358971",
+      "publication_day": "2023-07-22",
+      "title": "威领股份：关于2022年年报问询函的回复公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-21/216f795b-a31e-469c-af99-eadaeb632b25.PDF",
+      "exchange_publish_time_raw": "2023-07-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374954",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：关于开展商品期货套期保值业务的可行性分析报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-24/f075ef86-b0c6-4b18-9b50-f2a21132b822.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374955",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：关于召开2023年第七次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-24/af4abbd3-a375-4b5a-90c0-47d6eae761d2.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374957",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：独立董事关于第六届董事会第五十二次会议相关事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-25/7489eb87-3337-40ea-9b7b-6d52e3ff9872.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374959",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：第六届董事会第五十二次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-25/1a81fd1c-6c5b-4bb1-8c61-15c87c07dfae.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374961",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：独立董事关于第六届董事会第五十二次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-25/85a05bc2-6975-47cc-a13a-c9b22881a9cc.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374962",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：关于与关联方签署委托代销协议暨关联交易的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-24/32429720-fed3-4fab-80a1-83f8c30bff15.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374963",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：关于开展商品期货套期保值业务的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-24/a089e2e5-91fa-42d5-b55f-35bbc5d0876c.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374964",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：关于为公司董事、监事及高级管理人员投保责任保险的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-25/1131bdd2-66a4-473e-b8cc-7ea3c6b263b4.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374965",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：第六届监事会第四十六次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-25/e60dbcc3-0587-4184-bdfc-84857e0ed1de.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217374966",
+      "publication_day": "2023-07-25",
+      "title": "威领股份：商品套期保值业务管理制度",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-25/d915e6d2-f8df-4f6b-9f7e-202b4fdb3e9c.PDF",
+      "exchange_publish_time_raw": "2023-07-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217401486",
+      "publication_day": "2023-07-28",
+      "title": "威领股份：关于持股5%以上股东及其一致行动人减持计划实施时间过半的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-07-27/0514ecd8-0d29-469e-acc0-47f4f584b2e2.PDF",
+      "exchange_publish_time_raw": "2023-07-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217476889",
+      "publication_day": "2023-08-08",
+      "title": "威领股份：关于职工代表监事辞职暨补选职工代表监事的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-07/b976263c-189c-4bed-879e-d43bc1eb30f0.PDF",
+      "exchange_publish_time_raw": "2023-08-08 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217500977",
+      "publication_day": "2023-08-10",
+      "title": "威领股份：北京德恒律师事务所关于威领新能源股份有限公司2023年第七次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-10/d8399c66-2642-4425-a06d-edeaff8e29c5.PDF",
+      "exchange_publish_time_raw": "2023-08-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217500978",
+      "publication_day": "2023-08-10",
+      "title": "威领股份：鞍重股份2023年第七次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-10/715e5bc6-c598-4f5b-9d93-e12f164f6057.PDF",
+      "exchange_publish_time_raw": "2023-08-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217563573",
+      "publication_day": "2023-08-18",
+      "title": "威领股份：关于股东减持计划时间届满的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-18/59738577-9825-4122-aaca-e921f33832b0.PDF",
+      "exchange_publish_time_raw": "2023-08-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598363",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：北京市众明律师事务所关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之补充法律意见书（二）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/5adb9f49-14c3-4a6f-ae80-5905a48d8524.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598364",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：申港证券股份有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/6f5df70e-f560-4007-85ac-12a8b28a4a8f.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598365",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：威领新能源股份有限公司关于深圳证券交易所关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函之回复",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/1d8b2b90-6b8b-42ee-8800-3aad196b17fb.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598366",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/79fe7cf0-c877-4151-8968-6010f5de0079.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598367",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：中瑞世联资产评估集团有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/5f6eddd6-4701-4284-9dec-e49117cad940.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598368",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/2d50524a-af7c-499d-9965-b5c997022c89.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598369",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）（修订稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/d812f120-7a30-44b5-87f7-d1dfabf95389.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598370",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/8edc7e27-4601-4f56-973b-3f5ed6449fbe.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217598371",
+      "publication_day": "2023-08-22",
+      "title": "威领股份：大华会计师事务所关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核问询函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-22/334065f0-e474-4c52-a045-63858558b685.PDF",
+      "exchange_publish_time_raw": "2023-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217618430",
+      "publication_day": "2023-08-24",
+      "title": "威领股份：关于控股股东部分股份被司法冻结的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-24/96952864-631f-40e6-9da1-13b5d633ca19.PDF",
+      "exchange_publish_time_raw": "2023-08-24 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217619903",
+      "publication_day": "2023-08-24",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金事项会议安排的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-24/07d0fc51-b88d-49e9-8c0e-dfe16e357781.PDF",
+      "exchange_publish_time_raw": "2023-08-24 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217647208",
+      "publication_day": "2023-08-26",
+      "title": "威领股份：威领新能源股份有限公司关于收到深圳证券交易所上市审核中心意见落实函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-26/569c8752-fd33-4625-9fc4-73d4b8dcd583.PDF",
+      "exchange_publish_time_raw": "2023-08-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680937",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：大华会计师事务所（特殊普通合伙）关于深圳证券交易所 《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核中心意见落实函》 有关财务事项的说明（大华核字[2023]0014955）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/5cbe473f-a25e-4817-85be-8ef87bf7f5cb.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680938",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要（上会稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/cf8442e3-ed45-48f7-b624-7c31620ba7f2.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680939",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）（上会稿）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/3649b7dc-23c4-4010-8ce0-b9ca1a9ed19f.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680940",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）（上会稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/556876aa-3276-4de5-ba31-06fa52e4b091.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680941",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告（上会稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/e402f14d-2b20-47d6-844e-988095c809f1.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680942",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：威领新能源股份有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核中心意见落实函》之回复",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/fda32f46-89f5-470d-afac-2db3a2ff4554.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217680943",
+      "publication_day": "2023-08-29",
+      "title": "威领股份：申港证券股份有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核中心意见落实函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/0938f87b-b378-4ea8-928f-0cf3cc44fc05.PDF",
+      "exchange_publish_time_raw": "2023-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693814",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：关于召开2023年第八次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/dbcd13de-4a52-4d53-abca-15f678e3715f.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693815",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：公司章程（2023年8月修订）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/99aecda8-91b5-4bd5-885d-dfad256db8f9.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693816",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：2023年半年度财务报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/8e0c0a66-444d-457a-b303-4ba370bc725c.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693817",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：2023年半年度报告摘要",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/b67c4b18-8769-4b87-8794-752b6550576c.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693818",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：半年度非经营性资金占用及其他关联资金往来情况汇总表",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/1101f046-3f86-4493-9928-ff3b6d67b88d.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693819",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：半年报监事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/07947e75-4d78-4ae4-b941-0cb92df10aa0.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693820",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：半年报董事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/075dde00-ce09-4a11-89aa-65429aad8afa.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693821",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：关于修订《公司章程》的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/7f73a730-a1a5-47f5-adf1-667e71c4ae80.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693822",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：北京海润天睿律师事务所关于威领新能源股份有限公司2022年股票期权与限制性股票激励计划回购注销部分限制性股票及注销部分股票期权之法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/5726ecf3-8174-443f-be0f-dc741e4c4b1d.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693823",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：关于回购注销部分限制性股票和注销部分股票期权的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/53db5624-49a8-40a7-805e-fa3ce0cad837.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693824",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：独立董事关于控股股东及其他关联方占用公司资金、公司对外担保情况的专项说明和独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/887a19ed-106e-480a-97a4-6448f89bda11.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693825",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：2023年半年度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-29/7c97de20-c02b-461b-b1e8-61f051839ac5.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217693826",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：中德证券有限责任公司关于威领新能源股份有限公司回购注销部分限制性股票及注销部分股票期权相关事项之独立财务顾问报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/69e6d6cf-1503-499e-a660-6d2b0fbf78a3.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217701738",
+      "publication_day": "2023-08-30",
+      "title": "威领股份：关于控股股东提前终止减持计划的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/ca4924e9-d87f-4ade-ad7d-41757395e378.PDF",
+      "exchange_publish_time_raw": "2023-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217706310",
+      "publication_day": "2023-08-31",
+      "title": "威领股份：关于控股股东部分股份质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF",
+      "exchange_publish_time_raw": "2023-08-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771629",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：大华会计师事务所（特殊普通合伙）关于深圳证券交易所 《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核中心意见落实函》 有关财务事项的说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-05/b0b9bab4-2f63-4df6-9cc1-93046d07310a.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771630",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）（上会稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-05/f00f36cb-5d14-417c-89e6-559eccc2e11a.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771631",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：威领新能源股份有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核中心意见落实函》之回复",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-05/358611c8-bdf4-479a-8192-d667d94dfb27.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771632",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：申港证券股份有限公司关于深圳证券交易所《关于威领新能源股份有限公司发行股份购买资产并募集配套资金申请的审核中心意见落实函》之核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-04/639b7fb5-c6e5-4a87-88c3-accecc798105.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771633",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要（上会稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-05/d0c018b3-198c-4b1c-949f-f7822f047280.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771634",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）修订说明的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-05/5b066563-4c18-418b-be0a-abf6c5b99f3e.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217771635",
+      "publication_day": "2023-09-05",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告（上会稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-05/31282d83-03fd-441c-9fec-05419648b316.PDF",
+      "exchange_publish_time_raw": "2023-09-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217794259",
+      "publication_day": "2023-09-07",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-06/8c2e11e9-1773-4d6c-8164-d31703587b0a.PDF",
+      "exchange_publish_time_raw": "2023-09-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217831555",
+      "publication_day": "2023-09-13",
+      "title": "威领股份：关于召开2023年第八次临时股东大会的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-12/a8166eef-59fc-4275-a13e-ff37ad3bf85f.PDF",
+      "exchange_publish_time_raw": "2023-09-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217858796",
+      "publication_day": "2023-09-15",
+      "title": "威领股份：关于2022年股票期权与限制性股票激励计划预留权益失效的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-14/d3b9d5fe-2c83-4f7b-b2e9-e745fa19aa0d.PDF",
+      "exchange_publish_time_raw": "2023-09-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217858797",
+      "publication_day": "2023-09-15",
+      "title": "威领股份：公司章程（2023年8月修订）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-15/be21f4fa-4656-43a1-94cc-a9b7e7f48617.PDF",
+      "exchange_publish_time_raw": "2023-09-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217858798",
+      "publication_day": "2023-09-15",
+      "title": "威领股份：北京德恒律师事务所关于威领新能源股份有限公司2023年第八次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-15/881ec379-f9f6-45af-860b-ace9460c589a.PDF",
+      "exchange_publish_time_raw": "2023-09-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217858799",
+      "publication_day": "2023-09-15",
+      "title": "威领股份：关于公司完成注册地址变更及工商登记的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-14/6485e081-857b-47b6-a44d-6277c96cf9b9.PDF",
+      "exchange_publish_time_raw": "2023-09-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217858800",
+      "publication_day": "2023-09-15",
+      "title": "威领股份：鞍重股份2023年第八次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-15/ba8fc9ef-1fbd-4b74-982e-8e340b601e89.PDF",
+      "exchange_publish_time_raw": "2023-09-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217858801",
+      "publication_day": "2023-09-15",
+      "title": "威领股份：关于回购注销部分限制性股票减资暨通知债权人的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-14/6ff2c7d2-1b35-494f-aaf4-58fd54adff93.PDF",
+      "exchange_publish_time_raw": "2023-09-15 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217869400",
+      "publication_day": "2023-09-16",
+      "title": "威领股份：威领新能源股份有限公司关于深圳证券交易所并购重组审核委员会审核公司发行股份购买资产并募集配套资金事项会议安排的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-16/b75fa400-c9ba-4778-9843-0717cbda732b.PDF",
+      "exchange_publish_time_raw": "2023-09-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217918830",
+      "publication_day": "2023-09-22",
+      "title": "威领股份：关于获得深圳证券交易所并购重组审核委员会审核通过的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-22/d511478f-db2f-4584-9191-092652aea457.PDF",
+      "exchange_publish_time_raw": "2023-09-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217961323",
+      "publication_day": "2023-09-27",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-27/54f722fc-7db2-45e4-b6d2-538987d5ec95.PDF",
+      "exchange_publish_time_raw": "2023-09-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217979186",
+      "publication_day": "2023-09-29",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）（注册稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-29/6f2de8c1-3de4-4eb9-8a5b-dbecde2d288b.PDF",
+      "exchange_publish_time_raw": "2023-09-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1217979188",
+      "publication_day": "2023-09-29",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告（注册稿）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-09-29/415a0d07-c25c-4907-8cf5-2bdc79e935ee.PDF",
+      "exchange_publish_time_raw": "2023-09-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218020364",
+      "publication_day": "2023-10-13",
+      "title": "威领股份：江西领辉科技有限公司审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-13/06132cac-d6b7-4866-abcc-6141ca68bc6a.PDF",
+      "exchange_publish_time_raw": "2023-10-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218075154",
+      "publication_day": "2023-10-19",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-19/fc908eae-859d-4cff-b547-0cf52f65c60e.PDF",
+      "exchange_publish_time_raw": "2023-10-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218165561",
+      "publication_day": "2023-10-27",
+      "title": "威领股份：关于部分股票期权注销和部分限制性股票回购注销完成的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-27/732505f2-b407-494f-a134-994ed7b7d328.PDF",
+      "exchange_publish_time_raw": "2023-10-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218190271",
+      "publication_day": "2023-10-28",
+      "title": "威领股份：关于持股5%以上股东及其一致行动人减持计划时间届满的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-28/a4ebc67b-a44d-4c92-af23-1d31f08bc8b4.PDF",
+      "exchange_publish_time_raw": "2023-10-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206502",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：董事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/377c011c-8df0-4f8d-ad15-b60931906e2a.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206503",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：监事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/11297966-52ed-438d-bde8-979fd8e073fc.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206504",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：关于2022年股票期权与限制性股票激励计划首次授予股票期权第一个行权期行权条件成就的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/077d3cdc-d0b1-4467-8316-4d4e7100d282.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206505",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：2023年三季度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/4eb7c78c-18a7-4bad-a55c-6c2c0b64b59d.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206506",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：公司章程（2023年10月修订）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/234a9bf8-8bff-4371-9ccf-9231d6e74c87.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206507",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：关于修订《公司章程》的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/f789bb16-25d7-4c57-8739-b9ebdd39f464.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206508",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：关于回购注销部分限制性股票和注销部分股票期权的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/616d13b3-6dbd-4f13-8477-86a13fb35220.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206509",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：北京海润天睿律师事务所关于威领新能源股份有限公司股权激励计划首次授予部分行权、解除限售条件成就及注销部分股票期权回购注销部分限制性股票之法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/c93e0f78-366c-4944-8d9b-332f8219c44b.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206510",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：中德证券有限责任公司关于威领新能源股份有限公司首次授予部分第一个行权、解除限售期的行权、解除限售条件成就相关事项之独立财务顾问报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/8d2a1f9f-3dcd-4027-919f-243bf30048c9.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206511",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：关于2022年股票期权与限制性股票激励计划第一个解除限售期解除限售条件成就的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-31/d1ac5da0-a4d8-436e-b11a-98fdbf132da8.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206512",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：关于召开2023年第九次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-30/a2bb6005-4c67-4faf-a5da-440414ea6540.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218206513",
+      "publication_day": "2023-10-31",
+      "title": "威领股份：独立董事对第六届董事会第五十四次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-10-30/30293457-c7df-4d0f-b70f-5ce2416d011c.PDF",
+      "exchange_publish_time_raw": "2023-10-31 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218246532",
+      "publication_day": "2023-11-04",
+      "title": "威领股份：关于2022年股票期权与限制性股票激励计划首次授予限制性股票第一个解除限售期解除限售股份上市流通的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-03/aff60bce-400b-4c96-b690-9a35f2c9148b.PDF",
+      "exchange_publish_time_raw": "2023-11-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218281659",
+      "publication_day": "2023-11-09",
+      "title": "威领股份：关于收到中国证券监督管理委员会关于同意威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金注册的批复的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-08/a9c3705e-11ca-4ad7-8eaa-c75735ff9449.PDF",
+      "exchange_publish_time_raw": "2023-11-09 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218351768",
+      "publication_day": "2023-11-16",
+      "title": "威领股份：北京德恒律师事务所关于威领新能源股份有限公司2023年第九次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-16/72425fbf-973b-4742-a56e-4c2ad1ae0113.PDF",
+      "exchange_publish_time_raw": "2023-11-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218351769",
+      "publication_day": "2023-11-16",
+      "title": "威领股份：关于回购注销部分限制性股票减资暨通知债权人的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-15/0be50547-22e8-4c44-a5cc-5f1b10633faa.PDF",
+      "exchange_publish_time_raw": "2023-11-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218351770",
+      "publication_day": "2023-11-16",
+      "title": "威领股份：2023年第九次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-15/b71b106c-d3a4-4973-ae41-654c338714dc.PDF",
+      "exchange_publish_time_raw": "2023-11-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218362456",
+      "publication_day": "2023-11-17",
+      "title": "威领股份：关于公司完成注册资本变更及工商登记公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-17/cd55a676-f7c8-493e-a8c7-f6ff2d6511fe.PDF",
+      "exchange_publish_time_raw": "2023-11-17 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454576",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：关于修订《公司章程》的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-28/415fe4cb-f828-4189-9506-eb9fd66d1a3c.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454577",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：第六届董事会第五十五次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-28/f5ad92dc-8103-4c0c-b86e-3ba6a38c6f72.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454578",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：关于召开2023年第十次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-27/b004ed0f-951f-4c00-a26d-e95b94578ab8.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454579",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：第六届监事会第四十九次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-28/d0da5596-f653-4464-9f13-2633dd732713.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454580",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：会计师事务所选聘制度",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-27/baf9d906-5aa3-4c4f-9132-097ecf1beff0.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454581",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：公司章程（2023年11月修订）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-28/2109a389-54ca-499b-bb20-3d672ac10dcc.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454582",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：关于变更会计师事务所的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-27/3a3a9b01-03f3-4440-9434-0e69c495073e.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454583",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：独立董事制度",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-27/84af3f9e-a5a5-45c5-b6a8-e64127912d0f.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454584",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：独立董事关于第六届董事会第五十五次会议相关事项发表的独立意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-27/a707a9bf-4d5f-4c60-b0cc-87392391f32f.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218454585",
+      "publication_day": "2023-11-28",
+      "title": "威领股份：独立董事关于第六届董事会第五十五次会议相关事项发表的事前认可意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-11-27/ca0de9be-62ec-4ac3-8760-9a6d0c305972.PDF",
+      "exchange_publish_time_raw": "2023-11-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218607963",
+      "publication_day": "2023-12-14",
+      "title": "威领股份：北京德恒律师事务所关于威领新能源股份有限公司2023年第十次临时股东大会的法律意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-12-14/871f3ee7-bd45-45c1-aeef-1796e23fe6bf.PDF",
+      "exchange_publish_time_raw": "2023-12-14 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218607964",
+      "publication_day": "2023-12-14",
+      "title": "威领股份：2023年第十次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-12-13/60f0aa2b-8d10-4b2d-b8cc-88712015a44b.PDF",
+      "exchange_publish_time_raw": "2023-12-14 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218730899",
+      "publication_day": "2023-12-27",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-12-27/9056be89-fd72-44b3-a934-d9048bccad75.PDF",
+      "exchange_publish_time_raw": "2023-12-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218766296",
+      "publication_day": "2023-12-30",
+      "title": "威领股份：关于控股股东股票质押事项的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2023-12-30/1ce4a564-c693-481b-8ccb-41ff14efccb5.PDF",
+      "exchange_publish_time_raw": "2023-12-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218789247",
+      "publication_day": "2024-01-03",
+      "title": "威领股份：威领新能源股份有限公司关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-03/6c2c3613-71fc-4c0d-a8d9-7eb94db1f263.PDF",
+      "exchange_publish_time_raw": "2024-01-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218800607",
+      "publication_day": "2024-01-04",
+      "title": "威领股份：简式权益变动报告书（杨永柱、温萍）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-04/85166b42-3727-4d38-b65e-c931fc5322f1.PDF",
+      "exchange_publish_time_raw": "2024-01-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218800608",
+      "publication_day": "2024-01-04",
+      "title": "威领股份：关于股东表决权恢复暨权益变动的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-03/d8a84c38-bf6d-4400-b812-861e03364901.PDF",
+      "exchange_publish_time_raw": "2024-01-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218815328",
+      "publication_day": "2024-01-06",
+      "title": "威领股份：关于获得政府补助的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-05/df64031b-2eb2-4368-8c8e-ea6a492916a8.PDF",
+      "exchange_publish_time_raw": "2024-01-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218835296",
+      "publication_day": "2024-01-10",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-09/015f8f02-50d8-485b-a3da-99ef41c3dce8.PDF",
+      "exchange_publish_time_raw": "2024-01-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218846515",
+      "publication_day": "2024-01-11",
+      "title": "威领股份：关于部分股票期权注销和部分限制性股票回购注销完成的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-10/d501439d-d415-4c6a-b818-af14299ff19b.PDF",
+      "exchange_publish_time_raw": "2024-01-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218949845",
+      "publication_day": "2024-01-20",
+      "title": "威领股份：关于公司完成注册资本变更及工商登记公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-20/54829c77-316f-41d1-aa16-80844d0468c0.PDF",
+      "exchange_publish_time_raw": "2024-01-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218963090",
+      "publication_day": "2024-01-23",
+      "title": "威领股份：关于预计公司2024年度与关联方发生关联交易额度的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-22/82f2990f-b242-4e3c-b870-b96efc17d8b7.PDF",
+      "exchange_publish_time_raw": "2024-01-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218963091",
+      "publication_day": "2024-01-23",
+      "title": "威领股份：第六届监事会第五十次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-23/c35f5942-0e9f-4811-bb91-73942371b481.PDF",
+      "exchange_publish_time_raw": "2024-01-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1218963092",
+      "publication_day": "2024-01-23",
+      "title": "威领股份：第六届董事会第五十六次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-23/e3692835-b121-420a-bf55-115c243a203c.PDF",
+      "exchange_publish_time_raw": "2024-01-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219011266",
+      "publication_day": "2024-01-27",
+      "title": "威领股份：2023年度业绩预告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-26/c72bb2ed-6284-451c-8e39-b10f2eb69275.PDF",
+      "exchange_publish_time_raw": "2024-01-27 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219026357",
+      "publication_day": "2024-01-30",
+      "title": "威领股份：关于董事会、监事会延期换届的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-01-29/e7e7c5ed-82cc-4ebb-b88d-97706b496609.PDF",
+      "exchange_publish_time_raw": "2024-01-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219079665",
+      "publication_day": "2024-02-03",
+      "title": "威领股份：关于召开2024年第一次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-02/94533aee-3c66-4b15-b656-ea42d349d94a.PDF",
+      "exchange_publish_time_raw": "2024-02-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219079666",
+      "publication_day": "2024-02-03",
+      "title": "威领股份：关于首席风控官辞职及变更公司首席财务官的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-03/04882b31-569c-4422-9d4c-5ac3a3093292.PDF",
+      "exchange_publish_time_raw": "2024-02-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219079667",
+      "publication_day": "2024-02-03",
+      "title": "威领股份：第六届董事会第五十七次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-03/6ca27938-8c9e-4844-a09b-a8a4ea79b058.PDF",
+      "exchange_publish_time_raw": "2024-02-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219079668",
+      "publication_day": "2024-02-03",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-03/10e3da0f-5a14-4a66-a715-157f0423a82f.PDF",
+      "exchange_publish_time_raw": "2024-02-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219095354",
+      "publication_day": "2024-02-06",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-05/9b74f4e1-5f7f-45ad-8a2d-028a11ac330d.PDF",
+      "exchange_publish_time_raw": "2024-02-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219111511",
+      "publication_day": "2024-02-07",
+      "title": "威领股份：关于控股股东部分股份质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-06/17ad3ab7-3317-4501-9402-94daccd20545.PDF",
+      "exchange_publish_time_raw": "2024-02-07 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219139658",
+      "publication_day": "2024-02-20",
+      "title": "威领股份：贵州储瑛律师事务所关于威领新能源股份有限公司2024年第一次临时股东大会之法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-20/04af5746-fb5b-49c4-bfa6-468907521777.PDF",
+      "exchange_publish_time_raw": "2024-02-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219139660",
+      "publication_day": "2024-02-20",
+      "title": "威领股份：2024年第一次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-02-19/df0e66ea-5e39-40c2-8faa-d7e951a63156.PDF",
+      "exchange_publish_time_raw": "2024-02-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219218408",
+      "publication_day": "2024-03-02",
+      "title": "威领股份：关于控股股东协议转让公司部分股权的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-01/0156beee-36ab-41e2-a7dc-50bd5a01d9c2.PDF",
+      "exchange_publish_time_raw": "2024-03-02 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219218411",
+      "publication_day": "2024-03-02",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-02/90d9ac12-0866-46c8-82d9-9c43e70add66.PDF",
+      "exchange_publish_time_raw": "2024-03-02 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219373803",
+      "publication_day": "2024-03-22",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-21/f952de57-fd1a-4df9-b02c-d2343d34eddd.PDF",
+      "exchange_publish_time_raw": "2024-03-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219373804",
+      "publication_day": "2024-03-22",
+      "title": "威领股份：关于控股股东协议转让公司部分股权的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-21/e1df50bc-815b-40bf-bef7-6a12c3ad13b8.PDF",
+      "exchange_publish_time_raw": "2024-03-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219437817",
+      "publication_day": "2024-03-29",
+      "title": "威领股份：关于投资设立全资子公司的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-28/dede1ab9-3c20-4bbb-ae68-f888ed6f51c3.PDF",
+      "exchange_publish_time_raw": "2024-03-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219437818",
+      "publication_day": "2024-03-29",
+      "title": "威领股份：第六届董事会第五十八次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-29/1ba0548d-ba21-4702-b96b-4a7f3cb9deb5.PDF",
+      "exchange_publish_time_raw": "2024-03-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219437819",
+      "publication_day": "2024-03-29",
+      "title": "威领股份：第六届监事会第五十一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-03-29/3443598a-da6d-468f-be22-b1dc92fe3dd8.PDF",
+      "exchange_publish_time_raw": "2024-03-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219502338",
+      "publication_day": "2024-04-03",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-03/0ed3e50f-8553-44f5-b9b4-f9b0a6c61575.PDF",
+      "exchange_publish_time_raw": "2024-04-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219502339",
+      "publication_day": "2024-04-03",
+      "title": "威领股份：关于子公司完成注册登记的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-03/17151a09-e1fb-4226-890f-50b483214e22.PDF",
+      "exchange_publish_time_raw": "2024-04-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219584249",
+      "publication_day": "2024-04-12",
+      "title": "威领股份：关于控股股东协议转让公司部分股份完成交易过户登记的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-11/0cb45051-253b-4309-ba8e-f18fc377fba1.PDF",
+      "exchange_publish_time_raw": "2024-04-12 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219584250",
+      "publication_day": "2024-04-12",
+      "title": "威领股份：关于控股股东部分股份解除质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-11/f57d8f1d-d9c0-4004-9f39-0e82b3fb0205.PDF",
+      "exchange_publish_time_raw": "2024-04-12 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219584251",
+      "publication_day": "2024-04-12",
+      "title": "威领股份：关于控股股东持股变动达到1%的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-11/805c6f75-bbce-4bf8-9896-63404956b548.PDF",
+      "exchange_publish_time_raw": "2024-04-12 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842480",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：关于 2023 年计提资产减值准备的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/d3bd8698-f1b4-4d21-857c-dd12ff53e80e.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842481",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2023年年度审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/f953769a-ce47-43ee-9737-e846bc5ed032.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842482",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：年度股东大会通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/2b93f4fa-a66f-420c-b438-0804d8c1b238.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842483",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：董事会关于2023年度带强调事项段的无保留意见审计报告和带强调事项段的无保留意见内部控制审计报告的专项说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/29238091-e7c3-4034-89d2-500809883cb2.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842484",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：关于续聘公司2024年度审计机构的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/1df867c2-9ba5-4aa5-81aa-a2c981b88875.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842485",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：会计师事务所对非标意见涉及事项专项说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/f854dcda-5b97-4fec-95f3-0b5cd8d9d595.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842486",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：董事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/4efa5b2f-b627-42da-bc85-cbbee45434b7.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842487",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：监事会对《董事会关于2023年度带强调事项段的无保留意见审计报告和带强调事项段的无保留意见内部控制审计报告的专项说明》的意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/95817f53-ccef-4431-878e-b151583f26d9.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842488",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：公司2023年度监事会工作报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/52e6d317-9c0f-48b0-9fd0-4600ad963e88.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842489",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2024年一季度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/38a1c225-5f13-4658-8c77-5037158a75e7.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842490",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2023年年度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/14b579cf-52a1-4c8d-ac26-03479156410e.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842491",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：关于2024年度对外担保额度的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/23a21222-9eb0-4d64-ab89-44e1a5f36a78.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842492",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：年度关联方资金占用专项审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/a60d7ee7-28ab-4288-9826-ec3763213a63.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842493",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：内部控制自我评价报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/68526dd0-340b-42ed-8f77-6ca81e7b380e.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842494",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2023年度独立董事述职报告（李佳）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/b2190677-4c8e-44aa-a493-8b4ec4280d93.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842495",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：关于2024年度日常关联交易预计的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/ec938e26-324f-46da-9614-3dc0dd9ff426.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842496",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：内部控制审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/27331934-34a0-45b0-bdca-86934b3c3d11.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842497",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：董事会审计委员会对会计师事务所2023年度履职情况评估及履行监督职责情况的报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/ace2a82d-0020-4993-b71c-3f5eccb3fe05.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842498",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2023年年度报告摘要",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/00058db3-da52-41bd-8ad4-05a9831af011.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842499",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2023年度财务决算报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/73eccd24-3c1e-418e-aa55-e35ef49fb333.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842500",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：独立董事关于《董事会关于2023年度带强调事项段的无保留意见审计报告和带强调事项段的无保留意见内部控制审计报告的专项说明》的意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/42e50ba4-b75d-44d2-b5ad-3d6619abc5ab.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842501",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：关于为公司董监高人员购买责任险的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-25/c0fa96be-10db-4a87-8597-0bbc6a5dfd48.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842502",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：董事会对独立董事独立性评估的专项意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/df427e7c-22d8-450f-b937-271a6ff46ba4.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842503",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：关于会计政策变更的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/de9d3b53-ac5c-42e6-8403-7bd9f400d2a8.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842504",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：2023关于营业收入扣除事项的专项核查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/f152ed8a-1e38-45e0-95ef-4d06e397c2f5.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842505",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：监事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/4fcd87ad-ed6e-4d24-85d5-fc7b2d95da2c.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219842506",
+      "publication_day": "2024-04-26",
+      "title": "威领股份：独立董事年度述职报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-04-26/73894f64-f4c1-4e88-b863-76f82e039ee3.PDF",
+      "exchange_publish_time_raw": "2024-04-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1219952837",
+      "publication_day": "2024-05-06",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-05-06/93762377-78dc-4ef2-bd11-bdbf95855e7d.PDF",
+      "exchange_publish_time_raw": "2024-05-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220060350",
+      "publication_day": "2024-05-16",
+      "title": "威领股份：关于累计诉讼、仲裁情况的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-05-15/a2a39ab6-6e1b-40c8-be46-bd19adf1e365.PDF",
+      "exchange_publish_time_raw": "2024-05-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220107240",
+      "publication_day": "2024-05-21",
+      "title": "威领股份：贵州储瑛律师事务所关于威领新能源股份有限公司2023年度股东大会之法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-05-21/41dd0542-3f85-4df4-8a27-3a7735f9ce0d.PDF",
+      "exchange_publish_time_raw": "2024-05-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220107241",
+      "publication_day": "2024-05-21",
+      "title": "威领股份：2023年度股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-05-20/1a8cb162-e5c6-4d34-b682-71ab905bc922.PDF",
+      "exchange_publish_time_raw": "2024-05-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220222183",
+      "publication_day": "2024-06-01",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-06-01/729982b0-a014-43ff-baf8-72fcab7445c1.PDF",
+      "exchange_publish_time_raw": "2024-06-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220245506",
+      "publication_day": "2024-06-04",
+      "title": "威领股份：关于延期回复深圳证券交易所2023年年报问询函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-06-03/6afd2edd-abaa-432b-b878-a1bced3f2263.PDF",
+      "exchange_publish_time_raw": "2024-06-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220324414",
+      "publication_day": "2024-06-12",
+      "title": "威领股份：关于再次延期回复深圳证券交易所2023年年报问询函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-06-11/0fa0f2ba-974b-4a94-830a-2556752cec36.PDF",
+      "exchange_publish_time_raw": "2024-06-12 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220391312",
+      "publication_day": "2024-06-19",
+      "title": "威领股份：关于再次延期回复深圳证券交易所2023年年报问询函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-06-18/c6a324d5-1751-4cc8-afca-706b233be738.PDF",
+      "exchange_publish_time_raw": "2024-06-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220457701",
+      "publication_day": "2024-06-26",
+      "title": "威领股份：关于再次延期回复深圳证券交易所2023年年报问询函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-06-26/d680b8d5-65d8-4034-9495-13412d6c3593.PDF",
+      "exchange_publish_time_raw": "2024-06-26 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220510715",
+      "publication_day": "2024-07-02",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-02/137f18db-c6d9-4eca-a896-7bd30f9f56fa.PDF",
+      "exchange_publish_time_raw": "2024-07-02 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220521945",
+      "publication_day": "2024-07-03",
+      "title": "威领股份：关于深圳证券交易所2023年年报问询函的回复公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-03/e6ae7e99-f6f2-46c3-9531-aa4ea83d4750.PDF",
+      "exchange_publish_time_raw": "2024-07-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220521946",
+      "publication_day": "2024-07-03",
+      "title": "威领股份：北京德皓国际会计师事务所关于威领股份2023年年报问询函的回复",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-03/130e6320-83bc-43a5-81cd-be444a71dbc1.PDF",
+      "exchange_publish_time_raw": "2024-07-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541137",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：独立董事候选人声明与承诺（漆韡）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/b4c978c0-7689-423e-a42a-e48ce8295690.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541138",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：第六届董事会提名委员会关于第七届董事候选人任职资格的审查意见",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/a1c89424-717d-46d5-87f8-d2715631c5c4.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541139",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：独立董事提名人声明与承诺（漆韡）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/855fc86d-4c42-4cc5-8e0b-fdf295c5bf16.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541140",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：关于召开2024年第二次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-05/3b14b250-0bee-4f98-b373-bd1cf8534709.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541141",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：独立董事候选人声明与承诺（李佳）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/95935dbd-6616-49a2-b53c-bcdd44ffbde6.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541142",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：独立董事提名人声明与承诺（李佳）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/15b781e7-a98d-4366-87c8-f5e992755539.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541143",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：关于董事会换届选举的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-05/0407dda8-8236-4e85-b8ca-953ffe1e22ab.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541144",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：关于监事会换届选举的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-05/ff8c85a1-2741-421d-b31b-2ceb2e2b3f74.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541145",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：第六届董事会第六十次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/6f00d7d2-77f3-46c8-9686-929cb914a918.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541146",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：关于投资设立津巴布韦孙公司的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-05/bc9f97d7-b162-497f-af8e-2d83d89cde61.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220541147",
+      "publication_day": "2024-07-06",
+      "title": "威领股份：第六届监事会第五十三次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-06/28f328ac-7080-47d4-a2a6-cbd9becb855e.PDF",
+      "exchange_publish_time_raw": "2024-07-06 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220588107",
+      "publication_day": "2024-07-10",
+      "title": "威领股份：2024年半年度业绩预告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-09/46fbe823-0cfe-49bf-92a4-147aa2402d3f.PDF",
+      "exchange_publish_time_raw": "2024-07-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220603464",
+      "publication_day": "2024-07-11",
+      "title": "威领股份：关于控股股东被动减持股份的预披露公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-10/7e37607b-f7a6-412a-a81f-66affeccd7c5.PDF",
+      "exchange_publish_time_raw": "2024-07-11 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662105",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：威领股份关于变更中介机构及签字人员的专项说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/62ec928c-d40c-4f4e-8f9a-e6c0d1a5d216.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662106",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金项目变更会计师事务所及签字注册会计师相关事项的专项说明",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/0b64065e-5b35-408e-ad6f-1b1fe56dc747.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662107",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：江西领辉科技有限公司2021年1月1日至2023年4月30日止财务报表审计报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/140ea3bf-b392-4f1c-88cb-830b738b12c8.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662108",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：威领新能源股份有限公司2022年度及截止2023年4月30日止备考合并财务报表审阅报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/be9f55d7-61d6-4a56-9776-7f6509a13329.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662110",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：关于变更专项审计机构及相关事项的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-17/f2abb2c9-a5fd-414d-9c57-4754c0588ede.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662111",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：第六届董事会第六十一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/c20b13d2-6e77-49dc-889e-b00ccae28532.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662112",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：大华关于变更中介机构及签字人员的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/e0176de9-5218-4f40-adf0-3af4ef0b4d50.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662113",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：第六届监事会第五十四次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/83741cca-ffd8-41ca-a906-bafe10113125.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220662115",
+      "publication_day": "2024-07-18",
+      "title": "威领股份：北京兴华关于变更中介机构及签字人员的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-18/8653bf1e-80e2-4658-988f-53f1f3280d0b.PDF",
+      "exchange_publish_time_raw": "2024-07-18 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220701858",
+      "publication_day": "2024-07-23",
+      "title": "威领股份：关于公司轮值总裁、首席行政官、首席并购官辞职的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-22/ac5d8523-c2c5-4600-af20-81f8c932847a.PDF",
+      "exchange_publish_time_raw": "2024-07-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220701859",
+      "publication_day": "2024-07-23",
+      "title": "威领股份：第七届董事会第一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-23/efddbce3-5267-45c1-bf06-ca28a3d1e3f0.PDF",
+      "exchange_publish_time_raw": "2024-07-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220701860",
+      "publication_day": "2024-07-23",
+      "title": "威领股份：湖南启元律师事务所关于威领新能源股份有限公司2024年第二次临时股东大会的法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-23/89b980f2-b0b9-4e59-943e-34650e644d51.PDF",
+      "exchange_publish_time_raw": "2024-07-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220701861",
+      "publication_day": "2024-07-23",
+      "title": "威领股份：2024年第二次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-22/642724c1-cc4c-45e4-a5fe-b6fe058b6f6b.PDF",
+      "exchange_publish_time_raw": "2024-07-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220701862",
+      "publication_day": "2024-07-23",
+      "title": "威领股份：关于选举第七届监事会职工代表监事的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-22/f1de6daf-af9a-48e4-9859-5054e33ba49a.PDF",
+      "exchange_publish_time_raw": "2024-07-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220701863",
+      "publication_day": "2024-07-23",
+      "title": "威领股份：第七届监事会第一次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-23/2f4285c4-cc48-45b7-a1c5-e660aebf28d7.PDF",
+      "exchange_publish_time_raw": "2024-07-23 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765487",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：北京兴华会计师事务所（特殊普通合伙）关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金会后重大事项的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-01/ce7e3e3b-bd2b-4075-8c04-12a4809d1a56.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765488",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-01/e81ba089-fa90-4f83-8959-14233de1d6c3.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765489",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：中瑞世联资产评估集团有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金会后重大事项的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-01/1f909130-372d-4c1a-ac6b-a1a10711e52a.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765490",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金会后重大事项的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-01/aef0dd90-3266-4b35-bff3-cb6e2dc7dfd9.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765491",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：北京市众明律师事务所关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金会后重大事项的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-01/97138a0c-a91b-436e-bd1c-56ea2eeac801.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765493",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：申港证券股份有限公司关于威领新能源股份有限公司发行股份及支付现金购买资产并募集配套资金会后重大事项的承诺函",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-01/ad2273b4-8991-4cc2-acf8-de8a490ca7c4.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220765494",
+      "publication_day": "2024-08-01",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金会后重大事项的承诺函披露的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-07-31/6520c03c-df90-4860-a757-86ff2caf855e.PDF",
+      "exchange_publish_time_raw": "2024-08-01 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220882944",
+      "publication_day": "2024-08-16",
+      "title": "威领股份：简式权益变动报告书（上海领亿新材料有限公司）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-16/f93d767c-fe02-4079-bfbe-ef24be06f4ae.PDF",
+      "exchange_publish_time_raw": "2024-08-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220882945",
+      "publication_day": "2024-08-16",
+      "title": "威领股份：关于控股股东部分股份被司法冻结的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-16/9f908e57-db14-45ef-8cf6-ea85759a33a3.PDF",
+      "exchange_publish_time_raw": "2024-08-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220882946",
+      "publication_day": "2024-08-16",
+      "title": "威领股份：关于控股股东权益变动的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-16/04a07f30-d3c6-4ef9-be21-23faff50393b.PDF",
+      "exchange_publish_time_raw": "2024-08-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1220938217",
+      "publication_day": "2024-08-22",
+      "title": "威领股份：关于公司股票交易异常波动公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-21/965997d0-f809-4301-8332-dabd37dc0ee3.PDF",
+      "exchange_publish_time_raw": "2024-08-22 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221023130",
+      "publication_day": "2024-08-29",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-28/38505adf-85fd-40e1-95ce-0551840e6b2c.PDF",
+      "exchange_publish_time_raw": "2024-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221028334",
+      "publication_day": "2024-08-29",
+      "title": "威领股份：关于控股股东权益变动达到1%的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-29/fb181658-f137-4eb7-b469-13ca4b07c027.PDF",
+      "exchange_publish_time_raw": "2024-08-29 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049860",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：2024年半年度财务报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-29/95a45f11-1302-45ae-a24f-5f4874aa651d.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049862",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：关于2024年半年度计提资产减值准备的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-29/f56fd63d-54e5-4ae2-a0b2-8465e8b0e8f4.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049864",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：2024年半年度报告摘要",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-29/38546556-99af-4f4b-88fc-2d096b85ae0e.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049867",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：半年报监事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-30/ece269eb-cd74-42c6-9ff6-9aad06eacc8f.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049870",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：半年度非经营性资金占用及其他关联资金往来情况汇总表",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-30/dbb7d4da-522e-4cf1-8ab4-03577062db88.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049871",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：2024年半年度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-29/a6e796d6-59a2-459c-b5e2-a67f36caa546.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221049874",
+      "publication_day": "2024-08-30",
+      "title": "威领股份：半年报董事会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-08-30/8fa1f5bb-560f-4eaa-bfb6-0c18dbc1463a.PDF",
+      "exchange_publish_time_raw": "2024-08-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221111747",
+      "publication_day": "2024-09-03",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-09-03/62450772-81f2-45f4-921d-61d14a7b1bd4.PDF",
+      "exchange_publish_time_raw": "2024-09-03 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221125520",
+      "publication_day": "2024-09-04",
+      "title": "威领股份：简式权益变动报告书（杨永柱）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-09-04/da4d1611-782c-4cf7-bfe6-3179a4d2cbfa.PDF",
+      "exchange_publish_time_raw": "2024-09-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221125522",
+      "publication_day": "2024-09-04",
+      "title": "威领股份：简式权益变动报告书(百瑞金钩私募证券投资基金)",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-09-04/2c955738-6b1c-4e1c-95d2-d8f6013b9bec.PDF",
+      "exchange_publish_time_raw": "2024-09-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221125523",
+      "publication_day": "2024-09-04",
+      "title": "威领股份：关于持股5%以上股东协议转让公司部分股权的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-09-03/b53262e2-0da9-4393-b5a4-725fc647f738.PDF",
+      "exchange_publish_time_raw": "2024-09-04 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221220853",
+      "publication_day": "2024-09-14",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-09-13/855e8dae-83c2-478f-b61b-f7024913aadf.PDF",
+      "exchange_publish_time_raw": "2024-09-14 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221329650",
+      "publication_day": "2024-10-08",
+      "title": "威领股份：关于参加湖南辖区 2024年度投资者网上集体接待日活动的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-10-08/bd2b8dbc-4fa3-411c-8d9e-684c194facf0.PDF",
+      "exchange_publish_time_raw": "2024-10-08 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221329651",
+      "publication_day": "2024-10-08",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-10-08/8384c173-113e-4c70-b8d5-caf456a3d1de.PDF",
+      "exchange_publish_time_raw": "2024-10-08 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221504266",
+      "publication_day": "2024-10-25",
+      "title": "威领股份：2024年三季度报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-10-25/38b88d82-3ec1-44f7-8b09-53eda4eb85bc.PDF",
+      "exchange_publish_time_raw": "2024-10-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221504267",
+      "publication_day": "2024-10-25",
+      "title": "威领股份：关于2024年前三季度计提资产减值准备的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-10-24/95ef362d-ce74-4964-a89f-5541760d1257.PDF",
+      "exchange_publish_time_raw": "2024-10-25 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221554859",
+      "publication_day": "2024-10-30",
+      "title": "威领股份：关于公司股票交易异常波动公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-10-29/5cf9865e-2035-412c-b87d-5a3cc763d9af.PDF",
+      "exchange_publish_time_raw": "2024-10-30 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221604189",
+      "publication_day": "2024-11-02",
+      "title": "威领股份：关于控股股东被动减持计划时间届满暨实施结果的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-01/b40fc941-aa47-4bb0-9dea-13aa165678ce.PDF",
+      "exchange_publish_time_raw": "2024-11-02 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626288",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：关于回购注销部分限制性股票和注销部分股票期权的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-04/8bd0972d-0363-468a-8379-c5be0c254d8a.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626289",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：关于发行股份及支付现金购买资产并募集配套资金事项批复到期失效的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-04/08f029da-4305-4855-aaee-853d73fb2f23.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626290",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：第七届监事会第四会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-05/3cbdfb43-eb9a-4a31-95e7-c37e88c25f6a.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626291",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：海润天睿关于威领股份回购注销部分限制性股票及注销部分股票期权相关事项法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-05/58589264-a320-42e5-9d6c-06cd917e6319.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626292",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：中德证券有限责任公司关于威领新能源股份有限公司回购注销部分限制性股票及注销部分股票期权相关事项之独立财务顾问报告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-05/86296b8a-a6be-442d-8f87-19f899021640.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626293",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：第七届董事会第四次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-05/5fb7b2b3-0cb3-4dda-a623-08cc23951f39.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221626294",
+      "publication_day": "2024-11-05",
+      "title": "威领股份：关于召开2024年第三次临时股东大会的通知",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-04/9774ca92-e9e5-4cad-83ee-a0f33dd42394.PDF",
+      "exchange_publish_time_raw": "2024-11-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221696357",
+      "publication_day": "2024-11-13",
+      "title": "威领股份：关于公司股票交易异常波动公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-12/7da054da-a809-4398-8b33-d8c88c1c1239.PDF",
+      "exchange_publish_time_raw": "2024-11-13 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221739956",
+      "publication_day": "2024-11-16",
+      "title": "威领股份：关于持股5%以上股东协议转让公司部分股权的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-15/1695342e-8f99-448d-86eb-32b8d6f5a780.PDF",
+      "exchange_publish_time_raw": "2024-11-16 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221789105",
+      "publication_day": "2024-11-21",
+      "title": "威领股份：2024年第三次临时股东大会决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-20/16205b6d-53c6-4843-823d-7d5432918e11.PDF",
+      "exchange_publish_time_raw": "2024-11-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221789106",
+      "publication_day": "2024-11-21",
+      "title": "威领股份：关于回购注销部分限制性股票减资暨通知债权人的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-20/f466c182-3d37-4317-baaf-c8af93fec6e7.PDF",
+      "exchange_publish_time_raw": "2024-11-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221789107",
+      "publication_day": "2024-11-21",
+      "title": "威领股份：湖南启元律师事务所关于威领新能源股份有限公司2024年第三次临时股东大会的法律意见书",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-11-21/0bc5667e-0715-4343-98f3-dae6969c5852.PDF",
+      "exchange_publish_time_raw": "2024-11-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221925079",
+      "publication_day": "2024-12-05",
+      "title": "威领股份：关于为控股子（孙）公司融资提供担保的进展公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-04/8ad13013-6586-429f-95b4-30aa3fffd8c8.PDF",
+      "exchange_publish_time_raw": "2024-12-05 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221967490",
+      "publication_day": "2024-12-10",
+      "title": "威领股份：关于控股股东部分股份被司法拍卖的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-09/93d342d6-e865-4e83-8b61-bcf05ce2cb12.PDF",
+      "exchange_publish_time_raw": "2024-12-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1221967491",
+      "publication_day": "2024-12-10",
+      "title": "威领股份：关于控股股东权益变动达到1%的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-09/cdbd47f9-6767-44ea-8e4d-5ce67943fd3a.PDF",
+      "exchange_publish_time_raw": "2024-12-10 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222063288",
+      "publication_day": "2024-12-19",
+      "title": "威领股份：关于公司股票交易异常波动公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-19/d019b74f-2a9e-48ac-ab20-ed8d4aaa9913.PDF",
+      "exchange_publish_time_raw": "2024-12-19 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222076685",
+      "publication_day": "2024-12-20",
+      "title": "威领股份：关于向参股公司增资的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-19/ece29fd5-8d48-4c63-b9be-d2a080f20d76.PDF",
+      "exchange_publish_time_raw": "2024-12-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222076686",
+      "publication_day": "2024-12-20",
+      "title": "威领股份：关于向子公司增资的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-19/8c9e8c0b-c999-4794-b278-e43327620073.PDF",
+      "exchange_publish_time_raw": "2024-12-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222076687",
+      "publication_day": "2024-12-20",
+      "title": "威领股份：第七届董事会第五次会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-20/1c0855cc-93e6-4290-b31d-502e5fbfc3aa.PDF",
+      "exchange_publish_time_raw": "2024-12-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222076688",
+      "publication_day": "2024-12-20",
+      "title": "威领股份：第七届监事会第五会议决议公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-20/0532c887-0535-4dd1-9a0e-733042367fd1.PDF",
+      "exchange_publish_time_raw": "2024-12-20 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222091238",
+      "publication_day": "2024-12-21",
+      "title": "威领股份：简式权益变动报告书（上海领亿新材料有限公司）",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-21/efca8e25-b07e-4009-aacf-fcd782351292.PDF",
+      "exchange_publish_time_raw": "2024-12-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222091241",
+      "publication_day": "2024-12-21",
+      "title": "威领股份：关于控股股东部分股份被司法拍卖的进展暨权益变动的提示性公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-20/77cf3248-0569-4bb9-b761-ec7d950f0af6.PDF",
+      "exchange_publish_time_raw": "2024-12-21 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222163069",
+      "publication_day": "2024-12-28",
+      "title": "威领股份：关于控股股东部分股份解除质押的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-27/3e160ef0-462b-4740-9e7e-74a7ae38633c.PDF",
+      "exchange_publish_time_raw": "2024-12-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    },
+    {
+      "ann_id": "1222163070",
+      "publication_day": "2024-12-28",
+      "title": "威领股份：关于公司控股股东收到中国证监会湖南监管局警示函的公告",
+      "exchange_relative_path": "/disc/disk03/finalpage/2024-12-27/6e9a2bf0-0fdb-472a-b7e0-be241730be4c.PDF",
+      "exchange_publish_time_raw": "2024-12-28 00:00:00",
+      "exchange_stock_codes": [
+        "002667"
+      ]
+    }
+  ],
+  "evaluation": {
+    "full_source_row_reference_match": true,
+    "passed_months": 24,
+    "expected_months": 24,
+    "candidate_rows_if_pass": 486,
+    "cross_month_duplicates": [],
+    "months": [
+      {
+        "month": "2023-01",
+        "pass": true,
+        "row_count": 12,
+        "expected_count": 12,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-02",
+        "pass": true,
+        "row_count": 21,
+        "expected_count": 21,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-03",
+        "pass": true,
+        "row_count": 58,
+        "expected_count": 58,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-04",
+        "pass": true,
+        "row_count": 53,
+        "expected_count": 53,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-05",
+        "pass": true,
+        "row_count": 42,
+        "expected_count": 42,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-06",
+        "pass": true,
+        "row_count": 15,
+        "expected_count": 15,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-07",
+        "pass": true,
+        "row_count": 37,
+        "expected_count": 37,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-08",
+        "pass": true,
+        "row_count": 38,
+        "expected_count": 38,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-09",
+        "pass": true,
+        "row_count": 20,
+        "expected_count": 20,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-10",
+        "pass": true,
+        "row_count": 16,
+        "expected_count": 16,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-11",
+        "pass": true,
+        "row_count": 16,
+        "expected_count": 16,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2023-12",
+        "pass": true,
+        "row_count": 4,
+        "expected_count": 4,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-01",
+        "pass": true,
+        "row_count": 12,
+        "expected_count": 12,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-02",
+        "pass": true,
+        "row_count": 8,
+        "expected_count": 8,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-03",
+        "pass": true,
+        "row_count": 7,
+        "expected_count": 7,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-04",
+        "pass": true,
+        "row_count": 32,
+        "expected_count": 32,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-05",
+        "pass": true,
+        "row_count": 4,
+        "expected_count": 4,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-06",
+        "pass": true,
+        "row_count": 5,
+        "expected_count": 5,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-07",
+        "pass": true,
+        "row_count": 31,
+        "expected_count": 31,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-08",
+        "pass": true,
+        "row_count": 20,
+        "expected_count": 20,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-09",
+        "pass": true,
+        "row_count": 5,
+        "expected_count": 5,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-10",
+        "pass": true,
+        "row_count": 5,
+        "expected_count": 5,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-11",
+        "pass": true,
+        "row_count": 13,
+        "expected_count": 13,
+        "source_errors": [
+          null,
+          null
+        ]
+      },
+      {
+        "month": "2024-12",
+        "pass": true,
+        "row_count": 12,
+        "expected_count": 12,
+        "source_errors": [
+          null,
+          null
+        ]
+      }
+    ],
+    "cninfo_temporal_provenance_verified": false,
+    "cninfo_pdf_locator_compatible": false,
+    "original_batch3_source_substitution_authorized": false,
+    "original_batch3_scientifically_complete": false,
+    "protected_outcomes_consumed": false,
+    "trade_authorized": false
+  }
+}
