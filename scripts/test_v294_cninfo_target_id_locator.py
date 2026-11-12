@@ -1,7 +1,7 @@
 """Synthetic-only no-promotion checks for the one-ID source locator."""
 import copy
 import unittest
-from v294_cninfo_target_id_locator import TARGET, evaluate
+from v294_cninfo_target_id_locator import TARGET, evaluate, preflight_valid
 
 
 def fixture():
@@ -57,6 +57,22 @@ class TargetLocatorTests(unittest.TestCase):
         self.assertFalse(result["timestamp_matches_official_path_day"])
         self.assertFalse(result["date_inside_frozen_range"])
         self.assertIsNone(result["verified_metadata"])
+
+    def test_first_page_source_preflight_rejects_empty_or_foreign_identity(self):
+        baseline=[
+            {"page_size":30,"page_number":1,"raw_count":30,
+             "reported_total":485,"source_codes":["002667"]},
+            {"page_size":20,"page_number":1,"raw_count":20,
+             "reported_total":485,"source_codes":["002667"]},
+        ]
+        self.assertTrue(preflight_valid(baseline))
+        for key,value in (("raw_count",0),("reported_total",0),
+                          ("source_codes",["009999"]),("page_number",8)):
+            with self.subTest(key=key):
+                changed=copy.deepcopy(baseline)
+                changed[0][key]=value
+                self.assertFalse(preflight_valid(changed))
+        self.assertFalse(preflight_valid(baseline[:1]))
 
     def test_exact_two_sessions(self):
         with self.assertRaisesRegex(ValueError,"TWO_COMPLETE_SOURCE_SESSIONS_REQUIRED"):
