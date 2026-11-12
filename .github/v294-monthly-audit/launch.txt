@@ -1,1 +1,1 @@
-2026-11-12 one-shot source-only 486 SZSE publish-day versus UUID attachment-folder date audit, plus original target 1217706310 CNINFO/SZSE PDF binary parity. No Batch-3 admission.
+2026-11-12 one-shot offline comparison frozen V2.8.4 title triage for 486 verified SZSE source titles, raw vs historical-name vs explicit prefix separator removal; no PDFs, returns or Batch-3.
