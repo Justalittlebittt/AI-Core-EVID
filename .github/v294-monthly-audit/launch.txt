@@ -1,1 +1,1 @@
-2026-11-12 read-only frozen 2023-01-01..2024-12-30 24-month SZSE issuer 002667 source census; 2 clean sessions x page sizes 30/50, strict official totals/ID/time checks, no science admission.
+2026-11-12 one-shot source-only 002667 original SZSE row materialization for frozen 24 months; two independent source sessions, exact 486-ID and existing source fingerprint match; no Batch-3 source substitution.
