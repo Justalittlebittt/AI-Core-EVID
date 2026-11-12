@@ -18,21 +18,21 @@
       "30": {
         "http_status": 200,
         "parse_valid": true,
-        "status": "SOURCE_INCOMPLETE",
+        "status": "COMPLETE_SINGLE_PAGE",
         "official_total": 1,
         "returned_count": 1,
         "page_size": 30,
         "duplicate_free": true,
-        "source_errors": [
-          "WRONG_STOCK"
-        ],
+        "source_errors": [],
         "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
         "matches_target_title": [
           {
             "title": "威领股份：关于控股股东部分股份质押的公告",
             "publish_time": "2023-08-31 00:00:00",
             "exchange_ann_id": "1217706310",
-            "stock_field": "['002667']",
+            "stock_codes": [
+              "002667"
+            ],
             "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
           }
         ],
@@ -41,32 +41,34 @@
             "title": "威领股份：关于控股股东部分股份质押的公告",
             "publish_time": "2023-08-31 00:00:00",
             "exchange_ann_id": "1217706310",
-            "stock_field": "['002667']",
+            "stock_codes": [
+              "002667"
+            ],
             "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
           }
         ],
-        "single_page_closed": false
+        "single_page_closed": true
       }
     },
     {
       "20": {
         "http_status": 200,
         "parse_valid": true,
-        "status": "SOURCE_INCOMPLETE",
+        "status": "COMPLETE_SINGLE_PAGE",
         "official_total": 1,
         "returned_count": 1,
         "page_size": 20,
         "duplicate_free": true,
-        "source_errors": [
-          "WRONG_STOCK"
-        ],
+        "source_errors": [],
         "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
         "matches_target_title": [
           {
             "title": "威领股份：关于控股股东部分股份质押的公告",
             "publish_time": "2023-08-31 00:00:00",
             "exchange_ann_id": "1217706310",
-            "stock_field": "['002667']",
+            "stock_codes": [
+              "002667"
+            ],
             "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
           }
         ],
@@ -75,30 +77,32 @@
             "title": "威领股份：关于控股股东部分股份质押的公告",
             "publish_time": "2023-08-31 00:00:00",
             "exchange_ann_id": "1217706310",
-            "stock_field": "['002667']",
+            "stock_codes": [
+              "002667"
+            ],
             "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
           }
         ],
-        "single_page_closed": false
+        "single_page_closed": true
       },
       "30": {
         "http_status": 200,
         "parse_valid": true,
-        "status": "SOURCE_INCOMPLETE",
+        "status": "COMPLETE_SINGLE_PAGE",
         "official_total": 1,
         "returned_count": 1,
         "page_size": 30,
         "duplicate_free": true,
-        "source_errors": [
-          "WRONG_STOCK"
-        ],
+        "source_errors": [],
         "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
         "matches_target_title": [
           {
             "title": "威领股份：关于控股股东部分股份质押的公告",
             "publish_time": "2023-08-31 00:00:00",
             "exchange_ann_id": "1217706310",
-            "stock_field": "['002667']",
+            "stock_codes": [
+              "002667"
+            ],
             "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
           }
         ],
@@ -107,11 +111,13 @@
             "title": "威领股份：关于控股股东部分股份质押的公告",
             "publish_time": "2023-08-31 00:00:00",
             "exchange_ann_id": "1217706310",
-            "stock_field": "['002667']",
+            "stock_codes": [
+              "002667"
+            ],
             "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
           }
         ],
-        "single_page_closed": false
+        "single_page_closed": true
       }
     }
   ],
