@@ -1,0 +1,1122 @@
+{
+  "schema": "V294_002667_SOURCE_DAY_FOLDER_AND_ONE_PDF_PAIR_DIAGNOSTIC_V1",
+  "source_rows_path": "evidence/V2.9.4_002667_SZSE_RAW_ROWS_RETRIEVAL_V1.json",
+  "frozen_range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "time_field_audit": {
+    "row_count": 486,
+    "schema_unsafe_ids": [],
+    "exchange_midnight_display_count": 486,
+    "non_midnight_ids": [],
+    "date_folder_delta_days": {
+      "0": 312,
+      "1": 174
+    },
+    "title_prefix_counts": {
+      "威领股份": 288,
+      "鞍重股份": 198
+    },
+    "folder_day_mismatch_count": 174,
+    "folder_day_mismatch_rows": [
+      {
+        "ann_id": "1215526477",
+        "official_publication_day": "2023-01-05",
+        "exchange_attachment_folder_day": "2023-01-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215539515",
+        "official_publication_day": "2023-01-07",
+        "exchange_attachment_folder_day": "2023-01-06",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215650096",
+        "official_publication_day": "2023-01-19",
+        "exchange_attachment_folder_day": "2023-01-18",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215665573",
+        "official_publication_day": "2023-01-20",
+        "exchange_attachment_folder_day": "2023-01-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215725913",
+        "official_publication_day": "2023-01-31",
+        "exchange_attachment_folder_day": "2023-01-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215725914",
+        "official_publication_day": "2023-01-31",
+        "exchange_attachment_folder_day": "2023-01-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215725916",
+        "official_publication_day": "2023-01-31",
+        "exchange_attachment_folder_day": "2023-01-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215907677",
+        "official_publication_day": "2023-02-21",
+        "exchange_attachment_folder_day": "2023-02-20",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215907678",
+        "official_publication_day": "2023-02-21",
+        "exchange_attachment_folder_day": "2023-02-20",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215966456",
+        "official_publication_day": "2023-02-25",
+        "exchange_attachment_folder_day": "2023-02-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215966457",
+        "official_publication_day": "2023-02-25",
+        "exchange_attachment_folder_day": "2023-02-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1215966458",
+        "official_publication_day": "2023-02-25",
+        "exchange_attachment_folder_day": "2023-02-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216055673",
+        "official_publication_day": "2023-03-07",
+        "exchange_attachment_folder_day": "2023-03-06",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216084410",
+        "official_publication_day": "2023-03-10",
+        "exchange_attachment_folder_day": "2023-03-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216084411",
+        "official_publication_day": "2023-03-10",
+        "exchange_attachment_folder_day": "2023-03-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216084414",
+        "official_publication_day": "2023-03-10",
+        "exchange_attachment_folder_day": "2023-03-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101472",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101474",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101476",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101479",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101483",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101485",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101487",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101489",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216101492",
+        "official_publication_day": "2023-03-13",
+        "exchange_attachment_folder_day": "2023-03-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216116593",
+        "official_publication_day": "2023-03-15",
+        "exchange_attachment_folder_day": "2023-03-14",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216116594",
+        "official_publication_day": "2023-03-15",
+        "exchange_attachment_folder_day": "2023-03-14",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216125255",
+        "official_publication_day": "2023-03-16",
+        "exchange_attachment_folder_day": "2023-03-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216138777",
+        "official_publication_day": "2023-03-17",
+        "exchange_attachment_folder_day": "2023-03-16",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216138778",
+        "official_publication_day": "2023-03-17",
+        "exchange_attachment_folder_day": "2023-03-16",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216234801",
+        "official_publication_day": "2023-03-28",
+        "exchange_attachment_folder_day": "2023-03-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216234803",
+        "official_publication_day": "2023-03-28",
+        "exchange_attachment_folder_day": "2023-03-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216234806",
+        "official_publication_day": "2023-03-28",
+        "exchange_attachment_folder_day": "2023-03-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216274276",
+        "official_publication_day": "2023-03-31",
+        "exchange_attachment_folder_day": "2023-03-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216299454",
+        "official_publication_day": "2023-04-01",
+        "exchange_attachment_folder_day": "2023-03-31",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216299457",
+        "official_publication_day": "2023-04-01",
+        "exchange_attachment_folder_day": "2023-03-31",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216299458",
+        "official_publication_day": "2023-04-01",
+        "exchange_attachment_folder_day": "2023-03-31",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216299459",
+        "official_publication_day": "2023-04-01",
+        "exchange_attachment_folder_day": "2023-03-31",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216299460",
+        "official_publication_day": "2023-04-01",
+        "exchange_attachment_folder_day": "2023-03-31",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216343162",
+        "official_publication_day": "2023-04-07",
+        "exchange_attachment_folder_day": "2023-04-06",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216438037",
+        "official_publication_day": "2023-04-18",
+        "exchange_attachment_folder_day": "2023-04-17",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216438230",
+        "official_publication_day": "2023-04-18",
+        "exchange_attachment_folder_day": "2023-04-17",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216455977",
+        "official_publication_day": "2023-04-19",
+        "exchange_attachment_folder_day": "2023-04-18",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216524917",
+        "official_publication_day": "2023-04-22",
+        "exchange_attachment_folder_day": "2023-04-21",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216524979",
+        "official_publication_day": "2023-04-22",
+        "exchange_attachment_folder_day": "2023-04-21",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216536919",
+        "official_publication_day": "2023-04-24",
+        "exchange_attachment_folder_day": "2023-04-23",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216759622",
+        "official_publication_day": "2023-05-06",
+        "exchange_attachment_folder_day": "2023-05-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216791216",
+        "official_publication_day": "2023-05-11",
+        "exchange_attachment_folder_day": "2023-05-10",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216791217",
+        "official_publication_day": "2023-05-11",
+        "exchange_attachment_folder_day": "2023-05-10",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216791218",
+        "official_publication_day": "2023-05-11",
+        "exchange_attachment_folder_day": "2023-05-10",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216798263",
+        "official_publication_day": "2023-05-12",
+        "exchange_attachment_folder_day": "2023-05-11",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216819055",
+        "official_publication_day": "2023-05-16",
+        "exchange_attachment_folder_day": "2023-05-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216819056",
+        "official_publication_day": "2023-05-16",
+        "exchange_attachment_folder_day": "2023-05-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216819057",
+        "official_publication_day": "2023-05-16",
+        "exchange_attachment_folder_day": "2023-05-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216819060",
+        "official_publication_day": "2023-05-16",
+        "exchange_attachment_folder_day": "2023-05-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216819061",
+        "official_publication_day": "2023-05-16",
+        "exchange_attachment_folder_day": "2023-05-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216828757",
+        "official_publication_day": "2023-05-17",
+        "exchange_attachment_folder_day": "2023-05-16",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216865220",
+        "official_publication_day": "2023-05-20",
+        "exchange_attachment_folder_day": "2023-05-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216865225",
+        "official_publication_day": "2023-05-20",
+        "exchange_attachment_folder_day": "2023-05-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216976795",
+        "official_publication_day": "2023-06-03",
+        "exchange_attachment_folder_day": "2023-06-02",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216976796",
+        "official_publication_day": "2023-06-03",
+        "exchange_attachment_folder_day": "2023-06-02",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1216976797",
+        "official_publication_day": "2023-06-03",
+        "exchange_attachment_folder_day": "2023-06-02",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217026397",
+        "official_publication_day": "2023-06-10",
+        "exchange_attachment_folder_day": "2023-06-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217133141",
+        "official_publication_day": "2023-06-26",
+        "exchange_attachment_folder_day": "2023-06-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217152805",
+        "official_publication_day": "2023-06-29",
+        "exchange_attachment_folder_day": "2023-06-28",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217206984",
+        "official_publication_day": "2023-07-05",
+        "exchange_attachment_folder_day": "2023-07-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217227394",
+        "official_publication_day": "2023-07-07",
+        "exchange_attachment_folder_day": "2023-07-06",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217272741",
+        "official_publication_day": "2023-07-12",
+        "exchange_attachment_folder_day": "2023-07-11",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217300312",
+        "official_publication_day": "2023-07-15",
+        "exchange_attachment_folder_day": "2023-07-14",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217316091",
+        "official_publication_day": "2023-07-18",
+        "exchange_attachment_folder_day": "2023-07-17",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217323100",
+        "official_publication_day": "2023-07-19",
+        "exchange_attachment_folder_day": "2023-07-18",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217323101",
+        "official_publication_day": "2023-07-19",
+        "exchange_attachment_folder_day": "2023-07-18",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217332539",
+        "official_publication_day": "2023-07-20",
+        "exchange_attachment_folder_day": "2023-07-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217358971",
+        "official_publication_day": "2023-07-22",
+        "exchange_attachment_folder_day": "2023-07-21",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217374954",
+        "official_publication_day": "2023-07-25",
+        "exchange_attachment_folder_day": "2023-07-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217374955",
+        "official_publication_day": "2023-07-25",
+        "exchange_attachment_folder_day": "2023-07-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217374962",
+        "official_publication_day": "2023-07-25",
+        "exchange_attachment_folder_day": "2023-07-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217374963",
+        "official_publication_day": "2023-07-25",
+        "exchange_attachment_folder_day": "2023-07-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217401486",
+        "official_publication_day": "2023-07-28",
+        "exchange_attachment_folder_day": "2023-07-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217476889",
+        "official_publication_day": "2023-08-08",
+        "exchange_attachment_folder_day": "2023-08-07",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217693814",
+        "official_publication_day": "2023-08-30",
+        "exchange_attachment_folder_day": "2023-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217693816",
+        "official_publication_day": "2023-08-30",
+        "exchange_attachment_folder_day": "2023-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217693817",
+        "official_publication_day": "2023-08-30",
+        "exchange_attachment_folder_day": "2023-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217693823",
+        "official_publication_day": "2023-08-30",
+        "exchange_attachment_folder_day": "2023-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217693825",
+        "official_publication_day": "2023-08-30",
+        "exchange_attachment_folder_day": "2023-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217706310",
+        "official_publication_day": "2023-08-31",
+        "exchange_attachment_folder_day": "2023-08-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217771632",
+        "official_publication_day": "2023-09-05",
+        "exchange_attachment_folder_day": "2023-09-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217794259",
+        "official_publication_day": "2023-09-07",
+        "exchange_attachment_folder_day": "2023-09-06",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217831555",
+        "official_publication_day": "2023-09-13",
+        "exchange_attachment_folder_day": "2023-09-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217858796",
+        "official_publication_day": "2023-09-15",
+        "exchange_attachment_folder_day": "2023-09-14",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217858799",
+        "official_publication_day": "2023-09-15",
+        "exchange_attachment_folder_day": "2023-09-14",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1217858801",
+        "official_publication_day": "2023-09-15",
+        "exchange_attachment_folder_day": "2023-09-14",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218206512",
+        "official_publication_day": "2023-10-31",
+        "exchange_attachment_folder_day": "2023-10-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218206513",
+        "official_publication_day": "2023-10-31",
+        "exchange_attachment_folder_day": "2023-10-30",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218246532",
+        "official_publication_day": "2023-11-04",
+        "exchange_attachment_folder_day": "2023-11-03",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218281659",
+        "official_publication_day": "2023-11-09",
+        "exchange_attachment_folder_day": "2023-11-08",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218351769",
+        "official_publication_day": "2023-11-16",
+        "exchange_attachment_folder_day": "2023-11-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218351770",
+        "official_publication_day": "2023-11-16",
+        "exchange_attachment_folder_day": "2023-11-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218454578",
+        "official_publication_day": "2023-11-28",
+        "exchange_attachment_folder_day": "2023-11-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218454580",
+        "official_publication_day": "2023-11-28",
+        "exchange_attachment_folder_day": "2023-11-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218454582",
+        "official_publication_day": "2023-11-28",
+        "exchange_attachment_folder_day": "2023-11-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218454583",
+        "official_publication_day": "2023-11-28",
+        "exchange_attachment_folder_day": "2023-11-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218454584",
+        "official_publication_day": "2023-11-28",
+        "exchange_attachment_folder_day": "2023-11-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218454585",
+        "official_publication_day": "2023-11-28",
+        "exchange_attachment_folder_day": "2023-11-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218607964",
+        "official_publication_day": "2023-12-14",
+        "exchange_attachment_folder_day": "2023-12-13",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218800608",
+        "official_publication_day": "2024-01-04",
+        "exchange_attachment_folder_day": "2024-01-03",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218815328",
+        "official_publication_day": "2024-01-06",
+        "exchange_attachment_folder_day": "2024-01-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218835296",
+        "official_publication_day": "2024-01-10",
+        "exchange_attachment_folder_day": "2024-01-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218846515",
+        "official_publication_day": "2024-01-11",
+        "exchange_attachment_folder_day": "2024-01-10",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1218963090",
+        "official_publication_day": "2024-01-23",
+        "exchange_attachment_folder_day": "2024-01-22",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219011266",
+        "official_publication_day": "2024-01-27",
+        "exchange_attachment_folder_day": "2024-01-26",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219026357",
+        "official_publication_day": "2024-01-30",
+        "exchange_attachment_folder_day": "2024-01-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219079665",
+        "official_publication_day": "2024-02-03",
+        "exchange_attachment_folder_day": "2024-02-02",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219095354",
+        "official_publication_day": "2024-02-06",
+        "exchange_attachment_folder_day": "2024-02-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219111511",
+        "official_publication_day": "2024-02-07",
+        "exchange_attachment_folder_day": "2024-02-06",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219139660",
+        "official_publication_day": "2024-02-20",
+        "exchange_attachment_folder_day": "2024-02-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219218408",
+        "official_publication_day": "2024-03-02",
+        "exchange_attachment_folder_day": "2024-03-01",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219373803",
+        "official_publication_day": "2024-03-22",
+        "exchange_attachment_folder_day": "2024-03-21",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219373804",
+        "official_publication_day": "2024-03-22",
+        "exchange_attachment_folder_day": "2024-03-21",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219437817",
+        "official_publication_day": "2024-03-29",
+        "exchange_attachment_folder_day": "2024-03-28",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219584249",
+        "official_publication_day": "2024-04-12",
+        "exchange_attachment_folder_day": "2024-04-11",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219584250",
+        "official_publication_day": "2024-04-12",
+        "exchange_attachment_folder_day": "2024-04-11",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219584251",
+        "official_publication_day": "2024-04-12",
+        "exchange_attachment_folder_day": "2024-04-11",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842483",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842484",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842487",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842490",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842491",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842495",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842496",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842498",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1219842501",
+        "official_publication_day": "2024-04-26",
+        "exchange_attachment_folder_day": "2024-04-25",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220060350",
+        "official_publication_day": "2024-05-16",
+        "exchange_attachment_folder_day": "2024-05-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220107241",
+        "official_publication_day": "2024-05-21",
+        "exchange_attachment_folder_day": "2024-05-20",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220245506",
+        "official_publication_day": "2024-06-04",
+        "exchange_attachment_folder_day": "2024-06-03",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220324414",
+        "official_publication_day": "2024-06-12",
+        "exchange_attachment_folder_day": "2024-06-11",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220391312",
+        "official_publication_day": "2024-06-19",
+        "exchange_attachment_folder_day": "2024-06-18",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220541140",
+        "official_publication_day": "2024-07-06",
+        "exchange_attachment_folder_day": "2024-07-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220541143",
+        "official_publication_day": "2024-07-06",
+        "exchange_attachment_folder_day": "2024-07-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220541144",
+        "official_publication_day": "2024-07-06",
+        "exchange_attachment_folder_day": "2024-07-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220541146",
+        "official_publication_day": "2024-07-06",
+        "exchange_attachment_folder_day": "2024-07-05",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220588107",
+        "official_publication_day": "2024-07-10",
+        "exchange_attachment_folder_day": "2024-07-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220603464",
+        "official_publication_day": "2024-07-11",
+        "exchange_attachment_folder_day": "2024-07-10",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220662110",
+        "official_publication_day": "2024-07-18",
+        "exchange_attachment_folder_day": "2024-07-17",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220701858",
+        "official_publication_day": "2024-07-23",
+        "exchange_attachment_folder_day": "2024-07-22",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220701861",
+        "official_publication_day": "2024-07-23",
+        "exchange_attachment_folder_day": "2024-07-22",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220701862",
+        "official_publication_day": "2024-07-23",
+        "exchange_attachment_folder_day": "2024-07-22",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220765494",
+        "official_publication_day": "2024-08-01",
+        "exchange_attachment_folder_day": "2024-07-31",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1220938217",
+        "official_publication_day": "2024-08-22",
+        "exchange_attachment_folder_day": "2024-08-21",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221023130",
+        "official_publication_day": "2024-08-29",
+        "exchange_attachment_folder_day": "2024-08-28",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221049860",
+        "official_publication_day": "2024-08-30",
+        "exchange_attachment_folder_day": "2024-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221049862",
+        "official_publication_day": "2024-08-30",
+        "exchange_attachment_folder_day": "2024-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221049864",
+        "official_publication_day": "2024-08-30",
+        "exchange_attachment_folder_day": "2024-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221049871",
+        "official_publication_day": "2024-08-30",
+        "exchange_attachment_folder_day": "2024-08-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221125523",
+        "official_publication_day": "2024-09-04",
+        "exchange_attachment_folder_day": "2024-09-03",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221220853",
+        "official_publication_day": "2024-09-14",
+        "exchange_attachment_folder_day": "2024-09-13",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221504267",
+        "official_publication_day": "2024-10-25",
+        "exchange_attachment_folder_day": "2024-10-24",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221554859",
+        "official_publication_day": "2024-10-30",
+        "exchange_attachment_folder_day": "2024-10-29",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221604189",
+        "official_publication_day": "2024-11-02",
+        "exchange_attachment_folder_day": "2024-11-01",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221626288",
+        "official_publication_day": "2024-11-05",
+        "exchange_attachment_folder_day": "2024-11-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221626289",
+        "official_publication_day": "2024-11-05",
+        "exchange_attachment_folder_day": "2024-11-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221626294",
+        "official_publication_day": "2024-11-05",
+        "exchange_attachment_folder_day": "2024-11-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221696357",
+        "official_publication_day": "2024-11-13",
+        "exchange_attachment_folder_day": "2024-11-12",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221739956",
+        "official_publication_day": "2024-11-16",
+        "exchange_attachment_folder_day": "2024-11-15",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221789105",
+        "official_publication_day": "2024-11-21",
+        "exchange_attachment_folder_day": "2024-11-20",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221789106",
+        "official_publication_day": "2024-11-21",
+        "exchange_attachment_folder_day": "2024-11-20",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221925079",
+        "official_publication_day": "2024-12-05",
+        "exchange_attachment_folder_day": "2024-12-04",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221967490",
+        "official_publication_day": "2024-12-10",
+        "exchange_attachment_folder_day": "2024-12-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1221967491",
+        "official_publication_day": "2024-12-10",
+        "exchange_attachment_folder_day": "2024-12-09",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1222076685",
+        "official_publication_day": "2024-12-20",
+        "exchange_attachment_folder_day": "2024-12-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1222076686",
+        "official_publication_day": "2024-12-20",
+        "exchange_attachment_folder_day": "2024-12-19",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1222091241",
+        "official_publication_day": "2024-12-21",
+        "exchange_attachment_folder_day": "2024-12-20",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1222163069",
+        "official_publication_day": "2024-12-28",
+        "exchange_attachment_folder_day": "2024-12-27",
+        "folder_day_delta": 1
+      },
+      {
+        "ann_id": "1222163070",
+        "official_publication_day": "2024-12-28",
+        "exchange_attachment_folder_day": "2024-12-27",
+        "folder_day_delta": 1
+      }
+    ],
+    "all_source_rows_structurally_valid": true,
+    "exact_publication_timestamp_proven": false,
+    "cninfo_original_locator_temporal_semantics_proven": false
+  },
+  "target_sample_pdf_comparison": {
+    "source_attempts": [
+      {
+        "source": "cninfo_original",
+        "official_url": "https://static.cninfo.com.cn/finalpage/2023-08-31/1217706310.PDF",
+        "content_verified": true,
+        "http_status": 200,
+        "sha256": "47712120e196bd77aebbbb6828e4e84fa4c21d9a7b5067c829043e3b6faf9e98",
+        "byte_count": 157985,
+        "page_count": 3,
+        "content_field_checks": {
+          "威领新能源股份有限公司": true,
+          "002667": true,
+          "关于控股股东部分股份质押的公告": true,
+          "2023-138": true
+        },
+        "content_match": true,
+        "normalized_extracted_text_sha256": "e14b3b71d72dba19dea3f9217b917865ae657ddb2acd36cf64bcefacfac21820"
+      },
+      {
+        "source": "szse_exchange_original",
+        "official_url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF",
+        "content_verified": true,
+        "http_status": 200,
+        "sha256": "47712120e196bd77aebbbb6828e4e84fa4c21d9a7b5067c829043e3b6faf9e98",
+        "byte_count": 157985,
+        "page_count": 3,
+        "content_field_checks": {
+          "威领新能源股份有限公司": true,
+          "002667": true,
+          "关于控股股东部分股份质押的公告": true,
+          "2023-138": true
+        },
+        "content_match": true,
+        "normalized_extracted_text_sha256": "e14b3b71d72dba19dea3f9217b917865ae657ddb2acd36cf64bcefacfac21820"
+      }
+    ],
+    "both_official_pdfs_content_verified": true,
+    "same_pdf_bytes": true,
+    "same_normalized_extracted_text": true,
+    "all_486_original_pdfs_verified": false
+  },
+  "research_gate": {
+    "source_metadata_diagnostic_only": true,
+    "scientific_source_migration_authorized": false,
+    "batch3_authorized": false,
+    "batch4_authorized": false,
+    "protected_outcomes_consumed": false,
+    "trading_authorized": false
+  }
+}
