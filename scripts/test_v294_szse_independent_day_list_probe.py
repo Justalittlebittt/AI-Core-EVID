@@ -30,6 +30,16 @@ class SZSEProbeTests(unittest.TestCase):
                 elif kind=="duplicate":payload["announceCount"]=2;payload["data"]*=2
                 self.assertFalse(validate(payload,20)["single_page_closed"])
 
+    def test_szse_official_sec_code_array_is_strictly_bound(self):
+        data=make()
+        data["data"][0]["secCode"]=["002667"]
+        self.assertTrue(validate(data,20)["single_page_closed"])
+        for invalid in (["002667","000001"],[],["009999"]):
+            with self.subTest(raw_code=invalid):
+                candidate=copy.deepcopy(data)
+                candidate["data"][0]["secCode"]=invalid
+                self.assertFalse(validate(candidate,20)["single_page_closed"])
+
     def test_empty_endpoint_schema_does_not_pass(self):
         self.assertFalse(validate({"data":[]},20)["parse_valid"])
         with self.assertRaisesRegex(ValueError,"TWO_SESSIONS_TWO_SIZES_REQUIRED"):
