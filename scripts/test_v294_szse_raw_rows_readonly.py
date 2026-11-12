@@ -6,15 +6,17 @@ from v294_szse_frozen_24_month_census import months
 
 def fixture():
     refs={};s={}
-    for start,end in months():
-        rows=[{"ann_id":start,"publication_day":start,"title":"Synthetic",
-               "exchange_relative_path":"/disc/synthetic.pdf",
+    for idx,(start,end) in enumerate(months()):
+        count=26 if idx==23 else 20
+        rows=[{"ann_id":f"{start}-synthetic-{i:03d}","publication_day":start,
+               "title":"Synthetic","exchange_relative_path":"/disc/synthetic.pdf",
                "exchange_publish_time_raw":start+" 00:00:00",
-               "exchange_stock_codes":["002667"]}]
+               "exchange_stock_codes":["002667"]} for i in range(count)]
         fp=digest_rows(rows)
-        refs[start]={"ids":[start],"row_fingerprint":fp,"reported_totals":[1]}
+        refs[start]={"ids":[r["ann_id"] for r in rows],
+                     "row_fingerprint":fp,"reported_totals":[count]}
         s[start]={"range":[start,end],"rows":rows,"row_fingerprint":fp,
-                  "official_totals":[1],"complete":True,"error":None}
+                  "official_totals":[count],"complete":True,"error":None}
     return refs,[copy.deepcopy(s),copy.deepcopy(s)]
 
 class SourceRowsTests(unittest.TestCase):
@@ -22,7 +24,7 @@ class SourceRowsTests(unittest.TestCase):
         reference,sessions=fixture()
         outcome=reconcile(reference,sessions)
         self.assertTrue(outcome["full_source_row_reference_match"])
-        self.assertEqual(len(outcome["rows"]),24)
+        self.assertEqual(len(outcome["rows"]),486)
         self.assertFalse(outcome["cninfo_temporal_provenance_verified"])
         self.assertFalse(outcome["cninfo_pdf_locator_compatible"])
         self.assertFalse(outcome["original_batch3_source_substitution_authorized"])
