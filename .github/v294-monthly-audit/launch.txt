@@ -1,1 +1,1 @@
-2026-11-12 SZSE independent 002667 one-day 2023-08-31 two sessions and sizes 20/30, V2 bounded one retry only after ECONNRESET; preserve V1 receipt, never authorize full corpus or trades.
+2026-11-12 read-only frozen 2023-01-01..2024-12-30 24-month SZSE issuer 002667 source census; 2 clean sessions x page sizes 30/50, strict official totals/ID/time checks, no science admission.
