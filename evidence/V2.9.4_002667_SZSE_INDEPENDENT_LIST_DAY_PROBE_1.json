@@ -1,0 +1,129 @@
+{
+  "schema": "V294_SZSE_002667_SINGLE_DAY_INDEPENDENT_DISCLOSURE_LIST_PROBE_V1",
+  "source": "SZSE_OFFICIAL_LISTED_COMPANY_NOTICE_ENDPOINT",
+  "api": "https://www.szse.cn/api/disc/announcement/annList",
+  "stock": "002667",
+  "frozen_day": [
+    "2023-08-31",
+    "2023-08-31"
+  ],
+  "sessions": [
+    {
+      "20": {
+        "status": "TRANSPORT_OR_PARSE_FAILED",
+        "error_type": "Error",
+        "error_summary": "APIRequestContext.post: read ECONNRESET\nCall log:\n  - → POST https://www.szse.cn/api/disc/announcement/annList\n    - user-agent: Mozilla/5.0\n    - acc",
+        "single_page_closed": false
+      },
+      "30": {
+        "http_status": 200,
+        "parse_valid": true,
+        "status": "SOURCE_INCOMPLETE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 30,
+        "duplicate_free": true,
+        "source_errors": [
+          "WRONG_STOCK"
+        ],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_field": "['002667']",
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_field": "['002667']",
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": false
+      }
+    },
+    {
+      "20": {
+        "http_status": 200,
+        "parse_valid": true,
+        "status": "SOURCE_INCOMPLETE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 20,
+        "duplicate_free": true,
+        "source_errors": [
+          "WRONG_STOCK"
+        ],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_field": "['002667']",
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_field": "['002667']",
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": false
+      },
+      "30": {
+        "http_status": 200,
+        "parse_valid": true,
+        "status": "SOURCE_INCOMPLETE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 30,
+        "duplicate_free": true,
+        "source_errors": [
+          "WRONG_STOCK"
+        ],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_field": "['002667']",
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_field": "['002667']",
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": false
+      }
+    }
+  ],
+  "evaluation": {
+    "independent_szse_day_consistent": false,
+    "four_single_page_censuses_closed": false,
+    "four_id_sets_identical": false,
+    "target_title_present_each": false,
+    "full_2023_2024_issuer_census_certified": false,
+    "batch3_authorized": false,
+    "batch4_authorized": false,
+    "protected_outcomes_consumed": false,
+    "trading_authorized": false
+  }
+}
