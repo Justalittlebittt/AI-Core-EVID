@@ -1,1 +1,1 @@
-Single fail-closed historical source page-1 sanity check for SZSE:002667: test 20/30 page sizes before querying archived page offsets. No Batch-3 admission or frozen evidence changes.
+2026-11-12 official CNINFO 002667 orgId 9900022274 source page-one first and archived announcement page offsets only after nonempty identity check. Read-only; no historical admission.
