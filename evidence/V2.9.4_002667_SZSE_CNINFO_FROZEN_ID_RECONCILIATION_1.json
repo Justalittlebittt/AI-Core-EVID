@@ -1,0 +1,61 @@
+{
+  "schema": "V294_SZSE_CNINFO_002667_FROZEN_RANGE_SOURCE_ID_RECONCILIATION_V1",
+  "security_id": "SZSE:002667",
+  "range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "comparison_date": "2026-11-12",
+  "source_provenance": {
+    "szse_month_census": {
+      "path": "evidence/V2.9.4_002667_SZSE_FROZEN_MONTH_CENSUS_V1.json",
+      "git_blob_sha": "9cd93e22096155d9f3171724ef97fb2bf9feef73",
+      "passed_months": 24,
+      "required_months": 24,
+      "all_month_reproduced": true
+    },
+    "cninfo_monthly_diagnostic": {
+      "path": "evidence/V2.9.4_CNINFO_002667_MONTHLY_AUDIT_1.json",
+      "git_blob_sha": "9e704a306203418bd6222b2bbf68a31204c405a0"
+    },
+    "cninfo_two_page_sizes": {
+      "path": "evidence/V2.9.4_CNINFO_002667_PAGINATION_DIAGNOSTIC_1.json",
+      "git_blob_sha": "6bf3b30e1201e978b35d9fa2a1c2c7cb0eeda7db"
+    }
+  },
+  "sets": {
+    "szse_official_monthly_unique_count": 486,
+    "cninfo_monthly_unique_count": 485,
+    "cninfo_page_size30_unique_count": 484,
+    "cninfo_page_size20_unique_count": 483,
+    "cninfo_combined_page_sets_unique_count": 486,
+    "szse_minus_cninfo_monthly": [
+      "1217706310"
+    ],
+    "cninfo_monthly_minus_szse": [],
+    "szse_minus_cninfo_size30": [
+      "1216299458",
+      "1216920416"
+    ],
+    "szse_minus_cninfo_size20": [
+      "1216101481",
+      "1216438035",
+      "1217693818"
+    ],
+    "szse_minus_combined_cninfo_page_sets": [],
+    "combined_cninfo_page_sets_minus_szse": [],
+    "all_486_szse_ids_explained_by_combined_cninfo_page_sets": true,
+    "all_cninfo_monthly_ids_contained_in_szse": true
+  },
+  "interpretation": "One previously omitted 2023-08-31 announcement (1217706310) accounts exactly for 485 versus 486 in the prior CNINFO monthly source set; changing 20/30 full-range offsets omitted other 2/3 specific IDs. SZSE 24-month audit reconciles independent list APIs, but does not certify historical trading alpha or frozen Batch-3 scientific admission.",
+  "research_boundary": {
+    "historical_full_range_source_census_reproducible": true,
+    "original_cninfo_query_complete": false,
+    "scientific_batch3_authorized": false,
+    "batch4_authorized": false,
+    "protected_outcomes_consumed": false,
+    "trade_authorized": false,
+    "decision": "INSUFFICIENT_NOT_AUTHORIZED_NO_BUY"
+  },
+  "next_check": "Before any transport adaptation: separately review the frozen source/identity contract, original Batch-3 record provenance, and no-silent-source-substitution requirement. This receipt is a diagnostic input only."
+}
