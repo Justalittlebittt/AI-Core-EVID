@@ -62,6 +62,28 @@ def compare(sessions):
             "batch3_authorized":False,"batch4_authorized":False,
             "protected_outcomes_consumed":False,"trading_authorized":False}
 
+def fetch_one(req,payload,size):
+    """One retry only for ECONNRESET; source contradictions remain final."""
+    for attempt in (1,2):
+        try:
+            response=req.post(ENDPOINT,data=payload,timeout=30000)
+            if response.status!=200:
+                return {"status":"HTTP_FAILURE","http_status":response.status,
+                        "transport_attempts":attempt,"single_page_closed":False}
+            return {"http_status":200,"transport_attempts":attempt,
+                    **validate(response.json(),size)}
+        except Exception as exc:
+            detail=str(exc)
+            if attempt==1 and "ECONNRESET" in detail:
+                continue
+            return {"status":"TRANSPORT_OR_PARSE_FAILED",
+                    "transport_attempts":attempt,
+                    "error_type":type(exc).__name__,
+                    "error_summary":detail[:150],
+                    "single_page_closed":False}
+    raise AssertionError("UNREACHABLE")
+
+
 def main():
     sessions=[]
     with sync_playwright() as pw:
@@ -76,30 +98,7 @@ def main():
                     payload={"channelCode":["listedNotice_disc"],"pageSize":size,
                              "pageNum":1,"stock":[STOCK],
                              "seDate":[TARGET_DAY,TARGET_DAY]}
-                    # Strictly one retry for a transport-level connection reset.
-                    # Do NOT retry an actual, parseable but inconsistent source response.
-                    for attempt in (1,2):
-                        try:
-                            response=req.post(ENDPOINT,data=payload,timeout=30000)
-                            if response.status!=200:
-                                collection[size]={"status":"HTTP_FAILURE","http_status":response.status,
-                                                  "transport_attempts":attempt,
-                                                  "single_page_closed":False}
-                            else:
-                                collection[size]={"http_status":200,
-                                                  "transport_attempts":attempt,
-                                                  **validate(response.json(),size)}
-                            break
-                        except Exception as exc:
-                            detail=str(exc)
-                            if attempt==1 and "ECONNRESET" in detail:
-                                continue
-                            collection[size]={"status":"TRANSPORT_OR_PARSE_FAILED",
-                                              "transport_attempts":attempt,
-                                              "error_type":type(exc).__name__,
-                                              "error_summary":detail[:150],
-                                              "single_page_closed":False}
-                            break
+                    collection[size]=fetch_one(req,payload,size)
                 sessions.append(collection)
             finally:req.dispose()
     verdict=compare(sessions)
