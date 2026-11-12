@@ -29,13 +29,14 @@ def validate(response, size):
         when=str(row.get("publishTime") or "")
         title=str(row.get("title") or "")
         url=str(row.get("attachPath") or "")
-        code=str(row.get("secCode") or row.get("stockCode") or "")
+        raw_code=row.get("secCode") or row.get("stockCode") or ""
+        codes=[str(v).strip() for v in raw_code] if isinstance(raw_code,list) else [str(raw_code).strip()]
         if not when.startswith(TARGET_DAY):bad.append("DATE_OUTSIDE_DAY")
-        if code and code!=STOCK:bad.append("WRONG_STOCK")
+        if codes!=[STOCK]:bad.append("WRONG_STOCK")
         if url and not url.startswith("/disc/"):bad.append("NONOFFICIAL_ATTACH_PATH")
         items.append({"title":title,"publish_time":when,
                       "exchange_ann_id":str(row.get("annId") or ""),
-                      "stock_field":code,"relative_file_path":url})
+                      "stock_codes":codes,"relative_file_path":url})
     normalized=[(x["title"],x["publish_time"],x["relative_file_path"]) for x in items]
     unique=len(set(normalized))==len(normalized)
     closed=not bad and unique and count==len(items) and len(items)>0 and len(items)<=size
