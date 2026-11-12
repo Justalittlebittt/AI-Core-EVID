@@ -1,1 +1,1 @@
-2026-11-12 independently repeat exact SZSE single-day 002667 2023-08-31 query after strict secCode array normalization; same two-session 20/30 controls, no full-history authorization.
+2026-11-12 SZSE independent 002667 one-day 2023-08-31 two sessions and sizes 20/30, V2 bounded one retry only after ECONNRESET; preserve V1 receipt, never authorize full corpus or trades.
