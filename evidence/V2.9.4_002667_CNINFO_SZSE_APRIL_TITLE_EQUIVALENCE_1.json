@@ -1,0 +1,1360 @@
+{
+  "schema": "V294_002667_APRIL_2023_CNINFO_ORIGINAL_TITLE_VS_SZSE_INPUT_DIAGNOSTIC_V1",
+  "source_org_route": "CURRENT_CNINFO_002667_9900022274_NOT_HISTORICAL_PIT_CERTIFICATION",
+  "frozen_triage_module": "scripts/v284_candidate_triage.py",
+  "comparison_date_range": [
+    "2023-04-01",
+    "2023-04-30"
+  ],
+  "evaluation": {
+    "source_runs": [
+      {
+        "size": 20,
+        "complete": true,
+        "observed": 53,
+        "reported_totals": [
+          53
+        ],
+        "ids_equal_to_exchange": true,
+        "source_error": null
+      },
+      {
+        "size": 30,
+        "complete": true,
+        "observed": 53,
+        "reported_totals": [
+          53
+        ],
+        "ids_equal_to_exchange": true,
+        "source_error": null
+      },
+      {
+        "size": 20,
+        "complete": true,
+        "observed": 53,
+        "reported_totals": [
+          53
+        ],
+        "ids_equal_to_exchange": true,
+        "source_error": null
+      },
+      {
+        "size": 30,
+        "complete": true,
+        "observed": 53,
+        "reported_totals": [
+          53
+        ],
+        "ids_equal_to_exchange": true,
+        "source_error": null
+      }
+    ],
+    "all_four_april_censuses_equal_to_szse": true,
+    "cninfo_title_observations": [
+      {
+        "ann_id": "1216299454",
+        "cninfo_title": "关于完成公司注册资本工商变更登记的公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于完成公司注册资本工商变更登记的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于完成公司注册资本工商变更登记的公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于完成公司注册资本工商变更登记的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于完成公司注册资本工商变更登记的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216299455",
+        "cninfo_title": "第六届监事会第四十次会议决议公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "第六届监事会第四十次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：第六届监事会第四十次会议决议公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：第六届监事会第四十次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "第六届监事会第四十次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216299456",
+        "cninfo_title": "第六届董事会第四十六次会议决议公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "第六届董事会第四十六次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：第六届董事会第四十六次会议决议公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：第六届董事会第四十六次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "第六届董事会第四十六次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216299457",
+        "cninfo_title": "独立董事关于第六届董事会第四十六次会议相关事项发表的事前认可意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "独立董事关于第六届董事会第四十六次会议相关事项发表的事前认可意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：独立董事关于第六届董事会第四十六次会议相关事项发表的事前认可意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：独立董事关于第六届董事会第四十六次会议相关事项发表的事前认可意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "独立董事关于第六届董事会第四十六次会议相关事项发表的事前认可意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216299458",
+        "cninfo_title": "关于公司与持股5%以上股东签署借款补充协议暨关联交易的公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于公司与持股5%以上股东签署借款补充协议暨关联交易的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于公司与持股5%以上股东签署借款补充协议暨关联交易的公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于公司与持股5%以上股东签署借款补充协议暨关联交易的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于公司与持股5%以上股东签署借款补充协议暨关联交易的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216299459",
+        "cninfo_title": "独立董事关于第六届董事会第四十六次会议相关事项发表的独立意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "独立董事关于第六届董事会第四十六次会议相关事项发表的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：独立董事关于第六届董事会第四十六次会议相关事项发表的独立意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：独立董事关于第六届董事会第四十六次会议相关事项发表的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "独立董事关于第六届董事会第四十六次会议相关事项发表的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216299460",
+        "cninfo_title": "关于召开2023年第三次临时股东大会的通知",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于召开2023年第三次临时股东大会的通知",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于召开2023年第三次临时股东大会的通知",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于召开2023年第三次临时股东大会的通知",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于召开2023年第三次临时股东大会的通知",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216330670",
+        "cninfo_title": "北京中企华资产评估有限责任公司关于对鞍山重型矿山机器股份有限公司关注函所提出的问题回复之核查意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京中企华资产评估有限责任公司关于对鞍山重型矿山机器股份有限公司关注函所提出的问题回复之核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：北京中企华资产评估有限责任公司关于对鞍山重型矿山机器股份有限公司关注函所提出的问题回复之核查意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：北京中企华资产评估有限责任公司关于对鞍山重型矿山机器股份有限公司关注函所提出的问题回复之核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京中企华资产评估有限责任公司关于对鞍山重型矿山机器股份有限公司关注函所提出的问题回复之核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216330671",
+        "cninfo_title": "关于深圳证券交易所关注函的回复公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于深圳证券交易所关注函的回复公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于深圳证券交易所关注函的回复公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于深圳证券交易所关注函的回复公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于深圳证券交易所关注函的回复公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216343162",
+        "cninfo_title": "关于挂牌转让控股及参股公司相关股权的进展公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于挂牌转让控股及参股公司相关股权的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于挂牌转让控股及参股公司相关股权的进展公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于挂牌转让控股及参股公司相关股权的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于挂牌转让控股及参股公司相关股权的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216369900",
+        "cninfo_title": "关于控股子公司更名的公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于控股子公司更名的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于控股子公司更名的公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于控股子公司更名的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于控股子公司更名的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216391791",
+        "cninfo_title": "鞍重股份2023年第二次临时股东大会决议公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "2023年第二次临时股东大会决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍重股份2023年第二次临时股东大会决议公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍重股份2023年第二次临时股东大会决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍重股份2023年第二次临时股东大会决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216391792",
+        "cninfo_title": "北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年度第二次临时股东大会的法律意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年度第二次临时股东大会的法律意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年度第二次临时股东大会的法律意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年度第二次临时股东大会的法律意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年度第二次临时股东大会的法律意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216403319",
+        "cninfo_title": "关于召开 2022 年度业绩说明会的公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "SKIP_LOW_INFORMATION_ADMIN_NOTICE",
+          "normalized_title": "关于召开2022年度业绩说明会的公告",
+          "matched_pattern": "^关于召开.*业绩说明会.*公告$",
+          "eligibility_effect": "NONE_NO_STATE_CHANGE"
+        },
+        "szse_title": "鞍重股份：关于召开 2022 年度业绩说明会的公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于召开2022年度业绩说明会的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "SKIP_LOW_INFORMATION_ADMIN_NOTICE",
+          "normalized_title": "关于召开2022年度业绩说明会的公告",
+          "matched_pattern": "^关于召开.*业绩说明会.*公告$",
+          "eligibility_effect": "NONE_NO_STATE_CHANGE"
+        }
+      },
+      {
+        "ann_id": "1216438035",
+        "cninfo_title": "简式权益变动报告书-强强投资",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "简式权益变动报告书-强强投资",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：简式权益变动报告书-强强投资",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：简式权益变动报告书-强强投资",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "简式权益变动报告书-强强投资",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216438036",
+        "cninfo_title": "北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第三次临时股东大会的法律意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第三次临时股东大会的法律意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第三次临时股东大会的法律意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第三次临时股东大会的法律意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京德恒律师事务所关于鞍山重型矿山机器股份有限公司2023年第三次临时股东大会的法律意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216438037",
+        "cninfo_title": "关于股东权益变动的提示性公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于股东权益变动的提示性公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于股东权益变动的提示性公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于股东权益变动的提示性公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于股东权益变动的提示性公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216438038",
+        "cninfo_title": "鞍重股份2023年第三次临时股东大会决议公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "2023年第三次临时股东大会决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍重股份2023年第三次临时股东大会决议公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍重股份2023年第三次临时股东大会决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍重股份2023年第三次临时股东大会决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216438230",
+        "cninfo_title": "关于控股股东部分股份解除质押的公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于控股股东部分股份解除质押的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于控股股东部分股份解除质押的公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于控股股东部分股份解除质押的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于控股股东部分股份解除质押的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216455977",
+        "cninfo_title": "关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于发行股份及支付现金购买资产并募集配套资金事项的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524917",
+        "cninfo_title": "关于股东减持计划预披露公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于股东减持计划预披露公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于股东减持计划预披露公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于股东减持计划预披露公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于股东减持计划预披露公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524919",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司审阅报告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司审阅报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司审阅报告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司审阅报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司审阅报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524921",
+        "cninfo_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524924",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易采取的保密措施及保密制度的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易采取的保密措施及保密制度的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易采取的保密措施及保密制度的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易采取的保密措施及保密制度的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易采取的保密措施及保密制度的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524927",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易预计不构成《上市公司重大资产重组管理办法》第十二条规定的重大资产重组和第十三条规定的重组上市情形的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524930",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司第六届监事会第四十一次会议决议公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司第六届监事会第四十一次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司第六届监事会第四十一次会议决议公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司第六届监事会第四十一次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司第六届监事会第四十一次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524933",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司重大资产重组管理办法》第十一条、第四十三条规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524936",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）与预案差异对比表",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）与预案差异对比表",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）与预案差异对比表",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）与预案差异对比表",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）与预案差异对比表",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524937",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易履行法定程序的完备性、合规性及提交法律文件有效性的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524940",
+        "cninfo_title": "北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之法律意见书",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之法律意见书",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之法律意见书",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之法律意见书",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "北京市众明律师事务所关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之法律意见书",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524943",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524945",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司关于本次交易相关主体不存在《上市公司监管指引第7号——上市公司重大资产重组相关股票异常交易监管》第十二条规定情形的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524948",
+        "cninfo_title": "江西领辉科技有限公司审计报告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "江西领辉科技有限公司审计报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：江西领辉科技有限公司审计报告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：江西领辉科技有限公司审计报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "江西领辉科技有限公司审计报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524951",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易不构成关联交易的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易不构成关联交易的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易不构成关联交易的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易不构成关联交易的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易不构成关联交易的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524954",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司独立董事关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的独立意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司独立董事关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司独立董事关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的独立意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司独立董事关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司独立董事关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524957",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于不存在有偿聘请其他第三方机构或个人行为的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于不存在有偿聘请其他第三方机构或个人行为的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于不存在有偿聘请其他第三方机构或个人行为的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于不存在有偿聘请其他第三方机构或个人行为的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于不存在有偿聘请其他第三方机构或个人行为的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524959",
+        "cninfo_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次重大资产重组前12个月购买、出售资产的核查意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次重大资产重组前12个月购买、出售资产的核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次重大资产重组前12个月购买、出售资产的核查意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次重大资产重组前12个月购买、出售资产的核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司本次重大资产重组前12个月购买、出售资产的核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524961",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司独立董事关于公司第六届董事会第四十七次会议相关事项的独立意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司独立董事关于公司第六届董事会第四十七次会议相关事项的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司独立董事关于公司第六届董事会第四十七次会议相关事项的独立意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司独立董事关于公司第六届董事会第四十七次会议相关事项的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司独立董事关于公司第六届董事会第四十七次会议相关事项的独立意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524965",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于发行股份及支付现金购买资产并募集配套资金的一般风险提示公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于发行股份及支付现金购买资产并募集配套资金的一般风险提示公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于发行股份及支付现金购买资产并募集配套资金的一般风险提示公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于发行股份及支付现金购买资产并募集配套资金的一般风险提示公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于发行股份及支付现金购买资产并募集配套资金的一般风险提示公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524966",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于公司本次交易摊薄即期回报采取填补措施及承诺事项的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于公司本次交易摊薄即期回报采取填补措施及承诺事项的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于公司本次交易摊薄即期回报采取填补措施及承诺事项的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于公司本次交易摊薄即期回报采取填补措施及承诺事项的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于公司本次交易摊薄即期回报采取填补措施及承诺事项的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524968",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司拟收购股权事宜涉及江西领辉科技有限公司股东全部权益价值项目资产评估报告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司拟收购股权事宜涉及江西领辉科技有限公司股东全部权益价值项目资产评估报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司拟收购股权事宜涉及江西领辉科技有限公司股东全部权益价值项目资产评估报告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司拟收购股权事宜涉及江西领辉科技有限公司股东全部权益价值项目资产评估报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司拟收购股权事宜涉及江西领辉科技有限公司股东全部权益价值项目资产评估报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524972",
+        "cninfo_title": "申港证券股份有限公司关于担任鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问的承诺函",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于担任鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问的承诺函",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：申港证券股份有限公司关于担任鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问的承诺函",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：申港证券股份有限公司关于担任鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问的承诺函",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于担任鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问的承诺函",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524975",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司证券发行注册管理办法》相关规定的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司证券发行注册管理办法》相关规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司证券发行注册管理办法》相关规定的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司证券发行注册管理办法》相关规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司证券发行注册管理办法》相关规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524977",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524979",
+        "cninfo_title": "申港证券股份有限公司关于本次交易符合《关于加强证券公司在投资银行类业务中聘请第三方等廉洁从业风险防控的意见》的相关规定之核查意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于本次交易符合《关于加强证券公司在投资银行类业务中聘请第三方等廉洁从业风险防控的意见》的相关规定之核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：申港证券股份有限公司关于本次交易符合《关于加强证券公司在投资银行类业务中聘请第三方等廉洁从业风险防控的意见》的相关规定之核查意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：申港证券股份有限公司关于本次交易符合《关于加强证券公司在投资银行类业务中聘请第三方等廉洁从业风险防控的意见》的相关规定之核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于本次交易符合《关于加强证券公司在投资银行类业务中聘请第三方等廉洁从业风险防控的意见》的相关规定之核查意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524981",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司关于召开2023年第四次临时股东大会的通知",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司关于召开2023年第四次临时股东大会的通知",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司关于召开2023年第四次临时股东大会的通知",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司关于召开2023年第四次临时股东大会的通知",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司关于召开2023年第四次临时股东大会的通知",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524983",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司第六届董事会第四十七次会议决议公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司第六届董事会第四十七次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司第六届董事会第四十七次会议决议公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司第六届董事会第四十七次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司第六届董事会第四十七次会议决议公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524985",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的意见",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的意见",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于评估机构的独立性、评估假设前提的合理性、评估方法与评估目的相关性以及评估定价公允性的意见",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524987",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易前十二个月内购买、出售资产的说明",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易前十二个月内购买、出售资产的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司董事会关于本次交易前十二个月内购买、出售资产的说明",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司董事会关于本次交易前十二个月内购买、出售资产的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司董事会关于本次交易前十二个月内购买、出售资产的说明",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524989",
+        "cninfo_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "申港证券股份有限公司关于鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金之独立财务顾问报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216524994",
+        "cninfo_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "鞍山重型矿山机器股份有限公司发行股份及支付现金购买资产并募集配套资金报告书（草案）摘要",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216536919",
+        "cninfo_title": "关于挂牌转让控股及参股公司相关股权事项的进展公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于挂牌转让控股及参股公司相关股权事项的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：关于挂牌转让控股及参股公司相关股权事项的进展公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于挂牌转让控股及参股公司相关股权事项的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "关于挂牌转让控股及参股公司相关股权事项的进展公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      },
+      {
+        "ann_id": "1216614553",
+        "cninfo_title": "2023年一季度报告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "2023年一季度报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_title": "鞍重股份：2023年一季度报告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：2023年一季度报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "2023年一季度报告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        }
+      }
+    ],
+    "cninfo_to_szse_title_triad_disagreements": [
+      {
+        "ann_id": "1216403319",
+        "cninfo_title": "关于召开 2022 年度业绩说明会的公告",
+        "cninfo_security_name": "鞍重股份",
+        "cninfo_result": {
+          "triage_state": "SKIP_LOW_INFORMATION_ADMIN_NOTICE",
+          "normalized_title": "关于召开2022年度业绩说明会的公告",
+          "matched_pattern": "^关于召开.*业绩说明会.*公告$",
+          "eligibility_effect": "NONE_NO_STATE_CHANGE"
+        },
+        "szse_title": "鞍重股份：关于召开 2022 年度业绩说明会的公告",
+        "szse_historic_name_result": {
+          "triage_state": "MATERIALIZE_CANDIDATE",
+          "normalized_title": "：关于召开2022年度业绩说明会的公告",
+          "matched_pattern": "",
+          "eligibility_effect": "NONE_CANDIDATE_ROUTING_ONLY"
+        },
+        "szse_removed_prefix_result": {
+          "triage_state": "SKIP_LOW_INFORMATION_ADMIN_NOTICE",
+          "normalized_title": "关于召开2022年度业绩说明会的公告",
+          "matched_pattern": "^关于召开.*业绩说明会.*公告$",
+          "eligibility_effect": "NONE_NO_STATE_CHANGE"
+        }
+      }
+    ],
+    "candidate_decision_mismatch_count": 1,
+    "verified_april_issuer_rows": 53,
+    "verified_full_486_cninfo_titles": false,
+    "batch3_authorized": false,
+    "outcomes_consumed": false,
+    "buy_authorized": false
+  }
+}
