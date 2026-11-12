@@ -1,0 +1,56 @@
+{
+  "schema": "V294_002667_20230831_INDEPENDENT_CONTEMPORANEOUS_NEWSPAPER_CROSSCHECK_V1",
+  "security_id": "SZSE:002667",
+  "target_cninfo_announcement_id": "1217706310",
+  "review_date": "2026-11-12",
+  "source": {
+    "publisher": "证券时报",
+    "publication_date": "2023-08-31",
+    "page": "B054",
+    "url": "https://epaper.stcn.com/con/202308/31/content_2526843.html",
+    "record_type": "dated_contemporaneous_newspaper_disclosure_web_archive",
+    "independently_hosted_from_cninfo": true,
+    "verified_fields": {
+      "issuer_legal_name": "威领新能源股份有限公司",
+      "security_code": "002667",
+      "security_short_name": "威领股份",
+      "announcement_number": "2023-138",
+      "announcement_title": "关于控股股东部分股份质押的公告",
+      "board_signature_date": "2023-08-30",
+      "newspaper_publication_date": "2023-08-31",
+      "share_pledge_amount_one": 14951813,
+      "share_pledge_amount_two": 5500000
+    },
+    "source_content_sha256_certified": false,
+    "full_original_issuer_pdf_bytes_verified": false
+  },
+  "crosscheck": {
+    "archived_cninfo_receipt_path": "evidence/V2.9.4_CNINFO_002667_1217706310_OFFICIAL_ORG_ROUTE_CHECK_3.json",
+    "archived_cninfo_receipt_git_blob_sha": "3d22d7dd23d181a99239b0cb86d192268308c0ae",
+    "cninfo_observed_twice": true,
+    "cninfo_observed_date": "2023-08-31",
+    "cninfo_relative_pdf_path": "finalpage/2023-08-31/1217706310.PDF",
+    "shared_fields_equal": [
+      "security_code",
+      "security_short_name",
+      "announcement_title",
+      "publication_date"
+    ],
+    "publisher_does_not_expose_cninfo_internal_id": true,
+    "status": "CONTEMPORANEOUS_DISCLOSURE_CROSSCHECK_PASS_ID_LINK_REMAINS_INDIRECT"
+  },
+  "research_boundary": {
+    "establishes_dated_publication_existence": true,
+    "establishes_cninfo_internal_id_as_independent_authoritative_key": false,
+    "establishes_full_historical_issuer_announcement_census": false,
+    "historical_full_range_complete": false,
+    "batch3_aggregation_authorized": false,
+    "batch4_authorized": false,
+    "protected_e_layer_outcome_access_authorized": false,
+    "frozen_folds_accessed": false,
+    "price_or_return_data_consumed": false,
+    "live_buy_authorized": false,
+    "decision": "INSUFFICIENT_NOT_AUTHORIZED_NO_BUY"
+  },
+  "next_evidence_required": "Issuer/exchange-authenticated original 2023-08-31 PDF or official disclosure identifier crosswalk; and source-complete reproducible 2023-2024 issuer-wide announcement enumeration. One contemporaneous press publication does not repair unstable CNINFO pagination."
+}
