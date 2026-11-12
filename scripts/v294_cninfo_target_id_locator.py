@@ -25,6 +25,7 @@ def query_at(page,org,size,page_num):
     rows=obj.get("announcements") or []
     ids=[str(r.get("announcementId") or "").strip() for r in rows]
     matches=[]
+    source_codes=sorted({str(r.get("secCode") or "").strip() for r in rows})
     for entry in rows:
         if str(entry.get("announcementId") or "").strip()!=TARGET:
             continue
@@ -45,9 +46,21 @@ def query_at(page,org,size,page_num):
                         "announcement_title":str(entry.get("announcementTitle") or "")})
     return {"page_size":size,"page_number":page_num,
             "reported_total":int(obj.get("totalRecordNum") or obj.get("totalAnnouncement") or 0),
-            "raw_count":len(rows),
+            "raw_count":len(rows),"source_codes":source_codes,
             "page_ids_sha256":hashlib.sha256(("\n".join(ids)+"\n").encode()).hexdigest(),
             "target_present":bool(matches),"target_rows":matches}
+
+
+
+def preflight_valid(pages):
+    """A returned empty/foreign first page cannot certify the source query."""
+    return (len(pages)==2
+            and {p["page_size"] for p in pages}=={20,30}
+            and all(p["page_number"]==1
+                    and p["raw_count"]>0
+                    and p["reported_total"]>=p["raw_count"]
+                    and p["source_codes"]==["002667"] for p in pages))
+
 
 
 def evaluate(sessions):
@@ -79,30 +92,48 @@ def evaluate(sessions):
 def main():
     mapping={r["canonical_security_id"]:r for r in base.read_rows(base.MAP)}
     record=mapping[CID]
+    preflights=[]
     sessions=[]
-    with sync_playwright() as pw:
-        for _ in range(2):
+    for session_index in (1,2):
+        with sync_playwright() as pw:
             browser=pw.chromium.launch(headless=True)
             try:
                 page=browser.new_page(locale="zh-CN")
                 page.goto("https://www.cninfo.com.cn/",wait_until="domcontentloaded",timeout=90000)
-                # Reuse the exact issuer route preserved in the prior V2.9.4
-                # scoped diagnostic source; live org autocomplete may return [].
-                # This is a historical query binding, NOT identity certification.
+                # Historical query route; never a stand-alone issuer identity proof.
                 org=record.get("validated_org_id") or "9900036460"
                 if str(record.get("security_code") or "002667")!="002667":
                     raise RuntimeError("FROZEN_SECURITY_CODE_MISMATCH")
-                sessions.append([query_at(page,org,size,num) for size,num in OFFSETS])
+                preflight=[query_at(page,org,size,1) for size,_ in OFFSETS]
+                preflights.append(preflight)
+                if preflight_valid(preflight):
+                    sessions.append([query_at(page,org,size,num) for size,num in OFFSETS])
+                else:
+                    # Fail early rather than interpreting out-of-range offsets as
+                    # evidence that an archival announcement did not exist.
+                    break
             finally:
                 browser.close()
-    verdict=evaluate(sessions)
-    result={"schema":"V294_CNINFO_002667_TARGET_ID_READ_ONLY_V1",
+    source_ready=len(preflights)==2 and all(preflight_valid(p) for p in preflights)
+    verdict=evaluate(sessions) if source_ready else {
+        "target_id":TARGET,"source_metadata_reconciled":False,
+        "source_status":"SOURCE_FIRST_PAGE_UNAVAILABLE_OR_IDENTITY_MISMATCH",
+        "verified_metadata":None,"found_count":0,
+        "historical_full_range_complete":False,
+        "batch3_aggregation_authorized":False,
+        "batch4_authorized":False,"outcome_data_consumed":False}
+    result={"schema":"V294_CNINFO_002667_TARGET_ID_SOURCE_PREFLIGHT_V2",
             "security_id":CID,"frozen_query_range":[base.START,base.END],
-            "provenance":"TWO_INDEPENDENT_BROWSER_SESSIONS_TWO_HISTORICAL_PAGE_OFFSETS",
             "org_route_source":"PRIOR_V294_SCOPED_DIAGNOSTIC_9900036460_NOT_INDEPENDENT_IDENTITY_PROOF",
-            "sessions":sessions,"evaluation":verdict}
-    OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps(verdict,ensure_ascii=False))
+            "source_preflight":preflights,
+            "source_preflight_pass":source_ready,
+            "page_offset_sessions":sessions,
+            "evaluation":verdict}
+    out=Path("evidence/V2.9.4_CNINFO_002667_1217706310_SOURCE_PREFLIGHT_2.json")
+    out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(json.dumps({"source_preflight_pass":source_ready,"evaluation":verdict},ensure_ascii=False))
+    if not source_ready:
+        raise SystemExit("OFFICIAL_FIRST_PAGE_SOURCE_PREFLIGHT_BLOCKED")
     if not verdict["source_metadata_reconciled"]:
         raise SystemExit("TARGET_ANNOUNCEMENT_IDENTITY_UNRECONCILED")
 
