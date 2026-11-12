@@ -1,4 +1,4 @@
-name: 002667 SZSE Frozen 24-Month Source Census
+name: 002667 SZSE Exact Source Row Archive
 on:
   push:
     branches: [fix/v293-batch3-failure-terminal-evidence]
@@ -18,15 +18,15 @@ jobs:
           pip install "playwright>=1.55" "PyMuPDF>=1.24,<2" "pandas>=2.2"
           playwright install --with-deps chromium
       - name: Fail-closed August reconciliation contract tests
-        run: python -m unittest discover -s scripts -p 'test_v294_szse_frozen_24_month_census.py' -v
+        run: python -m unittest discover -s scripts -p 'test_v294_szse_raw_rows_readonly.py' -v
       - name: Read-only two-session August source diagnostic
-        run: python scripts/v294_szse_frozen_24_month_census.py
+        run: python scripts/v294_szse_raw_rows_readonly.py
       - name: Persist audit, including failure evidence if produced
         if: always()
         run: |
-          if test -f evidence/V2.9.4_002667_SZSE_FROZEN_MONTH_CENSUS_V1.json; then
+          if test -f evidence/V2.9.4_002667_SZSE_RAW_ROWS_RETRIEVAL_V1.json; then
             git config user.name ai-core-evid-bot
             git config user.email actions@users.noreply.github.com
-            git add evidence/V2.9.4_002667_SZSE_FROZEN_MONTH_CENSUS_V1.json
-            git diff --cached --quiet || (git commit -m "Persist independent frozen-period SZSE month source audit [skip ci]" && git pull --rebase && git push)
+            git add evidence/V2.9.4_002667_SZSE_RAW_ROWS_RETRIEVAL_V1.json
+            git diff --cached --quiet || (git commit -m "Persist bounded original SZSE row materialization [skip ci]" && git pull --rebase && git push)
           fi
