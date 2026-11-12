@@ -1,1 +1,1 @@
-Recheck 1217706310 official metadata with prior V2.9.4 query-bound org route after API autocomplete returned empty. Source-only, no admission.
+Single fail-closed historical source page-1 sanity check for SZSE:002667: test 20/30 page sizes before querying archived page offsets. No Batch-3 admission or frozen evidence changes.
