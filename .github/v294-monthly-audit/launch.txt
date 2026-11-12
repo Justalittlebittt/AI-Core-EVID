@@ -1,1 +1,1 @@
-2026-11-12 corrected full 486-row synthetic fixture and rerun one-shot read-only 24-month 002667 SZSE row capture; exact official source hashes, no Batch-3 substitution.
+2026-11-12 one-shot source-only 486 SZSE publish-day versus UUID attachment-folder date audit, plus original target 1217706310 CNINFO/SZSE PDF binary parity. No Batch-3 admission.
