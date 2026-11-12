@@ -1,0 +1,46 @@
+{
+  "schema": "V294_CNINFO_002667_TARGET_ID_SOURCE_PREFLIGHT_V2",
+  "security_id": "SZSE:002667",
+  "frozen_query_range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "org_route_source": "PRIOR_V294_SCOPED_DIAGNOSTIC_9900036460_NOT_INDEPENDENT_IDENTITY_PROOF",
+  "source_preflight": [
+    [
+      {
+        "page_size": 30,
+        "page_number": 1,
+        "reported_total": 0,
+        "raw_count": 0,
+        "source_codes": [],
+        "page_ids_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "target_present": false,
+        "target_rows": []
+      },
+      {
+        "page_size": 20,
+        "page_number": 1,
+        "reported_total": 0,
+        "raw_count": 0,
+        "source_codes": [],
+        "page_ids_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "target_present": false,
+        "target_rows": []
+      }
+    ]
+  ],
+  "source_preflight_pass": false,
+  "page_offset_sessions": [],
+  "evaluation": {
+    "target_id": "1217706310",
+    "source_metadata_reconciled": false,
+    "source_status": "SOURCE_FIRST_PAGE_UNAVAILABLE_OR_IDENTITY_MISMATCH",
+    "verified_metadata": null,
+    "found_count": 0,
+    "historical_full_range_complete": false,
+    "batch3_aggregation_authorized": false,
+    "batch4_authorized": false,
+    "outcome_data_consumed": false
+  }
+}
