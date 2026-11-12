@@ -1,0 +1,40 @@
+{
+  "schema": "V294_002667_20230831_TWO_ORIGIN_PDF_ATTESTATION_V1",
+  "security_id": "SZSE:002667",
+  "cninfo_id": "1217706310",
+  "source_attempts": [
+    {
+      "source_type": "cninfo_original_announcement",
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-31/1217706310.PDF",
+      "retrieved_at": "2026-11-12_SOURCE_RETRIEVAL_RUNTIME",
+      "http_status": 200,
+      "sha256": "47712120e196bd77aebbbb6828e4e84fa4c21d9a7b5067c829043e3b6faf9e98",
+      "bytes": 157985,
+      "pages": 3,
+      "text_chars": 1593,
+      "content_fields": {
+        "issuer": true,
+        "security_code": true,
+        "announcement_title": true,
+        "announcement_number": true,
+        "date": true
+      },
+      "field_checks_pass": true,
+      "status": "PDF_CONTENT_VERIFIED"
+    },
+    {
+      "source_type": "stcn_contemporaneous_page_B054",
+      "url": "https://epaper.stcn.com/att/202308/31/a1aac3f8-65a1-4cfa-afca-02d690843077.pdf",
+      "retrieved_at": "2026-11-12_SOURCE_RETRIEVAL_RUNTIME",
+      "http_status": 405,
+      "status": "FETCH_HTTP_FAILURE"
+    }
+  ],
+  "cninfo_pdf_binary_verified": true,
+  "independent_contemporaneous_page_pdf_verified": false,
+  "full_issuer_census_certified": false,
+  "historical_batch3_authorized": false,
+  "batch4_authorized": false,
+  "protected_outcomes_consumed": false,
+  "trading_authorized": false
+}
