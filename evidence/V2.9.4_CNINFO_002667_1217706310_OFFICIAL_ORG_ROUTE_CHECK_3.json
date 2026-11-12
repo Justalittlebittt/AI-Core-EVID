@@ -1,0 +1,163 @@
+{
+  "schema": "V294_CNINFO_002667_OFFICIAL_CURRENT_ORG_ROUTE_CHECK_V3",
+  "security_id": "SZSE:002667",
+  "frozen_query_range": [
+    "2023-01-01",
+    "2024-12-30"
+  ],
+  "org_route_source": "CNINFO_OFFICIAL_PUBLIC_DISCLOSURE_PAGE_002667_ORGID_9900022274_NOT_HISTORICAL_PIT_CERTIFICATION",
+  "source_preflight": [
+    [
+      {
+        "page_size": 30,
+        "page_number": 1,
+        "reported_total": 485,
+        "raw_count": 30,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "2bfe67fc45a8fe7ecf0c41b17cab09088cf01a3a522eb13bfaed9ccd04c4e634",
+        "target_present": false,
+        "target_rows": []
+      },
+      {
+        "page_size": 20,
+        "page_number": 1,
+        "reported_total": 485,
+        "raw_count": 20,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "6b319d1c5540fd61d2b03471be3c3a14b5ec880e0e3db3cc674298ebeffc4020",
+        "target_present": false,
+        "target_rows": []
+      }
+    ],
+    [
+      {
+        "page_size": 30,
+        "page_number": 1,
+        "reported_total": 486,
+        "raw_count": 30,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "2bfe67fc45a8fe7ecf0c41b17cab09088cf01a3a522eb13bfaed9ccd04c4e634",
+        "target_present": false,
+        "target_rows": []
+      },
+      {
+        "page_size": 20,
+        "page_number": 1,
+        "reported_total": 485,
+        "raw_count": 20,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "6b319d1c5540fd61d2b03471be3c3a14b5ec880e0e3db3cc674298ebeffc4020",
+        "target_present": false,
+        "target_rows": []
+      }
+    ]
+  ],
+  "source_preflight_pass": true,
+  "page_offset_sessions": [
+    [
+      {
+        "page_size": 30,
+        "page_number": 8,
+        "reported_total": 486,
+        "raw_count": 30,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "1355f4dcd7f757dff1fc1b9198b9701e7943c935dbcc841a508a05ca615b4e09",
+        "target_present": true,
+        "target_rows": [
+          {
+            "announcement_id": "1217706310",
+            "announcement_time": "1693411200000",
+            "official_observed_day": "2023-08-31",
+            "original_pdf_path_day": "2023-08-31",
+            "official_relative_pdf_path": "finalpage/2023-08-31/1217706310.PDF",
+            "sec_code": "002667",
+            "sec_name": "威领股份",
+            "announcement_title": "关于控股股东部分股份质押的公告"
+          }
+        ]
+      },
+      {
+        "page_size": 20,
+        "page_number": 11,
+        "reported_total": 485,
+        "raw_count": 20,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "a8dc9c38a2949f7531d707925bd5c1d2c49f105f43b3cf0fd88a357d906b3023",
+        "target_present": false,
+        "target_rows": []
+      }
+    ],
+    [
+      {
+        "page_size": 30,
+        "page_number": 8,
+        "reported_total": 485,
+        "raw_count": 30,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "51b829d9240f1b0d7b3cac8443fa2488db1a8895932267c3fae60b43154592b6",
+        "target_present": false,
+        "target_rows": []
+      },
+      {
+        "page_size": 20,
+        "page_number": 11,
+        "reported_total": 486,
+        "raw_count": 20,
+        "source_codes": [
+          "002667"
+        ],
+        "page_ids_sha256": "cbd4c35b7af4c59a55df4069854e009a22457bb2991a3eb582005bd8452b03c2",
+        "target_present": true,
+        "target_rows": [
+          {
+            "announcement_id": "1217706310",
+            "announcement_time": "1693411200000",
+            "official_observed_day": "2023-08-31",
+            "original_pdf_path_day": "2023-08-31",
+            "official_relative_pdf_path": "finalpage/2023-08-31/1217706310.PDF",
+            "sec_code": "002667",
+            "sec_name": "威领股份",
+            "announcement_title": "关于控股股东部分股份质押的公告"
+          }
+        ]
+      }
+    ]
+  ],
+  "evaluation": {
+    "target_id": "1217706310",
+    "source_metadata_reconciled": false,
+    "all_four_offsets_found": false,
+    "metadata_agrees_across_queries": true,
+    "timestamp_matches_official_path_day": true,
+    "date_inside_frozen_range": true,
+    "found_count": 2,
+    "verified_metadata": {
+      "announcement_id": "1217706310",
+      "announcement_time": "1693411200000",
+      "official_observed_day": "2023-08-31",
+      "original_pdf_path_day": "2023-08-31",
+      "official_relative_pdf_path": "finalpage/2023-08-31/1217706310.PDF",
+      "sec_code": "002667",
+      "sec_name": "威领股份",
+      "announcement_title": "关于控股股东部分股份质押的公告"
+    },
+    "historical_full_range_complete": false,
+    "batch3_aggregation_authorized": false,
+    "batch4_authorized": false,
+    "outcome_data_consumed": false
+  }
+}
