@@ -1,0 +1,167 @@
+{
+  "schema": "V294_SZSE_002667_SINGLE_DAY_INDEPENDENT_DISCLOSURE_LIST_PROBE_V2",
+  "source": "SZSE_OFFICIAL_LISTED_COMPANY_NOTICE_ENDPOINT",
+  "api": "https://www.szse.cn/api/disc/announcement/annList",
+  "stock": "002667",
+  "frozen_day": [
+    "2023-08-31",
+    "2023-08-31"
+  ],
+  "sessions": [
+    {
+      "20": {
+        "http_status": 200,
+        "transport_attempts": 2,
+        "parse_valid": true,
+        "status": "COMPLETE_SINGLE_PAGE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 20,
+        "duplicate_free": true,
+        "source_errors": [],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": true
+      },
+      "30": {
+        "http_status": 200,
+        "transport_attempts": 1,
+        "parse_valid": true,
+        "status": "COMPLETE_SINGLE_PAGE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 30,
+        "duplicate_free": true,
+        "source_errors": [],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": true
+      }
+    },
+    {
+      "20": {
+        "http_status": 200,
+        "transport_attempts": 1,
+        "parse_valid": true,
+        "status": "COMPLETE_SINGLE_PAGE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 20,
+        "duplicate_free": true,
+        "source_errors": [],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": true
+      },
+      "30": {
+        "http_status": 200,
+        "transport_attempts": 1,
+        "parse_valid": true,
+        "status": "COMPLETE_SINGLE_PAGE",
+        "official_total": 1,
+        "returned_count": 1,
+        "page_size": 30,
+        "duplicate_free": true,
+        "source_errors": [],
+        "row_fingerprint": "6bc9b069eeb6e7ec904600a255d533982dd71b5e45d229562ddfc5c4b07b8ee2",
+        "matches_target_title": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "all_rows": [
+          {
+            "title": "威领股份：关于控股股东部分股份质押的公告",
+            "publish_time": "2023-08-31 00:00:00",
+            "exchange_ann_id": "1217706310",
+            "stock_codes": [
+              "002667"
+            ],
+            "relative_file_path": "/disc/disk03/finalpage/2023-08-30/6f55fe41-cade-4647-ab62-24622baab47f.PDF"
+          }
+        ],
+        "single_page_closed": true
+      }
+    }
+  ],
+  "evaluation": {
+    "independent_szse_day_consistent": true,
+    "four_single_page_censuses_closed": true,
+    "four_id_sets_identical": true,
+    "target_title_present_each": true,
+    "full_2023_2024_issuer_census_certified": false,
+    "batch3_authorized": false,
+    "batch4_authorized": false,
+    "protected_outcomes_consumed": false,
+    "trading_authorized": false
+  }
+}
