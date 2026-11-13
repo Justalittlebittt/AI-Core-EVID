@@ -187,6 +187,49 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
+      - name: One-off archive field audit (read-only; no outside network)
+        run: |
+          python - <<'PY'
+          import tarfile,json,collections,hashlib
+          from pathlib import Path
+          root=Path("research/v31_20261110_current_full_A_research")
+          pool=json.loads((root/"RESEARCH_POOL_419.json").read_text())
+          ids={x["security_id"] for x in pool["records"]}
+          fields=("EPSJB","BASIC_EPS","DEDUCT_BASIC_EPS","PARENT_NETPROFIT","PARENTNETPROFIT","KCFJCXSYJLR","EPS")
+          for title,name in (("raw_financial","RAW_PUBLIC_SOURCE.tar.gz"),("f10_core","RAW_F10_CORE_SOURCE.tar.gz")):
+              file=root/name
+              matches=collections.defaultdict(dict)
+              raw_rows=collections.Counter()
+              keys=collections.Counter()
+              with tarfile.open(file,"r:gz") as tar:
+                  for member in tar:
+                      if not member.isfile() or not member.name.endswith(".json"):
+                          continue
+                      try:
+                          obj=json.load(tar.extractfile(member))
+                      except (ValueError,UnicodeError):
+                          continue
+                      result=obj.get("result") or {}
+                      for row in result.get("data") or []:
+                          if not isinstance(row,dict):continue
+                          secucode=row.get("SECUCODE","")
+                          code=row.get("SECURITY_CODE","")
+                          if not isinstance(code,str) or secucode not in (code+".SH",code+".SZ"):continue
+                          sid=("SSE:" if secucode.endswith(".SH") else "SZSE:")+code
+                          if sid not in ids:continue
+                          period=(row.get("REPORT_DATE") or row.get("REPORTDATE") or "")[:10]
+                          if period not in ("2026-09-30","2026-06-30"):continue
+                          key=(period,sid)
+                          matches[period][sid]=row
+                          raw_rows[period]+=1
+                          keys.update(k for k in row if "EPS" in k or "EARNING" in k)
+              print("SUE3_RAW_ARCHIVE",title,"sha256",hashlib.sha256(file.read_bytes()).hexdigest(),
+                    "raw_rows",dict(raw_rows),"unique", {k:len(v) for k,v in matches.items()})
+              print("SUE3_SOURCE_EPS_KEYS",title,keys.most_common(20))
+              for period,subset in sorted(matches.items()):
+                  counts={field:sum(row.get(field) not in (None,"") for row in subset.values()) for field in fields}
+                  print("SUE3_FIELD_COVERAGE",title,period,"denominator",len(subset),"present",counts)
+          PY
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
