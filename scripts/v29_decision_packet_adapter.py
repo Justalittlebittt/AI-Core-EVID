@@ -174,6 +174,12 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
 
     return {
         "packet_status": "PACKET_VALIDITY_DOWNGRADED_TO_INSUFFICIENT" if downgraded else "PACKET_VALID",
+        # This adapter checks packet structure and discipline, not whether
+        # caller-supplied SHA strings bind to actual validated source files.
+        # ACTION_ELIGIBLE is a discipline preview, never broker BUY authority.
+        "decision_scope": "DISCIPLINE_PREVIEW_NOT_VERIFIED_TRADE_AUTHORIZATION",
+        "source_evidence_authenticated_by_adapter": False,
+        "trade_authorized": False,
         "discipline_input": discipline_input,
         "discipline_decision": decision,
         "adapter_metadata": {
