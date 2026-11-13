@@ -252,6 +252,46 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         self.assertEqual(p["discipline_decision"]["decision"],"NO_ACTION_INSUFFICIENT_EVIDENCE")
         self.assertFalse(result["trade_authorized"])
 
+    def test_unverified_alpha_allows_risk_reducing_previews_not_buy_add(self):
+        sid=build()["stocks"][0]["security_id"]
+        cases=[
+            ("BUY",False,False,"NO_ACTION_INSUFFICIENT_EVIDENCE"),
+            ("ADD",True,False,"NO_ACTION_INSUFFICIENT_EVIDENCE"),
+            ("HOLD",True,False,"NO_ACTION_INSUFFICIENT_EVIDENCE"),
+            ("REDUCE",True,False,"ACTION_ELIGIBLE"),
+            ("EXIT",True,False,"ACTION_ELIGIBLE"),
+            ("HOLD",True,True,"EXIT_REQUIRED"),
+        ]
+        for action,has_position,breached,expected in cases:
+            with self.subTest(action=action,stop_breached=breached):
+                packet=build_case()["packet"]
+                packet["validity"]["evidence_strength"]="STRONG"
+                packet["validity"]["all_required_dimensions_reported"]=True
+                packet["action_context"]["action_type"]=action
+                packet["action_context"]["current_exposure_exists"]=has_position
+                packet["risk_context"]["stop_loss_breached"]=breached
+                report=build(private={"decision_packets":[{"security_id":sid,"packet":packet}]})
+                preview=report["stocks"][0]["discipline_packet_preview"]
+                self.assertEqual(preview["claimed_user_evidence_strength"],"STRONG")
+                self.assertEqual(preview["effective_source_bound_evidence_strength"],"INSUFFICIENT")
+                self.assertEqual(preview["discipline_decision"]["decision"],expected)
+                self.assertEqual(report["stocks"][0]["decision"],"BLOCK_BUY")
+                self.assertFalse(report["trade_authorized"])
+                self.assertEqual(report["live_buy_eligibility"],"NOT_AUTHORIZED")
+
+    def test_broken_adapter_cannot_authorize_buy_under_insufficient_alpha(self):
+        from unittest.mock import patch
+        sid=build()["stocks"][0]["security_id"]
+        packet=build_case()["packet"]
+        unsafe={
+            "discipline_input":{"action_type":"BUY"},
+            "discipline_decision":{"decision":"ACTION_ELIGIBLE"},
+            "packet_status":"PACKET_VALID",
+        }
+        with patch("v31_unified_eight_decision_gate.adapt_and_evaluate",return_value=unsafe):
+            with self.assertRaisesRegex(ValueError,"DISCIPLINE_FAIL_CLOSED_EVIDENCE_INSIDE_PACKET"):
+                build(private={"decision_packets":[{"security_id":sid,"packet":packet}]})
+
     def test_private_input_required_in_complete_pairs(self):
         with self.assertRaisesRegex(ValueError,"ACCOUNT_AND_POSITIONS_MUST_BE_TOGETHER"):
             build(private={"account":{}})
