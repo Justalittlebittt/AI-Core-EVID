@@ -189,8 +189,10 @@ jobs:
       # Network provider availability is not part of deterministic mainline PR gating.
       - name: One-off six original Q3 PDF EPS versus current vendor (source-only)
         run: |
+          python -m pip install --quiet 'pypdf==5.8.1'
           python - <<'PY'
-          import json,hashlib,math,subprocess,tempfile
+          import json,hashlib,math,tempfile
+          from pypdf import PdfReader
           from pathlib import Path
           from urllib.parse import urlencode
           from urllib.request import Request,urlopen
@@ -213,14 +215,17 @@ jobs:
             totals[title]={"retrieved":0,"ytd_match":0,"ytd_mismatch":0,"notice_match":0,"errors":0}
             for code,symbol in (("600519","600519.SH"),("300408","300408.SZ")):
               qs={"reportName":report,"columns":"ALL",
-                  "filter":"("+identity+"='"+(code if identity=="SECURITY_CODE" else symbol)+"')",
+                  "filter":"("+identity+"=\""+(code if identity=="SECURITY_CODE" else symbol)+"\")",
                   "pageSize":"100","pageNumber":"1","sortColumns":date_key,"sortTypes":"-1",
                   "source":source,"client":client}
               try:
                 with urlopen(Request(base+"?"+urlencode(qs),
                           headers={"User-Agent":"Mozilla/5.0","Referer":"https://data.eastmoney.com/"}),timeout=12) as rsp:
                   raw=rsp.read(1000000)
-                result=json.loads(raw)["result"]; data=result["data"]
+                payload=json.loads(raw);result=payload.get("result")
+                if not isinstance(result,dict):
+                  raise ValueError("API_RESULT_MISSING:"+str(payload)[:190])
+                data=result["data"]
                 for year in (2022,2023,2024):
                   period=f"{year}-09-30"
                   matches=[x for x in data if str(x.get(date_key) or "")[:10]==period]
@@ -252,10 +257,9 @@ jobs:
                   pdf=rsp.read(10000000)
                 if not pdf.startswith(b"%PDF-"):raise ValueError("NOT_PDF")
                 filename=Path(tmp)/f"{code}-{year}.pdf";filename.write_bytes(pdf)
-                proc=subprocess.run(["pdftotext","-f","1","-l","2","-layout",str(filename),"-"],
-                                    capture_output=True,text=True,timeout=12)
-                if proc.returncode!=0: raise ValueError("PDFTOTEXT_FAILURE:"+proc.stderr[:80])
-                lines=[line.strip() for line in proc.stdout.splitlines() if "基本每股收益" in line]
+                pages=PdfReader(filename).pages
+                page_text="\n".join(p.extract_text() or "" for p in pages[:2])
+                lines=[line.strip()[:180] for line in page_text.splitlines() if "基本每股收益" in line]
                 print("SUE_ORIGINAL_PDF_VERIFIED",json.dumps({
                   "id":symbol,"year":year,"pdf_sha256":hashlib.sha256(pdf).hexdigest(),
                   "pdf_bytes":len(pdf),"extracted_eps_lines":lines[:3],
