@@ -179,7 +179,10 @@ def build(root=ROOT, private=None):
             packet["validity"]["evidence_strength"]="INSUFFICIENT"
             result=adapt_and_evaluate(packet)
             decision=result["discipline_decision"]["decision"]
-            if decision=="ACTION_ELIGIBLE":
+            # Insufficient alpha must block risk increases, not a legitimate
+            # REDUCE/EXIT of an already-held position.
+            if (decision=="ACTION_ELIGIBLE"
+                and result["discipline_input"]["action_type"] not in ("REDUCE","EXIT")):
                 raise ValueError("DISCIPLINE_FAIL_CLOSED_EVIDENCE_INSIDE_PACKET")
             packet_results[sid]={
                 "claimed_user_evidence_strength":claimed,
