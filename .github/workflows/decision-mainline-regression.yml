@@ -187,6 +187,89 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
+      - name: One-time official Tsinghua portfolio spreadsheet and PKU attachment structure probe
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          from urllib.error import URLError,HTTPError
+          from xml.etree import ElementTree as ET
+          from html import unescape
+          import hashlib,io,json,re,ssl,zipfile
+          root="https://xyfintech.pbcsf.tsinghua.edu.cn/PDF/"
+          paths={
+            "size":"2019121606043758001.xlsx",
+            "liquidity":"2019121606045881502.xlsx",
+            "value":"2019121606053449103.xlsx",
+            "reversal":"2019121606055920404.xlsx",
+            "volatility":"2019121606061872805.xlsx"
+          }
+          def fetch(url,timeout=15,context=None):
+              req=Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; academic-data-source-check)","Referer":"https://xyfintech.pbcsf.tsinghua.edu.cn/"})
+              with urlopen(req,timeout=timeout,context=context) as resp:
+                  typ=resp.headers.get("Content-Type")
+                  return resp.read(16000000),resp.geturl(),typ
+          NS={"x":"http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+          for name,file in paths.items():
+              try:
+                  raw,redirect,typ=fetch(root+file)
+                  if not zipfile.is_zipfile(io.BytesIO(raw)):
+                      raise ValueError("RESPONSE_NOT_VALID_XLSX_ZIP")
+                  with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                      wb=ET.fromstring(z.read("xl/workbook.xml"))
+                      sheetnames=[x.attrib.get("name") for x in wb.findall(".//x:sheet",NS)]
+                      sheets=[x for x in z.namelist() if re.fullmatch(r"xl/worksheets/sheet\d+\.xml",x)]
+                      strings=[]
+                      if "xl/sharedStrings.xml" in z.namelist():
+                          st=ET.fromstring(z.read("xl/sharedStrings.xml"))
+                          for si in st.findall("x:si",NS):
+                              strings.append("".join(t.text or "" for t in si.findall(".//x:t",NS)))
+                      preview=[];row_count=0
+                      for shp in sheets[:2]:
+                          e=ET.fromstring(z.read(shp))
+                          rows=e.findall(".//x:sheetData/x:row",NS)
+                          row_count=max(row_count,len(rows))
+                          for row in rows[:4]:
+                              cells=[]
+                              for c in row.findall("x:c",NS)[:9]:
+                                  v=c.find("x:v",NS)
+                                  val=v.text if v is not None else ""
+                                  if c.get("t")=="s" and val.isdigit():
+                                      idx=int(val)
+                                      if 0<=idx<len(strings):val=strings[idx]
+                                  if c.get("t")=="inlineStr":
+                                      val="".join(t.text or "" for t in c.findall(".//x:t",NS))
+                                  cells.append({"cell":c.get("r"),"value":str(val)[:90]})
+                              preview.append(cells)
+                      print("TSINGHUA_OFFICIAL_XLSX",json.dumps({
+                        "kind":name,"url":root+file,"actual_url":redirect,
+                        "downloaded_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),
+                        "tls_certificate_verified":True,
+                        "sheets":sheetnames,"max_sheet_rows":row_count,
+                        "preview":preview[:5],
+                        "returns_certified_for_live_long_only_net_alpha":False
+                      },ensure_ascii=False),flush=True)
+              except Exception as exc:
+                  print("TSINGHUA_OFFICIAL_XLSX_FAILED",json.dumps({
+                    "kind":name,"error":type(exc).__name__+":"+str(exc)[:240],
+                    "tls_certificate_verified":False},ensure_ascii=False),flush=True)
+          pku="https://www.gsm.pku.edu.cn/finvc/info/1028/1145.htm"
+          try:
+              req=Request(pku,headers={"User-Agent":"Mozilla/5.0"})
+              with urlopen(req,timeout=13,context=ssl._create_unverified_context()) as resp:
+                  html=resp.read(500000).decode("utf-8","replace")
+              terms=["value_versus_growth_monthly_2023.zip","momentum_monthly_2023.zip"]
+              contexts={}
+              for term in terms:
+                  positions=[m.start() for m in re.finditer(re.escape(term),html,re.I)]
+                  contexts[term]={"occurrences":len(positions),
+                    "first_raw_markup_around_term":re.sub(r"\s+"," ",html[max(0,positions[0]-230):positions[0]+len(term)+280])[:650] if positions else None}
+              print("PKU_HTML_ATTACHMENT_MARKUP_DISCOVERY_ONLY",json.dumps({
+                  "url":pku,"page_bytes":len(html),"tls_certificate_verified":False,
+                  "terms":contexts,"not_admitted_for_strategy_scoring":True
+              },ensure_ascii=False),flush=True)
+          except Exception as exc:
+              print("PKU_HTML_MARKUP_PROBE_FAILED",type(exc).__name__,str(exc)[:190],flush=True)
+          PY
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
