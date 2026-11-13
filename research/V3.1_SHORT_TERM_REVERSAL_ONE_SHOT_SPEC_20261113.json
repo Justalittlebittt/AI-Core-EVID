@@ -1,0 +1,72 @@
+{
+  "schema": "V31_SHORT_TERM_REVERSAL_FIXED_ONE_SHOT_SPEC_V1",
+  "registered_date": "2026-11-13",
+  "experiment": "EXTERNAL_PRIOR_ONE_MONTH_REVERSAL_LONG_ONLY_FALSIFICATION",
+  "external_prior": {
+    "paper": "Jansen, Swinkels & Zhou (2021), Anomalies in the China A-share market, Pacific-Basin Finance Journal 68, 101607",
+    "doi": "10.1016/j.pacfin.2021.101607",
+    "public_pdf": "https://pure.eur.nl/ws/files/58642799/Anomalies_in_the_China_A_share_market.pdf",
+    "finding": "REV 1M long-short paper 2000-2019, equal-weight 1.42% per month t4.35; value-weight 0.80% t1.88; Table 5 value-weight 1-month break-even 0.42% per trade; NOT actual executable long-only net stock return",
+    "our_difference": "Long-only bottom quartile instead of paper long-short deciles; simple 20-joint-trading-session stock price return as past one-month proxy; this study cannot claim exact academic replication"
+  },
+  "immutable_data": {
+    "archive": "research/v31_2023_2024_lowvol_one_shot/RAW_BAOSTOCK_SOURCE.json.gz",
+    "uncompressed_raw_sha256": "521f78d939ba09ee39e72b32c8987ee3ef1e3edca740d89c1e7188d7e1435058",
+    "preexisting_prior_result": "research/v31_2023_2024_lowvol_one_shot/RESULT.json",
+    "prior_study_raw_member_id_sha256": "52087fa1e68577fa18f1b20a0b30f41b6b6bf5592327c25c2800cfc1",
+    "year_frames": [
+      {
+        "year": 2023,
+        "asof": "2023-01-03",
+        "sample_size": 128,
+        "ids_sha256": "01ce591437c9d2fd440713c85321899db7c06cc0fdfeeaed21ebd070a66c13cc"
+      },
+      {
+        "year": 2024,
+        "asof": "2024-01-02",
+        "sample_size": 128,
+        "ids_sha256": "9957f7d07388ed1b33ac2d136e6d18f59bc6934dc4b25bb4a3255889c1a12e54"
+      }
+    ],
+    "retrieved_data_vintage": "2026-11-10, BaoStock adjusted vendor current history, NOT contemporaneous PIT adjusted corporate-actions",
+    "historical_lowvol_study_on_same_sample_already_inspected": true,
+    "historical_reversal_outcome_not_inspected_at_spec_registration": true,
+    "prohibited_data": "No V2.8.12 shadow outcomes, Fold3/Fold4, or frozen 2026 Nov02 122/8 forward cohort"
+  },
+  "design": {
+    "dates": "Exactly already archived 20 first trading-session signals, 2023 Apr-Dec and 2024 Jan-Nov",
+    "signal_timing": "After D closing price known; use adjusted closes for D-20 and D only, 21 continuous joint sessions",
+    "eligibility": "All 21 sessions have valid positive adjusted closes; D status normal and not ST and volume positive; never gate based on D+1 or D+20",
+    "rank": "Ascending simple adjusted D_close / D_minus_20_close - 1; lower past-month return = stronger reversal; tie ascending security_id",
+    "select": "First ceil(25% of D eligible cohort) when at least 40 D eligible; no alternate direction, horizon, rank, or thresholds",
+    "execution": "Entry D+1 adjusted open, exit D+20 adjusted close; no later date substitution; no broker fill confirmed",
+    "price_source": "2026 BaoStock adjusted history; price-only, not certified economic total return; suspended/limit order may be unfillable",
+    "cost_selected_roundtrip_fraction": 0.003,
+    "cost_full_eligible_roundtrip_fraction": 0.003,
+    "primary_metric": "Equal-month average of selected mean net 20-session price proxy minus same-month all signal-eligible mean net 20-session price proxy",
+    "secondary": "Selected mean net proxy minus CSI300 same entry and exit price-only, without claiming total return",
+    "missing_data": "Retain original selection identities, note unresolved outcomes and denominator; never reselect and never backfill later session",
+    "baseline": "All eligible stocks on each same signal date, equal weight; same assumed roundtrip cost, no post hoc different matching"
+  },
+  "decision": {
+    "min_valid_months": 15,
+    "min_selected_resolved_share": 0.95,
+    "min_full_eligible_resolved_share": 0.95,
+    "descriptive_support_requires_all": [
+      "mean primary >0",
+      "year 2023 mean >0",
+      "year 2024 mean >0",
+      "at least 60% valid months >0",
+      "mean excluding single best month >0"
+    ],
+    "failed_conditions": "NOT_SUPPORTED_BY_THIS_RETROSPECTIVE_SAMPLE",
+    "passed_conditions": "DESCRIPTIVE_SUPPORT_ONLY_NOT_ALPHA",
+    "independent_pristine_oos": false,
+    "suitable_as_live_alpha_validation": false,
+    "trade_authorized": false,
+    "live_buy_eligibility": "NOT_AUTHORIZED",
+    "no_followup_parameter_search": true,
+    "no_future_wait": true,
+    "single_evaluation_only": true
+  }
+}
