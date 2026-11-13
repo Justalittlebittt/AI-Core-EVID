@@ -187,6 +187,62 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
+      - name: One-shot historical cumulative EPS versus disclosed Q3 standalone
+        run: |
+          python - <<'PY'
+          import json,math,datetime
+          from urllib.parse import urlencode
+          from urllib.request import Request,urlopen
+          reports={
+            "600519":{"code":"600519.SH","original":{2022:(11.63,35.34),2023:(13.45,42.09),2024:(15.23,48.42)}},
+            "300408":{"code":"300408.SZ","original":{2022:(0.16,0.65),2023:(0.21,0.60),2024:(0.30,0.84)}},
+          }
+          summary={"matched":0,"abs_difference_over_one_cent":0,"requested":6,"failures":[]}
+          for sec,case in reports.items():
+            args={"reportName":"RPT_LICO_FN_CPD","columns":"ALL",
+                  "filter":'(SECURITY_CODE="'+sec+'")',
+                  "pageSize":"100","pageNumber":"1",
+                  "sortColumns":"REPORTDATE","sortTypes":"-1",
+                  "source":"WEB","client":"WEB"}
+            url="https://datacenter-web.eastmoney.com/api/data/v1/get?"+urlencode(args)
+            req=Request(url,headers={"User-Agent":"Mozilla/5.0","Referer":"https://data.eastmoney.com/"})
+            with urlopen(req,timeout=15) as response: doc=json.load(response)
+            block=doc.get("result")
+            if not isinstance(block,dict) or not isinstance(block.get("data"),list):
+              raise ValueError("VENDOR_NO_RESULT:"+sec)
+            rows=block["data"]
+            for year,(original_q3,original_ytd) in case["original"].items():
+              ytd_by_date={}
+              for suffix in ("06-30","09-30"):
+                key=f"{year}-{suffix}"
+                matching=[row for row in rows if str(row.get("REPORTDATE") or "")[:10]==key]
+                if len(matching)!=1 or matching[0].get("BASIC_EPS") in (None,""):
+                  raise ValueError("MISSING_OR_AMBIGUOUS_HISTORY:"+sec+" "+key)
+                ytd_by_date[suffix]=matching[0]
+              h1=float(ytd_by_date["06-30"]["BASIC_EPS"])
+              q3=float(ytd_by_date["09-30"]["BASIC_EPS"])
+              implied=round(q3-h1,4)
+              absolute_diff=round(abs(implied-original_q3),4)
+              same=math.isclose(implied,original_q3,abs_tol=0.0049,rel_tol=0)
+              if not math.isclose(q3,original_ytd,abs_tol=0.0049,rel_tol=0):
+                raise ValueError("Q3_ORIGINAL_YTD_MISMATCH:"+sec+" "+str(year))
+              summary["matched"]+=1
+              summary["abs_difference_over_one_cent"]+=int(absolute_diff>0.010001)
+              print("SUE_SINGLE_Q3_CROSSCHECK",json.dumps({
+                "symbol":case["code"],"report_year":year,
+                "vendor_h1_ytd_basic_eps":h1,"vendor_q3_ytd_basic_eps":q3,
+                "calculated_q3_ytd_minus_h1_eps":implied,
+                "original_disclosed_q3_standalone_eps":original_q3,
+                "abs_difference_yuan_per_share":absolute_diff,
+                "matches_original_at_0_01_precision":same,
+                "h1_notice_date":str(ytd_by_date["06-30"].get("NOTICE_DATE"))[:10],
+                "h1_update_date":str(ytd_by_date["06-30"].get("UPDATE_DATE"))[:10],
+                "q3_notice_date":str(ytd_by_date["09-30"].get("NOTICE_DATE"))[:10],
+                "q3_update_date":str(ytd_by_date["09-30"].get("UPDATE_DATE"))[:10],
+                "vendor_current_historical_values_not_contemporaneous_pit":True},ensure_ascii=False))
+          print("SUE_SINGLE_Q3_SUMMARY",json.dumps(summary,ensure_ascii=False))
+          assert summary["matched"]==6
+          PY
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
