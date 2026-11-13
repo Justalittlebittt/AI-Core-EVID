@@ -187,51 +187,6 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
-      - name: One-time upstream original-quarter parser on two already verified official PDFs
-        run: |
-          python -m pip install --disable-pip-version-check --quiet "cnequity==0.23.0"
-          python - <<'PY'
-          import hashlib,json,importlib.metadata
-          from urllib.request import Request,urlopen
-          from cnequity.adapters.cninfo.financial_originals import parse_report_pdf
-          samples=[
-            ("600519.SH",2023,"https://static.cninfo.com.cn/finalpage/2023-10-21/1218110141.PDF",
-             "cd3dfa7c07f692a2173639acd08e2153ba80a4e9070a5e189fcf16831050a7d3"),
-            ("300408.SZ",2023,"https://static.cninfo.com.cn/finalpage/2023-10-26/1218148551.PDF",
-             "4c5e462c89cd34958dd7c24b28ce98d922eb1b4f0b922dbc205337d3caa2f9ae")
-          ]
-          total=0
-          for sym,year,url,expected in samples:
-              try:
-                  with urlopen(Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=20) as resp:
-                      raw=resp.read(12000000)
-                  sha=hashlib.sha256(raw).hexdigest()
-                  if sha!=expected:raise ValueError("PREVIOUSLY_VERIFIED_OFFICIAL_PDF_HASH_CHANGED:"+sha)
-                  rows=parse_report_pdf(raw,sym,year,quarter=3)
-                  data={x["item_code"]:x["item_value"] for x in rows}
-                  actual=[x for x in rows if x["report_period"]==f"{year}Q3"]
-                  if len(actual)!=len(rows):raise ValueError("WRONG_FINANCIAL_REPORT_PERIOD")
-                  total+=int(bool(data))
-                  print("CNE_ORIGINAL_Q3_REAL_PDF",json.dumps({
-                    "id":sym,"year":year,"package_version":importlib.metadata.version("cnequity"),
-                    "full_original_pdf_sha256":sha,"pdf_bytes":len(raw),
-                    "recovered_field_count":len(rows),
-                    "recovered_income_fields":[k for k in sorted(data) if k in ("revenue","net_profit","operating_profit","total_profit")],
-                    "net_profit_ytd_cny":data.get("net_profit"),
-                    "operating_cashflow_ytd_cny":data.get("net_cash_operate"),
-                    "only_original_cumulative_financial_accounting_fields":True,
-                    "claimed_original_historical_observation_time":False,
-                    "trading_or_alpha_authorized":False},ensure_ascii=False),flush=True)
-              except Exception as exc:
-                  print("CNE_ORIGINAL_Q3_REAL_PDF_NOT_RECOVERABLE",json.dumps({
-                    "id":sym,"year":year,"error":type(exc).__name__+":"+str(exc)[:220],
-                    "trading_or_alpha_authorized":False},ensure_ascii=False),flush=True)
-          print("CNE_ORIGINAL_Q3_SOURCE_GATE",json.dumps({
-            "sample_count":len(samples),"at_least_one_field_recovered_sample_count":total,
-            "parser_deploy_proposal":"NO_WHOLE_NEW_DATA_LAKE",
-            "historical_strict_observation_confirmed":False,
-            "independent_executable_alpha_proven":False},ensure_ascii=False),flush=True)
-          PY
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
