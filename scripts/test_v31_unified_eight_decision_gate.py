@@ -20,11 +20,14 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         self.assertEqual(result["market_evidence"]["current_session_eod_count"],0)
         self.assertEqual(result["market_evidence"]["min_lot_notional_at_20261109_vendor_closes_cny"],53060)
         self.assertEqual(result["strategy_evidence"]["grade"],"INSUFFICIENT")
+        self.assertEqual(result["decisive_blocker"],"NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE")
+        self.assertEqual(result["deferred_inputs_until_alpha_validated"],"CURRENT_QUOTES_ACCOUNT_CASH_STOPS_BROKER_PERMISSIONS")
         self.assertEqual(result["private_account_and_stop_gate"]["status"],"NOT_EVALUATED_NO_PRIVATE_ACCOUNT_INPUT")
         self.assertFalse(result["trade_authorized"])
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
         self.assertEqual(len({x["security_id"] for x in result["stocks"]}),8)
         self.assertTrue(all(x["decision"]=="BLOCK_BUY" for x in result["stocks"]))
+        self.assertIn("暂不把这些列为主线研发任务",render(result))
         self.assertIn("NOT_AUTHORIZED / NO BUY",render(result))
 
     def test_single_security_card_is_reproducible_and_exposes_provenance(self):
@@ -85,6 +88,7 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         self.assertEqual(case["market_reference"]["latest_available_close_date"],"2026-11-09")
         self.assertEqual(case["strategy_evidence"]["grade"],"INSUFFICIENT")
         self.assertIn("NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE",case["blocking_reasons"])
+        self.assertEqual(case["decisive_blocker"],"NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE")
         self.assertEqual(case["decision"],"BLOCK_BUY")
         self.assertFalse(case["trade_authorized"])
         self.assertEqual(case["live_buy_eligibility"],"NOT_AUTHORIZED")
@@ -183,6 +187,7 @@ class V31UnifiedDecisionGateTests(unittest.TestCase):
         }
         result=build(private=data)
         self.assertTrue(result["private_account_and_stop_gate"]["paper_capacity_feasible"])
+        self.assertEqual(result["decisive_blocker"],"NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE")
         self.assertFalse(result["trade_authorized"])
         self.assertEqual(result["live_buy_eligibility"],"NOT_AUTHORIZED")
         self.assertTrue(all(x["decision"]=="BLOCK_BUY" for x in result["stocks"]))
