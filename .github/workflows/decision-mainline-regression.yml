@@ -187,8 +187,6 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
-      - name: Execute preregistered one-shot reversal on existing immutable daily archive
-        run: python scripts/v31_short_term_reversal_archived_one_shot.py
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
