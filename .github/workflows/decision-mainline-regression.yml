@@ -221,7 +221,7 @@ jobs:
                 "first_parquet_links":relevant[:6]},ensure_ascii=False),flush=True)
               selected=[]
               for date in ("2026-09-02","2026-10-15"):
-                  matches=[l for l in relevant if date in l["url"] or date in l["text"]]
+                  matches=[l for l in relevant if date.replace("-","") in l["url"] or date in l["text"]]
                   if not matches:
                       print("TRADSIG_DATE_LINK_MISSING",date,flush=True)
                   else:selected.append((date,matches[0]["url"]))
