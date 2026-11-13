@@ -18,6 +18,11 @@ One human-readable and machine-readable **Decision Case** for one security and a
 
 No recommendation is published without a traceable case; no BUY/ADD eligibility may be inferred just from an attractive candidate or synthetic test.
 
+**2026-11-13 evidence interface boundary (confirmed from current source):** `scripts/v31_unified_eight_decision_gate.py` is an intentionally frozen **2026-10-30 eight-candidate historical NO BUY artifact**, not the general future route for newly validated strategies. It hardcodes `INSUFFICIENT` and `BLOCK_BUY` by design to preserve *that exact* research claim. The reusable `scripts/v29_strategy_validity_validator.py` and `scripts/v294_evidence_strength_synthesizer.py` can derive `MODERATE/STRONG` from correctly defined completed validity dimensions; `scripts/v29_discipline_engine.py` can calculate preliminary BUY/ADD discipline eligibility at those grades. But the generic packet adapter only checks **caller-supplied hashes for shape**, not their referenced files; it now explicitly reports `trade_authorized=false` and `source_evidence_authenticated_by_adapter=false`. **A future actually validated strategy would need source-authenticated binding of the derived validity receipt and live account/market constraints before any real authorization**, not a change to frozen-eight code or a user-entered strong grade. There is no validated strategy to plug into this path now; do not build speculative broker-entry machinery.
+
+**Historical information timing clarification:** A historical original issuer filing retrieved today can conditionally reconstruct facts publicly available at its **verified original release time**, provided the specific version, any corrections, issuer security identity and trade-time cutoff are checked. Its **later download timestamp alone is not disqualifying**; neither does an old `NOTICE_DATE` stamped on a **current vendor value** prove historical as-published availability. See `research/V2.9_2022_2025_PIT_DATA_FEASIBILITY_20261030.md`, latest methods addendum. This does **not** reopen the closed SUE3 branch absent an actual source-consistent, long-only independent study.
+
+
 ## Product lanes and ownership
 
 | Lane | Meaning | Required output | Priority |
