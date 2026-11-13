@@ -187,6 +187,82 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
+      - name: One-off six original Q3 PDF EPS versus current vendor (source-only)
+        run: |
+          python - <<'PY'
+          import json,hashlib,math,subprocess,tempfile
+          from pathlib import Path
+          from urllib.parse import urlencode
+          from urllib.request import Request,urlopen
+          ORIGINALS=[
+            ("600519","600519.SH",2022,"2022-10-17",11.63,35.34,"https://static.cninfo.com.cn/finalpage/2022-10-17/1214804759.PDF"),
+            ("600519","600519.SH",2023,"2023-10-21",13.45,42.09,"https://static.cninfo.com.cn/finalpage/2023-10-21/1218110141.PDF"),
+            ("600519","600519.SH",2024,"2024-10-26",15.23,48.42,"https://static.cninfo.com.cn/finalpage/2024-10-26/1221523519.PDF"),
+            ("300408","300408.SZ",2022,"2022-10-27",0.16,0.65,"https://static.cninfo.com.cn/finalpage/2022-10-27/1214925910.PDF"),
+            ("300408","300408.SZ",2023,"2023-10-26",0.21,0.60,"https://static.cninfo.com.cn/finalpage/2023-10-26/1218148551.PDF"),
+            ("300408","300408.SZ",2024,"2024-10-30",0.30,0.84,"https://static.cninfo.com.cn/finalpage/2024-10-30/1221557222.PDF"),
+          ]
+          ORIG={(symbol,year):{"notice":notice,"single_q3_eps":q3,"ytd_eps":ytd,"url":url}
+                for code,symbol,year,notice,q3,ytd,url in ORIGINALS}
+          sources=[
+            ("SUMMARY","https://datacenter-web.eastmoney.com/api/data/v1/get","RPT_LICO_FN_CPD","SECURITY_CODE","REPORTDATE","BASIC_EPS","WEB","WEB"),
+            ("F10","https://datacenter.eastmoney.com/securities/api/data/v1/get","RPT_F10_FINANCE_MAINFINADATA","SECUCODE","REPORT_DATE","EPSJB","HSF10","PC"),
+          ]
+          totals={}
+          for title,base,report,identity,date_key,eps_key,source,client in sources:
+            totals[title]={"retrieved":0,"ytd_match":0,"ytd_mismatch":0,"notice_match":0,"errors":0}
+            for code,symbol in (("600519","600519.SH"),("300408","300408.SZ")):
+              qs={"reportName":report,"columns":"ALL",
+                  "filter":"("+identity+"='"+(code if identity=="SECURITY_CODE" else symbol)+"')",
+                  "pageSize":"100","pageNumber":"1","sortColumns":date_key,"sortTypes":"-1",
+                  "source":source,"client":client}
+              try:
+                with urlopen(Request(base+"?"+urlencode(qs),
+                          headers={"User-Agent":"Mozilla/5.0","Referer":"https://data.eastmoney.com/"}),timeout=12) as rsp:
+                  raw=rsp.read(1000000)
+                result=json.loads(raw)["result"]; data=result["data"]
+                for year in (2022,2023,2024):
+                  period=f"{year}-09-30"
+                  matches=[x for x in data if str(x.get(date_key) or "")[:10]==period]
+                  if len(matches)!=1:raise ValueError("MISSING_OR_DUPLICATE_PERIOD:"+period)
+                  row=matches[0];orig=ORIG[symbol,year]
+                  value=float(row[eps_key]) if row.get(eps_key) not in (None,"") else None
+                  same=value is not None and math.isclose(value,orig["ytd_eps"],rel_tol=0,abs_tol=0.0049)
+                  notice_match=str(row.get("NOTICE_DATE") or "")[:10]==orig["notice"]
+                  totals[title]["retrieved"]+=1
+                  totals[title]["ytd_match" if same else "ytd_mismatch"]+=1
+                  totals[title]["notice_match"]+=int(notice_match)
+                  print("SUE_Q3_COMPARISON",json.dumps({"source":title,"id":symbol,"period":period,
+                    "first_original_notice":orig["notice"],"vendor_notice":str(row.get("NOTICE_DATE"))[:10],
+                    "vendor_last_updated":str(row.get("UPDATE_DATE"))[:10],
+                    "original_q3_single_eps":orig["single_q3_eps"],
+                    "original_ytd_basic_eps":orig["ytd_eps"],
+                    "vendor_eps":value,
+                    "vendor_vs_original_ytd_match_to_report_precision":same,
+                    "vendor_notice_match":notice_match,
+                    "vendor_data_from_2026_retrieval_not_historical_pit":True},ensure_ascii=False))
+              except Exception as e:
+                totals[title]["errors"]+=1
+                print("SUE_Q3_PROVIDER_FAILED",title,symbol,type(e).__name__,str(e)[:230])
+          print("SUE_Q3_COMPARISON_SUMMARY",json.dumps(totals,ensure_ascii=False))
+          with tempfile.TemporaryDirectory() as tmp:
+            for code,symbol,year,notice,q3,ytd,url in ORIGINALS:
+              try:
+                with urlopen(Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=8) as rsp:
+                  pdf=rsp.read(10000000)
+                if not pdf.startswith(b"%PDF-"):raise ValueError("NOT_PDF")
+                filename=Path(tmp)/f"{code}-{year}.pdf";filename.write_bytes(pdf)
+                proc=subprocess.run(["pdftotext","-f","1","-l","2","-layout",str(filename),"-"],
+                                    capture_output=True,text=True,timeout=12)
+                if proc.returncode!=0: raise ValueError("PDFTOTEXT_FAILURE:"+proc.stderr[:80])
+                lines=[line.strip() for line in proc.stdout.splitlines() if "基本每股收益" in line]
+                print("SUE_ORIGINAL_PDF_VERIFIED",json.dumps({
+                  "id":symbol,"year":year,"pdf_sha256":hashlib.sha256(pdf).hexdigest(),
+                  "pdf_bytes":len(pdf),"extracted_eps_lines":lines[:3],
+                  "original_ytd_eps_expected":ytd,"downloaded_from":url},ensure_ascii=False))
+              except Exception as e:
+                print("SUE_ORIGINAL_PDF_ACCESS_NOT_VERIFIED",symbol,year,type(e).__name__,str(e)[:180],url)
+          PY
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
