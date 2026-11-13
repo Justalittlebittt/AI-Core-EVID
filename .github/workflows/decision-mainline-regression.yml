@@ -187,6 +187,95 @@ jobs:
           python scripts/v29_decision_packet_selftest.py
           python -m validation.v294_evidence_strength_synthesizer_selftest
       # Network provider availability is not part of deterministic mainline PR gating.
+      - name: One-time fixed 2x128 historical quarterly EPS source availability audit
+        run: |
+          python - <<'PY'
+          import concurrent.futures,json,collections,hashlib
+          from datetime import date,datetime,timezone
+          from pathlib import Path
+          from urllib.parse import urlencode
+          from urllib.request import Request,urlopen
+          cohort=json.loads(Path("research/V2.9_2023_2024_ORIGINAL_FILING_SOURCE_FRAMES_128.json").read_text())
+          selected={c["cohort_id"]:list(c["selected_ids"]) for c in cohort["cohorts"]}
+          assert len(selected)==2 and all(len(x)==128 and len(set(x))==128 for x in selected.values())
+          quarters=[f"{y}-{m:02d}-{d:02d}" for y in range(2022,2026)
+                    for m,d in ((3,31),(6,30),(9,30),(12,31)) if (y,m)<=(2025,9)]
+          seasonal=quarters[2:]
+          assert len(quarters)==15 and len(seasonal)==13
+          sids=sorted(set(sum(selected.values(),[])))
+          def get(sid):
+              exchange,code=sid.split(":")
+              args={"reportName":"RPT_LICO_FN_CPD","columns":"ALL",
+                    "filter":'(SECURITY_CODE="'+code+'")',"pageSize":"100",
+                    "pageNumber":"1","sortColumns":"REPORTDATE","sortTypes":"-1",
+                    "source":"WEB","client":"WEB"}
+              req=Request("https://datacenter-web.eastmoney.com/api/data/v1/get?"+urlencode(args),
+                          headers={"User-Agent":"Mozilla/5.0","Referer":"https://data.eastmoney.com/"})
+              try:
+                  with urlopen(req,timeout=16) as rsp:payload=json.load(rsp)
+                  r=payload.get("result")
+                  if not isinstance(r,dict) or not isinstance(r.get("data"),list):
+                      return sid,{"status":"API_ERROR","reason":str(payload.get("message") or payload.get("msg") or "NO_DATA")[:90]}
+                  counts=collections.Counter()
+                  index={}
+                  for x in r["data"]:
+                      sym=str(x.get("SECUCODE") or "")
+                      if sym!=code+(".SH" if exchange=="SSE" else ".SZ"):continue
+                      period=str(x.get("REPORTDATE") or "")[:10]
+                      if period in quarters:index.setdefault(period,[]).append(x)
+                  for period in quarters:
+                      xs=index.get(period,[])
+                      if len(xs)!=1:continue
+                      x=xs[0]
+                      counts["unique"]+=1
+                      if x.get("BASIC_EPS") not in (None,""):counts["eps"]+=1
+                      notice=str(x.get("NOTICE_DATE") or "")[:10]
+                      update=str(x.get("UPDATE_DATE") or "")[:10]
+                      if notice:counts["notice"]+=1
+                      try:
+                          if notice and update and (date.fromisoformat(update)-date.fromisoformat(notice)).days>30:
+                              counts["update_gt30"]+=1
+                      except ValueError:pass
+                  seasonal_complete=all(len(index.get(period,[]))==1 and
+                      index[period][0].get("BASIC_EPS") not in (None,"") and
+                      index[period][0].get("NOTICE_DATE") for period in seasonal)
+                  return sid,{"status":"OK","unique":counts["unique"],"eps":counts["eps"],
+                              "notice":counts["notice"],"update_gt30":counts["update_gt30"],
+                              "all_seasonal_13_with_eps_notice":bool(seasonal_complete),
+                              "expected_seasonal":13,"pages":r.get("pages"),"provider_total":r.get("count")}
+              except Exception as exc:
+                  return sid,{"status":"API_ERROR","reason":type(exc).__name__+":"+str(exc)[:70]}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+              results=dict(executor.map(get,sids))
+          report={"schema":"SUE3_SOURCE_COVERAGE_ONE_OFF_V1",
+                  "captured_at_utc":datetime.now(timezone.utc).isoformat(),
+                  "sample_source":"research/V2.9_2023_2024_ORIGINAL_FILING_SOURCE_FRAMES_128.json",
+                  "sample_preselected_prior_to_this_source_query":True,
+                  "sampling_done_in_2026_after_historical_returns":True,
+                  "historical_vendor_current_query_not_asof_financial_value":True,
+                  "total_distinct_issuers":len(sids),
+                  "quarters_examined":quarters,"sue_seasonal_13_quarters":seasonal,
+                  "cohorts":{},"api_failures_total":sum(v["status"]!="OK" for v in results.values()),
+                  "prior_original_quarterly_pdf_series_certified_issuers":0,
+                  "historical_price_returns_used":False,"independent_oos":False,
+                  "buy_authorized":False}
+          for name,ids in selected.items():
+              status=[results[sid] for sid in ids]
+              ok=[x for x in status if x["status"]=="OK"]
+              report["cohorts"][name]={
+                  "fixed_count":len(ids),
+                  "api_success_count":len(ok),
+                  "api_failure_count":len(ids)-len(ok),
+                  "all_13_quarters_eps_and_notice":sum(x["all_seasonal_13_with_eps_notice"] for x in ok),
+                  "all_15_quarters_vendor_eps":sum(x["eps"]==15 for x in ok),
+                  "at_least_10_of_15_eps":sum(x["eps"]>=10 for x in ok),
+                  "total_eps_rows":sum(x["eps"] for x in ok),
+                  "total_unique_period_rows":sum(x["unique"] for x in ok),
+                  "total_retro_update_gt30":sum(x["update_gt30"] for x in ok)}
+          report["api_failures_examples"]=[{"sid":sid,"reason":v.get("reason")} for sid,v in results.items() if v["status"]!="OK"][:8]
+          print("SUE_FROZEN_2X128_SOURCE_PROFILE",json.dumps(report,ensure_ascii=False,sort_keys=True))
+          assert report["total_distinct_issuers"]>=128
+          PY
       - name: Execute demo and historical admission
         run: |
           python scripts/v29_decision_case_demo.py > /tmp/decision-demo.json
