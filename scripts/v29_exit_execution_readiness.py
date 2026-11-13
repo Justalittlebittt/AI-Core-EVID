@@ -84,7 +84,9 @@ def apply_execution_constraints(watchlist, contexts, reviewed_at):
         "reviewed_at": reviewed_at,
         "positions": reviewed,
         "required_exit_count": sum(x["exit_required"] for x in reviewed),
-        "required_exit_with_unconfirmed_full_execution_count": sum(x["exit_required"] and x["can_submit_full_sell_order"] is not True for x in reviewed),
+        "required_exit_with_unconfirmed_full_execution_count": sum(
+            x["exit_required"] and not x["execution_confirmed"] for x in reviewed
+        ),
         "cannot_infer_tradability_from_quote": True,
         "not_a_trade_instruction_or_execution_receipt": True,
     }
