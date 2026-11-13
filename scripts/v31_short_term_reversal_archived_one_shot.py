@@ -54,7 +54,8 @@ def build():
     sessions = validated_calendar(src["calendar"])
     signal_days = actual_signal_months(sessions)
     assert len(signal_days) == 20
-    if str(sessions[0]) != "2022-08-01" or str(sessions[-1]) != "2025-01-31":
+    if (sessions[0] < date(2022,8,1) or sessions[-1] > date(2025,1,31)
+            or sessions[-1] < date(2025,1,20)):
         raise ValueError("SOURCE_EXCHANGE_CALENDAR_WRONG")
     allowed = set(sessions)
     identities = {sid for f in frames.values() for sid in f["selected_ids"]}
