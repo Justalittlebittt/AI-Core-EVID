@@ -30,16 +30,21 @@ class Tests(unittest.TestCase):
     def test_partial_sellable_is_not_full_execution(self):
         x=apply_execution_constraints(base(),context(sellable_quantity=50),NOW)
         self.assertFalse(x["positions"][0]["can_submit_full_sell_order"])
+        self.assertEqual(x["required_exit_with_unconfirmed_full_execution_count"],1)
 
     def test_full_sellable_only_means_possible(self):
         x=apply_execution_constraints(base(),context(),NOW)
         self.assertTrue(x["positions"][0]["can_submit_full_sell_order"])
         self.assertFalse(x["positions"][0]["execution_confirmed"])
+        self.assertTrue(x["positions"][0]["urgent_unexecuted_exit"])
+        self.assertEqual(x["required_exit_count"],1)
+        self.assertEqual(x["required_exit_with_unconfirmed_full_execution_count"],1)
 
     def test_missing_broker_context_unknown(self):
         x=apply_execution_constraints(base(),[],NOW)
         self.assertIsNone(x["positions"][0]["can_submit_full_sell_order"])
         self.assertTrue(x["positions"][0]["exit_required"])
+        self.assertEqual(x["required_exit_with_unconfirmed_full_execution_count"],1)
 
     def test_previous_day_context_rejected_as_stale(self):
         x=apply_execution_constraints(base(),context(as_of="2026-10-23T15:00:00+08:00"),NOW)
