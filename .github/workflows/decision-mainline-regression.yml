@@ -189,7 +189,7 @@ jobs:
       # Network provider availability is not part of deterministic mainline PR gating.
       - name: One-off six original Q3 PDF EPS versus current vendor (source-only)
         run: |
-          python -m pip install --quiet 'pypdf==5.8.1'
+          python -m pip install --quiet 'pypdf==5.8.0'
           python - <<'PY'
           import json,hashlib,math,tempfile
           from pypdf import PdfReader
