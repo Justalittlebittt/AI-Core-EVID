@@ -85,6 +85,8 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/v29_exit_execution_readiness.py'
+      - 'scripts/test_v29_exit_execution_readiness.py'
       - 'scripts/v29_growth_310_conditional_result.py'
       - 'scripts/test_v29_growth_310_conditional_result.py'
       - 'scripts/v29_fy2026_next_vintage_selector.py'
