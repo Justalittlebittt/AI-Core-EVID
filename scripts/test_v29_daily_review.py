@@ -1,7 +1,12 @@
 """Single-command daily product integration, no network and no real holdings."""
+import json
 import sys
+import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from v29_daily_review import run_daily, render_text
 
@@ -143,6 +148,95 @@ class DailyReviewTests(unittest.TestCase):
         x=run_daily([pos()],AT,"2026-10-26",[quote()],[broker(sellable_quantity=100)])
         self.assertEqual(x["rows"][0]["execution_status"],"FULL_SELL_ORDER_POSSIBLE_NOT_CONFIRMED")
         self.assertFalse(x["rows"][0]["execution_confirmed"])
+
+    def test_exit_persists_after_rebound_without_broker_fill(self):
+        first=run_daily([pos()],AT,"2026-10-26",[quote(close=8.5)])
+        self.assertEqual(first["exit_required_count"],1)
+        self.assertEqual(first["pending_exit_count"],1)
+        second=run_daily([pos()],"2026-10-27T15:30:00+08:00","2026-10-27",
+                         [quote(as_of="2026-10-27T15:00:00+08:00",close=10.5)],
+                         prior_exit_state=first["pending_exit_state"])
+        self.assertEqual(second["exit_required_count"],1)
+        self.assertEqual(second["rows"][0]["decision"],"EXIT_REQUIRED_EXECUTION_UNCONFIRMED")
+        self.assertTrue(second["rows"][0]["pending_exit_from_prior"])
+        self.assertIn("STOP_LOSS_BREACHED",second["rows"][0]["exit_reasons"])
+        self.assertEqual(second["pending_exit_state"]["pending"][0]["triggered_at"],AT)
+        self.assertFalse(second["rows"][0]["execution_confirmed"])
+        self.assertIn("既往退出未核销",render_text(second))
+
+    def test_exit_survives_missing_or_stale_quote_and_fully_sellable_status(self):
+        first=run_daily([pos()],AT,"2026-10-26",[quote(close=8.5)])
+        second=run_daily([pos()],"2026-10-27T15:30:00+08:00","2026-10-27",
+                         [],[broker(as_of="2026-10-27T15:00:00+08:00",
+                                    sellable_quantity=100)],
+                         prior_exit_state=first["pending_exit_state"])
+        self.assertEqual(second["rows"][0]["quote_status"],"MISSING")
+        self.assertEqual(second["exit_required_count"],1)
+        self.assertEqual(second["unassessable_quote_count"],0)
+        self.assertEqual(second["rows"][0]["execution_status"],
+                         "FULL_SELL_ORDER_POSSIBLE_NOT_CONFIRMED")
+        self.assertFalse(second["rows"][0]["execution_confirmed"])
+
+    def test_no_prior_trigger_does_not_invent_exit(self):
+        day="2026-10-27T15:30:00+08:00"
+        result=run_daily([pos()],day,"2026-10-27",[])
+        self.assertEqual(result["exit_required_count"],0)
+        self.assertEqual(result["pending_exit_count"],0)
+        self.assertEqual(result["rows"][0]["decision"],"UNASSESSABLE_QUOTE")
+
+    def test_absent_holding_does_not_silently_clear_unconfirmed_prior_exit(self):
+        first=run_daily([pos()],AT,"2026-10-26",[quote(close=8.5)])
+        second=run_daily([pos("SZSE:000001")],"2026-10-27T15:30:00+08:00",
+                         "2026-10-27",[],
+                         prior_exit_state=first["pending_exit_state"])
+        self.assertEqual(second["exit_required_count"],0)
+        self.assertEqual(second["pending_exit_count"],1)
+        self.assertEqual(second["unreconciled_missing_position_exit_ids"],["SSE:600000"])
+        self.assertIn("SSE:600000",render_text(second))
+        self.assertFalse(second["rows"][0]["pending_exit_from_prior"])
+
+    def test_invalid_checkpoint_or_future_time_rejected(self):
+        first=run_daily([pos()],AT,"2026-10-26",[quote()])
+        bad={**first["pending_exit_state"],"updated_at":"2026-10-28T15:30:00+08:00"}
+        with self.assertRaisesRegex(ValueError,"FUTURE_PENDING_EXIT_CHECKPOINT"):
+            run_daily([pos()],"2026-10-27T15:30:00+08:00","2026-10-27",[],
+                      prior_exit_state=bad)
+        bad={"schema":"AI_CORE_EVID_PENDING_EXIT_STATE_V1","updated_at":AT,
+             "pending":[{"security_id":"SSE:600000","triggered_at":AT,
+                         "reasons":["STOP_LOSS_BREACHED"]}]*2}
+        with self.assertRaisesRegex(ValueError,"INVALID_PENDING_EXIT_ENTRY"):
+            run_daily([pos()],"2026-10-27T15:30:00+08:00","2026-10-27",[],
+                      prior_exit_state=bad)
+
+    def test_cli_automatically_restores_local_pending_exit_checkpoint(self):
+        from v29_daily_review import main
+        with tempfile.TemporaryDirectory() as root:
+            directory=Path(root)
+            holdings=directory/"holdings.json"
+            quotes=directory/"quotes.json"
+            report_path=directory/"latest_report.json"
+            holdings.write_text(json.dumps([pos()]),encoding="utf-8")
+            quotes.write_text(json.dumps([quote(close=8.5)]),encoding="utf-8")
+            with patch("sys.argv",["daily","--positions",str(holdings),
+                      "--quotes",str(quotes),"--at",AT,
+                      "--expected-session","2026-10-26"]),redirect_stdout(StringIO()):
+                main()
+            checkpoint=directory/"holdings.pending_exits.json"
+            self.assertTrue(checkpoint.exists())
+            self.assertEqual(json.loads(checkpoint.read_text())["pending"][0]["security_id"],
+                             "SSE:600000")
+            quotes.write_text(json.dumps([quote(as_of="2026-10-27T15:00:00+08:00",
+                                                 close=10.5)]),encoding="utf-8")
+            with patch("sys.argv",["daily","--positions",str(holdings),
+                      "--quotes",str(quotes),"--at","2026-10-27T15:30:00+08:00",
+                      "--expected-session","2026-10-27",
+                      "--json-out",str(report_path)]),redirect_stdout(StringIO()):
+                main()
+            output=json.loads(report_path.read_text())
+            self.assertTrue(output["rows"][0]["pending_exit_from_prior"])
+            self.assertEqual(output["exit_required_count"],1)
+            self.assertEqual(output["pending_exit_state"]["pending"][0]["triggered_at"],AT)
+            self.assertFalse(output["rows"][0]["execution_confirmed"])
 
 if __name__=="__main__":
     unittest.main()
