@@ -61,7 +61,18 @@ def main() -> None:
     assert base["packet_status"] == "PACKET_VALID"
     assert base["discipline_input"]["evidence_strength"] == "MODERATE"
     assert base["discipline_decision"]["decision"] == "ACTION_ELIGIBLE"
+    # A well-formed packet with caller-asserted MODERATE/STRONG + syntactically
+    # correct SHA strings is not independently verified, nor an order permit.
+    assert base["decision_scope"] == "DISCIPLINE_PREVIEW_NOT_VERIFIED_TRADE_AUTHORIZATION"
+    assert base["source_evidence_authenticated_by_adapter"] is False
+    assert base["trade_authorized"] is False
     assert base["adapter_metadata"]["discipline_post_baseline_repair_1_applied"] is True
+    self_asserted = packet()
+    self_asserted["validity"]["evidence_strength"] = "STRONG"
+    preview = adapt_and_evaluate(self_asserted)
+    assert preview["discipline_decision"]["decision"] == "ACTION_ELIGIBLE"
+    assert preview["source_evidence_authenticated_by_adapter"] is False
+    assert preview["trade_authorized"] is False
 
     p = packet(); p["validity"]["all_required_dimensions_reported"] = False
     r = adapt_and_evaluate(p)
