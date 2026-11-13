@@ -193,7 +193,9 @@ jobs:
           from html.parser import HTMLParser
           from urllib.request import Request,urlopen
           from urllib.parse import urljoin,urlparse
-          import json,zipfile,hashlib,io
+          import json,zipfile,hashlib,io,ssl
+          # Source discovery only. Unverified TLS is NOT accepted as data provenance.
+          insecure_public_context=ssl._create_unverified_context()
           class H(HTMLParser):
               def __init__(self):super().__init__();self.links=[]
               def handle_starttag(self,tag,attrs):
@@ -208,7 +210,7 @@ jobs:
           for page in origins:
               try:
                   req=Request(page,headers={"User-Agent":"Mozilla/5.0 (research-only, source audit)"})
-                  with urlopen(req,timeout=16) as resp:raw=resp.read(3_500_000)
+                  with urlopen(req,timeout=16,context=insecure_public_context) as resp:raw=resp.read(3_500_000)
                   parser=H();parser.feed(raw.decode("utf-8","replace"))
                   for link in parser.links:
                       if ".zip" in link.lower():
@@ -224,7 +226,7 @@ jobs:
               asset=matches[0]["url"]
               try:
                   req=Request(asset,headers={"User-Agent":"Mozilla/5.0","Referer":matches[0]["from"]})
-                  with urlopen(req,timeout=18) as resp:raw=resp.read(50_000_000)
+                  with urlopen(req,timeout=18,context=insecure_public_context) as resp:raw=resp.read(50_000_000)
                   with zipfile.ZipFile(io.BytesIO(raw)) as z:
                       items=[{"name":i.filename,"size":i.file_size}
                              for i in z.infolist() if not i.is_dir()]
@@ -232,6 +234,7 @@ jobs:
                     "asset":asset,"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),
                     "files":len(items),"sample":items[:15],
                     "has_spreadsheet":any(i["name"].lower().endswith((".xlsx",".xls",".csv")) for i in items),
+                    "tls_chain_verified":False,"not_certified_for_strategy":True,
                     "latest_date_claim_independently_verified":False,
                     "trade_authorized":False},ensure_ascii=False),flush=True)
               except Exception as exc:
