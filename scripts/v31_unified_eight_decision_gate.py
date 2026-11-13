@@ -243,6 +243,9 @@ def build(root=ROOT, private=None):
         "private_account_and_stop_gate":audit,
         "existing_discipline_adapter_used_only_when_user_supplies_full_packets":bool(packet_results),
         "blocking_reasons":reasons,
+        # One decisive scientific blocker; quote/account limitations are downstream.
+        "decisive_blocker":"NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE",
+        "deferred_inputs_until_alpha_validated":"CURRENT_QUOTES_ACCOUNT_CASH_STOPS_BROKER_PERMISSIONS",
         "stocks":rows,
         "stock_count":len(rows),
         "action":"NO_ACTION_INSUFFICIENT_PREDICTIVE_EVIDENCE",
@@ -259,6 +262,7 @@ def render(report):
         or report.get("stock_count")!=8
         or report.get("strategy_evidence",{}).get("grade")!="INSUFFICIENT"
         or report.get("strategy_evidence",{}).get("independent_alpha_validated") is not False
+        or report.get("decisive_blocker")!="NO_INDEPENDENTLY_VALIDATED_PREDICTIVE_EDGE"
         or report.get("signal_is_not_verified_alpha") is not True
         or any(x["decision"]!="BLOCK_BUY" for x in report.get("stocks",[]))):
         raise ValueError("INTEGRATED_GATE_UNSAFE_TO_RENDER")
@@ -281,6 +285,8 @@ def render(report):
         "",
         f"8股最低一手参考金额（不含手续费和滑点）：¥{report['market_evidence']['min_lot_notional_at_20261109_vendor_closes_cny']:,.2f}。",
         f"独立预测证据：{report['strategy_evidence']['grade']}；账户风控：{report['private_account_and_stop_gate']['status']}。",
+        "**首要且决定性的阻断原因：没有独立、可重复、扣成本的策略预测优势证据。**",
+        "在预测优势未获验证前，补充当日报价、账户资金、止损与券商权限也不会使这8只股票获得买入资格，故暂不把这些列为主线研发任务。",
         "数据、涨跌停盘口、券商权限及真正成交均未完成实盘认证，既有风控模块仍供私人输入后只读评估。",
         "**最终：NOT_AUTHORIZED / NO BUY。**",
         "",
@@ -321,6 +327,8 @@ def select_one(report, security_id):
         "account_paper_capacity":row["account_paper_capacity"],
         "discipline_packet_preview":row["discipline_packet_preview"],
         "blocking_reasons":row["reasons"],
+        "decisive_blocker":report["decisive_blocker"],
+        "deferred_inputs_until_alpha_validated":report["deferred_inputs_until_alpha_validated"],
         "decision":row["decision"],
         "action":report["action"],
         "trade_authorized":False,
@@ -352,6 +360,7 @@ def render_one(report, security_id):
         f"**本次归档所要求的2026-11-10收盘行情：** 缺失；本卡仅复用较早的{quote['latest_available_close_date']}记录。", "",
         "## 证据身份与科学有效性", "",
         f"- 独立预测证据等级：**{report['strategy_evidence']['grade']}**；没有经过认证的策略超额收益证据。",
+        "- **首要阻断：无独立、扣成本且可重复的预测优势；补充历史报价或个人资金资料不能单独解除。**",
         f"- 原始冻结入场快照 SHA256：`{hashes['sealed_122_nov02_entry']}`",
         f"- 已归档历史行情原始记录 SHA256：`{hashes['latest_saved_vendor_daily_bars']}`",
         "- 哈希用于绑定仓库归档字节，不证明行情是交易所官方报价，也不证明行情的历史决策时点可得性。",
