@@ -2,7 +2,7 @@
 
 AI Core EVID is a personal A-share evidence and decision-discipline research system.
 
-Its primary objective is **not** to predict the market with certainty or maximize return. Its job is to determine whether available evidence is strong enough to permit a contemplated action and whether that action violates precommitted risk and discipline rules.
+**User outcome:** discover A-share candidates with a predeclared, reproducible stock-selection rule that demonstrates repeatable **out-of-sample, after-cost, realistically executable excess return**, then issue timestamped buy/hold/reduce/exit eligibility with strict position and exit discipline. Profitable prediction is the research objective; preventing unproven or undisciplined trades is a non-negotiable safety constraint, not a substitute for predictive value. Neither a working pipeline nor repeated `NO BUY` decisions constitutes a validated predictor or a completed investment goal. No guaranteed forecasts, autonomous brokerage orders, or return-maximization claim.
 
 ## Active product mainline — decision first
 
