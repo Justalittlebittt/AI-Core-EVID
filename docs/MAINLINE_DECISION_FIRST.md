@@ -4,7 +4,9 @@
 
 ## One objective
 
-Deliver a reproducible, point-in-time A-share decision-support loop: **candidate selection → evidence validation → action eligibility → position monitoring / disciplined exit → outcome feedback**. Optimize for preventing avoidable, emotion-driven investment errors; no guaranteed forecasts, autonomous trading, or return-maximization claim.
+Deliver a reproducible, point-in-time A-share decision-support loop: **candidate selection → independently validated after-cost predictive advantage → action eligibility → position monitoring / disciplined exit → outcome feedback**. The end-user goal is to select investable A-share opportunities and make disciplined profitable decisions; the scientific hard requirement is a predeclared rule with repeatable, independent out-of-sample and realistically costed/tradable excess return, not a guarantee of future profits.
+
+**2026-11-16 priority correction:** The candidate/research-case, evidence-checking, discipline and read-only watchlist infrastructure already works well enough to expose the present blocker: **NO VERIFIED ALPHA / NO BUY**. A fail-closed `NO BUY` is the right *interim* output, but by itself is **not** successful stock prediction. Therefore new discretionary effort goes first to finding one economically motivated, separately testable signal with authentic decision-time inputs and an independent evaluation; if no such evidence source is available, report `EVIDENCE_BLOCKED` rather than spending effort on more CI, contracts, receipt layers, account integrations or post-hoc parameter grids. Keep existing 122/8 and V2.8.12 blind observations isolated; their fixed outcomes are neither accelerated nor relabelled. Safety and existing stop-loss/risk limits remain mandatory.
 
 ## What is a usable output?
 
