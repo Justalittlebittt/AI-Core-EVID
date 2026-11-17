@@ -1,0 +1,49 @@
+{
+  "schema": "V31_MEDIUM_MOMENTUM_SKIP20_ARCHIVED_DEV_ONE_SHOT_SPEC_V1",
+  "registered_at": "2026-11-17",
+  "purpose": "Test pre-signal 120-to-20-session price momentum, avoiding short-term reversal; compare fixed top quartile with same-day eligible 128-name historical sample",
+  "source": "research/v31_2023_2024_lowvol_one_shot/RAW_BAOSTOCK_SOURCE.json.gz",
+  "source_sha256": "521f78d939ba09ee39e72b32c8987ee3ef1e3edca740d89c1e7188d7e1435058",
+  "already_looked_at_other_factor_returns": true,
+  "years": [
+    2023,
+    2024
+  ],
+  "months": "first exchange session each month April-Dec 2023 and Jan-Nov 2024",
+  "frame_membership": "use exact per-year 128 issuer frames already fixed in lowvol study; no replacement",
+  "signal": {
+    "requires_121_prior_exchange_sessions": true,
+    "signal_value": "adjusted close at signal day minus 20 sessions / adjusted close at signal day minus 120 sessions - 1",
+    "normal_status_and_volume_at_signal": true,
+    "minimum_eligible": 40,
+    "selection": "highest ceil(25% of eligible), tie canonical ID ascending",
+    "filter_new_requirements": "none beyond source validation and signal daily status; never use outcome for eligibility"
+  },
+  "outcome": {
+    "entry": "next session open",
+    "exit": "20th trading session after signal at close",
+    "cost_fraction_selected": 0.003,
+    "cost_fraction_comparator": 0.003,
+    "comparison": "mean selected net price return minus mean full eligible net price return",
+    "min_selected_resolved_fraction": 0.95,
+    "min_full_resolved_fraction": 0.95,
+    "market_benchmark": "not needed for primary matched-universe comparison"
+  },
+  "decision": {
+    "min_valid_months": 16,
+    "requires_both_year_means_positive": true,
+    "positive_month_fraction_at_least": 0.6,
+    "mean_excluding_best_month_positive": true,
+    "all_month_mean_positive": true
+  },
+  "guardrails": {
+    "no_revision_after_results": true,
+    "not_pristine_OOS": true,
+    "adjusted_vendor_2026_vintage_not_as_published": true,
+    "actual_fill_not_verified": true,
+    "cash_dividends_not_independently_verified": true,
+    "buy_authorized": false,
+    "does_not_modify_frozen_122_8_or_E_folds": true
+  },
+  "post_run": "Do not re-optimise, reverse sign, or discard months. Failing = stop this factor. Passing = descriptive support only; independent prospective validation still required."
+}
