@@ -193,6 +193,18 @@
       "matches": 3,
       "notice_text": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8627814&stockid=002932",
       "status": "MATCH_DISCLOSURE_TEXT_NOT_ORIGINAL_PDF_BYTES"
+    },
+    {
+      "security_id": "002466.SZ",
+      "report_period": "2022Q3",
+      "checked_fields": [
+        "revenue_yoy_pct",
+        "weighted_roe_pct",
+        "deducted_profit_cny"
+      ],
+      "matches": 3,
+      "notice_text": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8630759&stockid=002466",
+      "status": "MATCH_DISCLOSURE_TEXT_NOT_ORIGINAL_PDF_BYTES"
     }
   ],
   "caution": "Two 2021/22 evaluation cohorts overlap in 002932.SZ; not two fully independent stock samples. COVID diagnostics drove some extreme growth and ROE; this is a potential factor regime dependency, not justification for ex-post rule changes. Today's '*ST' website labeling does NOT establish historical 2021/22 ST status.",
@@ -204,5 +216,5 @@
     "prices_or_outcomes_read": false,
     "trade_authorized": false
   },
-  "decision": "CANDIDATE_IDENTITIES_FROZEN_SOURCE_ONLY / 3_OF_20_ISSUER_PERIODS_PARTIALLY_TEXT_CROSSCHECKED / AUTHENTICATED_FULL_OOS_BLOCKED / NO_BUY"
+  "decision": "CANDIDATE_IDENTITIES_FROZEN_SOURCE_ONLY / 4_OF_20_ISSUER_PERIODS_PARTIALLY_TEXT_CROSSCHECKED / AUTHENTICATED_FULL_OOS_BLOCKED / NO_BUY"
 }
