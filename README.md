@@ -4,22 +4,37 @@ AI Core EVID is a personal A-share evidence and decision-discipline research sys
 
 **User outcome:** discover A-share candidates with a predeclared, reproducible stock-selection rule that demonstrates repeatable **out-of-sample, after-cost, realistically executable excess return**, then issue timestamped buy/hold/reduce/exit eligibility with strict position and exit discipline. Profitable prediction is the research objective; preventing unproven or undisciplined trades is a non-negotiable safety constraint, not a substitute for predictive value. Neither a working pipeline nor repeated `NO BUY` decisions constitutes a validated predictor or a completed investment goal. No guaranteed forecasts, autonomous brokerage orders, or return-maximization claim.
 
-## Active product mainline — decision first
+## Active product mainline — prediction first (V3.2)
 
-**Primary delivery:** A-share candidate selection → historical/PIT evidence validation → fail-closed buy/add/hold/reduce/exit eligibility → position monitoring and disciplined exit. The minimum end-to-end artifact is a reproducible **Decision Case** for a security at a known timestamp, including a valid no-action result.
+**The product is a credible stock forecast, not an audit platform.** New development starts with an economically motivated hypothesis and actually available decision-time data, then tests the predicted **future** net excess return and realistic execution **on independent observations**, and only afterward promotes a candidate to a real-security Decision Case. Prior stock-price appreciation is **not** universally required to enter the candidate pool.
 
-Execution and four delivery checkpoints: [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md).
+**Canonical architecture and priority:** [Prediction-first Architecture V3.2](docs/PREDICTION_FIRST_ARCHITECTURE_V3_2.md). Existing implementation interfaces and safety constraints: [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md). These are complementary: V3.2 governs **what gets built next**, V2.9 documents **what the existing engines already do**.
 
-Infrastructure monitoring is a support lane, **not** the product. V2.8.4/V2.8.12 prospective E-layer remains frozen, isolated, outcome-blind and independently scheduled; its accumulation must not hold unrelated decision-product engineering hostage.
+```text
+Public decision-time data
+    ↓
+Economic hypothesis / feature feasibility
+    ↓
+Future-return forecast or candidate ranking + uncertainty
+    ↓
+Independent after-cost / fill-aware evaluation
+    ↓
+Real issuer Decision Case + existing Discipline Engine
+    ↓
+Human-controlled position / exit / feedback
 
-## Current architecture — V2.9
+Frozen prospective evidence: parallel, unchanged, outcome-blind
+GitHub Actions / data audits: essential support, never the product
+```
+
+**Research state (2026-11-17): NO VERIFIED ALPHA / NO BUY.** Closed low-volatility, reversal, medium-term momentum and growth-quality development tests did not establish a usable predictor. Do not reopen these same historical windows to search for a more flattering sign, horizon or threshold. The prospective 122/8 and V2.8.12 E-layer studies remain protected, unmodified and independently scheduled.
+
+## Existing scientific foundation — V2.9
 
 ```text
 Governance Kernel
     ├── Evidence Engine
-    ├── Validity Engine
-    │     ├── Event-level evaluator
-    │     └── Portfolio-path evaluator
+    ├── Validity Engine (event + portfolio path)
     └── Decision Packet → Discipline Engine
 ```
 
