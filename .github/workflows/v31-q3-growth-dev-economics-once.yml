@@ -1,0 +1,66 @@
+name: V3.1 Three-year conditional Q3 growth economics development only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v31-q3-growth-dev-economics-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  development-economics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install public free market and archive readers
+        run: python -m pip install --disable-pip-version-check 'huggingface_hub>=0.28,<2' baostock
+      - name: Retrieve immutable historical financial archive only for fixed 2018-2020 rule
+        run: |
+          python - <<'PY'
+          from huggingface_hub import hf_hub_download
+          from pathlib import Path
+          path=hf_hub_download(repo_id="joshuaxql/qlib_data",filename="cn_data.zip",
+                              repo_type="dataset",revision="ee0fa6b2299cb5e927d2df491888c84f6c9c027a")
+          Path("/tmp/v31-pinned-archive-path.txt").write_text(str(path))
+          PY
+      - name: Generate frozen-rule development candidates without prices
+        run: |
+          python scripts/v31_q3_growth_source_preflight.py \
+            --archive "$(cat /tmp/v31-pinned-archive-path.txt)" \
+            --output /tmp/v31-five-year-source-only.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-five-year-source-only.json").read_text())
+          assert not d["trade_authorized"] and not d["prices_or_outcomes_read"]
+          assert all(len(d["years"][str(y)]["candidates"])==10 for y in (2018,2019,2020))
+          print("DEV_CANDIDATES_FIXED_BEFORE_PRICE_READ")
+          PY
+      - name: Capture 2018-2020 only bar-level conditional trading economics and official H00300 comparator
+        run: |
+          python scripts/v31_q3_growth_2018_2020_conditional_dev.py \
+            --candidates /tmp/v31-five-year-source-only.json \
+            --output /tmp/v31-three-year-dev-economics.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-three-year-dev-economics.json").read_text())
+          assert sorted(d["years"])==["2018","2019","2020"]
+          assert d["2021_2022_evaluation_unopened"] is True
+          assert d["development_only_not_OOS"] is True
+          assert d["certified_alpha"] is None and d["buy_eligibility"]=="NOT_AUTHORIZED"
+          print("DEV_CONDITIONAL_ECONOMICS_DONE_NO_OOS_ALPHA_CLAIM")
+          PY
+      - name: Save bounded frozen-development inputs and conditional economics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-q3-growth-three-year-dev-economics-not-oos
+          path: |
+            /tmp/v31-five-year-source-only.json
+            /tmp/v31-three-year-dev-economics.json
+          retention-days: 14
