@@ -79,6 +79,20 @@ jobs:
           print("LISTING_ADJUSTED_SOURCE_COVERAGE_RECORDED")
           PY
 
+      - name: Freeze six historical issuer-PDF cross-check inputs without returns
+        run: |
+          python scripts/v31_qlib_pdf_crosscheck_inputs.py \
+            --archive "$(cat /tmp/v31-qlib-archive-path.txt)" \
+            --listing /tmp/v31-qlib-listed-coverage.json \
+            --output /tmp/v31-pdf-crosscheck-inputs.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-pdf-crosscheck-inputs.json").read_text())
+          assert len(d["issuer_periods"])==6
+          assert d["price_or_returns_read"] is False and d["trade_authorized"] is False
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
@@ -88,5 +102,6 @@ jobs:
             /tmp/v31-qlib-source-only.json
             /tmp/v31-qlib-coverage-only.json
             /tmp/v31-qlib-listed-coverage.json
+            /tmp/v31-pdf-crosscheck-inputs.json
           retention-days: 7
           if-no-files-found: warn
