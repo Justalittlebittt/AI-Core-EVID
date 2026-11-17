@@ -1,0 +1,37 @@
+name: V3.1 Medium momentum skip20 historical development one-shot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v31-medium-momentum-skip20-dev-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  descriptive-one-shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute frozen archived-data medium-term momentum test
+        run: |
+          python scripts/v31_medium_momentum_skip20_archived_dev.py --output /tmp/v31-medium-momentum-dev-result.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/v31-medium-momentum-dev-result.json').read_text())
+          assert d['total_months']==20
+          assert d['independent_unseen_OOS'] is False and d['live_trade_authorized'] is False
+          assert d['status'] in ('INSUFFICIENT_COVERAGE','NOT_SUPPORTED_BY_THIS_RETROSPECTIVE_SAMPLE','DESCRIPTIVE_SUPPORT_ONLY_NOT_ALPHA')
+          print('V31_MOMENTUM_DEV_COMPLETED_WITH_NO_BUY')
+          PY
+      - name: Retain compact one-shot result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-medium-momentum-skip20-development-not-oos
+          path: /tmp/v31-medium-momentum-dev-result.json
+          retention-days: 14
