@@ -122,6 +122,19 @@ jobs:
           print("HISTORICAL_DECISION_DAY_TRADEFLAGS_SOURCE_ONLY_RECORDED")
           PY
 
+      - name: Probe official CSI300 total-return index H00300 using ONLY 2020 source window
+        run: |
+          python scripts/v31_csi300_tr_2020_source_probe.py --output /tmp/v31-csi300-tr-2020-source-only.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-csi300-tr-2020-source-only.json").read_text())
+          assert d["requested_2020_only"] and d["preregistered_evaluation_2021_2022_not_accessed"]
+          assert not d["stock_price_outcomes_not_accessed"] is False
+          assert not d["trade_authorized"]
+          print("CSI300_TR_2020_SOURCE_PROBE_STATUS",d["status"])
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
@@ -134,5 +147,6 @@ jobs:
             /tmp/v31-pdf-crosscheck-inputs.json
             /tmp/v31-q3-growth-source-only.json
             /tmp/v31-fixed-top10-asof-tradeflags.json
+            /tmp/v31-csi300-tr-2020-source-only.json
           retention-days: 7
           if-no-files-found: warn
