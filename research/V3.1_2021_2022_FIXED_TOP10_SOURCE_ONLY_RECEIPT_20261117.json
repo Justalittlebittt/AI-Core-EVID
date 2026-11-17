@@ -1,0 +1,208 @@
+{
+  "schema": "V31_FIXED_Q3_EVALUATION_CANDIDATE_SOURCE_ONLY_RECEIPT_V1",
+  "created": "2026-11-17",
+  "source_run": "https://github.com/Justalittlebittt/AI-Core-EVID/actions/runs/44034318932",
+  "script_commit": "6ad3c45067b94c6e41dd1cc0b00e04a217507e39",
+  "strategy_spec": "research/V3.1_Q3_QUALITY_GROWTH_PREOUTCOME_SPEC_20261117.json",
+  "source_sha256": "50d6fbb35634eb858f0e665e4811cbcbdcaccfba1d1e0084e8b7227deae17757",
+  "year_2021": [
+    [
+      "002932.SZ",
+      20211028,
+      202.7822,
+      63.37,
+      1003669229.86
+    ],
+    [
+      "600746.SH",
+      20211022,
+      132.3256,
+      46.5571,
+      2141409465.59
+    ],
+    [
+      "002709.SZ",
+      20211027,
+      145.7012,
+      31.9,
+      1510422098.79
+    ],
+    [
+      "002648.SZ",
+      20211023,
+      165.0872,
+      27.14,
+      4093320478.36
+    ],
+    [
+      "603260.SH",
+      20211027,
+      123.3419,
+      38.79,
+      4974029350.7
+    ],
+    [
+      "603185.SH",
+      20211021,
+      289.7094,
+      24.13,
+      1332334839.71
+    ],
+    [
+      "603392.SH",
+      20211028,
+      124.8556,
+      35.78,
+      1154759009.23
+    ],
+    [
+      "600309.SH",
+      20211019,
+      117.9866,
+      34.8,
+      19277586299.04
+    ],
+    [
+      "000100.SZ",
+      20211027,
+      148.2623,
+      25.16,
+      8557995151
+    ],
+    [
+      "002064.SZ",
+      20211025,
+      111.3765,
+      42.31,
+      6079967369.56
+    ]
+  ],
+  "year_2022": [
+    [
+      "002432.SZ",
+      20221029,
+      3010.7705,
+      140.94,
+      16231840332.88
+    ],
+    [
+      "002466.SZ",
+      20221028,
+      536.3993,
+      65.19,
+      14920249734.11
+    ],
+    [
+      "002932.SZ",
+      20221028,
+      285.3845,
+      83.17,
+      3820691671.18
+    ],
+    [
+      "002192.SZ",
+      20221024,
+      208.653,
+      98.52,
+      1256797172.24
+    ],
+    [
+      "002240.SZ",
+      20221025,
+      311.1417,
+      58.76,
+      4345103568.01
+    ],
+    [
+      "002460.SZ",
+      20221031,
+      291.446,
+      48.44,
+      13882477731.73
+    ],
+    [
+      "002865.SZ",
+      20221029,
+      795.7476,
+      37.42,
+      195536481.07
+    ],
+    [
+      "002738.SZ",
+      20221024,
+      293.5073,
+      39.93,
+      1998633536.22
+    ],
+    [
+      "002176.SZ",
+      20221028,
+      127.7149,
+      67.24,
+      1947197691.04
+    ],
+    [
+      "002497.SZ",
+      20221027,
+      193.5846,
+      43.11,
+      3521252789.44
+    ]
+  ],
+  "row_schema": [
+    "security_id",
+    "first_vendor_announcement_yyyymmdd",
+    "revenue_yoy_pct",
+    "weighted_roe_pct",
+    "deducted_profit_cny"
+  ],
+  "source_reconciliations": [
+    {
+      "security_id": "002932.SZ",
+      "report_period": "2021Q3",
+      "checked_fields": [
+        "revenue_yoy_pct",
+        "weighted_roe_pct",
+        "deducted_profit_cny"
+      ],
+      "matches": 3,
+      "original_issuer_pdf": "https://static.cninfo.com.cn/finalpage/2021-10-28/1211399705.PDF",
+      "page": "3 (page index 2)",
+      "status": "MATCH_VISUAL_PDF_PAGE_ORIGINAL_DISCLOSURE_SOURCE"
+    },
+    {
+      "security_id": "002432.SZ",
+      "report_period": "2022Q3",
+      "checked_fields": [
+        "revenue_yoy_pct",
+        "weighted_roe_pct",
+        "deducted_profit_cny"
+      ],
+      "matches": 3,
+      "notice_text": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8638782&stockid=002432",
+      "status": "MATCH_DISCLOSURE_TEXT_NOT_ORIGINAL_PDF_BYTES"
+    },
+    {
+      "security_id": "002932.SZ",
+      "report_period": "2022Q3",
+      "checked_fields": [
+        "revenue_yoy_pct",
+        "weighted_roe_pct",
+        "deducted_profit_cny"
+      ],
+      "matches": 3,
+      "notice_text": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8627814&stockid=002932",
+      "status": "MATCH_DISCLOSURE_TEXT_NOT_ORIGINAL_PDF_BYTES"
+    }
+  ],
+  "caution": "Two 2021/22 evaluation cohorts overlap in 002932.SZ; not two fully independent stock samples. COVID diagnostics drove some extreme growth and ROE; this is a potential factor regime dependency, not justification for ex-post rule changes. Today's '*ST' website labeling does NOT establish historical 2021/22 ST status.",
+  "limits": {
+    "all20_original_financial_reports_authenticated": false,
+    "issuer_versions_and_restatements_checked": false,
+    "contemporaneous_ST_verified": false,
+    "execution_and_benchmark_verified": false,
+    "prices_or_outcomes_read": false,
+    "trade_authorized": false
+  },
+  "decision": "CANDIDATE_IDENTITIES_FROZEN_SOURCE_ONLY / 3_OF_20_ISSUER_PERIODS_PARTIALLY_TEXT_CROSSCHECKED / AUTHENTICATED_FULL_OOS_BLOCKED / NO_BUY"
+}
