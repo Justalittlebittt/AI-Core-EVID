@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install pure-Python original PDF text extractor
         run: python -m pip install --disable-pip-version-check 'pypdf>=5,<7'
-      - name: Check twenty frozen 2021/22 Q3 issuer reports without reading outcomes
+      - name: Check twenty frozen Q3 issuer PDFs and preserve first-eight-page row contexts without outcomes
         run: |
           python scripts/v31_fixed20_q3_original_binary_batch.py --output /tmp/v31-fixed20-q3-original-binary.json
           python - <<'PY'
