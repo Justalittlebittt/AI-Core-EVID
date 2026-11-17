@@ -39,8 +39,33 @@ def pdf_check(raw, symbol, year, values):
         variants={token, token.rstrip("0").rstrip(".")}
         token_pages[field]=[idx+1 for idx,v in enumerate(normalized)
                             if any(t and t in v for t in variants)]
+    # Capture tightly bounded exact-token context for manual semantic inspection.
+    # Presence next to a label is not enough to tell standalone-Q3 from YTD;
+    # do not set a semantic pass flag from text proximity.
+    token_context={}
+    for field,token in expected.items():
+        hits=[]
+        for page_no, page_text in enumerate(normalized,1):
+            index=page_text.find(token)
+            if index>=0:
+                hits.append({"page":page_no,
+                             "preceding_100_chars":page_text[max(0,index-100):index],
+                             "token":token,
+                             "following_80_chars":page_text[index+len(token):index+len(token)+80]})
+        token_context[field]=hits[:2]
+    # Extract exact section-local opening tokens to identify which header columns
+    # actually occur in the original filing; never infer from another issuer.
+    headings=[]
+    for page_no,page_text in enumerate(normalized,1):
+        for anchor in ("主要会计数据和财务指标","主要财务数据","年初至报告期末","本报告期"):
+            start=page_text.find(anchor)
+            if start>=0:
+                headings.append({"page":page_no,"anchor":anchor,
+                                 "context":page_text[max(0,start-40):start+180]})
     return {"page_count":len(doc.pages),"pdf_issuer_year_title_identity":identity,
             "field_token_pages_first_8":token_pages,
+            "field_token_context_first_8":token_context,
+            "reported_section_headers_first_8":headings[:8],
             "three_numeric_tokens_somewhere_in_first_8":all(token_pages.values()),
             "table_row_semantics_certified":False}
 
