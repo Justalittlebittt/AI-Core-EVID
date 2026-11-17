@@ -1,0 +1,37 @@
+name: V3.2 2026 Jul-Aug announcement revision keyword source feasibility one-shot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v32-revision-keyword-feasibility-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Query all-SSE/SZSE announcement keyword feeds without outcome prices
+        run: |
+          python scripts/v32_revision_global_keyword_source_feasibility.py --output /tmp/v32-revision-keyword-discovery.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/v32-revision-keyword-discovery.json').read_text())
+          assert x['post_announcement_stock_returns_accessed'] is False
+          assert x['trading_authorized'] is False
+          assert x['universe_of_all_earnings_revisions_exhaustively_covered'] is False
+          print('V32_SOURCE_FEASIBILITY_NO_EXHAUSTIVENESS_OR_ALPHA_CLAIM')
+          PY
+      - name: Keep source-query pagination and all returned event identities
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v32-revision-keyword-source-feasibility-one-shot
+          path: /tmp/v32-revision-keyword-discovery.json
+          retention-days: 14
