@@ -1,0 +1,38 @@
+name: V3.2 Guidance revision broad-search identity and original pairing once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v32-revision-broad-pair-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all announcements matched by broad guidance text and original issue histories
+        run: |
+          python scripts/v32_revision_broad_search_and_prior_pair.py --output /tmp/v32-revision-broad-pair.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/v32-revision-broad-pair.json').read_text())
+          assert not d['stocks_and_benchmark_outcomes_opened']
+          assert not d['trade_authorized']
+          assert d['global_announcement_feed_full_market_completeness_proven'] is False
+          assert len({r['announcement_id'] for r in d['rows']})==len(d['rows'])
+          print('V32_NO_DUPLICATED_EXCHANGE_ID_OR_ALPHA_CLAIM')
+          PY
+      - name: Upload all source-only event IDs and original-pair candidates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v32-guidance-revision-broad-query-and-prior-pairs
+          path: /tmp/v32-revision-broad-pair.json
+          retention-days: 14
