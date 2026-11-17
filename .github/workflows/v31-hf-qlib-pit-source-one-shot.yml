@@ -135,6 +135,18 @@ jobs:
           print("CSI300_TR_2020_SOURCE_PROBE_STATUS",d["status"])
           PY
 
+      - name: Discover original 2021/22 Q3 official filing PDFs for the fixed 20 slots
+        run: |
+          python scripts/v31_fixed_top10_official_q3_pdf_metadata.py --output /tmp/v31-fixed-top10-official-q3-pdfs.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-fixed-top10-official-q3-pdfs.json").read_text())
+          assert len(d["rows"])==20
+          assert not d["stock_prices_or_returns_requested"] and not d["trade_authorized"]
+          print("FIXED_20_OFFICIAL_Q3_PDF_METADATA_CAPTURED")
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
@@ -148,5 +160,6 @@ jobs:
             /tmp/v31-q3-growth-source-only.json
             /tmp/v31-fixed-top10-asof-tradeflags.json
             /tmp/v31-csi300-tr-2020-source-only.json
+            /tmp/v31-fixed-top10-official-q3-pdfs.json
           retention-days: 7
           if-no-files-found: warn
