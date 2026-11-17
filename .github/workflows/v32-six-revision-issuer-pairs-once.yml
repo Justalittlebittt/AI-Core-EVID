@@ -1,0 +1,37 @@
+name: V3.2 Six source-identified guidance revisions issuer-history pairing once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v32-six-revision-issuer-pairs-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check six unique issuer revision IDs for earlier original period guidance
+        run: |
+          python scripts/v32_six_guidance_revision_prior_issuer_lookup.py --output /tmp/v32-six-revision-pairs.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/v32-six-revision-pairs.json').read_text())
+          assert len(d['rows'])==6 and len({r['revision_id'] for r in d['rows']})==6
+          assert d['future_stock_outcomes_accessed'] is False
+          assert d['global_event_denominator_exhaustive'] is False and d['buy_authorized'] is False
+          print('SIX_EVENT_SOURCE_ONLY_MATCHES_PRESERVED_NO_ALPHA_CLAIM')
+          PY
+      - name: Preserve original issuer version comparison candidates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v32-six-source-identified-guidance-revisions-prior-version
+          path: /tmp/v32-six-revision-pairs.json
+          retention-days: 14
