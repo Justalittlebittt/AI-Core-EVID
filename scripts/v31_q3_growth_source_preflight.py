@@ -142,6 +142,7 @@ def main():
         "years": results,
     }
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print("FIXED_EVALUATION_SOURCE_ONLY_CANDIDATES=" + json.dumps({year: results[str(year)]["candidates"] for year in (2021, 2022)}, ensure_ascii=False, sort_keys=True))
     print(json.dumps({"status": "SOURCE_ONLY_PROVISIONAL",
                       "year_counts": {y: {k: v[k] for k in ("provisional_eligible", "status")}
                                       for y, v in results.items()},
