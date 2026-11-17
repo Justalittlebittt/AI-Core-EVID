@@ -108,6 +108,20 @@ jobs:
           print("Selected 2021 and 2022 issuer identifiers are emitted by the source-only script")
           PY
 
+      - name: Verify fixed 2021/22 decision-day ST and trading flags, without return prices
+        run: |
+          python -m pip install --disable-pip-version-check baostock
+          python scripts/v31_fixed_top10_asof_tradeflags.py --output /tmp/v31-fixed-top10-asof-tradeflags.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-fixed-top10-asof-tradeflags.json").read_text())
+          assert len(d["rows"])==20
+          assert d["requested_fields"]==["date","code","tradestatus","isST"]
+          assert not d["prices_or_outcomes_requested"] and not d["trade_authorized"]
+          print("HISTORICAL_DECISION_DAY_TRADEFLAGS_SOURCE_ONLY_RECORDED")
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
@@ -119,5 +133,6 @@ jobs:
             /tmp/v31-qlib-listed-coverage.json
             /tmp/v31-pdf-crosscheck-inputs.json
             /tmp/v31-q3-growth-source-only.json
+            /tmp/v31-fixed-top10-asof-tradeflags.json
           retention-days: 7
           if-no-files-found: warn
