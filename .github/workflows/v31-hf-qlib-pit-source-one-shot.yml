@@ -48,11 +48,28 @@ jobs:
           print("FINANCIAL_PIT_SOURCE_PROBE_PASSED")
           PY
 
+      - name: Check bounded 2018 2020 2022 Q3 financial field coverage without outcomes
+        run: |
+          python scripts/v31_qlib_pit_coverage_only.py \
+            --archive "$(cat /tmp/v31-qlib-archive-path.txt)" \
+            --output /tmp/v31-qlib-coverage-only.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-qlib-coverage-only.json").read_text())
+          assert d["status"]=="SOURCE_COVERAGE_DESCRIPTIVE_ONLY"
+          assert not d["outcome_or_price_data_read"] and not d["trade_authorized"]
+          assert len(d["rows"])==72
+          print("HISTORICAL_PIT_SOURCE_COVERAGE_RECORDED_NO_ALPHA_CLAIM")
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: v31-hf-qlib-2023q3-financial-source-only
-          path: /tmp/v31-qlib-source-only.json
+          path: |
+            /tmp/v31-qlib-source-only.json
+            /tmp/v31-qlib-coverage-only.json
           retention-days: 7
           if-no-files-found: warn
