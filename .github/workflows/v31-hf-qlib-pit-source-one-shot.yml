@@ -105,6 +105,7 @@ jobs:
           assert list(d["years"]) == ["2018","2019","2020","2021","2022"]
           assert not d["prices_or_outcomes_read"] and not d["trade_authorized"]
           print("PREREGISTERED_Q3_CANDIDATE_SOURCE_ONLY_RECORDED")
+          print("Selected 2021 and 2022 issuer identifiers are emitted by the source-only script")
           PY
 
       - name: Save small source-only evidence, never upload external data archive
