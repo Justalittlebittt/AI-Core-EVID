@@ -1,0 +1,37 @@
+name: V3.1 Four fixed SSE 2021 originals only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v31-four-sse-q3-reconcile-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixed-four-sse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify four fixed 2021 SSE financial text rows and one SSE original PDF URL
+        run: |
+          python scripts/v31_four_sse_2021_reconcile.py --output /tmp/v31-four-sse-reconcile.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-four-sse-reconcile.json").read_text())
+          assert len(d["rows"])==4
+          assert d["outcomes_or_prices_read"] is False
+          assert d["trade_authorized"] is False
+          print("SOURCE_ONLY_FOUR_SSE_CHECK_COMPLETE_WITH_GAPS_EXPLICIT")
+          PY
+      - name: Retain source-only four-SSE report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-four-sse-q3-source-reconciliation
+          path: /tmp/v31-four-sse-reconcile.json
+          retention-days: 7
