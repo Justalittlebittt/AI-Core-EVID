@@ -1,0 +1,100 @@
+{
+  "schema": "V31_Q3_QUALITY_GROWTH_SINGLE_HYPOTHESIS_PREOUTCOME_V1",
+  "registered_at": "2026-11-17",
+  "purpose": "Test whether point-in-time profitable revenue growth plus ROE ranking produces after-cost long-only 20-session excess returns.",
+  "status": "FROZEN_SPEC_ONLY_NO_OUTCOMES_READ_NO_ALPHA",
+  "data_source": {
+    "supplier": "joshuaxql/qlib_data",
+    "repository_revision": "ee0fa6b2299cb5e927d2df491888c84f6c9c027a",
+    "archive_sha256": "50d6fbb35634eb858f0e665e4811cbcbdcaccfba1d1e0084e8b7227deae17757",
+    "fields": [
+      "or_yoy",
+      "roe_waa",
+      "profit_dedt"
+    ],
+    "excluded_unverified_field": "ocfps",
+    "strict_historical_vintage_certified": false,
+    "listing_roster": "instruments/all.txt",
+    "listing_roster_independently_verified": false
+  },
+  "period": {
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "report": "Q3 each year",
+    "development_descriptive": [
+      2018,
+      2019,
+      2020
+    ],
+    "fixed_evaluation": [
+      2021,
+      2022
+    ],
+    "exclusions": "Do not use 2023/24 opened low-vol and reversal experiments, 2025/26 retrospective growth-ROE, 2026 frozen 122/8 or E fold3/fold4.",
+    "oos_claim": "historical predeclared time-split only; two years cannot establish repeatable independent alpha"
+  },
+  "universe": {
+    "markets": [
+      "Shanghai mainboard 600/601/603/605",
+      "Shenzhen mainboard 000/001/002"
+    ],
+    "asof": "15 November 20:00 Asia/Shanghai each year",
+    "filing_eligibility": "Q3 announcement date strictly before November 15 of the same year; exclude any with earliest qualifying vendor date after November 14; use earliest recorded financial values, never later revisions",
+    "listing": "Listed on as-of date and >=365 calendar days since independently confirmed listing start; contemporaneous securities identity and ST status required",
+    "missing_or_uncertain": "Exclude with explicit per-issuer reason and report counts; if full point-in-time universe / delisted names / ST history cannot be authenticated, mark EVIDENCE_BLOCKED, not OOS",
+    "survivorship": "Require membership including delisted instruments rather than today's list"
+  },
+  "hypothesis": {
+    "filter": "finite or_yoy > 0%; roe_waa > 0%; profit_dedt > 0 RMB",
+    "rank": "Within eligible names compute descending percentile rank of or_yoy and roe_waa independently, score=0.5*each; tie-break ascending canonical exchange+6digit ticker",
+    "portfolio": "Top min(10,ceil(0.05*N)) names; if N<30, label insufficient and do not score experiment",
+    "adaptation": "No threshold changes, additional factors, reverse-position choice or optimization after outcome access"
+  },
+  "execution": {
+    "decision": "November 15 at 20:00 Asia/Shanghai, from only filings with notice <= November 14; if Nov15 a nontrading day, still use Nov15 20:00 information cutoff",
+    "entry": "First exchange trading session strictly after November 15: unadjusted official opening auction price if buyable; no assumed fill if limit-up/halt/missing",
+    "exit": "20th actual exchange session counting entry as session 1, official close if sellable; respect Mainland A-share T+1; if limit-down/halt, hold until independently evidenced first tradable closing session, otherwise mark unresolved",
+    "corporate_actions": "Apply cash dividends, splits, rights and delisting proceeds when actually held; use verified transaction-price and corporate-action vintages; never mix raw and adjusted prices",
+    "missing_fills": "Do not skip a session, substitute another name or assume executable fills; failed price/fill evidence => INCOMPLETE",
+    "initial_cash_cny": 100000,
+    "allocation": "Equal weight among up to 10 selected at entry, board-lot round down (mainboard 100-share lots); retain residual cash",
+    "transaction_costs": {
+      "commission_rate_each_side": 0.00025,
+      "min_commission_cny_each_side": 5,
+      "stamp_duty_sale_rate": 0.0005,
+      "sh_transfer_rate_each_side": 0.00001,
+      "slippage_each_side_fraction": 0.001,
+      "cost_model_is_assumption": true
+    },
+    "no_borrow_no_leverage": true
+  },
+  "evaluation": {
+    "primary": "Equal-initial-capital-weight realized whole portfolio after-cost 20-session total return minus CSI300 total-return index for exactly matched dates; residual cash earns zero",
+    "benchmark": "CSI300 total-return index H00300.CSI, confirmed exact security/date, no synthetic price-only replacement",
+    "secondary": [
+      "year-specific excess after costs",
+      "commission and slippage drag",
+      "tradeable selected count and missing fractions",
+      "portfolio drawdown only from executed chronological path"
+    ],
+    "gate": "Both evaluation years must have fully authenticated sources and >0 after-cost benchmark-relative excess, plus positive pooled excess, else FAIL_OR_INSUFFICIENT; passing this limited gate only supports further independent replication, never BUY authorization",
+    "validity_tools": [
+      "scripts/v290_strategy_validity_evaluator.py",
+      "scripts/v291_portfolio_path_evaluator.py"
+    ],
+    "risk_engine": "scripts/v29_discipline_engine.py"
+  },
+  "access_control": {
+    "price_or_return_data_accessed_by_registration": false,
+    "frozen_122_or_8_touched": false,
+    "fold3_fold4_access": false,
+    "trade_authorized": false,
+    "after_rule_freeze_only": "Do not inspect evaluation-period price outcomes until issuer PIT source provenance and tradeability prerequisites for the evaluation set are independently checked and reported"
+  },
+  "stop_rule": "If full historical issuer/st status, original-as-published finances, price and corporate action source, executable lot/cost assumptions or CSI300 TR missing, report EVIDENCE_BLOCKED and do not claim strategy performance."
+}
