@@ -76,8 +76,10 @@ def one_year(year,candidates,calendar,bars,benchmark,benchmark_receipt,config):
     ekey,xkey=entry.isoformat(),exit.isoformat()
     holdings=[]
     n=len(candidates)
-    cash=float(config["initial_cash_cny"])
-    target=cash/n
+    initial_cash=float(config["initial_cash_cny"])
+    target=initial_cash/n
+    total_entry_cost=0.0
+    total_exit_proceeds=0.0
     for rank,signal in enumerate(candidates,1):
         sid=signal["symbol"]
         code=sid[-2:].lower()+"."+sid[:6]
@@ -101,16 +103,21 @@ def one_year(year,candidates,calendar,bars,benchmark,benchmark_receipt,config):
                 tr=float(config["transaction_costs"]["sh_transfer_rate_each_side"]) if sid.endswith(".SH") else 0
                 buy_gross=qty*buy_price
                 buy_fee=max(fee_min,buy_gross*fee_rate)+buy_gross*tr
-                if buy_gross+buy_fee>cash:
-                    record["entry_status"]="CASH_INSUFFICIENT_WITH_FEES"
+                while qty>0 and buy_gross+buy_fee>target:
+                    qty-=100
+                    buy_gross=qty*buy_price
+                    buy_fee=max(fee_min,buy_gross*fee_rate)+buy_gross*tr
+                if qty<=0:
+                    record["entry_status"]="LOT_AND_FEES_EXCEED_TARGET_ALLOCATION"
                 else:
                     sell_gross=qty*close_price*(1-sl)
                     sell_fee=max(fee_min,sell_gross*fee_rate)+sell_gross*tr
                     # In 2018-2020 the actual historic stamp duty was 0.1%.
                     actual_st=0.001
                     sell_fee+=sell_gross*actual_st
-                    cash-=buy_gross+buy_fee
-                    cash+=sell_gross-sell_fee
+                    # All entries are funded simultaneously, without future exit cash.
+                    total_entry_cost+=buy_gross+buy_fee
+                    total_exit_proceeds+=sell_gross-sell_fee
                     record.update({"quantity":qty,"raw_open":open_price,"raw_close":close_price,
                        "hypothetical_buy_cost":round(buy_gross+buy_fee,2),
                        "hypothetical_sell_proceeds":round(sell_gross-sell_fee,2),
@@ -127,7 +134,7 @@ def one_year(year,candidates,calendar,bars,benchmark,benchmark_receipt,config):
             "possible_bar_level_trade_count":n-len(blocked),"blocked_count":len(blocked),
             "holdings":holdings,
             "conditional_portfolio_return_assuming_buy_sell_fills_and_no_corporate_actions":
-               (cash/float(config["initial_cash_cny"])-1) if not blocked else None,
+               ((initial_cash-total_entry_cost+total_exit_proceeds)/initial_cash-1) if not blocked else None,
             "official_h00300_close_close_return_different_entry_timestamp":bret,
             "benchmark_receipt":benchmark_receipt,
             "comparable_after_cost_alpha":None,
