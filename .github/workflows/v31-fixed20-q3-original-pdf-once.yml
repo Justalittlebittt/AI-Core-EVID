@@ -1,0 +1,39 @@
+name: V3.1 Frozen 20 original Q3 PDF batch once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v31-fixed20-q3-original-pdf-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-binary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pure-Python original PDF text extractor
+        run: python -m pip install --disable-pip-version-check 'pypdf>=5,<7'
+      - name: Check twenty frozen 2021/22 Q3 issuer reports without reading outcomes
+        run: |
+          python scripts/v31_fixed20_q3_original_binary_batch.py --output /tmp/v31-fixed20-q3-original-binary.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-fixed20-q3-original-binary.json").read_text())
+          assert len(d["rows"])==20
+          assert d["outcomes_or_prices_read"] is False
+          assert d["trade_authorized"] is False
+          print("SOURCE_ONLY_ORIGINAL_BATCH_CAPTURED_NO_ALPHA_CLAIM")
+          PY
+      - name: Preserve bounded original-source audit manifest without publishing PDF payloads
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-fixed20-original-q3-binary-source-audit
+          path: /tmp/v31-fixed20-q3-original-binary.json
+          retention-days: 7
