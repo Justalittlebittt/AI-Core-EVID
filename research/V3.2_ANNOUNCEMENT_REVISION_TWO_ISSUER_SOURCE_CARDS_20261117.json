@@ -73,7 +73,7 @@
     }
   ],
   "research_only": true,
-  "stock_prices_or_forward_returns_read_for_this_exemplar": false,
   "trading_authorized": false,
-  "verified_alpha": false
+  "verified_alpha": false,
+  "historical_outcome_blindness": "NOT_BLIND: public press search results for 2026 earnings revisions include post-announcement stock performance. These examples are source-mechanism illustrations only, never OOS or pre-result strategy research."
 }
