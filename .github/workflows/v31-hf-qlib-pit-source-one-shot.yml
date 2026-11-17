@@ -63,6 +63,22 @@ jobs:
           print("HISTORICAL_PIT_SOURCE_COVERAGE_RECORDED_NO_ALPHA_CLAIM")
           PY
 
+      - name: Classify Q3 source coverage by archived listing intervals
+        run: |
+          python scripts/v31_qlib_listed_coverage.py \
+            --archive "$(cat /tmp/v31-qlib-archive-path.txt)" \
+            --coverage /tmp/v31-qlib-coverage-only.json \
+            --output /tmp/v31-qlib-listed-coverage.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-qlib-listed-coverage.json").read_text())
+          assert d["status"]=="SUPPLIER_LISTING_ADJUSTED_SOURCE_ONLY"
+          assert not d["outcome_or_price_data_read"] and not d["trade_authorized"]
+          assert len(d["rows"])==72
+          print("LISTING_ADJUSTED_SOURCE_COVERAGE_RECORDED")
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
@@ -71,5 +87,6 @@ jobs:
           path: |
             /tmp/v31-qlib-source-only.json
             /tmp/v31-qlib-coverage-only.json
+            /tmp/v31-qlib-listed-coverage.json
           retention-days: 7
           if-no-files-found: warn
