@@ -93,6 +93,20 @@ jobs:
           assert d["price_or_returns_read"] is False and d["trade_authorized"] is False
           PY
 
+      - name: Build preregistered Q3 growth candidate sets from source-only PIT fields
+        run: |
+          python scripts/v31_q3_growth_source_preflight.py \
+            --archive "$(cat /tmp/v31-qlib-archive-path.txt)" \
+            --output /tmp/v31-q3-growth-source-only.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-q3-growth-source-only.json").read_text())
+          assert list(d["years"]) == ["2018","2019","2020","2021","2022"]
+          assert not d["prices_or_outcomes_read"] and not d["trade_authorized"]
+          print("PREREGISTERED_Q3_CANDIDATE_SOURCE_ONLY_RECORDED")
+          PY
+
       - name: Save small source-only evidence, never upload external data archive
         if: always()
         uses: actions/upload-artifact@v4
@@ -103,5 +117,6 @@ jobs:
             /tmp/v31-qlib-coverage-only.json
             /tmp/v31-qlib-listed-coverage.json
             /tmp/v31-pdf-crosscheck-inputs.json
+            /tmp/v31-q3-growth-source-only.json
           retention-days: 7
           if-no-files-found: warn
