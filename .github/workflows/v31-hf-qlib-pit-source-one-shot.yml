@@ -1,0 +1,58 @@
+name: V3.1 One-shot historical PIT source admission
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v31-hf-qlib-pit-source-one-shot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install public Hugging Face downloader
+        run: python -m pip install --disable-pip-version-check "huggingface_hub>=0.28,<2"
+
+      - name: Download pinned historical file without publishing the archive
+        run: |
+          python - <<'PY'
+          from huggingface_hub import hf_hub_download
+          from pathlib import Path
+          path=hf_hub_download(repo_id="joshuaxql/qlib_data", filename="cn_data.zip",
+                               repo_type="dataset",
+                               revision="ee0fa6b2299cb5e927d2df491888c84f6c9c027a")
+          Path("/tmp/v31-qlib-archive-path.txt").write_text(str(path))
+          print("ARCHIVE_RETRIEVED_FROM_PINNED_REVISION")
+          PY
+
+      - name: Hash-verify original bytes and inspect ONLY two 2023Q3 financial PIT records
+        run: |
+          python scripts/v31_qlib_pit_archive_probe.py \
+            --archive "$(cat /tmp/v31-qlib-archive-path.txt)" \
+            --output /tmp/v31-qlib-source-only.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("/tmp/v31-qlib-source-only.json").read_text())
+          assert d["buy_eligibility"]=="NOT_AUTHORIZED"
+          assert not d["outcome_or_price_data_read"]
+          assert not d["historical_original_pdf_numbers_authenticated"]
+          assert len(d["reports"])==2
+          print("FINANCIAL_PIT_SOURCE_PROBE_PASSED")
+          PY
+
+      - name: Save small source-only evidence, never upload external data archive
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v31-hf-qlib-2023q3-financial-source-only
+          path: /tmp/v31-qlib-source-only.json
+          retention-days: 7
+          if-no-files-found: warn
