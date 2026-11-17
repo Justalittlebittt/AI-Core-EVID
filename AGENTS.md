@@ -2,9 +2,22 @@
 
 These rules apply to assistants, coding agents, and human operators performing repository tasks.
 
-## Priority override for new development
+## Canonical development priority — prediction first (V3.2)
 
-Use [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md) to prioritize new work: candidate → evidence → action eligibility → monitor/exit. Frozen prospective E-layer remains independent. Do not expand CI monitoring, contracts, receipts, or probes unless a concrete mainline or scientific-integrity failure would otherwise persist. For a request to "continue", inspect which of the four delivery checkpoints is the nearest incomplete, executable user-facing milestone before choosing any operational housekeeping. This priority rule does not override frozen governance or the mandatory accurate incident-check procedure.
+Use [Prediction-first Architecture V3.2](docs/PREDICTION_FIRST_ARCHITECTURE_V3_2.md) for **new mainline work**, including short user instructions such as “继续”. Earlier [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md) retains the legacy implementation inventory and existing engine contracts, but **prediction-first P0 priority takes precedence** over convenience-driven monitoring, audits, repeated historic PDF checks or another negative-factor sweep.
+
+**One real outcome:** find decision-time A-share information that predicts future positive **after-cost executable benchmark-relative return**, demonstrate it on truly independent data, then deliver a dated real-security research / action case with uncertainty and existing buy/hold/exit discipline. No present signal has established this yet: **NO VERIFIED ALPHA / NO BUY**. Neither a green GitHub workflow nor a blocked-buy packet is a successful stock predictor.
+
+When deciding what to do next:
+1. Identify the highest-value **predictive or economic evidence gap**, not merely the newest broken script.
+2. Prefer a grounded economic mechanism and valid new independent data to random factor substitution on an already-opened backtest archive; prior price rise must **never** become an implicit universal entry requirement.
+3. Make a Problem Elimination Pass: delete, avoid, absorb or reuse before adding code, wrappers, CI, receipts or approvals.
+4. Actually execute the nearest feasible experiment or deliver a source-backed real-issuer research case; disclose independent-OOS limits and never silently unblind protected data.
+5. Preserve historical outcome/membership/time invariants, broker/lot costs, user stop-loss discipline, frozen 122/8 and V2.8.12 E studies, and no automated brokerage authorization. Do not alter frozen evidence to force progress.
+6. Keep failed, preregistered factors closed; do **not** flip signs, retune thresholds or reuse opened outcome windows as fresh evidence.
+7. Finish each work unit with an empirical result, a decision relevant to predicting/trading, or a precise evidence blocker. Do not mistake infrastructure completion for target completion.
+
+No bulk deletion of existing historical scripts or Actions jobs is authorized by this priority update; only change code when the direct predictive/decision requirement is identified.
 
 ## GitHub Actions status and incident checks (mandatory)
 
