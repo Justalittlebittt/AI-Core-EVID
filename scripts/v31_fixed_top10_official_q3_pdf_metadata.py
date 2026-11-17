@@ -19,7 +19,7 @@ from v29_original_report_discovery_128 import _post
 
 RECEIPT = Path("research/V3.1_2021_2022_FIXED_TOP10_SOURCE_ONLY_RECEIPT_20261117.json")
 BEIJING = timezone(timedelta(hours=8))
-TITLE = re.compile(r"(2021|2022)年?第三季度报告")
+TITLE = re.compile(r"(2021|2022)年?(?:第三季度|三季度)报告")
 BAD = ("摘要", "更正", "修订", "补充", "取消", "已取消", "英文", "提示性")
 PDF = re.compile(r"finalpage/(20\d\d-\d\d-\d\d)/(\d+\.PDF)$", re.I)
 
