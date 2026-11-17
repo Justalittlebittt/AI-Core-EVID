@@ -1,0 +1,79 @@
+{
+  "schema": "V32_ANNOUNCEMENT_REVISION_SOURCE_ONLY_EXEMPLARS_V1",
+  "audit_date": "2026-11-17",
+  "study": "SOURCE_FACT_CHANGE_NOT_PRICE_PREDICTION",
+  "original_pdf_sha256_sealed": false,
+  "original_publication_hour_verified": false,
+  "securities": [
+    {
+      "security_id": "SZSE:000096",
+      "name": "广聚能源",
+      "period": "2026H1",
+      "date_prior": "2026-07-15",
+      "date_revision": "2026-08-12",
+      "prior_announcement_id": "2026-020",
+      "revision_announcement_id": "2026-023",
+      "prior_official_url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-07-15/c7e28caf-963a-45ef-a095-e8c3ce24ffd0.PDF",
+      "revision_official_url": "https://static.cninfo.com.cn/finalpage/2026-08-12/1225469212.PDF",
+      "unit": "CNY_10000",
+      "parent_net_profit_prior_interval": [
+        2516.92,
+        2817.38
+      ],
+      "parent_net_profit_revised_interval": [
+        6555.96,
+        6856.42
+      ],
+      "parent_net_profit_midpoint_delta": 4039.04,
+      "deducted_profit_prior_interval": [
+        2362.15,
+        2662.61
+      ],
+      "deducted_profit_revised_interval": [
+        6401.19,
+        6701.65
+      ],
+      "deducted_profit_midpoint_delta": 4039.04,
+      "event_explanation": "14.42pct investee Shenzhen Mawan Power 2025-year distribution resolved earlier in 2026H1; issuer classifies the 4039.04 ten-thousand CNY investment income as NOT nonrecurring earnings; timing differs from generally Q3/Q4 recognition",
+      "important_risk": "prior trading-contract suspected fraud; 10963 ten-thousand CNY paid and loss exposure unresolved; no confirmed goodwill of positive earnings shock",
+      "status": "REAL_VERSION_CHANGE_SOURCE_VISIBLE_NOT_ALPHA"
+    },
+    {
+      "security_id": "SZSE:300670",
+      "name": "大烨智能",
+      "period": "2026H1",
+      "date_prior": "2026-07-13",
+      "date_revision": "2026-07-31",
+      "prior_announcement_id": "2026-026",
+      "revision_announcement_id": "2026-035",
+      "prior_official_url": null,
+      "revision_official_url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-07-31/761619c2-78d6-4bb3-ab60-4dbb2a0172b7.PDF",
+      "unit": "CNY_10000",
+      "parent_net_profit_prior_interval": [
+        -1200,
+        -800
+      ],
+      "parent_net_profit_revised_interval": [
+        600,
+        900
+      ],
+      "parent_net_profit_midpoint_delta": 1750,
+      "deducted_profit_prior_interval": [
+        -2000,
+        -1600
+      ],
+      "deducted_profit_revised_interval": [
+        -1500,
+        -1200
+      ],
+      "deducted_profit_midpoint_delta": 450,
+      "event_explanation": "Court appeal ruling led issuer to reverse provisions/over-accrued late interest and record compensation; revised parent profit turned positive but deducted earnings remain negative",
+      "important_risk": "judgment-accounting event and non-operating effects; cannot assume sustainable operating earnings or 20-session return",
+      "status": "REVISION_DOCUMENT_CONTAINS_PRIOR_AND_NEW_VALUES_BUT_ORIGINAL_PRIOR_PDF_NOT_SEALED"
+    }
+  ],
+  "research_only": true,
+  "stock_prices_or_forward_returns_read_for_this_exemplar": false,
+  "trading_authorized": false,
+  "verified_alpha": false
+}
