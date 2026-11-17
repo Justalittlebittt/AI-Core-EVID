@@ -135,7 +135,7 @@ jobs:
           print("CSI300_TR_2020_SOURCE_PROBE_STATUS",d["status"])
           PY
 
-      - name: Discover original 2021/22 Q3 official filing PDFs for the fixed 20 slots
+      - name: Discover original 2021/22 Q3 official filing PDFs (includes 三季度 wording)
         run: |
           python scripts/v31_fixed_top10_official_q3_pdf_metadata.py --output /tmp/v31-fixed-top10-official-q3-pdfs.json
           python - <<'PY'
