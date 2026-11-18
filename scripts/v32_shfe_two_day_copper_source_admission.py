@@ -47,14 +47,16 @@ def main():
                     item["first_record_sample"]={k:arr[0].get(k) for k in list(arr[0])[:20]} if arr else {}
                     item["copper_like_samples"]=[{k:v for k,v in x.items() if k.lower() in ("instrumentid","productid","deliverymonth","productname","variety","instrument_id")} for x in arr if isinstance(x,dict) and "cu" in str(x).lower()][:3]
                     hits=[x for x in arr if isinstance(x,dict)
-                          and str(x.get("INSTRUMENTID","")).lower()==CONTRACT]
+                          and str(x.get("PRODUCTGROUPID","")).lower()=="cu"
+                          and str(x.get("PRODUCTID","")).lower()=="cu_f"
+                          and str(x.get("DELIVERYMONTH",""))=="2612"]
                     item["matching_contract_count"]=len(hits)
                     if len(hits)!=1:item["status"]="CU2612_IDENTITY_NOT_UNIQUE"
                     else:
                         rec=hits[0]
                         item["contract_keys"]=sorted(rec)
                         item["quoted_fields"]={k:rec.get(k) for k in
-                          ("INSTRUMENTID","PRODUCTID","CLOSEPRICE","SETTLEMENTPRICE",
+                          ("PRODUCTGROUPID","DELIVERYMONTH","PRODUCTID","CLOSEPRICE","SETTLEMENTPRICE",
                            "PRESETTLEMENTPRICE","VOLUME","OPENINTEREST")}
                         close=rec.get("CLOSEPRICE")
                         settlement=rec.get("SETTLEMENTPRICE")
