@@ -43,6 +43,9 @@ def main():
                     item["status"]="SHFE_EXPECTED_CONTRACT_ARRAY_MISSING"
                 else:
                     item["total_contract_records"]=len(arr)
+                    item["first_record_fields"]=list(arr[0]) if arr else []
+                    item["first_record_sample"]={k:arr[0].get(k) for k in list(arr[0])[:20]} if arr else {}
+                    item["copper_like_samples"]=[{k:v for k,v in x.items() if k.lower() in ("instrumentid","productid","deliverymonth","productname","variety","instrument_id")} for x in arr if isinstance(x,dict) and "cu" in str(x).lower()][:3]
                     hits=[x for x in arr if isinstance(x,dict)
                           and str(x.get("INSTRUMENTID","")).lower()==CONTRACT]
                     item["matching_contract_count"]=len(hits)
