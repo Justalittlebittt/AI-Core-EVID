@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
-      - name: Identify exact SHFE field keys on two fixed finished sessions
+      - name: Validate CU2612 with observed SHFE product and delivery-month identities
         run: |
           python scripts/v32_shfe_two_day_copper_source_admission.py
           python - <<'PY'
