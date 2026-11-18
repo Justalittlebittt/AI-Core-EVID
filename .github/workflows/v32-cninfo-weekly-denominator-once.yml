@@ -1,4 +1,4 @@
-name: V3.2 Weekly CNINFO announcement denominator feasibility once
+name: V3.2 CNINFO partitioned announcement denominator feasibility
 on:
   push:
     branches: [main]
@@ -13,23 +13,23 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-      - name: Test independent seven-day windows and detect repeated pages
+      - name: Check sole unresolved week using seven source-only daily partitions
         run: |
-          python scripts/v32_cninfo_weekly_denominator_feasibility.py --output /tmp/v32-weekly-denominator.json
+          python scripts/v32_cninfo_unresolved_week_daily_probe.py --output /tmp/v32-weekly-denominator.json
           python - <<'PY'
           import json
           from pathlib import Path
           d=json.loads(Path("/tmp/v32-weekly-denominator.json").read_text())
-          assert d["window_count"]==9
-          assert not d["stock_outcome_prices_opened"]
-          assert not d["complete_revision_market_universe_proven"]
+          assert len(d["rows"])==7
+          assert d["source_only"] is True
+          assert d["all_market_title_or_keyword_recall_unproven"] is True
           assert not d["live_buy_authorized"]
-          print("WEEKLY_SOURCE_PROBE_FINISHED_NO_ALPHA_CLAIM")
+          print("SUBDAY_SOURCE_PROBE_FINISHED_NO_ALPHA_CLAIM")
           PY
       - name: Retain exact source-query IDs and pagination fingerprints
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v32-cninfo-weekly-denominator-source-probe
+          name: v32-cninfo-unresolved-week-subday-source-probe
           path: /tmp/v32-weekly-denominator.json
           retention-days: 14
