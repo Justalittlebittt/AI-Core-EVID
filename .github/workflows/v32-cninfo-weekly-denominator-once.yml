@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
-      - name: Check original SHFE copper futures contract on two fixed finished sessions
+      - name: Identify exact SHFE field keys on two fixed finished sessions
         run: |
           python scripts/v32_shfe_two_day_copper_source_admission.py
           python - <<'PY'
