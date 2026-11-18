@@ -13,23 +13,23 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-      - name: Check sole unresolved week using seven source-only daily partitions
+      - name: Check official earnings guidance category on sole high-volume day
         run: |
-          python scripts/v32_cninfo_unresolved_week_daily_probe.py --output /tmp/v32-weekly-denominator.json
+          python scripts/v32_cninfo_category_single_day_probe.py --output /tmp/v32-weekly-denominator.json
           python - <<'PY'
           import json
           from pathlib import Path
           d=json.loads(Path("/tmp/v32-weekly-denominator.json").read_text())
-          assert len(d["rows"])==7
-          assert d["source_only"] is True
-          assert d["all_market_title_or_keyword_recall_unproven"] is True
-          assert not d["live_buy_authorized"]
-          print("SUBDAY_SOURCE_PROBE_FINISHED_NO_ALPHA_CLAIM")
+          assert d["day"]=="2026-07-15"
+          assert d["prices_opened"] is False
+          assert d["all_market_event_recall_certified"] is False
+          assert d["buy_authorized"] is False
+          print("CATEGORY_SOURCE_PROBE_FINISHED_NO_ALPHA_CLAIM")
           PY
       - name: Retain exact source-query IDs and pagination fingerprints
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v32-cninfo-unresolved-week-subday-source-probe
+          name: v32-cninfo-one-day-earnings-category-admission
           path: /tmp/v32-weekly-denominator.json
           retention-days: 14
