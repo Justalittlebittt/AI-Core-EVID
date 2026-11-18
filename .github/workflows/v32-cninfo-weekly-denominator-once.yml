@@ -1,4 +1,4 @@
-name: V3.2 CNINFO partitioned announcement denominator feasibility
+name: V3.2 single official commodity source feasibility runner
 on:
   push:
     branches: [main]
@@ -10,26 +10,26 @@ permissions:
 jobs:
   source-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
-      - name: Check official earnings guidance category on sole high-volume day
+      - name: Check original SHFE copper futures contract on two fixed finished sessions
         run: |
-          python scripts/v32_cninfo_category_single_day_probe.py --output /tmp/v32-weekly-denominator.json
+          python scripts/v32_shfe_two_day_copper_source_admission.py
           python - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path("/tmp/v32-weekly-denominator.json").read_text())
-          assert d["day"]=="2026-07-15"
-          assert d["prices_opened"] is False
-          assert d["all_market_event_recall_certified"] is False
-          assert d["buy_authorized"] is False
-          print("CATEGORY_SOURCE_PROBE_FINISHED_NO_ALPHA_CLAIM")
+          d=json.loads(Path('/tmp/v32-shfe-two-day-admission.json').read_text())
+          assert d['contract']=='cu2612'
+          assert len(d['days'])==2
+          assert d['no_stock_return_read'] is True
+          assert d['trade_authorized'] is False
+          print('SHFE_SOURCE_ONLY_PROBE_COMPLETE_NO_ALPHA_CLAIM')
           PY
-      - name: Retain exact source-query IDs and pagination fingerprints
+      - name: Retain original source endpoint admission outcome
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v32-cninfo-one-day-earnings-category-admission
-          path: /tmp/v32-weekly-denominator.json
+          name: v32-shfe-cu2612-two-day-source-admission
+          path: /tmp/v32-shfe-two-day-admission.json
           retention-days: 14
