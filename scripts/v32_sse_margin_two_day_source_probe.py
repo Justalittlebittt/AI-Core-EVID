@@ -19,8 +19,8 @@ def fetch(day,page):
     q={"isPagination":"true","tabType":"mxtype","detailsDate":day,
        "stockCode":"","beginDate":"","endDate":"",
        "pageHelp.pageSize":"2000","pageHelp.pageCount":"50",
-       "pageHelp.pageNo":str(page),"pageHelp.beginPage":"1",
-       "pageHelp.cacheSize":"1","pageHelp.endPage":"21"}
+       "pageHelp.pageNo":str(page),"pageHelp.beginPage":str(page),
+       "pageHelp.cacheSize":"1","pageHelp.endPage":str(page)}
     req=urllib.request.Request(URL+"?"+urllib.parse.urlencode(q),headers={
       "Referer":"https://www.sse.com.cn/market/othersdata/margin/detail/",
       "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36",
@@ -59,6 +59,7 @@ def day_report(day):
         for page in range(1,5):
             rows,h,sha=fetch(day,page)
             total=int(h["total"])
+            print("SSE_PAGINATION_METADATA",day,page,"returned_page",h.get("pageNo"),"pageCount",h.get("pageCount"),"first_code",rows[0].get("stockCode") if rows else None,flush=True)
             page_count=int(h["pageCount"])
             page_no=int(h["pageNo"])
             if page_no!=page or total<0 or page_count<1:raise ValueError("BAD_PAGINATION_META")
