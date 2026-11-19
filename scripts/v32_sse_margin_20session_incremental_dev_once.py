@@ -47,11 +47,16 @@ def source_rows(sessions):
         data[event]={}
         for day in required:
             report,rows=day_report(day.replace("-",""))
+            retries=0
+            if report["status"]!="SOURCE_PAGINATION_EXHAUSTIVE":
+                print("SSE_SOURCE_TRANSIENT_ONE_RETRY",day,report.get("failure"),flush=True)
+                retries=1
+                report,rows=day_report(day.replace("-",""))
             provenance.append({"signal_date":event,"source_date":day,
               "status":report["status"],"raw_page_proof":report["pages"],
-              "retrieved_codes":len(rows)})
+              "retrieved_codes":len(rows),"retry_count":retries})
             if report["status"]!="SOURCE_PAGINATION_EXHAUSTIVE":
-                raise ValueError("SSE_MARGIN_DATE_SOURCE_NOT_COMPLETE:"+day)
+                raise ValueError("SSE_MARGIN_DATE_SOURCE_NOT_COMPLETE_AFTER_ONE_RETRY:"+day+":"+str(report.get("failure")))
             data[event][day]=rows
         print("MARGIN_EVENT_SOURCE_COMPLETE",event,"T_MINUS_5",required[0],flush=True)
     return data,provenance
