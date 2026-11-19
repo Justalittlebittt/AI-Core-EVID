@@ -114,3 +114,13 @@ For user instruction "继续" under 股票预测:
 As of 2026-11-17: **NO VERIFIED ALPHA / NO BUY**. No independent tested prediction signal is ready to trade. Failing strategies and source limitations are real research information, not tasks to keep repairing.
 
 Architecture migration is complete when README + agent policy point here, existing engines are reused, frozen contracts remain unchanged, and a new "continue" turn starts from the predictive/validation bottleneck rather than another unneeded workflow. **Changing documentation alone does not prove forecast ability or trading readiness.**
+
+## 2026-11-19：交易前纸面可执行性前移（复用，而非预测策略）
+
+已加入通用纯函数 `scripts/v32_candidate_tradeability.py` 的 `evaluate(candidates, account)` 与六项最小回归测试 `scripts/test_v32_candidate_tradeability.py`。实测 [GitHub Actions run 44480964965](https://github.com/Justalittlebittt/AI-Core-EVID/actions/runs/44480964965) `completed/success`。
+
+**为何必须有此边界**：近期冻结的2026-09-18融资Top10两种模型各有一只科创板最低200股超过单名¥10,000；2025/26沪深300调入名单的部分股票亦超出固定单名预算。在计算未来20日收益**之前**，需要先使用T时点股票代码、已可得参考价、预算和板块权限判断纸面交易资格，避免事后因“买不起”换股/减小交易单位。
+
+可重用函数只接受显式传入的 `security_id`、`reference_price_cny`、`reference_session` 和账户预算/权限；不读取股价或未来结果，不对原名单排序或补选。主板/创业板最低买100股；科创板最低买200股、超过200股允许按1股递增（验证来源：上交所2026年[交易规则](https://www.sse.com.cn/lawandrules/sselawsrules2025/stocks/exchange/c/c_20260424_10816482.shtml)和[投教说明](https://edu.sse.com.cn/tib/qa/)；深交所[主板/创业板说明](https://www.szse.cn/www/investor/institute/rules/t20230706_601604.html)）。函数输出`PAPER_MIN_LOT_AFFORDABLE_ONLY`或`BLOCKED_PAPER_BUY`，总是`trade_authorized=false`。使用固定示例最小单边¥5佣金+0.03%佣金率+0.1%入场滑点；**不是**真实券商收费或限价簿成交验证；也**不保证整个候选组合的共享现金配置**。
+
+此能力不修改冻结8股、不把负面研究转换为买入证据、不替代已有`scripts/v29_eight_portfolio_capacity.py`对特定8股的组合风险检查。后续任何全市场研究候选筛选时，交易资格必须在**T+20收益读取前**得到明确状态；未提供真实账户输入时保持UNKNOWN，不虚构用户资金。交易前资格只是必要条件，仍缺真正独立、扣费后可重复超额的预测证据，**NO BUY**。
