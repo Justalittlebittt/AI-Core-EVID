@@ -72,11 +72,21 @@ def fetch_bars(bs,sids):
                start_date="2026-04-01",end_date="2026-10-31",
                frequency="d",adjustflag=flag))
             tmp={}
+            adjustment_unavailable=False
             for one in rr:
-                if (one["code"]!=code or one["adjustflag"]!=flag or
-                    one["date"] in tmp):raise ValueError("INVALID_BAOSTOCK_DUPLICATE_OR_CODE:"+sid+":"+flag+":"+repr(one)[:450]+":duplicate="+str(one["date"] in tmp))
+                if one["code"]!=code or one["date"] in tmp:
+                    raise ValueError("INVALID_BAOSTOCK_IDENTITY_OR_DUPLICATE:"+sid+":"+repr(one)[:200])
+                if one["adjustflag"]!=flag:
+                    # Historical vendor can return raw flag=3 even when we
+                    # requested forward-adjusted flag=2. Never substitute.
+                    if flag=="2" and one["adjustflag"]=="3":
+                        print("FORWARD_ADJUSTED_SOURCE_NOT_AUTHENTICATED",sid,
+                              "requested",flag,"returned",one["adjustflag"],flush=True)
+                        adjustment_unavailable=True
+                        break
+                    raise ValueError("UNEXPECTED_ADJUSTMENT_VINTAGE:"+sid+":"+str(one["adjustflag"]))
                 tmp[one["date"]]=one
-            byflag[flag]=tmp
+            byflag[flag]={} if adjustment_unavailable else tmp
         result[sid]=byflag
         if j%15==0:print("BAOSTOCK_ISSUER_PROGRESS",j,len(sids),flush=True)
     idx=records(bs.query_history_k_data_plus("sh.000300",FIELDS,
