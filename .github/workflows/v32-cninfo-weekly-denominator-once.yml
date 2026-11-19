@@ -1,4 +1,4 @@
-name: V3.2 official information-source feasibility one-shot
+name: V3.2 reusable source and decision boundary one-shot
 on:
   push:
     branches: [main]
@@ -8,27 +8,24 @@ on:
 permissions:
   contents: read
 jobs:
-  source-only:
+  decision-boundary:
     runs-on: ubuntu-latest
-    timeout-minutes: 9
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - name: Census fixed 20 consecutive 2026 SSE margin disclosure days
+      - name: Test board-aware decision-time affordability without futures leakage
         run: |
-          python scripts/v32_sse_margin_20session_continuity_once.py
+          cd scripts
+          python -m unittest -v test_v32_candidate_tradeability.py
           python - <<'PY'
-          import json
-          from pathlib import Path
-          r=json.loads(Path('/tmp/v32_sse_margin_twenty_dates_source.json').read_text())
-          assert r['requested_weekdays']==20
-          assert not r['stock_outcome_or_return_used']
-          assert not r['trade_authorized']
-          assert r['A_share_identity_is_unverified_prefix_classification'] is True
-          print('SOURCE_ONLY_20_SESSION_RUN_CLOSED_WITHOUT_ALPHA_OR_BUY')
+          from v32_candidate_tradeability import evaluate
+          x=evaluate([
+              {'security_id':'SSE:688122','reference_price_cny':'60','reference_session':'2026-05-29'},
+              {'security_id':'SSE:603256','reference_price_cny':'20','reference_session':'2026-05-29'}
+          ],{'cash_cny':100000,'slot_cap_cny':10000,'fee_reserve_cny':100,
+             'permissions':{'main':True,'chinext':True,'star':True}})
+          assert x['trade_authorized'] is False
+          assert [r['gate'] for r in x['original_candidates_in_original_order']] == [
+              'BLOCKED_PAPER_BUY','PAPER_MIN_LOT_AFFORDABLE_ONLY']
+          print('NO_RANK_REPLACEMENT_OR_TRADE_PROMOTION')
           PY
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: v32-sse-margin-twenty-session-daily-pagination-census
-          path: /tmp/v32_sse_margin_twenty_dates_source.json
-          retention-days: 14
