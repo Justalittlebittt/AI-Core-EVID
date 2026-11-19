@@ -1,0 +1,52 @@
+{
+  "schema": "V32_CSI300_202511_RECONSTITUTION_20DAY_REPLICATION_PREREG_V1",
+  "registered_after_first_202605_descriptive_result_but_before_202511_price_outcome_collection": true,
+  "replication_caveat": "Independent event window but selected after seeing 2026 May strong historical result; not pristine prospective OOS.",
+  "source_pdf": "https://oss-ch.csindex.com.cn/notice/20251128165753-附件：部分指数样本调整名单.pdf",
+  "source_date": "2025-11-28",
+  "official_effective": "after 2025-12-12 close",
+  "entry": "2025-12-02 next-next trading-day open",
+  "exit": "close of 20th inclusive exchange trading session after entry",
+  "groups": {
+    "added": [
+      "002384",
+      "002625",
+      "300251",
+      "300476",
+      "300803",
+      "300866",
+      "600522",
+      "600930",
+      "601018",
+      "601456",
+      "603893"
+    ],
+    "removed": [
+      "000800",
+      "001289",
+      "002129",
+      "002180",
+      "600332",
+      "601699",
+      "601799",
+      "601865",
+      "603806",
+      "603833",
+      "688599"
+    ]
+  },
+  "pricing": "Same BaoStock same-vintage flag2 forward-adjusted stock entry open and 20th close, quoted same index raw price, no cherry picking or price-derived exclusion, return after explicit fees proxy",
+  "friction": "same as 2026 May: main min100, STAR min200; CNY5 each-way minimum commission, 10bps slippage each way, 5bps sell stamp; independently quote lot cost",
+  "primary_metric": "mean additions after-cost price-index excess minus mean deletions after-cost price-index excess; additions mean excess must also be positive",
+  "secondary": [
+    "median excess",
+    "fraction positive",
+    "preannouncement 20-session index excess",
+    "delete all members absent certified adjusted price",
+    "top1/top3 add-outlier sensitivity post-comparison only"
+  ],
+  "minimum_source": "at least 9/11 reliable members in each original group else SOURCE_INSUFFICIENT",
+  "fixed_rules": "No tuning after May result. Same method and fixed per-stock cost. Single historical event not alpha. Cannot infer broker fills, total return, PIT publication hour.",
+  "protected": "122/8 November 2026 prospective, 2021/22 unopened, E Fold3/4 not touched",
+  "trade_authorized": false
+}
