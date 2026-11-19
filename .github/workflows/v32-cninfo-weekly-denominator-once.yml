@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 4
     steps:
       - uses: actions/checkout@v4
-      - name: Read two SSE margin-detail trading dates without stock prices
+      - name: Read two full SSE margin source pages per trading day without stock returns
         run: |
           python scripts/v32_sse_margin_two_day_source_probe.py
           python - <<'PY'
