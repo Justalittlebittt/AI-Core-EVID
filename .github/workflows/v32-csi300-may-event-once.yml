@@ -1,0 +1,39 @@
+name: V3.2 CSI300 May 2026 index-reconstitution 20-session one-shot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v32-csi300-may-event-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-event:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install published A-share historical quote client
+        run: python -m pip install --disable-pip-version-check 'baostock==0.9.4' 'numpy>=1.26,<3'
+      - name: Execute preregistered 19 in vs 19 out 20-session return contrast
+        run: |
+          python scripts/v32_csi300_may_reconstitution_20session_once.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/v32_csi300_reconstitution_202605_one_shot.json').read_text())
+          assert x['original_count_per_group']==19
+          assert x['groups']['ADD']['original_members']==19
+          assert x['groups']['DELETE']['original_members']==19
+          assert x['trade_authorized'] is False
+          assert x['all_2026_122_8_and_e_fold_protected_not_read'] is True
+          assert x['status'] in ('SOURCE_INSUFFICIENT','DESCRIPTIVE_DEVELOPMENT_SUPPORT_ONLY_NOT_VERIFIED_ALPHA','NOT_SUPPORTED_BY_THIS_ONE_HISTORICAL_EVENT')
+          print('CSI300_HISTORICAL_DEVELOPMENT_COMPLETE_NO_BUY')
+          PY
+      - name: Preserve original members, individual status and fixed comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v32-csi300-2026-may-fixed19x2-20session-original-source-outcomes
+          path: /tmp/v32_csi300_reconstitution_202605_one_shot.json
+          retention-days: 14
