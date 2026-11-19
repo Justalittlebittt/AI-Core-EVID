@@ -29,8 +29,8 @@ def pos(v):
 def main():
     original=SPEC.read_bytes()
     spec=json.loads(original)
-    add=spec["added"]
-    delete=spec["removed"]
+    add=spec["groups"]["added"]
+    delete=spec["groups"]["removed"]
     if (spec["schema"]!="V32_CSI300_202511_RECONSTITUTION_20DAY_REPLICATION_PREREG_V1"
         or len(add)!=11 or len(delete)!=11 or
         len(set(add+delete))!=22 or
