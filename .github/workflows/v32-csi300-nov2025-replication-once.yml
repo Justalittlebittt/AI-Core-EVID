@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install existing A-share source client
         run: python -m pip install --disable-pip-version-check 'baostock==0.9.4' 'numpy>=1.26,<3'
-      - name: Check Nov2025 11in/11out source after prereg JSON group path correction
+      - name: Apply preregistered 9-of-11 coverage gate to same 2025 event
         run: |
           python scripts/v32_csi300_nov2025_reconstitution_replicate_once.py
           python - <<'PY'
