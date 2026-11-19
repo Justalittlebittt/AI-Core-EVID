@@ -1,4 +1,4 @@
-name: V3.2 source-admission one-shot
+name: V3.2 already-archived baseline one-shot
 on:
   push:
     branches: [main]
@@ -8,26 +8,28 @@ on:
 permissions:
   contents: read
 jobs:
-  source-only:
+  existing-data-only:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - name: Final queryDate-adapted historical block-trade source admission check
+      - name: Derive 20-session unconditional opportunity base rate from existing archive
         run: |
-          python scripts/v32_sse_block_trade_source_one_shot.py
+          python scripts/v32_archived_unconditional_20session_base_rate_once.py
           python - <<'PY'
           import json
           from pathlib import Path
-          x=json.loads(Path('/tmp/v32_sse_block_trade_probe.json').read_text())
-          assert len(x['dates'])==2
-          assert x['stock_return_outcomes_read'] is False
-          assert x['trade_authorized'] is False
-          print('SSE_BULK_SOURCE_CHECK_DOES_NOT_CLAIM_ALPHA')
+          d=json.loads(Path('/tmp/v32_unconditional_20session_base_rate.json').read_text())
+          assert d['signal_months']==20
+          assert len(d['months'])==20
+          assert d['future_stock_prices_not_queried_now'] is True
+          assert d['unconditional_base_rate_is_not_an_alpha_signal'] is True
+          assert d['existing_frozen_122_8_and_e_layer_not_read'] is True
+          assert d['trade_authorized'] is False
+          print('ARCHIVED_BASE_RATE_ONLY_NOT_A_LIVE_FORECAST')
           PY
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: v32-sse-bulk-source-date-filter-proof-only
-          path: /tmp/v32_sse_block_trade_probe.json
+          name: v32-existing-20month-unconditional-baseline-no-alpha
+          path: /tmp/v32_unconditional_20session_base_rate.json
           retention-days: 14
