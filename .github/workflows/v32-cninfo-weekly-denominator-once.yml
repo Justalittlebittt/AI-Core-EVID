@@ -1,4 +1,4 @@
-name: V3.2 reusable source and decision boundary one-shot
+name: V3.2 source-admission one-shot
 on:
   push:
     branches: [main]
@@ -8,24 +8,26 @@ on:
 permissions:
   contents: read
 jobs:
-  decision-boundary:
+  source-only:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - name: Test board-aware decision-time affordability without futures leakage
+      - name: Official SSE block-trade two-date source and pagination reality check
         run: |
-          cd scripts
-          python -m unittest -v test_v32_candidate_tradeability.py
+          python scripts/v32_sse_block_trade_source_one_shot.py
           python - <<'PY'
-          from v32_candidate_tradeability import evaluate
-          x=evaluate([
-              {'security_id':'SSE:688122','reference_price_cny':'60','reference_session':'2026-05-29'},
-              {'security_id':'SSE:603256','reference_price_cny':'20','reference_session':'2026-05-29'}
-          ],{'cash_cny':100000,'slot_cap_cny':10000,'fee_reserve_cny':100,
-             'permissions':{'main':True,'chinext':True,'star':True}})
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/v32_sse_block_trade_probe.json').read_text())
+          assert len(x['dates'])==2
+          assert x['stock_return_outcomes_read'] is False
           assert x['trade_authorized'] is False
-          assert [r['gate'] for r in x['original_candidates_in_original_order']] == [
-              'BLOCKED_PAPER_BUY','PAPER_MIN_LOT_AFFORDABLE_ONLY']
-          print('NO_RANK_REPLACEMENT_OR_TRADE_PROMOTION')
+          print('SSE_BULK_SOURCE_CHECK_DOES_NOT_CLAIM_ALPHA')
           PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v32-sse-bulk-source-date-filter-proof-only
+          path: /tmp/v32_sse_block_trade_probe.json
+          retention-days: 14
