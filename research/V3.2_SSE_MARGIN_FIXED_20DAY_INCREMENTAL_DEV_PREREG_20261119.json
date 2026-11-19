@@ -1,0 +1,42 @@
+{
+  "schema": "V32_SSE_MARGIN_FIXED_20SESSION_INCREMENTAL_DEVELOPMENT_PREDECLARATION_V1",
+  "registered_before": "all four test event financing values and any post-event stock prices are read",
+  "study": "retrospective development only; Sep18 2026 is chronological holdout but not pristine unseen OOS",
+  "cohort": "select 60 A-share prefix 600/601/603/605/688/689 from SSE margin detail 2026-05-20, ranked by sha256(code) lexicographically; lock before later events. Do not replace if missing or not executable.",
+  "decision_events": [
+    "2026-05-20",
+    "2026-06-17",
+    "2026-07-15",
+    "2026-09-18"
+  ],
+  "fit_events": [
+    "2026-05-20",
+    "2026-06-17",
+    "2026-07-15"
+  ],
+  "test_event": "2026-09-18",
+  "feature_fields": {
+    "baseline": [
+      "intercept",
+      "stock prior 5 session adjusted close return minus CSI300 prior 5 session price index return",
+      "stock prior 20 session adjusted close return minus CSI300 prior 20 session price index return"
+    ],
+    "augment": [
+      "financing balance(T)/balance(T-5 stock trading sessions)-1",
+      "(financing buys(T)-repay(T))/financing balance(T-1)"
+    ],
+    "info_time": "SSE reports previous day margin details before next open by rule; select T features not earlier than T+1, entry T+2 open conservatively; retrospective initial publication SHA not certified"
+  },
+  "target": "20 A-share trading sessions T+2 open through T+21 close; use same-vintage forward adjusted OHLC price-only proxy minus CSI300 unadjusted price index same entry and exit; test net separately (not use future sample eligibility)",
+  "algorithm": "pooled linear OLS on three training events, baseline vs augmented same complete-case training rows; no tuning, standardization or sign flips; test event fixed",
+  "metrics": "paired 2026-09-18 test MSE (baseline minus augmented), cross-sectional Spearman rank IC for each; same-sample date alone cannot infer robust statistical significance",
+  "portfolio": "select top 10 predictions for baseline and augmented within identical at-decision-date eligible 60 cohort; 100-share board lot, CNY 100000 cash, 10 percent per-name target, min CNY5 commission each way, 10bps slippage each way, sell-side 0.05pct stamp, report blocked or missing fills without substituting names; use adjusted proxy outcomes only, no broker certification",
+  "gates": [
+    "every source query pagination complete for fixed dates and T-5,T-1",
+    "at least 40 same complete-case train issuer-event observations and 30 eval issuers; no missing post price rows treated as zero",
+    "report both model MSE and sampled test portfolio effects no cherry pick",
+    "no trading promotion even if positive; single out-of-time event and old retro source versions cannot constitute independent verified alpha"
+  ],
+  "protected": "do not read frozen 122/8, E Fold3/Fold4, 2021/22 holdouts or outcome archives",
+  "authorized_buy": false
+}
