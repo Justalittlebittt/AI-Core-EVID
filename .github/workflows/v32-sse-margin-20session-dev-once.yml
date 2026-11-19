@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install only historical A-share quote adapter and linear algebra
         run: python -m pip install --disable-pip-version-check 'baostock==0.9.4' 'numpy>=1.26,<3'
-      - name: Identify exact historical vendor quote identity mismatch without changing preregistration
+      - name: Execute original registered test with non-certified adjusted quotes retained as missing
         run: |
           python scripts/v32_sse_margin_20session_incremental_dev_once.py
           python - <<'PY'
