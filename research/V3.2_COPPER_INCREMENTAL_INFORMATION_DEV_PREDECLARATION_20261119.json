@@ -1,0 +1,51 @@
+{
+  "schema": "V32_COPPER_INCREMENTAL_PREDICTION_DEVELOPMENT_SPEC_V1",
+  "registration_status": "COMMITTED_BEFORE_OUTCOME_COLLECTION",
+  "study_type": "RETROSPECTIVE_CHRONOLOGICAL_DEVELOPMENT_NOT_PRISTINE_OOS",
+  "purpose": "Check whether prior copper futures close return improves future A-share excess return prediction beyond known prior A-share excess return.",
+  "issuers": [
+    [
+      "SSE:603993",
+      "sh.603993",
+      "upstream miner"
+    ],
+    [
+      "SZSE:002203",
+      "sz.002203",
+      "copper processor"
+    ]
+  ],
+  "dates": {
+    "first_signal": "2026-05-06",
+    "last_signal": "2026-07-15",
+    "last_stock_query": "2026-07-31"
+  },
+  "SHFE": {
+    "endpoint": "https://www.shfe.com.cn/data/tradedata/future/dailydata/kxYYYYMMDD.dat",
+    "product_group": "cu",
+    "product_id": "cu_f",
+    "delivery_month": "2609",
+    "price_field": "CLOSEPRICE"
+  },
+  "features": {
+    "copper": "CU2609 close(T)/close(previous stock exchange session)-1; missing means exclude, never shift dates",
+    "stock": "stock close(T)/close(T-1)-1 minus CSI300 close(T)/close(T-1)-1"
+  },
+  "target": "stock raw close(T+3)/open(T+2)-1 minus CSI300 close(T+3)/open(T+2)-1; Buy T+2 open, sell T+3 close to respect A-share T+1.",
+  "models": {
+    "baseline": "OLS intercept+stock prior excess",
+    "augmented": "OLS intercept+stock prior excess+copper prior close return"
+  },
+  "fit": "per issuer chronological first 60 percent train / remaining 40 percent test; numpy lstsq no tuning; require >=28 observations 15 train 8 test",
+  "eval": "paired test MSE: 1-MSE(augmented)/MSE(baseline), per issuer and equal issuer mean; no portfolio profitability claim",
+  "predefined_result": "DESCRIPTIVE_SUPPORT_ONLY if both issuer test improvements >0; else NOT_SUPPORTED_BY_THIS_DEVELOPMENT_SAMPLE; INSUFFICIENT if coverage not reached",
+  "limitations": [
+    "Historical outcomes already happened; chronological holdout not truly unseen.",
+    "Official historical source publication time unverified: trading at T+2 is conservative but not source-time certified.",
+    "Price-only, no verified lots, fees, fills, dividends, limit-up constraints.",
+    "Already researched historical windows mean not genuine clean OOS.",
+    "Never change sign/date/contract/model based on results.",
+    "Frozen 122/8 and E layer untouched."
+  ],
+  "no_buy": true
+}
