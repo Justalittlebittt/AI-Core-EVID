@@ -1,0 +1,41 @@
+name: V3.2 SSE financing incremental 20-session fixed retrospective development once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v32-sse-margin-20session-dev-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fixed-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install only historical A-share quote adapter and linear algebra
+        run: python -m pip install --disable-pip-version-check 'baostock==0.9.4' 'numpy>=1.26,<3'
+      - name: Execute 3 historical training events and one fixed later 20-session test event
+        run: |
+          python scripts/v32_sse_margin_20session_incremental_dev_once.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/v32_margin_fixed_20session_incremental_dev.json').read_text())
+          assert d["live_buy_authorized"] is False
+          assert d["no_unseen_122_8_or_E_layer_read"] is True
+          assert d["retrospective_development_not_pristine_oos"] is True
+          assert d["cohort_size"]==60
+          assert d["status"] in (
+              "INSUFFICIENT_TRAIN_OR_TEST_SOURCE",
+              "DESCRIPTIVE_INCREMENTAL_MSE_IMPROVED",
+              "NOT_SUPPORTED_BY_THIS_RETROSPECTIVE_DEVELOPMENT_SAMPLE")
+          print('20_SESSION_DEVELOPMENT_RESEARCH_ONLY_NO_BUY')
+          PY
+      - name: Retain full source page hashes, fixed member list and observed verdict
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v32-fixed-sse-financing-20-session-incremental-retrospective-dev
+          path: /tmp/v32_margin_fixed_20session_incremental_dev.json
+          retention-days: 20
