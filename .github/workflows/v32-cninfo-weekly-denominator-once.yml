@@ -10,25 +10,25 @@ permissions:
 jobs:
   source-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
-      - name: Check four frozen historical SSE margin source dates and equity identity coverage
+      - name: Census fixed 20 consecutive 2026 SSE margin disclosure days
         run: |
-          python scripts/v32_sse_margin_historical_source_coverage_once.py
+          python scripts/v32_sse_margin_20session_continuity_once.py
           python - <<'PY'
           import json
           from pathlib import Path
-          r=json.loads(Path('/tmp/v32_sse_historical_margin_coverage.json').read_text())
-          assert len(r['reports'])==4
-          assert r['stock_ohlc_or_future_outcome_queried'] is False
-          assert r['buy_authorized'] is False
-          assert r['date_range_daily_continuity_certified'] is False
-          print('HISTORICAL_SSE_MARGIN_SOURCE_ONLY_CLOSED')
+          r=json.loads(Path('/tmp/v32_sse_margin_twenty_dates_source.json').read_text())
+          assert r['requested_weekdays']==20
+          assert not r['stock_outcome_or_return_used']
+          assert not r['trade_authorized']
+          assert r['A_share_identity_is_unverified_prefix_classification'] is True
+          print('SOURCE_ONLY_20_SESSION_RUN_CLOSED_WITHOUT_ALPHA_OR_BUY')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v32-sse-margin-four-historical-dates-source-coverage
-          path: /tmp/v32_sse_historical_margin_coverage.json
+          name: v32-sse-margin-twenty-session-daily-pagination-census
+          path: /tmp/v32_sse_margin_twenty_dates_source.json
           retention-days: 14
