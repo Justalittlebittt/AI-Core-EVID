@@ -1,0 +1,37 @@
+name: V3.2 Copper incremental stock forecasting development one-shot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v32-copper-incremental-dev-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  one-shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install only historical price client and OLS math
+        run: python -m pip install --disable-pip-version-check "baostock==0.9.4" "numpy>=1.26,<3"
+      - name: Run preregistered CU2609 added-value forecast development comparison
+        run: |
+          python scripts/v32_copper_incremental_predictive_development_once.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/v32_copper_incremental_development_result.json').read_text())
+          assert len(d['issuer_results'])==2
+          assert d['live_buy_authorized'] is False
+          assert d['retrospective_holdout_not_pristine_OOS'] is True
+          assert d['status'] in ('SOURCE_OR_SAMPLE_INSUFFICIENT','DESCRIPTIVE_INCREMENTAL_SUPPORT_ONLY_NOT_VERIFIED_ALPHA','NOT_SUPPORTED_BY_THIS_RETROSPECTIVE_DEVELOPMENT_SAMPLE')
+          print('ONE_SHOT_EXPERIMENT_CLOSED_NO_TRADE_PROMOTION')
+          PY
+      - name: Preserve all source days and fixed one-shot results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v32-cu2609-incremental-vs-own-stock-retrospective-dev-not-oos
+          path: /tmp/v32_copper_incremental_development_result.json
+          retention-days: 14
