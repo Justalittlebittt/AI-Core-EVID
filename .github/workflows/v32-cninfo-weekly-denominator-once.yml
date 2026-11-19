@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - name: Official SSE block-trade two-date source and pagination reality check
+      - name: Final queryDate-adapted historical block-trade source admission check
         run: |
           python scripts/v32_sse_block_trade_source_one_shot.py
           python - <<'PY'
