@@ -64,7 +64,7 @@ def dates_and_stocks():
     status=bs.login()
     if status.error_code!="0":raise ValueError("BAOSTOCK_LOGIN_FAILED")
     try:
-        cal=records(bs.query_trade_dates(start_date="2026-05-01",end_date=STOCK_END))
+        cal=records(bs.query_trade_dates(start_date="2026-04-20",end_date=STOCK_END))
         sessions=[x["calendar_date"] for x in cal if x["is_trading_day"]=="1"]
         if len(sessions)<40 or sessions!=sorted(set(sessions)):
             raise ValueError("INVALID_BAOSTOCK_TRADING_CALENDAR")
@@ -72,7 +72,7 @@ def dates_and_stocks():
         bars={}
         for code in tickers:
             quotes=records(bs.query_history_k_data_plus(
-              code,FIELDS,start_date="2026-05-01",end_date=STOCK_END,
+              code,FIELDS,start_date="2026-04-20",end_date=STOCK_END,
               frequency="d",adjustflag="3"))
             row={}
             for x in quotes:
