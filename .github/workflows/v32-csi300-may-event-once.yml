@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install published A-share historical quote client
         run: python -m pip install --disable-pip-version-check 'baostock==0.9.4' 'numpy>=1.26,<3'
-      - name: Execute preregistered 19 in vs 19 out 20-session return contrast
+      - name: Execute fixed 19 in vs 19 out contrast with corrected calendar minimum
         run: |
           python scripts/v32_csi300_may_reconstitution_20session_once.py
           python - <<'PY'
