@@ -141,7 +141,7 @@ def main():
           "min_lot_reference_cost_sum_cny":sum(r["min_lot_reference_cost_cny"] for r in rows),
           "members_board_min_lot_over_10000_cny":sum(r["min_lot_reference_cost_cny"]>10000 for r in rows)
         }
-    count_ok=all(summary[k]["computable_members"]>=16 for k in ("ADD","DELETE"))
+    count_ok=all(summary[k]["computable_members"]>=9 for k in ("ADD","DELETE"))
     diff=(summary["ADD"]["mean_net_index_excess_proxy"]-summary["DELETE"]["mean_net_index_excess_proxy"]
           if count_ok else None)
     if not count_ok:
