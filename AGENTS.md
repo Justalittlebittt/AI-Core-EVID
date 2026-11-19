@@ -17,6 +17,8 @@ When deciding what to do next:
 6. Keep failed, preregistered factors closed; do **not** flip signs, retune thresholds or reuse opened outcome windows as fresh evidence.
 7. Finish each work unit with an empirical result, a decision relevant to predicting/trading, or a precise evidence blocker. Do not mistake infrastructure completion for target completion.
 
+**2026-11-19 evidence/target correction:** [V3.2 Predictive Evidence Reduction](research/V3.2_PREDICTIVE_EVIDENCE_REDUCTION_AND_DECISION_20261119.md) is the current evidence map. Do not mistake a 1-session MSE improvement for validated 20-session stock-selection profit. Before any new test, explicitly check that its target matches the 20-exchange-session, after-cost, tradable decision objective; otherwise label it strictly as a diagnostic and justify its expected decision value. With no new independent qualifying data or economic hypothesis, prefer existing source-bound real-issuer NO ACTION outputs to the next archive-factor sweep. No historical positive average can override the original DO_NOT_PROMOTE verdict.
+
 No bulk deletion of existing historical scripts or Actions jobs is authorized by this priority update; only change code when the direct predictive/decision requirement is identified.
 
 ## GitHub Actions status and incident checks (mandatory)
