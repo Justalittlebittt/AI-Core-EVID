@@ -93,20 +93,31 @@ def main():
         reports.append(res);rows[d]=one
     common=sorted(set(rows[DAYS[0]])&set(rows[DAYS[1]]))
     errors=[]
+    residual_bins={"exact_zero":0,"abs_le_1_yuan":0,"abs_le_2_yuan":0,"abs_le_10_yuan":0,"abs_gt_10_yuan":0}
+    worst_abs=Decimal("0")
     for code in common:
         prev=rows[DAYS[0]][code]
         now=rows[DAYS[1]][code]
         change=Decimal(now["balance"])-Decimal(prev["balance"])
         flow=Decimal(now["buy"])-Decimal(now["repay"])
-        if abs(change-flow)>Decimal(".01"):
+        delta=abs(change-flow)
+        worst_abs=max(worst_abs,delta)
+        if delta==0:residual_bins["exact_zero"]+=1
+        elif delta<=1:residual_bins["abs_le_1_yuan"]+=1
+        elif delta<=2:residual_bins["abs_le_2_yuan"]+=1
+        elif delta<=10:residual_bins["abs_le_10_yuan"]+=1
+        else:residual_bins["abs_gt_10_yuan"]+=1
+        if delta>Decimal("10"):
             errors.append({"code":code,"balance_change":str(change),
-                           "buys_minus_repayments":str(flow)})
+                           "buys_minus_repayments":str(flow),"abs_residual_cny":str(delta)})
     complete=all(r["status"]=="SOURCE_PAGINATION_EXHAUSTIVE" for r in reports)
     out={
       "schema":"V32_SSE_MARGIN_TWO_DAY_OFFICIAL_SOURCE_EXHAUSTIVE_V2",
       "dates":list(DAYS),"source_day_pages_complete":complete,
       "common_securities":len(common),"accounting_balance_identity_checked":len(common),
-      "accounting_identity_exception_count":len(errors),
+      "accounting_identity_large_residual_count_over_10_cny":len(errors),
+      "accounting_identity_residual_bins":residual_bins,
+      "maximum_abs_balance_identity_residual_cny":str(worst_abs),
       "accounting_identity_examples":errors[:8],
       "note":"Changes in securities eligible for margin trading can alter the universe; identity may also be affected by exchange adjustments.",
       "days":reports,
@@ -119,6 +130,7 @@ def main():
     print("V32_SSE_MARGIN_PROBE",json.dumps({
       "status":[r["status"] for r in reports],
       "unique":[r["unique_securities"] for r in reports],
-      "common":len(common),"balance_check_exceptions":len(errors),
+      "common":len(common),"balance_check_large_residuals_over_10_cny":len(errors),
+      "max_residual_cny":str(worst_abs),"residual_bins":residual_bins,
       "full_source_pages":complete,"alpha":False},ensure_ascii=False),flush=True)
 if __name__=="__main__":main()
