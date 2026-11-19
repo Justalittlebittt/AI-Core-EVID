@@ -10,25 +10,25 @@ permissions:
 jobs:
   source-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
-      - name: Conclude two-day source identity and unit-rounding reconciliation
+      - name: Check four frozen historical SSE margin source dates and equity identity coverage
         run: |
-          python scripts/v32_sse_margin_two_day_source_probe.py
+          python scripts/v32_sse_margin_historical_source_coverage_once.py
           python - <<'PY'
           import json
           from pathlib import Path
-          r=json.loads(Path('/tmp/v32_sse_margin_source_two_day.json').read_text())
-          assert len(r['days'])==2
-          assert not r['post_event_stock_returns_read']
-          assert not r['all_A_share_stocks_covered']
-          assert not r['trade_authorized']
-          print('OFFICIAL_MARGIN_SOURCE_ONLY_NO_ALPHA')
+          r=json.loads(Path('/tmp/v32_sse_historical_margin_coverage.json').read_text())
+          assert len(r['reports'])==4
+          assert r['stock_ohlc_or_future_outcome_queried'] is False
+          assert r['buy_authorized'] is False
+          assert r['date_range_daily_continuity_certified'] is False
+          print('HISTORICAL_SSE_MARGIN_SOURCE_ONLY_CLOSED')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v32-sse-margin-source-two-day
-          path: /tmp/v32_sse_margin_source_two_day.json
+          name: v32-sse-margin-four-historical-dates-source-coverage
+          path: /tmp/v32_sse_historical_margin_coverage.json
           retention-days: 14
