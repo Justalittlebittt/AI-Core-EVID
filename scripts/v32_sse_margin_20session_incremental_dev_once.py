@@ -74,7 +74,7 @@ def fetch_bars(bs,sids):
             tmp={}
             for one in rr:
                 if (one["code"]!=code or one["adjustflag"]!=flag or
-                    one["date"] in tmp):raise ValueError("INVALID_BAOSTOCK_DUPLICATE_OR_CODE")
+                    one["date"] in tmp):raise ValueError("INVALID_BAOSTOCK_DUPLICATE_OR_CODE:"+sid+":"+flag+":"+repr(one)[:450]+":duplicate="+str(one["date"] in tmp))
                 tmp[one["date"]]=one
             byflag[flag]=tmp
         result[sid]=byflag
