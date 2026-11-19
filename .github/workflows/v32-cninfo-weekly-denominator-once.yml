@@ -22,7 +22,7 @@ jobs:
           r=json.loads(Path('/tmp/v32_sse_margin_source_two_day.json').read_text())
           assert len(r['days'])==2
           assert not r['stock_outcome_returns_opened']
-          assert not r['all_A_share_universe_covered']
+          assert not r['all_A_share_stocks_covered']
           assert not r['trade_authorized']
           print('OFFICIAL_MARGIN_SOURCE_ONLY_NO_ALPHA')
           PY
