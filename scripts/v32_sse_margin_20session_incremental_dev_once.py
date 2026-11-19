@@ -161,10 +161,11 @@ def portfolio(ranks,actual):
         entry=target["entry_raw_open"];exit_=target["exit_raw_close"]
         if not entry or not exit_:
             incomplete.append({"sid":sid,"issue":"RAW_PRICE_MISSING"});continue
-        cost=100*entry*(1+.001)+max(5,100*entry*.0003)
+        shares=200 if sid.startswith(("688","689")) else 100
+        cost=shares*entry*(1+.001)+max(5,shares*entry*.0003)
         if cost>PER_SLOT:
-            incomplete.append({"sid":sid,"issue":"MIN_LOT_EXCEEDS_10000_TARGET"});continue
-        proceeds=100*exit_*(1-.001-.0005)-max(5,100*exit_*.0003)
+            incomplete.append({"sid":sid,"issue":"BOARD_MIN_LOT_EXCEEDS_10000_TARGET"});continue
+        proceeds=shares*exit_*(1-.001-.0005)-max(5,shares*exit_*.0003)
         gross+=cost
         trades.append({"sid":sid,"entry_cost":cost,"proceeds":proceeds})
     if incomplete or len(trades)!=10 or gross>BUY_CASH:
@@ -231,6 +232,7 @@ def main():
       "margin_source_page_receipts":margin_sources,
       "no_unseen_122_8_or_E_layer_read":True,
       "live_buy_authorized":False}
+    feature_eligible={sid:one for sid,one in test_rows.items()}
     complete_cases={sid:one for sid,one in test_rows.items() if one["target"] is not None}
     if len(X)<40 or len(complete_cases)<30:
         result["status"]="INSUFFICIENT_TRAIN_OR_TEST_SOURCE"
@@ -244,14 +246,19 @@ def main():
         observed=np.array([complete_cases[k]["target"]["target_excess"] for k in ordering])
         pb=te[:,:3]@b;pa=te@a
         b_mse=mse(observed,pb);a_mse=mse(observed,pa)
-        ranks_base={k:float(v) for k,v in zip(ordering,pb)}
-        ranks_plus={k:float(v) for k,v in zip(ordering,pa)}
+        all_decision_codes=sorted(feature_eligible)
+        all_decision_features=np.stack([feature_eligible[k]["features"] for k in all_decision_codes])
+        all_predictions_base=all_decision_features[:,:3]@b
+        all_predictions_plus=all_decision_features@a
+        ranks_base={k:float(v) for k,v in zip(all_decision_codes,all_predictions_base)}
+        ranks_plus={k:float(v) for k,v in zip(all_decision_codes,all_predictions_plus)}
         actual={sid:r["target"] for sid,r in test_rows.items()}
         portfolio_base=portfolio(ranks_base,actual)
         portfolio_aug=portfolio(ranks_plus,actual)
         result.update({"status":"DESCRIPTIVE_INCREMENTAL_MSE_IMPROVED" if a_mse<b_mse
                            else "NOT_SUPPORTED_BY_THIS_RETROSPECTIVE_DEVELOPMENT_SAMPLE",
            "train_n":len(X),"test_n":len(ordering),
+           "test_decision_time_feature_eligible":len(feature_eligible),
            "baseline_test_mse":b_mse,"augmented_test_mse":a_mse,
            "relative_mse_improvement":1-a_mse/b_mse if b_mse>0 else None,
            "baseline_test_rank_ic":spearman(pb,observed),
