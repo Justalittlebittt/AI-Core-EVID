@@ -14,7 +14,7 @@ SQL_ID="COMMON_SSE_XXPL_JYXXPL_DZJY"
 
 def check(day):
     query={"sqlId":SQL_ID,"isPagination":"true",
-           "tradeDate":day,"beginDate":day,"endDate":day,
+           "queryDate":day,
            "pageHelp.pageSize":"2000","pageHelp.pageNo":"1",
            "pageHelp.beginPage":"1","pageHelp.endPage":"1",
            "pageHelp.cacheSize":"1"}
@@ -35,6 +35,9 @@ def check(day):
         doc=json.loads(raw)
         if not isinstance(doc,dict):raise ValueError("NOT_JSON_OBJECT")
         report["response_keys"]=list(doc.keys())[:15]
+        report["action_errors"]=doc.get("actionErrors")
+        report["field_errors"]=doc.get("fieldErrors")
+        report["echoed_query_date"]=doc.get("queryDate")
         payload=doc.get("result")
         report["result_type"]=type(payload).__name__
         report["result_len"]=len(payload) if isinstance(payload,list) else None
