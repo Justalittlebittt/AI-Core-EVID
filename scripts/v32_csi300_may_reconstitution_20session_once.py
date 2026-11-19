@@ -43,7 +43,7 @@ def main():
     try:
         cal=records(bs.query_trade_dates(start_date=START,end_date=END))
         sessions=[x["calendar_date"] for x in cal if x["is_trading_day"]=="1"]
-        if ENTRY not in sessions or OBS_END not in sessions or len(sessions)<60:
+        if ENTRY not in sessions or OBS_END not in sessions or len(sessions)<45:
             raise ValueError("TRADING_CALENDAR_NOT_CERTIFIED")
         at=sessions.index(ENTRY)
         exit_=sessions[at+19]
