@@ -30,7 +30,7 @@
   "target": "20 A-share trading sessions T+2 open through T+21 close; use same-vintage forward adjusted OHLC price-only proxy minus CSI300 unadjusted price index same entry and exit; test net separately (not use future sample eligibility)",
   "algorithm": "pooled linear OLS on three training events, baseline vs augmented same complete-case training rows; no tuning, standardization or sign flips; test event fixed",
   "metrics": "paired 2026-09-18 test MSE (baseline minus augmented), cross-sectional Spearman rank IC for each; same-sample date alone cannot infer robust statistical significance",
-  "portfolio": "select top 10 predictions for baseline and augmented within identical at-decision-date eligible 60 cohort; 100-share board lot, CNY 100000 cash, 10 percent per-name target, min CNY5 commission each way, 10bps slippage each way, sell-side 0.05pct stamp, report blocked or missing fills without substituting names; use adjusted proxy outcomes only, no broker certification",
+  "portfolio": "select top 10 predictions among full 60 at-decision feature-observable cohort, do not condition selection on future target available; mainboard min 100 shares, STAR 688/689 min 200 shares under 2026 SSE rule; CNY 100000 cash, 10pct per-name target, min CNY5 commission each way, 10bps slippage each way, sell-side 0.05pct stamp; report original top10 blocked or missing fills with no substitution; price-only adjusted outcome proxy not broker certified",
   "gates": [
     "every source query pagination complete for fixed dates and T-5,T-1",
     "at least 40 same complete-case train issuer-event observations and 30 eval issuers; no missing post price rows treated as zero",
@@ -38,5 +38,6 @@
     "no trading promotion even if positive; single out-of-time event and old retro source versions cannot constitute independent verified alpha"
   ],
   "protected": "do not read frozen 122/8, E Fold3/Fold4, 2021/22 holdouts or outcome archives",
-  "authorized_buy": false
+  "authorized_buy": false,
+  "registration_correction": "Before any experiment results were collected, corrected STAR min order 200 shares and top10 membership selection-before-outcome requirement; source official SSE 2026 trading rules article 6.7."
 }
