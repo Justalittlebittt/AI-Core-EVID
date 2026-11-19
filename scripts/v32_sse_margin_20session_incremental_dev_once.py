@@ -101,7 +101,7 @@ def features(sid,day,sessions,margin,bars,index):
     older=sessions[i-20]
     prev=sessions[i-5]
     yesterday=sessions[i-1]
-    rt=margin[day]
+    rt=margin  # caller already passes event-scoped date -> security rows
     if sid not in rt[prev] or sid not in rt[yesterday] or sid not in rt[day]:
         return None,"MARGIN_MEMBERSHIP_OR_HISTORY_MISSING"
     oldb=pos(rt[prev][sid]["balance"]);nowb=pos(rt[day][sid]["balance"])
