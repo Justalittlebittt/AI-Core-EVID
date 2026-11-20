@@ -20,8 +20,11 @@ Use free, lawful, decision-time A-share information to discover a predeclared si
 ## 2026-11-20 prediction P0: new fixed source-conditional hypothesis
 - Checked previously validated free Qlib PIT archive and original report reconciliation (4,067 trading dates, two issuer samples/8 report fields verified; **not full-market historical PIT**). Selected a **different** economic question: whether same-duration Q3 year-over-year change in operating CFO/share adds incremental 20-session *net executable* predictive value beyond revenue-growth-only baseline. This is *not* a signal, model backtest or clean OOS registration. The complete source-conditional design and closed-sample restrictions are in `research/V3.3_CASH_FLOW_INCREMENT_SOURCE_CONDITIONAL_DESIGN_20261120.md`.
 
+## 2026-11-20 actual V3.3 source artifact replay
+- Downloaded and parsed existing GitHub Actions artifact 14304820231 from run 44029418765. Supplier-listed 2018/2020/2022 Q3 source-field coverage confirmed at **175/176** in 44 issuer-year rows from a nonrepresentative 24-security hash sample. The single missing field is `603603.SH` 2022Q3 `roe_waa` (not CFO). Three prechosen issuer-year vendor disclosure dates matched indexed report dates, **not numeric original PDF bytes**. Crucial V3.3 finding: those nonconsecutive years contain **no validated y versus y-1 CFO/share pairs** and cannot certify the new signal's usable denominator. The current container cannot redownload HF, cloud compute reported 402; no fresh archive execution or price outcomes. Proof: `research/V3.3_QLIB_ARTIFACT_REPLAY_ADJACENT_YEAR_GATE_20261120.md`.
+
 ## Next P0 (without waiting for another 20-session outcome)
-Execute a **bounded source-quality and cohort completeness test using the already pinned Qlib archive**, without reading prices as a new outcome: full historic security/universe counts vs available Q3 PIT rows, original version/time spot-check across multiple years and boards, share/price/lot/delisting input viability, and whether any proposed evaluation period is truly unseen. Do not create an API scraper, another workflow or a strategy success claim. **If sources fail, explicitly end this hypothesis and switch mechanisms; if they pass, run a single preregistered descriptive development batch, with separate clean-OOS gate.**
+Perform a bounded **consecutive-year same-issuer Q3 `ocfps` + `or_yoy` source-only coverage** check using the pinned archive and the existing parser/runner if available. Count full listed universe and absence of y-1 pairs explicitly; separately validate original as-published vintages and market eligibility. Avoid training or opening returns until source and independence gates pass. If archive access remains blocked, do **not** rebuild a new download platform or relabel old 2018/20/22 coverage as V3.3 feasibility.
 
 ## Minimal retrieval route for the next assistant
 1. Read `AGENTS.md` and this file; use the exact current request to pick one lane (predictive research, real-issuer decision case, or explicit operational incident).
@@ -40,6 +43,7 @@ Execute a **bounded source-quality and cohort completeness test using the alread
 - Frozen original contracts and receipts: `evidence/`, relevant `research/` files; **do not edit to manufacture progress**.
 
 ## Change record
+- 2026-11-20: Replayed historical Qlib Actions artifact; identified one exact field hole and the untested adjacent-year cash-flow pairing requirement, with no outcomes opened.
 - 2026-11-20: Fixed a source-conditional cash-flow incremental hypothesis and source admission test, without reading outcomes or claiming a tradeable model.
 - 2026-11-20: Delivered sourced two-issuer cash-conversion decision cases with NO ACTION; no alpha validation or source-vintage certification claimed.
 - 2026-11-20: Closed CNINFO acquisition in this environment and adopted compact continuation protocol; original evidence and scientific constraints unchanged.
