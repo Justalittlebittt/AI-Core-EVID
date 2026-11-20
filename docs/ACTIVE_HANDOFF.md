@@ -13,8 +13,11 @@ Use free, lawful, decision-time A-share information to discover a predeclared si
 - A pre-trade paper-lot eligibility helper and six minimal tests are documented in the V3.2 architecture. This is **not** actual fill/portfolio capacity proof or a positive predictive result.
 - This page is not live Actions telemetry. For run health or prospective maturity, inspect actual current Runs and relevant receipts under the existing operations procedure. Do not infer today's health from this dated handoff.
 
+## New 2026-11-20 source-admission result
+- Tested a fresh information family: initial share-repurchase announcements, using an official SSE source and a dated 601899 example. Official event document is retrievable but full eligible A-share event/non-event denominator, precise publication times, historical source coverage and independent 20-session economics are **not verified**. Verdict: `SOURCE_PARTIALLY_VERIFIED / NOT_ADMITTED_FOR_20_SESSION_ALPHA_TEST`; no training or BUY signal. Proof: `research/V3.2_REPURCHASE_SOURCE_ADMISSION_20261120.md`.
+
 ## Next P0 (without waiting for another 20-session outcome)
-Find **one** economically motivated, measurable, decision-time information mechanism with legitimately accessible data and a genuinely independent, pre-registrable 20-session evaluation. Before writing code, check observable timing, eligible universe, realistic paper buyability/costs, baseline and whether the outcome period is already exposed. If not admissible, record `SOURCE_NOT_ADMISSIBLE` with a concrete reason and switch to a different *evidence source/mechanism*, not hindsight retuning. In parallel, existing real-issuer source-bound research cases may be delivered as `NO ACTION` with forecast unknown.
+Test a bounded, complete event-plus-non-event denominator and point-in-time timestamp retrieval for the SSE initial-repurchase mechanism; if a reproducible source is unavailable, close this source as `SOURCE_NOT_ADMISSIBLE` and move to a different genuinely new mechanism rather than building another speculative scraper. More generally, require an economically motivated, measurable, decision-time mechanism with a genuinely independent, pre-registrable 20-session evaluation. Before writing code, check observable timing, eligible universe, realistic paper buyability/costs, baseline and whether the outcome period is already exposed. If not admissible, record `SOURCE_NOT_ADMISSIBLE` with a concrete reason and switch to a different *evidence source/mechanism*, not hindsight retuning. In parallel, existing real-issuer source-bound research cases may be delivered as `NO ACTION` with forecast unknown.
 
 ## Minimal retrieval route for the next assistant
 1. Read `AGENTS.md` and this file; use the exact current request to pick one lane (predictive research, real-issuer decision case, or explicit operational incident).
@@ -33,4 +36,5 @@ Find **one** economically motivated, measurable, decision-time information mecha
 - Frozen original contracts and receipts: `evidence/`, relevant `research/` files; **do not edit to manufacture progress**.
 
 ## Change record
+- 2026-11-20: Added primary-source buyback-event admission check; current evidence is example-document-only, so no 20-session test or alpha promotion is authorized.
 - 2026-11-20: Context architecture reduced to scoped retrieval, evidence links, affected tests, concise cross-chat handoff; **no strategy, experiment, Actions schedule or trading authorization changed**.
