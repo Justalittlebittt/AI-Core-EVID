@@ -21,6 +21,17 @@ When deciding what to do next:
 
 No bulk deletion of existing historical scripts or Actions jobs is authorized by this priority update; only change code when the direct predictive/decision requirement is identified.
 
+## Context-efficient continuation protocol (2026-11-20, active)
+
+This section changes **agent interaction and retrieval scope**, not scientific or operational validity. Follow existing V3.2 priority and frozen contracts when they apply.
+
+- **Short instruction / new chat entry:** For 股票预测 / AI Core EVID “继续”, first read `docs/ACTIVE_HANDOFF.md` and `AGENTS.md` (already supplied here). Read only the one or two source files needed for the selected next P0 work unit. Do **not** reconstruct every past conversation, re-read large research inventories, enumerate all workflows or fetch full logs by default.
+- **Scope the checks:** For research continuation, examine the hypothesis, relevant decision-time inputs, original verdict and affected validations only. For an explicit Actions/incident/status request, follow `docs/operations/ACTIONS_STATUS_EVIDENCE_RULES.md` and `docs/contracts/OPERATIONS_NO_PASSIVE_WAIT_V1.md` fully; their actual-run evidence requirements remain mandatory. Do not interpret an ordinary prediction-development “继续” as a request to audit all schedules.
+- **Execution batch:** Select a substantive P0 question, do a Problem Elimination Pass, execute feasible work, run relevant affected tests, correct observed failures, and commit evidence/state. Stop only on completion or a precise blocked boundary; do not end after a cosmetic micro-step. No silent background execution.
+- **Persist, don't paste:** Keep source code, run artifacts, long diagnostics, frozen evidence and full decisions in GitHub. In chat provide only: objective, change/result, specific test evidence, blocker, and next action, with source links. Quote a full log or file only when essential to resolve an actual error or explicitly requested.
+- **Handoff update:** After a substantive mainline change, update `docs/ACTIVE_HANDOFF.md` in the same change set, keeping it under ~100 lines and pointing to canonical proof rather than copying its contents. This is a concise locator, not a second source of truth or another gate. Never fabricate tests, fresh results, alpha status, or future outcomes just to keep it current.
+- **Avoid uncontrolled growth:** Reuse an existing script/test/Action; add a new persistent workflow, broad defensive wrapper, extra approval or new audit only for a demonstrated gap. A nontrivial scientific or operational modification still requires appropriate full validation, regardless of context savings.
+
 ## GitHub Actions status and incident checks (mandatory)
 
 Before reporting whether V2.8.4 Controlled Prospective E-Layer Observation, Infrastructure Smoke Diagnostic, or the daily monitor has run successfully, follow [the evidence-first status procedure](docs/operations/ACTIONS_STATUS_EVIDENCE_RULES.md).
