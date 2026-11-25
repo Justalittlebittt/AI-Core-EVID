@@ -1,16 +1,11 @@
 # AI Core EVID — Active handoff
-Updated 2026-11-25 (bulk source screen; no predictive validation).
+Updated 2026-11-25 (index migration source diagnostic; no predictive validation).
 ## Goal / status
-Free decision-time A-share data → independent evidence of 20-session after-cost executable benchmark-relative excess return → dated real-security decisions with human risk discipline. No universal prior-rise gate.
-NO VERIFIED ALPHA / NO BUY / no certified target price or win probability. Closed historical tests stay closed; no retuning opened outcomes. Frozen 122/8 and E-layer/Fold3/Fold4 remain protected.
+Free decision-time A-share data → independent 20-session after-cost executable benchmark-relative return evidence → dated real-security decisions with human risk discipline. No universal prior-rise gate.
+NO VERIFIED ALPHA / NO BUY / no certified price target or win probability. Closed historical tests stay closed. Frozen 122/8 and E-layer/Fold3/Fold4 protected.
 ## Current P0
-V3.3: same-duration Q3 YoY operating CFO/share incremental value over revenue-growth baseline. Source-conditional only; no outcomes opened. Existing Qlib artifact had 175/176 fields in 44 rows, but nonconsecutive years cannot establish adjacent-year pairs. Archive download/compute blocked in prior environment.
-Source access recheck: local DNS failure and disabled HF connector. SOURCE_NOT_ADMISSIBLE in current environment; suspend acquisition until qualifying access changes. Completed paired original Q3 case 002475: revenue +29.01%, CFO turns negative; prior comparative matches original. See research/V3.3_LUXSHARE_PAIRED_Q3_CASE_20261125.md. Bulk screen: no qualifying original-vintage source established; suspend V3.3 acquisition. See research/V3.3_BULK_SOURCE_SCREEN_20261125.md. Next P0: reuse existing source inventory to identify accessible non-financial event data and distinct economic hypothesis with independent outcome window; no fitting before gates.
-## Targeted proof (read only relevant file)
-- Design: research/V3.3_CASH_FLOW_INCREMENT_SOURCE_CONDITIONAL_DESIGN_20261120.md
-- Replay: research/V3.3_QLIB_ARTIFACT_REPLAY_ADJACENT_YEAR_GATE_20261120.md
-- Evidence map: research/V3.2_PREDICTIVE_EVIDENCE_REDUCTION_AND_DECISION_20261119.md
-- Architecture: docs/PREDICTION_FIRST_ARCHITECTURE_V3_2.md
-- Full prior handoff: Git blob 635cd46e01b12a798a439235e394088f0137b1ae (history only).
-## Operating rule
-Use AGENTS.md rules when not already supplied. No prior-chat reconstruction; targeted reads, substantive batch, relevant tests, verified evidence persisted. Replace this state, never append history; max 2,500 characters. Report result/evidence/blocker/next P0 briefly. For explicit operations requests use docs/operations/ACTIONS_STATUS_EVIDENCE_RULES.md and docs/contracts/OPERATIONS_NO_PASSIVE_WAIT_V1.md; this handoff is not live telemetry. No changes to frozen contracts.
+V3.4 index migration: official 2026-05-29 CSI300/500 adjustment cohorts extracted, 19/19 and 50/50. 11/19 CSI300 additions also exit CSI500; 13/19 deletions enter CSI500. Inclusion alone cannot identify net passive demand. Proposed feature: signed aggregate tracker assets × weight change / preannouncement liquidity. No return test or independent window established.
+Next: bounded check of historical dated weights/AUM across multiple events and independent outcome availability before any fitting; stop if infeasible. Proof: research/V3.4_INDEX_MIGRATION_SOURCE_DIAGNOSTIC_20261125.md.
+V3.3 cash flow source acquisition suspended: no qualifying historical original-vintage bulk data; one descriptive issuer case only. research/V3.3_BULK_SOURCE_SCREEN_20261125.md.
+## Rules
+AGENTS.md when not supplied; no prior chat reconstruction; targeted reads, substantive batches, necessary tests and evidence persisted. Replace state, max 2500 characters. Evidence map: research/V3.2_PREDICTIVE_EVIDENCE_REDUCTION_AND_DECISION_20261119.md. Architecture: docs/PREDICTION_FIRST_ARCHITECTURE_V3_2.md. Explicit operations use docs/operations/ACTIONS_STATUS_EVIDENCE_RULES.md and docs/contracts/OPERATIONS_NO_PASSIVE_WAIT_V1.md. No frozen changes.
