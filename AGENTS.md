@@ -25,12 +25,20 @@ No bulk deletion of existing historical scripts or Actions jobs is authorized by
 
 This section changes **agent interaction and retrieval scope**, not scientific or operational validity. Follow existing V3.2 priority and frozen contracts when they apply.
 
-- **Short instruction / new chat entry:** For 股票预测 / AI Core EVID “继续”, first read `docs/ACTIVE_HANDOFF.md` and `AGENTS.md` (already supplied here). Read only the one or two source files needed for the selected next P0 work unit. Do **not** reconstruct every past conversation, re-read large research inventories, enumerate all workflows or fetch full logs by default.
+- **Short instruction / new chat entry:** For 股票预测 / AI Core EVID “继续”, first read `docs/ACTIVE_HANDOFF.md` only; if these agent rules are already supplied, do not fetch them again. Read only the one or two source files needed for the selected next P0 work unit. Do **not** reconstruct every past conversation, re-read large research inventories, enumerate all workflows or fetch full logs by default.
 - **Scope the checks:** For research continuation, examine the hypothesis, relevant decision-time inputs, original verdict and affected validations only. For an explicit Actions/incident/status request, follow `docs/operations/ACTIONS_STATUS_EVIDENCE_RULES.md` and `docs/contracts/OPERATIONS_NO_PASSIVE_WAIT_V1.md` fully; their actual-run evidence requirements remain mandatory. Do not interpret an ordinary prediction-development “继续” as a request to audit all schedules.
 - **Execution batch:** Select a substantive P0 question, do a Problem Elimination Pass, execute feasible work, run relevant affected tests, correct observed failures, and commit evidence/state. Stop only on completion or a precise blocked boundary; do not end after a cosmetic micro-step. No silent background execution.
 - **Persist, don't paste:** Keep source code, run artifacts, long diagnostics, frozen evidence and full decisions in GitHub. In chat provide only: objective, change/result, specific test evidence, blocker, and next action, with source links. Quote a full log or file only when essential to resolve an actual error or explicitly requested.
-- **Handoff update:** After a substantive mainline change, update `docs/ACTIVE_HANDOFF.md` in the same change set, keeping it under ~100 lines and pointing to canonical proof rather than copying its contents. This is a concise locator, not a second source of truth or another gate. Never fabricate tests, fresh results, alpha status, or future outcomes just to keep it current.
+- **Handoff update:** After a substantive mainline change, update `docs/ACTIVE_HANDOFF.md` in the same change set, keeping it under 2,500 UTF-8 characters (Unicode code points), excluding no sections and pointing to canonical proof rather than copying its contents. This is a concise locator, not a second source of truth or another gate. Never fabricate tests, fresh results, alpha status, or future outcomes just to keep it current.
 - **Avoid uncontrolled growth:** Reuse an existing script/test/Action; add a new persistent workflow, broad defensive wrapper, extra approval or new audit only for a demonstrated gap. A nontrivial scientific or operational modification still requires appropriate full validation, regardless of context savings.
+
+## Hard context budget (2026-11-25)
+
+- Never reconstruct prior chats on routine continuation. Use the compact handoff as the sole startup locator; load original evidence only for the selected task.
+- Default retrieval: at most two targeted source files per work unit before reassessing; use line ranges and filter tool responses to relevant fields. Expand only when correctness or mandatory evidence requires it. No blanket repo scans or full logs.
+- Default chat report: at most 300 Chinese characters, excluding essential evidence links; expand on explicit request or material risk. Do not repeat the objective, old verdicts or unchanged history.
+- Replace stale handoff state instead of appending; keep historical proof in its existing files and Git history. No new workflow, gate or automation solely for context management.
+- These are retrieval/output budgets, not model context limits or permission to skip validation. If context is becoming unwieldy, persist verified state and provide the same short restart instruction, without a historical recap.
 
 ## GitHub Actions status and incident checks (mandatory)
 
