@@ -1,0 +1,187 @@
+{
+  "schema": "V4_DATA_FOUNDATION_RAW_PANEL_MANIFEST_V1",
+  "status": "STRUCTURAL_RAW_PANEL_ONLY_NOT_TRAINING_READY",
+  "source_commit": "a3e47fd182b07148812d48db67bf5506e606ddbd",
+  "grain": "frame_year,security_id,session",
+  "roster_source": "research/v31_2023_2024_lowvol_one_shot/RESULT.json",
+  "years": [
+    {
+      "year": "2023",
+      "roster_count": 128,
+      "valid_stock_rows": 30679,
+      "missing_slots": 297,
+      "benchmark_rows": 242
+    },
+    {
+      "year": "2024",
+      "roster_count": 128,
+      "valid_stock_rows": 30801,
+      "missing_slots": 175,
+      "benchmark_rows": 242
+    }
+  ],
+  "unique_securities": 248,
+  "stock_year_slots": 256,
+  "stock_rows": 61480,
+  "benchmark_rows": 484,
+  "panel_files": [
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_2023.csv",
+      "git_blob_sha": "7e0a98fdc2d0221b6a35fba0cf51fa500674b6b0",
+      "bytes": 203966
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_2024.csv",
+      "git_blob_sha": "9a496259d2701325be38c9c205fb06e1a360eab2",
+      "bytes": 200225
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B02_2023.csv",
+      "git_blob_sha": "758c79a68778e4dc62b344745f716502f80b322d",
+      "bytes": 513306
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B02_2024.csv",
+      "git_blob_sha": "92db5d5c00b6153b665e335e6104a2e247489458",
+      "bytes": 510933
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_01.csv",
+      "git_blob_sha": "b0cd07d270f9e6e299f2bdf7bc6fa266ffda920b",
+      "bytes": 173723
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_02.csv",
+      "git_blob_sha": "8b3d7675e8342dd8424f15e787888f9e1ed15eeb",
+      "bytes": 164079
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_03.csv",
+      "git_blob_sha": "f75fb36b8f58703bfd48143208ad96da1de93ce8",
+      "bytes": 176883
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_04.csv",
+      "git_blob_sha": "cfcd44080b1037cbe30615654f55be8db8e70b42",
+      "bytes": 177303
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_05.csv",
+      "git_blob_sha": "a7ddf2580220c5585afdce232ebf0ead29447c1f",
+      "bytes": 179008
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_06.csv",
+      "git_blob_sha": "d44569031113e43261eb0e03be8a8ab6a756b59d",
+      "bytes": 176823
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_01.csv",
+      "git_blob_sha": "2ded61a8e235f2de1e6b5f82dc8ceb37c2bef7f3",
+      "bytes": 175509
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_02.csv",
+      "git_blob_sha": "7304209bcd6b32c324fb9eac57bf808bf00eba97",
+      "bytes": 175865
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_03.csv",
+      "git_blob_sha": "ae4db7305803a7116d3dcc37a64709d136d765dc",
+      "bytes": 177576
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_04.csv",
+      "git_blob_sha": "095bb3ff8a186b965227601f039204a4fee7c057",
+      "bytes": 175138
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_05.csv",
+      "git_blob_sha": "246f13faedda8ffd14c829f2d8d61a7bd1358429",
+      "bytes": 175768
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_06.csv",
+      "git_blob_sha": "c33e5a5ae4ab48be073de608fb7df255f46c9d57",
+      "bytes": 175846
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_01.csv",
+      "git_blob_sha": "e1485b118647fb32eb15f09b9a2fbe4ffb899091",
+      "bytes": 175505
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_02.csv",
+      "git_blob_sha": "0bc71641a015f1bfd191a9c6337d508bb2f0de8d",
+      "bytes": 177146
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_03.csv",
+      "git_blob_sha": "e534051dd4606cf451c562d04227c3f3033356d1",
+      "bytes": 175512
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_04.csv",
+      "git_blob_sha": "e7b2370673a7a047dff285a8dd4d99153c09c543",
+      "bytes": 173370
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_05.csv",
+      "git_blob_sha": "f921bc8a5b25c810d6803ad29be4200452e7c570",
+      "bytes": 176711
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_06.csv",
+      "git_blob_sha": "c081f70c3283ffd1a6b02a4583bc9594f114d331",
+      "bytes": 176169
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_01.csv",
+      "git_blob_sha": "a785d1f01f2fad7966ca92327315e1fce9327e9a",
+      "bytes": 176780
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_02.csv",
+      "git_blob_sha": "0eed9703d3d53ec6f44f9625421434597b1e4ee7",
+      "bytes": 176106
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_03.csv",
+      "git_blob_sha": "11c823f431e75eb65416f453ee3327bf33bf3a51",
+      "bytes": 173792
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_04.csv",
+      "git_blob_sha": "ea3cd047141b1814819b20048035ead2f5cffbf7",
+      "bytes": 175613
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_05.csv",
+      "git_blob_sha": "a929a00dca532943c8d18157b6b07314838de0cc",
+      "bytes": 176202
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_06.csv",
+      "git_blob_sha": "aa992703ce804f649a55071b3133b4a60ca591a1",
+      "bytes": 177607
+    }
+  ],
+  "gap_counts": {
+    "UNRESOLVED_NO_BAR": 241,
+    "POST_DELISTING": 221,
+    "CONFIRMED_SUSPENSION": 10
+  },
+  "adjustment_pilot": {
+    "path": "research/v4_data_foundation_20261126/ADJUSTMENT_PILOT.json",
+    "cases": 3,
+    "status": "MATCHED_DATES_BUT_NOT_EXACT_ECONOMIC_RETURN"
+  },
+  "limitations": [
+    "Manifest reconciles stored profiles against original ordered roster and file metadata; not a new full CSV row-by-row revalidation.",
+    "Calendar is CSI300 price index session proxy, not independently certified.",
+    "Gap annotations distinguish verified suspension/post-delist from unknown; no assumption that every other day is tradable.",
+    "Vendor-adjusted series are later vintage; exact corporate-action event coverage and PIT factors not established. Do not use them as actual execution prices or certified total returns.",
+    "No model fit, no strategy label, no protected outcome access."
+  ],
+  "next": "Acquire structured historical corporate-action event source with security, publication date, record/ex-date, cash/share terms; test completeness and reconcile events. Keep raw prices for execution, action-aware wealth for returns, separately dated adjusted prices only as descriptive proxies. Do not blindly backfill all adjusted series before source semantics proven."
+}
