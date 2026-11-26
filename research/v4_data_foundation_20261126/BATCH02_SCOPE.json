@@ -1,0 +1,70 @@
+{
+  "roster": {
+    "2023": [
+      "SSE:600249",
+      "SSE:600618",
+      "SSE:688559",
+      "SZSE:002281",
+      "SZSE:002445",
+      "SSE:600393",
+      "SZSE:300883",
+      "SSE:688257",
+      "SZSE:300378",
+      "SSE:688095",
+      "SSE:605118",
+      "SZSE:301208",
+      "SSE:600004",
+      "SSE:600570",
+      "SSE:600137",
+      "SZSE:002251",
+      "SSE:600180",
+      "SSE:600712",
+      "SSE:600262",
+      "SZSE:300323",
+      "SZSE:300317",
+      "SZSE:300810",
+      "SZSE:002254",
+      "SZSE:300985"
+    ],
+    "2024": [
+      "SZSE:002780",
+      "SZSE:300463",
+      "SZSE:301009",
+      "SZSE:002677",
+      "SZSE:300071",
+      "SSE:600875",
+      "SZSE:000973",
+      "SSE:688339",
+      "SSE:603681",
+      "SSE:600759",
+      "SZSE:002560",
+      "SSE:601127",
+      "SZSE:301133",
+      "SSE:688538",
+      "SZSE:002201",
+      "SZSE:300088",
+      "SZSE:000971",
+      "SZSE:300141",
+      "SSE:600771",
+      "SSE:601880",
+      "SZSE:300638",
+      "SZSE:300587",
+      "SZSE:300611",
+      "SSE:603678"
+    ]
+  },
+  "selection": "next 24/year in original fixed hash-ordered roster, positions 9–32; no substitutes",
+  "source": "research/v31_2023_2024_lowvol_one_shot/RESULT.json",
+  "intervals": {
+    "2023": [
+      "20230103",
+      "20231229"
+    ],
+    "2024": [
+      "20240102",
+      "20241231"
+    ]
+  },
+  "scope": "opened year frames, raw prices only; no fitting/labels, no protected artifacts",
+  "adjustment": "fqt=0"
+}
