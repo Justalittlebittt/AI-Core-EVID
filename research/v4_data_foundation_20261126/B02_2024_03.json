@@ -1647,5 +1647,11 @@
       "missing_dates": []
     }
   ],
-  "calendar_sessions": 242
+  "calendar_sessions": 242,
+  "retry": {
+    "url": "https://push2his.eastmoney.com/api/qt/stock/kline/get?secid=0.000971&klt=101&fqt=0&beg=20240102&end=20241231&fields1=f1,f2,f3,f4,f5,f6&fields2=f51,f52,f53,f54,f55,f56,f57",
+    "errors": [],
+    "text_prefix": "{\"rc\":0,\"rt\":17,\"svr\":175646841,\"lt\":2,\"full\":0,\"dlmkts\":\"\",\"dsc\":\"0\",\"data\":{\"code\":\"000971\",\"market\":0,\"name\":\"\\*ST高升\",\"decimal\":2,\"dktotal\":5425,\"preKPrice\":1.76,\"klines\":[\"2024-01-02,1.76,1.76,1.78,1.75,38814,6847792.00\",\"2024-01-03,1.76,1.76,1.77,1.75,25459,4480116.00\",\"2024-01-04,1.75,1.76,1.77,1.75,23130,4068710.00\",\"2024-01-05,1.78,1.74,1.7",
+    "parse_error": "SyntaxError: Bad escaped character in JSON at position 114 (line 1 column 115)"
+  }
 }
