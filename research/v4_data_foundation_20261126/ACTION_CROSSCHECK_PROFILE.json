@@ -1,0 +1,61 @@
+{
+  "status": "SECOND_VENDOR_CORROBORATION_ONLY",
+  "scope": 69,
+  "readable": 69,
+  "no_target_ex_date": 69,
+  "additional_dividend_events": 0,
+  "target_rights_rows": 0,
+  "unresolved": [],
+  "sources": [
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2023_1.json",
+      "sha": "ad27f28732daa48b13ee88aa845bc73675ed54ef"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2023_2.json",
+      "sha": "219d4fb04c7c24493d2c6c7f902b57c28525e685"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2023_3.json",
+      "sha": "7f494364ed429baad25757b64fe205b95e76fdc3"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2023_4.json",
+      "sha": "57ec19fc8e59ca321713016591a0e31130978b0b"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2023_5.json",
+      "sha": "2123f40b4ca45c460e3d203a8d1d836fe64dafc2"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2024_1.json",
+      "sha": "8dff0ba61f173676c8df52c7b64900045d1f64b5"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2024_2.json",
+      "sha": "bb6ef8f3a93a7bb86e89432019adcd5e383b7b1e"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2024_3.json",
+      "sha": "99e09cf6acc84d7dc5776149bbe6b94b2d0f83cb"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_2024_4.json",
+      "sha": "35b3ed9ee22a7f46e06dfa0e3d4d03b74eaddae9"
+    }
+  ],
+  "initial_unresolved": [
+    {
+      "id": "SSE:600249",
+      "year": "2023",
+      "status": "UNRESOLVED",
+      "error": "timeout",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/600249/.phtml"
+    }
+  ],
+  "retry_source": {
+    "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_RETRY.json",
+    "sha": "aff56d42a1fa64c2692e6bcc6008891de9009378"
+  },
+  "limitations": "Readable extracted historical vendor tables, not certified exhaustive official disclosures or independent upstream lineage. No event on either vendor is corroboration, not absolute proof. Only 69 previously zero-event slots crosschecked; not all 204 existing events. Rights table checked in those 69 only."
+}

@@ -167,9 +167,9 @@
     }
   ],
   "gap_counts": {
-    "UNRESOLVED_NO_BAR": 241,
-    "POST_DELISTING": 221,
-    "CONFIRMED_SUSPENSION": 10
+    "UNRESOLVED_NO_BAR": 12,
+    "CONFIRMED_SUSPENSION": 123,
+    "POST_DELISTING": 337
   },
   "adjustment_pilot": {
     "path": "research/v4_data_foundation_20261126/ADJUSTMENT_PILOT.json",
@@ -189,6 +189,11 @@
     "status": "VENDOR_CASH_AND_SHARE_ACTIONS_STRUCTURALLY_VALID_NOT_COMPLETE_PIT",
     "event_count": 204,
     "queried_stock_year_slots": 256,
-    "not_certified_complete": true
+    "not_certified_complete": true,
+    "crosscheck": {
+      "path": "research/v4_data_foundation_20261126/ACTION_CROSSCHECK_PROFILE.json",
+      "zero_event_slots_corroborated": 69,
+      "not_certified_complete": true
+    }
   }
 }

@@ -1,30 +1,30 @@
 frame_year,security_id,session,status,source
 2023,SSE:600393,2023-05-04,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-09,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-12,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-13,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-14,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-15,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-16,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-19,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-20,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-21,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-26,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-27,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-28,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-29,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-06-30,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-03,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-04,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-05,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-06,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-07,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-10,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-11,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-12,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-13,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-14,UNRESOLVED_NO_BAR,
-2023,SSE:600393,2023-07-17,UNRESOLVED_NO_BAR,
+2023,SSE:600393,2023-06-09,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-12,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-13,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-14,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-15,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-16,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-19,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-20,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-21,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-26,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-27,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-28,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-29,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-06-30,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-03,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-04,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-05,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-06,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-07,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-10,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-11,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-12,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-13,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-14,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
+2023,SSE:600393,2023-07-17,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
 2023,SSE:600393,2023-07-18,POST_DELISTING,BATCH02_PROFILE.json status_notes
 2023,SSE:600393,2023-07-19,POST_DELISTING,BATCH02_PROFILE.json status_notes
 2023,SSE:600393,2023-07-20,POST_DELISTING,BATCH02_PROFILE.json status_notes
@@ -144,155 +144,155 @@ frame_year,security_id,session,status,source
 2023,SZSE:002251,2023-01-12,UNRESOLVED_NO_BAR,
 2023,SZSE:002251,2023-01-13,UNRESOLVED_NO_BAR,
 2023,SZSE:002251,2023-10-30,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-04,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-05,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-08,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-10,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-11,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-12,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-15,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-16,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-17,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-18,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-19,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-22,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-23,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-24,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-25,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-26,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-29,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-30,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-05-31,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-01,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-02,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-05,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-06,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-07,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-08,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-12,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-14,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-15,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-16,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-06-19,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-14,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-17,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-18,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-19,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-20,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-21,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-24,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-25,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-26,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-27,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-28,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-07-31,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-01,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-02,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-03,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-04,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-07,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-08,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-10,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-11,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-14,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-15,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-16,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-17,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-18,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-21,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-22,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-23,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-24,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-25,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-28,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-29,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-30,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-08-31,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-01,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-04,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-05,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-06,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-07,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-08,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-11,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-12,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-14,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-15,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-18,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-19,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-20,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-21,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-22,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-25,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-26,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-27,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-09-28,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-10,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-11,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-12,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-16,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-17,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-18,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-19,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-20,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-23,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-24,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-25,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-26,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-27,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-30,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-10-31,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-01,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-02,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-03,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-06,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-07,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-08,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-10,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-14,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-15,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-16,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-17,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-20,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-21,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-22,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-23,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-24,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-27,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-28,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-29,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-11-30,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-01,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-04,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-05,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-06,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-07,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-08,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-11,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-12,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-14,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-15,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-18,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-19,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-20,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-21,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-22,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-25,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-26,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-27,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-28,UNRESOLVED_NO_BAR,
-2023,SZSE:002751,2023-12-29,UNRESOLVED_NO_BAR,
+2023,SZSE:002751,2023-05-04,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-05,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-08,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-09,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-10,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-11,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-12,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-15,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-16,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-17,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-18,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-19,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-22,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-23,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-24,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-25,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-26,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-29,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-30,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-05-31,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-01,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-02,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-05,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-06,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-07,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-08,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-09,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-12,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-13,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-14,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-15,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-16,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-06-19,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
+2023,SZSE:002751,2023-07-13,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-14,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-17,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-18,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-19,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-20,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-21,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-24,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-25,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-26,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-27,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-28,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-07-31,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-01,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-02,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-03,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-04,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-07,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-08,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-09,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-10,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-11,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-14,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-15,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-16,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-17,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-18,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-21,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-22,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-23,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-24,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-25,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-28,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-29,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-30,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-08-31,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-01,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-04,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-05,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-06,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-07,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-08,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-11,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-12,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-13,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-14,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-15,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-18,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-19,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-20,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-21,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-22,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-25,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-26,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-27,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-09-28,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-09,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-10,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-11,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-12,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-13,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-16,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-17,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-18,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-19,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-20,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-23,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-24,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-25,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-26,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-27,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-30,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-10-31,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-01,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-02,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-03,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-06,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-07,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-08,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-09,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-10,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-13,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-14,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-15,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-16,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-17,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-20,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-21,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-22,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-23,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-24,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-27,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-28,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-29,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-11-30,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-01,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-04,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-05,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-06,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-07,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-08,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-11,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-12,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-13,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-14,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-15,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-18,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-19,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-20,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-21,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-22,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-25,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-26,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-27,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-28,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
+2023,SZSE:002751,2023-12-29,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
 2023,SZSE:002122,2023-01-09,UNRESOLVED_NO_BAR,
 2023,SZSE:002122,2023-02-27,UNRESOLVED_NO_BAR,
 2023,SZSE:002502,2023-05-04,UNRESOLVED_NO_BAR,
@@ -306,53 +306,53 @@ frame_year,security_id,session,status,source
 2024,SSE:600157,2024-08-05,CONFIRMED_SUSPENSION,BATCH02_PROFILE.json status_notes
 2024,SSE:600157,2024-08-06,CONFIRMED_SUSPENSION,BATCH02_PROFILE.json status_notes
 2024,SSE:600157,2024-08-07,CONFIRMED_SUSPENSION,BATCH02_PROFILE.json status_notes
-2024,SZSE:000973,2024-11-01,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-04,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-05,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-06,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-07,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-08,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-11,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-12,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-13,UNRESOLVED_NO_BAR,
-2024,SZSE:000973,2024-11-14,UNRESOLVED_NO_BAR,
+2024,SZSE:000973,2024-11-01,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-04,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-05,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-06,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-07,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-08,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-11,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-12,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-13,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
+2024,SZSE:000973,2024-11-14,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
 2024,SSE:600759,2024-01-12,UNRESOLVED_NO_BAR,
 2024,SSE:600759,2024-06-25,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-04-29,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-05,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-06,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-07,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-11,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-12,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-13,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-14,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-17,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-18,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-19,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-20,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-21,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-24,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-25,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-26,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-27,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-06-28,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-01,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-02,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-03,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-04,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-05,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-08,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-09,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-10,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-11,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-12,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-15,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-16,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-17,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-18,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-19,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-22,UNRESOLVED_NO_BAR,
-2024,SZSE:000971,2024-07-23,UNRESOLVED_NO_BAR,
+2024,SZSE:000971,2024-04-29,CONFIRMED_SUSPENSION,https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESZ_STOCK/2024/2024-4/2024-04-27/10132549.PDF
+2024,SZSE:000971,2024-06-05,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-06,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-07,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-11,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-12,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-13,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-14,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-17,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-18,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-19,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-20,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-21,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-24,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-25,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-26,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-27,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-06-28,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-01,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-02,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-03,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-04,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-05,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-08,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-09,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-10,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-11,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-12,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-15,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-16,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-17,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-18,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-19,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-22,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
+2024,SZSE:000971,2024-07-23,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
 2024,SZSE:000971,2024-07-24,POST_DELISTING,ADJUSTMENT_PILOT.json delisting notice
 2024,SZSE:000971,2024-07-25,POST_DELISTING,ADJUSTMENT_PILOT.json delisting notice
 2024,SZSE:000971,2024-07-26,POST_DELISTING,ADJUSTMENT_PILOT.json delisting notice
@@ -461,13 +461,13 @@ frame_year,security_id,session,status,source
 2024,SZSE:000971,2024-12-27,POST_DELISTING,ADJUSTMENT_PILOT.json delisting notice
 2024,SZSE:000971,2024-12-30,POST_DELISTING,ADJUSTMENT_PILOT.json delisting notice
 2024,SZSE:000971,2024-12-31,POST_DELISTING,ADJUSTMENT_PILOT.json delisting notice
-2024,SSE:603356,2024-12-03,UNRESOLVED_NO_BAR,
-2024,SSE:603356,2024-12-04,UNRESOLVED_NO_BAR,
-2024,SSE:603356,2024-12-05,UNRESOLVED_NO_BAR,
-2024,SSE:603356,2024-12-06,UNRESOLVED_NO_BAR,
-2024,SSE:603356,2024-12-09,UNRESOLVED_NO_BAR,
-2024,SSE:603887,2024-10-08,UNRESOLVED_NO_BAR,
-2024,SSE:603887,2024-10-09,UNRESOLVED_NO_BAR,
-2024,SSE:603887,2024-10-10,UNRESOLVED_NO_BAR,
-2024,SSE:603887,2024-10-11,UNRESOLVED_NO_BAR,
-2024,SSE:603887,2024-10-14,UNRESOLVED_NO_BAR,
+2024,SSE:603356,2024-12-03,CONFIRMED_SUSPENSION,https://paper.cnstock.com/html/2024-12/10/content_2004257.htm
+2024,SSE:603356,2024-12-04,CONFIRMED_SUSPENSION,https://paper.cnstock.com/html/2024-12/10/content_2004257.htm
+2024,SSE:603356,2024-12-05,CONFIRMED_SUSPENSION,https://paper.cnstock.com/html/2024-12/10/content_2004257.htm
+2024,SSE:603356,2024-12-06,CONFIRMED_SUSPENSION,https://paper.cnstock.com/html/2024-12/10/content_2004257.htm
+2024,SSE:603356,2024-12-09,CONFIRMED_SUSPENSION,https://paper.cnstock.com/html/2024-12/10/content_2004257.htm
+2024,SSE:603887,2024-10-08,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=80387666&gather=1&id=10524555
+2024,SSE:603887,2024-10-09,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=80387666&gather=1&id=10524555
+2024,SSE:603887,2024-10-10,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=80387666&gather=1&id=10524555
+2024,SSE:603887,2024-10-11,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=80387666&gather=1&id=10524555
+2024,SSE:603887,2024-10-14,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=80387666&gather=1&id=10524555
