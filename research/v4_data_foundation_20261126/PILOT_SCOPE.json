@@ -1,0 +1,39 @@
+{
+  "scope": "DATA_FOUNDATION_TRANSPORT_PILOT_ONLY",
+  "source_roster": "research/v31_2023_2024_lowvol_one_shot/RESULT.json",
+  "selection": "first eight existing hash-ordered PIT sample IDs per year, before retrieval, no substitution",
+  "roster": {
+    "2023": [
+      "SZSE:003020",
+      "SZSE:300200",
+      "SZSE:300386",
+      "SZSE:300895",
+      "SSE:688551",
+      "SSE:688206",
+      "SSE:601880",
+      "SSE:601669"
+    ],
+    "2024": [
+      "SSE:600157",
+      "SSE:601113",
+      "SZSE:000605",
+      "SZSE:300887",
+      "SZSE:300472",
+      "SSE:603123",
+      "SSE:600051",
+      "SZSE:300825"
+    ]
+  },
+  "intervals": {
+    "2023": [
+      "20230103",
+      "20231229"
+    ],
+    "2024": [
+      "20240102",
+      "20241231"
+    ]
+  },
+  "source": "Eastmoney raw fqt=0 daily OHLC volume turnover; CSI300 price calendar",
+  "restrictions": "Only preexisting opened V3.1 roster/year scope; no labels or returns calculated, no protected files, not full universe/PIT certified/independent OOS. No fitting."
+}
