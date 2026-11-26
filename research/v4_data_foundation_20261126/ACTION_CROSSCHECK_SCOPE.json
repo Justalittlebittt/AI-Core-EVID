@@ -1,0 +1,286 @@
+{
+  "source": "Sina historical dividend and rights issue table; second vendor, upstream independence not established",
+  "targets": [
+    {
+      "id": "SZSE:300386",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600249",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002445",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600393",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600004",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002251",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600712",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300323",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300317",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300985",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:000949",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600058",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600319",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:688070",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002751",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300972",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300846",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002453",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600768",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300225",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300429",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:000929",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002122",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300176",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002198",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300513",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600265",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300731",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600569",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002798",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:601127",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300222",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600593",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:300637",
+      "year": "2023"
+    },
+    {
+      "id": "SZSE:002502",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:603031",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:603181",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:600405",
+      "year": "2023"
+    },
+    {
+      "id": "SSE:601113",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300472",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:603123",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300825",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002780",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300071",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:600759",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:688538",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:000971",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:600771",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300587",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002520",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002992",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:688148",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:000510",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:600333",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:600281",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:000050",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002265",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:600793",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300868",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:000536",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:603356",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002778",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300426",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300150",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:600470",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:300191",
+      "year": "2024"
+    },
+    {
+      "id": "SSE:603887",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002512",
+      "year": "2024"
+    },
+    {
+      "id": "SZSE:002072",
+      "year": "2024"
+    }
+  ],
+  "rule": "Read identity-matched dividend table; extract implemented ex-date in target year and rights table. No implemented event in parsed history is corroborating absence, not certified zero. Record inaccessible pages and malformed rows; no imputation.",
+  "positive_controls": [
+    "000858",
+    "003020"
+  ]
+}
