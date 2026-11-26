@@ -3,6 +3,7 @@
 
 Not a trading instruction. No price fetching, no future outcomes, no ranking changes.
 """
+from datetime import date
 from decimal import Decimal, InvalidOperation
 
 SCHEMA = 'V32_GENERIC_PRE_OUTCOME_BUY_FEASIBILITY_V1'
@@ -24,7 +25,7 @@ def board_lot(sid):
     if not isinstance(sid, str) or ':' not in sid:
         raise ValueError('INVALID_A_SHARE_ID')
     exchange, code = sid.split(':', 1)
-    if len(code) != 6 or not code.isdigit():
+    if len(code) != 6 or not code.isascii() or not code.isdigit():
         raise ValueError('INVALID_A_SHARE_ID')
     if exchange == 'SSE' and code.startswith(('688', '689')):
         return 'star', 200
@@ -65,6 +66,12 @@ def evaluate(candidates, account):
         price = dec(row['reference_price_cny'])
         asof = row['reference_session']
         if price == 0 or not isinstance(asof, str) or len(asof) != 10 or asof[4] != '-' or asof[7] != '-':
+            raise ValueError('INVALID_REFERENCE_PRICE_OR_DATE')
+        try:
+            parsed_date = date.fromisoformat(asof)
+        except ValueError as exc:
+            raise ValueError('INVALID_REFERENCE_PRICE_OR_DATE') from exc
+        if parsed_date.isoformat() != asof:
             raise ValueError('INVALID_REFERENCE_PRICE_OR_DATE')
         gross = price * shares
         # Fixed illustrative entry assumptions, not user broker's actual fees.

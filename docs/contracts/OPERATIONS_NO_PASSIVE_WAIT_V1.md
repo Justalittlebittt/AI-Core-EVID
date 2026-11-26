@@ -1,7 +1,7 @@
 # Operational execution contract — No Passive Wait V1.0
 
 Status: ACTIVE upon merge to main.
-Scope: All AI agents and operators handling AI Core EVID monitoring, operational diagnosis, fault recovery, and continuation requests. This is a subordinate **operations execution contract**, not a scientific research contract. It cannot amend `evidence/V2.9_GOVERNANCE_KERNEL.json`, frozen V2.8.12 rules, or research authorization.
+Scope: All AI agents and operators handling AI Core EVID monitoring, operational diagnosis, fault recovery, and continuation requests **within that operations lane**. V4 clarification: ordinary research continuation and user-directed design/interface review are not operational health checks; steps 2–3 and operational audit fields apply when actually checking scheduled runs or operational incidents. The no-passive-wait principle remains applicable to all authorized work. This is a subordinate **operations execution contract**, not a scientific research contract. It cannot amend `evidence/V2.9_GOVERNANCE_KERNEL.json`, frozen V2.8.12 rules, or research authorization.
 
 ## P0 mandatory rule: waiting is not a substitute for currently executable work
 

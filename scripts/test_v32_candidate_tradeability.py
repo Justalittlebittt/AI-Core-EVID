@@ -34,4 +34,16 @@ class TestTradeability(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'DUPLICATE'):
             evaluate([candidate('SSE:600118',10),candidate('SSE:600118',10)],ACCOUNT)
 
+    def test_invalid_calendar_dates_rejected(self):
+        for value in ('2026-02-30','2026-13-01','abcd-ef-gh','0000-01-01'):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError,'INVALID_REFERENCE_PRICE_OR_DATE'):
+                evaluate([dict(candidate('SSE:600118',10),reference_session=value)],ACCOUNT)
+    def test_non_ascii_security_code_rejected(self):
+        with self.assertRaisesRegex(ValueError,'INVALID_A_SHARE_ID'):
+            board_lot('SSE:600１２３')
+    def test_valid_leap_date_is_paper_only(self):
+        r=evaluate([dict(candidate('SSE:600118',10),reference_session='2024-02-29')],ACCOUNT)
+        self.assertFalse(r['trade_authorized'])
+        self.assertFalse(r['original_candidates_in_original_order'][0]['buy_authorized'])
+
 if __name__=='__main__':unittest.main()
