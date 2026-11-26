@@ -1,0 +1,92 @@
+{
+  "rows": [
+    {
+      "id": "SZSE:000971",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/000971/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 24,
+      "source_excerpt": "| 2024-04-27 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": "no rights rows reported"
+    },
+    {
+      "id": "SSE:600771",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/600771/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 28,
+      "source_excerpt": "| 2024-04-30 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": []
+    },
+    {
+      "id": "SZSE:300587",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/300587/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 10,
+      "source_excerpt": "| 2024-04-27 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": "no rights rows reported"
+    },
+    {
+      "id": "SZSE:002520",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/002520/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 16,
+      "source_excerpt": "| 2024-04-30 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": "no rights rows reported"
+    },
+    {
+      "id": "SZSE:002992",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/002992/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 6,
+      "source_excerpt": "| 2024-04-29 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": "no rights rows reported"
+    },
+    {
+      "id": "SSE:688148",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/688148/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 5,
+      "source_excerpt": "| 2024-04-19 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": "no rights rows reported"
+    },
+    {
+      "id": "SZSE:000510",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/000510/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 29,
+      "source_excerpt": "| 2024-04-27 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": []
+    },
+    {
+      "id": "SSE:600333",
+      "year": "2024",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/600333/.phtml",
+      "status": "NO_TARGET_EX_DATE_IN_SINA_TABLE",
+      "events": [],
+      "rights_rows": [],
+      "table_rows": 27,
+      "source_excerpt": "| 2024-04-13 | 0 | 0 | 0 | 不分配 | -- | -- | -- | 查看 |",
+      "rights_table_excerpt": "no rights rows reported"
+    }
+  ]
+}
