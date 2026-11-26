@@ -1,0 +1,39 @@
+{
+  "status": "VENDOR_CASH_AND_SHARE_ACTIONS_STRUCTURALLY_VALID_NOT_COMPLETE_PIT",
+  "sources": [
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_NORMALIZED_2023.json",
+      "blob": "1cfe6b2a4352a33fb0dc3aaaf08fed0c640bb94c"
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/ACTION_NORMALIZED_2024.json",
+      "blob": "4982306046a2a296c052dbb361bd9b4f9089bfe0"
+    }
+  ],
+  "queried_stock_year_slots": 256,
+  "complete_vendor_queries": 16,
+  "reported_events": 204,
+  "structural_pass": 204,
+  "stock_years_with_vendor_events": 187,
+  "stock_years_without_vendor_events": 69,
+  "known_case_reconciliation": [
+    {
+      "id": "SZSE:000858",
+      "match": true,
+      "prior_announcement_reference": "https://static.cninfo.com.cn/finalpage/2023-06-17/1217085394.PDF"
+    },
+    {
+      "id": "SZSE:003020",
+      "match": true,
+      "prior_announcement_reference": "https://paper.cnstock.com/html/2023-05/17/content_1767177.htm"
+    }
+  ],
+  "record_or_ex_date_quote_gaps": [],
+  "limitations": [
+    "Complete vendor responses do not certify completeness or original point-in-time vintages; no-record is UNKNOWN, not certified no action.",
+    "Implementation notice date is vendor metadata, not independent historical announcement timestamp for all 204 events.",
+    "Cash dividend, bonus and transfer terms only; rights issues, mergers, cash-out, payment/settlement dates, delisting recoveries and tax not certified.",
+    "No actual execution or return labels computed. Do not assume every quote day was tradable; price index calendar proxy only."
+  ],
+  "next": "Reconcile event completeness with an independent free source, especially zero-event stock-years and quote gaps; use historical exchange membership/calendar/status and avoid requiring unrelated data families. Only after bounded source verification construct causal features/data research, no model until explicit user authorization."
+}

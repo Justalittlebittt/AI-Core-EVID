@@ -183,5 +183,12 @@
     "Vendor-adjusted series are later vintage; exact corporate-action event coverage and PIT factors not established. Do not use them as actual execution prices or certified total returns.",
     "No model fit, no strategy label, no protected outcome access."
   ],
-  "next": "Acquire structured historical corporate-action event source with security, publication date, record/ex-date, cash/share terms; test completeness and reconcile events. Keep raw prices for execution, action-aware wealth for returns, separately dated adjusted prices only as descriptive proxies. Do not blindly backfill all adjusted series before source semantics proven."
+  "next": "Acquire structured historical corporate-action event source with security, publication date, record/ex-date, cash/share terms; test completeness and reconcile events. Keep raw prices for execution, action-aware wealth for returns, separately dated adjusted prices only as descriptive proxies. Do not blindly backfill all adjusted series before source semantics proven.",
+  "corporate_action_layer": {
+    "path": "research/v4_data_foundation_20261126/ACTION_PROFILE.json",
+    "status": "VENDOR_CASH_AND_SHARE_ACTIONS_STRUCTURALLY_VALID_NOT_COMPLETE_PIT",
+    "event_count": 204,
+    "queried_stock_year_slots": 256,
+    "not_certified_complete": true
+  }
 }
