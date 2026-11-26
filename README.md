@@ -4,30 +4,9 @@ AI Core EVID is a personal A-share evidence and decision-discipline research sys
 
 **User outcome:** discover A-share candidates with a predeclared, reproducible stock-selection rule that demonstrates repeatable **out-of-sample, after-cost, realistically executable excess return**, then issue timestamped buy/hold/reduce/exit eligibility with strict position and exit discipline. Profitable prediction is the research objective; preventing unproven or undisciplined trades is a non-negotiable safety constraint, not a substitute for predictive value. Neither a working pipeline nor repeated `NO BUY` decisions constitutes a validated predictor or a completed investment goal. No guaranteed forecasts, autonomous brokerage orders, or return-maximization claim.
 
-## Active product mainline — prediction first (V3.2)
+## Active product mainline — research first (V4.0)
 
-**The product is a credible stock forecast, not an audit platform.** New development starts with an economically motivated hypothesis and actually available decision-time data, then tests the predicted **future** net excess return and realistic execution **on independent observations**, and only afterward promotes a candidate to a real-security Decision Case. Prior stock-price appreciation is **not** universally required to enter the candidate pool.
-
-**Canonical architecture and priority:** [Prediction-first Architecture V3.2](docs/PREDICTION_FIRST_ARCHITECTURE_V3_2.md). Existing implementation interfaces and safety constraints: [Decision-first mainline](docs/MAINLINE_DECISION_FIRST.md). These are complementary: V3.2 governs **what gets built next**, V2.9 documents **what the existing engines already do**.
-
-```text
-Public decision-time data
-    ↓
-Economic hypothesis / feature feasibility
-    ↓
-Future-return forecast or candidate ranking + uncertainty
-    ↓
-Independent after-cost / fill-aware evaluation
-    ↓
-Real issuer Decision Case + existing Discipline Engine
-    ↓
-Human-controlled position / exit / feedback
-
-Frozen prospective evidence: parallel, unchanged, outcome-blind
-GitHub Actions / data audits: essential support, never the product
-```
-
-**Research state (2026-11-17): NO VERIFIED ALPHA / NO BUY.** Closed low-volatility, reversal, medium-term momentum and growth-quality development tests did not establish a usable predictor. Do not reopen these same historical windows to search for a more flattering sign, horizon or threshold. The prospective 122/8 and V2.8.12 E-layer studies remain protected, unmodified and independently scheduled.
+[Research-first V4.0](docs/RESEARCH_FIRST_V4.md) is the canonical new-work architecture. [Active handoff](docs/ACTIVE_HANDOFF.md) is the sole startup locator. Separate bounded historical DEVELOPMENT_ONLY model discovery from independent validation and real-stock delivery. Do not block development merely because independent evaluation data are unavailable; do not promote development results to BUY. Reuse existing engines, preserve frozen evidence and failed fixed contracts. No new infrastructure by default. Status 2026-11-26: NO VERIFIED ALPHA / NO BUY.
 
 ## Existing scientific foundation — V2.9
 

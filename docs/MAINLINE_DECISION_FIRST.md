@@ -1,5 +1,7 @@
 # Decision-first mainline — operating model V1
 
+> **Historical reference:** V4.0 [Research-first reset](RESEARCH_FIRST_V4.md) supersedes this document for new discretionary research priority and development/validation separation. Original scientific contracts and existing implementation details remain unchanged.
+
 > **Active priority since 2026-11-17:** The canonical **new-work architecture** is [Prediction-first Architecture V3.2](PREDICTION_FIRST_ARCHITECTURE_V3_2.md). This V1 document remains the reusable decision-engine and scientific-integrity reference, **not** the highest-priority project backlog. When the user says “继续”, prioritize research that could establish future-return forecasting value and independent economic evidence; do not start another workflow/audit by default. Nothing here supersedes frozen scientific contracts, original negative verdicts, or human-only trade authorization.
 
 

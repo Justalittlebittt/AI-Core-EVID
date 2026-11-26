@@ -1,5 +1,7 @@
 # AI Core EVID — Prediction-first architecture V3.2
 
+> **Historical reference:** V4.0 [Research-first reset](RESEARCH_FIRST_V4.md) supersedes this document for new discretionary research priority and development/validation separation. Original scientific contracts and existing implementation details remain unchanged.
+
 Effective: 2026-11-17. **This is the canonical priority / architecture for new work**, not a retroactive change to frozen research or to the V2.9 scientific governance kernel.
 
 ## 1. Product objective and non-negotiable constraints
