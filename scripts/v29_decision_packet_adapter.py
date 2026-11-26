@@ -71,7 +71,7 @@ def _require_nonempty_string(name: str, value: Any) -> str:
 
 def _require_evaluation_timestamp(value: Any) -> str:
     s = _require_nonempty_string("evaluation_timestamp", value)
-    if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]{1,6})?(?:Z|[+-][0-9]{2}:[0-9]{2})", s):
+    if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]{1,6})?(?:Z|[+-](?:[01][0-9]|2[0-3]):[0-5][0-9])", s):
         raise DecisionPacketError("INVALID_EVALUATION_TIMESTAMP")
     try:
         t = datetime.fromisoformat(s.replace("Z", "+00:00"))
