@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 import re
+from datetime import datetime
 from typing import Any
 
 from v29_discipline_engine import (
@@ -68,6 +69,19 @@ def _require_nonempty_string(name: str, value: Any) -> str:
     return value
 
 
+def _require_evaluation_timestamp(value: Any) -> str:
+    s = _require_nonempty_string("evaluation_timestamp", value)
+    if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]{1,6})?(?:Z|[+-][0-9]{2}:[0-9]{2})", s):
+        raise DecisionPacketError("INVALID_EVALUATION_TIMESTAMP")
+    try:
+        t = datetime.fromisoformat(s.replace("Z", "+00:00"))
+        if t.utcoffset() is None:
+            raise ValueError("timezone required")
+    except ValueError as exc:
+        raise DecisionPacketError("INVALID_EVALUATION_TIMESTAMP") from exc
+    return s
+
+
 def _require_string(name: str, value: Any) -> str:
     if not isinstance(value, str):
         raise DecisionPacketError(f"{name}_MUST_BE_STRING")
@@ -103,7 +117,7 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
 
     _require_nonempty_string("strategy_id", research["strategy_id"])
     _require_nonempty_string("experiment_version", research["experiment_version"])
-    _require_nonempty_string("evaluation_timestamp", research["evaluation_timestamp"])
+    _require_evaluation_timestamp(research["evaluation_timestamp"])
     _require_sha("evidence_artifact_sha256", research["evidence_artifact_sha256"])
     _require_sha("validity_result_sha256", validity["validity_result_sha256"])
     _require_sha("pre_registration_sha256", validity["pre_registration_sha256"])
@@ -180,6 +194,7 @@ def adapt_and_evaluate(packet: dict[str, Any]) -> dict[str, Any]:
         "decision_scope": "DISCIPLINE_PREVIEW_NOT_VERIFIED_TRADE_AUTHORIZATION",
         "source_evidence_authenticated_by_adapter": False,
         "trade_authorized": False,
+        "live_buy_eligibility": "NOT_AUTHORIZED",
         "discipline_input": discipline_input,
         "discipline_decision": decision,
         "adapter_metadata": {

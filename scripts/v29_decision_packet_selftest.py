@@ -66,6 +66,7 @@ def main() -> None:
     assert base["decision_scope"] == "DISCIPLINE_PREVIEW_NOT_VERIFIED_TRADE_AUTHORIZATION"
     assert base["source_evidence_authenticated_by_adapter"] is False
     assert base["trade_authorized"] is False
+    assert base["live_buy_eligibility"] == "NOT_AUTHORIZED"
     assert base["adapter_metadata"]["discipline_post_baseline_repair_1_applied"] is True
     self_asserted = packet()
     self_asserted["validity"]["evidence_strength"] = "STRONG"
@@ -73,6 +74,13 @@ def main() -> None:
     assert preview["discipline_decision"]["decision"] == "ACTION_ELIGIBLE"
     assert preview["source_evidence_authenticated_by_adapter"] is False
     assert preview["trade_authorized"] is False
+    assert preview["live_buy_eligibility"] == "NOT_AUTHORIZED"
+
+    for timestamp in ("unknown", "2026-02-30T15:00:00+08:00", "2026-11-26T15:00:00", "2026-11-26", "2026-11-26T25:00:00Z"):
+        p = packet(); p["research_context"]["evaluation_timestamp"] = timestamp
+        expect_packet_error(p, "INVALID_EVALUATION_TIMESTAMP")
+    p = packet(); p["research_context"]["evaluation_timestamp"] = "2026-11-26T15:00:00+08:00"
+    assert adapt_and_evaluate(p)["live_buy_eligibility"] == "NOT_AUTHORIZED"
 
     p = packet(); p["validity"]["all_required_dimensions_reported"] = False
     r = adapt_and_evaluate(p)
