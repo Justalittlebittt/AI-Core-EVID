@@ -1,0 +1,37 @@
+{
+  "schema": "V29_GROWTH_310_FIXED_CONDITIONAL_COMPARISON_RESULT_V1",
+  "registered_comparison": "research/V2.9_GROWTH_310_CONDITIONAL_CONTROL_PREOUTCOME_20261102.json",
+  "fixed_entry_session": "2026-11-02",
+  "fixed_exit_session": "2026-11-27",
+  "selected_total": 122,
+  "comparator_total": 188,
+  "clean_88_comparator_total": 88,
+  "clean_88_definition": "ORIGINAL_NO_SPECIFIED_RISK_FLAGS_AND_NOT_IN_FROZEN_122",
+  "clean_88_is_supplementary_pre_maturity_descriptive_only": true,
+  "selected_computable": 122,
+  "clean_88_computable": 88,
+  "comparator_computable": 182,
+  "missing_by_group": {
+    "selected": [],
+    "comparator": [
+      "SSE:600423",
+      "SSE:600753",
+      "SSE:600889",
+      "SSE:603822",
+      "SSE:688270",
+      "SZSE:002512"
+    ]
+  },
+  "round_trip_cost": 0.003,
+  "source_identity_asserted_not_independently_authenticated": true,
+  "not_industry_or_market_cap_matched": true,
+  "one_episode_not_independent_strategy_validation": true,
+  "strategy_validated": false,
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "status": "INSUFFICIENT_NEVER_DROP_NAMES",
+  "mean_selected_net": null,
+  "mean_comparator_net": null,
+  "selected_minus_comparator": null,
+  "mean_clean_88_net": null,
+  "selected_minus_clean_88": null
+}
