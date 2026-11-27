@@ -1,0 +1,133 @@
+{
+  "schema": "V29_FROZEN_EIGHT_VS_122_POST_MATURITY_RESEARCH_RESULT_V1",
+  "experiment_id": "V29_20261102_CAPITAL_AWARE_EIGHT_NAME_EXPLORATORY_RESEARCH",
+  "parent_experiment_id": "V29_122_GROWTH_COHORT_PROSPECTIVE_20261030",
+  "source_parent_protocol_sha256": "5c9fd8bee18dd2fd5af6acf0eed1a1768d8d370274a1098e21f6cae064f9e957",
+  "source_parent_raw_outcome_sha256": "bb0ae1ddfc8ad3a47ad65e0bf5f85e6af3aa5d3b069593f641c51c9f850e763b",
+  "entry_session": "2026-11-02",
+  "exit_session": "2026-11-27",
+  "selected_eight_ids_in_frozen_rank_order": [
+    "SZSE:300199",
+    "SZSE:002636",
+    "SZSE:301536",
+    "SZSE:000408",
+    "SZSE:002463",
+    "SSE:603256",
+    "SZSE:002552",
+    "SZSE:300223"
+  ],
+  "selected_count": 8,
+  "parent_count": 122,
+  "cost_round_trip": 0.003,
+  "parent_outcome_status": "ONE_EPISODE_DESCRIPTIVE_NOT_BUY_EVIDENCE",
+  "research_only": true,
+  "not_independent_repeated_alpha": true,
+  "not_lot_weighted_cash_portfolio": true,
+  "post_entry_pre_outcome_min_lot_sensitivity": true,
+  "minimum_lot_entry_reference": {
+    "actual_reference_session": "2026-11-02",
+    "sealed_entry_snapshot_sha256": "6d924b8f723d5a5691cfbdf154aed8dbdb6b36a8f31fd2dcad95970d55c15461",
+    "min_lot_reference_notional_cny": 54558.0,
+    "min_lot_fee_and_slippage_excluded_from_reference_cash": true,
+    "personal_available_cash_or_risk_budget_unknown": true,
+    "tradeable_close_fill_proven": false,
+    "weights": [
+      {
+        "security_id": "SZSE:300199",
+        "shares": 100,
+        "reference_notional_cny": 2209.0,
+        "capital_weight": 0.04048902085853587
+      },
+      {
+        "security_id": "SZSE:002636",
+        "shares": 100,
+        "reference_notional_cny": 6370.0,
+        "capital_weight": 0.11675647934308442
+      },
+      {
+        "security_id": "SZSE:301536",
+        "shares": 100,
+        "reference_notional_cny": 8366.0,
+        "capital_weight": 0.1533413981450933
+      },
+      {
+        "security_id": "SZSE:000408",
+        "shares": 100,
+        "reference_notional_cny": 6697.0,
+        "capital_weight": 0.122750100810147
+      },
+      {
+        "security_id": "SZSE:002463",
+        "shares": 100,
+        "reference_notional_cny": 8605.0,
+        "capital_weight": 0.1577220572601635
+      },
+      {
+        "security_id": "SSE:603256",
+        "shares": 100,
+        "reference_notional_cny": 7694.0,
+        "capital_weight": 0.14102423109351517
+      },
+      {
+        "security_id": "SZSE:002552",
+        "shares": 100,
+        "reference_notional_cny": 3317.0,
+        "capital_weight": 0.06079768319953077
+      },
+      {
+        "security_id": "SZSE:300223",
+        "shares": 100,
+        "reference_notional_cny": 11300.0,
+        "capital_weight": 0.20711902928992998
+      }
+    ]
+  },
+  "live_buy_eligibility": "NOT_AUTHORIZED",
+  "trade_authorized": false,
+  "status": "ONE_EPISODE_EXPLORATORY_NOT_BUY_EVIDENCE",
+  "selected_eight_mean_gross": -0.06826584546276,
+  "selected_eight_mean_net": -0.07126584546276,
+  "parent_122_mean_net": -0.048323853548699267,
+  "benchmark_H00300_total_return": 0.011893956302854614,
+  "selected_eight_minus_parent_122": -0.02294199191406074,
+  "selected_eight_minus_H00300_total_return": -0.08315980176561462,
+  "min_lot_weighted_net_proxy": -0.07094603907767875,
+  "min_lot_minus_equal_eight_net_proxy": 0.0003198063850812505,
+  "min_lot_minus_H00300_total_return": -0.08283999538053337,
+  "min_lot_same_round_trip_cost_assumption": 0.003,
+  "min_lot_paper_proxy_not_broker_fill": true,
+  "per_selected_name_net_return": [
+    {
+      "security_id": "SZSE:300199",
+      "net_return": -0.05505975554549569
+    },
+    {
+      "security_id": "SZSE:002636",
+      "net_return": -0.19515070643642074
+    },
+    {
+      "security_id": "SZSE:301536",
+      "net_return": 0.06345947884293579
+    },
+    {
+      "security_id": "SZSE:000408",
+      "net_return": -0.06347483948036425
+    },
+    {
+      "security_id": "SZSE:002463",
+      "net_return": 0.03360662405578163
+    },
+    {
+      "security_id": "SSE:603256",
+      "net_return": -0.08709149987002862
+    },
+    {
+      "security_id": "SZSE:002552",
+      "net_return": -0.09766385287910762
+    },
+    {
+      "security_id": "SZSE:300223",
+      "net_return": -0.16875221238938054
+    }
+  ]
+}
