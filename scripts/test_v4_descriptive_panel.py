@@ -21,6 +21,14 @@ class DataFoundationTest(unittest.TestCase):
         r=screen("2023-01-03")
         self.assertTrue(r)
         self.assertTrue(all(x["observation_status"]=="OBSERVED_BAR" and x["session"]=="2023-01-03" for x in r))
+    def test_feature_whitelist(self):
+        for r in screen("2023-01-03"):
+            self.assertNotIn("action_status", r)
+            self.assertNotIn("economic_return", r)
+            self.assertNotIn("raw_close", r)
+            self.assertEqual(r["research_use"], "DESCRIPTIVE_DEVELOPMENT")
+        with self.assertRaises(ValueError):
+            screen("2023-01-01")
     def test_fail_closed(self):
         for purpose in ("LIVE","INDEPENDENT_OOS","MODEL_TRAINING"):
             with self.assertRaises(ValueError):

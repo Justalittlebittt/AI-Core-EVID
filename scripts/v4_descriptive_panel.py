@@ -71,9 +71,17 @@ def load(purpose="DESCRIPTIVE_DEVELOPMENT", root=ROOT):
                     row.update(raw_open=o,raw_close=c,intraday_return=c/o-1,range_over_open=(h-l)/o,volume_vendor_units=v,turnover_vendor_units=a,source_path=src)
                 yield row
 
+def feature_view(row):
+    """Whitelist descriptive features; do not expose retrospective annotations as predictors."""
+    require(row["research_use"] == "DESCRIPTIVE_DEVELOPMENT" and row["observation_status"] == "OBSERVED_BAR", "ineligible observation")
+    require(row["independent_oos"] is False and row["economic_return"] is None, "invalid research boundary")
+    keys = ("frame_year", "security_id", "session", "observation_status", "intraday_return", "range_over_open", "volume_vendor_units", "turnover_vendor_units", "source_path", "research_use", "vintage_status", "membership_status", "execution_status")
+    return {k: row[k] for k in keys}
+
 def screen(session, root=ROOT):
-    """Unranked historical descriptive candidates only; no buy or future labels."""
-    return [r for r in load(root=root) if r["session"]==session and r["observation_status"]=="OBSERVED_BAR"]
+    """Unranked, retrospective descriptive features only; no buy or future labels."""
+    require(any(session in trading_days(y) for y in (2023, 2024)), "session outside allowed trading calendar")
+    return [feature_view(r) for r in load(root=root) if r["session"]==session and r["observation_status"]=="OBSERVED_BAR"]
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)

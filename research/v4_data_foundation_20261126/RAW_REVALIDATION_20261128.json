@@ -1,0 +1,216 @@
+{
+  "source_commit": "a3f7c3be3d719e5e2b608b67a03aefdd3fe5b3c6",
+  "method": "Three actual connector JavaScript passes over manifest shards 1–6, 7–18, 19–28. Parsed all rows and checked calendar, roster, OHLC, volume, adjustment and source blob IDs. Duplicate checks within each pass, gap overlap checked only in passes 2 and 3. Not native Python execution.",
+  "stock_rows": 61480,
+  "benchmark_rows": 484,
+  "calendar_counts": {
+    "2023": 242,
+    "2024": 242
+  },
+  "calendar_matches_benchmark": true,
+  "files": [
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_2023.csv",
+      "git_blob_sha": "7e0a98fdc2d0221b6a35fba0cf51fa500674b6b0",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 242
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_2024.csv",
+      "git_blob_sha": "9a496259d2701325be38c9c205fb06e1a360eab2",
+      "sha_matches": true,
+      "stock_rows": 1926,
+      "benchmark_rows": 242
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B02_2023.csv",
+      "git_blob_sha": "758c79a68778e4dc62b344745f716502f80b322d",
+      "sha_matches": true,
+      "stock_rows": 5663,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B02_2024.csv",
+      "git_blob_sha": "92db5d5c00b6153b665e335e6104a2e247489458",
+      "sha_matches": true,
+      "stock_rows": 5653,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_01.csv",
+      "git_blob_sha": "b0cd07d270f9e6e299f2bdf7bc6fa266ffda920b",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_02.csv",
+      "git_blob_sha": "8b3d7675e8342dd8424f15e787888f9e1ed15eeb",
+      "sha_matches": true,
+      "stock_rows": 1787,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_03.csv",
+      "git_blob_sha": "f75fb36b8f58703bfd48143208ad96da1de93ce8",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_04.csv",
+      "git_blob_sha": "cfcd44080b1037cbe30615654f55be8db8e70b42",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_05.csv",
+      "git_blob_sha": "a7ddf2580220c5585afdce232ebf0ead29447c1f",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2023_06.csv",
+      "git_blob_sha": "d44569031113e43261eb0e03be8a8ab6a756b59d",
+      "sha_matches": true,
+      "stock_rows": 1934,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_01.csv",
+      "git_blob_sha": "2ded61a8e235f2de1e6b5f82dc8ceb37c2bef7f3",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_02.csv",
+      "git_blob_sha": "7304209bcd6b32c324fb9eac57bf808bf00eba97",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_03.csv",
+      "git_blob_sha": "ae4db7305803a7116d3dcc37a64709d136d765dc",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_04.csv",
+      "git_blob_sha": "095bb3ff8a186b965227601f039204a4fee7c057",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_05.csv",
+      "git_blob_sha": "246f13faedda8ffd14c829f2d8d61a7bd1358429",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B03_2024_06.csv",
+      "git_blob_sha": "c33e5a5ae4ab48be073de608fb7df255f46c9d57",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_01.csv",
+      "git_blob_sha": "e1485b118647fb32eb15f09b9a2fbe4ffb899091",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_02.csv",
+      "git_blob_sha": "0bc71641a015f1bfd191a9c6337d508bb2f0de8d",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_03.csv",
+      "git_blob_sha": "e534051dd4606cf451c562d04227c3f3033356d1",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_04.csv",
+      "git_blob_sha": "e7b2370673a7a047dff285a8dd4d99153c09c543",
+      "sha_matches": true,
+      "stock_rows": 1935,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_05.csv",
+      "git_blob_sha": "f921bc8a5b25c810d6803ad29be4200452e7c570",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2023_06.csv",
+      "git_blob_sha": "c081f70c3283ffd1a6b02a4583bc9594f114d331",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_01.csv",
+      "git_blob_sha": "a785d1f01f2fad7966ca92327315e1fce9327e9a",
+      "sha_matches": true,
+      "stock_rows": 1931,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_02.csv",
+      "git_blob_sha": "0eed9703d3d53ec6f44f9625421434597b1e4ee7",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_03.csv",
+      "git_blob_sha": "11c823f431e75eb65416f453ee3327bf33bf3a51",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_04.csv",
+      "git_blob_sha": "ea3cd047141b1814819b20048035ead2f5cffbf7",
+      "sha_matches": true,
+      "stock_rows": 1931,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_05.csv",
+      "git_blob_sha": "a929a00dca532943c8d18157b6b07314838de0cc",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    },
+    {
+      "path": "research/v4_data_foundation_20261126/PANEL_B04_2024_06.csv",
+      "git_blob_sha": "aa992703ce804f649a55071b3133b4a60ca591a1",
+      "sha_matches": true,
+      "stock_rows": 1936,
+      "benchmark_rows": 0
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Cross-pass duplicate and complete roster/gap set reconciliation not yet independently run.",
+    "Existing calendar derived from repository official closure table, not fresh primary-source confirmation.",
+    "No Python execution or downstream end-to-end test.",
+    "PIT vintage, daily membership, tradeability, economic returns and OOS not certified."
+  ]
+}
