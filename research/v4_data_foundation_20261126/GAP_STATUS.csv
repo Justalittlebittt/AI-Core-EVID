@@ -1,5 +1,5 @@
 frame_year,security_id,session,status,source
-2023,SSE:600393,2023-05-04,UNRESOLVED_NO_BAR,
+2023,SSE:600393,2023-05-04,CONFIRMED_SUSPENSION,https://epaper.stcn.com/con/202304/29/content_2468852.html
 2023,SSE:600393,2023-06-09,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
 2023,SSE:600393,2023-06-12,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
 2023,SSE:600393,2023-06-13,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllMemordDetail.php?stockid=600393
@@ -138,12 +138,12 @@ frame_year,security_id,session,status,source
 2023,SSE:600393,2023-12-27,POST_DELISTING,BATCH02_PROFILE.json status_notes
 2023,SSE:600393,2023-12-28,POST_DELISTING,BATCH02_PROFILE.json status_notes
 2023,SSE:600393,2023-12-29,POST_DELISTING,BATCH02_PROFILE.json status_notes
-2023,SZSE:002251,2023-01-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002251,2023-01-10,UNRESOLVED_NO_BAR,
-2023,SZSE:002251,2023-01-11,UNRESOLVED_NO_BAR,
-2023,SZSE:002251,2023-01-12,UNRESOLVED_NO_BAR,
-2023,SZSE:002251,2023-01-13,UNRESOLVED_NO_BAR,
-2023,SZSE:002251,2023-10-30,UNRESOLVED_NO_BAR,
+2023,SZSE:002251,2023-01-09,CONFIRMED_SUSPENSION,https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html
+2023,SZSE:002251,2023-01-10,CONFIRMED_SUSPENSION,https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html
+2023,SZSE:002251,2023-01-11,CONFIRMED_SUSPENSION,https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html
+2023,SZSE:002251,2023-01-12,CONFIRMED_SUSPENSION,https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html
+2023,SZSE:002251,2023-01-13,CONFIRMED_SUSPENSION,https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html
+2023,SZSE:002251,2023-10-30,CONFIRMED_SUSPENSION,https://paper.cnstock.com/html/2023-10/30/content_1836329.htm
 2023,SZSE:002751,2023-05-04,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
 2023,SZSE:002751,2023-05-05,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
 2023,SZSE:002751,2023-05-08,CONFIRMED_SUSPENSION,https://pdf.dfcfw.com/pdf/H2_AN202305081586380320_1.pdf; https://www.stcn.com/xinpi/jg-detail.html?id=2419947
@@ -293,9 +293,9 @@ frame_year,security_id,session,status,source
 2023,SZSE:002751,2023-12-27,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
 2023,SZSE:002751,2023-12-28,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
 2023,SZSE:002751,2023-12-29,POST_DELISTING,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9346517&stockid=002751
-2023,SZSE:002122,2023-01-09,UNRESOLVED_NO_BAR,
-2023,SZSE:002122,2023-02-27,UNRESOLVED_NO_BAR,
-2023,SZSE:002502,2023-05-04,UNRESOLVED_NO_BAR,
+2023,SZSE:002122,2023-01-09,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8776531&stockid=002122
+2023,SZSE:002122,2023-02-27,CONFIRMED_SUSPENSION,https://m.yicai.com/brief/101685898.html
+2023,SZSE:002502,2023-05-04,CONFIRMED_SUSPENSION,https://epaper.stcn.com/con/202304/29/content_2470494.html
 2024,SSE:600157,2024-07-25,CONFIRMED_SUSPENSION,BATCH02_PROFILE.json status_notes
 2024,SSE:600157,2024-07-26,CONFIRMED_SUSPENSION,BATCH02_PROFILE.json status_notes
 2024,SSE:600157,2024-07-29,CONFIRMED_SUSPENSION,BATCH02_PROFILE.json status_notes
@@ -316,8 +316,8 @@ frame_year,security_id,session,status,source
 2024,SZSE:000973,2024-11-12,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
 2024,SZSE:000973,2024-11-13,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
 2024,SZSE:000973,2024-11-14,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10593991&stockid=
-2024,SSE:600759,2024-01-12,UNRESOLVED_NO_BAR,
-2024,SSE:600759,2024-06-25,UNRESOLVED_NO_BAR,
+2024,SSE:600759,2024-01-12,CONFIRMED_SUSPENSION,https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9777983&stockid=600759
+2024,SSE:600759,2024-06-25,CONFIRMED_SUSPENSION,https://finance.sina.com.cn/jjxw/2024-06-25/doc-inazwryv1733644.shtml
 2024,SZSE:000971,2024-04-29,CONFIRMED_SUSPENSION,https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESZ_STOCK/2024/2024-4/2024-04-27/10132549.PDF
 2024,SZSE:000971,2024-06-05,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html
 2024,SZSE:000971,2024-06-06,CONFIRMED_SUSPENSION,https://www.cczq.com/home/uploads/2024/06-05/08-38-210402-1980448667.pdf; https://www.szse.cn/disclosure/notice/t20240708_608088.html

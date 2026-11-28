@@ -1,0 +1,107 @@
+{
+  "status": "ALL_MISSING_BARS_CLASSIFIED_NO_IMPUTATION",
+  "prior_gap_blob": "2a1fccbe0b8a42195b69022e626792bd92ca62a6",
+  "counts": {
+    "CONFIRMED_SUSPENSION": 135,
+    "POST_DELISTING": 337
+  },
+  "changes": [
+    {
+      "y": "2023",
+      "id": "SSE:600393",
+      "d": "2023-05-04",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://epaper.stcn.com/con/202304/29/content_2468852.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002251",
+      "d": "2023-01-09",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002251",
+      "d": "2023-01-10",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002251",
+      "d": "2023-01-11",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002251",
+      "d": "2023-01-12",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002251",
+      "d": "2023-01-13",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://www.szse.cn/disclosure/notice/t20230109_598165.html; https://www.nbd.com.cn/articles/2023-01-15/2635074.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002251",
+      "d": "2023-10-30",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://paper.cnstock.com/html/2023-10/30/content_1836329.htm"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002122",
+      "d": "2023-01-09",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8776531&stockid=002122"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002122",
+      "d": "2023-02-27",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://m.yicai.com/brief/101685898.html"
+    },
+    {
+      "y": "2023",
+      "id": "SZSE:002502",
+      "d": "2023-05-04",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://epaper.stcn.com/con/202304/29/content_2470494.html"
+    },
+    {
+      "y": "2024",
+      "id": "SSE:600759",
+      "d": "2024-01-12",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=9777983&stockid=600759"
+    },
+    {
+      "y": "2024",
+      "id": "SSE:600759",
+      "d": "2024-06-25",
+      "from": "UNRESOLVED_NO_BAR",
+      "to": "CONFIRMED_SUSPENSION",
+      "source": "https://finance.sina.com.cn/jjxw/2024-06-25/doc-inazwryv1733644.shtml"
+    }
+  ],
+  "limitations": "Historical issuer announcements and exchange notices as linked, not original-vintage certified dataset. Suspension does not certify other sessions tradable."
+}

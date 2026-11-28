@@ -8,7 +8,7 @@ class DataFoundationTest(unittest.TestCase):
         cls.rows=list(load())
     def test_real_coverage(self):
         self.assertEqual(len(self.rows),61952)
-        self.assertEqual(Counter(r["observation_status"] for r in self.rows),{"OBSERVED_BAR":61480,"UNRESOLVED_NO_BAR":12,"CONFIRMED_SUSPENSION":123,"POST_DELISTING":337})
+        self.assertEqual(Counter(r["observation_status"] for r in self.rows),{"OBSERVED_BAR":61480,"CONFIRMED_SUSPENSION":135,"POST_DELISTING":337})
     def test_isolation(self):
         for r in self.rows:
             self.assertFalse(r["independent_oos"])

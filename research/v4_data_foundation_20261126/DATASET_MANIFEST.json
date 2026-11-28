@@ -167,8 +167,7 @@
     }
   ],
   "gap_counts": {
-    "UNRESOLVED_NO_BAR": 12,
-    "CONFIRMED_SUSPENSION": 123,
+    "CONFIRMED_SUSPENSION": 135,
     "POST_DELISTING": 337
   },
   "adjustment_pilot": {
@@ -195,5 +194,6 @@
       "zero_event_slots_corroborated": 69,
       "not_certified_complete": true
     }
-  }
+  },
+  "gap_reconciliation_latest": "research/v4_data_foundation_20261126/GAP_RECONCILIATION_20261128.json"
 }
