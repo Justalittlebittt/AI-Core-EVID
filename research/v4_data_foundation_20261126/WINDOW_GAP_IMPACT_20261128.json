@@ -1,0 +1,15 @@
+{
+  "source_commit": "2acd0cd0344ad0509b05027ff35990feb6b35e69",
+  "method": "Actual connector computation over roster, official closure calendar reproduced from v285_joint_calendar, GAP_STATUS.csv; observed signal inferred from complement of gaps, not independent bar validation. Signal close, next session entry, twentieth following session exit, within year only. No prices or returns calculated.",
+  "counts": {
+    "slots": 61952,
+    "observed_signal_assumed": 61480,
+    "complete_within_frame": 56424,
+    "endpoint_gap": 124,
+    "interior_gap_only": 167,
+    "no_gap_window": 56133,
+    "frame_end": 5056,
+    "signal_gap": 472
+  },
+  "formal_labels": 0
+}
